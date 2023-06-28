@@ -1,4 +1,4 @@
-module github.com/content-services/zest/release/v3
+module github.com/content-services/zest/release/v2023
 
 go 1.18
 

@@ -22,7 +22,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import zest "github.com/content-services/zest/release/v3"
+import zest "github.com/content-services/zest/release/v2023"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
