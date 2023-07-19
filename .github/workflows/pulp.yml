@@ -65,7 +65,7 @@ jobs:
           sed -i "0,/docs_api\.json_get/{s/docs_api\.json_get/docs_api\.json_get_1/}" ./pulp_api.json
           sed -i "0,/status_read/{s/status_read/status_read_1/}" ./pulp_api.json
           sed -i "0,/docs_api\.yaml_get/{s/docs_api\.yaml_get/docs_api\.yaml_get_1/}" ./pulp_api.json
-          echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' ./pulp_api.json )" > ./pulp_api.json
+          echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' pulp_api.json )" > ./pulp_api.json
           docker run --network=host --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
           -i /local/pulp_api.json \
           -t /local/templates/ \
