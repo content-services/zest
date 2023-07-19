@@ -26,10 +26,10 @@ type StatusResponse struct {
 	OnlineWorkers []WorkerResponse `json:"online_workers"`
 	// List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients
 	OnlineContentApps []ContentAppStatusResponse `json:"online_content_apps"`
-	DatabaseConnection StatusResponseDatabaseConnection `json:"database_connection"`
-	RedisConnection *StatusResponseRedisConnection `json:"redis_connection,omitempty"`
-	Storage *StatusResponseStorage `json:"storage,omitempty"`
-	ContentSettings StatusResponseContentSettings `json:"content_settings"`
+	DatabaseConnection DatabaseConnectionResponse `json:"database_connection"`
+	RedisConnection *RedisConnectionResponse `json:"redis_connection,omitempty"`
+	Storage *StorageResponse `json:"storage,omitempty"`
+	ContentSettings ContentSettingsResponse `json:"content_settings"`
 	// Is Domains enabled
 	DomainEnabled bool `json:"domain_enabled"`
 }
@@ -38,7 +38,7 @@ type StatusResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection StatusResponseDatabaseConnection, contentSettings StatusResponseContentSettings, domainEnabled bool) *StatusResponse {
+func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool) *StatusResponse {
 	this := StatusResponse{}
 	this.Versions = versions
 	this.OnlineWorkers = onlineWorkers
@@ -130,9 +130,9 @@ func (o *StatusResponse) SetOnlineContentApps(v []ContentAppStatusResponse) {
 }
 
 // GetDatabaseConnection returns the DatabaseConnection field value
-func (o *StatusResponse) GetDatabaseConnection() StatusResponseDatabaseConnection {
+func (o *StatusResponse) GetDatabaseConnection() DatabaseConnectionResponse {
 	if o == nil {
-		var ret StatusResponseDatabaseConnection
+		var ret DatabaseConnectionResponse
 		return ret
 	}
 
@@ -141,7 +141,7 @@ func (o *StatusResponse) GetDatabaseConnection() StatusResponseDatabaseConnectio
 
 // GetDatabaseConnectionOk returns a tuple with the DatabaseConnection field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetDatabaseConnectionOk() (*StatusResponseDatabaseConnection, bool) {
+func (o *StatusResponse) GetDatabaseConnectionOk() (*DatabaseConnectionResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,14 +149,14 @@ func (o *StatusResponse) GetDatabaseConnectionOk() (*StatusResponseDatabaseConne
 }
 
 // SetDatabaseConnection sets field value
-func (o *StatusResponse) SetDatabaseConnection(v StatusResponseDatabaseConnection) {
+func (o *StatusResponse) SetDatabaseConnection(v DatabaseConnectionResponse) {
 	o.DatabaseConnection = v
 }
 
 // GetRedisConnection returns the RedisConnection field value if set, zero value otherwise.
-func (o *StatusResponse) GetRedisConnection() StatusResponseRedisConnection {
+func (o *StatusResponse) GetRedisConnection() RedisConnectionResponse {
 	if o == nil || IsNil(o.RedisConnection) {
-		var ret StatusResponseRedisConnection
+		var ret RedisConnectionResponse
 		return ret
 	}
 	return *o.RedisConnection
@@ -164,7 +164,7 @@ func (o *StatusResponse) GetRedisConnection() StatusResponseRedisConnection {
 
 // GetRedisConnectionOk returns a tuple with the RedisConnection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetRedisConnectionOk() (*StatusResponseRedisConnection, bool) {
+func (o *StatusResponse) GetRedisConnectionOk() (*RedisConnectionResponse, bool) {
 	if o == nil || IsNil(o.RedisConnection) {
 		return nil, false
 	}
@@ -180,15 +180,15 @@ func (o *StatusResponse) HasRedisConnection() bool {
 	return false
 }
 
-// SetRedisConnection gets a reference to the given StatusResponseRedisConnection and assigns it to the RedisConnection field.
-func (o *StatusResponse) SetRedisConnection(v StatusResponseRedisConnection) {
+// SetRedisConnection gets a reference to the given RedisConnectionResponse and assigns it to the RedisConnection field.
+func (o *StatusResponse) SetRedisConnection(v RedisConnectionResponse) {
 	o.RedisConnection = &v
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
-func (o *StatusResponse) GetStorage() StatusResponseStorage {
+func (o *StatusResponse) GetStorage() StorageResponse {
 	if o == nil || IsNil(o.Storage) {
-		var ret StatusResponseStorage
+		var ret StorageResponse
 		return ret
 	}
 	return *o.Storage
@@ -196,7 +196,7 @@ func (o *StatusResponse) GetStorage() StatusResponseStorage {
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetStorageOk() (*StatusResponseStorage, bool) {
+func (o *StatusResponse) GetStorageOk() (*StorageResponse, bool) {
 	if o == nil || IsNil(o.Storage) {
 		return nil, false
 	}
@@ -212,15 +212,15 @@ func (o *StatusResponse) HasStorage() bool {
 	return false
 }
 
-// SetStorage gets a reference to the given StatusResponseStorage and assigns it to the Storage field.
-func (o *StatusResponse) SetStorage(v StatusResponseStorage) {
+// SetStorage gets a reference to the given StorageResponse and assigns it to the Storage field.
+func (o *StatusResponse) SetStorage(v StorageResponse) {
 	o.Storage = &v
 }
 
 // GetContentSettings returns the ContentSettings field value
-func (o *StatusResponse) GetContentSettings() StatusResponseContentSettings {
+func (o *StatusResponse) GetContentSettings() ContentSettingsResponse {
 	if o == nil {
-		var ret StatusResponseContentSettings
+		var ret ContentSettingsResponse
 		return ret
 	}
 
@@ -229,7 +229,7 @@ func (o *StatusResponse) GetContentSettings() StatusResponseContentSettings {
 
 // GetContentSettingsOk returns a tuple with the ContentSettings field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetContentSettingsOk() (*StatusResponseContentSettings, bool) {
+func (o *StatusResponse) GetContentSettingsOk() (*ContentSettingsResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,7 +237,7 @@ func (o *StatusResponse) GetContentSettingsOk() (*StatusResponseContentSettings,
 }
 
 // SetContentSettings sets field value
-func (o *StatusResponse) SetContentSettings(v StatusResponseContentSettings) {
+func (o *StatusResponse) SetContentSettings(v ContentSettingsResponse) {
 	o.ContentSettings = v
 }
 

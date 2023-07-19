@@ -235,9 +235,6 @@ docs/PulpExporterResponse.md
 docs/PulpImport.md
 docs/PulpImportCheck.md
 docs/PulpImportCheckResponse.md
-docs/PulpImportCheckResponsePath.md
-docs/PulpImportCheckResponseRepoMapping.md
-docs/PulpImportCheckResponseToc.md
 docs/PulpImporter.md
 docs/PulpImporterResponse.md
 docs/Purge.md
@@ -304,10 +301,6 @@ docs/SkipTypesEnum.md
 docs/StatesEnum.md
 docs/StatusAPI.md
 docs/StatusResponse.md
-docs/StatusResponseContentSettings.md
-docs/StatusResponseDatabaseConnection.md
-docs/StatusResponseRedisConnection.md
-docs/StatusResponseStorage.md
 docs/StorageClassEnum.md
 docs/StorageResponse.md
 docs/SyncPolicyEnum.md
@@ -471,9 +464,6 @@ model_pulp_exporter_response.go
 model_pulp_import.go
 model_pulp_import_check.go
 model_pulp_import_check_response.go
-model_pulp_import_check_response_path.go
-model_pulp_import_check_response_repo_mapping.go
-model_pulp_import_check_response_toc.go
 model_pulp_importer.go
 model_pulp_importer_response.go
 model_purge.go
@@ -526,10 +516,6 @@ model_signing_service_response.go
 model_skip_types_enum.go
 model_states_enum.go
 model_status_response.go
-model_status_response_content_settings.go
-model_status_response_database_connection.go
-model_status_response_redis_connection.go
-model_status_response_storage.go
 model_storage_class_enum.go
 model_storage_response.go
 model_sync_policy_enum.go

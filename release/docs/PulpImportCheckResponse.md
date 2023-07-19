@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Toc** | Pointer to [**PulpImportCheckResponseToc**](PulpImportCheckResponseToc.md) |  | [optional] 
-**Path** | Pointer to [**PulpImportCheckResponsePath**](PulpImportCheckResponsePath.md) |  | [optional] 
-**RepoMapping** | Pointer to [**PulpImportCheckResponseRepoMapping**](PulpImportCheckResponseRepoMapping.md) |  | [optional] 
+**Toc** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
+**Path** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
+**RepoMapping** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetToc
 
-`func (o *PulpImportCheckResponse) GetToc() PulpImportCheckResponseToc`
+`func (o *PulpImportCheckResponse) GetToc() EvaluationResponse`
 
 GetToc returns the Toc field if non-nil, zero value otherwise.
 
 ### GetTocOk
 
-`func (o *PulpImportCheckResponse) GetTocOk() (*PulpImportCheckResponseToc, bool)`
+`func (o *PulpImportCheckResponse) GetTocOk() (*EvaluationResponse, bool)`
 
 GetTocOk returns a tuple with the Toc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToc
 
-`func (o *PulpImportCheckResponse) SetToc(v PulpImportCheckResponseToc)`
+`func (o *PulpImportCheckResponse) SetToc(v EvaluationResponse)`
 
 SetToc sets Toc field to given value.
 
@@ -54,20 +54,20 @@ HasToc returns a boolean if a field has been set.
 
 ### GetPath
 
-`func (o *PulpImportCheckResponse) GetPath() PulpImportCheckResponsePath`
+`func (o *PulpImportCheckResponse) GetPath() EvaluationResponse`
 
 GetPath returns the Path field if non-nil, zero value otherwise.
 
 ### GetPathOk
 
-`func (o *PulpImportCheckResponse) GetPathOk() (*PulpImportCheckResponsePath, bool)`
+`func (o *PulpImportCheckResponse) GetPathOk() (*EvaluationResponse, bool)`
 
 GetPathOk returns a tuple with the Path field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPath
 
-`func (o *PulpImportCheckResponse) SetPath(v PulpImportCheckResponsePath)`
+`func (o *PulpImportCheckResponse) SetPath(v EvaluationResponse)`
 
 SetPath sets Path field to given value.
 
@@ -79,20 +79,20 @@ HasPath returns a boolean if a field has been set.
 
 ### GetRepoMapping
 
-`func (o *PulpImportCheckResponse) GetRepoMapping() PulpImportCheckResponseRepoMapping`
+`func (o *PulpImportCheckResponse) GetRepoMapping() EvaluationResponse`
 
 GetRepoMapping returns the RepoMapping field if non-nil, zero value otherwise.
 
 ### GetRepoMappingOk
 
-`func (o *PulpImportCheckResponse) GetRepoMappingOk() (*PulpImportCheckResponseRepoMapping, bool)`
+`func (o *PulpImportCheckResponse) GetRepoMappingOk() (*EvaluationResponse, bool)`
 
 GetRepoMappingOk returns a tuple with the RepoMapping field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepoMapping
 
-`func (o *PulpImportCheckResponse) SetRepoMapping(v PulpImportCheckResponseRepoMapping)`
+`func (o *PulpImportCheckResponse) SetRepoMapping(v EvaluationResponse)`
 
 SetRepoMapping sets RepoMapping field to given value.
 

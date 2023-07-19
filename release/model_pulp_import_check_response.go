@@ -20,9 +20,9 @@ var _ MappedNullable = &PulpImportCheckResponse{}
 
 // PulpImportCheckResponse Return the response to a PulpImport import-check call.
 type PulpImportCheckResponse struct {
-	Toc *PulpImportCheckResponseToc `json:"toc,omitempty"`
-	Path *PulpImportCheckResponsePath `json:"path,omitempty"`
-	RepoMapping *PulpImportCheckResponseRepoMapping `json:"repo_mapping,omitempty"`
+	Toc *EvaluationResponse `json:"toc,omitempty"`
+	Path *EvaluationResponse `json:"path,omitempty"`
+	RepoMapping *EvaluationResponse `json:"repo_mapping,omitempty"`
 }
 
 // NewPulpImportCheckResponse instantiates a new PulpImportCheckResponse object
@@ -43,9 +43,9 @@ func NewPulpImportCheckResponseWithDefaults() *PulpImportCheckResponse {
 }
 
 // GetToc returns the Toc field value if set, zero value otherwise.
-func (o *PulpImportCheckResponse) GetToc() PulpImportCheckResponseToc {
+func (o *PulpImportCheckResponse) GetToc() EvaluationResponse {
 	if o == nil || IsNil(o.Toc) {
-		var ret PulpImportCheckResponseToc
+		var ret EvaluationResponse
 		return ret
 	}
 	return *o.Toc
@@ -53,7 +53,7 @@ func (o *PulpImportCheckResponse) GetToc() PulpImportCheckResponseToc {
 
 // GetTocOk returns a tuple with the Toc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpImportCheckResponse) GetTocOk() (*PulpImportCheckResponseToc, bool) {
+func (o *PulpImportCheckResponse) GetTocOk() (*EvaluationResponse, bool) {
 	if o == nil || IsNil(o.Toc) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *PulpImportCheckResponse) HasToc() bool {
 	return false
 }
 
-// SetToc gets a reference to the given PulpImportCheckResponseToc and assigns it to the Toc field.
-func (o *PulpImportCheckResponse) SetToc(v PulpImportCheckResponseToc) {
+// SetToc gets a reference to the given EvaluationResponse and assigns it to the Toc field.
+func (o *PulpImportCheckResponse) SetToc(v EvaluationResponse) {
 	o.Toc = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *PulpImportCheckResponse) GetPath() PulpImportCheckResponsePath {
+func (o *PulpImportCheckResponse) GetPath() EvaluationResponse {
 	if o == nil || IsNil(o.Path) {
-		var ret PulpImportCheckResponsePath
+		var ret EvaluationResponse
 		return ret
 	}
 	return *o.Path
@@ -85,7 +85,7 @@ func (o *PulpImportCheckResponse) GetPath() PulpImportCheckResponsePath {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpImportCheckResponse) GetPathOk() (*PulpImportCheckResponsePath, bool) {
+func (o *PulpImportCheckResponse) GetPathOk() (*EvaluationResponse, bool) {
 	if o == nil || IsNil(o.Path) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *PulpImportCheckResponse) HasPath() bool {
 	return false
 }
 
-// SetPath gets a reference to the given PulpImportCheckResponsePath and assigns it to the Path field.
-func (o *PulpImportCheckResponse) SetPath(v PulpImportCheckResponsePath) {
+// SetPath gets a reference to the given EvaluationResponse and assigns it to the Path field.
+func (o *PulpImportCheckResponse) SetPath(v EvaluationResponse) {
 	o.Path = &v
 }
 
 // GetRepoMapping returns the RepoMapping field value if set, zero value otherwise.
-func (o *PulpImportCheckResponse) GetRepoMapping() PulpImportCheckResponseRepoMapping {
+func (o *PulpImportCheckResponse) GetRepoMapping() EvaluationResponse {
 	if o == nil || IsNil(o.RepoMapping) {
-		var ret PulpImportCheckResponseRepoMapping
+		var ret EvaluationResponse
 		return ret
 	}
 	return *o.RepoMapping
@@ -117,7 +117,7 @@ func (o *PulpImportCheckResponse) GetRepoMapping() PulpImportCheckResponseRepoMa
 
 // GetRepoMappingOk returns a tuple with the RepoMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpImportCheckResponse) GetRepoMappingOk() (*PulpImportCheckResponseRepoMapping, bool) {
+func (o *PulpImportCheckResponse) GetRepoMappingOk() (*EvaluationResponse, bool) {
 	if o == nil || IsNil(o.RepoMapping) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *PulpImportCheckResponse) HasRepoMapping() bool {
 	return false
 }
 
-// SetRepoMapping gets a reference to the given PulpImportCheckResponseRepoMapping and assigns it to the RepoMapping field.
-func (o *PulpImportCheckResponse) SetRepoMapping(v PulpImportCheckResponseRepoMapping) {
+// SetRepoMapping gets a reference to the given EvaluationResponse and assigns it to the RepoMapping field.
+func (o *PulpImportCheckResponse) SetRepoMapping(v EvaluationResponse) {
 	o.RepoMapping = &v
 }
 
