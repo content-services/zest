@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | User who dispatched this task. | [optional] [readonly] 
 **StartedAt** | Pointer to **time.Time** | Timestamp of the when this task started execution. | [optional] [readonly] 
 **FinishedAt** | Pointer to **time.Time** | Timestamp of the when this task stopped execution. | [optional] [readonly] 
-**Error** | Pointer to **map[string]map[string]interface{}** | A JSON Object of a fatal error encountered during the execution of this task. | [optional] [readonly] 
+**Error** | Pointer to **map[string]string** | A JSON Object of a fatal error encountered during the execution of this task. | [optional] [readonly] 
 **Worker** | Pointer to **string** | The worker associated with this task. This field is empty if a worker is not yet assigned. | [optional] [readonly] 
 **ParentTask** | Pointer to **string** | The parent task that spawned this task. | [optional] [readonly] 
 **ChildTasks** | Pointer to **[]string** | Any tasks spawned by this task. | [optional] [readonly] 
@@ -232,20 +232,20 @@ HasFinishedAt returns a boolean if a field has been set.
 
 ### GetError
 
-`func (o *TaskResponse) GetError() map[string]map[string]interface{}`
+`func (o *TaskResponse) GetError() map[string]string`
 
 GetError returns the Error field if non-nil, zero value otherwise.
 
 ### GetErrorOk
 
-`func (o *TaskResponse) GetErrorOk() (*map[string]map[string]interface{}, bool)`
+`func (o *TaskResponse) GetErrorOk() (*map[string]string, bool)`
 
 GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetError
 
-`func (o *TaskResponse) SetError(v map[string]map[string]interface{})`
+`func (o *TaskResponse) SetError(v map[string]string)`
 
 SetError sets Error field to given value.
 

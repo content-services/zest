@@ -37,7 +37,7 @@ type TaskResponse struct {
 	// Timestamp of the when this task stopped execution.
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// A JSON Object of a fatal error encountered during the execution of this task.
-	Error map[string]map[string]interface{} `json:"error,omitempty"`
+	Error *map[string]string `json:"error,omitempty"`
 	// The worker associated with this task. This field is empty if a worker is not yet assigned.
 	Worker *string `json:"worker,omitempty"`
 	// The parent task that spawned this task.
@@ -313,19 +313,19 @@ func (o *TaskResponse) SetFinishedAt(v time.Time) {
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
-func (o *TaskResponse) GetError() map[string]map[string]interface{} {
+func (o *TaskResponse) GetError() map[string]string {
 	if o == nil || IsNil(o.Error) {
-		var ret map[string]map[string]interface{}
+		var ret map[string]string
 		return ret
 	}
-	return o.Error
+	return *o.Error
 }
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TaskResponse) GetErrorOk() (map[string]map[string]interface{}, bool) {
+func (o *TaskResponse) GetErrorOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Error) {
-		return map[string]map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Error, true
 }
@@ -339,9 +339,9 @@ func (o *TaskResponse) HasError() bool {
 	return false
 }
 
-// SetError gets a reference to the given map[string]map[string]interface{} and assigns it to the Error field.
-func (o *TaskResponse) SetError(v map[string]map[string]interface{}) {
-	o.Error = v
+// SetError gets a reference to the given map[string]string and assigns it to the Error field.
+func (o *TaskResponse) SetError(v map[string]string) {
+	o.Error = &v
 }
 
 // GetWorker returns the Worker field value if set, zero value otherwise.
