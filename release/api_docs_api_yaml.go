@@ -24,7 +24,7 @@ import (
 // DocsApiYamlAPIService DocsApiYamlAPI service
 type DocsApiYamlAPIService service
 
-type DocsApiYamlAPIDocsApiYamlGet1Request struct {
+type DocsApiYamlAPIDocsApiYamlGetRequest struct {
 	ctx context.Context
 	ApiService *DocsApiYamlAPIService
 	lang *string
@@ -32,29 +32,29 @@ type DocsApiYamlAPIDocsApiYamlGet1Request struct {
 	excludeFields *[]string
 }
 
-func (r DocsApiYamlAPIDocsApiYamlGet1Request) Lang(lang string) DocsApiYamlAPIDocsApiYamlGet1Request {
+func (r DocsApiYamlAPIDocsApiYamlGetRequest) Lang(lang string) DocsApiYamlAPIDocsApiYamlGetRequest {
 	r.lang = &lang
 	return r
 }
 
 // A list of fields to include in the response.
-func (r DocsApiYamlAPIDocsApiYamlGet1Request) Fields(fields []string) DocsApiYamlAPIDocsApiYamlGet1Request {
+func (r DocsApiYamlAPIDocsApiYamlGetRequest) Fields(fields []string) DocsApiYamlAPIDocsApiYamlGetRequest {
 	r.fields = &fields
 	return r
 }
 
 // A list of fields to exclude from the response.
-func (r DocsApiYamlAPIDocsApiYamlGet1Request) ExcludeFields(excludeFields []string) DocsApiYamlAPIDocsApiYamlGet1Request {
+func (r DocsApiYamlAPIDocsApiYamlGetRequest) ExcludeFields(excludeFields []string) DocsApiYamlAPIDocsApiYamlGetRequest {
 	r.excludeFields = &excludeFields
 	return r
 }
 
-func (r DocsApiYamlAPIDocsApiYamlGet1Request) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.DocsApiYamlGet1Execute(r)
+func (r DocsApiYamlAPIDocsApiYamlGetRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.DocsApiYamlGetExecute(r)
 }
 
 /*
-DocsApiYamlGet1 Method for DocsApiYamlGet1
+DocsApiYamlGet Method for DocsApiYamlGet
 
 OpenApi3 schema for this API. Format can be selected via content negotiation.
 
@@ -62,10 +62,10 @@ OpenApi3 schema for this API. Format can be selected via content negotiation.
 - JSON: application/vnd.oai.openapi+json
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DocsApiYamlAPIDocsApiYamlGet1Request
+ @return DocsApiYamlAPIDocsApiYamlGetRequest
 */
-func (a *DocsApiYamlAPIService) DocsApiYamlGet1(ctx context.Context) DocsApiYamlAPIDocsApiYamlGet1Request {
-	return DocsApiYamlAPIDocsApiYamlGet1Request{
+func (a *DocsApiYamlAPIService) DocsApiYamlGet(ctx context.Context) DocsApiYamlAPIDocsApiYamlGetRequest {
+	return DocsApiYamlAPIDocsApiYamlGetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -73,7 +73,7 @@ func (a *DocsApiYamlAPIService) DocsApiYamlGet1(ctx context.Context) DocsApiYaml
 
 // Execute executes the request
 //  @return map[string]interface{}
-func (a *DocsApiYamlAPIService) DocsApiYamlGet1Execute(r DocsApiYamlAPIDocsApiYamlGet1Request) (map[string]interface{}, *http.Response, error) {
+func (a *DocsApiYamlAPIService) DocsApiYamlGetExecute(r DocsApiYamlAPIDocsApiYamlGetRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -81,7 +81,7 @@ func (a *DocsApiYamlAPIService) DocsApiYamlGet1Execute(r DocsApiYamlAPIDocsApiYa
 		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DocsApiYamlAPIService.DocsApiYamlGet1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DocsApiYamlAPIService.DocsApiYamlGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

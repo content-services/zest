@@ -380,7 +380,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsReplicate
 
-> AsyncOperationResponse UpstreamPulpsReplicate(ctx, upstreamPulpHref).Execute()
+> TaskGroupOperationResponse UpstreamPulpsReplicate(ctx, upstreamPulpHref).Execute()
 
 Replicate
 
@@ -408,7 +408,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsReplicate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpstreamPulpsReplicate`: AsyncOperationResponse
+    // response from `UpstreamPulpsReplicate`: TaskGroupOperationResponse
     fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsReplicate`: %v\n", resp)
 }
 ```
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**TaskGroupOperationResponse**](TaskGroupOperationResponse.md)
 
 ### Authorization
 

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DocsApiYamlGet1**](DocsApiYamlAPI.md#DocsApiYamlGet1) | **Get** /pulp/api/v3/docs/api.yaml | 
+[**DocsApiYamlGet**](DocsApiYamlAPI.md#DocsApiYamlGet) | **Get** /pulp/api/v3/docs/api.yaml | 
 
 
 
-## DocsApiYamlGet1
+## DocsApiYamlGet
 
-> map[string]interface{} DocsApiYamlGet1(ctx).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+> map[string]interface{} DocsApiYamlGet(ctx).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DocsApiYamlAPI.DocsApiYamlGet1(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+    resp, r, err := apiClient.DocsApiYamlAPI.DocsApiYamlGet(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DocsApiYamlAPI.DocsApiYamlGet1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DocsApiYamlAPI.DocsApiYamlGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DocsApiYamlGet1`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DocsApiYamlAPI.DocsApiYamlGet1`: %v\n", resp)
+    // response from `DocsApiYamlGet`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `DocsApiYamlAPI.DocsApiYamlGet`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDocsApiYamlGet1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiDocsApiYamlGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DocsApiJsonGet1**](DocsApiJsonAPI.md#DocsApiJsonGet1) | **Get** /pulp/api/v3/docs/api.json | 
+[**DocsApiJsonGet**](DocsApiJsonAPI.md#DocsApiJsonGet) | **Get** /pulp/api/v3/docs/api.json | 
 
 
 
-## DocsApiJsonGet1
+## DocsApiJsonGet
 
-> map[string]interface{} DocsApiJsonGet1(ctx).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+> map[string]interface{} DocsApiJsonGet(ctx).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DocsApiJsonAPI.DocsApiJsonGet1(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+    resp, r, err := apiClient.DocsApiJsonAPI.DocsApiJsonGet(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DocsApiJsonAPI.DocsApiJsonGet1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DocsApiJsonAPI.DocsApiJsonGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DocsApiJsonGet1`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DocsApiJsonAPI.DocsApiJsonGet1`: %v\n", resp)
+    // response from `DocsApiJsonGet`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `DocsApiJsonAPI.DocsApiJsonGet`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDocsApiJsonGet1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiDocsApiJsonGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

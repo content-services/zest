@@ -654,7 +654,7 @@ type UpstreamPulpsAPIUpstreamPulpsReplicateRequest struct {
 	upstreamPulpHref string
 }
 
-func (r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+func (r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) Execute() (*TaskGroupOperationResponse, *http.Response, error) {
 	return r.ApiService.UpstreamPulpsReplicateExecute(r)
 }
 
@@ -676,13 +676,13 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicate(ctx context.Context, up
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicateExecute(r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return TaskGroupOperationResponse
+func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicateExecute(r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) (*TaskGroupOperationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *TaskGroupOperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpstreamPulpsAPIService.UpstreamPulpsReplicate")

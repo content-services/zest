@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StatusRead1**](StatusAPI.md#StatusRead1) | **Get** /pulp/api/v3/status/ | Inspect status of Pulp
+[**StatusRead**](StatusAPI.md#StatusRead) | **Get** /pulp/api/v3/status/ | Inspect status of Pulp
 
 
 
-## StatusRead1
+## StatusRead
 
-> StatusResponse StatusRead1(ctx).Execute()
+> StatusResponse StatusRead(ctx).Execute()
 
 Inspect status of Pulp
 
@@ -32,13 +32,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.StatusAPI.StatusRead1(context.Background()).Execute()
+    resp, r, err := apiClient.StatusAPI.StatusRead(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatusAPI.StatusRead1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `StatusAPI.StatusRead``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `StatusRead1`: StatusResponse
-    fmt.Fprintf(os.Stdout, "Response from `StatusAPI.StatusRead1`: %v\n", resp)
+    // response from `StatusRead`: StatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `StatusAPI.StatusRead`: %v\n", resp)
 }
 ```
 
@@ -48,7 +48,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStatusRead1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiStatusReadRequest struct via the builder pattern
 
 
 ### Return type
