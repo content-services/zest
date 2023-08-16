@@ -29,9 +29,9 @@ type TaskScheduleResponse struct {
 	// The name of the task to be scheduled.
 	TaskName string `json:"task_name"`
 	// Periodicity of the schedule.
-	DispatchInterval string `json:"dispatch_interval"`
+	DispatchInterval NullableString `json:"dispatch_interval"`
 	// Timestamp of the next time the task will be dispatched.
-	NextDispatch *time.Time `json:"next_dispatch,omitempty"`
+	NextDispatch NullableTime `json:"next_dispatch,omitempty"`
 	// The last task dispatched by this schedule.
 	LastTask *string `json:"last_task,omitempty"`
 }
@@ -40,7 +40,7 @@ type TaskScheduleResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTaskScheduleResponse(name string, taskName string, dispatchInterval string) *TaskScheduleResponse {
+func NewTaskScheduleResponse(name string, taskName string, dispatchInterval NullableString) *TaskScheduleResponse {
 	this := TaskScheduleResponse{}
 	this.Name = name
 	this.TaskName = taskName
@@ -169,59 +169,71 @@ func (o *TaskScheduleResponse) SetTaskName(v string) {
 }
 
 // GetDispatchInterval returns the DispatchInterval field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *TaskScheduleResponse) GetDispatchInterval() string {
-	if o == nil {
+	if o == nil || o.DispatchInterval.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DispatchInterval
+	return *o.DispatchInterval.Get()
 }
 
 // GetDispatchIntervalOk returns a tuple with the DispatchInterval field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TaskScheduleResponse) GetDispatchIntervalOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DispatchInterval, true
+	return o.DispatchInterval.Get(), o.DispatchInterval.IsSet()
 }
 
 // SetDispatchInterval sets field value
 func (o *TaskScheduleResponse) SetDispatchInterval(v string) {
-	o.DispatchInterval = v
+	o.DispatchInterval.Set(&v)
 }
 
-// GetNextDispatch returns the NextDispatch field value if set, zero value otherwise.
+// GetNextDispatch returns the NextDispatch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TaskScheduleResponse) GetNextDispatch() time.Time {
-	if o == nil || IsNil(o.NextDispatch) {
+	if o == nil || IsNil(o.NextDispatch.Get()) {
 		var ret time.Time
 		return ret
 	}
-	return *o.NextDispatch
+	return *o.NextDispatch.Get()
 }
 
 // GetNextDispatchOk returns a tuple with the NextDispatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TaskScheduleResponse) GetNextDispatchOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.NextDispatch) {
+	if o == nil {
 		return nil, false
 	}
-	return o.NextDispatch, true
+	return o.NextDispatch.Get(), o.NextDispatch.IsSet()
 }
 
 // HasNextDispatch returns a boolean if a field has been set.
 func (o *TaskScheduleResponse) HasNextDispatch() bool {
-	if o != nil && !IsNil(o.NextDispatch) {
+	if o != nil && o.NextDispatch.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNextDispatch gets a reference to the given time.Time and assigns it to the NextDispatch field.
+// SetNextDispatch gets a reference to the given NullableTime and assigns it to the NextDispatch field.
 func (o *TaskScheduleResponse) SetNextDispatch(v time.Time) {
-	o.NextDispatch = &v
+	o.NextDispatch.Set(&v)
+}
+// SetNextDispatchNil sets the value for NextDispatch to be an explicit nil
+func (o *TaskScheduleResponse) SetNextDispatchNil() {
+	o.NextDispatch.Set(nil)
+}
+
+// UnsetNextDispatch ensures that no value is present for NextDispatch, not even an explicit nil
+func (o *TaskScheduleResponse) UnsetNextDispatch() {
+	o.NextDispatch.Unset()
 }
 
 // GetLastTask returns the LastTask field value if set, zero value otherwise.
@@ -274,9 +286,9 @@ func (o TaskScheduleResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["task_name"] = o.TaskName
-	toSerialize["dispatch_interval"] = o.DispatchInterval
-	if !IsNil(o.NextDispatch) {
-		toSerialize["next_dispatch"] = o.NextDispatch
+	toSerialize["dispatch_interval"] = o.DispatchInterval.Get()
+	if o.NextDispatch.IsSet() {
+		toSerialize["next_dispatch"] = o.NextDispatch.Get()
 	}
 	if !IsNil(o.LastTask) {
 		toSerialize["last_task"] = o.LastTask

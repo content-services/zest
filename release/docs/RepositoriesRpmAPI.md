@@ -267,7 +267,7 @@ func main() {
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-    remote := "remote_example" // string | Foreign Key referenced by HREF (optional)
+    remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
     retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
     retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
     retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)

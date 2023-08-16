@@ -251,7 +251,7 @@ import (
 
 func main() {
     pulpDomain := "pulpDomain_example" // string | 
-    childTasks := "childTasks_example" // string | Filter results where child_tasks matches value (optional)
+    childTasks := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where child_tasks matches value (optional)
     createdResources := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
     exclusiveResources := "exclusiveResources_example" // string |  (optional)
     exclusiveResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -269,7 +269,7 @@ func main() {
     nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
     offset := int32(56) // int32 | The initial index from which to return the results. (optional)
     ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `state` - State * `-state` - State (descending) * `name` - Name * `-name` - Name (descending) * `logging_cid` - Logging cid * `-logging_cid` - Logging cid (descending) * `started_at` - Started at * `-started_at` - Started at (descending) * `finished_at` - Finished at * `-finished_at` - Finished at (descending) * `error` - Error * `-error` - Error (descending) * `args` - Args * `-args` - Args (descending) * `kwargs` - Kwargs * `-kwargs` - Kwargs (descending) * `reserved_resources_record` - Reserved resources record * `-reserved_resources_record` - Reserved resources record (descending) * `versions` - Versions * `-versions` - Versions (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    parentTask := "parentTask_example" // string | Filter results where parent_task matches value (optional)
+    parentTask := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where parent_task matches value (optional)
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     reservedResources := "reservedResources_example" // string |  (optional)
@@ -285,8 +285,8 @@ func main() {
     startedAtRange := []time.Time{time.Now()} // []time.Time | Filter results where started_at is between two comma separated values (optional)
     state := "state_example" // string | Filter results where state matches value  * `waiting` - Waiting * `skipped` - Skipped * `running` - Running * `completed` - Completed * `failed` - Failed * `canceled` - Canceled * `canceling` - Canceling (optional)
     stateIn := []string{"Inner_example"} // []string | Filter results where state is in a comma-separated list of values (optional)
-    taskGroup := "taskGroup_example" // string | Filter results where task_group matches value (optional)
-    worker := "worker_example" // string | Filter results where worker matches value (optional)
+    taskGroup := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where task_group matches value (optional)
+    worker := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where worker matches value (optional)
     workerIn := []string{"Inner_example"} // []string | Filter results where worker is in a comma-separated list of values (optional)
     fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
     excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)

@@ -46,7 +46,7 @@ func main() {
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
     pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Pulp type is in  * `core.artifact` - core.artifact * `rpm.rpm` - rpm.rpm (optional)
-    repository := "repository_example" // string | Filter results where repository matches value (optional)
+    repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
     repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
     withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
     fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)

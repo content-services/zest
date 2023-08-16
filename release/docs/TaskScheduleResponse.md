@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **Name** | **string** | The name of the task schedule. | 
 **TaskName** | **string** | The name of the task to be scheduled. | 
-**DispatchInterval** | **string** | Periodicity of the schedule. | 
-**NextDispatch** | Pointer to **time.Time** | Timestamp of the next time the task will be dispatched. | [optional] [readonly] 
+**DispatchInterval** | **NullableString** | Periodicity of the schedule. | 
+**NextDispatch** | Pointer to **NullableTime** | Timestamp of the next time the task will be dispatched. | [optional] [readonly] 
 **LastTask** | Pointer to **string** | The last task dispatched by this schedule. | [optional] [readonly] 
 
 ## Methods
 
 ### NewTaskScheduleResponse
 
-`func NewTaskScheduleResponse(name string, taskName string, dispatchInterval string, ) *TaskScheduleResponse`
+`func NewTaskScheduleResponse(name string, taskName string, dispatchInterval NullableString, ) *TaskScheduleResponse`
 
 NewTaskScheduleResponse instantiates a new TaskScheduleResponse object
 This constructor will assign default values to properties that have it defined,
@@ -141,6 +141,16 @@ and a boolean to check if the value has been set.
 SetDispatchInterval sets DispatchInterval field to given value.
 
 
+### SetDispatchIntervalNil
+
+`func (o *TaskScheduleResponse) SetDispatchIntervalNil(b bool)`
+
+ SetDispatchIntervalNil sets the value for DispatchInterval to be an explicit nil
+
+### UnsetDispatchInterval
+`func (o *TaskScheduleResponse) UnsetDispatchInterval()`
+
+UnsetDispatchInterval ensures that no value is present for DispatchInterval, not even an explicit nil
 ### GetNextDispatch
 
 `func (o *TaskScheduleResponse) GetNextDispatch() time.Time`
@@ -166,6 +176,16 @@ SetNextDispatch sets NextDispatch field to given value.
 
 HasNextDispatch returns a boolean if a field has been set.
 
+### SetNextDispatchNil
+
+`func (o *TaskScheduleResponse) SetNextDispatchNil(b bool)`
+
+ SetNextDispatchNil sets the value for NextDispatch to be an explicit nil
+
+### UnsetNextDispatch
+`func (o *TaskScheduleResponse) UnsetNextDispatch()`
+
+UnsetNextDispatch ensures that no value is present for NextDispatch, not even an explicit nil
 ### GetLastTask
 
 `func (o *TaskScheduleResponse) GetLastTask() string`

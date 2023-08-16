@@ -13,7 +13,7 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.29.7
+    core: 3.30.0
     certguard: 1.6.5
     rpm: 3.22.3
   x-pulp-domain-enabled: true
@@ -6438,7 +6438,7 @@ paths:
         name: repository
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where repository is in a comma-separated list
@@ -6449,7 +6449,7 @@ paths:
         required: false
         schema:
           items:
-            format: uri
+            format: uuid
             type: string
           type: array
         style: form
@@ -6684,7 +6684,7 @@ paths:
         name: repository
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where repository is in a comma-separated list
@@ -6695,7 +6695,7 @@ paths:
         required: false
         schema:
           items:
-            format: uri
+            format: uuid
             type: string
           type: array
         style: form
@@ -6975,7 +6975,7 @@ paths:
         name: repository
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where repository is in a comma-separated list
@@ -6986,7 +6986,7 @@ paths:
         required: false
         schema:
           items:
-            format: uri
+            format: uuid
             type: string
           type: array
         style: form
@@ -8974,7 +8974,7 @@ paths:
         name: domain
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - explode: false
@@ -12814,7 +12814,7 @@ paths:
         name: remote
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where retain_repo_versions matches value
@@ -13135,7 +13135,7 @@ paths:
         name: remote
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where retain_repo_versions matches value
@@ -15429,7 +15429,7 @@ paths:
         name: child_tasks
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - explode: true
@@ -15648,7 +15648,7 @@ paths:
         name: parent_task
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - explode: false
@@ -15822,7 +15822,7 @@ paths:
         name: task_group
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where worker matches value
@@ -15831,7 +15831,7 @@ paths:
         name: worker
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Filter results where worker is in a comma-separated list of values
@@ -15841,7 +15841,7 @@ paths:
         required: false
         schema:
           items:
-            format: uri
+            format: uuid
             type: string
           type: array
         style: form
@@ -17511,7 +17511,7 @@ paths:
         name: domain
         required: false
         schema:
-          format: uri
+          format: uuid
           type: string
         style: form
       - description: Number of results to return per page.
@@ -18577,8 +18577,8 @@ components:
         hidden: false
         base_url: base_url
         name: name
-        pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
+        pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
         pulp_labels:
@@ -18586,6 +18586,19 @@ components:
             nullable: true
             type: string
           type: object
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
@@ -18596,26 +18609,13 @@ components:
           format: uri
           nullable: true
           type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
       required:
       - base_path
       - name
@@ -19798,8 +19798,8 @@ components:
           hidden: false
           base_url: base_url
           name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
         - pulp_labels:
             key: pulp_labels
@@ -19807,8 +19807,8 @@ components:
           hidden: false
           base_url: base_url
           name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
         count:
@@ -24561,10 +24561,12 @@ components:
           type: string
         dispatch_interval:
           description: Periodicity of the schedule.
+          nullable: true
           type: string
         next_dispatch:
           description: Timestamp of the next time the task will be dispatched.
           format: date-time
+          nullable: true
           readOnly: true
           type: string
         last_task:
