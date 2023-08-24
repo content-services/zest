@@ -13,7 +13,7 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.31.0
+    core: 3.32.0
     certguard: 1.6.5
     rpm: 3.22.3
   x-pulp-domain-enabled: true
@@ -734,6 +734,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Acs: Rpm"
   '{rpm_rpm_alternate_content_source_href}list_roles/':
@@ -778,6 +779,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Acs: Rpm"
   '{rpm_rpm_alternate_content_source_href}my_permissions/':
@@ -822,6 +824,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Acs: Rpm"
   '{rpm_rpm_alternate_content_source_href}refresh/':
@@ -883,6 +886,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Acs: Rpm"
   /pulp/{pulp_domain}/api/v3/artifacts/:
@@ -5587,6 +5591,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Contentguards: Content_Redirect"
   '{content_redirect_content_guard_href}list_roles/':
@@ -5631,6 +5636,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Contentguards: Content_Redirect"
   '{content_redirect_content_guard_href}my_permissions/':
@@ -5675,6 +5681,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Contentguards: Content_Redirect"
   '{content_redirect_content_guard_href}remove_role/':
@@ -5711,6 +5718,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Contentguards: Content_Redirect"
   /pulp/{pulp_domain}/api/v3/contentguards/core/rbac/:
@@ -6105,6 +6113,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Contentguards: Rbac"
   '{r_b_a_c_content_guard_href}list_roles/':
@@ -6149,6 +6158,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Contentguards: Rbac"
   '{r_b_a_c_content_guard_href}my_permissions/':
@@ -6193,6 +6203,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Contentguards: Rbac"
   '{r_b_a_c_content_guard_href}remove_role/':
@@ -6229,6 +6240,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Contentguards: Rbac"
   /pulp/{pulp_domain}/api/v3/distributions/:
@@ -7243,6 +7255,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Distributions: Rpm"
   '{rpm_rpm_distribution_href}list_roles/':
@@ -7287,6 +7300,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Distributions: Rpm"
   '{rpm_rpm_distribution_href}my_permissions/':
@@ -7331,6 +7345,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Distributions: Rpm"
   '{rpm_rpm_distribution_href}remove_role/':
@@ -7367,6 +7382,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Distributions: Rpm"
   /pulp/{pulp_domain}/api/v3/domains/:
@@ -9511,6 +9527,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - Groups
   '{group_href}list_roles/':
@@ -9555,6 +9572,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - Groups
   '{group_href}my_permissions/':
@@ -9599,6 +9617,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - Groups
   '{group_href}remove_role/':
@@ -9635,6 +9654,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - Groups
   /pulp/{pulp_domain}/api/v3/importers/core/pulp/:
@@ -10825,6 +10845,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Publications: Rpm"
   '{rpm_rpm_publication_href}list_roles/':
@@ -10869,6 +10890,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Publications: Rpm"
   '{rpm_rpm_publication_href}my_permissions/':
@@ -10913,6 +10935,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Publications: Rpm"
   '{rpm_rpm_publication_href}remove_role/':
@@ -10949,6 +10972,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Publications: Rpm"
   /pulp/{pulp_domain}/api/v3/remotes/:
@@ -11816,6 +11840,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Remotes: Rpm"
   '{rpm_rpm_remote_href}list_roles/':
@@ -11860,6 +11885,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Remotes: Rpm"
   '{rpm_rpm_remote_href}my_permissions/':
@@ -11904,6 +11930,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Remotes: Rpm"
   '{rpm_rpm_remote_href}remove_role/':
@@ -11940,6 +11967,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Remotes: Rpm"
   /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/:
@@ -12463,6 +12491,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Remotes: Uln"
   '{rpm_uln_remote_href}list_roles/':
@@ -12507,6 +12536,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Remotes: Uln"
   '{rpm_uln_remote_href}my_permissions/':
@@ -12551,6 +12581,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Remotes: Uln"
   '{rpm_uln_remote_href}remove_role/':
@@ -12587,6 +12618,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Remotes: Uln"
   /pulp/{pulp_domain}/api/v3/repair/:
@@ -13460,6 +13492,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - "Repositories: Rpm"
   '{rpm_rpm_repository_href}list_roles/':
@@ -13504,6 +13537,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - "Repositories: Rpm"
   '{rpm_rpm_repository_href}modify/':
@@ -13585,6 +13619,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - "Repositories: Rpm"
   '{rpm_rpm_repository_href}remove_role/':
@@ -13621,6 +13656,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - "Repositories: Rpm"
   '{rpm_rpm_repository_href}sync/':
@@ -15274,6 +15310,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - Task-Schedules
   '{task_schedule_href}list_roles/':
@@ -15318,6 +15355,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - Task-Schedules
   '{task_schedule_href}my_permissions/':
@@ -15362,6 +15400,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - Task-Schedules
   '{task_schedule_href}remove_role/':
@@ -15398,6 +15437,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - Task-Schedules
   /pulp/{pulp_domain}/api/v3/tasks/:
@@ -16055,6 +16095,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - Tasks
   '{task_href}list_roles/':
@@ -16099,6 +16140,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - Tasks
   '{task_href}my_permissions/':
@@ -16143,6 +16185,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - Tasks
   '{task_href}remove_role/':
@@ -16179,6 +16222,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - Tasks
   /pulp/{pulp_domain}/api/v3/tasks/purge/:
@@ -16548,6 +16592,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Add a role
       tags:
       - Uploads
   '{upload_href}commit/':
@@ -16630,6 +16675,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List roles
       tags:
       - Uploads
   '{upload_href}my_permissions/':
@@ -16674,6 +16720,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: List user permissions
       tags:
       - Uploads
   '{upload_href}remove_role/':
@@ -16710,6 +16757,7 @@ paths:
       security:
       - basicAuth: []
       - cookieAuth: []
+      summary: Remove a role
       tags:
       - Uploads
   /pulp/{pulp_domain}/api/v3/upstream-pulps/:
@@ -18572,50 +18620,50 @@ components:
       description: A serializer for ArtifactDistribution.
       example:
         pulp_href: https://openapi-generator.tech
+        hidden: false
         pulp_labels:
           key: pulp_labels
-        hidden: false
-        base_url: base_url
         name: name
+        base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
         pulp_href:
           format: uri
           readOnly: true
           type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
           type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
       required:
       - base_path
       - name
@@ -19793,20 +19841,20 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          hidden: false
-          base_url: base_url
           name: name
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           content_guard: https://openapi-generator.tech
         - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          hidden: false
-          base_url: base_url
           name: name
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           content_guard: https://openapi-generator.tech

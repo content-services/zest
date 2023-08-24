@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentguardsCoreContentRedirectAddRole**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectAddRole) | **Post** /{content_redirect_content_guard_href}add_role/ | 
+[**ContentguardsCoreContentRedirectAddRole**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectAddRole) | **Post** /{content_redirect_content_guard_href}add_role/ | Add a role
 [**ContentguardsCoreContentRedirectCreate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectCreate) | **Post** /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | Create a content redirect content guard
 [**ContentguardsCoreContentRedirectDelete**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectDelete) | **Delete** /{content_redirect_content_guard_href} | Delete a content redirect content guard
 [**ContentguardsCoreContentRedirectList**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectList) | **Get** /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | List content redirect content guards
-[**ContentguardsCoreContentRedirectListRoles**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectListRoles) | **Get** /{content_redirect_content_guard_href}list_roles/ | 
-[**ContentguardsCoreContentRedirectMyPermissions**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectMyPermissions) | **Get** /{content_redirect_content_guard_href}my_permissions/ | 
+[**ContentguardsCoreContentRedirectListRoles**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectListRoles) | **Get** /{content_redirect_content_guard_href}list_roles/ | List roles
+[**ContentguardsCoreContentRedirectMyPermissions**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectMyPermissions) | **Get** /{content_redirect_content_guard_href}my_permissions/ | List user permissions
 [**ContentguardsCoreContentRedirectPartialUpdate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectPartialUpdate) | **Patch** /{content_redirect_content_guard_href} | Update a content redirect content guard
 [**ContentguardsCoreContentRedirectRead**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectRead) | **Get** /{content_redirect_content_guard_href} | Inspect a content redirect content guard
-[**ContentguardsCoreContentRedirectRemoveRole**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectRemoveRole) | **Post** /{content_redirect_content_guard_href}remove_role/ | 
+[**ContentguardsCoreContentRedirectRemoveRole**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectRemoveRole) | **Post** /{content_redirect_content_guard_href}remove_role/ | Remove a role
 [**ContentguardsCoreContentRedirectUpdate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectUpdate) | **Put** /{content_redirect_content_guard_href} | Update a content redirect content guard
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse ContentguardsCoreContentRedirectAddRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse ContentguardsCoreContentRedirectListRoles(ctx, contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse ContentguardsCoreContentRedirectMyPermissions(ctx, contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -621,7 +621,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse ContentguardsCoreContentRedirectRemoveRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

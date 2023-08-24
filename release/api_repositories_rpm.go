@@ -42,7 +42,7 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest) Execute() (*NestedRo
 }
 
 /*
-RepositoriesRpmRpmAddRole Method for RepositoriesRpmRpmAddRole
+RepositoriesRpmRpmAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -744,7 +744,7 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmListRolesRequest) Execute() (*Object
 }
 
 /*
-RepositoriesRpmRpmListRoles Method for RepositoriesRpmRpmListRoles
+RepositoriesRpmRpmListRoles List roles
 
 List roles assigned to this object.
 
@@ -999,7 +999,7 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmMyPermissionsRequest) Execute() (*My
 }
 
 /*
-RepositoriesRpmRpmMyPermissions Method for RepositoriesRpmRpmMyPermissions
+RepositoriesRpmRpmMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1386,7 +1386,7 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest) Execute() (*Neste
 }
 
 /*
-RepositoriesRpmRpmRemoveRole Method for RepositoriesRpmRpmRemoveRole
+RepositoriesRpmRpmRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

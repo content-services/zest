@@ -43,7 +43,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmAddRoleRequest) Execute() (*NestedRo
 }
 
 /*
-PublicationsRpmRpmAddRole Method for PublicationsRpmRpmAddRole
+PublicationsRpmRpmAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -664,7 +664,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmListRolesRequest) Execute() (*Object
 }
 
 /*
-PublicationsRpmRpmListRoles Method for PublicationsRpmRpmListRoles
+PublicationsRpmRpmListRoles List roles
 
 List roles assigned to this object.
 
@@ -804,7 +804,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmMyPermissionsRequest) Execute() (*My
 }
 
 /*
-PublicationsRpmRpmMyPermissions Method for PublicationsRpmRpmMyPermissions
+PublicationsRpmRpmMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1076,7 +1076,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmRemoveRoleRequest) Execute() (*Neste
 }
 
 /*
-PublicationsRpmRpmRemoveRole Method for PublicationsRpmRpmRemoveRole
+PublicationsRpmRpmRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

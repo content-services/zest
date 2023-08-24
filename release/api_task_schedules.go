@@ -42,7 +42,7 @@ func (r TaskSchedulesAPITaskSchedulesAddRoleRequest) Execute() (*NestedRoleRespo
 }
 
 /*
-TaskSchedulesAddRole Method for TaskSchedulesAddRole
+TaskSchedulesAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -395,7 +395,7 @@ func (r TaskSchedulesAPITaskSchedulesListRolesRequest) Execute() (*ObjectRolesRe
 }
 
 /*
-TaskSchedulesListRoles Method for TaskSchedulesListRoles
+TaskSchedulesListRoles List roles
 
 List roles assigned to this object.
 
@@ -535,7 +535,7 @@ func (r TaskSchedulesAPITaskSchedulesMyPermissionsRequest) Execute() (*MyPermiss
 }
 
 /*
-TaskSchedulesMyPermissions Method for TaskSchedulesMyPermissions
+TaskSchedulesMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -807,7 +807,7 @@ func (r TaskSchedulesAPITaskSchedulesRemoveRoleRequest) Execute() (*NestedRoleRe
 }
 
 /*
-TaskSchedulesRemoveRole Method for TaskSchedulesRemoveRole
+TaskSchedulesRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

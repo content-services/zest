@@ -42,7 +42,7 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectAddRoleRe
 }
 
 /*
-ContentguardsCoreContentRedirectAddRole Method for ContentguardsCoreContentRedirectAddRole
+ContentguardsCoreContentRedirectAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -613,7 +613,7 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRoles
 }
 
 /*
-ContentguardsCoreContentRedirectListRoles Method for ContentguardsCoreContentRedirectListRoles
+ContentguardsCoreContentRedirectListRoles List roles
 
 List roles assigned to this object.
 
@@ -753,7 +753,7 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectMyPermiss
 }
 
 /*
-ContentguardsCoreContentRedirectMyPermissions Method for ContentguardsCoreContentRedirectMyPermissions
+ContentguardsCoreContentRedirectMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1140,7 +1140,7 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectRemoveRol
 }
 
 /*
-ContentguardsCoreContentRedirectRemoveRole Method for ContentguardsCoreContentRedirectRemoveRole
+ContentguardsCoreContentRedirectRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

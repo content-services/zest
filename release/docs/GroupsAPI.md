@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GroupsAddRole**](GroupsAPI.md#GroupsAddRole) | **Post** /{group_href}add_role/ | 
+[**GroupsAddRole**](GroupsAPI.md#GroupsAddRole) | **Post** /{group_href}add_role/ | Add a role
 [**GroupsCreate**](GroupsAPI.md#GroupsCreate) | **Post** /pulp/{pulp_domain}/api/v3/groups/ | Create a group
 [**GroupsDelete**](GroupsAPI.md#GroupsDelete) | **Delete** /{group_href} | Delete a group
 [**GroupsList**](GroupsAPI.md#GroupsList) | **Get** /pulp/{pulp_domain}/api/v3/groups/ | List groups
-[**GroupsListRoles**](GroupsAPI.md#GroupsListRoles) | **Get** /{group_href}list_roles/ | 
-[**GroupsMyPermissions**](GroupsAPI.md#GroupsMyPermissions) | **Get** /{group_href}my_permissions/ | 
+[**GroupsListRoles**](GroupsAPI.md#GroupsListRoles) | **Get** /{group_href}list_roles/ | List roles
+[**GroupsMyPermissions**](GroupsAPI.md#GroupsMyPermissions) | **Get** /{group_href}my_permissions/ | List user permissions
 [**GroupsPartialUpdate**](GroupsAPI.md#GroupsPartialUpdate) | **Patch** /{group_href} | Update a group
 [**GroupsRead**](GroupsAPI.md#GroupsRead) | **Get** /{group_href} | Inspect a group
-[**GroupsRemoveRole**](GroupsAPI.md#GroupsRemoveRole) | **Post** /{group_href}remove_role/ | 
+[**GroupsRemoveRole**](GroupsAPI.md#GroupsRemoveRole) | **Post** /{group_href}remove_role/ | Remove a role
 [**GroupsUpdate**](GroupsAPI.md#GroupsUpdate) | **Put** /{group_href} | Update a group
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse GroupsAddRole(ctx, groupHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse GroupsListRoles(ctx, groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse GroupsMyPermissions(ctx, groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -625,7 +625,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse GroupsRemoveRole(ctx, groupHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

@@ -42,7 +42,7 @@ func (r GroupsAPIGroupsAddRoleRequest) Execute() (*NestedRoleResponse, *http.Res
 }
 
 /*
-GroupsAddRole Method for GroupsAddRole
+GroupsAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -633,7 +633,7 @@ func (r GroupsAPIGroupsListRolesRequest) Execute() (*ObjectRolesResponse, *http.
 }
 
 /*
-GroupsListRoles Method for GroupsListRoles
+GroupsListRoles List roles
 
 List roles assigned to this object.
 
@@ -773,7 +773,7 @@ func (r GroupsAPIGroupsMyPermissionsRequest) Execute() (*MyPermissionsResponse, 
 }
 
 /*
-GroupsMyPermissions Method for GroupsMyPermissions
+GroupsMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1160,7 +1160,7 @@ func (r GroupsAPIGroupsRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.
 }
 
 /*
-GroupsRemoveRole Method for GroupsRemoveRole
+GroupsRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

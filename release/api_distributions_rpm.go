@@ -42,7 +42,7 @@ func (r DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest) Execute() (*Nested
 }
 
 /*
-DistributionsRpmRpmAddRole Method for DistributionsRpmRpmAddRole
+DistributionsRpmRpmAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -704,7 +704,7 @@ func (r DistributionsRpmAPIDistributionsRpmRpmListRolesRequest) Execute() (*Obje
 }
 
 /*
-DistributionsRpmRpmListRoles Method for DistributionsRpmRpmListRoles
+DistributionsRpmRpmListRoles List roles
 
 List roles assigned to this object.
 
@@ -844,7 +844,7 @@ func (r DistributionsRpmAPIDistributionsRpmRpmMyPermissionsRequest) Execute() (*
 }
 
 /*
-DistributionsRpmRpmMyPermissions Method for DistributionsRpmRpmMyPermissions
+DistributionsRpmRpmMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1231,7 +1231,7 @@ func (r DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest) Execute() (*Nes
 }
 
 /*
-DistributionsRpmRpmRemoveRole Method for DistributionsRpmRpmRemoveRole
+DistributionsRpmRpmRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

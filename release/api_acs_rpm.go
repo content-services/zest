@@ -42,7 +42,7 @@ func (r AcsRpmAPIAcsRpmRpmAddRoleRequest) Execute() (*NestedRoleResponse, *http.
 }
 
 /*
-AcsRpmRpmAddRole Method for AcsRpmRpmAddRole
+AcsRpmRpmAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -624,7 +624,7 @@ func (r AcsRpmAPIAcsRpmRpmListRolesRequest) Execute() (*ObjectRolesResponse, *ht
 }
 
 /*
-AcsRpmRpmListRoles Method for AcsRpmRpmListRoles
+AcsRpmRpmListRoles List roles
 
 List roles assigned to this object.
 
@@ -764,7 +764,7 @@ func (r AcsRpmAPIAcsRpmRpmMyPermissionsRequest) Execute() (*MyPermissionsRespons
 }
 
 /*
-AcsRpmRpmMyPermissions Method for AcsRpmRpmMyPermissions
+AcsRpmRpmMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1255,7 +1255,7 @@ func (r AcsRpmAPIAcsRpmRpmRemoveRoleRequest) Execute() (*NestedRoleResponse, *ht
 }
 
 /*
-AcsRpmRpmRemoveRole Method for AcsRpmRpmRemoveRole
+AcsRpmRpmRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

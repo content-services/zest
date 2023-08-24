@@ -43,7 +43,7 @@ func (r RemotesUlnAPIRemotesRpmUlnAddRoleRequest) Execute() (*NestedRoleResponse
 }
 
 /*
-RemotesRpmUlnAddRole Method for RemotesRpmUlnAddRole
+RemotesRpmUlnAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -695,7 +695,7 @@ func (r RemotesUlnAPIRemotesRpmUlnListRolesRequest) Execute() (*ObjectRolesRespo
 }
 
 /*
-RemotesRpmUlnListRoles Method for RemotesRpmUlnListRoles
+RemotesRpmUlnListRoles List roles
 
 List roles assigned to this object.
 
@@ -835,7 +835,7 @@ func (r RemotesUlnAPIRemotesRpmUlnMyPermissionsRequest) Execute() (*MyPermission
 }
 
 /*
-RemotesRpmUlnMyPermissions Method for RemotesRpmUlnMyPermissions
+RemotesRpmUlnMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1222,7 +1222,7 @@ func (r RemotesUlnAPIRemotesRpmUlnRemoveRoleRequest) Execute() (*NestedRoleRespo
 }
 
 /*
-RemotesRpmUlnRemoveRole Method for RemotesRpmUlnRemoveRole
+RemotesRpmUlnRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

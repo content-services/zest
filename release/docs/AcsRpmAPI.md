@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AcsRpmRpmAddRole**](AcsRpmAPI.md#AcsRpmRpmAddRole) | **Post** /{rpm_rpm_alternate_content_source_href}add_role/ | 
+[**AcsRpmRpmAddRole**](AcsRpmAPI.md#AcsRpmRpmAddRole) | **Post** /{rpm_rpm_alternate_content_source_href}add_role/ | Add a role
 [**AcsRpmRpmCreate**](AcsRpmAPI.md#AcsRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | Create a rpm alternate content source
 [**AcsRpmRpmDelete**](AcsRpmAPI.md#AcsRpmRpmDelete) | **Delete** /{rpm_rpm_alternate_content_source_href} | Delete a rpm alternate content source
 [**AcsRpmRpmList**](AcsRpmAPI.md#AcsRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | List rpm alternate content sources
-[**AcsRpmRpmListRoles**](AcsRpmAPI.md#AcsRpmRpmListRoles) | **Get** /{rpm_rpm_alternate_content_source_href}list_roles/ | 
-[**AcsRpmRpmMyPermissions**](AcsRpmAPI.md#AcsRpmRpmMyPermissions) | **Get** /{rpm_rpm_alternate_content_source_href}my_permissions/ | 
+[**AcsRpmRpmListRoles**](AcsRpmAPI.md#AcsRpmRpmListRoles) | **Get** /{rpm_rpm_alternate_content_source_href}list_roles/ | List roles
+[**AcsRpmRpmMyPermissions**](AcsRpmAPI.md#AcsRpmRpmMyPermissions) | **Get** /{rpm_rpm_alternate_content_source_href}my_permissions/ | List user permissions
 [**AcsRpmRpmPartialUpdate**](AcsRpmAPI.md#AcsRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_alternate_content_source_href} | Update a rpm alternate content source
 [**AcsRpmRpmRead**](AcsRpmAPI.md#AcsRpmRpmRead) | **Get** /{rpm_rpm_alternate_content_source_href} | Inspect a rpm alternate content source
 [**AcsRpmRpmRefresh**](AcsRpmAPI.md#AcsRpmRpmRefresh) | **Post** /{rpm_rpm_alternate_content_source_href}refresh/ | 
-[**AcsRpmRpmRemoveRole**](AcsRpmAPI.md#AcsRpmRpmRemoveRole) | **Post** /{rpm_rpm_alternate_content_source_href}remove_role/ | 
+[**AcsRpmRpmRemoveRole**](AcsRpmAPI.md#AcsRpmRpmRemoveRole) | **Post** /{rpm_rpm_alternate_content_source_href}remove_role/ | Remove a role
 [**AcsRpmRpmUpdate**](AcsRpmAPI.md#AcsRpmRpmUpdate) | **Put** /{rpm_rpm_alternate_content_source_href} | Update a rpm alternate content source
 
 
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse AcsRpmRpmAddRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse AcsRpmRpmListRoles(ctx, rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -404,7 +404,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse AcsRpmRpmMyPermissions(ctx, rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -694,7 +694,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse AcsRpmRpmRemoveRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

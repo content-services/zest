@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RepositoriesRpmRpmAddRole**](RepositoriesRpmAPI.md#RepositoriesRpmRpmAddRole) | **Post** /{rpm_rpm_repository_href}add_role/ | 
+[**RepositoriesRpmRpmAddRole**](RepositoriesRpmAPI.md#RepositoriesRpmRpmAddRole) | **Post** /{rpm_rpm_repository_href}add_role/ | Add a role
 [**RepositoriesRpmRpmCreate**](RepositoriesRpmAPI.md#RepositoriesRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/repositories/rpm/rpm/ | Create a rpm repository
 [**RepositoriesRpmRpmDelete**](RepositoriesRpmAPI.md#RepositoriesRpmRpmDelete) | **Delete** /{rpm_rpm_repository_href} | Delete a rpm repository
 [**RepositoriesRpmRpmList**](RepositoriesRpmAPI.md#RepositoriesRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/repositories/rpm/rpm/ | List rpm repositorys
-[**RepositoriesRpmRpmListRoles**](RepositoriesRpmAPI.md#RepositoriesRpmRpmListRoles) | **Get** /{rpm_rpm_repository_href}list_roles/ | 
+[**RepositoriesRpmRpmListRoles**](RepositoriesRpmAPI.md#RepositoriesRpmRpmListRoles) | **Get** /{rpm_rpm_repository_href}list_roles/ | List roles
 [**RepositoriesRpmRpmModify**](RepositoriesRpmAPI.md#RepositoriesRpmRpmModify) | **Post** /{rpm_rpm_repository_href}modify/ | Modify Repository Content
-[**RepositoriesRpmRpmMyPermissions**](RepositoriesRpmAPI.md#RepositoriesRpmRpmMyPermissions) | **Get** /{rpm_rpm_repository_href}my_permissions/ | 
+[**RepositoriesRpmRpmMyPermissions**](RepositoriesRpmAPI.md#RepositoriesRpmRpmMyPermissions) | **Get** /{rpm_rpm_repository_href}my_permissions/ | List user permissions
 [**RepositoriesRpmRpmPartialUpdate**](RepositoriesRpmAPI.md#RepositoriesRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_repository_href} | Update a rpm repository
 [**RepositoriesRpmRpmRead**](RepositoriesRpmAPI.md#RepositoriesRpmRpmRead) | **Get** /{rpm_rpm_repository_href} | Inspect a rpm repository
-[**RepositoriesRpmRpmRemoveRole**](RepositoriesRpmAPI.md#RepositoriesRpmRpmRemoveRole) | **Post** /{rpm_rpm_repository_href}remove_role/ | 
+[**RepositoriesRpmRpmRemoveRole**](RepositoriesRpmAPI.md#RepositoriesRpmRpmRemoveRole) | **Post** /{rpm_rpm_repository_href}remove_role/ | Remove a role
 [**RepositoriesRpmRpmSync**](RepositoriesRpmAPI.md#RepositoriesRpmRpmSync) | **Post** /{rpm_rpm_repository_href}sync/ | Sync from remote
 [**RepositoriesRpmRpmUpdate**](RepositoriesRpmAPI.md#RepositoriesRpmRpmUpdate) | **Put** /{rpm_rpm_repository_href} | Update a rpm repository
 
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse RepositoriesRpmRpmAddRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse RepositoriesRpmRpmListRoles(ctx, rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse RepositoriesRpmRpmMyPermissions(ctx, rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -721,7 +721,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse RepositoriesRpmRpmRemoveRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

@@ -43,7 +43,7 @@ func (r TasksAPITasksAddRoleRequest) Execute() (*NestedRoleResponse, *http.Respo
 }
 
 /*
-TasksAddRole Method for TasksAddRole
+TasksAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -931,7 +931,7 @@ func (r TasksAPITasksListRolesRequest) Execute() (*ObjectRolesResponse, *http.Re
 }
 
 /*
-TasksListRoles Method for TasksListRoles
+TasksListRoles List roles
 
 List roles assigned to this object.
 
@@ -1071,7 +1071,7 @@ func (r TasksAPITasksMyPermissionsRequest) Execute() (*MyPermissionsResponse, *h
 }
 
 /*
-TasksMyPermissions Method for TasksMyPermissions
+TasksMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1475,7 +1475,7 @@ func (r TasksAPITasksRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.Re
 }
 
 /*
-TasksRemoveRole Method for TasksRemoveRole
+TasksRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

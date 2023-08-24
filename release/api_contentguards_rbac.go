@@ -42,7 +42,7 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacAddRoleRequest) Execute() (*Nes
 }
 
 /*
-ContentguardsCoreRbacAddRole Method for ContentguardsCoreRbacAddRole
+ContentguardsCoreRbacAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -619,7 +619,7 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacListRolesRequest) Execute() (*O
 }
 
 /*
-ContentguardsCoreRbacListRoles Method for ContentguardsCoreRbacListRoles
+ContentguardsCoreRbacListRoles List roles
 
 List roles assigned to this object.
 
@@ -759,7 +759,7 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacMyPermissionsRequest) Execute()
 }
 
 /*
-ContentguardsCoreRbacMyPermissions Method for ContentguardsCoreRbacMyPermissions
+ContentguardsCoreRbacMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1150,7 +1150,7 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacRemoveRoleRequest) Execute() (*
 }
 
 /*
-ContentguardsCoreRbacRemoveRole Method for ContentguardsCoreRbacRemoveRole
+ContentguardsCoreRbacRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

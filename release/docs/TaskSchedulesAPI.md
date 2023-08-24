@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TaskSchedulesAddRole**](TaskSchedulesAPI.md#TaskSchedulesAddRole) | **Post** /{task_schedule_href}add_role/ | 
+[**TaskSchedulesAddRole**](TaskSchedulesAPI.md#TaskSchedulesAddRole) | **Post** /{task_schedule_href}add_role/ | Add a role
 [**TaskSchedulesList**](TaskSchedulesAPI.md#TaskSchedulesList) | **Get** /pulp/{pulp_domain}/api/v3/task-schedules/ | List task schedules
-[**TaskSchedulesListRoles**](TaskSchedulesAPI.md#TaskSchedulesListRoles) | **Get** /{task_schedule_href}list_roles/ | 
-[**TaskSchedulesMyPermissions**](TaskSchedulesAPI.md#TaskSchedulesMyPermissions) | **Get** /{task_schedule_href}my_permissions/ | 
+[**TaskSchedulesListRoles**](TaskSchedulesAPI.md#TaskSchedulesListRoles) | **Get** /{task_schedule_href}list_roles/ | List roles
+[**TaskSchedulesMyPermissions**](TaskSchedulesAPI.md#TaskSchedulesMyPermissions) | **Get** /{task_schedule_href}my_permissions/ | List user permissions
 [**TaskSchedulesRead**](TaskSchedulesAPI.md#TaskSchedulesRead) | **Get** /{task_schedule_href} | Inspect a task schedule
-[**TaskSchedulesRemoveRole**](TaskSchedulesAPI.md#TaskSchedulesRemoveRole) | **Post** /{task_schedule_href}remove_role/ | 
+[**TaskSchedulesRemoveRole**](TaskSchedulesAPI.md#TaskSchedulesRemoveRole) | **Post** /{task_schedule_href}remove_role/ | Remove a role
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse TaskSchedulesAddRole(ctx, taskScheduleHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse TaskSchedulesListRoles(ctx, taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse TaskSchedulesMyPermissions(ctx, taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse TaskSchedulesRemoveRole(ctx, taskScheduleHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

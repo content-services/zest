@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RemotesRpmUlnAddRole**](RemotesUlnAPI.md#RemotesRpmUlnAddRole) | **Post** /{rpm_uln_remote_href}add_role/ | 
+[**RemotesRpmUlnAddRole**](RemotesUlnAPI.md#RemotesRpmUlnAddRole) | **Post** /{rpm_uln_remote_href}add_role/ | Add a role
 [**RemotesRpmUlnCreate**](RemotesUlnAPI.md#RemotesRpmUlnCreate) | **Post** /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | Create an uln remote
 [**RemotesRpmUlnDelete**](RemotesUlnAPI.md#RemotesRpmUlnDelete) | **Delete** /{rpm_uln_remote_href} | Delete an uln remote
 [**RemotesRpmUlnList**](RemotesUlnAPI.md#RemotesRpmUlnList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | List uln remotes
-[**RemotesRpmUlnListRoles**](RemotesUlnAPI.md#RemotesRpmUlnListRoles) | **Get** /{rpm_uln_remote_href}list_roles/ | 
-[**RemotesRpmUlnMyPermissions**](RemotesUlnAPI.md#RemotesRpmUlnMyPermissions) | **Get** /{rpm_uln_remote_href}my_permissions/ | 
+[**RemotesRpmUlnListRoles**](RemotesUlnAPI.md#RemotesRpmUlnListRoles) | **Get** /{rpm_uln_remote_href}list_roles/ | List roles
+[**RemotesRpmUlnMyPermissions**](RemotesUlnAPI.md#RemotesRpmUlnMyPermissions) | **Get** /{rpm_uln_remote_href}my_permissions/ | List user permissions
 [**RemotesRpmUlnPartialUpdate**](RemotesUlnAPI.md#RemotesRpmUlnPartialUpdate) | **Patch** /{rpm_uln_remote_href} | Update an uln remote
 [**RemotesRpmUlnRead**](RemotesUlnAPI.md#RemotesRpmUlnRead) | **Get** /{rpm_uln_remote_href} | Inspect an uln remote
-[**RemotesRpmUlnRemoveRole**](RemotesUlnAPI.md#RemotesRpmUlnRemoveRole) | **Post** /{rpm_uln_remote_href}remove_role/ | 
+[**RemotesRpmUlnRemoveRole**](RemotesUlnAPI.md#RemotesRpmUlnRemoveRole) | **Post** /{rpm_uln_remote_href}remove_role/ | Remove a role
 [**RemotesRpmUlnUpdate**](RemotesUlnAPI.md#RemotesRpmUlnUpdate) | **Put** /{rpm_uln_remote_href} | Update an uln remote
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse RemotesRpmUlnAddRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse RemotesRpmUlnListRoles(ctx, rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse RemotesRpmUlnMyPermissions(ctx, rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -638,7 +638,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse RemotesRpmUlnRemoveRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PublicationsRpmRpmAddRole**](PublicationsRpmAPI.md#PublicationsRpmRpmAddRole) | **Post** /{rpm_rpm_publication_href}add_role/ | 
+[**PublicationsRpmRpmAddRole**](PublicationsRpmAPI.md#PublicationsRpmRpmAddRole) | **Post** /{rpm_rpm_publication_href}add_role/ | Add a role
 [**PublicationsRpmRpmCreate**](PublicationsRpmAPI.md#PublicationsRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | Create a rpm publication
 [**PublicationsRpmRpmDelete**](PublicationsRpmAPI.md#PublicationsRpmRpmDelete) | **Delete** /{rpm_rpm_publication_href} | Delete a rpm publication
 [**PublicationsRpmRpmList**](PublicationsRpmAPI.md#PublicationsRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | List rpm publications
-[**PublicationsRpmRpmListRoles**](PublicationsRpmAPI.md#PublicationsRpmRpmListRoles) | **Get** /{rpm_rpm_publication_href}list_roles/ | 
-[**PublicationsRpmRpmMyPermissions**](PublicationsRpmAPI.md#PublicationsRpmRpmMyPermissions) | **Get** /{rpm_rpm_publication_href}my_permissions/ | 
+[**PublicationsRpmRpmListRoles**](PublicationsRpmAPI.md#PublicationsRpmRpmListRoles) | **Get** /{rpm_rpm_publication_href}list_roles/ | List roles
+[**PublicationsRpmRpmMyPermissions**](PublicationsRpmAPI.md#PublicationsRpmRpmMyPermissions) | **Get** /{rpm_rpm_publication_href}my_permissions/ | List user permissions
 [**PublicationsRpmRpmRead**](PublicationsRpmAPI.md#PublicationsRpmRpmRead) | **Get** /{rpm_rpm_publication_href} | Inspect a rpm publication
-[**PublicationsRpmRpmRemoveRole**](PublicationsRpmAPI.md#PublicationsRpmRpmRemoveRole) | **Post** /{rpm_rpm_publication_href}remove_role/ | 
+[**PublicationsRpmRpmRemoveRole**](PublicationsRpmAPI.md#PublicationsRpmRpmRemoveRole) | **Post** /{rpm_rpm_publication_href}remove_role/ | Remove a role
 
 
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse PublicationsRpmRpmAddRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse PublicationsRpmRpmListRoles(ctx, rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse PublicationsRpmRpmMyPermissions(ctx, rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -558,7 +558,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse PublicationsRpmRpmRemoveRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

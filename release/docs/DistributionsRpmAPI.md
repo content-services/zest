@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DistributionsRpmRpmAddRole**](DistributionsRpmAPI.md#DistributionsRpmRpmAddRole) | **Post** /{rpm_rpm_distribution_href}add_role/ | 
+[**DistributionsRpmRpmAddRole**](DistributionsRpmAPI.md#DistributionsRpmRpmAddRole) | **Post** /{rpm_rpm_distribution_href}add_role/ | Add a role
 [**DistributionsRpmRpmCreate**](DistributionsRpmAPI.md#DistributionsRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/ | Create a rpm distribution
 [**DistributionsRpmRpmDelete**](DistributionsRpmAPI.md#DistributionsRpmRpmDelete) | **Delete** /{rpm_rpm_distribution_href} | Delete a rpm distribution
 [**DistributionsRpmRpmList**](DistributionsRpmAPI.md#DistributionsRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/ | List rpm distributions
-[**DistributionsRpmRpmListRoles**](DistributionsRpmAPI.md#DistributionsRpmRpmListRoles) | **Get** /{rpm_rpm_distribution_href}list_roles/ | 
-[**DistributionsRpmRpmMyPermissions**](DistributionsRpmAPI.md#DistributionsRpmRpmMyPermissions) | **Get** /{rpm_rpm_distribution_href}my_permissions/ | 
+[**DistributionsRpmRpmListRoles**](DistributionsRpmAPI.md#DistributionsRpmRpmListRoles) | **Get** /{rpm_rpm_distribution_href}list_roles/ | List roles
+[**DistributionsRpmRpmMyPermissions**](DistributionsRpmAPI.md#DistributionsRpmRpmMyPermissions) | **Get** /{rpm_rpm_distribution_href}my_permissions/ | List user permissions
 [**DistributionsRpmRpmPartialUpdate**](DistributionsRpmAPI.md#DistributionsRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_distribution_href} | Update a rpm distribution
 [**DistributionsRpmRpmRead**](DistributionsRpmAPI.md#DistributionsRpmRpmRead) | **Get** /{rpm_rpm_distribution_href} | Inspect a rpm distribution
-[**DistributionsRpmRpmRemoveRole**](DistributionsRpmAPI.md#DistributionsRpmRpmRemoveRole) | **Post** /{rpm_rpm_distribution_href}remove_role/ | 
+[**DistributionsRpmRpmRemoveRole**](DistributionsRpmAPI.md#DistributionsRpmRpmRemoveRole) | **Post** /{rpm_rpm_distribution_href}remove_role/ | Remove a role
 [**DistributionsRpmRpmUpdate**](DistributionsRpmAPI.md#DistributionsRpmRpmUpdate) | **Put** /{rpm_rpm_distribution_href} | Update a rpm distribution
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse DistributionsRpmRpmAddRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
 
-
+Add a role
 
 
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse DistributionsRpmRpmListRoles(ctx, rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -419,7 +419,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse DistributionsRpmRpmMyPermissions(ctx, rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -639,7 +639,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse DistributionsRpmRpmRemoveRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
 
-
+Remove a role
 
 
 

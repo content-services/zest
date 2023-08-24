@@ -43,7 +43,7 @@ func (r UploadsAPIUploadsAddRoleRequest) Execute() (*NestedRoleResponse, *http.R
 }
 
 /*
-UploadsAddRole Method for UploadsAddRole
+UploadsAddRole Add a role
 
 Add a role for this object to users/groups.
 
@@ -719,7 +719,7 @@ func (r UploadsAPIUploadsListRolesRequest) Execute() (*ObjectRolesResponse, *htt
 }
 
 /*
-UploadsListRoles Method for UploadsListRoles
+UploadsListRoles List roles
 
 List roles assigned to this object.
 
@@ -859,7 +859,7 @@ func (r UploadsAPIUploadsMyPermissionsRequest) Execute() (*MyPermissionsResponse
 }
 
 /*
-UploadsMyPermissions Method for UploadsMyPermissions
+UploadsMyPermissions List user permissions
 
 List permissions available to the current user on this object.
 
@@ -1131,7 +1131,7 @@ func (r UploadsAPIUploadsRemoveRoleRequest) Execute() (*NestedRoleResponse, *htt
 }
 
 /*
-UploadsRemoveRole Method for UploadsRemoveRole
+UploadsRemoveRole Remove a role
 
 Remove a role for this object from users/groups.
 

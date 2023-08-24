@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UploadsAddRole**](UploadsAPI.md#UploadsAddRole) | **Post** /{upload_href}add_role/ | 
+[**UploadsAddRole**](UploadsAPI.md#UploadsAddRole) | **Post** /{upload_href}add_role/ | Add a role
 [**UploadsCommit**](UploadsAPI.md#UploadsCommit) | **Post** /{upload_href}commit/ | Finish an Upload
 [**UploadsCreate**](UploadsAPI.md#UploadsCreate) | **Post** /pulp/{pulp_domain}/api/v3/uploads/ | Create an upload
 [**UploadsDelete**](UploadsAPI.md#UploadsDelete) | **Delete** /{upload_href} | Delete an upload
 [**UploadsList**](UploadsAPI.md#UploadsList) | **Get** /pulp/{pulp_domain}/api/v3/uploads/ | List uploads
-[**UploadsListRoles**](UploadsAPI.md#UploadsListRoles) | **Get** /{upload_href}list_roles/ | 
-[**UploadsMyPermissions**](UploadsAPI.md#UploadsMyPermissions) | **Get** /{upload_href}my_permissions/ | 
+[**UploadsListRoles**](UploadsAPI.md#UploadsListRoles) | **Get** /{upload_href}list_roles/ | List roles
+[**UploadsMyPermissions**](UploadsAPI.md#UploadsMyPermissions) | **Get** /{upload_href}my_permissions/ | List user permissions
 [**UploadsRead**](UploadsAPI.md#UploadsRead) | **Get** /{upload_href} | Inspect an upload
-[**UploadsRemoveRole**](UploadsAPI.md#UploadsRemoveRole) | **Post** /{upload_href}remove_role/ | 
+[**UploadsRemoveRole**](UploadsAPI.md#UploadsRemoveRole) | **Post** /{upload_href}remove_role/ | Remove a role
 [**UploadsUpdate**](UploadsAPI.md#UploadsUpdate) | **Put** /{upload_href} | Upload a file chunk
 
 
@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 > NestedRoleResponse UploadsAddRole(ctx, uploadHref).Upload(upload).Execute()
 
-
+Add a role
 
 
 
@@ -397,7 +397,7 @@ Name | Type | Description  | Notes
 
 > ObjectRolesResponse UploadsListRoles(ctx, uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List roles
 
 
 
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 > MyPermissionsResponse UploadsMyPermissions(ctx, uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
 
-
+List user permissions
 
 
 
@@ -619,7 +619,7 @@ Name | Type | Description  | Notes
 
 > NestedRoleResponse UploadsRemoveRole(ctx, uploadHref).Upload(upload).Execute()
 
-
+Remove a role
 
 
 
