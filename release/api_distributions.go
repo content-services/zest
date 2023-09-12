@@ -37,14 +37,18 @@ type DistributionsAPIDistributionsListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
+	pulpType *string
 	pulpTypeIn *[]string
+	q *string
 	repository *string
 	repositoryIn *[]string
 	withContent *string
@@ -100,9 +104,21 @@ func (r DistributionsAPIDistributionsListRequest) NameIcontains(nameIcontains st
 	return r
 }
 
+// Filter results where name matches value
+func (r DistributionsAPIDistributionsListRequest) NameIexact(nameIexact string) DistributionsAPIDistributionsListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r DistributionsAPIDistributionsListRequest) NameIn(nameIn []string) DistributionsAPIDistributionsListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name starts with value
+func (r DistributionsAPIDistributionsListRequest) NameIstartswith(nameIstartswith string) DistributionsAPIDistributionsListRequest {
+	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -142,9 +158,20 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type is in  * &#x60;core.artifact&#x60; - core.artifact * &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type  * &#x60;core.artifact&#x60; - core.artifact * &#x60;rpm.rpm&#x60; - rpm.rpm
+func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
+	r.pulpType = &pulpType
+	return r
+}
+
+// Multiple values may be separated by commas.  * &#x60;core.artifact&#x60; - core.artifact * &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
+	return r
+}
+
+func (r DistributionsAPIDistributionsListRequest) Q(q string) DistributionsAPIDistributionsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -246,8 +273,14 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -267,8 +300,14 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 	if r.pulpLabelSelect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "")
 	}
+	if r.pulpType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type", r.pulpType, "")
+	}
 	if r.pulpTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type__in", r.pulpTypeIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository", r.repository, "")

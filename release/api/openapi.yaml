@@ -13,7 +13,7 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.32.0
+    core: 3.33.0
     certguard: 1.6.5
     rpm: 3.22.3
   x-pulp-domain-enabled: true
@@ -130,6 +130,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where viewset_name matches value
         explode: true
         in: query
@@ -154,6 +161,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where viewset_name matches value
+        explode: true
+        in: query
+        name: viewset_name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where viewset_name is in a comma-separated list
           of values
         explode: false
@@ -164,6 +179,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where viewset_name starts with value
+        explode: true
+        in: query
+        name: viewset_name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where viewset_name starts with value
         explode: true
@@ -393,6 +416,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -402,6 +433,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -488,6 +527,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -1030,6 +1076,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -1314,7 +1367,42 @@ paths:
           type: array
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `core.publishedmetadata` - core.publishedmetadata
+          * `rpm.advisory` - rpm.advisory
+          * `rpm.packagegroup` - rpm.packagegroup
+          * `rpm.packagecategory` - rpm.packagecategory
+          * `rpm.packageenvironment` - rpm.packageenvironment
+          * `rpm.packagelangpacks` - rpm.packagelangpacks
+          * `rpm.repo_metadata_file` - rpm.repo_metadata_file
+          * `rpm.distribution_tree` - rpm.distribution_tree
+          * `rpm.package` - rpm.package
+          * `rpm.modulemd` - rpm.modulemd
+          * `rpm.modulemd_defaults` - rpm.modulemd_defaults
+          * `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - core.publishedmetadata
+          - rpm.advisory
+          - rpm.distribution_tree
+          - rpm.modulemd
+          - rpm.modulemd_defaults
+          - rpm.modulemd_obsolete
+          - rpm.package
+          - rpm.packagecategory
+          - rpm.packageenvironment
+          - rpm.packagegroup
+          - rpm.packagelangpacks
+          - rpm.repo_metadata_file
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `core.publishedmetadata` - core.publishedmetadata
           * `rpm.advisory` - rpm.advisory
@@ -1349,6 +1437,13 @@ paths:
             - rpm.repo_metadata_file
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -1590,6 +1685,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -1881,6 +1983,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -2111,6 +2220,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -2343,6 +2459,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -2674,6 +2797,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -2925,6 +3055,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -3093,6 +3230,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -3263,6 +3407,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -3431,6 +3582,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository Version referenced by HREF
         explode: true
@@ -3954,6 +4112,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where release matches value
         explode: true
         in: query
@@ -4242,6 +4407,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Repository Version referenced by HREF
         explode: true
         in: query
@@ -4381,6 +4553,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -4390,6 +4570,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -4478,7 +4666,26 @@ paths:
           type: array
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `core.rbac` - core.rbac
+          * `core.content_redirect` - core.content_redirect
+          * `certguard.rhsm` - certguard.rhsm
+          * `certguard.x509` - certguard.x509
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - certguard.rhsm
+          - certguard.x509
+          - core.content_redirect
+          - core.rbac
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `core.rbac` - core.rbac
           * `core.content_redirect` - core.content_redirect
@@ -4497,6 +4704,13 @@ paths:
             - core.rbac
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -4568,6 +4782,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -4577,6 +4799,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -4663,6 +4893,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -4908,6 +5145,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -4917,6 +5162,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -5003,6 +5256,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -5249,6 +5509,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -5258,6 +5526,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -5344,6 +5620,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -5761,6 +6044,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -5770,6 +6061,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -5856,6 +6155,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -6315,6 +6621,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -6324,6 +6638,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -6428,7 +6750,22 @@ paths:
           type: string
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `core.artifact` - core.artifact
+          * `rpm.rpm` - rpm.rpm
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - core.artifact
+          - rpm.rpm
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `core.artifact` - core.artifact
           * `rpm.rpm` - rpm.rpm
@@ -6443,6 +6780,13 @@ paths:
             - rpm.rpm
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where repository matches value
         explode: true
@@ -6578,6 +6922,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -6587,6 +6939,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -6686,6 +7046,13 @@ paths:
         explode: true
         in: query
         name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
         required: false
         schema:
           type: string
@@ -6869,6 +7236,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -6878,6 +7253,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -6977,6 +7360,13 @@ paths:
         explode: true
         in: query
         name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
         required: false
         schema:
           type: string
@@ -7385,6 +7775,80 @@ paths:
       summary: Remove a role
       tags:
       - "Distributions: Rpm"
+  '{rpm_rpm_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_rpm_rpm_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Rpm"
+  '{rpm_rpm_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_rpm_rpm_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Rpm"
   /pulp/{pulp_domain}/api/v3/domains/:
     get:
       description: |-
@@ -7425,6 +7889,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -7434,6 +7906,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -7532,6 +8012,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -7787,6 +8274,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -7796,6 +8291,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -7886,6 +8389,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -8297,6 +8807,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -8306,6 +8824,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -8392,6 +8918,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -8901,6 +9434,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A list of fields to include in the response.
         explode: true
         in: query
@@ -9065,6 +9605,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - explode: true
         in: query
@@ -9694,6 +10241,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -9703,6 +10258,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -9785,6 +10348,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -10430,7 +11000,20 @@ paths:
           type: array
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `rpm.rpm` - rpm.rpm
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - rpm.rpm
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `rpm.rpm` - rpm.rpm
         explode: false
@@ -10443,6 +11026,13 @@ paths:
             - rpm.rpm
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository referenced by HREF
         explode: true
@@ -10658,6 +11248,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Repository referenced by HREF
         explode: true
@@ -11030,6 +11627,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -11039,6 +11644,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -11270,7 +11883,22 @@ paths:
           type: array
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `rpm.rpm` - rpm.rpm
+          * `rpm.uln` - rpm.uln
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - rpm.rpm
+          - rpm.uln
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `rpm.rpm` - rpm.rpm
           * `rpm.uln` - rpm.uln
@@ -11285,6 +11913,13 @@ paths:
             - rpm.uln
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -11356,6 +11991,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -11365,6 +12008,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -11594,6 +12245,13 @@ paths:
             format: date-time
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -11970,6 +12628,80 @@ paths:
       summary: Remove a role
       tags:
       - "Remotes: Rpm"
+  '{rpm_rpm_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_rpm_rpm_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Rpm"
+  '{rpm_rpm_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_rpm_rpm_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Rpm"
   /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/:
     get:
       description: A ViewSet for UlnRemote.
@@ -12007,6 +12739,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -12016,6 +12756,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -12245,6 +12993,13 @@ paths:
             format: date-time
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -12621,6 +13376,80 @@ paths:
       summary: Remove a role
       tags:
       - "Remotes: Uln"
+  '{rpm_uln_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_rpm_uln_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_uln_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Uln"
+  '{rpm_uln_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_rpm_uln_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_uln_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Uln"
   /pulp/{pulp_domain}/api/v3/repair/:
     post:
       description: "Trigger an asynchronous task that checks for missing or corrupted\
@@ -12705,6 +13534,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -12714,6 +13551,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -12826,7 +13671,20 @@ paths:
           type: string
         style: form
       - description: |-
-          Pulp type is in
+          Pulp type
+
+          * `rpm.rpm` - rpm.rpm
+        explode: true
+        in: query
+        name: pulp_type
+        required: false
+        schema:
+          enum:
+          - rpm.rpm
+          type: string
+        style: form
+      - description: |-
+          Multiple values may be separated by commas.
 
           * `rpm.rpm` - rpm.rpm
         explode: false
@@ -12839,6 +13697,13 @@ paths:
             - rpm.rpm
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Foreign Key referenced by HREF
         explode: true
@@ -13041,6 +13906,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -13050,6 +13923,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -13157,6 +14038,13 @@ paths:
         explode: true
         in: query
         name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
         required: false
         schema:
           type: string
@@ -13659,6 +14547,43 @@ paths:
       summary: Remove a role
       tags:
       - "Repositories: Rpm"
+  '{rpm_rpm_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_rpm_rpm_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Rpm"
   '{rpm_rpm_repository_href}sync/':
     post:
       description: Trigger an asynchronous task to sync RPM content.
@@ -13694,6 +14619,43 @@ paths:
       - basicAuth: []
       - cookieAuth: []
       summary: Sync from remote
+      tags:
+      - "Repositories: Rpm"
+  '{rpm_rpm_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_rpm_rpm_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: rpm_rpm_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
       tags:
       - "Repositories: Rpm"
   '{rpm_rpm_repository_href}versions/':
@@ -13891,6 +14853,13 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - explode: false
         in: path
@@ -14241,6 +15210,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A list of fields to include in the response.
         explode: true
         in: query
@@ -14370,6 +15346,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -14379,6 +15363,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -14465,6 +15457,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -14850,6 +15849,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A list of fields to include in the response.
         explode: true
         in: query
@@ -15181,6 +16187,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where task_name matches value
         explode: true
@@ -15605,6 +16618,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Filter results where name not equal to value
+        explode: true
+        in: query
+        name: name__ne
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The initial index from which to return the results.
         explode: true
         in: query
@@ -15719,6 +16740,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - explode: true
         in: query
@@ -15856,6 +16884,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Filter results where state not equal to value
+        explode: true
+        in: query
+        name: state__ne
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where task_group matches value
         explode: true
         in: query
@@ -15884,6 +16920,14 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - description: Filter results where worker has a null value
+        explode: true
+        in: query
+        name: worker__isnull
+        required: false
+        schema:
+          type: boolean
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -16346,6 +17390,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where size matches value
         explode: true
@@ -17283,6 +18334,13 @@ paths:
             type: string
           type: array
         style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where username matches value
         explode: true
         in: query
@@ -17630,6 +18688,13 @@ paths:
         style: form
       - explode: true
         in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
         name: role
         required: false
         schema:
@@ -17921,6 +18986,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Filter results where name is in a comma-separated list of values
         explode: false
         in: query
@@ -17930,6 +19003,14 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: Filter results where name starts with value
         explode: true
@@ -18023,6 +19104,13 @@ paths:
             format: uuid
             type: string
           type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
         style: form
       - description: A list of fields to include in the response.
         explode: true
@@ -18565,6 +19653,38 @@ components:
       - type
       - uid
       type: object
+    ApiAppStatusResponse:
+      description: |-
+        Base serializer for use with :class:`pulpcore.app.models.Model`
+
+        This ensures that all Serializers provide values for the 'pulp_href` field.
+
+        The class provides a default for the ``ref_name`` attribute in the
+        ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions
+        of plugins are namespaced properly.
+      example:
+        versions:
+          key: versions
+        name: name
+        last_heartbeat: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          description: The name of the worker.
+          readOnly: true
+          type: string
+        last_heartbeat:
+          description: Timestamp of the last time the worker talked to the service.
+          format: date-time
+          readOnly: true
+          type: string
+        versions:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Versions of the components installed.
+          readOnly: true
+          type: object
+      type: object
     Artifact:
       description: |-
         Base serializer for use with :class:`pulpcore.app.models.Model`
@@ -18619,23 +19739,18 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
+        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
-        pulp_href: https://openapi-generator.tech
         hidden: false
-        base_url: base_url
         name: name
+        base_url: base_url
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         pulp_labels:
@@ -18643,16 +19758,11 @@ components:
             nullable: true
             type: string
           type: object
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
         content_guard:
@@ -18664,6 +19774,16 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
       required:
       - base_path
       - name
@@ -18792,6 +19912,8 @@ components:
         ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions
         of plugins are namespaced properly.
       example:
+        versions:
+          key: versions
         name: name
         last_heartbeat: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -18804,6 +19926,13 @@ components:
           format: date-time
           readOnly: true
           type: string
+        versions:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Versions of the components installed.
+          readOnly: true
+          type: object
       type: object
     ContentGuardResponse:
       description: |-
@@ -19840,21 +20969,21 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_labels:
+        - pulp_href: https://openapi-generator.tech
+          pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           hidden: false
-          base_url: base_url
           name: name
+          base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - pulp_labels:
+        - pulp_href: https://openapi-generator.tech
+          pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           hidden: false
-          base_url: base_url
           name: name
+          base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
@@ -21197,11 +22326,15 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
+          versions:
+            key: versions
           current_task: https://openapi-generator.tech
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
+          versions:
+            key: versions
           current_task: https://openapi-generator.tech
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -24144,6 +25277,39 @@ components:
           description: Whether or not to optimize sync.
           type: boolean
       type: object
+    SetLabel:
+      description: Serializer for synchronously setting a label.
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          minLength: 1
+          pattern: "^[-a-zA-Z0-9_]+$"
+          type: string
+        value:
+          nullable: true
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    SetLabelResponse:
+      description: Serializer for synchronously setting a label.
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          pattern: "^[-a-zA-Z0-9_]+$"
+          type: string
+        value:
+          nullable: true
+          type: string
+      required:
+      - key
+      - value
+      type: object
     SigningServiceResponse:
       description: A serializer for the model declaring a signing service.
       example:
@@ -24218,21 +25384,38 @@ components:
           version: version
         online_workers:
         - pulp_href: https://openapi-generator.tech
+          versions:
+            key: versions
           current_task: https://openapi-generator.tech
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
+          versions:
+            key: versions
           current_task: https://openapi-generator.tech
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
         online_content_apps:
-        - name: name
+        - versions:
+            key: versions
+          name: name
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
-        - name: name
+        - versions:
+            key: versions
+          name: name
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
         content_settings: ""
+        online_api_apps:
+        - versions:
+            key: versions
+          name: name
+          last_heartbeat: 2000-01-23T04:56:07.000+00:00
+        - versions:
+            key: versions
+          name: name
+          last_heartbeat: 2000-01-23T04:56:07.000+00:00
         storage: ""
         database_connection: ""
       properties:
@@ -24243,13 +25426,19 @@ components:
           type: array
         online_workers:
           description: List of online workers known to the application. An online
-            worker is actively heartbeating and can respond to new work
+            worker is actively heartbeating and can respond to new work.
           items:
             $ref: '#/components/schemas/WorkerResponse'
           type: array
+        online_api_apps:
+          description: List of online api apps known to the application. An online
+            api app is actively heartbeating and can serve the rest api to clients.
+          items:
+            $ref: '#/components/schemas/ApiAppStatusResponse'
+          type: array
         online_content_apps:
           description: List of online content apps known to the application. An online
-            content app is actively heartbeating and can serve data to clients
+            content app is actively heartbeating and can serve data to clients.
           items:
             $ref: '#/components/schemas/ContentAppStatusResponse'
           type: array
@@ -24276,6 +25465,7 @@ components:
       - content_settings
       - database_connection
       - domain_enabled
+      - online_api_apps
       - online_content_apps
       - online_workers
       - versions
@@ -24626,6 +25816,33 @@ components:
       - dispatch_interval
       - name
       - task_name
+      type: object
+    UnsetLabel:
+      description: Serializer for synchronously setting a label.
+      example:
+        key: key
+      properties:
+        key:
+          minLength: 1
+          pattern: "^[-a-zA-Z0-9_]+$"
+          type: string
+      required:
+      - key
+      type: object
+    UnsetLabelResponse:
+      description: Serializer for synchronously setting a label.
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          pattern: "^[-a-zA-Z0-9_]+$"
+          type: string
+        value:
+          readOnly: true
+          type: string
+      required:
+      - key
       type: object
     Upload:
       description: Serializer for chunked uploads.
@@ -25225,6 +26442,8 @@ components:
         of plugins are namespaced properly.
       example:
         pulp_href: https://openapi-generator.tech
+        versions:
+          key: versions
         current_task: https://openapi-generator.tech
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -25248,6 +26467,13 @@ components:
           format: date-time
           readOnly: true
           type: string
+        versions:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Versions of the components installed.
+          readOnly: true
+          type: object
         current_task:
           description: "The task this worker is currently executing, or empty if the\
             \ worker is not currently assigned to a task."

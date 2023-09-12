@@ -356,12 +356,15 @@ type ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest 
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -390,9 +393,21 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListReque
 	return r
 }
 
+// Filter results where name matches value
+func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest) NameIexact(nameIexact string) ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest) NameIn(nameIn []string) ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name starts with value
+func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest) NameIstartswith(nameIstartswith string) ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest {
+	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -423,6 +438,11 @@ func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListReque
 // Multiple values may be separated by commas.
 func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest) PulpIdIn(pulpIdIn []string) ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest) Q(q string) ContentguardsContentRedirectAPIContentguardsCoreContentRedirectListRequest {
+	r.q = &q
 	return r
 }
 
@@ -494,8 +514,14 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -511,6 +537,9 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

@@ -148,6 +148,34 @@ func Test_zest_DistributionsRpmAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DistributionsRpmAPIService DistributionsRpmRpmSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmSetLabel(context.Background(), rpmRpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DistributionsRpmAPIService DistributionsRpmRpmUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel(context.Background(), rpmRpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DistributionsRpmAPIService DistributionsRpmRpmUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

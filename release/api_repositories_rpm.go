@@ -368,13 +368,16 @@ type RepositoriesRpmAPIRepositoriesRpmRpmListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
+	q *string
 	remote *string
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
@@ -419,9 +422,21 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) NameIcontains(nameIcont
 	return r
 }
 
+// Filter results where name matches value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) NameIexact(nameIexact string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) NameIn(nameIn []string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name starts with value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) NameIstartswith(nameIstartswith string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -458,6 +473,11 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) PulpIdIn(pulpIdIn []str
 // Filter labels by search string
 func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) PulpLabelSelect(pulpLabelSelect string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
 	r.pulpLabelSelect = &pulpLabelSelect
+	return r
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) Q(q string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.q = &q
 	return r
 }
 
@@ -592,8 +612,14 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmListExecute(r Repositories
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -612,6 +638,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmListExecute(r Repositories
 	}
 	if r.pulpLabelSelect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "")
@@ -1484,6 +1513,121 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmRemoveRoleExecute(r Reposi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesRpmAPIService
+	rpmRpmRepositoryHref string
+	setLabel *SetLabel
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest) SetLabel(setLabel SetLabel) RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesRpmRpmSetLabelExecute(r)
+}
+
+/*
+RepositoriesRpmRpmSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmRpmRepositoryHref
+ @return RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest
+*/
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmSetLabel(ctx context.Context, rpmRpmRepositoryHref string) RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest {
+	return RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmRpmRepositoryHref: rpmRpmRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmSetLabelExecute(r RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesRpmAPIService.RepositoriesRpmRpmSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_rpm_repository_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_repository_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmRepositoryHref, "rpmRpmRepositoryHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
@@ -1562,6 +1706,121 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmSyncExecute(r Repositories
 	}
 	// body params
 	localVarPostBody = r.rpmRepositorySyncURL
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesRpmAPIService
+	rpmRpmRepositoryHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesRpmRpmUnsetLabelExecute(r)
+}
+
+/*
+RepositoriesRpmRpmUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmRpmRepositoryHref
+ @return RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest
+*/
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUnsetLabel(ctx context.Context, rpmRpmRepositoryHref string) RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest {
+	return RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmRpmRepositoryHref: rpmRpmRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUnsetLabelExecute(r RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesRpmAPIService.RepositoriesRpmRpmUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_rpm_repository_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_repository_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmRepositoryHref, "rpmRpmRepositoryHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

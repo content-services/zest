@@ -25,6 +25,8 @@ type ContentAppStatusResponse struct {
 	Name *string `json:"name,omitempty"`
 	// Timestamp of the last time the worker talked to the service.
 	LastHeartbeat *time.Time `json:"last_heartbeat,omitempty"`
+	// Versions of the components installed.
+	Versions *map[string]string `json:"versions,omitempty"`
 }
 
 // NewContentAppStatusResponse instantiates a new ContentAppStatusResponse object
@@ -108,6 +110,38 @@ func (o *ContentAppStatusResponse) SetLastHeartbeat(v time.Time) {
 	o.LastHeartbeat = &v
 }
 
+// GetVersions returns the Versions field value if set, zero value otherwise.
+func (o *ContentAppStatusResponse) GetVersions() map[string]string {
+	if o == nil || IsNil(o.Versions) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Versions
+}
+
+// GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContentAppStatusResponse) GetVersionsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Versions) {
+		return nil, false
+	}
+	return o.Versions, true
+}
+
+// HasVersions returns a boolean if a field has been set.
+func (o *ContentAppStatusResponse) HasVersions() bool {
+	if o != nil && !IsNil(o.Versions) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersions gets a reference to the given map[string]string and assigns it to the Versions field.
+func (o *ContentAppStatusResponse) SetVersions(v map[string]string) {
+	o.Versions = &v
+}
+
 func (o ContentAppStatusResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -123,6 +157,9 @@ func (o ContentAppStatusResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LastHeartbeat) {
 		toSerialize["last_heartbeat"] = o.LastHeartbeat
+	}
+	if !IsNil(o.Versions) {
+		toSerialize["versions"] = o.Versions
 	}
 	return toSerialize, nil
 }

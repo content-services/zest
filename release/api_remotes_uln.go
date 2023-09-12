@@ -368,7 +368,9 @@ type RemotesUlnAPIRemotesRpmUlnListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
@@ -381,6 +383,7 @@ type RemotesUlnAPIRemotesRpmUlnListRequest struct {
 	pulpLastUpdatedLt *time.Time
 	pulpLastUpdatedLte *time.Time
 	pulpLastUpdatedRange *[]time.Time
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -409,9 +412,21 @@ func (r RemotesUlnAPIRemotesRpmUlnListRequest) NameIcontains(nameIcontains strin
 	return r
 }
 
+// Filter results where name matches value
+func (r RemotesUlnAPIRemotesRpmUlnListRequest) NameIexact(nameIexact string) RemotesUlnAPIRemotesRpmUlnListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r RemotesUlnAPIRemotesRpmUlnListRequest) NameIn(nameIn []string) RemotesUlnAPIRemotesRpmUlnListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name starts with value
+func (r RemotesUlnAPIRemotesRpmUlnListRequest) NameIstartswith(nameIstartswith string) RemotesUlnAPIRemotesRpmUlnListRequest {
+	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -487,6 +502,11 @@ func (r RemotesUlnAPIRemotesRpmUlnListRequest) PulpLastUpdatedRange(pulpLastUpda
 	return r
 }
 
+func (r RemotesUlnAPIRemotesRpmUlnListRequest) Q(q string) RemotesUlnAPIRemotesRpmUlnListRequest {
+	r.q = &q
+	return r
+}
+
 // A list of fields to include in the response.
 func (r RemotesUlnAPIRemotesRpmUlnListRequest) Fields(fields []string) RemotesUlnAPIRemotesRpmUlnListRequest {
 	r.fields = &fields
@@ -555,8 +575,14 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnListExecute(r RemotesUlnAPIRemotesRp
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -593,6 +619,9 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnListExecute(r RemotesUlnAPIRemotesRp
 	}
 	if r.pulpLastUpdatedRange != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__range", r.pulpLastUpdatedRange, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields
@@ -1283,6 +1312,236 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnRemoveRoleExecute(r RemotesUlnAPIRem
 	}
 	// body params
 	localVarPostBody = r.nestedRole
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesUlnAPIRemotesRpmUlnSetLabelRequest struct {
+	ctx context.Context
+	ApiService *RemotesUlnAPIService
+	rpmUlnRemoteHref string
+	setLabel *SetLabel
+}
+
+func (r RemotesUlnAPIRemotesRpmUlnSetLabelRequest) SetLabel(setLabel SetLabel) RemotesUlnAPIRemotesRpmUlnSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r RemotesUlnAPIRemotesRpmUlnSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.RemotesRpmUlnSetLabelExecute(r)
+}
+
+/*
+RemotesRpmUlnSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmUlnRemoteHref
+ @return RemotesUlnAPIRemotesRpmUlnSetLabelRequest
+*/
+func (a *RemotesUlnAPIService) RemotesRpmUlnSetLabel(ctx context.Context, rpmUlnRemoteHref string) RemotesUlnAPIRemotesRpmUlnSetLabelRequest {
+	return RemotesUlnAPIRemotesRpmUlnSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmUlnRemoteHref: rpmUlnRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *RemotesUlnAPIService) RemotesRpmUlnSetLabelExecute(r RemotesUlnAPIRemotesRpmUlnSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesUlnAPIService.RemotesRpmUlnSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_uln_remote_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *RemotesUlnAPIService
+	rpmUlnRemoteHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.RemotesRpmUlnUnsetLabelExecute(r)
+}
+
+/*
+RemotesRpmUlnUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmUlnRemoteHref
+ @return RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest
+*/
+func (a *RemotesUlnAPIService) RemotesRpmUlnUnsetLabel(ctx context.Context, rpmUlnRemoteHref string) RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest {
+	return RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmUlnRemoteHref: rpmUlnRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *RemotesUlnAPIService) RemotesRpmUlnUnsetLabelExecute(r RemotesUlnAPIRemotesRpmUlnUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesUlnAPIService.RemotesRpmUlnUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_uln_remote_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

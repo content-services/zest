@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name of the worker. | [optional] [readonly] 
 **LastHeartbeat** | Pointer to **time.Time** | Timestamp of the last time the worker talked to the service. | [optional] [readonly] 
+**Versions** | Pointer to **map[string]string** | Versions of the components installed. | [optional] [readonly] 
 **CurrentTask** | Pointer to **string** | The task this worker is currently executing, or empty if the worker is not currently assigned to a task. | [optional] [readonly] 
 
 ## Methods
@@ -128,6 +129,31 @@ SetLastHeartbeat sets LastHeartbeat field to given value.
 `func (o *WorkerResponse) HasLastHeartbeat() bool`
 
 HasLastHeartbeat returns a boolean if a field has been set.
+
+### GetVersions
+
+`func (o *WorkerResponse) GetVersions() map[string]string`
+
+GetVersions returns the Versions field if non-nil, zero value otherwise.
+
+### GetVersionsOk
+
+`func (o *WorkerResponse) GetVersionsOk() (*map[string]string, bool)`
+
+GetVersionsOk returns a tuple with the Versions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersions
+
+`func (o *WorkerResponse) SetVersions(v map[string]string)`
+
+SetVersions sets Versions field to given value.
+
+### HasVersions
+
+`func (o *WorkerResponse) HasVersions() bool`
+
+HasVersions returns a boolean if a field has been set.
 
 ### GetCurrentTask
 

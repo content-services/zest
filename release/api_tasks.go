@@ -396,11 +396,13 @@ type TasksAPITasksListRequest struct {
 	name *string
 	nameContains *string
 	nameIn *[]string
+	nameNe *string
 	offset *int32
 	ordering *[]string
 	parentTask *string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	reservedResources *string
 	reservedResourcesIn *[]string
 	reservedResourcesRecord *[]string
@@ -414,9 +416,11 @@ type TasksAPITasksListRequest struct {
 	startedAtRange *[]time.Time
 	state *string
 	stateIn *[]string
+	stateNe *string
 	taskGroup *string
 	worker *string
 	workerIn *[]string
+	workerIsnull *bool
 	fields *[]string
 	excludeFields *[]string
 }
@@ -515,6 +519,12 @@ func (r TasksAPITasksListRequest) NameIn(nameIn []string) TasksAPITasksListReque
 	return r
 }
 
+// Filter results where name not equal to value
+func (r TasksAPITasksListRequest) NameNe(nameNe string) TasksAPITasksListRequest {
+	r.nameNe = &nameNe
+	return r
+}
+
 // The initial index from which to return the results.
 func (r TasksAPITasksListRequest) Offset(offset int32) TasksAPITasksListRequest {
 	r.offset = &offset
@@ -542,6 +552,11 @@ func (r TasksAPITasksListRequest) PulpHrefIn(pulpHrefIn []string) TasksAPITasksL
 // Multiple values may be separated by commas.
 func (r TasksAPITasksListRequest) PulpIdIn(pulpIdIn []string) TasksAPITasksListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r TasksAPITasksListRequest) Q(q string) TasksAPITasksListRequest {
+	r.q = &q
 	return r
 }
 
@@ -620,6 +635,12 @@ func (r TasksAPITasksListRequest) StateIn(stateIn []string) TasksAPITasksListReq
 	return r
 }
 
+// Filter results where state not equal to value
+func (r TasksAPITasksListRequest) StateNe(stateNe string) TasksAPITasksListRequest {
+	r.stateNe = &stateNe
+	return r
+}
+
 // Filter results where task_group matches value
 func (r TasksAPITasksListRequest) TaskGroup(taskGroup string) TasksAPITasksListRequest {
 	r.taskGroup = &taskGroup
@@ -635,6 +656,12 @@ func (r TasksAPITasksListRequest) Worker(worker string) TasksAPITasksListRequest
 // Filter results where worker is in a comma-separated list of values
 func (r TasksAPITasksListRequest) WorkerIn(workerIn []string) TasksAPITasksListRequest {
 	r.workerIn = &workerIn
+	return r
+}
+
+// Filter results where worker has a null value
+func (r TasksAPITasksListRequest) WorkerIsnull(workerIsnull bool) TasksAPITasksListRequest {
+	r.workerIsnull = &workerIsnull
 	return r
 }
 
@@ -759,6 +786,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
 	}
+	if r.nameNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "")
+	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
@@ -773,6 +803,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.reservedResources != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources", r.reservedResources, "")
@@ -821,6 +854,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	if r.stateIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "state__in", r.stateIn, "csv")
 	}
+	if r.stateNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state__ne", r.stateNe, "")
+	}
 	if r.taskGroup != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "task_group", r.taskGroup, "")
 	}
@@ -829,6 +865,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.workerIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__in", r.workerIn, "csv")
+	}
+	if r.workerIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__isnull", r.workerIsnull, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

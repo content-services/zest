@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ContentRpmPackagecategoriesList
 
-> PaginatedrpmPackageCategoryResponseList ContentRpmPackagecategoriesList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmPackageCategoryResponseList ContentRpmPackagecategoriesList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List package categorys
 
@@ -36,6 +36,7 @@ func main() {
     ordering := []string{"Ordering_example"} // []string | Ordering  * `pk` - Pk * `-pk` - Pk (descending) (optional)
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+    q := "q_example" // string |  (optional)
     repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
     repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
     repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
@@ -44,7 +45,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+    resp, r, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagecategoriesAPI.ContentRpmPackagecategoriesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -75,6 +76,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
+ **q** | **string** |  | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF | 
  **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 
  **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF | 

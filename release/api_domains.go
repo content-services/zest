@@ -254,12 +254,15 @@ type DomainsAPIDomainsListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -288,9 +291,21 @@ func (r DomainsAPIDomainsListRequest) NameIcontains(nameIcontains string) Domain
 	return r
 }
 
+// Filter results where name matches value
+func (r DomainsAPIDomainsListRequest) NameIexact(nameIexact string) DomainsAPIDomainsListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r DomainsAPIDomainsListRequest) NameIn(nameIn []string) DomainsAPIDomainsListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name starts with value
+func (r DomainsAPIDomainsListRequest) NameIstartswith(nameIstartswith string) DomainsAPIDomainsListRequest {
+	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -321,6 +336,11 @@ func (r DomainsAPIDomainsListRequest) PulpHrefIn(pulpHrefIn []string) DomainsAPI
 // Multiple values may be separated by commas.
 func (r DomainsAPIDomainsListRequest) PulpIdIn(pulpIdIn []string) DomainsAPIDomainsListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r DomainsAPIDomainsListRequest) Q(q string) DomainsAPIDomainsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -394,8 +414,14 @@ func (a *DomainsAPIService) DomainsListExecute(r DomainsAPIDomainsListRequest) (
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -411,6 +437,9 @@ func (a *DomainsAPIService) DomainsListExecute(r DomainsAPIDomainsListRequest) (
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**DistributionsRpmRpmPartialUpdate**](DistributionsRpmAPI.md#DistributionsRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_distribution_href} | Update a rpm distribution
 [**DistributionsRpmRpmRead**](DistributionsRpmAPI.md#DistributionsRpmRpmRead) | **Get** /{rpm_rpm_distribution_href} | Inspect a rpm distribution
 [**DistributionsRpmRpmRemoveRole**](DistributionsRpmAPI.md#DistributionsRpmRpmRemoveRole) | **Post** /{rpm_rpm_distribution_href}remove_role/ | Remove a role
+[**DistributionsRpmRpmSetLabel**](DistributionsRpmAPI.md#DistributionsRpmRpmSetLabel) | **Post** /{rpm_rpm_distribution_href}set_label/ | Set a label
+[**DistributionsRpmRpmUnsetLabel**](DistributionsRpmAPI.md#DistributionsRpmRpmUnsetLabel) | **Post** /{rpm_rpm_distribution_href}unset_label/ | Unset a label
 [**DistributionsRpmRpmUpdate**](DistributionsRpmAPI.md#DistributionsRpmRpmUpdate) | **Put** /{rpm_rpm_distribution_href} | Update a rpm distribution
 
 
@@ -233,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmList
 
-> PaginatedrpmRpmDistributionResponseList DistributionsRpmRpmList(ctx, pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIn(nameIn).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmDistributionResponseList DistributionsRpmRpmList(ctx, pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIstartswith(nameIstartswith).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm distributions
 
@@ -261,13 +263,16 @@ func main() {
     name := "name_example" // string | Filter results where name matches value (optional)
     nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
     nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
     nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
     nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
     offset := int32(56) // int32 | The initial index from which to return the results. (optional)
     ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `base_path` - Base path * `-base_path` - Base path (descending) * `hidden` - Hidden * `-hidden` - Hidden (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
+    q := "q_example" // string |  (optional)
     repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
     repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
     withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
@@ -276,7 +281,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIn(nameIn).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+    resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIstartswith(nameIstartswith).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -310,13 +315,16 @@ Name | Type | Description  | Notes
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
  **nameIcontains** | **string** | Filter results where name contains value | 
+ **nameIexact** | **string** | Filter results where name matches value | 
  **nameIn** | **[]string** | Filter results where name is in a comma-separated list of values | 
+ **nameIstartswith** | **string** | Filter results where name starts with value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pulp_labels&#x60; - Pulp labels * &#x60;-pulp_labels&#x60; - Pulp labels (descending) * &#x60;base_path&#x60; - Base path * &#x60;-base_path&#x60; - Base path (descending) * &#x60;hidden&#x60; - Hidden * &#x60;-hidden&#x60; - Hidden (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
+ **q** | **string** |  | 
  **repository** | **string** | Filter results where repository matches value | 
  **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
  **withContent** | **string** | Filter distributions based on the content served by them | 
@@ -692,6 +700,150 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DistributionsRpmRpmSetLabel
+
+> SetLabelResponse DistributionsRpmRpmSetLabel(ctx, rpmRpmDistributionHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+    setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmSetLabel(context.Background(), rpmRpmDistributionHref).SetLabel(setLabel).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmSetLabel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DistributionsRpmRpmSetLabel`: SetLabelResponse
+    fmt.Fprintf(os.Stdout, "Response from `DistributionsRpmAPI.DistributionsRpmRpmSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmRpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsRpmRpmSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DistributionsRpmRpmUnsetLabel
+
+> UnsetLabelResponse DistributionsRpmRpmUnsetLabel(ctx, rpmRpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+    unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel(context.Background(), rpmRpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DistributionsRpmRpmUnsetLabel`: UnsetLabelResponse
+    fmt.Fprintf(os.Stdout, "Response from `DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmRpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsRpmRpmUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
 
 ### Authorization
 

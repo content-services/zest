@@ -151,6 +151,7 @@ type TaskSchedulesAPITaskSchedulesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	taskName *string
 	taskNameContains *string
 	fields *[]string
@@ -196,6 +197,11 @@ func (r TaskSchedulesAPITaskSchedulesListRequest) PulpHrefIn(pulpHrefIn []string
 // Multiple values may be separated by commas.
 func (r TaskSchedulesAPITaskSchedulesListRequest) PulpIdIn(pulpIdIn []string) TaskSchedulesAPITaskSchedulesListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r TaskSchedulesAPITaskSchedulesListRequest) Q(q string) TaskSchedulesAPITaskSchedulesListRequest {
+	r.q = &q
 	return r
 }
 
@@ -287,6 +293,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesListExecute(r TaskSchedulesAPITas
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.taskName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "task_name", r.taskName, "")

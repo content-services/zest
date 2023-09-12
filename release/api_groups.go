@@ -364,6 +364,7 @@ type GroupsAPIGroupsListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -437,6 +438,11 @@ func (r GroupsAPIGroupsListRequest) PulpHrefIn(pulpHrefIn []string) GroupsAPIGro
 // Multiple values may be separated by commas.
 func (r GroupsAPIGroupsListRequest) PulpIdIn(pulpIdIn []string) GroupsAPIGroupsListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r GroupsAPIGroupsListRequest) Q(q string) GroupsAPIGroupsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -531,6 +537,9 @@ func (a *GroupsAPIService) GroupsListExecute(r GroupsAPIGroupsListRequest) (*Pag
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields
