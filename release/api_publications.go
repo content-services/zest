@@ -43,9 +43,7 @@ type PublicationsAPIPublicationsListRequest struct {
 	pulpCreatedRange *[]time.Time
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	pulpType *string
 	pulpTypeIn *[]string
-	q *string
 	repository *string
 	repositoryVersion *string
 	fields *[]string
@@ -130,20 +128,9 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type  * &#x60;rpm.rpm&#x60; - rpm.rpm
-func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
-	r.pulpType = &pulpType
-	return r
-}
-
-// Multiple values may be separated by commas.  * &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type is in  * &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
-	return r
-}
-
-func (r PublicationsAPIPublicationsListRequest) Q(q string) PublicationsAPIPublicationsListRequest {
-	r.q = &q
 	return r
 }
 
@@ -254,14 +241,8 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
 	}
-	if r.pulpType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type", r.pulpType, "")
-	}
 	if r.pulpTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type__in", r.pulpTypeIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository", r.repository, "")

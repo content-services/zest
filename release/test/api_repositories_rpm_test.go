@@ -162,20 +162,6 @@ func Test_zest_RepositoriesRpmAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RepositoriesRpmAPIService RepositoriesRpmRpmSetLabel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var rpmRpmRepositoryHref string
-
-		resp, httpRes, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSetLabel(context.Background(), rpmRpmRepositoryHref).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test RepositoriesRpmAPIService RepositoriesRpmRpmSync", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -183,20 +169,6 @@ func Test_zest_RepositoriesRpmAPIService(t *testing.T) {
 		var rpmRpmRepositoryHref string
 
 		resp, httpRes, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSync(context.Background(), rpmRpmRepositoryHref).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test RepositoriesRpmAPIService RepositoriesRpmRpmUnsetLabel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var rpmRpmRepositoryHref string
-
-		resp, httpRes, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmUnsetLabel(context.Background(), rpmRpmRepositoryHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

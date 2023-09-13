@@ -175,7 +175,6 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -231,11 +230,6 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) PulpHrefIn(pulpHref
 // Multiple values may be separated by commas.
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) PulpIdIn(pulpIdIn []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Q(q string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -393,9 +387,6 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")

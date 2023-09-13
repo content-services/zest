@@ -34,7 +34,6 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -69,11 +68,6 @@ func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) PulpHre
 // Multiple values may be separated by commas.
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) PulpIdIn(pulpIdIn []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Q(q string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
-	r.q = &q
 	return r
 }
 
@@ -165,9 +159,6 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksListExecut
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")

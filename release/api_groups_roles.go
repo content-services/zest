@@ -244,7 +244,6 @@ type GroupsRolesAPIGroupsRolesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	role *string
 	roleContains *string
 	roleIcontains *string
@@ -293,11 +292,6 @@ func (r GroupsRolesAPIGroupsRolesListRequest) PulpHrefIn(pulpHrefIn []string) Gr
 // Multiple values may be separated by commas.
 func (r GroupsRolesAPIGroupsRolesListRequest) PulpIdIn(pulpIdIn []string) GroupsRolesAPIGroupsRolesListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r GroupsRolesAPIGroupsRolesListRequest) Q(q string) GroupsRolesAPIGroupsRolesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -403,9 +397,6 @@ func (a *GroupsRolesAPIService) GroupsRolesListExecute(r GroupsRolesAPIGroupsRol
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.role != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "role", r.role, "")

@@ -221,7 +221,6 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	pkgIdIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	release *string
 	releaseContains *string
 	releaseIn *[]string
@@ -373,11 +372,6 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpHrefIn(pulpHrefIn [
 // Multiple values may be separated by commas.
 func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpIdIn(pulpIdIn []string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r ContentPackagesAPIContentRpmPackagesListRequest) Q(q string) ContentPackagesAPIContentRpmPackagesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -582,9 +576,6 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.release != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "release", r.release, "")

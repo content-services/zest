@@ -366,7 +366,6 @@ type PublicationsRpmAPIPublicationsRpmRpmListRequest struct {
 	pulpCreatedRange *[]time.Time
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	repository *string
 	repositoryVersion *string
 	fields *[]string
@@ -448,11 +447,6 @@ func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) PulpHrefIn(pulpHrefIn [
 // Multiple values may be separated by commas.
 func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) PulpIdIn(pulpIdIn []string) PublicationsRpmAPIPublicationsRpmRpmListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) Q(q string) PublicationsRpmAPIPublicationsRpmRpmListRequest {
-	r.q = &q
 	return r
 }
 
@@ -562,9 +556,6 @@ func (a *PublicationsRpmAPIService) PublicationsRpmRpmListExecute(r Publications
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository", r.repository, "")

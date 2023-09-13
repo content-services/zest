@@ -5,9 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Versions** | [**[]VersionResponse**](VersionResponse.md) | Version information of Pulp components | 
-**OnlineWorkers** | [**[]WorkerResponse**](WorkerResponse.md) | List of online workers known to the application. An online worker is actively heartbeating and can respond to new work. | 
-**OnlineApiApps** | [**[]ApiAppStatusResponse**](ApiAppStatusResponse.md) | List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients. | 
-**OnlineContentApps** | [**[]ContentAppStatusResponse**](ContentAppStatusResponse.md) | List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients. | 
+**OnlineWorkers** | [**[]WorkerResponse**](WorkerResponse.md) | List of online workers known to the application. An online worker is actively heartbeating and can respond to new work | 
+**OnlineContentApps** | [**[]ContentAppStatusResponse**](ContentAppStatusResponse.md) | List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients | 
 **DatabaseConnection** | [**DatabaseConnectionResponse**](DatabaseConnectionResponse.md) |  | 
 **RedisConnection** | Pointer to [**RedisConnectionResponse**](RedisConnectionResponse.md) |  | [optional] 
 **Storage** | Pointer to [**StorageResponse**](StorageResponse.md) |  | [optional] 
@@ -18,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewStatusResponse
 
-`func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineApiApps []ApiAppStatusResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool, ) *StatusResponse`
+`func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool, ) *StatusResponse`
 
 NewStatusResponse instantiates a new StatusResponse object
 This constructor will assign default values to properties that have it defined,
@@ -71,26 +70,6 @@ and a boolean to check if the value has been set.
 `func (o *StatusResponse) SetOnlineWorkers(v []WorkerResponse)`
 
 SetOnlineWorkers sets OnlineWorkers field to given value.
-
-
-### GetOnlineApiApps
-
-`func (o *StatusResponse) GetOnlineApiApps() []ApiAppStatusResponse`
-
-GetOnlineApiApps returns the OnlineApiApps field if non-nil, zero value otherwise.
-
-### GetOnlineApiAppsOk
-
-`func (o *StatusResponse) GetOnlineApiAppsOk() (*[]ApiAppStatusResponse, bool)`
-
-GetOnlineApiAppsOk returns a tuple with the OnlineApiApps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnlineApiApps
-
-`func (o *StatusResponse) SetOnlineApiApps(v []ApiAppStatusResponse)`
-
-SetOnlineApiApps sets OnlineApiApps field to given value.
 
 
 ### GetOnlineContentApps

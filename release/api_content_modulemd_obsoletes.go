@@ -149,7 +149,6 @@ type ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -184,11 +183,6 @@ func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpH
 // Multiple values may be separated by commas.
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpIdIn(pulpIdIn []string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) Q(q string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -280,9 +274,6 @@ func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesListExec
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")

@@ -22,11 +22,9 @@ var _ MappedNullable = &StatusResponse{}
 type StatusResponse struct {
 	// Version information of Pulp components
 	Versions []VersionResponse `json:"versions"`
-	// List of online workers known to the application. An online worker is actively heartbeating and can respond to new work.
+	// List of online workers known to the application. An online worker is actively heartbeating and can respond to new work
 	OnlineWorkers []WorkerResponse `json:"online_workers"`
-	// List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients.
-	OnlineApiApps []ApiAppStatusResponse `json:"online_api_apps"`
-	// List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients.
+	// List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients
 	OnlineContentApps []ContentAppStatusResponse `json:"online_content_apps"`
 	DatabaseConnection DatabaseConnectionResponse `json:"database_connection"`
 	RedisConnection *RedisConnectionResponse `json:"redis_connection,omitempty"`
@@ -40,11 +38,10 @@ type StatusResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineApiApps []ApiAppStatusResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool) *StatusResponse {
+func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool) *StatusResponse {
 	this := StatusResponse{}
 	this.Versions = versions
 	this.OnlineWorkers = onlineWorkers
-	this.OnlineApiApps = onlineApiApps
 	this.OnlineContentApps = onlineContentApps
 	this.DatabaseConnection = databaseConnection
 	this.ContentSettings = contentSettings
@@ -106,30 +103,6 @@ func (o *StatusResponse) GetOnlineWorkersOk() ([]WorkerResponse, bool) {
 // SetOnlineWorkers sets field value
 func (o *StatusResponse) SetOnlineWorkers(v []WorkerResponse) {
 	o.OnlineWorkers = v
-}
-
-// GetOnlineApiApps returns the OnlineApiApps field value
-func (o *StatusResponse) GetOnlineApiApps() []ApiAppStatusResponse {
-	if o == nil {
-		var ret []ApiAppStatusResponse
-		return ret
-	}
-
-	return o.OnlineApiApps
-}
-
-// GetOnlineApiAppsOk returns a tuple with the OnlineApiApps field value
-// and a boolean to check if the value has been set.
-func (o *StatusResponse) GetOnlineApiAppsOk() ([]ApiAppStatusResponse, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OnlineApiApps, true
-}
-
-// SetOnlineApiApps sets field value
-func (o *StatusResponse) SetOnlineApiApps(v []ApiAppStatusResponse) {
-	o.OnlineApiApps = v
 }
 
 // GetOnlineContentApps returns the OnlineContentApps field value
@@ -304,7 +277,6 @@ func (o StatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["versions"] = o.Versions
 	toSerialize["online_workers"] = o.OnlineWorkers
-	toSerialize["online_api_apps"] = o.OnlineApiApps
 	toSerialize["online_content_apps"] = o.OnlineContentApps
 	toSerialize["database_connection"] = o.DatabaseConnection
 	if !IsNil(o.RedisConnection) {

@@ -34,18 +34,14 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
-	nameIexact *string
 	nameIn *[]string
-	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
-	pulpType *string
 	pulpTypeIn *[]string
-	q *string
 	remote *string
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
@@ -90,21 +86,9 @@ func (r RepositoriesAPIRepositoriesListRequest) NameIcontains(nameIcontains stri
 	return r
 }
 
-// Filter results where name matches value
-func (r RepositoriesAPIRepositoriesListRequest) NameIexact(nameIexact string) RepositoriesAPIRepositoriesListRequest {
-	r.nameIexact = &nameIexact
-	return r
-}
-
 // Filter results where name is in a comma-separated list of values
 func (r RepositoriesAPIRepositoriesListRequest) NameIn(nameIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.nameIn = &nameIn
-	return r
-}
-
-// Filter results where name starts with value
-func (r RepositoriesAPIRepositoriesListRequest) NameIstartswith(nameIstartswith string) RepositoriesAPIRepositoriesListRequest {
-	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -144,20 +128,9 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type  * &#x60;rpm.rpm&#x60; - rpm.rpm
-func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
-	r.pulpType = &pulpType
-	return r
-}
-
-// Multiple values may be separated by commas.  * &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type is in  * &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
-	return r
-}
-
-func (r RepositoriesAPIRepositoriesListRequest) Q(q string) RepositoriesAPIRepositoriesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -292,14 +265,8 @@ func (a *RepositoriesAPIService) RepositoriesListExecute(r RepositoriesAPIReposi
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
-	if r.nameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
-	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
-	}
-	if r.nameIstartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -319,14 +286,8 @@ func (a *RepositoriesAPIService) RepositoriesListExecute(r RepositoriesAPIReposi
 	if r.pulpLabelSelect != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "")
 	}
-	if r.pulpType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type", r.pulpType, "")
-	}
 	if r.pulpTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type__in", r.pulpTypeIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "")

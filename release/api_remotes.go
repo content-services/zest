@@ -34,9 +34,7 @@ type RemotesAPIRemotesListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
-	nameIexact *string
 	nameIn *[]string
-	nameIstartswith *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
@@ -49,9 +47,7 @@ type RemotesAPIRemotesListRequest struct {
 	pulpLastUpdatedLt *time.Time
 	pulpLastUpdatedLte *time.Time
 	pulpLastUpdatedRange *[]time.Time
-	pulpType *string
 	pulpTypeIn *[]string
-	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -80,21 +76,9 @@ func (r RemotesAPIRemotesListRequest) NameIcontains(nameIcontains string) Remote
 	return r
 }
 
-// Filter results where name matches value
-func (r RemotesAPIRemotesListRequest) NameIexact(nameIexact string) RemotesAPIRemotesListRequest {
-	r.nameIexact = &nameIexact
-	return r
-}
-
 // Filter results where name is in a comma-separated list of values
 func (r RemotesAPIRemotesListRequest) NameIn(nameIn []string) RemotesAPIRemotesListRequest {
 	r.nameIn = &nameIn
-	return r
-}
-
-// Filter results where name starts with value
-func (r RemotesAPIRemotesListRequest) NameIstartswith(nameIstartswith string) RemotesAPIRemotesListRequest {
-	r.nameIstartswith = &nameIstartswith
 	return r
 }
 
@@ -170,20 +154,9 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type  * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln
-func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
-	r.pulpType = &pulpType
-	return r
-}
-
-// Multiple values may be separated by commas.  * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln
+// Pulp type is in  * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
-	return r
-}
-
-func (r RemotesAPIRemotesListRequest) Q(q string) RemotesAPIRemotesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -272,14 +245,8 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
-	if r.nameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
-	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
-	}
-	if r.nameIstartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -317,14 +284,8 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 	if r.pulpLastUpdatedRange != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__range", r.pulpLastUpdatedRange, "csv")
 	}
-	if r.pulpType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type", r.pulpType, "")
-	}
 	if r.pulpTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type__in", r.pulpTypeIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

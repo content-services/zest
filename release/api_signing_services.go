@@ -35,7 +35,6 @@ type SigningServicesAPISigningServicesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -73,11 +72,6 @@ func (r SigningServicesAPISigningServicesListRequest) PulpHrefIn(pulpHrefIn []st
 // Multiple values may be separated by commas.
 func (r SigningServicesAPISigningServicesListRequest) PulpIdIn(pulpIdIn []string) SigningServicesAPISigningServicesListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r SigningServicesAPISigningServicesListRequest) Q(q string) SigningServicesAPISigningServicesListRequest {
-	r.q = &q
 	return r
 }
 
@@ -154,9 +148,6 @@ func (a *SigningServicesAPIService) SigningServicesListExecute(r SigningServices
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

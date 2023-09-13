@@ -473,7 +473,6 @@ type UploadsAPIUploadsListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
-	q *string
 	size *int32
 	sizeGt *int32
 	sizeLt *int32
@@ -509,11 +508,6 @@ func (r UploadsAPIUploadsListRequest) PulpHrefIn(pulpHrefIn []string) UploadsAPI
 // Multiple values may be separated by commas.
 func (r UploadsAPIUploadsListRequest) PulpIdIn(pulpIdIn []string) UploadsAPIUploadsListRequest {
 	r.pulpIdIn = &pulpIdIn
-	return r
-}
-
-func (r UploadsAPIUploadsListRequest) Q(q string) UploadsAPIUploadsListRequest {
-	r.q = &q
 	return r
 }
 
@@ -611,9 +605,6 @@ func (a *UploadsAPIService) UploadsListExecute(r UploadsAPIUploadsListRequest) (
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
-	}
-	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.size != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")

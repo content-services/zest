@@ -72,7 +72,6 @@ docs/AccessPolicy.md
 docs/AccessPolicyResponse.md
 docs/AcsRpmAPI.md
 docs/AddonResponse.md
-docs/ApiAppStatusResponse.md
 docs/Artifact.md
 docs/ArtifactDistributionResponse.md
 docs/ArtifactResponse.md
@@ -296,8 +295,6 @@ docs/RpmUpdateCollection.md
 docs/RpmUpdateCollectionResponse.md
 docs/RpmUpdateRecord.md
 docs/RpmUpdateRecordResponse.md
-docs/SetLabel.md
-docs/SetLabelResponse.md
 docs/SigningServiceResponse.md
 docs/SigningServicesAPI.md
 docs/SkipTypesEnum.md
@@ -314,8 +311,6 @@ docs/TaskResponse.md
 docs/TaskScheduleResponse.md
 docs/TaskSchedulesAPI.md
 docs/TasksAPI.md
-docs/UnsetLabel.md
-docs/UnsetLabelResponse.md
 docs/Upload.md
 docs/UploadChunk.md
 docs/UploadChunkResponse.md
@@ -344,7 +339,6 @@ go.sum
 model_access_policy.go
 model_access_policy_response.go
 model_addon_response.go
-model_api_app_status_response.go
 model_artifact.go
 model_artifact_distribution_response.go
 model_artifact_response.go
@@ -518,8 +512,6 @@ model_rpm_update_collection.go
 model_rpm_update_collection_response.go
 model_rpm_update_record.go
 model_rpm_update_record_response.go
-model_set_label.go
-model_set_label_response.go
 model_signing_service_response.go
 model_skip_types_enum.go
 model_states_enum.go
@@ -531,8 +523,6 @@ model_task_group_operation_response.go
 model_task_group_response.go
 model_task_response.go
 model_task_schedule_response.go
-model_unset_label.go
-model_unset_label_response.go
 model_upload.go
 model_upload_chunk.go
 model_upload_chunk_response.go
