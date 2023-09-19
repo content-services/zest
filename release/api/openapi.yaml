@@ -15,7 +15,7 @@ info:
   x-pulp-app-versions:
     core: 3.32.1
     certguard: 1.6.5
-    rpm: 3.22.3
+    rpm: 3.22.4
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -18634,26 +18634,8 @@ components:
             nullable: true
             type: string
           type: object
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
         base_url:
           description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
           readOnly: true
           type: string
         content_guard:
@@ -18661,8 +18643,26 @@ components:
           format: uri
           nullable: true
           type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
           type: string
       required:
       - base_path
