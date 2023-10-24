@@ -241,12 +241,17 @@ type ImportersPulpAPIImportersCorePulpListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIregex *string
+	nameIstartswith *string
+	nameRegex *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -275,9 +280,33 @@ func (r ImportersPulpAPIImportersCorePulpListRequest) NameIcontains(nameIcontain
 	return r
 }
 
+// Filter results where name matches value
+func (r ImportersPulpAPIImportersCorePulpListRequest) NameIexact(nameIexact string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r ImportersPulpAPIImportersCorePulpListRequest) NameIn(nameIn []string) ImportersPulpAPIImportersCorePulpListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ImportersPulpAPIImportersCorePulpListRequest) NameIregex(nameIregex string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.nameIregex = &nameIregex
+	return r
+}
+
+// Filter results where name starts with value
+func (r ImportersPulpAPIImportersCorePulpListRequest) NameIstartswith(nameIstartswith string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.nameIstartswith = &nameIstartswith
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ImportersPulpAPIImportersCorePulpListRequest) NameRegex(nameRegex string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.nameRegex = &nameRegex
 	return r
 }
 
@@ -308,6 +337,11 @@ func (r ImportersPulpAPIImportersCorePulpListRequest) PulpHrefIn(pulpHrefIn []st
 // Multiple values may be separated by commas.
 func (r ImportersPulpAPIImportersCorePulpListRequest) PulpIdIn(pulpIdIn []string) ImportersPulpAPIImportersCorePulpListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r ImportersPulpAPIImportersCorePulpListRequest) Q(q string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.q = &q
 	return r
 }
 
@@ -379,8 +413,20 @@ func (a *ImportersPulpAPIService) ImportersCorePulpListExecute(r ImportersPulpAP
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iregex", r.nameIregex, "")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
+	}
+	if r.nameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__regex", r.nameRegex, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -396,6 +442,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpListExecute(r ImportersPulpAP
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

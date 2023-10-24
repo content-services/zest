@@ -41,13 +41,18 @@ type WorkersAPIWorkersListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIregex *string
+	nameIstartswith *string
+	nameRegex *string
 	nameStartswith *string
 	offset *int32
 	online *bool
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -117,9 +122,33 @@ func (r WorkersAPIWorkersListRequest) NameIcontains(nameIcontains string) Worker
 	return r
 }
 
+// Filter results where name matches value
+func (r WorkersAPIWorkersListRequest) NameIexact(nameIexact string) WorkersAPIWorkersListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r WorkersAPIWorkersListRequest) NameIn(nameIn []string) WorkersAPIWorkersListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name matches regex value
+func (r WorkersAPIWorkersListRequest) NameIregex(nameIregex string) WorkersAPIWorkersListRequest {
+	r.nameIregex = &nameIregex
+	return r
+}
+
+// Filter results where name starts with value
+func (r WorkersAPIWorkersListRequest) NameIstartswith(nameIstartswith string) WorkersAPIWorkersListRequest {
+	r.nameIstartswith = &nameIstartswith
+	return r
+}
+
+// Filter results where name matches regex value
+func (r WorkersAPIWorkersListRequest) NameRegex(nameRegex string) WorkersAPIWorkersListRequest {
+	r.nameRegex = &nameRegex
 	return r
 }
 
@@ -155,6 +184,11 @@ func (r WorkersAPIWorkersListRequest) PulpHrefIn(pulpHrefIn []string) WorkersAPI
 // Multiple values may be separated by commas.
 func (r WorkersAPIWorkersListRequest) PulpIdIn(pulpIdIn []string) WorkersAPIWorkersListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r WorkersAPIWorkersListRequest) Q(q string) WorkersAPIWorkersListRequest {
+	r.q = &q
 	return r
 }
 
@@ -264,8 +298,20 @@ func (a *WorkersAPIService) WorkersListExecute(r WorkersAPIWorkersListRequest) (
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iregex", r.nameIregex, "")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
+	}
+	if r.nameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__regex", r.nameRegex, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -284,6 +330,9 @@ func (a *WorkersAPIService) WorkersListExecute(r WorkersAPIWorkersListRequest) (
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

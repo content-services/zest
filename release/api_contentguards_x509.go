@@ -241,12 +241,17 @@ type ContentguardsX509APIContentguardsCertguardX509ListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIregex *string
+	nameIstartswith *string
+	nameRegex *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -275,9 +280,33 @@ func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameIcontains
 	return r
 }
 
+// Filter results where name matches value
+func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameIexact(nameIexact string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameIn(nameIn []string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameIregex(nameIregex string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
+	r.nameIregex = &nameIregex
+	return r
+}
+
+// Filter results where name starts with value
+func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameIstartswith(nameIstartswith string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
+	r.nameIstartswith = &nameIstartswith
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) NameRegex(nameRegex string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
+	r.nameRegex = &nameRegex
 	return r
 }
 
@@ -308,6 +337,11 @@ func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) PulpHrefIn(pu
 // Multiple values may be separated by commas.
 func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) PulpIdIn(pulpIdIn []string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) Q(q string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
+	r.q = &q
 	return r
 }
 
@@ -379,8 +413,20 @@ func (a *ContentguardsX509APIService) ContentguardsCertguardX509ListExecute(r Co
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iregex", r.nameIregex, "")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
+	}
+	if r.nameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__regex", r.nameRegex, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -396,6 +442,9 @@ func (a *ContentguardsX509APIService) ContentguardsCertguardX509ListExecute(r Co
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

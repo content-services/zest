@@ -4,14 +4,90 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**UpstreamPulpsAddRole**](UpstreamPulpsAPI.md#UpstreamPulpsAddRole) | **Post** /{upstream_pulp_href}add_role/ | Add a role
 [**UpstreamPulpsCreate**](UpstreamPulpsAPI.md#UpstreamPulpsCreate) | **Post** /pulp/{pulp_domain}/api/v3/upstream-pulps/ | Create an upstream pulp
 [**UpstreamPulpsDelete**](UpstreamPulpsAPI.md#UpstreamPulpsDelete) | **Delete** /{upstream_pulp_href} | Delete an upstream pulp
 [**UpstreamPulpsList**](UpstreamPulpsAPI.md#UpstreamPulpsList) | **Get** /pulp/{pulp_domain}/api/v3/upstream-pulps/ | List upstream pulps
+[**UpstreamPulpsListRoles**](UpstreamPulpsAPI.md#UpstreamPulpsListRoles) | **Get** /{upstream_pulp_href}list_roles/ | List roles
+[**UpstreamPulpsMyPermissions**](UpstreamPulpsAPI.md#UpstreamPulpsMyPermissions) | **Get** /{upstream_pulp_href}my_permissions/ | List user permissions
 [**UpstreamPulpsPartialUpdate**](UpstreamPulpsAPI.md#UpstreamPulpsPartialUpdate) | **Patch** /{upstream_pulp_href} | Update an upstream pulp
 [**UpstreamPulpsRead**](UpstreamPulpsAPI.md#UpstreamPulpsRead) | **Get** /{upstream_pulp_href} | Inspect an upstream pulp
+[**UpstreamPulpsRemoveRole**](UpstreamPulpsAPI.md#UpstreamPulpsRemoveRole) | **Post** /{upstream_pulp_href}remove_role/ | Remove a role
 [**UpstreamPulpsReplicate**](UpstreamPulpsAPI.md#UpstreamPulpsReplicate) | **Post** /{upstream_pulp_href}replicate/ | Replicate
 [**UpstreamPulpsUpdate**](UpstreamPulpsAPI.md#UpstreamPulpsUpdate) | **Put** /{upstream_pulp_href} | Update an upstream pulp
 
+
+
+## UpstreamPulpsAddRole
+
+> NestedRoleResponse UpstreamPulpsAddRole(ctx, upstreamPulpHref).NestedRole(nestedRole).Execute()
+
+Add a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsAddRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpstreamPulpsAddRole`: NestedRoleResponse
+    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsAddRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**upstreamPulpHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpstreamPulpsAddRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## UpstreamPulpsCreate
@@ -232,6 +308,154 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpstreamPulpsListRoles
+
+> ObjectRolesResponse UpstreamPulpsListRoles(ctx, upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List roles
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsListRoles``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpstreamPulpsListRoles`: ObjectRolesResponse
+    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsListRoles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**upstreamPulpHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpstreamPulpsListRolesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**ObjectRolesResponse**](ObjectRolesResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpstreamPulpsMyPermissions
+
+> MyPermissionsResponse UpstreamPulpsMyPermissions(ctx, upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List user permissions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsMyPermissions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpstreamPulpsMyPermissions`: MyPermissionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsMyPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**upstreamPulpHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpstreamPulpsMyPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**MyPermissionsResponse**](MyPermissionsResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpstreamPulpsPartialUpdate
 
 > UpstreamPulpResponse UpstreamPulpsPartialUpdate(ctx, upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).Execute()
@@ -371,6 +595,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpstreamPulpsRemoveRole
+
+> NestedRoleResponse UpstreamPulpsRemoveRole(ctx, upstreamPulpHref).NestedRole(nestedRole).Execute()
+
+Remove a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/content-services/zest/release/v2023"
+)
+
+func main() {
+    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRemoveRole``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpstreamPulpsRemoveRole`: NestedRoleResponse
+    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsRemoveRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**upstreamPulpHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpstreamPulpsRemoveRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

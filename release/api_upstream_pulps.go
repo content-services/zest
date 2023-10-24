@@ -25,6 +25,121 @@ import (
 // UpstreamPulpsAPIService UpstreamPulpsAPI service
 type UpstreamPulpsAPIService service
 
+type UpstreamPulpsAPIUpstreamPulpsAddRoleRequest struct {
+	ctx context.Context
+	ApiService *UpstreamPulpsAPIService
+	upstreamPulpHref string
+	nestedRole *NestedRole
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsAddRoleRequest) NestedRole(nestedRole NestedRole) UpstreamPulpsAPIUpstreamPulpsAddRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsAddRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.UpstreamPulpsAddRoleExecute(r)
+}
+
+/*
+UpstreamPulpsAddRole Add a role
+
+Add a role for this object to users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param upstreamPulpHref
+ @return UpstreamPulpsAPIUpstreamPulpsAddRoleRequest
+*/
+func (a *UpstreamPulpsAPIService) UpstreamPulpsAddRole(ctx context.Context, upstreamPulpHref string) UpstreamPulpsAPIUpstreamPulpsAddRoleRequest {
+	return UpstreamPulpsAPIUpstreamPulpsAddRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		upstreamPulpHref: upstreamPulpHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *UpstreamPulpsAPIService) UpstreamPulpsAddRoleExecute(r UpstreamPulpsAPIUpstreamPulpsAddRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpstreamPulpsAPIService.UpstreamPulpsAddRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{upstream_pulp_href}add_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.nestedRole
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UpstreamPulpsAPIUpstreamPulpsCreateRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
@@ -393,6 +508,286 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListExecute(r UpstreamPulpsAPIUps
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type UpstreamPulpsAPIUpstreamPulpsListRolesRequest struct {
+	ctx context.Context
+	ApiService *UpstreamPulpsAPIService
+	upstreamPulpHref string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// A list of fields to include in the response.
+func (r UpstreamPulpsAPIUpstreamPulpsListRolesRequest) Fields(fields []string) UpstreamPulpsAPIUpstreamPulpsListRolesRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r UpstreamPulpsAPIUpstreamPulpsListRolesRequest) ExcludeFields(excludeFields []string) UpstreamPulpsAPIUpstreamPulpsListRolesRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsListRolesRequest) Execute() (*ObjectRolesResponse, *http.Response, error) {
+	return r.ApiService.UpstreamPulpsListRolesExecute(r)
+}
+
+/*
+UpstreamPulpsListRoles List roles
+
+List roles assigned to this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param upstreamPulpHref
+ @return UpstreamPulpsAPIUpstreamPulpsListRolesRequest
+*/
+func (a *UpstreamPulpsAPIService) UpstreamPulpsListRoles(ctx context.Context, upstreamPulpHref string) UpstreamPulpsAPIUpstreamPulpsListRolesRequest {
+	return UpstreamPulpsAPIUpstreamPulpsListRolesRequest{
+		ApiService: a,
+		ctx: ctx,
+		upstreamPulpHref: upstreamPulpHref,
+	}
+}
+
+// Execute executes the request
+//  @return ObjectRolesResponse
+func (a *UpstreamPulpsAPIService) UpstreamPulpsListRolesExecute(r UpstreamPulpsAPIUpstreamPulpsListRolesRequest) (*ObjectRolesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ObjectRolesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpstreamPulpsAPIService.UpstreamPulpsListRoles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{upstream_pulp_href}list_roles/"
+	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest struct {
+	ctx context.Context
+	ApiService *UpstreamPulpsAPIService
+	upstreamPulpHref string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// A list of fields to include in the response.
+func (r UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest) Fields(fields []string) UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest) ExcludeFields(excludeFields []string) UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest) Execute() (*MyPermissionsResponse, *http.Response, error) {
+	return r.ApiService.UpstreamPulpsMyPermissionsExecute(r)
+}
+
+/*
+UpstreamPulpsMyPermissions List user permissions
+
+List permissions available to the current user on this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param upstreamPulpHref
+ @return UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest
+*/
+func (a *UpstreamPulpsAPIService) UpstreamPulpsMyPermissions(ctx context.Context, upstreamPulpHref string) UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest {
+	return UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		upstreamPulpHref: upstreamPulpHref,
+	}
+}
+
+// Execute executes the request
+//  @return MyPermissionsResponse
+func (a *UpstreamPulpsAPIService) UpstreamPulpsMyPermissionsExecute(r UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest) (*MyPermissionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MyPermissionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpstreamPulpsAPIService.UpstreamPulpsMyPermissions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{upstream_pulp_href}my_permissions/"
+	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i), "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
@@ -611,6 +1006,121 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReadExecute(r UpstreamPulpsAPIUps
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest struct {
+	ctx context.Context
+	ApiService *UpstreamPulpsAPIService
+	upstreamPulpHref string
+	nestedRole *NestedRole
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest) NestedRole(nestedRole NestedRole) UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.UpstreamPulpsRemoveRoleExecute(r)
+}
+
+/*
+UpstreamPulpsRemoveRole Remove a role
+
+Remove a role for this object from users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param upstreamPulpHref
+ @return UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest
+*/
+func (a *UpstreamPulpsAPIService) UpstreamPulpsRemoveRole(ctx context.Context, upstreamPulpHref string) UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest {
+	return UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		upstreamPulpHref: upstreamPulpHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *UpstreamPulpsAPIService) UpstreamPulpsRemoveRoleExecute(r UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UpstreamPulpsAPIService.UpstreamPulpsRemoveRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{upstream_pulp_href}remove_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

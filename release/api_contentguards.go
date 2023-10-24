@@ -33,13 +33,19 @@ type ContentguardsAPIContentguardsListRequest struct {
 	name *string
 	nameContains *string
 	nameIcontains *string
+	nameIexact *string
 	nameIn *[]string
+	nameIregex *string
+	nameIstartswith *string
+	nameRegex *string
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpType *string
 	pulpTypeIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -68,9 +74,33 @@ func (r ContentguardsAPIContentguardsListRequest) NameIcontains(nameIcontains st
 	return r
 }
 
+// Filter results where name matches value
+func (r ContentguardsAPIContentguardsListRequest) NameIexact(nameIexact string) ContentguardsAPIContentguardsListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
 // Filter results where name is in a comma-separated list of values
 func (r ContentguardsAPIContentguardsListRequest) NameIn(nameIn []string) ContentguardsAPIContentguardsListRequest {
 	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ContentguardsAPIContentguardsListRequest) NameIregex(nameIregex string) ContentguardsAPIContentguardsListRequest {
+	r.nameIregex = &nameIregex
+	return r
+}
+
+// Filter results where name starts with value
+func (r ContentguardsAPIContentguardsListRequest) NameIstartswith(nameIstartswith string) ContentguardsAPIContentguardsListRequest {
+	r.nameIstartswith = &nameIstartswith
+	return r
+}
+
+// Filter results where name matches regex value
+func (r ContentguardsAPIContentguardsListRequest) NameRegex(nameRegex string) ContentguardsAPIContentguardsListRequest {
+	r.nameRegex = &nameRegex
 	return r
 }
 
@@ -104,9 +134,20 @@ func (r ContentguardsAPIContentguardsListRequest) PulpIdIn(pulpIdIn []string) Co
 	return r
 }
 
-// Pulp type is in  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;certguard.rhsm&#x60; - certguard.rhsm * &#x60;certguard.x509&#x60; - certguard.x509
+// Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;certguard.rhsm&#x60; - certguard.rhsm * &#x60;certguard.x509&#x60; - certguard.x509
+func (r ContentguardsAPIContentguardsListRequest) PulpType(pulpType string) ContentguardsAPIContentguardsListRequest {
+	r.pulpType = &pulpType
+	return r
+}
+
+// Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;certguard.rhsm&#x60; - certguard.rhsm * &#x60;certguard.x509&#x60; - certguard.x509
 func (r ContentguardsAPIContentguardsListRequest) PulpTypeIn(pulpTypeIn []string) ContentguardsAPIContentguardsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
+	return r
+}
+
+func (r ContentguardsAPIContentguardsListRequest) Q(q string) ContentguardsAPIContentguardsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -178,8 +219,20 @@ func (a *ContentguardsAPIService) ContentguardsListExecute(r ContentguardsAPICon
 	if r.nameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "")
 	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "")
+	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+	}
+	if r.nameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iregex", r.nameIregex, "")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "")
+	}
+	if r.nameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__regex", r.nameRegex, "")
 	}
 	if r.nameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
@@ -196,8 +249,14 @@ func (a *ContentguardsAPIService) ContentguardsListExecute(r ContentguardsAPICon
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
 	}
+	if r.pulpType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type", r.pulpType, "")
+	}
 	if r.pulpTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_type__in", r.pulpTypeIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

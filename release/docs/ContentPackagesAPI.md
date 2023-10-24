@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackagesList
 
-> PaginatedrpmPackageResponseList ContentRpmPackagesList(ctx, pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmPackageResponseList ContentRpmPackagesList(ctx, pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages
 
@@ -123,6 +123,7 @@ func main() {
     epoch := "epoch_example" // string | Filter results where epoch matches value (optional)
     epochIn := []string{"Inner_example"} // []string | Filter results where epoch is in a comma-separated list of values (optional)
     epochNe := "epochNe_example" // string | Filter results where epoch not equal to value (optional)
+    filename := "filename_example" // string |  (optional)
     limit := int32(56) // int32 | Number of results to return per page. (optional)
     name := "name_example" // string | Filter results where name matches value (optional)
     nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -135,6 +136,7 @@ func main() {
     pkgIdIn := []string{"Inner_example"} // []string | Filter results where pkgId is in a comma-separated list of values (optional)
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+    q := "q_example" // string |  (optional)
     release := "release_example" // string | Filter results where release matches value (optional)
     releaseContains := "releaseContains_example" // string | Filter results where release contains value (optional)
     releaseIn := []string{"Inner_example"} // []string | Filter results where release is in a comma-separated list of values (optional)
@@ -152,7 +154,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+    resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,6 +191,7 @@ Name | Type | Description  | Notes
  **epoch** | **string** | Filter results where epoch matches value | 
  **epochIn** | **[]string** | Filter results where epoch is in a comma-separated list of values | 
  **epochNe** | **string** | Filter results where epoch not equal to value | 
+ **filename** | **string** |  | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -201,6 +204,7 @@ Name | Type | Description  | Notes
  **pkgIdIn** | **[]string** | Filter results where pkgId is in a comma-separated list of values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
+ **q** | **string** |  | 
  **release** | **string** | Filter results where release matches value | 
  **releaseContains** | **string** | Filter results where release contains value | 
  **releaseIn** | **[]string** | Filter results where release is in a comma-separated list of values | 

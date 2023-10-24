@@ -35,10 +35,15 @@ type AccessPoliciesAPIAccessPoliciesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	viewsetName *string
 	viewsetNameContains *string
 	viewsetNameIcontains *string
+	viewsetNameIexact *string
 	viewsetNameIn *[]string
+	viewsetNameIregex *string
+	viewsetNameIstartswith *string
+	viewsetNameRegex *string
 	viewsetNameStartswith *string
 	fields *[]string
 	excludeFields *[]string
@@ -80,6 +85,11 @@ func (r AccessPoliciesAPIAccessPoliciesListRequest) PulpIdIn(pulpIdIn []string) 
 	return r
 }
 
+func (r AccessPoliciesAPIAccessPoliciesListRequest) Q(q string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.q = &q
+	return r
+}
+
 // Filter results where viewset_name matches value
 func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetName(viewsetName string) AccessPoliciesAPIAccessPoliciesListRequest {
 	r.viewsetName = &viewsetName
@@ -98,9 +108,33 @@ func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameIcontains(viewset
 	return r
 }
 
+// Filter results where viewset_name matches value
+func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameIexact(viewsetNameIexact string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.viewsetNameIexact = &viewsetNameIexact
+	return r
+}
+
 // Filter results where viewset_name is in a comma-separated list of values
 func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameIn(viewsetNameIn []string) AccessPoliciesAPIAccessPoliciesListRequest {
 	r.viewsetNameIn = &viewsetNameIn
+	return r
+}
+
+// Filter results where viewset_name matches regex value
+func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameIregex(viewsetNameIregex string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.viewsetNameIregex = &viewsetNameIregex
+	return r
+}
+
+// Filter results where viewset_name starts with value
+func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameIstartswith(viewsetNameIstartswith string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.viewsetNameIstartswith = &viewsetNameIstartswith
+	return r
+}
+
+// Filter results where viewset_name matches regex value
+func (r AccessPoliciesAPIAccessPoliciesListRequest) ViewsetNameRegex(viewsetNameRegex string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.viewsetNameRegex = &viewsetNameRegex
 	return r
 }
 
@@ -186,6 +220,9 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
 	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+	}
 	if r.viewsetName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name", r.viewsetName, "")
 	}
@@ -195,8 +232,20 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 	if r.viewsetNameIcontains != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__icontains", r.viewsetNameIcontains, "")
 	}
+	if r.viewsetNameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iexact", r.viewsetNameIexact, "")
+	}
 	if r.viewsetNameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__in", r.viewsetNameIn, "csv")
+	}
+	if r.viewsetNameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iregex", r.viewsetNameIregex, "")
+	}
+	if r.viewsetNameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__istartswith", r.viewsetNameIstartswith, "")
+	}
+	if r.viewsetNameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__regex", r.viewsetNameRegex, "")
 	}
 	if r.viewsetNameStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__startswith", r.viewsetNameStartswith, "")

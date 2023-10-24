@@ -48,6 +48,7 @@ type RepositoryVersionsAPIRepositoryVersionsListRequest struct {
 	pulpCreatedLte *time.Time
 	pulpCreatedRange *[]time.Time
 	pulpHrefIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -160,6 +161,11 @@ func (r RepositoryVersionsAPIRepositoryVersionsListRequest) PulpHrefIn(pulpHrefI
 	return r
 }
 
+func (r RepositoryVersionsAPIRepositoryVersionsListRequest) Q(q string) RepositoryVersionsAPIRepositoryVersionsListRequest {
+	r.q = &q
+	return r
+}
+
 // A list of fields to include in the response.
 func (r RepositoryVersionsAPIRepositoryVersionsListRequest) Fields(fields []string) RepositoryVersionsAPIRepositoryVersionsListRequest {
 	r.fields = &fields
@@ -269,6 +275,9 @@ func (a *RepositoryVersionsAPIService) RepositoryVersionsListExecute(r Repositor
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.fields != nil {
 		t := *r.fields

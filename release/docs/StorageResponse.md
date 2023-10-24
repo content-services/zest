@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | **int64** | Total number of bytes | 
-**Used** | **int64** | Number of bytes in use | 
-**Free** | **int64** | Number of free bytes | 
+**Total** | **NullableInt64** | Total number of bytes | 
+**Used** | **NullableInt64** | Number of bytes in use | 
+**Free** | **NullableInt64** | Number of free bytes | 
 
 ## Methods
 
 ### NewStorageResponse
 
-`func NewStorageResponse(total int64, used int64, free int64, ) *StorageResponse`
+`func NewStorageResponse(total NullableInt64, used NullableInt64, free NullableInt64, ) *StorageResponse`
 
 NewStorageResponse instantiates a new StorageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,16 @@ and a boolean to check if the value has been set.
 SetTotal sets Total field to given value.
 
 
+### SetTotalNil
+
+`func (o *StorageResponse) SetTotalNil(b bool)`
+
+ SetTotalNil sets the value for Total to be an explicit nil
+
+### UnsetTotal
+`func (o *StorageResponse) UnsetTotal()`
+
+UnsetTotal ensures that no value is present for Total, not even an explicit nil
 ### GetUsed
 
 `func (o *StorageResponse) GetUsed() int64`
@@ -67,6 +77,16 @@ and a boolean to check if the value has been set.
 SetUsed sets Used field to given value.
 
 
+### SetUsedNil
+
+`func (o *StorageResponse) SetUsedNil(b bool)`
+
+ SetUsedNil sets the value for Used to be an explicit nil
+
+### UnsetUsed
+`func (o *StorageResponse) UnsetUsed()`
+
+UnsetUsed ensures that no value is present for Used, not even an explicit nil
 ### GetFree
 
 `func (o *StorageResponse) GetFree() int64`
@@ -87,6 +107,16 @@ and a boolean to check if the value has been set.
 SetFree sets Free field to given value.
 
 
+### SetFreeNil
+
+`func (o *StorageResponse) SetFreeNil(b bool)`
+
+ SetFreeNil sets the value for Free to be an explicit nil
+
+### UnsetFree
+`func (o *StorageResponse) UnsetFree()`
+
+UnsetFree ensures that no value is present for Free, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

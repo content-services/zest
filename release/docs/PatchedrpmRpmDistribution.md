@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **Publication** | Pointer to **NullableString** | Publication to be served | [optional] 
+**GenerateRepoConfig** | Pointer to **bool** | An option specifying whether Pulp should generate *.repo files. | [optional] [default to false]
 
 ## Methods
 
@@ -236,6 +237,31 @@ HasPublication returns a boolean if a field has been set.
 `func (o *PatchedrpmRpmDistribution) UnsetPublication()`
 
 UnsetPublication ensures that no value is present for Publication, not even an explicit nil
+### GetGenerateRepoConfig
+
+`func (o *PatchedrpmRpmDistribution) GetGenerateRepoConfig() bool`
+
+GetGenerateRepoConfig returns the GenerateRepoConfig field if non-nil, zero value otherwise.
+
+### GetGenerateRepoConfigOk
+
+`func (o *PatchedrpmRpmDistribution) GetGenerateRepoConfigOk() (*bool, bool)`
+
+GetGenerateRepoConfigOk returns a tuple with the GenerateRepoConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGenerateRepoConfig
+
+`func (o *PatchedrpmRpmDistribution) SetGenerateRepoConfig(v bool)`
+
+SetGenerateRepoConfig sets GenerateRepoConfig field to given value.
+
+### HasGenerateRepoConfig
+
+`func (o *PatchedrpmRpmDistribution) HasGenerateRepoConfig() bool`
+
+HasGenerateRepoConfig returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

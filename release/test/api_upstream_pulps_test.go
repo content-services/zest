@@ -22,6 +22,20 @@ func Test_zest_UpstreamPulpsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var upstreamPulpHref string
+
+		resp, httpRes, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -63,6 +77,34 @@ func Test_zest_UpstreamPulpsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var upstreamPulpHref string
+
+		resp, httpRes, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var upstreamPulpHref string
+
+		resp, httpRes, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -84,6 +126,20 @@ func Test_zest_UpstreamPulpsAPIService(t *testing.T) {
 		var upstreamPulpHref string
 
 		resp, httpRes, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRead(context.Background(), upstreamPulpHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test UpstreamPulpsAPIService UpstreamPulpsRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var upstreamPulpHref string
+
+		resp, httpRes, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

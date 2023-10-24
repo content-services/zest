@@ -148,6 +148,34 @@ func Test_zest_RemotesRpmAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RemotesRpmAPIService RemotesRpmRpmSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesRpmAPI.RemotesRpmRpmSetLabel(context.Background(), rpmRpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RemotesRpmAPIService RemotesRpmRpmUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesRpmAPI.RemotesRpmRpmUnsetLabel(context.Background(), rpmRpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RemotesRpmAPIService RemotesRpmRpmUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

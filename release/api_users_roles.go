@@ -244,6 +244,7 @@ type UsersRolesAPIUsersRolesListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	role *string
 	roleContains *string
 	roleIcontains *string
@@ -292,6 +293,11 @@ func (r UsersRolesAPIUsersRolesListRequest) PulpHrefIn(pulpHrefIn []string) User
 // Multiple values may be separated by commas.
 func (r UsersRolesAPIUsersRolesListRequest) PulpIdIn(pulpIdIn []string) UsersRolesAPIUsersRolesListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r UsersRolesAPIUsersRolesListRequest) Q(q string) UsersRolesAPIUsersRolesListRequest {
+	r.q = &q
 	return r
 }
 
@@ -397,6 +403,9 @@ func (a *UsersRolesAPIService) UsersRolesListExecute(r UsersRolesAPIUsersRolesLi
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.role != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "role", r.role, "")

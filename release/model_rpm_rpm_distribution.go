@@ -33,6 +33,8 @@ type RpmRpmDistribution struct {
 	Repository NullableString `json:"repository,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
+	// An option specifying whether Pulp should generate *.repo files.
+	GenerateRepoConfig *bool `json:"generate_repo_config,omitempty"`
 }
 
 // NewRpmRpmDistribution instantiates a new RpmRpmDistribution object
@@ -45,6 +47,8 @@ func NewRpmRpmDistribution(basePath string, name string) *RpmRpmDistribution {
 	var hidden bool = false
 	this.Hidden = &hidden
 	this.Name = name
+	var generateRepoConfig bool = false
+	this.GenerateRepoConfig = &generateRepoConfig
 	return &this
 }
 
@@ -55,6 +59,8 @@ func NewRpmRpmDistributionWithDefaults() *RpmRpmDistribution {
 	this := RpmRpmDistribution{}
 	var hidden bool = false
 	this.Hidden = &hidden
+	var generateRepoConfig bool = false
+	this.GenerateRepoConfig = &generateRepoConfig
 	return &this
 }
 
@@ -296,6 +302,38 @@ func (o *RpmRpmDistribution) UnsetPublication() {
 	o.Publication.Unset()
 }
 
+// GetGenerateRepoConfig returns the GenerateRepoConfig field value if set, zero value otherwise.
+func (o *RpmRpmDistribution) GetGenerateRepoConfig() bool {
+	if o == nil || IsNil(o.GenerateRepoConfig) {
+		var ret bool
+		return ret
+	}
+	return *o.GenerateRepoConfig
+}
+
+// GetGenerateRepoConfigOk returns a tuple with the GenerateRepoConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmDistribution) GetGenerateRepoConfigOk() (*bool, bool) {
+	if o == nil || IsNil(o.GenerateRepoConfig) {
+		return nil, false
+	}
+	return o.GenerateRepoConfig, true
+}
+
+// HasGenerateRepoConfig returns a boolean if a field has been set.
+func (o *RpmRpmDistribution) HasGenerateRepoConfig() bool {
+	if o != nil && !IsNil(o.GenerateRepoConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetGenerateRepoConfig gets a reference to the given bool and assigns it to the GenerateRepoConfig field.
+func (o *RpmRpmDistribution) SetGenerateRepoConfig(v bool) {
+	o.GenerateRepoConfig = &v
+}
+
 func (o RpmRpmDistribution) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -322,6 +360,9 @@ func (o RpmRpmDistribution) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
+	}
+	if !IsNil(o.GenerateRepoConfig) {
+		toSerialize["generate_repo_config"] = o.GenerateRepoConfig
 	}
 	return toSerialize, nil
 }

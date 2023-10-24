@@ -347,6 +347,7 @@ type ArtifactsAPIArtifactsListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	repositoryVersion *string
 	sha1 *string
 	sha224 *string
@@ -390,6 +391,11 @@ func (r ArtifactsAPIArtifactsListRequest) PulpHrefIn(pulpHrefIn []string) Artifa
 // Multiple values may be separated by commas.
 func (r ArtifactsAPIArtifactsListRequest) PulpIdIn(pulpIdIn []string) ArtifactsAPIArtifactsListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r ArtifactsAPIArtifactsListRequest) Q(q string) ArtifactsAPIArtifactsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -519,6 +525,9 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")

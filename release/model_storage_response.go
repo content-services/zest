@@ -21,18 +21,18 @@ var _ MappedNullable = &StorageResponse{}
 // StorageResponse Serializer for information about the storage system
 type StorageResponse struct {
 	// Total number of bytes
-	Total int64 `json:"total"`
+	Total NullableInt64 `json:"total"`
 	// Number of bytes in use
-	Used int64 `json:"used"`
+	Used NullableInt64 `json:"used"`
 	// Number of free bytes
-	Free int64 `json:"free"`
+	Free NullableInt64 `json:"free"`
 }
 
 // NewStorageResponse instantiates a new StorageResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageResponse(total int64, used int64, free int64) *StorageResponse {
+func NewStorageResponse(total NullableInt64, used NullableInt64, free NullableInt64) *StorageResponse {
 	this := StorageResponse{}
 	this.Total = total
 	this.Used = used
@@ -49,75 +49,81 @@ func NewStorageResponseWithDefaults() *StorageResponse {
 }
 
 // GetTotal returns the Total field value
+// If the value is explicit nil, the zero value for int64 will be returned
 func (o *StorageResponse) GetTotal() int64 {
-	if o == nil {
+	if o == nil || o.Total.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.Total
+	return *o.Total.Get()
 }
 
 // GetTotalOk returns a tuple with the Total field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StorageResponse) GetTotalOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Total, true
+	return o.Total.Get(), o.Total.IsSet()
 }
 
 // SetTotal sets field value
 func (o *StorageResponse) SetTotal(v int64) {
-	o.Total = v
+	o.Total.Set(&v)
 }
 
 // GetUsed returns the Used field value
+// If the value is explicit nil, the zero value for int64 will be returned
 func (o *StorageResponse) GetUsed() int64 {
-	if o == nil {
+	if o == nil || o.Used.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.Used
+	return *o.Used.Get()
 }
 
 // GetUsedOk returns a tuple with the Used field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StorageResponse) GetUsedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Used, true
+	return o.Used.Get(), o.Used.IsSet()
 }
 
 // SetUsed sets field value
 func (o *StorageResponse) SetUsed(v int64) {
-	o.Used = v
+	o.Used.Set(&v)
 }
 
 // GetFree returns the Free field value
+// If the value is explicit nil, the zero value for int64 will be returned
 func (o *StorageResponse) GetFree() int64 {
-	if o == nil {
+	if o == nil || o.Free.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.Free
+	return *o.Free.Get()
 }
 
 // GetFreeOk returns a tuple with the Free field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *StorageResponse) GetFreeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Free, true
+	return o.Free.Get(), o.Free.IsSet()
 }
 
 // SetFree sets field value
 func (o *StorageResponse) SetFree(v int64) {
-	o.Free = v
+	o.Free.Set(&v)
 }
 
 func (o StorageResponse) MarshalJSON() ([]byte, error) {
@@ -130,9 +136,9 @@ func (o StorageResponse) MarshalJSON() ([]byte, error) {
 
 func (o StorageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["total"] = o.Total
-	toSerialize["used"] = o.Used
-	toSerialize["free"] = o.Free
+	toSerialize["total"] = o.Total.Get()
+	toSerialize["used"] = o.Used.Get()
+	toSerialize["free"] = o.Free.Get()
 	return toSerialize, nil
 }
 

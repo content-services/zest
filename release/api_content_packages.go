@@ -209,6 +209,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	epoch *string
 	epochIn *[]string
 	epochNe *string
+	filename *string
 	limit *int32
 	name *string
 	nameContains *string
@@ -221,6 +222,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	pkgIdIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	release *string
 	releaseContains *string
 	releaseIn *[]string
@@ -303,6 +305,11 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) EpochNe(epochNe string)
 	return r
 }
 
+func (r ContentPackagesAPIContentRpmPackagesListRequest) Filename(filename string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.filename = &filename
+	return r
+}
+
 // Number of results to return per page.
 func (r ContentPackagesAPIContentRpmPackagesListRequest) Limit(limit int32) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.limit = &limit
@@ -372,6 +379,11 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpHrefIn(pulpHrefIn [
 // Multiple values may be separated by commas.
 func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpIdIn(pulpIdIn []string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesListRequest) Q(q string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.q = &q
 	return r
 }
 
@@ -541,6 +553,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	if r.epochNe != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch__ne", r.epochNe, "")
 	}
+	if r.filename != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filename", r.filename, "")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
@@ -576,6 +591,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.release != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "release", r.release, "")

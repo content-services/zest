@@ -259,6 +259,7 @@ type UsersAPIUsersListRequest struct {
 	ordering *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	q *string
 	username *string
 	usernameContains *string
 	usernameIcontains *string
@@ -397,6 +398,11 @@ func (r UsersAPIUsersListRequest) PulpHrefIn(pulpHrefIn []string) UsersAPIUsersL
 // Multiple values may be separated by commas.
 func (r UsersAPIUsersListRequest) PulpIdIn(pulpIdIn []string) UsersAPIUsersListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+func (r UsersAPIUsersListRequest) Q(q string) UsersAPIUsersListRequest {
+	r.q = &q
 	return r
 }
 
@@ -551,6 +557,9 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
 	}
 	if r.username != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
