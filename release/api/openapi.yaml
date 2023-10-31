@@ -13,7 +13,7 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.38.0
+    core: 3.39.0
     certguard: 1.7.0
     rpm: 3.23.0
   x-pulp-domain-enabled: true
@@ -4729,6 +4729,7 @@ paths:
 
           * `core.rbac` - core.rbac
           * `core.content_redirect` - core.content_redirect
+          * `core.header` - core.header
           * `certguard.rhsm` - certguard.rhsm
           * `certguard.x509` - certguard.x509
         explode: true
@@ -4740,6 +4741,7 @@ paths:
           - certguard.rhsm
           - certguard.x509
           - core.content_redirect
+          - core.header
           - core.rbac
           type: string
         style: form
@@ -4748,6 +4750,7 @@ paths:
 
           * `core.rbac` - core.rbac
           * `core.content_redirect` - core.content_redirect
+          * `core.header` - core.header
           * `certguard.rhsm` - certguard.rhsm
           * `certguard.x509` - certguard.x509
         explode: false
@@ -4760,6 +4763,7 @@ paths:
             - certguard.rhsm
             - certguard.x509
             - core.content_redirect
+            - core.header
             - core.rbac
             type: string
           type: array
@@ -6111,6 +6115,549 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Content_Redirect"
+  /pulp/{pulp_domain}/api/v3/contentguards/core/header/:
+    get:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `description` - Description
+          * `-description` - Description (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedHeaderContentGuardResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List header content guards
+      tags:
+      - "Contentguards: Header"
+    post:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeaderContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a header content guard
+      tags:
+      - "Contentguards: Header"
+  '{header_content_guard_href}':
+    delete:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_delete
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a header content guard
+      tags:
+      - "Contentguards: Header"
+    get:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_read
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeaderContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a header content guard
+      tags:
+      - "Contentguards: Header"
+    patch:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedHeaderContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedHeaderContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedHeaderContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeaderContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a header content guard
+      tags:
+      - "Contentguards: Header"
+    put:
+      description: Content guard to protect the content app using a specific header.
+      operationId: contentguards_core_header_update
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HeaderContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeaderContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a header content guard
+      tags:
+      - "Contentguards: Header"
+  '{header_content_guard_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: contentguards_core_header_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Contentguards: Header"
+  '{header_content_guard_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: contentguards_core_header_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Contentguards: Header"
+  '{header_content_guard_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: contentguards_core_header_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Contentguards: Header"
+  '{header_content_guard_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: contentguards_core_header_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Contentguards: Header"
   /pulp/{pulp_domain}/api/v3/contentguards/core/rbac/:
     get:
       description: |-
@@ -20258,51 +20805,51 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        pulp_href: https://openapi-generator.tech
         hidden: false
-        base_url: base_url
         name: name
-        base_path: base_path
+        base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_href:
+        content_guard:
+          description: An optional content-guard.
           format: uri
-          readOnly: true
+          nullable: true
           type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_url:
           description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
-        content_guard:
-          description: An optional content-guard.
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_href:
           format: uri
-          nullable: true
+          readOnly: true
           type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
       required:
       - base_path
       - name
@@ -21115,6 +21662,88 @@ components:
       required:
       - username
       type: object
+    HeaderContentGuard:
+      description: A serializer for HeaderContentGuard.
+      example:
+        jq_filter: jq_filter
+        header_value: header_value
+        name: name
+        description: description
+        header_name: header_name
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          minLength: 1
+          type: string
+        header_value:
+          description: The value that will authorize the request.
+          minLength: 1
+          type: string
+        jq_filter:
+          description: "A JQ syntax compatible filter. If jq_filter is not set, then\
+            \ the value willonly be Base64 decoded and checked as an explicit string\
+            \ match."
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - header_name
+      - header_value
+      - name
+      type: object
+    HeaderContentGuardResponse:
+      description: A serializer for HeaderContentGuard.
+      example:
+        jq_filter: jq_filter
+        pulp_href: https://openapi-generator.tech
+        header_value: header_value
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        header_name: header_name
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          type: string
+        header_value:
+          description: The value that will authorize the request.
+          type: string
+        jq_filter:
+          description: "A JQ syntax compatible filter. If jq_filter is not set, then\
+            \ the value willonly be Base64 decoded and checked as an explicit string\
+            \ match."
+          nullable: true
+          type: string
+      required:
+      - header_name
+      - header_value
+      - name
+      type: object
     ImageResponse:
       description: Image serializer.
       example:
@@ -21488,23 +22117,23 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          pulp_href: https://openapi-generator.tech
           hidden: false
-          base_url: base_url
           name: name
-          base_path: base_path
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          pulp_href: https://openapi-generator.tech
           hidden: false
-          base_url: base_url
           name: name
-          base_path: base_path
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           content_guard: https://openapi-generator.tech
       properties:
         count:
@@ -21897,6 +22526,45 @@ components:
         results:
           items:
             $ref: '#/components/schemas/GroupUserResponse'
+          type: array
+      type: object
+    PaginatedHeaderContentGuardResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - jq_filter: jq_filter
+          pulp_href: https://openapi-generator.tech
+          header_value: header_value
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          header_name: header_name
+        - jq_filter: jq_filter
+          pulp_href: https://openapi-generator.tech
+          header_value: header_value
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          header_name: header_name
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/HeaderContentGuardResponse'
           type: array
       type: object
     PaginatedImportResponseList:
@@ -24150,6 +24818,40 @@ components:
           description: Name
           maxLength: 150
           minLength: 1
+          type: string
+      type: object
+    PatchedHeaderContentGuard:
+      description: A serializer for HeaderContentGuard.
+      example:
+        jq_filter: jq_filter
+        header_value: header_value
+        name: name
+        description: description
+        header_name: header_name
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          minLength: 1
+          type: string
+        header_value:
+          description: The value that will authorize the request.
+          minLength: 1
+          type: string
+        jq_filter:
+          description: "A JQ syntax compatible filter. If jq_filter is not set, then\
+            \ the value willonly be Base64 decoded and checked as an explicit string\
+            \ match."
+          minLength: 1
+          nullable: true
           type: string
       type: object
     PatchedPulpExporter:

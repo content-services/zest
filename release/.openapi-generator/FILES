@@ -20,6 +20,7 @@ api_content_packages.go
 api_content_repo_metadata_files.go
 api_contentguards.go
 api_contentguards_content_redirect.go
+api_contentguards_header.go
 api_contentguards_rbac.go
 api_contentguards_rhsm.go
 api_contentguards_x509.go
@@ -104,6 +105,7 @@ docs/ContentSettingsResponse.md
 docs/ContentSummaryResponse.md
 docs/ContentguardsAPI.md
 docs/ContentguardsContentRedirectAPI.md
+docs/ContentguardsHeaderAPI.md
 docs/ContentguardsRbacAPI.md
 docs/ContentguardsRhsmAPI.md
 docs/ContentguardsX509API.md
@@ -137,6 +139,8 @@ docs/GroupUserResponse.md
 docs/GroupsAPI.md
 docs/GroupsRolesAPI.md
 docs/GroupsUsersAPI.md
+docs/HeaderContentGuard.md
+docs/HeaderContentGuardResponse.md
 docs/ImageResponse.md
 docs/ImportResponse.md
 docs/ImportersPulpAPI.md
@@ -166,6 +170,7 @@ docs/PaginatedFilesystemExporterResponseList.md
 docs/PaginatedGroupResponseList.md
 docs/PaginatedGroupRoleResponseList.md
 docs/PaginatedGroupUserResponseList.md
+docs/PaginatedHeaderContentGuardResponseList.md
 docs/PaginatedImportResponseList.md
 docs/PaginatedMultipleArtifactContentResponseList.md
 docs/PaginatedPublicationResponseList.md
@@ -210,6 +215,7 @@ docs/PatchedContentRedirectContentGuard.md
 docs/PatchedDomain.md
 docs/PatchedFilesystemExporter.md
 docs/PatchedGroup.md
+docs/PatchedHeaderContentGuard.md
 docs/PatchedPulpExporter.md
 docs/PatchedPulpImporter.md
 docs/PatchedRBACContentGuard.md
@@ -378,6 +384,8 @@ model_group_role.go
 model_group_role_response.go
 model_group_user.go
 model_group_user_response.go
+model_header_content_guard.go
+model_header_content_guard_response.go
 model_image_response.go
 model_import_response.go
 model_metadata_checksum_type_enum.go
@@ -402,6 +410,7 @@ model_paginated_filesystem_exporter_response_list.go
 model_paginated_group_response_list.go
 model_paginated_group_role_response_list.go
 model_paginated_group_user_response_list.go
+model_paginated_header_content_guard_response_list.go
 model_paginated_import_response_list.go
 model_paginated_multiple_artifact_content_response_list.go
 model_paginated_publication_response_list.go
@@ -446,6 +455,7 @@ model_patched_content_redirect_content_guard.go
 model_patched_domain.go
 model_patched_filesystem_exporter.go
 model_patched_group.go
+model_patched_header_content_guard.go
 model_patched_pulp_exporter.go
 model_patched_pulp_importer.go
 model_patched_rbac_content_guard.go
@@ -567,6 +577,7 @@ test/api_content_packages_test.go
 test/api_content_repo_metadata_files_test.go
 test/api_content_test.go
 test/api_contentguards_content_redirect_test.go
+test/api_contentguards_header_test.go
 test/api_contentguards_rbac_test.go
 test/api_contentguards_rhsm_test.go
 test/api_contentguards_test.go
