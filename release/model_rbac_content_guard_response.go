@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RBACContentGuardResponse type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type RBACContentGuardResponse struct {
 	Users []GroupUserResponse `json:"users,omitempty"`
 	Groups []GroupResponse `json:"groups,omitempty"`
 }
+
+type _RBACContentGuardResponse RBACContentGuardResponse
 
 // NewRBACContentGuardResponse instantiates a new RBACContentGuardResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -271,6 +274,41 @@ func (o RBACContentGuardResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["groups"] = o.Groups
 	}
 	return toSerialize, nil
+}
+
+func (o *RBACContentGuardResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRBACContentGuardResponse := _RBACContentGuardResponse{}
+
+	err = json.Unmarshal(bytes, &varRBACContentGuardResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RBACContentGuardResponse(varRBACContentGuardResponse)
+
+	return err
 }
 
 type NullableRBACContentGuardResponse struct {

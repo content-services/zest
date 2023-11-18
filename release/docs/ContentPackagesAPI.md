@@ -35,8 +35,8 @@ func main() {
     repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
     artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
     relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path (optional)
-    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the artifact of the content unit. (optional)
-    upload := "upload_example" // string | An uncommitted upload that may be turned into the artifact of the content unit. (optional)
+    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+    upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -69,8 +69,8 @@ Name | Type | Description  | Notes
  **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
  **artifact** | **string** | Artifact file representing the physical content | 
  **relativePath** | **string** | Path where the artifact is located relative to distributions base_path | 
- **file** | ***os.File** | An uploaded file that may be turned into the artifact of the content unit. | 
- **upload** | **string** | An uncommitted upload that may be turned into the artifact of the content unit. | 
+ **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
+ **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
 
 ### Return type
 

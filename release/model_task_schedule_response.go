@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the TaskScheduleResponse type satisfies the MappedNullable interface at compile time
@@ -35,6 +36,8 @@ type TaskScheduleResponse struct {
 	// The last task dispatched by this schedule.
 	LastTask *string `json:"last_task,omitempty"`
 }
+
+type _TaskScheduleResponse TaskScheduleResponse
 
 // NewTaskScheduleResponse instantiates a new TaskScheduleResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -294,6 +297,43 @@ func (o TaskScheduleResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["last_task"] = o.LastTask
 	}
 	return toSerialize, nil
+}
+
+func (o *TaskScheduleResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"task_name",
+		"dispatch_interval",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTaskScheduleResponse := _TaskScheduleResponse{}
+
+	err = json.Unmarshal(bytes, &varTaskScheduleResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TaskScheduleResponse(varTaskScheduleResponse)
+
+	return err
 }
 
 type NullableTaskScheduleResponse struct {

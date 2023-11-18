@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GroupUserResponse type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type GroupUserResponse struct {
 	Username string `json:"username"`
 	PulpHref *string `json:"pulp_href,omitempty"`
 }
+
+type _GroupUserResponse GroupUserResponse
 
 // NewGroupUserResponse instantiates a new GroupUserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -114,6 +117,41 @@ func (o GroupUserResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
 	return toSerialize, nil
+}
+
+func (o *GroupUserResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"username",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGroupUserResponse := _GroupUserResponse{}
+
+	err = json.Unmarshal(bytes, &varGroupUserResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GroupUserResponse(varGroupUserResponse)
+
+	return err
 }
 
 type NullableGroupUserResponse struct {

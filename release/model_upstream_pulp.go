@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpstreamPulp type satisfies the MappedNullable interface at compile time
@@ -43,6 +44,8 @@ type UpstreamPulp struct {
 	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
 	PulpLabelSelect NullableString `json:"pulp_label_select,omitempty"`
 }
+
+type _UpstreamPulp UpstreamPulp
 
 // NewUpstreamPulp instantiates a new UpstreamPulp object
 // This constructor will assign default values to properties that have it defined,
@@ -500,6 +503,43 @@ func (o UpstreamPulp) ToMap() (map[string]interface{}, error) {
 		toSerialize["pulp_label_select"] = o.PulpLabelSelect.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *UpstreamPulp) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"base_url",
+		"api_root",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpstreamPulp := _UpstreamPulp{}
+
+	err = json.Unmarshal(bytes, &varUpstreamPulp)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpstreamPulp(varUpstreamPulp)
+
+	return err
 }
 
 type NullableUpstreamPulp struct {

@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AddonResponse type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type AddonResponse struct {
 	// Relative path to directory with binary RPMs.
 	Packages string `json:"packages"`
 }
+
+type _AddonResponse AddonResponse
 
 // NewAddonResponse instantiates a new AddonResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -190,6 +193,45 @@ func (o AddonResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["packages"] = o.Packages
 	return toSerialize, nil
+}
+
+func (o *AddonResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"addon_id",
+		"uid",
+		"name",
+		"type",
+		"packages",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAddonResponse := _AddonResponse{}
+
+	err = json.Unmarshal(bytes, &varAddonResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AddonResponse(varAddonResponse)
+
+	return err
 }
 
 type NullableAddonResponse struct {

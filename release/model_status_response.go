@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the StatusResponse type satisfies the MappedNullable interface at compile time
@@ -35,6 +36,8 @@ type StatusResponse struct {
 	// Is Domains enabled
 	DomainEnabled bool `json:"domain_enabled"`
 }
+
+type _StatusResponse StatusResponse
 
 // NewStatusResponse instantiates a new StatusResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -316,6 +319,47 @@ func (o StatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["content_settings"] = o.ContentSettings
 	toSerialize["domain_enabled"] = o.DomainEnabled
 	return toSerialize, nil
+}
+
+func (o *StatusResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"versions",
+		"online_workers",
+		"online_api_apps",
+		"online_content_apps",
+		"database_connection",
+		"content_settings",
+		"domain_enabled",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varStatusResponse := _StatusResponse{}
+
+	err = json.Unmarshal(bytes, &varStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StatusResponse(varStatusResponse)
+
+	return err
 }
 
 type NullableStatusResponse struct {

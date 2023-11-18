@@ -23,8 +23,10 @@ var _ MappedNullable = &RpmUpdateRecord{}
 type RpmUpdateRecord struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
-	// An uploaded file that may be turned into the artifact of the content unit.
+	// An uploaded file that may be turned into the content unit.
 	File **os.File `json:"file,omitempty"`
+	// An uncommitted upload that may be turned into the content unit.
+	Upload *string `json:"upload,omitempty"`
 }
 
 // NewRpmUpdateRecord instantiates a new RpmUpdateRecord object
@@ -108,6 +110,38 @@ func (o *RpmUpdateRecord) SetFile(v *os.File) {
 	o.File = &v
 }
 
+// GetUpload returns the Upload field value if set, zero value otherwise.
+func (o *RpmUpdateRecord) GetUpload() string {
+	if o == nil || IsNil(o.Upload) {
+		var ret string
+		return ret
+	}
+	return *o.Upload
+}
+
+// GetUploadOk returns a tuple with the Upload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmUpdateRecord) GetUploadOk() (*string, bool) {
+	if o == nil || IsNil(o.Upload) {
+		return nil, false
+	}
+	return o.Upload, true
+}
+
+// HasUpload returns a boolean if a field has been set.
+func (o *RpmUpdateRecord) HasUpload() bool {
+	if o != nil && !IsNil(o.Upload) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpload gets a reference to the given string and assigns it to the Upload field.
+func (o *RpmUpdateRecord) SetUpload(v string) {
+	o.Upload = &v
+}
+
 func (o RpmUpdateRecord) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -123,6 +157,9 @@ func (o RpmUpdateRecord) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.File) {
 		toSerialize["file"] = o.File
+	}
+	if !IsNil(o.Upload) {
+		toSerialize["upload"] = o.Upload
 	}
 	return toSerialize, nil
 }

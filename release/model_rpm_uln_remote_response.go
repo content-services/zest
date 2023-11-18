@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RpmUlnRemoteResponse type satisfies the MappedNullable interface at compile time
@@ -61,6 +62,8 @@ type RpmUlnRemoteResponse struct {
 	// Base URL of the ULN server. If the uln_server_base_url is not provided pulp_rpm willuse the contents of the DEFAULT_ULN_SERVER_BASE_URL setting instead.
 	UlnServerBaseUrl NullableString `json:"uln_server_base_url,omitempty"`
 }
+
+type _RpmUlnRemoteResponse RpmUlnRemoteResponse
 
 // NewRpmUlnRemoteResponse instantiates a new RpmUlnRemoteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -921,6 +924,42 @@ func (o RpmUlnRemoteResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["uln_server_base_url"] = o.UlnServerBaseUrl.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *RpmUlnRemoteResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmUlnRemoteResponse := _RpmUlnRemoteResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmUlnRemoteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmUlnRemoteResponse(varRpmUlnRemoteResponse)
+
+	return err
 }
 
 type NullableRpmUlnRemoteResponse struct {

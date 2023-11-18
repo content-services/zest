@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **RelativePath** | Pointer to **string** | Path where the artifact is located relative to distributions base_path | [optional] 
-**File** | Pointer to ***os.File** | An uploaded file that may be turned into the artifact of the content unit. | [optional] 
-**Upload** | Pointer to **string** | An uncommitted upload that may be turned into the artifact of the content unit. | [optional] 
+**File** | Pointer to ***os.File** | An uploaded file that may be turned into the content unit. | [optional] 
+**Upload** | Pointer to **string** | An uncommitted upload that may be turned into the content unit. | [optional] 
 
 ## Methods
 

@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the UserResponse type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type UserResponse struct {
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 }
+
+type _UserResponse UserResponse
 
 // NewUserResponse instantiates a new UserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -454,6 +457,41 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
 	return toSerialize, nil
+}
+
+func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"username",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUserResponse := _UserResponse{}
+
+	err = json.Unmarshal(bytes, &varUserResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UserResponse(varUserResponse)
+
+	return err
 }
 
 type NullableUserResponse struct {

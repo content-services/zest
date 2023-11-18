@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RpmModulemdObsolete type satisfies the MappedNullable interface at compile time
@@ -43,6 +44,8 @@ type RpmModulemdObsolete struct {
 	// Module Obsolete snippet.
 	Snippet string `json:"snippet"`
 }
+
+type _RpmModulemdObsolete RpmModulemdObsolete
 
 // NewRpmModulemdObsolete instantiates a new RpmModulemdObsolete object
 // This constructor will assign default values to properties that have it defined,
@@ -377,6 +380,50 @@ func (o RpmModulemdObsolete) ToMap() (map[string]interface{}, error) {
 	toSerialize["obsoleted_by_module_stream"] = o.ObsoletedByModuleStream.Get()
 	toSerialize["snippet"] = o.Snippet
 	return toSerialize, nil
+}
+
+func (o *RpmModulemdObsolete) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"modified",
+		"module_name",
+		"module_stream",
+		"message",
+		"override_previous",
+		"module_context",
+		"eol_date",
+		"obsoleted_by_module_name",
+		"obsoleted_by_module_stream",
+		"snippet",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmModulemdObsolete := _RpmModulemdObsolete{}
+
+	err = json.Unmarshal(bytes, &varRpmModulemdObsolete)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmModulemdObsolete(varRpmModulemdObsolete)
+
+	return err
 }
 
 type NullableRpmModulemdObsolete struct {

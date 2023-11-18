@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the MinimalTaskResponse type satisfies the MappedNullable interface at compile time
@@ -35,6 +36,8 @@ type MinimalTaskResponse struct {
 	// The worker associated with this task. This field is empty if a worker is not yet assigned.
 	Worker *string `json:"worker,omitempty"`
 }
+
+type _MinimalTaskResponse MinimalTaskResponse
 
 // NewMinimalTaskResponse instantiates a new MinimalTaskResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -300,6 +303,41 @@ func (o MinimalTaskResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["worker"] = o.Worker
 	}
 	return toSerialize, nil
+}
+
+func (o *MinimalTaskResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMinimalTaskResponse := _MinimalTaskResponse{}
+
+	err = json.Unmarshal(bytes, &varMinimalTaskResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MinimalTaskResponse(varMinimalTaskResponse)
+
+	return err
 }
 
 type NullableMinimalTaskResponse struct {

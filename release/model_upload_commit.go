@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UploadCommit type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type UploadCommit struct {
 	// The expected sha256 checksum for the file.
 	Sha256 string `json:"sha256"`
 }
+
+type _UploadCommit UploadCommit
 
 // NewUploadCommit instantiates a new UploadCommit object
 // This constructor will assign default values to properties that have it defined,
@@ -78,6 +81,41 @@ func (o UploadCommit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sha256"] = o.Sha256
 	return toSerialize, nil
+}
+
+func (o *UploadCommit) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"sha256",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUploadCommit := _UploadCommit{}
+
+	err = json.Unmarshal(bytes, &varUploadCommit)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UploadCommit(varUploadCommit)
+
+	return err
 }
 
 type NullableUploadCommit struct {

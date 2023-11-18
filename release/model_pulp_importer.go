@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PulpImporter type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type PulpImporter struct {
 	// Mapping of repo names in an export file to the repo names in Pulp. For example, if the export has a repo named 'foo' and the repo to import content into was 'bar', the mapping would be \"{'foo': 'bar'}\".
 	RepoMapping *map[string]string `json:"repo_mapping,omitempty"`
 }
+
+type _PulpImporter PulpImporter
 
 // NewPulpImporter instantiates a new PulpImporter object
 // This constructor will assign default values to properties that have it defined,
@@ -115,6 +118,41 @@ func (o PulpImporter) ToMap() (map[string]interface{}, error) {
 		toSerialize["repo_mapping"] = o.RepoMapping
 	}
 	return toSerialize, nil
+}
+
+func (o *PulpImporter) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPulpImporter := _PulpImporter{}
+
+	err = json.Unmarshal(bytes, &varPulpImporter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpImporter(varPulpImporter)
+
+	return err
 }
 
 type NullablePulpImporter struct {

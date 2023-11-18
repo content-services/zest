@@ -55,13 +55,13 @@ func (r ContentPackagesAPIContentRpmPackagesCreateRequest) RelativePath(relative
 	return r
 }
 
-// An uploaded file that may be turned into the artifact of the content unit.
+// An uploaded file that may be turned into the content unit.
 func (r ContentPackagesAPIContentRpmPackagesCreateRequest) File(file *os.File) ContentPackagesAPIContentRpmPackagesCreateRequest {
 	r.file = file
 	return r
 }
 
-// An uncommitted upload that may be turned into the artifact of the content unit.
+// An uncommitted upload that may be turned into the content unit.
 func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Upload(upload string) ContentPackagesAPIContentRpmPackagesCreateRequest {
 	r.upload = &upload
 	return r

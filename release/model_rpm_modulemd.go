@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RpmModulemd type satisfies the MappedNullable interface at compile time
@@ -47,6 +48,8 @@ type RpmModulemd struct {
 	// Description of module.
 	Description string `json:"description"`
 }
+
+type _RpmModulemd RpmModulemd
 
 // NewRpmModulemd instantiates a new RpmModulemd object
 // This constructor will assign default values to properties that have it defined,
@@ -453,6 +456,50 @@ func (o RpmModulemd) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
+}
+
+func (o *RpmModulemd) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"stream",
+		"version",
+		"context",
+		"arch",
+		"artifacts",
+		"dependencies",
+		"snippet",
+		"profiles",
+		"description",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmModulemd := _RpmModulemd{}
+
+	err = json.Unmarshal(bytes, &varRpmModulemd)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmModulemd(varRpmModulemd)
+
+	return err
 }
 
 type NullableRpmModulemd struct {

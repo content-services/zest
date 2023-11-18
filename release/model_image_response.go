@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ImageResponse type satisfies the MappedNullable interface at compile time
@@ -28,6 +29,8 @@ type ImageResponse struct {
 	Platforms string `json:"platforms"`
 	Artifact NullableArtifactResponse `json:"artifact"`
 }
+
+type _ImageResponse ImageResponse
 
 // NewImageResponse instantiates a new ImageResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -163,6 +166,44 @@ func (o ImageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["platforms"] = o.Platforms
 	toSerialize["artifact"] = o.Artifact.Get()
 	return toSerialize, nil
+}
+
+func (o *ImageResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"path",
+		"platforms",
+		"artifact",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varImageResponse := _ImageResponse{}
+
+	err = json.Unmarshal(bytes, &varImageResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImageResponse(varImageResponse)
+
+	return err
 }
 
 type NullableImageResponse struct {

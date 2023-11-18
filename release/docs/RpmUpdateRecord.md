@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
-**File** | Pointer to ***os.File** | An uploaded file that may be turned into the artifact of the content unit. | [optional] 
+**File** | Pointer to ***os.File** | An uploaded file that may be turned into the content unit. | [optional] 
+**Upload** | Pointer to **string** | An uncommitted upload that may be turned into the content unit. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetFile sets File field to given value.
 `func (o *RpmUpdateRecord) HasFile() bool`
 
 HasFile returns a boolean if a field has been set.
+
+### GetUpload
+
+`func (o *RpmUpdateRecord) GetUpload() string`
+
+GetUpload returns the Upload field if non-nil, zero value otherwise.
+
+### GetUploadOk
+
+`func (o *RpmUpdateRecord) GetUploadOk() (*string, bool)`
+
+GetUploadOk returns a tuple with the Upload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpload
+
+`func (o *RpmUpdateRecord) SetUpload(v string)`
+
+SetUpload sets Upload field to given value.
+
+### HasUpload
+
+`func (o *RpmUpdateRecord) HasUpload() bool`
+
+HasUpload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

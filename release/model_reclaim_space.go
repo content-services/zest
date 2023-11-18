@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ReclaimSpace type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type ReclaimSpace struct {
 	// Will exclude repo versions from space reclaim.
 	RepoVersionsKeeplist []string `json:"repo_versions_keeplist,omitempty"`
 }
+
+type _ReclaimSpace ReclaimSpace
 
 // NewReclaimSpace instantiates a new ReclaimSpace object
 // This constructor will assign default values to properties that have it defined,
@@ -115,6 +118,41 @@ func (o ReclaimSpace) ToMap() (map[string]interface{}, error) {
 		toSerialize["repo_versions_keeplist"] = o.RepoVersionsKeeplist
 	}
 	return toSerialize, nil
+}
+
+func (o *ReclaimSpace) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"repo_hrefs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varReclaimSpace := _ReclaimSpace{}
+
+	err = json.Unmarshal(bytes, &varReclaimSpace)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ReclaimSpace(varReclaimSpace)
+
+	return err
 }
 
 type NullableReclaimSpace struct {

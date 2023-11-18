@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RpmRpmRemote type satisfies the MappedNullable interface at compile time
@@ -63,6 +64,8 @@ type RpmRpmRemote struct {
 	// Authentication token for SLES repositories.
 	SlesAuthToken NullableString `json:"sles_auth_token,omitempty"`
 }
+
+type _RpmRpmRemote RpmRpmRemote
 
 // NewRpmRpmRemote instantiates a new RpmRpmRemote object
 // This constructor will assign default values to properties that have it defined,
@@ -1008,6 +1011,42 @@ func (o RpmRpmRemote) ToMap() (map[string]interface{}, error) {
 		toSerialize["sles_auth_token"] = o.SlesAuthToken.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *RpmRpmRemote) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmRpmRemote := _RpmRpmRemote{}
+
+	err = json.Unmarshal(bytes, &varRpmRpmRemote)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmRpmRemote(varRpmRpmRemote)
+
+	return err
 }
 
 type NullableRpmRpmRemote struct {

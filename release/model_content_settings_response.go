@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContentSettingsResponse type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type ContentSettingsResponse struct {
 	// The CONTENT_PATH_PREFIX setting for this Pulp instance
 	ContentPathPrefix string `json:"content_path_prefix"`
 }
+
+type _ContentSettingsResponse ContentSettingsResponse
 
 // NewContentSettingsResponse instantiates a new ContentSettingsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,42 @@ func (o ContentSettingsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["content_origin"] = o.ContentOrigin
 	toSerialize["content_path_prefix"] = o.ContentPathPrefix
 	return toSerialize, nil
+}
+
+func (o *ContentSettingsResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"content_origin",
+		"content_path_prefix",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContentSettingsResponse := _ContentSettingsResponse{}
+
+	err = json.Unmarshal(bytes, &varContentSettingsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContentSettingsResponse(varContentSettingsResponse)
+
+	return err
 }
 
 type NullableContentSettingsResponse struct {

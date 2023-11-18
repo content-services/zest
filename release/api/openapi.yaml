@@ -13,9 +13,10 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.39.0
-    certguard: 1.7.0
-    rpm: 3.23.0
+    core: 3.41.0
+    certguard: 1.7.1
+    rpm: 3.24.0
+    file: 3.41.0
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -395,6 +396,588 @@ paths:
       - cookieAuth: []
       tags:
       - Access_Policies
+  /pulp/{pulp_domain}/api/v3/acs/file/file/:
+    get:
+      description: |-
+        Alternate Content Source ViewSet for File
+
+        ACS support is provided as a tech preview in pulp_file.
+      operationId: acs_file_file_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `last_refreshed` - Last refreshed
+          * `-last_refreshed` - Last refreshed (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -last_refreshed
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - last_refreshed
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FileAlternateContentSourceResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file alternate content sources
+      tags:
+      - "Acs: File"
+    post:
+      description: |-
+        Alternate Content Source ViewSet for File
+
+        ACS support is provided as a tech preview in pulp_file.
+      operationId: acs_file_file_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileAlternateContentSourceResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file alternate content source
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}':
+    delete:
+      description: Trigger an asynchronous delete ACS task
+      operationId: acs_file_file_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a file alternate content source
+      tags:
+      - "Acs: File"
+    get:
+      description: |-
+        Alternate Content Source ViewSet for File
+
+        ACS support is provided as a tech preview in pulp_file.
+      operationId: acs_file_file_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileAlternateContentSourceResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file alternate content source
+      tags:
+      - "Acs: File"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: acs_file_file_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileAlternateContentSource'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileAlternateContentSource'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileAlternateContentSource'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file alternate content source
+      tags:
+      - "Acs: File"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: acs_file_file_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileAlternateContentSource'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file alternate content source
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: acs_file_file_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: acs_file_file_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: acs_file_file_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}refresh/':
+    post:
+      description: Trigger an asynchronous task to create Alternate Content Source
+        content.
+      operationId: acs_file_file_refresh
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGroupOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Refresh metadata
+      tags:
+      - "Acs: File"
+  '{file_file_alternate_content_source_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: acs_file_file_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_alternate_content_source_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Acs: File"
   /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/:
     get:
       description: ViewSet for ACS.
@@ -1413,6 +1996,7 @@ paths:
           * `rpm.modulemd` - rpm.modulemd
           * `rpm.modulemd_defaults` - rpm.modulemd_defaults
           * `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
+          * `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -1420,6 +2004,7 @@ paths:
         schema:
           enum:
           - core.publishedmetadata
+          - file.file
           - rpm.advisory
           - rpm.distribution_tree
           - rpm.modulemd
@@ -1448,6 +2033,7 @@ paths:
           * `rpm.modulemd` - rpm.modulemd
           * `rpm.modulemd_defaults` - rpm.modulemd_defaults
           * `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
+          * `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -1456,6 +2042,7 @@ paths:
           items:
             enum:
             - core.publishedmetadata
+            - file.file
             - rpm.advisory
             - rpm.distribution_tree
             - rpm.modulemd
@@ -1534,6 +2121,270 @@ paths:
       summary: List content
       tags:
       - Content
+  /pulp/{pulp_domain}/api/v3/content/file/files/:
+    get:
+      description: |2-
+
+        FileContent represents a single file and its metadata, which can be added and removed from
+        repositories.
+      operationId: content_file_files_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `upstream_id` - Upstream id
+          * `-upstream_id` - Upstream id (descending)
+          * `timestamp_of_interest` - Timestamp of interest
+          * `-timestamp_of_interest` - Timestamp of interest (descending)
+          * `relative_path` - Relative path
+          * `-relative_path` - Relative path (descending)
+          * `digest` - Digest
+          * `-digest` - Digest (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -digest
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -relative_path
+            - -timestamp_of_interest
+            - -upstream_id
+            - digest
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - relative_path
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where relative_path matches value
+        explode: true
+        in: query
+        name: relative_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: sha256
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FileContentResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file contents
+      tags:
+      - "Content: Files"
+    post:
+      description: "Trigger an asynchronous task to create content,optionally create\
+        \ new repository version."
+      operationId: content_file_files_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file content
+      tags:
+      - "Content: Files"
+  '{file_file_content_href}':
+    get:
+      description: |2-
+
+        FileContent represents a single file and its metadata, which can be added and removed from
+        repositories.
+      operationId: content_file_files_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_content_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileContentResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file content
+      tags:
+      - "Content: Files"
   /pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
     get:
       description: |-
@@ -7440,6 +8291,7 @@ paths:
 
           * `core.artifact` - core.artifact
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -7447,6 +8299,7 @@ paths:
         schema:
           enum:
           - core.artifact
+          - file.file
           - rpm.rpm
           type: string
         style: form
@@ -7455,6 +8308,7 @@ paths:
 
           * `core.artifact` - core.artifact
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -7463,6 +8317,7 @@ paths:
           items:
             enum:
             - core.artifact
+            - file.file
             - rpm.rpm
             type: string
           type: array
@@ -7866,6 +8721,719 @@ paths:
       summary: Inspect an artifact distribution
       tags:
       - "Distributions: Artifacts"
+  /pulp/{pulp_domain}/api/v3/distributions/file/file/:
+    get:
+      description: |2-
+
+        FileDistributions host File
+        Publications which makes the metadata and the referenced File Content available to HTTP
+        clients. Additionally, a FileDistribution with an associated FilePublication can be the target
+        url of a File Remote , allowing
+        another instance of Pulp to sync the content.
+      operationId: distributions_file_file_list
+      parameters:
+      - description: Filter results where base_path matches value
+        explode: true
+        in: query
+        name: base_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_path__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `base_path` - Base path
+          * `-base_path` - Base path (descending)
+          * `hidden` - Hidden
+          * `-hidden` - Hidden (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository matches value
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where repository is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: repository__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FileDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file distributions
+      tags:
+      - "Distributions: File"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_file_file_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file distribution
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_file_file_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a file distribution
+      tags:
+      - "Distributions: File"
+    get:
+      description: |2-
+
+        FileDistributions host File
+        Publications which makes the metadata and the referenced File Content available to HTTP
+        clients. Additionally, a FileDistribution with an associated FilePublication can be the target
+        url of a File Remote , allowing
+        another instance of Pulp to sync the content.
+      operationId: distributions_file_file_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file distribution
+      tags:
+      - "Distributions: File"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_file_file_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file distribution
+      tags:
+      - "Distributions: File"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_file_file_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file distribution
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: distributions_file_file_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: distributions_file_file_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: distributions_file_file_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: distributions_file_file_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_file_file_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: File"
+  '{file_file_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_file_file_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: File"
   /pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
     get:
       description: ViewSet for RPM Distributions.
@@ -11785,12 +13353,14 @@ paths:
           Pulp type
 
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - file.file
           - rpm.rpm
           type: string
         style: form
@@ -11798,6 +13368,7 @@ paths:
           Multiple values may be separated by commas.
 
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -11805,6 +13376,7 @@ paths:
         schema:
           items:
             enum:
+            - file.file
             - rpm.rpm
             type: string
           type: array
@@ -11866,6 +13438,506 @@ paths:
       summary: List publications
       tags:
       - Publications
+  /pulp/{pulp_domain}/api/v3/publications/file/file/:
+    get:
+      description: |2-
+
+        A FilePublication contains metadata about all the File Content in a particular File Repository Version.
+        Once a FilePublication has been created, it can be hosted using the
+        File Distribution API.
+      operationId: publications_file_file_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `complete` - Complete
+          * `-complete` - Complete (descending)
+          * `pass_through` - Pass through
+          * `-pass_through` - Pass through (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -pass_through
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - complete
+            - pass_through
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository referenced by HREF
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FilePublicationResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file publications
+      tags:
+      - "Publications: File"
+    post:
+      description: Trigger an asynchronous task to publish file content.
+      operationId: publications_file_file_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FilePublication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FilePublication'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FilePublication'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file publication
+      tags:
+      - "Publications: File"
+  '{file_file_publication_href}':
+    delete:
+      description: |2-
+
+        A FilePublication contains metadata about all the File Content in a particular File Repository Version.
+        Once a FilePublication has been created, it can be hosted using the
+        File Distribution API.
+      operationId: publications_file_file_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a file publication
+      tags:
+      - "Publications: File"
+    get:
+      description: |2-
+
+        A FilePublication contains metadata about all the File Content in a particular File Repository Version.
+        Once a FilePublication has been created, it can be hosted using the
+        File Distribution API.
+      operationId: publications_file_file_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FilePublicationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file publication
+      tags:
+      - "Publications: File"
+  '{file_file_publication_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: publications_file_file_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Publications: File"
+  '{file_file_publication_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: publications_file_file_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Publications: File"
+  '{file_file_publication_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: publications_file_file_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Publications: File"
+  '{file_file_publication_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: publications_file_file_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Publications: File"
   /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/:
     get:
       description: ViewSet for Rpm Publications.
@@ -12685,12 +14757,14 @@ paths:
 
           * `rpm.rpm` - rpm.rpm
           * `rpm.uln` - rpm.uln
+          * `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - file.file
           - rpm.rpm
           - rpm.uln
           type: string
@@ -12700,6 +14774,7 @@ paths:
 
           * `rpm.rpm` - rpm.rpm
           * `rpm.uln` - rpm.uln
+          * `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -12707,6 +14782,7 @@ paths:
         schema:
           items:
             enum:
+            - file.file
             - rpm.rpm
             - rpm.uln
             type: string
@@ -12752,6 +14828,782 @@ paths:
       summary: List remotes
       tags:
       - Remotes
+  /pulp/{pulp_domain}/api/v3/remotes/file/file/:
+    get:
+      description: |2-
+
+        FileRemote represents an external source of File
+        Content.  The target url of a FileRemote must contain a file manifest, which contains the
+        metadata for all files at the source.
+      operationId: remotes_file_file_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `url` - Url
+          * `-url` - Url (descending)
+          * `ca_cert` - Ca cert
+          * `-ca_cert` - Ca cert (descending)
+          * `client_cert` - Client cert
+          * `-client_cert` - Client cert (descending)
+          * `client_key` - Client key
+          * `-client_key` - Client key (descending)
+          * `tls_validation` - Tls validation
+          * `-tls_validation` - Tls validation (descending)
+          * `username` - Username
+          * `-username` - Username (descending)
+          * `password` - Password
+          * `-password` - Password (descending)
+          * `proxy_url` - Proxy url
+          * `-proxy_url` - Proxy url (descending)
+          * `proxy_username` - Proxy username
+          * `-proxy_username` - Proxy username (descending)
+          * `proxy_password` - Proxy password
+          * `-proxy_password` - Proxy password (descending)
+          * `download_concurrency` - Download concurrency
+          * `-download_concurrency` - Download concurrency (descending)
+          * `max_retries` - Max retries
+          * `-max_retries` - Max retries (descending)
+          * `policy` - Policy
+          * `-policy` - Policy (descending)
+          * `total_timeout` - Total timeout
+          * `-total_timeout` - Total timeout (descending)
+          * `connect_timeout` - Connect timeout
+          * `-connect_timeout` - Connect timeout (descending)
+          * `sock_connect_timeout` - Sock connect timeout
+          * `-sock_connect_timeout` - Sock connect timeout (descending)
+          * `sock_read_timeout` - Sock read timeout
+          * `-sock_read_timeout` - Sock read timeout (descending)
+          * `headers` - Headers
+          * `-headers` - Headers (descending)
+          * `rate_limit` - Rate limit
+          * `-rate_limit` - Rate limit (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -connect_timeout
+            - -download_concurrency
+            - -headers
+            - -max_retries
+            - -name
+            - -password
+            - -pk
+            - -policy
+            - -proxy_password
+            - -proxy_url
+            - -proxy_username
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -rate_limit
+            - -sock_connect_timeout
+            - -sock_read_timeout
+            - -tls_validation
+            - -total_timeout
+            - -url
+            - -username
+            - ca_cert
+            - client_cert
+            - client_key
+            - connect_timeout
+            - download_concurrency
+            - headers
+            - max_retries
+            - name
+            - password
+            - pk
+            - policy
+            - proxy_password
+            - proxy_url
+            - proxy_username
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - rate_limit
+            - sock_connect_timeout
+            - sock_read_timeout
+            - tls_validation
+            - total_timeout
+            - url
+            - username
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated matches value
+        explode: true
+        in: query
+        name: pulp_last_updated
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than value
+        explode: true
+        in: query
+        name: pulp_last_updated__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than value
+        explode: true
+        in: query
+        name: pulp_last_updated__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_last_updated__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FileRemoteResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file remotes
+      tags:
+      - "Remotes: File"
+    post:
+      description: |2-
+
+        FileRemote represents an external source of File
+        Content.  The target url of a FileRemote must contain a file manifest, which contains the
+        metadata for all files at the source.
+      operationId: remotes_file_file_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file remote
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: remotes_file_file_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a file remote
+      tags:
+      - "Remotes: File"
+    get:
+      description: |2-
+
+        FileRemote represents an external source of File
+        Content.  The target url of a FileRemote must contain a file manifest, which contains the
+        metadata for all files at the source.
+      operationId: remotes_file_file_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file remote
+      tags:
+      - "Remotes: File"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: remotes_file_file_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file remote
+      tags:
+      - "Remotes: File"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: remotes_file_file_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file remote
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: remotes_file_file_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: remotes_file_file_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: remotes_file_file_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: remotes_file_file_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_file_file_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: File"
+  '{file_file_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_file_file_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: File"
   /pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
     get:
       description: A ViewSet for RpmRemote.
@@ -14520,12 +17372,14 @@ paths:
           Pulp type
 
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - file.file
           - rpm.rpm
           type: string
         style: form
@@ -14533,6 +17387,7 @@ paths:
           Multiple values may be separated by commas.
 
           * `rpm.rpm` - rpm.rpm
+          * `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -14540,6 +17395,7 @@ paths:
         schema:
           items:
             enum:
+            - file.file
             - rpm.rpm
             type: string
           type: array
@@ -14670,6 +17526,1180 @@ paths:
       summary: List repositories
       tags:
       - Repositories
+  /pulp/{pulp_domain}/api/v3/repositories/file/file/:
+    get:
+      description: |2-
+
+        FileRepository represents a single file repository, to which content can be synced, added,
+        or removed.
+      operationId: repositories_file_file_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `description` - Description
+          * `-description` - Description (descending)
+          * `next_version` - Next version
+          * `-next_version` - Next version (descending)
+          * `retain_repo_versions` - Retain repo versions
+          * `-retain_repo_versions` - Retain repo versions (descending)
+          * `user_hidden` - User hidden
+          * `-user_hidden` - User hidden (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedfile.FileRepositoryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List file repositorys
+      tags:
+      - "Repositories: File"
+    post:
+      description: |2-
+
+        FileRepository represents a single file repository, to which content can be synced, added,
+        or removed.
+      operationId: repositories_file_file_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a file repository
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_file_file_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a file repository
+      tags:
+      - "Repositories: File"
+    get:
+      description: |2-
+
+        FileRepository represents a single file repository, to which content can be synced, added,
+        or removed.
+      operationId: repositories_file_file_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/file.FileRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a file repository
+      tags:
+      - "Repositories: File"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_file_file_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedfile.FileRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file repository
+      tags:
+      - "Repositories: File"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_file_file_update
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/file.FileRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a file repository
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: repositories_file_file_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: repositories_file_file_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}modify/':
+    post:
+      description: Trigger an asynchronous task to create a new repository version.
+      operationId: repositories_file_file_modify
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Modify Repository Content
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: repositories_file_file_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: repositories_file_file_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_file_file_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}sync/':
+    post:
+      description: Trigger an asynchronous task to sync file content.
+      operationId: repositories_file_file_sync
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Sync from a remote
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_file_file_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: File"
+  '{file_file_repository_href}versions/':
+    get:
+      description: |2-
+
+        FileRepositoryVersion represents a single file repository version.
+      operationId: repositories_file_file_versions_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: file_file_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number matches value
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than value
+        explode: true
+        in: query
+        name: number__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than or equal to value
+        explode: true
+        in: query
+        name: number__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than value
+        explode: true
+        in: query
+        name: number__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than or equal to value
+        explode: true
+        in: query
+        name: number__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is between two comma separated values
+        explode: false
+        in: query
+        name: number__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `number` - Number
+          * `-number` - Number (descending)
+          * `complete` - Complete
+          * `-complete` - Complete (descending)
+          * `info` - Info
+          * `-info` - Info (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -info
+            - -number
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - complete
+            - info
+            - number
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRepositoryVersionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List repository versions
+      tags:
+      - "Repositories: File Versions"
+  '{file_file_repository_version_href}':
+    delete:
+      description: Trigger an asynchronous task to delete a repository version.
+      operationId: repositories_file_file_versions_delete
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a repository version
+      tags:
+      - "Repositories: File Versions"
+    get:
+      description: |2-
+
+        FileRepositoryVersion represents a single file repository version.
+      operationId: repositories_file_file_versions_read
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryVersionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a repository version
+      tags:
+      - "Repositories: File Versions"
+  '{file_file_repository_version_href}repair/':
+    post:
+      description: Trigger an asynchronous task to repair a repository version.
+      operationId: repositories_file_file_versions_repair
+      parameters:
+      - explode: false
+        in: path
+        name: file_file_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Repair'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: File Versions"
   /pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
     post:
       description: Trigger an asynchronous space reclaim operation.
@@ -17533,10 +21563,6 @@ paths:
           * `-finished_at` - Finished at (descending)
           * `error` - Error
           * `-error` - Error (descending)
-          * `args` - Args
-          * `-args` - Args (descending)
-          * `kwargs` - Kwargs
-          * `-kwargs` - Kwargs (descending)
           * `enc_args` - Enc args
           * `-enc_args` - Enc args (descending)
           * `enc_kwargs` - Enc kwargs
@@ -17554,12 +21580,10 @@ paths:
         schema:
           items:
             enum:
-            - -args
             - -enc_args
             - -enc_kwargs
             - -error
             - -finished_at
-            - -kwargs
             - -logging_cid
             - -name
             - -pk
@@ -17570,12 +21594,10 @@ paths:
             - -started_at
             - -state
             - -versions
-            - args
             - enc_args
             - enc_kwargs
             - error
             - finished_at
-            - kwargs
             - logging_cid
             - name
             - pk
@@ -20805,51 +24827,51 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
+        hidden: false
+        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
-        pulp_href: https://openapi-generator.tech
-        hidden: false
         name: name
         base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         content_guard: https://openapi-generator.tech
       properties:
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
           type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
         pulp_href:
           format: uri
           readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
       required:
       - base_path
       - name
@@ -22117,19 +26139,19 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_labels:
-            key: pulp_labels
+        - hidden: false
           pulp_href: https://openapi-generator.tech
-          hidden: false
+          pulp_labels:
+            key: pulp_labels
           name: name
           base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           content_guard: https://openapi-generator.tech
-        - pulp_labels:
-            key: pulp_labels
+        - hidden: false
           pulp_href: https://openapi-generator.tech
-          hidden: false
+          pulp_labels:
+            key: pulp_labels
           name: name
           base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -23615,6 +27637,308 @@ components:
             $ref: '#/components/schemas/certguard.X509CertGuardResponse'
           type: array
       type: object
+    Paginatedfile.FileAlternateContentSourceResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          paths:
+          - paths
+          - paths
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          last_refreshed: 2000-01-23T04:56:07.000+00:00
+        - pulp_href: https://openapi-generator.tech
+          paths:
+          - paths
+          - paths
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          last_refreshed: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FileAlternateContentSourceResponse'
+          type: array
+      type: object
+    Paginatedfile.FileContentResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          sha1: sha1
+          sha384: sha384
+          pulp_href: https://openapi-generator.tech
+          sha256: sha256
+          sha512: sha512
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          sha224: sha224
+          relative_path: relative_path
+          md5: md5
+        - artifact: https://openapi-generator.tech
+          sha1: sha1
+          sha384: sha384
+          pulp_href: https://openapi-generator.tech
+          sha256: sha256
+          sha512: sha512
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          sha224: sha224
+          relative_path: relative_path
+          md5: md5
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FileContentResponse'
+          type: array
+      type: object
+    Paginatedfile.FileDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FileDistributionResponse'
+          type: array
+      type: object
+    Paginatedfile.FilePublicationResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          manifest: PULP_MANIFEST
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          distributions:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          manifest: PULP_MANIFEST
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          distributions:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FilePublicationResponse'
+          type: array
+      type: object
+    Paginatedfile.FileRemoteResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FileRemoteResponse'
+          type: array
+      type: object
+    Paginatedfile.FileRepositoryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          autopublish: false
+          manifest: PULP_MANIFEST
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          remote: https://openapi-generator.tech
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          autopublish: false
+          manifest: PULP_MANIFEST
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          remote: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/file.FileRepositoryResponse'
+          type: array
+      type: object
     Paginatedrpm.DistributionTreeResponseList:
       example:
         next: http://api.example.org/accounts/?offset=400&limit=100
@@ -24346,6 +28670,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           repository: https://openapi-generator.tech
+          repo_config: "{}"
         - gpgcheck: 0
           metadata_checksum_type: ""
           repo_gpgcheck: 0
@@ -24355,6 +28680,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           repository: https://openapi-generator.tech
+          repo_config: "{}"
       properties:
         count:
           example: 123
@@ -24478,6 +28804,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
           retain_package_versions: 0
+          repo_config: "{}"
           metadata_signing_service: https://openapi-generator.tech
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
@@ -24496,6 +28823,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
           retain_package_versions: 0
+          repo_config: "{}"
           metadata_signing_service: https://openapi-generator.tech
       properties:
         count:
@@ -25120,6 +29448,243 @@ components:
           minLength: 1
           type: string
       type: object
+    Patchedfile.FileAlternateContentSource:
+      description: Serializer for File alternate content source.
+      properties:
+        name:
+          description: Name of Alternate Content Source.
+          minLength: 1
+          type: string
+        last_refreshed:
+          description: Date of last refresh of AlternateContentSource.
+          format: date-time
+          nullable: true
+          type: string
+        paths:
+          description: List of paths that will be appended to the Remote url when
+            searching for content.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        remote:
+          description: The remote to provide alternate content source.
+          format: uri
+          type: string
+      type: object
+    Patchedfile.FileDistribution:
+      description: Serializer for File Distributions.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedfile.FileRemote:
+      description: Serializer for File Remotes.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+      type: object
+    Patchedfile.FileRepository:
+      description: Serializer for File Repositories.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+        manifest:
+          default: PULP_MANIFEST
+          description: Filename to use for manifest file containing metadata for all
+            the files.
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
     Patchedrpm.RpmAlternateContentSource:
       description: Serializer for RPM alternate content source.
       properties:
@@ -25399,26 +29964,29 @@ components:
             * `sha512` - sha512
           nullable: true
         gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on packages.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on packages."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         repo_gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on the repodata.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on the repodata."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         sqlite_metadata:
           default: false
           description: "DEPRECATED: An option specifying whether Pulp should generate\
             \ SQLite metadata."
           type: boolean
+        repo_config:
+          description: A JSON document describing config.repo file
+          type: object
       type: object
     Patchedrpm.UlnRemote:
       description: A Serializer for UlnRemote.
@@ -26352,6 +30920,23 @@ components:
           type: string
       required:
       - name
+      type: object
+    RepositorySyncURL:
+      description: A mixin for validating unknown serializers' fields.
+      example:
+        mirror: false
+        remote: https://openapi-generator.tech
+      properties:
+        remote:
+          description: A remote to sync from. This will override a remote set on repository.
+          format: uri
+          type: string
+        mirror:
+          default: false
+          description: "If ``True``, synchronization will remove all content that\
+            \ is not present in the remote repository. If ``False``, sync will be\
+            \ additive only."
+          type: boolean
       type: object
     RepositoryVersionResponse:
       description: |-
@@ -27819,6 +32404,728 @@ components:
       - ca_certificate
       - name
       type: object
+    file.FileAlternateContentSource:
+      description: Serializer for File alternate content source.
+      properties:
+        name:
+          description: Name of Alternate Content Source.
+          minLength: 1
+          type: string
+        last_refreshed:
+          description: Date of last refresh of AlternateContentSource.
+          format: date-time
+          nullable: true
+          type: string
+        paths:
+          description: List of paths that will be appended to the Remote url when
+            searching for content.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        remote:
+          description: The remote to provide alternate content source.
+          format: uri
+          type: string
+      required:
+      - name
+      - remote
+      type: object
+    file.FileAlternateContentSourceResponse:
+      description: Serializer for File alternate content source.
+      example:
+        pulp_href: https://openapi-generator.tech
+        paths:
+        - paths
+        - paths
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+        last_refreshed: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: Name of Alternate Content Source.
+          type: string
+        last_refreshed:
+          description: Date of last refresh of AlternateContentSource.
+          format: date-time
+          nullable: true
+          type: string
+        paths:
+          description: List of paths that will be appended to the Remote url when
+            searching for content.
+          items:
+            type: string
+          type: array
+        remote:
+          description: The remote to provide alternate content source.
+          format: uri
+          type: string
+      required:
+      - name
+      - remote
+      type: object
+    file.FileContent:
+      description: Serializer for File Content.
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          minLength: 1
+          type: string
+        file:
+          description: An uploaded file that may be turned into the content unit.
+          format: binary
+          type: string
+          writeOnly: true
+        upload:
+          description: An uncommitted upload that may be turned into the content unit.
+          format: uri
+          type: string
+          writeOnly: true
+      required:
+      - relative_path
+      type: object
+    file.FileContentResponse:
+      description: Serializer for File Content.
+      example:
+        artifact: https://openapi-generator.tech
+        sha1: sha1
+        sha384: sha384
+        pulp_href: https://openapi-generator.tech
+        sha256: sha256
+        sha512: sha512
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        sha224: sha224
+        relative_path: relative_path
+        md5: md5
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+        md5:
+          description: The MD5 checksum if available.
+          readOnly: true
+          type: string
+        sha1:
+          description: The SHA-1 checksum if available.
+          readOnly: true
+          type: string
+        sha224:
+          description: The SHA-224 checksum if available.
+          readOnly: true
+          type: string
+        sha256:
+          description: The SHA-256 checksum if available.
+          readOnly: true
+          type: string
+        sha384:
+          description: The SHA-384 checksum if available.
+          readOnly: true
+          type: string
+        sha512:
+          description: The SHA-512 checksum if available.
+          readOnly: true
+          type: string
+      required:
+      - relative_path
+      type: object
+    file.FileDistribution:
+      description: Serializer for File Distributions.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    file.FileDistributionResponse:
+      description: Serializer for File Distributions.
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        base_url: base_url
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
+        repository: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    file.FilePublication:
+      description: Serializer for File Publications.
+      properties:
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+        manifest:
+          default: PULP_MANIFEST
+          description: Filename to use for manifest file containing metadata for all
+            the files.
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    file.FilePublicationResponse:
+      description: Serializer for File Publications.
+      example:
+        pulp_href: https://openapi-generator.tech
+        manifest: PULP_MANIFEST
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
+        distributions:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+        distributions:
+          description: This publication is currently hosted as defined by these distributions.
+          items:
+            format: uri
+            type: string
+          readOnly: true
+          type: array
+        manifest:
+          default: PULP_MANIFEST
+          description: Filename to use for manifest file containing metadata for all
+            the files.
+          nullable: true
+          type: string
+      type: object
+    file.FileRemote:
+      description: Serializer for File Remotes.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+      required:
+      - name
+      - url
+      type: object
+    file.FileRemoteResponse:
+      description: Serializer for File Remotes.
+      example:
+        headers:
+        - "{}"
+        - "{}"
+        rate_limit: 7
+        pulp_href: https://openapi-generator.tech
+        tls_validation: true
+        max_retries: 6
+        connect_timeout: 0.5962133916683182
+        client_cert: client_cert
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        sock_read_timeout: 0.23021358869347652
+        url: url
+        download_concurrency: 1
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        sock_connect_timeout: 0.5637376656633328
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        hidden_fields:
+        - is_set: true
+          name: name
+        - is_set: true
+          name: name
+        proxy_url: proxy_url
+        ca_cert: ca_cert
+        total_timeout: 0.14658129805029452
+        policy: ""
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this remote.
+          type: string
+        url:
+          description: The URL of an external content source.
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          nullable: true
+          type: string
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_last_updated:
+          description: Timestamp of the most recent update of the remote.
+          format: date-time
+          readOnly: true
+          type: string
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        hidden_fields:
+          description: List of hidden (write only) fields
+          items:
+            $ref: '#/components/schemas/RemoteResponse_hidden_fields_inner'
+          readOnly: true
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    file.FileRepository:
+      description: Serializer for File Repositories.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+        manifest:
+          default: PULP_MANIFEST
+          description: Filename to use for manifest file containing metadata for all
+            the files.
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    file.FileRepositoryResponse:
+      description: Serializer for File Repositories.
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        autopublish: false
+        manifest: PULP_MANIFEST
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+        manifest:
+          default: PULP_MANIFEST
+          description: Filename to use for manifest file containing metadata for all
+            the files.
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
     rpm.DistributionTreeResponse:
       description: DistributionTree serializer.
       example:
@@ -28348,14 +33655,12 @@ components:
           type: string
           writeOnly: true
         file:
-          description: An uploaded file that may be turned into the artifact of the
-            content unit.
+          description: An uploaded file that may be turned into the content unit.
           format: binary
           type: string
           writeOnly: true
         upload:
-          description: An uncommitted upload that may be turned into the artifact
-            of the content unit.
+          description: An uncommitted upload that may be turned into the content unit.
           format: uri
           type: string
           writeOnly: true
@@ -29132,24 +34437,29 @@ components:
             * `sha384` - sha384
             * `sha512` - sha512
         gpgcheck:
-          description: An option specifying whether a client should perform a GPG
-            signature check on packages.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on packages."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         repo_gpgcheck:
-          description: An option specifying whether a client should perform a GPG
-            signature check on the repodata.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on the repodata."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         sqlite_metadata:
           default: false
           description: "DEPRECATED: An option specifying whether Pulp should generate\
             \ SQLite metadata."
           type: boolean
+        repo_config:
+          description: A JSON document describing config.repo file
+          type: object
       type: object
     rpm.RpmPublicationResponse:
       description: A Serializer for RpmPublication.
@@ -29163,6 +34473,7 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         repository_version: https://openapi-generator.tech
         repository: https://openapi-generator.tech
+        repo_config: "{}"
       properties:
         pulp_href:
           format: uri
@@ -29207,24 +34518,29 @@ components:
             * `sha384` - sha384
             * `sha512` - sha512
         gpgcheck:
-          description: An option specifying whether a client should perform a GPG
-            signature check on packages.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on packages."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         repo_gpgcheck:
-          description: An option specifying whether a client should perform a GPG
-            signature check on the repodata.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on the repodata."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         sqlite_metadata:
           default: false
           description: "DEPRECATED: An option specifying whether Pulp should generate\
             \ SQLite metadata."
           type: boolean
+        repo_config:
+          description: A JSON document describing config.repo file
+          type: object
       type: object
     rpm.RpmRemote:
       description: A Serializer for RpmRemote.
@@ -29594,26 +34910,29 @@ components:
             * `sha512` - sha512
           nullable: true
         gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on packages.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on packages."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         repo_gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on the repodata.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on the repodata."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         sqlite_metadata:
           default: false
           description: "DEPRECATED: An option specifying whether Pulp should generate\
             \ SQLite metadata."
           type: boolean
+        repo_config:
+          description: A JSON document describing config.repo file
+          type: object
       required:
       - name
       type: object
@@ -29637,6 +34956,7 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         retain_repo_versions: 1
         retain_package_versions: 0
+        repo_config: "{}"
         metadata_signing_service: https://openapi-generator.tech
       properties:
         pulp_href:
@@ -29726,26 +35046,29 @@ components:
             * `sha512` - sha512
           nullable: true
         gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on packages.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on packages."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         repo_gpgcheck:
-          default: 0
-          description: An option specifying whether a client should perform a GPG
-            signature check on the repodata.
+          description: "DEPRECATED: An option specifying whether a client should perform\
+            \ a GPG signature check on the repodata."
           format: int64
           maximum: 1
           minimum: 0
+          nullable: true
           type: integer
         sqlite_metadata:
           default: false
           description: "DEPRECATED: An option specifying whether Pulp should generate\
             \ SQLite metadata."
           type: boolean
+        repo_config:
+          description: A JSON document describing config.repo file
+          type: object
       required:
       - name
       type: object
@@ -30110,9 +35433,13 @@ components:
           type: string
           writeOnly: true
         file:
-          description: An uploaded file that may be turned into the artifact of the
-            content unit.
+          description: An uploaded file that may be turned into the content unit.
           format: binary
+          type: string
+          writeOnly: true
+        upload:
+          description: An uncommitted upload that may be turned into the content unit.
+          format: uri
           type: string
           writeOnly: true
       type: object

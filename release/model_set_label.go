@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the SetLabel type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type SetLabel struct {
 	Key string `json:"key"`
 	Value NullableString `json:"value"`
 }
+
+type _SetLabel SetLabel
 
 // NewSetLabel instantiates a new SetLabel object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,42 @@ func (o SetLabel) ToMap() (map[string]interface{}, error) {
 	toSerialize["key"] = o.Key
 	toSerialize["value"] = o.Value.Get()
 	return toSerialize, nil
+}
+
+func (o *SetLabel) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"key",
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSetLabel := _SetLabel{}
+
+	err = json.Unmarshal(bytes, &varSetLabel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SetLabel(varSetLabel)
+
+	return err
 }
 
 type NullableSetLabel struct {

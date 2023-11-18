@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GroupRole type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type GroupRole struct {
 	// Domain this role should be applied on, mutually exclusive with content_object.
 	Domain NullableString `json:"domain,omitempty"`
 }
+
+type _GroupRole GroupRole
 
 // NewGroupRole instantiates a new GroupRole object
 // This constructor will assign default values to properties that have it defined,
@@ -154,6 +157,42 @@ func (o GroupRole) ToMap() (map[string]interface{}, error) {
 		toSerialize["domain"] = o.Domain.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *GroupRole) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"role",
+		"content_object",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGroupRole := _GroupRole{}
+
+	err = json.Unmarshal(bytes, &varGroupRole)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GroupRole(varGroupRole)
+
+	return err
 }
 
 type NullableGroupRole struct {

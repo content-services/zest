@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the TaskResponse type satisfies the MappedNullable interface at compile time
@@ -52,6 +53,8 @@ type TaskResponse struct {
 	// A list of resources required by that task.
 	ReservedResourcesRecord []string `json:"reserved_resources_record,omitempty"`
 }
+
+type _TaskResponse TaskResponse
 
 // NewTaskResponse instantiates a new TaskResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -623,6 +626,42 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["reserved_resources_record"] = o.ReservedResourcesRecord
 	}
 	return toSerialize, nil
+}
+
+func (o *TaskResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"logging_cid",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTaskResponse := _TaskResponse{}
+
+	err = json.Unmarshal(bytes, &varTaskResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TaskResponse(varTaskResponse)
+
+	return err
 }
 
 type NullableTaskResponse struct {

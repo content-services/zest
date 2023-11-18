@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ChecksumResponse type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type ChecksumResponse struct {
 	// Checksum for the file.
 	Checksum string `json:"checksum"`
 }
+
+type _ChecksumResponse ChecksumResponse
 
 // NewChecksumResponse instantiates a new ChecksumResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -106,6 +109,42 @@ func (o ChecksumResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["path"] = o.Path
 	toSerialize["checksum"] = o.Checksum
 	return toSerialize, nil
+}
+
+func (o *ChecksumResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"path",
+		"checksum",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varChecksumResponse := _ChecksumResponse{}
+
+	err = json.Unmarshal(bytes, &varChecksumResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChecksumResponse(varChecksumResponse)
+
+	return err
 }
 
 type NullableChecksumResponse struct {

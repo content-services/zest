@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RpmPackageGroupResponse type satisfies the MappedNullable interface at compile time
@@ -47,6 +48,8 @@ type RpmPackageGroupResponse struct {
 	// PackageGroup digest.
 	Digest string `json:"digest"`
 }
+
+type _RpmPackageGroupResponse RpmPackageGroupResponse
 
 // NewRpmPackageGroupResponse instantiates a new RpmPackageGroupResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -473,6 +476,48 @@ func (o RpmPackageGroupResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["digest"] = o.Digest
 	return toSerialize, nil
+}
+
+func (o *RpmPackageGroupResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"display_order",
+		"name",
+		"description",
+		"packages",
+		"desc_by_lang",
+		"name_by_lang",
+		"digest",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmPackageGroupResponse := _RpmPackageGroupResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmPackageGroupResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmPackageGroupResponse(varRpmPackageGroupResponse)
+
+	return err
 }
 
 type NullableRpmPackageGroupResponse struct {

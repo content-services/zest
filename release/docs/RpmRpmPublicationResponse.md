@@ -10,9 +10,10 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **string** | A URI of the repository to be published. | [optional] 
 **MetadataChecksumType** | Pointer to [**MetadataChecksumTypeEnum**](MetadataChecksumTypeEnum.md) |  | [optional] 
 **PackageChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
-**Gpgcheck** | Pointer to **int64** | An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
-**RepoGpgcheck** | Pointer to **int64** | An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
+**Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
+**RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
 **SqliteMetadata** | Pointer to **bool** | DEPRECATED: An option specifying whether Pulp should generate SQLite metadata. | [optional] [default to false]
+**RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
 
 ## Methods
 
@@ -208,6 +209,16 @@ SetGpgcheck sets Gpgcheck field to given value.
 
 HasGpgcheck returns a boolean if a field has been set.
 
+### SetGpgcheckNil
+
+`func (o *RpmRpmPublicationResponse) SetGpgcheckNil(b bool)`
+
+ SetGpgcheckNil sets the value for Gpgcheck to be an explicit nil
+
+### UnsetGpgcheck
+`func (o *RpmRpmPublicationResponse) UnsetGpgcheck()`
+
+UnsetGpgcheck ensures that no value is present for Gpgcheck, not even an explicit nil
 ### GetRepoGpgcheck
 
 `func (o *RpmRpmPublicationResponse) GetRepoGpgcheck() int64`
@@ -233,6 +244,16 @@ SetRepoGpgcheck sets RepoGpgcheck field to given value.
 
 HasRepoGpgcheck returns a boolean if a field has been set.
 
+### SetRepoGpgcheckNil
+
+`func (o *RpmRpmPublicationResponse) SetRepoGpgcheckNil(b bool)`
+
+ SetRepoGpgcheckNil sets the value for RepoGpgcheck to be an explicit nil
+
+### UnsetRepoGpgcheck
+`func (o *RpmRpmPublicationResponse) UnsetRepoGpgcheck()`
+
+UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
 ### GetSqliteMetadata
 
 `func (o *RpmRpmPublicationResponse) GetSqliteMetadata() bool`
@@ -257,6 +278,31 @@ SetSqliteMetadata sets SqliteMetadata field to given value.
 `func (o *RpmRpmPublicationResponse) HasSqliteMetadata() bool`
 
 HasSqliteMetadata returns a boolean if a field has been set.
+
+### GetRepoConfig
+
+`func (o *RpmRpmPublicationResponse) GetRepoConfig() map[string]interface{}`
+
+GetRepoConfig returns the RepoConfig field if non-nil, zero value otherwise.
+
+### GetRepoConfigOk
+
+`func (o *RpmRpmPublicationResponse) GetRepoConfigOk() (*map[string]interface{}, bool)`
+
+GetRepoConfigOk returns a tuple with the RepoConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepoConfig
+
+`func (o *RpmRpmPublicationResponse) SetRepoConfig(v map[string]interface{})`
+
+SetRepoConfig sets RepoConfig field to given value.
+
+### HasRepoConfig
+
+`func (o *RpmRpmPublicationResponse) HasRepoConfig() bool`
+
+HasRepoConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

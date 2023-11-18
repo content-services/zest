@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RpmModulemdObsoleteResponse type satisfies the MappedNullable interface at compile time
@@ -43,6 +44,8 @@ type RpmModulemdObsoleteResponse struct {
 	// Obsolete by module stream.
 	ObsoletedByModuleStream NullableString `json:"obsoleted_by_module_stream"`
 }
+
+type _RpmModulemdObsoleteResponse RpmModulemdObsoleteResponse
 
 // NewRpmModulemdObsoleteResponse instantiates a new RpmModulemdObsoleteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -386,6 +389,49 @@ func (o RpmModulemdObsoleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["obsoleted_by_module_name"] = o.ObsoletedByModuleName.Get()
 	toSerialize["obsoleted_by_module_stream"] = o.ObsoletedByModuleStream.Get()
 	return toSerialize, nil
+}
+
+func (o *RpmModulemdObsoleteResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"modified",
+		"module_name",
+		"module_stream",
+		"message",
+		"override_previous",
+		"module_context",
+		"eol_date",
+		"obsoleted_by_module_name",
+		"obsoleted_by_module_stream",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmModulemdObsoleteResponse := _RpmModulemdObsoleteResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmModulemdObsoleteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmModulemdObsoleteResponse(varRpmModulemdObsoleteResponse)
+
+	return err
 }
 
 type NullableRpmModulemdObsoleteResponse struct {

@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RedisConnectionResponse type satisfies the MappedNullable interface at compile time
@@ -23,6 +24,8 @@ type RedisConnectionResponse struct {
 	// Info about whether the app can connect to Redis
 	Connected bool `json:"connected"`
 }
+
+type _RedisConnectionResponse RedisConnectionResponse
 
 // NewRedisConnectionResponse instantiates a new RedisConnectionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -78,6 +81,41 @@ func (o RedisConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connected"] = o.Connected
 	return toSerialize, nil
+}
+
+func (o *RedisConnectionResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"connected",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRedisConnectionResponse := _RedisConnectionResponse{}
+
+	err = json.Unmarshal(bytes, &varRedisConnectionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RedisConnectionResponse(varRedisConnectionResponse)
+
+	return err
 }
 
 type NullableRedisConnectionResponse struct {

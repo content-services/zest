@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 // checks if the UploadChunk type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type UploadChunk struct {
 	// The SHA-256 checksum of the chunk if available.
 	Sha256 NullableString `json:"sha256,omitempty"`
 }
+
+type _UploadChunk UploadChunk
 
 // NewUploadChunk instantiates a new UploadChunk object
 // This constructor will assign default values to properties that have it defined,
@@ -126,6 +129,41 @@ func (o UploadChunk) ToMap() (map[string]interface{}, error) {
 		toSerialize["sha256"] = o.Sha256.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *UploadChunk) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"file",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUploadChunk := _UploadChunk{}
+
+	err = json.Unmarshal(bytes, &varUploadChunk)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UploadChunk(varUploadChunk)
+
+	return err
 }
 
 type NullableUploadChunk struct {

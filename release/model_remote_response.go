@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RemoteResponse type satisfies the MappedNullable interface at compile time
@@ -59,6 +60,8 @@ type RemoteResponse struct {
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 }
+
+type _RemoteResponse RemoteResponse
 
 // NewRemoteResponse instantiates a new RemoteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -874,6 +877,42 @@ func (o RemoteResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
 	return toSerialize, nil
+}
+
+func (o *RemoteResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRemoteResponse := _RemoteResponse{}
+
+	err = json.Unmarshal(bytes, &varRemoteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RemoteResponse(varRemoteResponse)
+
+	return err
 }
 
 type NullableRemoteResponse struct {

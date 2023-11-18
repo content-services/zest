@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Role type satisfies the MappedNullable interface at compile time
@@ -27,6 +28,8 @@ type Role struct {
 	// List of permissions defining the role.
 	Permissions []string `json:"permissions"`
 }
+
+type _Role Role
 
 // NewRole instantiates a new Role object
 // This constructor will assign default values to properties that have it defined,
@@ -153,6 +156,42 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["permissions"] = o.Permissions
 	return toSerialize, nil
+}
+
+func (o *Role) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"permissions",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRole := _Role{}
+
+	err = json.Unmarshal(bytes, &varRole)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Role(varRole)
+
+	return err
 }
 
 type NullableRole struct {

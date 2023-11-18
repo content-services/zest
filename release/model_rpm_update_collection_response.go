@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RpmUpdateCollectionResponse type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type RpmUpdateCollectionResponse struct {
 	// List of packages
 	Packages []map[string]interface{} `json:"packages,omitempty"`
 }
+
+type _RpmUpdateCollectionResponse RpmUpdateCollectionResponse
 
 // NewRpmUpdateCollectionResponse instantiates a new RpmUpdateCollectionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -179,6 +182,43 @@ func (o RpmUpdateCollectionResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["packages"] = o.Packages
 	}
 	return toSerialize, nil
+}
+
+func (o *RpmUpdateCollectionResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"shortname",
+		"module",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmUpdateCollectionResponse := _RpmUpdateCollectionResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmUpdateCollectionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmUpdateCollectionResponse(varRpmUpdateCollectionResponse)
+
+	return err
 }
 
 type NullableRpmUpdateCollectionResponse struct {

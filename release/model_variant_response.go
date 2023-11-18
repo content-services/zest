@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VariantResponse type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type VariantResponse struct {
 	// Relative path to a pem file that identifies a product.
 	Identity NullableString `json:"identity"`
 }
+
+type _VariantResponse VariantResponse
 
 // NewVariantResponse instantiates a new VariantResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -340,6 +343,50 @@ func (o VariantResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["debug_repository"] = o.DebugRepository.Get()
 	toSerialize["identity"] = o.Identity.Get()
 	return toSerialize, nil
+}
+
+func (o *VariantResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"variant_id",
+		"uid",
+		"name",
+		"type",
+		"packages",
+		"source_packages",
+		"source_repository",
+		"debug_packages",
+		"debug_repository",
+		"identity",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVariantResponse := _VariantResponse{}
+
+	err = json.Unmarshal(bytes, &varVariantResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VariantResponse(varVariantResponse)
+
+	return err
 }
 
 type NullableVariantResponse struct {

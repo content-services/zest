@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the ArtifactResponse type satisfies the MappedNullable interface at compile time
@@ -41,6 +42,8 @@ type ArtifactResponse struct {
 	// The SHA-512 checksum of the file if available.
 	Sha512 NullableString `json:"sha512,omitempty"`
 }
+
+type _ArtifactResponse ArtifactResponse
 
 // NewArtifactResponse instantiates a new ArtifactResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -471,6 +474,41 @@ func (o ArtifactResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["sha512"] = o.Sha512.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *ArtifactResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"file",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varArtifactResponse := _ArtifactResponse{}
+
+	err = json.Unmarshal(bytes, &varArtifactResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ArtifactResponse(varArtifactResponse)
+
+	return err
 }
 
 type NullableArtifactResponse struct {

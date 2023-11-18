@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the DomainResponse type satisfies the MappedNullable interface at compile time
@@ -36,6 +37,8 @@ type DomainResponse struct {
 	// Boolean to hide distributions with a content guard in the content app.
 	HideGuardedDistributions *bool `json:"hide_guarded_distributions,omitempty"`
 }
+
+type _DomainResponse DomainResponse
 
 // NewDomainResponse instantiates a new DomainResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -336,6 +339,43 @@ func (o DomainResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["hide_guarded_distributions"] = o.HideGuardedDistributions
 	}
 	return toSerialize, nil
+}
+
+func (o *DomainResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"storage_class",
+		"storage_settings",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDomainResponse := _DomainResponse{}
+
+	err = json.Unmarshal(bytes, &varDomainResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DomainResponse(varDomainResponse)
+
+	return err
 }
 
 type NullableDomainResponse struct {

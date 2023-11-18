@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RepositoryVersionResponseContentSummary type satisfies the MappedNullable interface at compile time
@@ -24,6 +25,8 @@ type RepositoryVersionResponseContentSummary struct {
 	Removed map[string]map[string]interface{} `json:"removed"`
 	Present map[string]map[string]interface{} `json:"present"`
 }
+
+type _RepositoryVersionResponseContentSummary RepositoryVersionResponseContentSummary
 
 // NewRepositoryVersionResponseContentSummary instantiates a new RepositoryVersionResponseContentSummary object
 // This constructor will assign default values to properties that have it defined,
@@ -131,6 +134,43 @@ func (o RepositoryVersionResponseContentSummary) ToMap() (map[string]interface{}
 	toSerialize["removed"] = o.Removed
 	toSerialize["present"] = o.Present
 	return toSerialize, nil
+}
+
+func (o *RepositoryVersionResponseContentSummary) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"added",
+		"removed",
+		"present",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRepositoryVersionResponseContentSummary := _RepositoryVersionResponseContentSummary{}
+
+	err = json.Unmarshal(bytes, &varRepositoryVersionResponseContentSummary)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RepositoryVersionResponseContentSummary(varRepositoryVersionResponseContentSummary)
+
+	return err
 }
 
 type NullableRepositoryVersionResponseContentSummary struct {

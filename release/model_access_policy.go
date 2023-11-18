@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AccessPolicy type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type AccessPolicy struct {
 	// A callable for performing queryset scoping. See plugin documentation for valid callables. Set to blank to turn off queryset scoping.
 	QuerysetScoping map[string]interface{} `json:"queryset_scoping,omitempty"`
 }
+
+type _AccessPolicy AccessPolicy
 
 // NewAccessPolicy instantiates a new AccessPolicy object
 // This constructor will assign default values to properties that have it defined,
@@ -189,6 +192,41 @@ func (o AccessPolicy) ToMap() (map[string]interface{}, error) {
 		toSerialize["queryset_scoping"] = o.QuerysetScoping
 	}
 	return toSerialize, nil
+}
+
+func (o *AccessPolicy) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"statements",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAccessPolicy := _AccessPolicy{}
+
+	err = json.Unmarshal(bytes, &varAccessPolicy)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AccessPolicy(varAccessPolicy)
+
+	return err
 }
 
 type NullableAccessPolicy struct {

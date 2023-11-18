@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the HeaderContentGuard type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type HeaderContentGuard struct {
 	// A JQ syntax compatible filter. If jq_filter is not set, then the value willonly be Base64 decoded and checked as an explicit string match.
 	JqFilter NullableString `json:"jq_filter,omitempty"`
 }
+
+type _HeaderContentGuard HeaderContentGuard
 
 // NewHeaderContentGuard instantiates a new HeaderContentGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -228,6 +231,43 @@ func (o HeaderContentGuard) ToMap() (map[string]interface{}, error) {
 		toSerialize["jq_filter"] = o.JqFilter.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *HeaderContentGuard) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"header_name",
+		"header_value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHeaderContentGuard := _HeaderContentGuard{}
+
+	err = json.Unmarshal(bytes, &varHeaderContentGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HeaderContentGuard(varHeaderContentGuard)
+
+	return err
 }
 
 type NullableHeaderContentGuard struct {

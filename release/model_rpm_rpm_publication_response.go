@@ -29,12 +29,14 @@ type RpmRpmPublicationResponse struct {
 	Repository *string `json:"repository,omitempty"`
 	MetadataChecksumType *MetadataChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
 	PackageChecksumType *PackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
-	// An option specifying whether a client should perform a GPG signature check on packages.
-	Gpgcheck *int64 `json:"gpgcheck,omitempty"`
-	// An option specifying whether a client should perform a GPG signature check on the repodata.
-	RepoGpgcheck *int64 `json:"repo_gpgcheck,omitempty"`
+	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
+	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
+	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
+	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
 	// DEPRECATED: An option specifying whether Pulp should generate SQLite metadata.
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
+	// A JSON document describing config.repo file
+	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
 }
 
 // NewRpmRpmPublicationResponse instantiates a new RpmRpmPublicationResponse object
@@ -250,68 +252,88 @@ func (o *RpmRpmPublicationResponse) SetPackageChecksumType(v PackageChecksumType
 	o.PackageChecksumType = &v
 }
 
-// GetGpgcheck returns the Gpgcheck field value if set, zero value otherwise.
+// GetGpgcheck returns the Gpgcheck field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RpmRpmPublicationResponse) GetGpgcheck() int64 {
-	if o == nil || IsNil(o.Gpgcheck) {
+	if o == nil || IsNil(o.Gpgcheck.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.Gpgcheck
+	return *o.Gpgcheck.Get()
 }
 
 // GetGpgcheckOk returns a tuple with the Gpgcheck field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RpmRpmPublicationResponse) GetGpgcheckOk() (*int64, bool) {
-	if o == nil || IsNil(o.Gpgcheck) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Gpgcheck, true
+	return o.Gpgcheck.Get(), o.Gpgcheck.IsSet()
 }
 
 // HasGpgcheck returns a boolean if a field has been set.
 func (o *RpmRpmPublicationResponse) HasGpgcheck() bool {
-	if o != nil && !IsNil(o.Gpgcheck) {
+	if o != nil && o.Gpgcheck.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetGpgcheck gets a reference to the given int64 and assigns it to the Gpgcheck field.
+// SetGpgcheck gets a reference to the given NullableInt64 and assigns it to the Gpgcheck field.
 func (o *RpmRpmPublicationResponse) SetGpgcheck(v int64) {
-	o.Gpgcheck = &v
+	o.Gpgcheck.Set(&v)
+}
+// SetGpgcheckNil sets the value for Gpgcheck to be an explicit nil
+func (o *RpmRpmPublicationResponse) SetGpgcheckNil() {
+	o.Gpgcheck.Set(nil)
 }
 
-// GetRepoGpgcheck returns the RepoGpgcheck field value if set, zero value otherwise.
+// UnsetGpgcheck ensures that no value is present for Gpgcheck, not even an explicit nil
+func (o *RpmRpmPublicationResponse) UnsetGpgcheck() {
+	o.Gpgcheck.Unset()
+}
+
+// GetRepoGpgcheck returns the RepoGpgcheck field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RpmRpmPublicationResponse) GetRepoGpgcheck() int64 {
-	if o == nil || IsNil(o.RepoGpgcheck) {
+	if o == nil || IsNil(o.RepoGpgcheck.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.RepoGpgcheck
+	return *o.RepoGpgcheck.Get()
 }
 
 // GetRepoGpgcheckOk returns a tuple with the RepoGpgcheck field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *RpmRpmPublicationResponse) GetRepoGpgcheckOk() (*int64, bool) {
-	if o == nil || IsNil(o.RepoGpgcheck) {
+	if o == nil {
 		return nil, false
 	}
-	return o.RepoGpgcheck, true
+	return o.RepoGpgcheck.Get(), o.RepoGpgcheck.IsSet()
 }
 
 // HasRepoGpgcheck returns a boolean if a field has been set.
 func (o *RpmRpmPublicationResponse) HasRepoGpgcheck() bool {
-	if o != nil && !IsNil(o.RepoGpgcheck) {
+	if o != nil && o.RepoGpgcheck.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRepoGpgcheck gets a reference to the given int64 and assigns it to the RepoGpgcheck field.
+// SetRepoGpgcheck gets a reference to the given NullableInt64 and assigns it to the RepoGpgcheck field.
 func (o *RpmRpmPublicationResponse) SetRepoGpgcheck(v int64) {
-	o.RepoGpgcheck = &v
+	o.RepoGpgcheck.Set(&v)
+}
+// SetRepoGpgcheckNil sets the value for RepoGpgcheck to be an explicit nil
+func (o *RpmRpmPublicationResponse) SetRepoGpgcheckNil() {
+	o.RepoGpgcheck.Set(nil)
+}
+
+// UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
+func (o *RpmRpmPublicationResponse) UnsetRepoGpgcheck() {
+	o.RepoGpgcheck.Unset()
 }
 
 // GetSqliteMetadata returns the SqliteMetadata field value if set, zero value otherwise.
@@ -346,6 +368,38 @@ func (o *RpmRpmPublicationResponse) SetSqliteMetadata(v bool) {
 	o.SqliteMetadata = &v
 }
 
+// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise.
+func (o *RpmRpmPublicationResponse) GetRepoConfig() map[string]interface{} {
+	if o == nil || IsNil(o.RepoConfig) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.RepoConfig
+}
+
+// GetRepoConfigOk returns a tuple with the RepoConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmPublicationResponse) GetRepoConfigOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.RepoConfig) {
+		return map[string]interface{}{}, false
+	}
+	return o.RepoConfig, true
+}
+
+// HasRepoConfig returns a boolean if a field has been set.
+func (o *RpmRpmPublicationResponse) HasRepoConfig() bool {
+	if o != nil && !IsNil(o.RepoConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetRepoConfig gets a reference to the given map[string]interface{} and assigns it to the RepoConfig field.
+func (o *RpmRpmPublicationResponse) SetRepoConfig(v map[string]interface{}) {
+	o.RepoConfig = v
+}
+
 func (o RpmRpmPublicationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -374,14 +428,17 @@ func (o RpmRpmPublicationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PackageChecksumType) {
 		toSerialize["package_checksum_type"] = o.PackageChecksumType
 	}
-	if !IsNil(o.Gpgcheck) {
-		toSerialize["gpgcheck"] = o.Gpgcheck
+	if o.Gpgcheck.IsSet() {
+		toSerialize["gpgcheck"] = o.Gpgcheck.Get()
 	}
-	if !IsNil(o.RepoGpgcheck) {
-		toSerialize["repo_gpgcheck"] = o.RepoGpgcheck
+	if o.RepoGpgcheck.IsSet() {
+		toSerialize["repo_gpgcheck"] = o.RepoGpgcheck.Get()
 	}
 	if !IsNil(o.SqliteMetadata) {
 		toSerialize["sqlite_metadata"] = o.SqliteMetadata
+	}
+	if !IsNil(o.RepoConfig) {
+		toSerialize["repo_config"] = o.RepoConfig
 	}
 	return toSerialize, nil
 }

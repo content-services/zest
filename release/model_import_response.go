@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the ImportResponse type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type ImportResponse struct {
 	// Any parameters that were used to create the import.
 	Params map[string]interface{} `json:"params"`
 }
+
+type _ImportResponse ImportResponse
 
 // NewImportResponse instantiates a new ImportResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -180,6 +183,42 @@ func (o ImportResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["task"] = o.Task
 	toSerialize["params"] = o.Params
 	return toSerialize, nil
+}
+
+func (o *ImportResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"task",
+		"params",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varImportResponse := _ImportResponse{}
+
+	err = json.Unmarshal(bytes, &varImportResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImportResponse(varImportResponse)
+
+	return err
 }
 
 type NullableImportResponse struct {

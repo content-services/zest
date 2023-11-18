@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ContentRpmAdvisoriesCreate
 
-> AsyncOperationResponse ContentRpmAdvisoriesCreate(ctx, pulpDomain).Repository(repository).File(file).Execute()
+> AsyncOperationResponse ContentRpmAdvisoriesCreate(ctx, pulpDomain).Repository(repository).File(file).Upload(upload).Execute()
 
 Create an update record
 
@@ -33,11 +33,12 @@ import (
 func main() {
     pulpDomain := "pulpDomain_example" // string | 
     repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
-    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the artifact of the content unit. (optional)
+    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+    upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate(context.Background(), pulpDomain).Repository(repository).File(file).Execute()
+    resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate(context.Background(), pulpDomain).Repository(repository).File(file).Upload(upload).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,7 +65,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
- **file** | ***os.File** | An uploaded file that may be turned into the artifact of the content unit. | 
+ **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
+ **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
 
 ### Return type
 

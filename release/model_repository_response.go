@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RepositoryResponse type satisfies the MappedNullable interface at compile time
@@ -36,6 +37,8 @@ type RepositoryResponse struct {
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
 }
+
+type _RepositoryResponse RepositoryResponse
 
 // NewRepositoryResponse instantiates a new RepositoryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -401,6 +404,41 @@ func (o RepositoryResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["remote"] = o.Remote.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *RepositoryResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRepositoryResponse := _RepositoryResponse{}
+
+	err = json.Unmarshal(bytes, &varRepositoryResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RepositoryResponse(varRepositoryResponse)
+
+	return err
 }
 
 type NullableRepositoryResponse struct {

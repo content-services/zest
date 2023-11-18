@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RpmRpmDistributionResponse type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,8 @@ type RpmRpmDistributionResponse struct {
 	// An option specifying whether Pulp should generate *.repo files.
 	GenerateRepoConfig *bool `json:"generate_repo_config,omitempty"`
 }
+
+type _RpmRpmDistributionResponse RpmRpmDistributionResponse
 
 // NewRpmRpmDistributionResponse instantiates a new RpmRpmDistributionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -476,6 +479,42 @@ func (o RpmRpmDistributionResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["generate_repo_config"] = o.GenerateRepoConfig
 	}
 	return toSerialize, nil
+}
+
+func (o *RpmRpmDistributionResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"base_path",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmRpmDistributionResponse := _RpmRpmDistributionResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmRpmDistributionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmRpmDistributionResponse(varRpmRpmDistributionResponse)
+
+	return err
 }
 
 type NullableRpmRpmDistributionResponse struct {

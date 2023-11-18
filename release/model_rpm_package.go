@@ -27,9 +27,9 @@ type RpmPackage struct {
 	Artifact *string `json:"artifact,omitempty"`
 	// Path where the artifact is located relative to distributions base_path
 	RelativePath *string `json:"relative_path,omitempty"`
-	// An uploaded file that may be turned into the artifact of the content unit.
+	// An uploaded file that may be turned into the content unit.
 	File **os.File `json:"file,omitempty"`
-	// An uncommitted upload that may be turned into the artifact of the content unit.
+	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
 }
 

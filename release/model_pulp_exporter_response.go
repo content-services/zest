@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the PulpExporterResponse type satisfies the MappedNullable interface at compile time
@@ -32,6 +33,8 @@ type PulpExporterResponse struct {
 	// Last attempted export for this PulpExporter
 	LastExport NullableString `json:"last_export,omitempty"`
 }
+
+type _PulpExporterResponse PulpExporterResponse
 
 // NewPulpExporterResponse instantiates a new PulpExporterResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -254,6 +257,43 @@ func (o PulpExporterResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["last_export"] = o.LastExport.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *PulpExporterResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"path",
+		"repositories",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPulpExporterResponse := _PulpExporterResponse{}
+
+	err = json.Unmarshal(bytes, &varPulpExporterResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpExporterResponse(varPulpExporterResponse)
+
+	return err
 }
 
 type NullablePulpExporterResponse struct {

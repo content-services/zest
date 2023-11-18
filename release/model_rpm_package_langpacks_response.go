@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the RpmPackageLangpacksResponse type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type RpmPackageLangpacksResponse struct {
 	// Langpacks digest.
 	Digest NullableString `json:"digest"`
 }
+
+type _RpmPackageLangpacksResponse RpmPackageLangpacksResponse
 
 // NewRpmPackageLangpacksResponse instantiates a new RpmPackageLangpacksResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -186,6 +189,42 @@ func (o RpmPackageLangpacksResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["digest"] = o.Digest.Get()
 	return toSerialize, nil
+}
+
+func (o *RpmPackageLangpacksResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"matches",
+		"digest",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmPackageLangpacksResponse := _RpmPackageLangpacksResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmPackageLangpacksResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmPackageLangpacksResponse(varRpmPackageLangpacksResponse)
+
+	return err
 }
 
 type NullableRpmPackageLangpacksResponse struct {

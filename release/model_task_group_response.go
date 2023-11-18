@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the TaskGroupResponse type satisfies the MappedNullable interface at compile time
@@ -42,6 +43,8 @@ type TaskGroupResponse struct {
 	GroupProgressReports []GroupProgressReportResponse `json:"group_progress_reports,omitempty"`
 	Tasks []MinimalTaskResponse `json:"tasks,omitempty"`
 }
+
+type _TaskGroupResponse TaskGroupResponse
 
 // NewTaskGroupResponse instantiates a new TaskGroupResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -473,6 +476,42 @@ func (o TaskGroupResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["tasks"] = o.Tasks
 	}
 	return toSerialize, nil
+}
+
+func (o *TaskGroupResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"all_tasks_dispatched",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTaskGroupResponse := _TaskGroupResponse{}
+
+	err = json.Unmarshal(bytes, &varTaskGroupResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TaskGroupResponse(varTaskGroupResponse)
+
+	return err
 }
 
 type NullableTaskGroupResponse struct {

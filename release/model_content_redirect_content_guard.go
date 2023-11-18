@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContentRedirectContentGuard type satisfies the MappedNullable interface at compile time
@@ -25,6 +26,8 @@ type ContentRedirectContentGuard struct {
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
 }
+
+type _ContentRedirectContentGuard ContentRedirectContentGuard
 
 // NewContentRedirectContentGuard instantiates a new ContentRedirectContentGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -125,6 +128,41 @@ func (o ContentRedirectContentGuard) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *ContentRedirectContentGuard) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContentRedirectContentGuard := _ContentRedirectContentGuard{}
+
+	err = json.Unmarshal(bytes, &varContentRedirectContentGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContentRedirectContentGuard(varContentRedirectContentGuard)
+
+	return err
 }
 
 type NullableContentRedirectContentGuard struct {

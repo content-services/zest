@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VersionResponse type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type VersionResponse struct {
 	// Domain feature compatibility of component
 	DomainCompatible bool `json:"domain_compatible"`
 }
+
+type _VersionResponse VersionResponse
 
 // NewVersionResponse instantiates a new VersionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -162,6 +165,44 @@ func (o VersionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["package"] = o.Package
 	toSerialize["domain_compatible"] = o.DomainCompatible
 	return toSerialize, nil
+}
+
+func (o *VersionResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"component",
+		"version",
+		"package",
+		"domain_compatible",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVersionResponse := _VersionResponse{}
+
+	err = json.Unmarshal(bytes, &varVersionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VersionResponse(varVersionResponse)
+
+	return err
 }
 
 type NullableVersionResponse struct {

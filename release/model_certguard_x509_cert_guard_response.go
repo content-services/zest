@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the CertguardX509CertGuardResponse type satisfies the MappedNullable interface at compile time
@@ -31,6 +32,8 @@ type CertguardX509CertGuardResponse struct {
 	// A Certificate Authority (CA) certificate (or a bundle thereof) used to verify client-certificate authenticity.
 	CaCertificate string `json:"ca_certificate"`
 }
+
+type _CertguardX509CertGuardResponse CertguardX509CertGuardResponse
 
 // NewCertguardX509CertGuardResponse instantiates a new CertguardX509CertGuardResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -227,6 +230,42 @@ func (o CertguardX509CertGuardResponse) ToMap() (map[string]interface{}, error) 
 	}
 	toSerialize["ca_certificate"] = o.CaCertificate
 	return toSerialize, nil
+}
+
+func (o *CertguardX509CertGuardResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"ca_certificate",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCertguardX509CertGuardResponse := _CertguardX509CertGuardResponse{}
+
+	err = json.Unmarshal(bytes, &varCertguardX509CertGuardResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CertguardX509CertGuardResponse(varCertguardX509CertGuardResponse)
+
+	return err
 }
 
 type NullableCertguardX509CertGuardResponse struct {

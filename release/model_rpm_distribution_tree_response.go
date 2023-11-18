@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RpmDistributionTreeResponse type satisfies the MappedNullable interface at compile time
@@ -54,6 +55,8 @@ type RpmDistributionTreeResponse struct {
 	Images []ImageResponse `json:"images"`
 	Variants []VariantResponse `json:"variants"`
 }
+
+type _RpmDistributionTreeResponse RpmDistributionTreeResponse
 
 // NewRpmDistributionTreeResponse instantiates a new RpmDistributionTreeResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -600,6 +603,58 @@ func (o RpmDistributionTreeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["images"] = o.Images
 	toSerialize["variants"] = o.Variants
 	return toSerialize, nil
+}
+
+func (o *RpmDistributionTreeResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"header_version",
+		"release_name",
+		"release_short",
+		"release_version",
+		"release_is_layered",
+		"base_product_name",
+		"base_product_short",
+		"base_product_version",
+		"arch",
+		"build_timestamp",
+		"instimage",
+		"mainimage",
+		"discnum",
+		"totaldiscs",
+		"addons",
+		"checksums",
+		"images",
+		"variants",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRpmDistributionTreeResponse := _RpmDistributionTreeResponse{}
+
+	err = json.Unmarshal(bytes, &varRpmDistributionTreeResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmDistributionTreeResponse(varRpmDistributionTreeResponse)
+
+	return err
 }
 
 type NullableRpmDistributionTreeResponse struct {

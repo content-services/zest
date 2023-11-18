@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the FilesystemExporter type satisfies the MappedNullable interface at compile time
@@ -26,6 +27,8 @@ type FilesystemExporter struct {
 	Path string `json:"path"`
 	Method *MethodEnum `json:"method,omitempty"`
 }
+
+type _FilesystemExporter FilesystemExporter
 
 // NewFilesystemExporter instantiates a new FilesystemExporter object
 // This constructor will assign default values to properties that have it defined,
@@ -146,6 +149,42 @@ func (o FilesystemExporter) ToMap() (map[string]interface{}, error) {
 		toSerialize["method"] = o.Method
 	}
 	return toSerialize, nil
+}
+
+func (o *FilesystemExporter) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"path",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFilesystemExporter := _FilesystemExporter{}
+
+	err = json.Unmarshal(bytes, &varFilesystemExporter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FilesystemExporter(varFilesystemExporter)
+
+	return err
 }
 
 type NullableFilesystemExporter struct {

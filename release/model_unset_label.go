@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UnsetLabel type satisfies the MappedNullable interface at compile time
@@ -22,6 +23,8 @@ var _ MappedNullable = &UnsetLabel{}
 type UnsetLabel struct {
 	Key string `json:"key"`
 }
+
+type _UnsetLabel UnsetLabel
 
 // NewUnsetLabel instantiates a new UnsetLabel object
 // This constructor will assign default values to properties that have it defined,
@@ -77,6 +80,41 @@ func (o UnsetLabel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	return toSerialize, nil
+}
+
+func (o *UnsetLabel) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"key",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUnsetLabel := _UnsetLabel{}
+
+	err = json.Unmarshal(bytes, &varUnsetLabel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UnsetLabel(varUnsetLabel)
+
+	return err
 }
 
 type NullableUnsetLabel struct {

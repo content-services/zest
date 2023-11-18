@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 // checks if the UploadResponse type satisfies the MappedNullable interface at compile time
@@ -29,6 +30,8 @@ type UploadResponse struct {
 	// Timestamp when upload is committed.
 	Completed *time.Time `json:"completed,omitempty"`
 }
+
+type _UploadResponse UploadResponse
 
 // NewUploadResponse instantiates a new UploadResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -189,6 +192,41 @@ func (o UploadResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["completed"] = o.Completed
 	}
 	return toSerialize, nil
+}
+
+func (o *UploadResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"size",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUploadResponse := _UploadResponse{}
+
+	err = json.Unmarshal(bytes, &varUploadResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UploadResponse(varUploadResponse)
+
+	return err
 }
 
 type NullableUploadResponse struct {

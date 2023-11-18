@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the StorageResponse type satisfies the MappedNullable interface at compile time
@@ -27,6 +28,8 @@ type StorageResponse struct {
 	// Number of free bytes
 	Free NullableInt64 `json:"free"`
 }
+
+type _StorageResponse StorageResponse
 
 // NewStorageResponse instantiates a new StorageResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -140,6 +143,43 @@ func (o StorageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["used"] = o.Used.Get()
 	toSerialize["free"] = o.Free.Get()
 	return toSerialize, nil
+}
+
+func (o *StorageResponse) UnmarshalJSON(bytes []byte) (err error) {
+    // This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"total",
+		"used",
+		"free",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(bytes, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varStorageResponse := _StorageResponse{}
+
+	err = json.Unmarshal(bytes, &varStorageResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StorageResponse(varStorageResponse)
+
+	return err
 }
 
 type NullableStorageResponse struct {
