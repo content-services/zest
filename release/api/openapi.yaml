@@ -13,10 +13,10 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.41.0
+    core: 3.41.1
     certguard: 1.7.1
     rpm: 3.24.0
-    file: 3.41.0
+    file: 3.41.1
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -24828,50 +24828,50 @@ components:
       description: A serializer for ArtifactDistribution.
       example:
         hidden: false
-        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
-        name: name
+        pulp_href: https://openapi-generator.tech
         base_url: base_url
-        pulp_created: 2000-01-23T04:56:07.000+00:00
+        name: name
         base_path: base_path
+        pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
           type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
           readOnly: true
           type: string
         pulp_href:
           format: uri
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
       required:
       - base_path
       - name
@@ -26140,22 +26140,22 @@ components:
         count: 123
         results:
         - hidden: false
-          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
-          name: name
+          pulp_href: https://openapi-generator.tech
           base_url: base_url
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          name: name
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
         - hidden: false
-          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
-          name: name
+          pulp_href: https://openapi-generator.tech
           base_url: base_url
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          name: name
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
         count:
