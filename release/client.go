@@ -92,10 +92,6 @@ type APIClient struct {
 
 	ContentguardsRbacAPI *ContentguardsRbacAPIService
 
-	ContentguardsRhsmAPI *ContentguardsRhsmAPIService
-
-	ContentguardsX509API *ContentguardsX509APIService
-
 	DistributionsAPI *DistributionsAPIService
 
 	DistributionsArtifactsAPI *DistributionsArtifactsAPIService
@@ -228,8 +224,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentguardsContentRedirectAPI = (*ContentguardsContentRedirectAPIService)(&c.common)
 	c.ContentguardsHeaderAPI = (*ContentguardsHeaderAPIService)(&c.common)
 	c.ContentguardsRbacAPI = (*ContentguardsRbacAPIService)(&c.common)
-	c.ContentguardsRhsmAPI = (*ContentguardsRhsmAPIService)(&c.common)
-	c.ContentguardsX509API = (*ContentguardsX509APIService)(&c.common)
 	c.DistributionsAPI = (*DistributionsAPIService)(&c.common)
 	c.DistributionsArtifactsAPI = (*DistributionsArtifactsAPIService)(&c.common)
 	c.DistributionsFileAPI = (*DistributionsFileAPIService)(&c.common)
