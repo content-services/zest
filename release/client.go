@@ -86,6 +86,8 @@ type APIClient struct {
 
 	ContentguardsAPI *ContentguardsAPIService
 
+	ContentguardsCompositeAPI *ContentguardsCompositeAPIService
+
 	ContentguardsContentRedirectAPI *ContentguardsContentRedirectAPIService
 
 	ContentguardsHeaderAPI *ContentguardsHeaderAPIService
@@ -221,6 +223,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentPackagesAPI = (*ContentPackagesAPIService)(&c.common)
 	c.ContentRepoMetadataFilesAPI = (*ContentRepoMetadataFilesAPIService)(&c.common)
 	c.ContentguardsAPI = (*ContentguardsAPIService)(&c.common)
+	c.ContentguardsCompositeAPI = (*ContentguardsCompositeAPIService)(&c.common)
 	c.ContentguardsContentRedirectAPI = (*ContentguardsContentRedirectAPIService)(&c.common)
 	c.ContentguardsHeaderAPI = (*ContentguardsHeaderAPIService)(&c.common)
 	c.ContentguardsRbacAPI = (*ContentguardsRbacAPIService)(&c.common)

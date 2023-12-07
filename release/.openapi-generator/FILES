@@ -21,6 +21,7 @@ api_content_packagelangpacks.go
 api_content_packages.go
 api_content_repo_metadata_files.go
 api_contentguards.go
+api_contentguards_composite.go
 api_contentguards_content_redirect.go
 api_contentguards_header.go
 api_contentguards_rbac.go
@@ -86,6 +87,8 @@ docs/ArtifactResponse.md
 docs/ArtifactsAPI.md
 docs/AsyncOperationResponse.md
 docs/ChecksumResponse.md
+docs/CompositeContentGuard.md
+docs/CompositeContentGuardResponse.md
 docs/CompsXml.md
 docs/ContentAPI.md
 docs/ContentAdvisoriesAPI.md
@@ -107,6 +110,7 @@ docs/ContentRepoMetadataFilesAPI.md
 docs/ContentSettingsResponse.md
 docs/ContentSummaryResponse.md
 docs/ContentguardsAPI.md
+docs/ContentguardsCompositeAPI.md
 docs/ContentguardsContentRedirectAPI.md
 docs/ContentguardsHeaderAPI.md
 docs/ContentguardsRbacAPI.md
@@ -175,6 +179,7 @@ docs/PackageChecksumTypeEnum.md
 docs/PaginatedAccessPolicyResponseList.md
 docs/PaginatedArtifactDistributionResponseList.md
 docs/PaginatedArtifactResponseList.md
+docs/PaginatedCompositeContentGuardResponseList.md
 docs/PaginatedContentGuardResponseList.md
 docs/PaginatedContentRedirectContentGuardResponseList.md
 docs/PaginatedDistributionResponseList.md
@@ -229,6 +234,7 @@ docs/PaginatedrpmRpmRepositoryResponseList.md
 docs/PaginatedrpmUlnRemoteResponseList.md
 docs/PaginatedrpmUpdateRecordResponseList.md
 docs/PatchedAccessPolicy.md
+docs/PatchedCompositeContentGuard.md
 docs/PatchedContentRedirectContentGuard.md
 docs/PatchedDomain.md
 docs/PatchedFilesystemExporter.md
@@ -381,6 +387,8 @@ model_artifact_distribution_response.go
 model_artifact_response.go
 model_async_operation_response.go
 model_checksum_response.go
+model_composite_content_guard.go
+model_composite_content_guard_response.go
 model_comps_xml.go
 model_content_app_status_response.go
 model_content_guard_response.go
@@ -434,6 +442,7 @@ model_package_checksum_type_enum.go
 model_paginated_access_policy_response_list.go
 model_paginated_artifact_distribution_response_list.go
 model_paginated_artifact_response_list.go
+model_paginated_composite_content_guard_response_list.go
 model_paginated_content_guard_response_list.go
 model_paginated_content_redirect_content_guard_response_list.go
 model_paginated_distribution_response_list.go
@@ -488,6 +497,7 @@ model_paginatedrpm_rpm_repository_response_list.go
 model_paginatedrpm_uln_remote_response_list.go
 model_paginatedrpm_update_record_response_list.go
 model_patched_access_policy.go
+model_patched_composite_content_guard.go
 model_patched_content_redirect_content_guard.go
 model_patched_domain.go
 model_patched_filesystem_exporter.go
@@ -618,6 +628,7 @@ test/api_content_packagelangpacks_test.go
 test/api_content_packages_test.go
 test/api_content_repo_metadata_files_test.go
 test/api_content_test.go
+test/api_contentguards_composite_test.go
 test/api_contentguards_content_redirect_test.go
 test/api_contentguards_header_test.go
 test/api_contentguards_rbac_test.go

@@ -134,13 +134,13 @@ func (r ContentguardsAPIContentguardsListRequest) PulpIdIn(pulpIdIn []string) Co
 	return r
 }
 
-// Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header
+// Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite
 func (r ContentguardsAPIContentguardsListRequest) PulpType(pulpType string) ContentguardsAPIContentguardsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header
+// Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite
 func (r ContentguardsAPIContentguardsListRequest) PulpTypeIn(pulpTypeIn []string) ContentguardsAPIContentguardsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

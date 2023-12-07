@@ -44,8 +44,8 @@ func main() {
     ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
     pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
     pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpType := "pulpType_example" // string | Pulp type  * `core.rbac` - core.rbac * `core.content_redirect` - core.content_redirect * `core.header` - core.header (optional)
-    pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.  * `core.rbac` - core.rbac * `core.content_redirect` - core.content_redirect * `core.header` - core.header (optional)
+    pulpType := "pulpType_example" // string | Pulp type  * `core.rbac` - core.rbac * `core.content_redirect` - core.content_redirect * `core.header` - core.header * `core.composite` - core.composite (optional)
+    pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.  * `core.rbac` - core.rbac * `core.content_redirect` - core.content_redirect * `core.header` - core.header * `core.composite` - core.composite (optional)
     q := "q_example" // string |  (optional)
     fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
     excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
@@ -92,8 +92,8 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header | 
+ **pulpType** | **string** | Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite | 
  **q** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 

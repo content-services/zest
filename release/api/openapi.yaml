@@ -13,9 +13,9 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.42.0
+    core: 3.43.0
     rpm: 3.24.0
-    file: 3.42.0
+    file: 3.43.0
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -5580,12 +5580,14 @@ paths:
           * `core.rbac` - core.rbac
           * `core.content_redirect` - core.content_redirect
           * `core.header` - core.header
+          * `core.composite` - core.composite
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - core.composite
           - core.content_redirect
           - core.header
           - core.rbac
@@ -5597,6 +5599,7 @@ paths:
           * `core.rbac` - core.rbac
           * `core.content_redirect` - core.content_redirect
           * `core.header` - core.header
+          * `core.composite` - core.composite
         explode: false
         in: query
         name: pulp_type__in
@@ -5604,6 +5607,7 @@ paths:
         schema:
           items:
             enum:
+            - core.composite
             - core.content_redirect
             - core.header
             - core.rbac
@@ -5650,6 +5654,555 @@ paths:
       summary: List content guards
       tags:
       - Contentguards
+  /pulp/{pulp_domain}/api/v3/contentguards/core/composite/:
+    get:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `description` - Description
+          * `-description` - Description (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCompositeContentGuardResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List composite content guards
+      tags:
+      - "Contentguards: Composite"
+    post:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a composite content guard
+      tags:
+      - "Contentguards: Composite"
+  '{composite_content_guard_href}':
+    delete:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_delete
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a composite content guard
+      tags:
+      - "Contentguards: Composite"
+    get:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_read
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a composite content guard
+      tags:
+      - "Contentguards: Composite"
+    patch:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCompositeContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCompositeContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCompositeContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a composite content guard
+      tags:
+      - "Contentguards: Composite"
+    put:
+      description: Content guard that queries a list-of content-guards for access
+        permissions.
+      operationId: contentguards_core_composite_update
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CompositeContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a composite content guard
+      tags:
+      - "Contentguards: Composite"
+  '{composite_content_guard_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: contentguards_core_composite_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Contentguards: Composite"
+  '{composite_content_guard_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: contentguards_core_composite_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Contentguards: Composite"
+  '{composite_content_guard_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: contentguards_core_composite_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Contentguards: Composite"
+  '{composite_content_guard_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: contentguards_core_composite_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: composite_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Contentguards: Composite"
   /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/:
     get:
       description: Content guard to protect preauthenticated redirects to the content
@@ -24060,23 +24613,20 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
+        pulp_href: https://openapi-generator.tech
         hidden: false
         pulp_labels:
           key: pulp_labels
-        pulp_href: https://openapi-generator.tech
         name: name
         base_url: base_url
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -24087,24 +24637,27 @@ components:
           format: date-time
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        pulp_href:
-          format: uri
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
       required:
       - base_path
       - name
@@ -24200,6 +24753,85 @@ components:
       required:
       - checksum
       - path
+      type: object
+    CompositeContentGuard:
+      description: |-
+        Base serializer for use with :class:`pulpcore.app.models.Model`
+
+        This ensures that all Serializers provide values for the 'pulp_href` field.
+
+        The class provides a default for the ``ref_name`` attribute in the
+        ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions
+        of plugins are namespaced properly.
+      example:
+        name: name
+        description: description
+        guards:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        guards:
+          description: List of ContentGuards to ask for access-permission.
+          items:
+            format: uri
+            nullable: true
+            type: string
+          type: array
+      required:
+      - name
+      type: object
+    CompositeContentGuardResponse:
+      description: |-
+        Base serializer for use with :class:`pulpcore.app.models.Model`
+
+        This ensures that all Serializers provide values for the 'pulp_href` field.
+
+        The class provides a default for the ``ref_name`` attribute in the
+        ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions
+        of plugins are namespaced properly.
+      example:
+        pulp_href: https://openapi-generator.tech
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        guards:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        guards:
+          description: List of ContentGuards to ask for access-permission.
+          items:
+            format: uri
+            nullable: true
+            type: string
+          type: array
+      required:
+      - name
       type: object
     CompsXml:
       description: A serializer for comps.xml Upload API.
@@ -25372,19 +26004,19 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - hidden: false
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           name: name
           base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - hidden: false
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           name: name
           base_url: base_url
           base_path: base_path
@@ -25452,6 +26084,45 @@ components:
         results:
           items:
             $ref: '#/components/schemas/ArtifactResponse'
+          type: array
+      type: object
+    PaginatedCompositeContentGuardResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          guards:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          guards:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/CompositeContentGuardResponse'
           type: array
       type: object
     PaginatedContentGuardResponseList:
@@ -28215,6 +28886,39 @@ components:
           description: A callable for performing queryset scoping. See plugin documentation
             for valid callables. Set to blank to turn off queryset scoping.
           type: object
+      type: object
+    PatchedCompositeContentGuard:
+      description: |-
+        Base serializer for use with :class:`pulpcore.app.models.Model`
+
+        This ensures that all Serializers provide values for the 'pulp_href` field.
+
+        The class provides a default for the ``ref_name`` attribute in the
+        ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions
+        of plugins are namespaced properly.
+      example:
+        name: name
+        description: description
+        guards:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        guards:
+          description: List of ContentGuards to ask for access-permission.
+          items:
+            format: uri
+            nullable: true
+            type: string
+          type: array
       type: object
     PatchedContentRedirectContentGuard:
       description: A serializer for ContentRedirectContentGuard.
