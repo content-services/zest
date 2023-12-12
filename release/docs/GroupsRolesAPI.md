@@ -25,25 +25,25 @@ Create a group role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupHref := "groupHref_example" // string | 
-    groupRole := *openapiclient.NewGroupRole("Role_example", "ContentObject_example") // GroupRole | 
+	groupHref := "groupHref_example" // string | 
+	groupRole := *openapiclient.NewGroupRole("Role_example", "ContentObject_example") // GroupRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesCreate(context.Background(), groupHref).GroupRole(groupRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GroupsRolesCreate`: GroupRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesCreate(context.Background(), groupHref).GroupRole(groupRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GroupsRolesCreate`: GroupRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesCreate`: %v\n", resp)
 }
 ```
 
@@ -97,22 +97,22 @@ Delete a group role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupsGroupRoleHref := "groupsGroupRoleHref_example" // string | 
+	groupsGroupRoleHref := "groupsGroupRoleHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.GroupsRolesAPI.GroupsRolesDelete(context.Background(), groupsGroupRoleHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.GroupsRolesAPI.GroupsRolesDelete(context.Background(), groupsGroupRoleHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -165,39 +165,39 @@ List group roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupHref := "groupHref_example" // string | 
-    contentObject := "contentObject_example" // string | content_object (optional)
-    domain := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `role` - Role * `-role` - Role (descending) * `description` - Description * `-description` - Description (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    role := "role_example" // string |  (optional)
-    roleContains := "roleContains_example" // string |  (optional)
-    roleIcontains := "roleIcontains_example" // string |  (optional)
-    roleIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    roleStartswith := "roleStartswith_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	groupHref := "groupHref_example" // string | 
+	contentObject := "contentObject_example" // string | content_object (optional)
+	domain := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `role` - Role * `-role` - Role (descending) * `description` - Description * `-description` - Description (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	role := "role_example" // string |  (optional)
+	roleContains := "roleContains_example" // string |  (optional)
+	roleIcontains := "roleIcontains_example" // string |  (optional)
+	roleIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	roleStartswith := "roleStartswith_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesList(context.Background(), groupHref).ContentObject(contentObject).Domain(domain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Role(role).RoleContains(roleContains).RoleIcontains(roleIcontains).RoleIn(roleIn).RoleStartswith(roleStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GroupsRolesList`: PaginatedGroupRoleResponseList
-    fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesList(context.Background(), groupHref).ContentObject(contentObject).Domain(domain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Role(role).RoleContains(roleContains).RoleIcontains(roleIcontains).RoleIn(roleIn).RoleStartswith(roleStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GroupsRolesList`: PaginatedGroupRoleResponseList
+	fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesList`: %v\n", resp)
 }
 ```
 
@@ -265,26 +265,26 @@ Inspect a group role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupsGroupRoleHref := "groupsGroupRoleHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	groupsGroupRoleHref := "groupsGroupRoleHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesRead(context.Background(), groupsGroupRoleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GroupsRolesRead`: GroupRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GroupsRolesAPI.GroupsRolesRead(context.Background(), groupsGroupRoleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsRolesAPI.GroupsRolesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GroupsRolesRead`: GroupRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `GroupsRolesAPI.GroupsRolesRead`: %v\n", resp)
 }
 ```
 

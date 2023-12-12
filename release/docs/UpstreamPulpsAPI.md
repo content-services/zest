@@ -32,25 +32,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsAddRole`: %v\n", resp)
 }
 ```
 
@@ -104,25 +104,25 @@ Create an upstream pulp
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
+	pulpDomain := "pulpDomain_example" // string | 
+	upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsCreate(context.Background(), pulpDomain).UpstreamPulp(upstreamPulp).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsCreate`: UpstreamPulpResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsCreate(context.Background(), pulpDomain).UpstreamPulp(upstreamPulp).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsCreate`: UpstreamPulpResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsCreate`: %v\n", resp)
 }
 ```
 
@@ -176,22 +176,22 @@ Delete an upstream pulp
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsDelete(context.Background(), upstreamPulpHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsDelete(context.Background(), upstreamPulpHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -244,28 +244,28 @@ List upstream pulps
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsList`: PaginatedUpstreamPulpResponseList
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsList`: PaginatedUpstreamPulpResponseList
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsList`: %v\n", resp)
 }
 ```
 
@@ -322,26 +322,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsListRoles`: %v\n", resp)
 }
 ```
 
@@ -396,26 +396,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -470,25 +470,25 @@ Update an upstream pulp
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    patchedUpstreamPulp := *openapiclient.NewPatchedUpstreamPulp() // PatchedUpstreamPulp | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	patchedUpstreamPulp := *openapiclient.NewPatchedUpstreamPulp() // PatchedUpstreamPulp | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsPartialUpdate(context.Background(), upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsPartialUpdate`: UpstreamPulpResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsPartialUpdate(context.Background(), upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsPartialUpdate`: UpstreamPulpResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -542,26 +542,26 @@ Inspect an upstream pulp
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRead(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsRead`: UpstreamPulpResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRead(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsRead`: UpstreamPulpResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsRead`: %v\n", resp)
 }
 ```
 
@@ -616,25 +616,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -688,24 +688,24 @@ Replicate
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsReplicate(context.Background(), upstreamPulpHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsReplicate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsReplicate`: TaskGroupOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsReplicate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsReplicate(context.Background(), upstreamPulpHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsReplicate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsReplicate`: TaskGroupOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsReplicate`: %v\n", resp)
 }
 ```
 
@@ -758,25 +758,25 @@ Update an upstream pulp
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    upstreamPulpHref := "upstreamPulpHref_example" // string | 
-    upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
+	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsUpdate(context.Background(), upstreamPulpHref).UpstreamPulp(upstreamPulp).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpstreamPulpsUpdate`: UpstreamPulpResponse
-    fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsUpdate(context.Background(), upstreamPulpHref).UpstreamPulp(upstreamPulp).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpstreamPulpsUpdate`: UpstreamPulpResponse
+	fmt.Fprintf(os.Stdout, "Response from `UpstreamPulpsAPI.UpstreamPulpsUpdate`: %v\n", resp)
 }
 ```
 

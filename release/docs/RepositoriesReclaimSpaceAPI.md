@@ -22,25 +22,25 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    reclaimSpace := *openapiclient.NewReclaimSpace([]interface{}{nil}) // ReclaimSpace | 
+	pulpDomain := "pulpDomain_example" // string | 
+	reclaimSpace := *openapiclient.NewReclaimSpace([]interface{}{nil}) // ReclaimSpace | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim(context.Background(), pulpDomain).ReclaimSpace(reclaimSpace).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesReclaimSpaceReclaim`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim(context.Background(), pulpDomain).ReclaimSpace(reclaimSpace).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesReclaimSpaceReclaim`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesReclaimSpaceAPI.RepositoriesReclaimSpaceReclaim`: %v\n", resp)
 }
 ```
 

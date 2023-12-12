@@ -27,25 +27,25 @@ Create an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    user := *openapiclient.NewUser("Username_example") // User | 
+	pulpDomain := "pulpDomain_example" // string | 
+	user := *openapiclient.NewUser("Username_example") // User | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersAPI.UsersCreate(context.Background(), pulpDomain).User(user).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersCreate`: UserResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersCreate(context.Background(), pulpDomain).User(user).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersCreate`: UserResponse
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersCreate`: %v\n", resp)
 }
 ```
 
@@ -99,22 +99,22 @@ Delete an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    authUserHref := "authUserHref_example" // string | 
+	authUserHref := "authUserHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UsersAPI.UsersDelete(context.Background(), authUserHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UsersAPI.UsersDelete(context.Background(), authUserHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -167,54 +167,54 @@ List users
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    email := "email_example" // string | Filter results where email matches value (optional)
-    emailContains := "emailContains_example" // string | Filter results where email contains value (optional)
-    emailIcontains := "emailIcontains_example" // string | Filter results where email contains value (optional)
-    emailIexact := "emailIexact_example" // string | Filter results where email matches value (optional)
-    emailIn := []string{"Inner_example"} // []string | Filter results where email is in a comma-separated list of values (optional)
-    firstName := "firstName_example" // string | Filter results where first_name matches value (optional)
-    firstNameContains := "firstNameContains_example" // string | Filter results where first_name contains value (optional)
-    firstNameIcontains := "firstNameIcontains_example" // string | Filter results where first_name contains value (optional)
-    firstNameIexact := "firstNameIexact_example" // string | Filter results where first_name matches value (optional)
-    firstNameIn := []string{"Inner_example"} // []string | Filter results where first_name is in a comma-separated list of values (optional)
-    isActive := true // bool | Filter results where is_active matches value (optional)
-    isStaff := true // bool | Filter results where is_staff matches value (optional)
-    lastName := "lastName_example" // string | Filter results where last_name matches value (optional)
-    lastNameContains := "lastNameContains_example" // string | Filter results where last_name contains value (optional)
-    lastNameIcontains := "lastNameIcontains_example" // string | Filter results where last_name contains value (optional)
-    lastNameIexact := "lastNameIexact_example" // string | Filter results where last_name matches value (optional)
-    lastNameIn := []string{"Inner_example"} // []string | Filter results where last_name is in a comma-separated list of values (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `id` - Id * `-id` - Id (descending) * `password` - Password * `-password` - Password (descending) * `last_login` - Last login * `-last_login` - Last login (descending) * `is_superuser` - Is superuser * `-is_superuser` - Is superuser (descending) * `username` - Username * `-username` - Username (descending) * `first_name` - First name * `-first_name` - First name (descending) * `last_name` - Last name * `-last_name` - Last name (descending) * `email` - Email * `-email` - Email (descending) * `is_staff` - Is staff * `-is_staff` - Is staff (descending) * `is_active` - Is active * `-is_active` - Is active (descending) * `date_joined` - Date joined * `-date_joined` - Date joined (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    username := "username_example" // string | Filter results where username matches value (optional)
-    usernameContains := "usernameContains_example" // string | Filter results where username contains value (optional)
-    usernameIcontains := "usernameIcontains_example" // string | Filter results where username contains value (optional)
-    usernameIexact := "usernameIexact_example" // string | Filter results where username matches value (optional)
-    usernameIn := []string{"Inner_example"} // []string | Filter results where username is in a comma-separated list of values (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	email := "email_example" // string | Filter results where email matches value (optional)
+	emailContains := "emailContains_example" // string | Filter results where email contains value (optional)
+	emailIcontains := "emailIcontains_example" // string | Filter results where email contains value (optional)
+	emailIexact := "emailIexact_example" // string | Filter results where email matches value (optional)
+	emailIn := []string{"Inner_example"} // []string | Filter results where email is in a comma-separated list of values (optional)
+	firstName := "firstName_example" // string | Filter results where first_name matches value (optional)
+	firstNameContains := "firstNameContains_example" // string | Filter results where first_name contains value (optional)
+	firstNameIcontains := "firstNameIcontains_example" // string | Filter results where first_name contains value (optional)
+	firstNameIexact := "firstNameIexact_example" // string | Filter results where first_name matches value (optional)
+	firstNameIn := []string{"Inner_example"} // []string | Filter results where first_name is in a comma-separated list of values (optional)
+	isActive := true // bool | Filter results where is_active matches value (optional)
+	isStaff := true // bool | Filter results where is_staff matches value (optional)
+	lastName := "lastName_example" // string | Filter results where last_name matches value (optional)
+	lastNameContains := "lastNameContains_example" // string | Filter results where last_name contains value (optional)
+	lastNameIcontains := "lastNameIcontains_example" // string | Filter results where last_name contains value (optional)
+	lastNameIexact := "lastNameIexact_example" // string | Filter results where last_name matches value (optional)
+	lastNameIn := []string{"Inner_example"} // []string | Filter results where last_name is in a comma-separated list of values (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `id` - Id * `-id` - Id (descending) * `password` - Password * `-password` - Password (descending) * `last_login` - Last login * `-last_login` - Last login (descending) * `is_superuser` - Is superuser * `-is_superuser` - Is superuser (descending) * `username` - Username * `-username` - Username (descending) * `first_name` - First name * `-first_name` - First name (descending) * `last_name` - Last name * `-last_name` - Last name (descending) * `email` - Email * `-email` - Email (descending) * `is_staff` - Is staff * `-is_staff` - Is staff (descending) * `is_active` - Is active * `-is_active` - Is active (descending) * `date_joined` - Date joined * `-date_joined` - Date joined (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	username := "username_example" // string | Filter results where username matches value (optional)
+	usernameContains := "usernameContains_example" // string | Filter results where username contains value (optional)
+	usernameIcontains := "usernameIcontains_example" // string | Filter results where username contains value (optional)
+	usernameIexact := "usernameIexact_example" // string | Filter results where username matches value (optional)
+	usernameIn := []string{"Inner_example"} // []string | Filter results where username is in a comma-separated list of values (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersAPI.UsersList(context.Background(), pulpDomain).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersList`: PaginatedUserResponseList
-    fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersList(context.Background(), pulpDomain).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersList`: PaginatedUserResponseList
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersList`: %v\n", resp)
 }
 ```
 
@@ -297,25 +297,25 @@ Update an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    authUserHref := "authUserHref_example" // string | 
-    patchedUser := *openapiclient.NewPatchedUser() // PatchedUser | 
+	authUserHref := "authUserHref_example" // string | 
+	patchedUser := *openapiclient.NewPatchedUser() // PatchedUser | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersAPI.UsersPartialUpdate(context.Background(), authUserHref).PatchedUser(patchedUser).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersPartialUpdate`: UserResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersPartialUpdate(context.Background(), authUserHref).PatchedUser(patchedUser).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersPartialUpdate`: UserResponse
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -369,26 +369,26 @@ Inspect an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    authUserHref := "authUserHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	authUserHref := "authUserHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersAPI.UsersRead(context.Background(), authUserHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersRead`: UserResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersRead(context.Background(), authUserHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersRead`: UserResponse
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersRead`: %v\n", resp)
 }
 ```
 
@@ -443,25 +443,25 @@ Update an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    authUserHref := "authUserHref_example" // string | 
-    user := *openapiclient.NewUser("Username_example") // User | 
+	authUserHref := "authUserHref_example" // string | 
+	user := *openapiclient.NewUser("Username_example") // User | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersAPI.UsersUpdate(context.Background(), authUserHref).User(user).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UsersUpdate`: UserResponse
-    fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.UsersUpdate(context.Background(), authUserHref).User(user).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UsersUpdate`: UserResponse
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.UsersUpdate`: %v\n", resp)
 }
 ```
 

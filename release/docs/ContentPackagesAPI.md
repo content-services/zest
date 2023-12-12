@@ -24,29 +24,29 @@ Create a package
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
-    artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
-    relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path (optional)
-    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
-    upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
+	relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path (optional)
+	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesCreate(context.Background(), pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmPackagesCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesCreate(context.Background(), pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagesCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesCreate`: %v\n", resp)
 }
 ```
 
@@ -104,63 +104,63 @@ List packages
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    arch := "arch_example" // string | Filter results where arch matches value (optional)
-    archContains := "archContains_example" // string | Filter results where arch contains value (optional)
-    archIn := []string{"Inner_example"} // []string | Filter results where arch is in a comma-separated list of values (optional)
-    archNe := "archNe_example" // string | Filter results where arch not equal to value (optional)
-    archStartswith := "archStartswith_example" // string | Filter results where arch starts with value (optional)
-    checksumType := "checksumType_example" // string | Filter results where checksum_type matches value  * `unknown` - unknown * `md5` - md5 * `sha1` - sha1 * `sha1` - sha1 * `sha224` - sha224 * `sha256` - sha256 * `sha384` - sha384 * `sha512` - sha512 (optional)
-    checksumTypeIn := []string{"Inner_example"} // []string | Filter results where checksum_type is in a comma-separated list of values (optional)
-    checksumTypeNe := "checksumTypeNe_example" // string | Filter results where checksum_type not equal to value (optional)
-    epoch := "epoch_example" // string | Filter results where epoch matches value (optional)
-    epochIn := []string{"Inner_example"} // []string | Filter results where epoch is in a comma-separated list of values (optional)
-    epochNe := "epochNe_example" // string | Filter results where epoch not equal to value (optional)
-    filename := "filename_example" // string |  (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameNe := "nameNe_example" // string | Filter results where name not equal to value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `name` - Name * `-name` - Name (descending) * `epoch` - Epoch * `-epoch` - Epoch (descending) * `version` - Version * `-version` - Version (descending) * `release` - Release * `-release` - Release (descending) * `arch` - Arch * `-arch` - Arch (descending) * `evr` - Evr * `-evr` - Evr (descending) * `pkgId` - Pkgid * `-pkgId` - Pkgid (descending) * `checksum_type` - Checksum type * `-checksum_type` - Checksum type (descending) * `summary` - Summary * `-summary` - Summary (descending) * `description` - Description * `-description` - Description (descending) * `url` - Url * `-url` - Url (descending) * `changelogs` - Changelogs * `-changelogs` - Changelogs (descending) * `files` - Files * `-files` - Files (descending) * `requires` - Requires * `-requires` - Requires (descending) * `provides` - Provides * `-provides` - Provides (descending) * `conflicts` - Conflicts * `-conflicts` - Conflicts (descending) * `obsoletes` - Obsoletes * `-obsoletes` - Obsoletes (descending) * `suggests` - Suggests * `-suggests` - Suggests (descending) * `enhances` - Enhances * `-enhances` - Enhances (descending) * `recommends` - Recommends * `-recommends` - Recommends (descending) * `supplements` - Supplements * `-supplements` - Supplements (descending) * `location_base` - Location base * `-location_base` - Location base (descending) * `location_href` - Location href * `-location_href` - Location href (descending) * `rpm_buildhost` - Rpm buildhost * `-rpm_buildhost` - Rpm buildhost (descending) * `rpm_group` - Rpm group * `-rpm_group` - Rpm group (descending) * `rpm_license` - Rpm license * `-rpm_license` - Rpm license (descending) * `rpm_packager` - Rpm packager * `-rpm_packager` - Rpm packager (descending) * `rpm_sourcerpm` - Rpm sourcerpm * `-rpm_sourcerpm` - Rpm sourcerpm (descending) * `rpm_vendor` - Rpm vendor * `-rpm_vendor` - Rpm vendor (descending) * `rpm_header_start` - Rpm header start * `-rpm_header_start` - Rpm header start (descending) * `rpm_header_end` - Rpm header end * `-rpm_header_end` - Rpm header end (descending) * `size_archive` - Size archive * `-size_archive` - Size archive (descending) * `size_installed` - Size installed * `-size_installed` - Size installed (descending) * `size_package` - Size package * `-size_package` - Size package (descending) * `time_build` - Time build * `-time_build` - Time build (descending) * `time_file` - Time file * `-time_file` - Time file (descending) * `is_modular` - Is modular * `-is_modular` - Is modular (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pkgId := "pkgId_example" // string | Filter results where pkgId matches value (optional)
-    pkgIdIn := []string{"Inner_example"} // []string | Filter results where pkgId is in a comma-separated list of values (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    release := "release_example" // string | Filter results where release matches value (optional)
-    releaseContains := "releaseContains_example" // string | Filter results where release contains value (optional)
-    releaseIn := []string{"Inner_example"} // []string | Filter results where release is in a comma-separated list of values (optional)
-    releaseNe := "releaseNe_example" // string | Filter results where release not equal to value (optional)
-    releaseStartswith := "releaseStartswith_example" // string | Filter results where release starts with value (optional)
-    repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
-    sha256 := "sha256_example" // string |  (optional)
-    version := "version_example" // string | Filter results where version matches value (optional)
-    versionIn := []string{"Inner_example"} // []string | Filter results where version is in a comma-separated list of values (optional)
-    versionNe := "versionNe_example" // string | Filter results where version not equal to value (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	arch := "arch_example" // string | Filter results where arch matches value (optional)
+	archContains := "archContains_example" // string | Filter results where arch contains value (optional)
+	archIn := []string{"Inner_example"} // []string | Filter results where arch is in a comma-separated list of values (optional)
+	archNe := "archNe_example" // string | Filter results where arch not equal to value (optional)
+	archStartswith := "archStartswith_example" // string | Filter results where arch starts with value (optional)
+	checksumType := "checksumType_example" // string | Filter results where checksum_type matches value  * `unknown` - unknown * `md5` - md5 * `sha1` - sha1 * `sha1` - sha1 * `sha224` - sha224 * `sha256` - sha256 * `sha384` - sha384 * `sha512` - sha512 (optional)
+	checksumTypeIn := []string{"Inner_example"} // []string | Filter results where checksum_type is in a comma-separated list of values (optional)
+	checksumTypeNe := "checksumTypeNe_example" // string | Filter results where checksum_type not equal to value (optional)
+	epoch := "epoch_example" // string | Filter results where epoch matches value (optional)
+	epochIn := []string{"Inner_example"} // []string | Filter results where epoch is in a comma-separated list of values (optional)
+	epochNe := "epochNe_example" // string | Filter results where epoch not equal to value (optional)
+	filename := "filename_example" // string |  (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameNe := "nameNe_example" // string | Filter results where name not equal to value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `name` - Name * `-name` - Name (descending) * `epoch` - Epoch * `-epoch` - Epoch (descending) * `version` - Version * `-version` - Version (descending) * `release` - Release * `-release` - Release (descending) * `arch` - Arch * `-arch` - Arch (descending) * `evr` - Evr * `-evr` - Evr (descending) * `pkgId` - Pkgid * `-pkgId` - Pkgid (descending) * `checksum_type` - Checksum type * `-checksum_type` - Checksum type (descending) * `summary` - Summary * `-summary` - Summary (descending) * `description` - Description * `-description` - Description (descending) * `url` - Url * `-url` - Url (descending) * `changelogs` - Changelogs * `-changelogs` - Changelogs (descending) * `files` - Files * `-files` - Files (descending) * `requires` - Requires * `-requires` - Requires (descending) * `provides` - Provides * `-provides` - Provides (descending) * `conflicts` - Conflicts * `-conflicts` - Conflicts (descending) * `obsoletes` - Obsoletes * `-obsoletes` - Obsoletes (descending) * `suggests` - Suggests * `-suggests` - Suggests (descending) * `enhances` - Enhances * `-enhances` - Enhances (descending) * `recommends` - Recommends * `-recommends` - Recommends (descending) * `supplements` - Supplements * `-supplements` - Supplements (descending) * `location_base` - Location base * `-location_base` - Location base (descending) * `location_href` - Location href * `-location_href` - Location href (descending) * `rpm_buildhost` - Rpm buildhost * `-rpm_buildhost` - Rpm buildhost (descending) * `rpm_group` - Rpm group * `-rpm_group` - Rpm group (descending) * `rpm_license` - Rpm license * `-rpm_license` - Rpm license (descending) * `rpm_packager` - Rpm packager * `-rpm_packager` - Rpm packager (descending) * `rpm_sourcerpm` - Rpm sourcerpm * `-rpm_sourcerpm` - Rpm sourcerpm (descending) * `rpm_vendor` - Rpm vendor * `-rpm_vendor` - Rpm vendor (descending) * `rpm_header_start` - Rpm header start * `-rpm_header_start` - Rpm header start (descending) * `rpm_header_end` - Rpm header end * `-rpm_header_end` - Rpm header end (descending) * `size_archive` - Size archive * `-size_archive` - Size archive (descending) * `size_installed` - Size installed * `-size_installed` - Size installed (descending) * `size_package` - Size package * `-size_package` - Size package (descending) * `time_build` - Time build * `-time_build` - Time build (descending) * `time_file` - Time file * `-time_file` - Time file (descending) * `is_modular` - Is modular * `-is_modular` - Is modular (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pkgId := "pkgId_example" // string | Filter results where pkgId matches value (optional)
+	pkgIdIn := []string{"Inner_example"} // []string | Filter results where pkgId is in a comma-separated list of values (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	release := "release_example" // string | Filter results where release matches value (optional)
+	releaseContains := "releaseContains_example" // string | Filter results where release contains value (optional)
+	releaseIn := []string{"Inner_example"} // []string | Filter results where release is in a comma-separated list of values (optional)
+	releaseNe := "releaseNe_example" // string | Filter results where release not equal to value (optional)
+	releaseStartswith := "releaseStartswith_example" // string | Filter results where release starts with value (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	sha256 := "sha256_example" // string |  (optional)
+	version := "version_example" // string | Filter results where version matches value (optional)
+	versionIn := []string{"Inner_example"} // []string | Filter results where version is in a comma-separated list of values (optional)
+	versionNe := "versionNe_example" // string | Filter results where version not equal to value (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmPackagesList`: PaginatedrpmPackageResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagesList`: PaginatedrpmPackageResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesList`: %v\n", resp)
 }
 ```
 
@@ -252,26 +252,26 @@ Inspect a package
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmPackageHref := "rpmPackageHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmPackageHref := "rpmPackageHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesRead(context.Background(), rpmPackageHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmPackagesRead`: RpmPackageResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesRead(context.Background(), rpmPackageHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagesRead`: RpmPackageResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagesAPI.ContentRpmPackagesRead`: %v\n", resp)
 }
 ```
 

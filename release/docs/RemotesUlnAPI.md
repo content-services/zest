@@ -33,25 +33,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnAddRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnAddRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnAddRole`: %v\n", resp)
 }
 ```
 
@@ -105,25 +105,25 @@ Create an uln remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
+	pulpDomain := "pulpDomain_example" // string | 
+	rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnCreate(context.Background(), pulpDomain).RpmUlnRemote(rpmUlnRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnCreate`: RpmUlnRemoteResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnCreate(context.Background(), pulpDomain).RpmUlnRemote(rpmUlnRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnCreate`: RpmUlnRemoteResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnCreate`: %v\n", resp)
 }
 ```
 
@@ -177,24 +177,24 @@ Delete an uln remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnDelete(context.Background(), rpmUlnRemoteHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnDelete(context.Background(), rpmUlnRemoteHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnDelete`: %v\n", resp)
 }
 ```
 
@@ -247,49 +247,49 @@ List uln remotes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `url` - Url * `-url` - Url (descending) * `ca_cert` - Ca cert * `-ca_cert` - Ca cert (descending) * `client_cert` - Client cert * `-client_cert` - Client cert (descending) * `client_key` - Client key * `-client_key` - Client key (descending) * `tls_validation` - Tls validation * `-tls_validation` - Tls validation (descending) * `username` - Username * `-username` - Username (descending) * `password` - Password * `-password` - Password (descending) * `proxy_url` - Proxy url * `-proxy_url` - Proxy url (descending) * `proxy_username` - Proxy username * `-proxy_username` - Proxy username (descending) * `proxy_password` - Proxy password * `-proxy_password` - Proxy password (descending) * `download_concurrency` - Download concurrency * `-download_concurrency` - Download concurrency (descending) * `max_retries` - Max retries * `-max_retries` - Max retries (descending) * `policy` - Policy * `-policy` - Policy (descending) * `total_timeout` - Total timeout * `-total_timeout` - Total timeout (descending) * `connect_timeout` - Connect timeout * `-connect_timeout` - Connect timeout (descending) * `sock_connect_timeout` - Sock connect timeout * `-sock_connect_timeout` - Sock connect timeout (descending) * `sock_read_timeout` - Sock read timeout * `-sock_read_timeout` - Sock read timeout (descending) * `headers` - Headers * `-headers` - Headers (descending) * `rate_limit` - Rate limit * `-rate_limit` - Rate limit (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-    pulpLastUpdated := time.Now() // time.Time | Filter results where pulp_last_updated matches value (optional)
-    pulpLastUpdatedGt := time.Now() // time.Time | Filter results where pulp_last_updated is greater than value (optional)
-    pulpLastUpdatedGte := time.Now() // time.Time | Filter results where pulp_last_updated is greater than or equal to value (optional)
-    pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
-    pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
-    pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `url` - Url * `-url` - Url (descending) * `ca_cert` - Ca cert * `-ca_cert` - Ca cert (descending) * `client_cert` - Client cert * `-client_cert` - Client cert (descending) * `client_key` - Client key * `-client_key` - Client key (descending) * `tls_validation` - Tls validation * `-tls_validation` - Tls validation (descending) * `username` - Username * `-username` - Username (descending) * `password` - Password * `-password` - Password (descending) * `proxy_url` - Proxy url * `-proxy_url` - Proxy url (descending) * `proxy_username` - Proxy username * `-proxy_username` - Proxy username (descending) * `proxy_password` - Proxy password * `-proxy_password` - Proxy password (descending) * `download_concurrency` - Download concurrency * `-download_concurrency` - Download concurrency (descending) * `max_retries` - Max retries * `-max_retries` - Max retries (descending) * `policy` - Policy * `-policy` - Policy (descending) * `total_timeout` - Total timeout * `-total_timeout` - Total timeout (descending) * `connect_timeout` - Connect timeout * `-connect_timeout` - Connect timeout (descending) * `sock_connect_timeout` - Sock connect timeout * `-sock_connect_timeout` - Sock connect timeout (descending) * `sock_read_timeout` - Sock read timeout * `-sock_read_timeout` - Sock read timeout (descending) * `headers` - Headers * `-headers` - Headers (descending) * `rate_limit` - Rate limit * `-rate_limit` - Rate limit (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
+	pulpLastUpdated := time.Now() // time.Time | Filter results where pulp_last_updated matches value (optional)
+	pulpLastUpdatedGt := time.Now() // time.Time | Filter results where pulp_last_updated is greater than value (optional)
+	pulpLastUpdatedGte := time.Now() // time.Time | Filter results where pulp_last_updated is greater than or equal to value (optional)
+	pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
+	pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
+	pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnList`: PaginatedrpmUlnRemoteResponseList
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnList`: PaginatedrpmUlnRemoteResponseList
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnList`: %v\n", resp)
 }
 ```
 
@@ -366,26 +366,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnListRoles(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnListRoles(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnListRoles`: %v\n", resp)
 }
 ```
 
@@ -440,26 +440,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnMyPermissions(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnMyPermissions(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -514,25 +514,25 @@ Update an uln remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    patchedrpmUlnRemote := *openapiclient.NewPatchedrpmUlnRemote() // PatchedrpmUlnRemote | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	patchedrpmUlnRemote := *openapiclient.NewPatchedrpmUlnRemote() // PatchedrpmUlnRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnPartialUpdate(context.Background(), rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnPartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnPartialUpdate(context.Background(), rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnPartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -586,26 +586,26 @@ Inspect an uln remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRead(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnRead`: RpmUlnRemoteResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRead(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnRead`: RpmUlnRemoteResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnRead`: %v\n", resp)
 }
 ```
 
@@ -660,25 +660,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRemoveRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRemoveRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -732,25 +732,25 @@ Set a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnSetLabel(context.Background(), rpmUlnRemoteHref).SetLabel(setLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnSetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnSetLabel`: SetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnSetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnSetLabel(context.Background(), rpmUlnRemoteHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnSetLabel`: %v\n", resp)
 }
 ```
 
@@ -804,25 +804,25 @@ Unset a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUnsetLabel(context.Background(), rpmUlnRemoteHref).UnsetLabel(unsetLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUnsetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnUnsetLabel`: UnsetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnUnsetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUnsetLabel(context.Background(), rpmUlnRemoteHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnUnsetLabel`: %v\n", resp)
 }
 ```
 
@@ -876,25 +876,25 @@ Update an uln remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
-    rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
+	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUpdate(context.Background(), rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesRpmUlnUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUpdate(context.Background(), rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesRpmUlnUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnUpdate`: %v\n", resp)
 }
 ```
 

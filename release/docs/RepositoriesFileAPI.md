@@ -35,25 +35,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileAddRole(context.Background(), fileFileRepositoryHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileAddRole(context.Background(), fileFileRepositoryHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileAddRole`: %v\n", resp)
 }
 ```
 
@@ -107,25 +107,25 @@ Create a file repository
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    fileFileRepository := *openapiclient.NewFileFileRepository("Name_example") // FileFileRepository | 
+	pulpDomain := "pulpDomain_example" // string | 
+	fileFileRepository := *openapiclient.NewFileFileRepository("Name_example") // FileFileRepository | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileCreate(context.Background(), pulpDomain).FileFileRepository(fileFileRepository).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileCreate`: FileFileRepositoryResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileCreate(context.Background(), pulpDomain).FileFileRepository(fileFileRepository).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileCreate`: FileFileRepositoryResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileCreate`: %v\n", resp)
 }
 ```
 
@@ -179,24 +179,24 @@ Delete a file repository
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileDelete(context.Background(), fileFileRepositoryHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileDelete(context.Background(), fileFileRepositoryHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileDelete`: %v\n", resp)
 }
 ```
 
@@ -249,53 +249,53 @@ List file repositorys
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    latestWithContent := "latestWithContent_example" // string | Content Unit referenced by HREF (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `description` - Description * `-description` - Description (descending) * `next_version` - Next version * `-next_version` - Next version (descending) * `retain_repo_versions` - Retain repo versions * `-retain_repo_versions` - Retain repo versions (descending) * `user_hidden` - User hidden * `-user_hidden` - User hidden (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-    q := "q_example" // string |  (optional)
-    remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
-    retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
-    retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
-    retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)
-    retainRepoVersionsIsnull := true // bool | Filter results where retain_repo_versions has a null value (optional)
-    retainRepoVersionsLt := int32(56) // int32 | Filter results where retain_repo_versions is less than value (optional)
-    retainRepoVersionsLte := int32(56) // int32 | Filter results where retain_repo_versions is less than or equal to value (optional)
-    retainRepoVersionsNe := int32(56) // int32 | Filter results where retain_repo_versions not equal to value (optional)
-    retainRepoVersionsRange := []int32{int32(123)} // []int32 | Filter results where retain_repo_versions is between two comma separated values (optional)
-    withContent := "withContent_example" // string | Content Unit referenced by HREF (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	latestWithContent := "latestWithContent_example" // string | Content Unit referenced by HREF (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `description` - Description * `-description` - Description (descending) * `next_version` - Next version * `-next_version` - Next version (descending) * `retain_repo_versions` - Retain repo versions * `-retain_repo_versions` - Retain repo versions (descending) * `user_hidden` - User hidden * `-user_hidden` - User hidden (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
+	q := "q_example" // string |  (optional)
+	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
+	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
+	retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
+	retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)
+	retainRepoVersionsIsnull := true // bool | Filter results where retain_repo_versions has a null value (optional)
+	retainRepoVersionsLt := int32(56) // int32 | Filter results where retain_repo_versions is less than value (optional)
+	retainRepoVersionsLte := int32(56) // int32 | Filter results where retain_repo_versions is less than or equal to value (optional)
+	retainRepoVersionsNe := int32(56) // int32 | Filter results where retain_repo_versions not equal to value (optional)
+	retainRepoVersionsRange := []int32{int32(123)} // []int32 | Filter results where retain_repo_versions is between two comma separated values (optional)
+	withContent := "withContent_example" // string | Content Unit referenced by HREF (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileList(context.Background(), pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileList`: PaginatedfileFileRepositoryResponseList
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileList(context.Background(), pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileList`: PaginatedfileFileRepositoryResponseList
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileList`: %v\n", resp)
 }
 ```
 
@@ -377,26 +377,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileListRoles(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileListRoles(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileListRoles`: %v\n", resp)
 }
 ```
 
@@ -451,25 +451,25 @@ Modify Repository Content
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    repositoryAddRemoveContent := *openapiclient.NewRepositoryAddRemoveContent() // RepositoryAddRemoveContent | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	repositoryAddRemoveContent := *openapiclient.NewRepositoryAddRemoveContent() // RepositoryAddRemoveContent | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileModify(context.Background(), fileFileRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileModify``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileModify`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileModify`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileModify(context.Background(), fileFileRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileModify``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileModify`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileModify`: %v\n", resp)
 }
 ```
 
@@ -523,26 +523,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileMyPermissions(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileMyPermissions(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -597,25 +597,25 @@ Update a file repository
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    patchedfileFileRepository := *openapiclient.NewPatchedfileFileRepository() // PatchedfileFileRepository | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	patchedfileFileRepository := *openapiclient.NewPatchedfileFileRepository() // PatchedfileFileRepository | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFilePartialUpdate(context.Background(), fileFileRepositoryHref).PatchedfileFileRepository(patchedfileFileRepository).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFilePartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFilePartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFilePartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFilePartialUpdate(context.Background(), fileFileRepositoryHref).PatchedfileFileRepository(patchedfileFileRepository).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFilePartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFilePartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFilePartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -669,26 +669,26 @@ Inspect a file repository
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileRead(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileRead`: FileFileRepositoryResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileRead(context.Background(), fileFileRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileRead`: FileFileRepositoryResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileRead`: %v\n", resp)
 }
 ```
 
@@ -743,25 +743,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileRemoveRole(context.Background(), fileFileRepositoryHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileRemoveRole(context.Background(), fileFileRepositoryHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -815,25 +815,25 @@ Set a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileSetLabel(context.Background(), fileFileRepositoryHref).SetLabel(setLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileSetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileSetLabel`: SetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileSetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileSetLabel(context.Background(), fileFileRepositoryHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileSetLabel`: %v\n", resp)
 }
 ```
 
@@ -887,25 +887,25 @@ Sync from a remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    repositorySyncURL := *openapiclient.NewRepositorySyncURL() // RepositorySyncURL | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	repositorySyncURL := *openapiclient.NewRepositorySyncURL() // RepositorySyncURL | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileSync(context.Background(), fileFileRepositoryHref).RepositorySyncURL(repositorySyncURL).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileSync``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileSync`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileSync`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileSync(context.Background(), fileFileRepositoryHref).RepositorySyncURL(repositorySyncURL).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileSync``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileSync`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileSync`: %v\n", resp)
 }
 ```
 
@@ -959,25 +959,25 @@ Unset a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileUnsetLabel(context.Background(), fileFileRepositoryHref).UnsetLabel(unsetLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileUnsetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileUnsetLabel`: UnsetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileUnsetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileUnsetLabel(context.Background(), fileFileRepositoryHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileUnsetLabel`: %v\n", resp)
 }
 ```
 
@@ -1031,25 +1031,25 @@ Update a file repository
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
-    fileFileRepository := *openapiclient.NewFileFileRepository("Name_example") // FileFileRepository | 
+	fileFileRepositoryHref := "fileFileRepositoryHref_example" // string | 
+	fileFileRepository := *openapiclient.NewFileFileRepository("Name_example") // FileFileRepository | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileUpdate(context.Background(), fileFileRepositoryHref).FileFileRepository(fileFileRepository).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepositoriesFileFileUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesFileAPI.RepositoriesFileFileUpdate(context.Background(), fileFileRepositoryHref).FileFileRepository(fileFileRepository).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesFileAPI.RepositoriesFileFileUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesFileFileUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesFileAPI.RepositoriesFileFileUpdate`: %v\n", resp)
 }
 ```
 

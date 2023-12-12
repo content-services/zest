@@ -22,25 +22,25 @@ Validate the parameters to be used for a PulpImport call
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    pulpImportCheck := *openapiclient.NewPulpImportCheck() // PulpImportCheck | 
+	pulpDomain := "pulpDomain_example" // string | 
+	pulpImportCheck := *openapiclient.NewPulpImportCheck() // PulpImportCheck | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpImportCheckAPI.PulpImportCheckPost(context.Background(), pulpDomain).PulpImportCheck(pulpImportCheck).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportCheckAPI.PulpImportCheckPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PulpImportCheckPost`: PulpImportCheckResponse
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpImportCheckAPI.PulpImportCheckPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpImportCheckAPI.PulpImportCheckPost(context.Background(), pulpDomain).PulpImportCheck(pulpImportCheck).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportCheckAPI.PulpImportCheckPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PulpImportCheckPost`: PulpImportCheckResponse
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpImportCheckAPI.PulpImportCheckPost`: %v\n", resp)
 }
 ```
 

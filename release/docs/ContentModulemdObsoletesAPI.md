@@ -24,25 +24,25 @@ Create a modulemd obsolete
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    rpmModulemdObsolete := *openapiclient.NewRpmModulemdObsolete("Modified_example", "ModuleName_example", "ModuleStream_example", "Message_example", "OverridePrevious_example", "ModuleContext_example", "EolDate_example", "ObsoletedByModuleName_example", "ObsoletedByModuleStream_example", "Snippet_example") // RpmModulemdObsolete | 
+	pulpDomain := "pulpDomain_example" // string | 
+	rpmModulemdObsolete := *openapiclient.NewRpmModulemdObsolete("Modified_example", "ModuleName_example", "ModuleStream_example", "Message_example", "OverridePrevious_example", "ModuleContext_example", "EolDate_example", "ObsoletedByModuleName_example", "ObsoletedByModuleStream_example", "Snippet_example") // RpmModulemdObsolete | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate(context.Background(), pulpDomain).RpmModulemdObsolete(rpmModulemdObsolete).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdObsoletesCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate(context.Background(), pulpDomain).RpmModulemdObsolete(rpmModulemdObsolete).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdObsoletesCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesCreate`: %v\n", resp)
 }
 ```
 
@@ -96,35 +96,35 @@ List modulemd obsoletes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdObsoletesList`: PaginatedrpmModulemdObsoleteResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdObsoletesList`: PaginatedrpmModulemdObsoleteResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesList`: %v\n", resp)
 }
 ```
 
@@ -188,26 +188,26 @@ Inspect a modulemd obsolete
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmModulemdObsoleteHref := "rpmModulemdObsoleteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmModulemdObsoleteHref := "rpmModulemdObsoleteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead(context.Background(), rpmModulemdObsoleteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdObsoletesRead`: RpmModulemdObsoleteResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead(context.Background(), rpmModulemdObsoleteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdObsoletesRead`: RpmModulemdObsoleteResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesRead`: %v\n", resp)
 }
 ```
 

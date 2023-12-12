@@ -22,26 +22,26 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    lang := "lang_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	lang := "lang_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DocsApiYamlAPI.DocsApiYamlGet(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DocsApiYamlAPI.DocsApiYamlGet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DocsApiYamlGet`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `DocsApiYamlAPI.DocsApiYamlGet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DocsApiYamlAPI.DocsApiYamlGet(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DocsApiYamlAPI.DocsApiYamlGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DocsApiYamlGet`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `DocsApiYamlAPI.DocsApiYamlGet`: %v\n", resp)
 }
 ```
 

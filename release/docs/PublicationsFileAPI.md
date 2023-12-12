@@ -29,25 +29,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileAddRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileAddRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileAddRole`: %v\n", resp)
 }
 ```
 
@@ -101,25 +101,25 @@ Create a file publication
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    fileFilePublication := *openapiclient.NewFileFilePublication() // FileFilePublication | 
+	pulpDomain := "pulpDomain_example" // string | 
+	fileFilePublication := *openapiclient.NewFileFilePublication() // FileFilePublication | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileCreate(context.Background(), pulpDomain).FileFilePublication(fileFilePublication).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileCreate(context.Background(), pulpDomain).FileFilePublication(fileFilePublication).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileCreate`: %v\n", resp)
 }
 ```
 
@@ -173,22 +173,22 @@ Delete a file publication
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.PublicationsFileAPI.PublicationsFileFileDelete(context.Background(), fileFilePublicationHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.PublicationsFileAPI.PublicationsFileFileDelete(context.Background(), fileFilePublicationHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -241,43 +241,43 @@ List file publications
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    content := "content_example" // string | Content Unit referenced by HREF (optional)
-    contentIn := "contentIn_example" // string | Content Unit referenced by HREF (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `complete` - Complete * `-complete` - Complete (descending) * `pass_through` - Pass through * `-pass_through` - Pass through (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
-    pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
-    pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
-    pulpCreatedLt := time.Now() // time.Time | Filter results where pulp_created is less than value (optional)
-    pulpCreatedLte := time.Now() // time.Time | Filter results where pulp_created is less than or equal to value (optional)
-    pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    repository := "repository_example" // string | Repository referenced by HREF (optional)
-    repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	content := "content_example" // string | Content Unit referenced by HREF (optional)
+	contentIn := "contentIn_example" // string | Content Unit referenced by HREF (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `complete` - Complete * `-complete` - Complete (descending) * `pass_through` - Pass through * `-pass_through` - Pass through (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
+	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
+	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
+	pulpCreatedLt := time.Now() // time.Time | Filter results where pulp_created is less than value (optional)
+	pulpCreatedLte := time.Now() // time.Time | Filter results where pulp_created is less than or equal to value (optional)
+	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	repository := "repository_example" // string | Repository referenced by HREF (optional)
+	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileList(context.Background(), pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileList`: PaginatedfileFilePublicationResponseList
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileList(context.Background(), pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileList`: PaginatedfileFilePublicationResponseList
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileList`: %v\n", resp)
 }
 ```
 
@@ -348,26 +348,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileListRoles(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileListRoles(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileListRoles`: %v\n", resp)
 }
 ```
 
@@ -422,26 +422,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileMyPermissions(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileMyPermissions(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -496,26 +496,26 @@ Inspect a file publication
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRead(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileRead`: FileFilePublicationResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRead(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileRead`: FileFilePublicationResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileRead`: %v\n", resp)
 }
 ```
 
@@ -570,25 +570,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRemoveRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PublicationsFileFileRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRemoveRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PublicationsFileFileRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `PublicationsFileAPI.PublicationsFileFileRemoveRole`: %v\n", resp)
 }
 ```
 

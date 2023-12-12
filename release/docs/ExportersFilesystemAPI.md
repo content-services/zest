@@ -27,25 +27,25 @@ Create a filesystem exporter
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    filesystemExporter := *openapiclient.NewFilesystemExporter("Name_example", "Path_example") // FilesystemExporter | 
+	pulpDomain := "pulpDomain_example" // string | 
+	filesystemExporter := *openapiclient.NewFilesystemExporter("Name_example", "Path_example") // FilesystemExporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemCreate(context.Background(), pulpDomain).FilesystemExporter(filesystemExporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemCreate`: FilesystemExporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemCreate(context.Background(), pulpDomain).FilesystemExporter(filesystemExporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemCreate`: FilesystemExporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemCreate`: %v\n", resp)
 }
 ```
 
@@ -99,24 +99,24 @@ Delete a filesystem exporter
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemDelete(context.Background(), filesystemExporterHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemDelete(context.Background(), filesystemExporterHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemDelete`: %v\n", resp)
 }
 ```
 
@@ -169,41 +169,41 @@ List filesystem exporters
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `path` - Path * `-path` - Path (descending) * `method` - Method * `-method` - Method (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `path` - Path * `-path` - Path (descending) * `method` - Method * `-method` - Method (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemList`: PaginatedFilesystemExporterResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemList`: PaginatedFilesystemExporterResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemList`: %v\n", resp)
 }
 ```
 
@@ -273,25 +273,25 @@ Update a filesystem exporter
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
-    patchedFilesystemExporter := *openapiclient.NewPatchedFilesystemExporter() // PatchedFilesystemExporter | 
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	patchedFilesystemExporter := *openapiclient.NewPatchedFilesystemExporter() // PatchedFilesystemExporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate(context.Background(), filesystemExporterHref).PatchedFilesystemExporter(patchedFilesystemExporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemPartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate(context.Background(), filesystemExporterHref).PatchedFilesystemExporter(patchedFilesystemExporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemPartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -345,26 +345,26 @@ Inspect a filesystem exporter
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemRead(context.Background(), filesystemExporterHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemRead`: FilesystemExporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemRead(context.Background(), filesystemExporterHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemRead`: FilesystemExporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemRead`: %v\n", resp)
 }
 ```
 
@@ -419,25 +419,25 @@ Update a filesystem exporter
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
-    filesystemExporter := *openapiclient.NewFilesystemExporter("Name_example", "Path_example") // FilesystemExporter | 
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	filesystemExporter := *openapiclient.NewFilesystemExporter("Name_example", "Path_example") // FilesystemExporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemUpdate(context.Background(), filesystemExporterHref).FilesystemExporter(filesystemExporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemAPI.ExportersCoreFilesystemUpdate(context.Background(), filesystemExporterHref).FilesystemExporter(filesystemExporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemAPI.ExportersCoreFilesystemUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemAPI.ExportersCoreFilesystemUpdate`: %v\n", resp)
 }
 ```
 

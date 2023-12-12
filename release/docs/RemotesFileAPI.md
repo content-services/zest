@@ -33,25 +33,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileAddRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileAddRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileAddRole`: %v\n", resp)
 }
 ```
 
@@ -105,25 +105,25 @@ Create a file remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
+	pulpDomain := "pulpDomain_example" // string | 
+	fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileCreate(context.Background(), pulpDomain).FileFileRemote(fileFileRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileCreate`: FileFileRemoteResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileCreate(context.Background(), pulpDomain).FileFileRemote(fileFileRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileCreate`: FileFileRemoteResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileCreate`: %v\n", resp)
 }
 ```
 
@@ -177,24 +177,24 @@ Delete a file remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileDelete(context.Background(), fileFileRemoteHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileDelete(context.Background(), fileFileRemoteHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileDelete`: %v\n", resp)
 }
 ```
 
@@ -247,49 +247,49 @@ List file remotes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `url` - Url * `-url` - Url (descending) * `ca_cert` - Ca cert * `-ca_cert` - Ca cert (descending) * `client_cert` - Client cert * `-client_cert` - Client cert (descending) * `client_key` - Client key * `-client_key` - Client key (descending) * `tls_validation` - Tls validation * `-tls_validation` - Tls validation (descending) * `username` - Username * `-username` - Username (descending) * `password` - Password * `-password` - Password (descending) * `proxy_url` - Proxy url * `-proxy_url` - Proxy url (descending) * `proxy_username` - Proxy username * `-proxy_username` - Proxy username (descending) * `proxy_password` - Proxy password * `-proxy_password` - Proxy password (descending) * `download_concurrency` - Download concurrency * `-download_concurrency` - Download concurrency (descending) * `max_retries` - Max retries * `-max_retries` - Max retries (descending) * `policy` - Policy * `-policy` - Policy (descending) * `total_timeout` - Total timeout * `-total_timeout` - Total timeout (descending) * `connect_timeout` - Connect timeout * `-connect_timeout` - Connect timeout (descending) * `sock_connect_timeout` - Sock connect timeout * `-sock_connect_timeout` - Sock connect timeout (descending) * `sock_read_timeout` - Sock read timeout * `-sock_read_timeout` - Sock read timeout (descending) * `headers` - Headers * `-headers` - Headers (descending) * `rate_limit` - Rate limit * `-rate_limit` - Rate limit (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-    pulpLastUpdated := time.Now() // time.Time | Filter results where pulp_last_updated matches value (optional)
-    pulpLastUpdatedGt := time.Now() // time.Time | Filter results where pulp_last_updated is greater than value (optional)
-    pulpLastUpdatedGte := time.Now() // time.Time | Filter results where pulp_last_updated is greater than or equal to value (optional)
-    pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
-    pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
-    pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `url` - Url * `-url` - Url (descending) * `ca_cert` - Ca cert * `-ca_cert` - Ca cert (descending) * `client_cert` - Client cert * `-client_cert` - Client cert (descending) * `client_key` - Client key * `-client_key` - Client key (descending) * `tls_validation` - Tls validation * `-tls_validation` - Tls validation (descending) * `username` - Username * `-username` - Username (descending) * `password` - Password * `-password` - Password (descending) * `proxy_url` - Proxy url * `-proxy_url` - Proxy url (descending) * `proxy_username` - Proxy username * `-proxy_username` - Proxy username (descending) * `proxy_password` - Proxy password * `-proxy_password` - Proxy password (descending) * `download_concurrency` - Download concurrency * `-download_concurrency` - Download concurrency (descending) * `max_retries` - Max retries * `-max_retries` - Max retries (descending) * `policy` - Policy * `-policy` - Policy (descending) * `total_timeout` - Total timeout * `-total_timeout` - Total timeout (descending) * `connect_timeout` - Connect timeout * `-connect_timeout` - Connect timeout (descending) * `sock_connect_timeout` - Sock connect timeout * `-sock_connect_timeout` - Sock connect timeout (descending) * `sock_read_timeout` - Sock read timeout * `-sock_read_timeout` - Sock read timeout (descending) * `headers` - Headers * `-headers` - Headers (descending) * `rate_limit` - Rate limit * `-rate_limit` - Rate limit (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
+	pulpLastUpdated := time.Now() // time.Time | Filter results where pulp_last_updated matches value (optional)
+	pulpLastUpdatedGt := time.Now() // time.Time | Filter results where pulp_last_updated is greater than value (optional)
+	pulpLastUpdatedGte := time.Now() // time.Time | Filter results where pulp_last_updated is greater than or equal to value (optional)
+	pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
+	pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
+	pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileList`: PaginatedfileFileRemoteResponseList
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileList`: PaginatedfileFileRemoteResponseList
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileList`: %v\n", resp)
 }
 ```
 
@@ -366,26 +366,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileListRoles(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileListRoles(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileListRoles`: %v\n", resp)
 }
 ```
 
@@ -440,26 +440,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileMyPermissions(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileMyPermissions(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -514,25 +514,25 @@ Update a file remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    patchedfileFileRemote := *openapiclient.NewPatchedfileFileRemote() // PatchedfileFileRemote | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	patchedfileFileRemote := *openapiclient.NewPatchedfileFileRemote() // PatchedfileFileRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFilePartialUpdate(context.Background(), fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFilePartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFilePartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFilePartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFilePartialUpdate(context.Background(), fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFilePartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFilePartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFilePartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -586,26 +586,26 @@ Inspect a file remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRead(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileRead`: FileFileRemoteResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRead(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileRead`: FileFileRemoteResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileRead`: %v\n", resp)
 }
 ```
 
@@ -660,25 +660,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRemoveRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRemoveRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -732,25 +732,25 @@ Set a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileSetLabel(context.Background(), fileFileRemoteHref).SetLabel(setLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileSetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileSetLabel`: SetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileSetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileSetLabel(context.Background(), fileFileRemoteHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileSetLabel`: %v\n", resp)
 }
 ```
 
@@ -804,25 +804,25 @@ Unset a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUnsetLabel(context.Background(), fileFileRemoteHref).UnsetLabel(unsetLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUnsetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileUnsetLabel`: UnsetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileUnsetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUnsetLabel(context.Background(), fileFileRemoteHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileUnsetLabel`: %v\n", resp)
 }
 ```
 
@@ -876,25 +876,25 @@ Update a file remote
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
-    fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
+	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUpdate(context.Background(), fileFileRemoteHref).FileFileRemote(fileFileRemote).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemotesFileFileUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUpdate(context.Background(), fileFileRemoteHref).FileFileRemote(fileFileRemote).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesFileFileUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileUpdate`: %v\n", resp)
 }
 ```
 

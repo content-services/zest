@@ -31,25 +31,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	uploadHref := "uploadHref_example" // string | 
+	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsAddRole(context.Background(), uploadHref).Upload(upload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsAddRole(context.Background(), uploadHref).Upload(upload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsAddRole`: %v\n", resp)
 }
 ```
 
@@ -103,25 +103,25 @@ Finish an Upload
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    uploadCommit := *openapiclient.NewUploadCommit("Sha256_example") // UploadCommit | 
+	uploadHref := "uploadHref_example" // string | 
+	uploadCommit := *openapiclient.NewUploadCommit("Sha256_example") // UploadCommit | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsCommit(context.Background(), uploadHref).UploadCommit(uploadCommit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCommit``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsCommit`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsCommit`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsCommit(context.Background(), uploadHref).UploadCommit(uploadCommit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCommit``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsCommit`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsCommit`: %v\n", resp)
 }
 ```
 
@@ -175,25 +175,25 @@ Create an upload
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	pulpDomain := "pulpDomain_example" // string | 
+	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsCreate(context.Background(), pulpDomain).Upload(upload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsCreate`: UploadResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsCreate(context.Background(), pulpDomain).Upload(upload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsCreate`: UploadResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsCreate`: %v\n", resp)
 }
 ```
 
@@ -247,22 +247,22 @@ Delete an upload
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
+	uploadHref := "uploadHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.UploadsAPI.UploadsDelete(context.Background(), uploadHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.UploadsAPI.UploadsDelete(context.Background(), uploadHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -315,36 +315,36 @@ List uploads
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `size` - Size * `-size` - Size (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    size := int32(56) // int32 | Filter results where size matches value (optional)
-    sizeGt := int32(56) // int32 | Filter results where size is greater than value (optional)
-    sizeLt := int32(56) // int32 | Filter results where size is less than value (optional)
-    sizeRange := []int32{int32(123)} // []int32 | Filter results where size is between two comma separated values (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `size` - Size * `-size` - Size (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	size := int32(56) // int32 | Filter results where size matches value (optional)
+	sizeGt := int32(56) // int32 | Filter results where size is greater than value (optional)
+	sizeLt := int32(56) // int32 | Filter results where size is less than value (optional)
+	sizeRange := []int32{int32(123)} // []int32 | Filter results where size is between two comma separated values (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsList`: PaginatedUploadResponseList
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsList`: PaginatedUploadResponseList
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsList`: %v\n", resp)
 }
 ```
 
@@ -409,26 +409,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	uploadHref := "uploadHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsListRoles(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsListRoles(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsListRoles`: %v\n", resp)
 }
 ```
 
@@ -483,26 +483,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	uploadHref := "uploadHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsMyPermissions(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsMyPermissions(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -557,26 +557,26 @@ Inspect an upload
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	uploadHref := "uploadHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsRead(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsRead`: UploadDetailResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsRead(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsRead`: UploadDetailResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsRead`: %v\n", resp)
 }
 ```
 
@@ -631,25 +631,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    uploadHref := "uploadHref_example" // string | 
-    upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	uploadHref := "uploadHref_example" // string | 
+	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsRemoveRole(context.Background(), uploadHref).Upload(upload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsRemoveRole(context.Background(), uploadHref).Upload(upload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -703,27 +703,27 @@ Upload a file chunk
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRange := "contentRange_example" // string | The Content-Range header specifies the location of the file chunk within the file.
-    uploadHref := "uploadHref_example" // string | 
-    file := os.NewFile(1234, "some_file") // *os.File | A chunk of the uploaded file.
-    sha256 := "sha256_example" // string | The SHA-256 checksum of the chunk if available. (optional)
+	contentRange := "contentRange_example" // string | The Content-Range header specifies the location of the file chunk within the file.
+	uploadHref := "uploadHref_example" // string | 
+	file := os.NewFile(1234, "some_file") // *os.File | A chunk of the uploaded file.
+	sha256 := "sha256_example" // string | The SHA-256 checksum of the chunk if available. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.UploadsAPI.UploadsUpdate(context.Background(), uploadHref).ContentRange(contentRange).File(file).Sha256(sha256).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UploadsUpdate`: UploadResponse
-    fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UploadsAPI.UploadsUpdate(context.Background(), uploadHref).ContentRange(contentRange).File(file).Sha256(sha256).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadsUpdate`: UploadResponse
+	fmt.Fprintf(os.Stdout, "Response from `UploadsAPI.UploadsUpdate`: %v\n", resp)
 }
 ```
 

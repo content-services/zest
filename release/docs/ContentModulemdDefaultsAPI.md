@@ -24,25 +24,25 @@ Create a modulemd defaults
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    rpmModulemdDefaults := *openapiclient.NewRpmModulemdDefaults("Module_example", "Stream_example", map[string]interface{}(123), "Snippet_example") // RpmModulemdDefaults | 
+	pulpDomain := "pulpDomain_example" // string | 
+	rpmModulemdDefaults := *openapiclient.NewRpmModulemdDefaults("Module_example", "Stream_example", map[string]interface{}(123), "Snippet_example") // RpmModulemdDefaults | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate(context.Background(), pulpDomain).RpmModulemdDefaults(rpmModulemdDefaults).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdDefaultsCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate(context.Background(), pulpDomain).RpmModulemdDefaults(rpmModulemdDefaults).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdDefaultsCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsCreate`: %v\n", resp)
 }
 ```
 
@@ -96,40 +96,40 @@ List modulemd defaultss
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    module := "module_example" // string | Filter results where module matches value (optional)
-    moduleIn := []string{"Inner_example"} // []string | Filter results where module is in a comma-separated list of values (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `module` - Module * `-module` - Module (descending) * `stream` - Stream * `-stream` - Stream (descending) * `profiles` - Profiles * `-profiles` - Profiles (descending) * `digest` - Digest * `-digest` - Digest (descending) * `snippet` - Snippet * `-snippet` - Snippet (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
-    sha256 := "sha256_example" // string |  (optional)
-    stream := "stream_example" // string | Filter results where stream matches value (optional)
-    streamIn := []string{"Inner_example"} // []string | Filter results where stream is in a comma-separated list of values (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	module := "module_example" // string | Filter results where module matches value (optional)
+	moduleIn := []string{"Inner_example"} // []string | Filter results where module is in a comma-separated list of values (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `module` - Module * `-module` - Module (descending) * `stream` - Stream * `-stream` - Stream (descending) * `profiles` - Profiles * `-profiles` - Profiles (descending) * `digest` - Digest * `-digest` - Digest (descending) * `snippet` - Snippet * `-snippet` - Snippet (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	sha256 := "sha256_example" // string |  (optional)
+	stream := "stream_example" // string | Filter results where stream matches value (optional)
+	streamIn := []string{"Inner_example"} // []string | Filter results where stream is in a comma-separated list of values (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList(context.Background(), pulpDomain).Limit(limit).Module(module).ModuleIn(moduleIn).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdDefaultsList`: PaginatedrpmModulemdDefaultsResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList(context.Background(), pulpDomain).Limit(limit).Module(module).ModuleIn(moduleIn).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdDefaultsList`: PaginatedrpmModulemdDefaultsResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsList`: %v\n", resp)
 }
 ```
 
@@ -198,26 +198,26 @@ Inspect a modulemd defaults
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmModulemdDefaultsHref := "rpmModulemdDefaultsHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmModulemdDefaultsHref := "rpmModulemdDefaultsHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead(context.Background(), rpmModulemdDefaultsHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentRpmModulemdDefaultsRead`: RpmModulemdDefaultsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead(context.Background(), rpmModulemdDefaultsHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmModulemdDefaultsRead`: RpmModulemdDefaultsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentModulemdDefaultsAPI.ContentRpmModulemdDefaultsRead`: %v\n", resp)
 }
 ```
 

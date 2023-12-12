@@ -27,25 +27,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskScheduleHref := "taskScheduleHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	taskScheduleHref := "taskScheduleHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesAddRole(context.Background(), taskScheduleHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesAddRole(context.Background(), taskScheduleHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesAddRole`: %v\n", resp)
 }
 ```
 
@@ -99,36 +99,36 @@ List task schedules
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `name` - Name * `-name` - Name (descending) * `next_dispatch` - Next dispatch * `-next_dispatch` - Next dispatch (descending) * `dispatch_interval` - Dispatch interval * `-dispatch_interval` - Dispatch interval (descending) * `task_name` - Task name * `-task_name` - Task name (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    taskName := "taskName_example" // string | Filter results where task_name matches value (optional)
-    taskNameContains := "taskNameContains_example" // string | Filter results where task_name contains value (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `name` - Name * `-name` - Name (descending) * `next_dispatch` - Next dispatch * `-next_dispatch` - Next dispatch (descending) * `dispatch_interval` - Dispatch interval * `-dispatch_interval` - Dispatch interval (descending) * `task_name` - Task name * `-task_name` - Task name (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	taskName := "taskName_example" // string | Filter results where task_name matches value (optional)
+	taskNameContains := "taskNameContains_example" // string | Filter results where task_name contains value (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).TaskName(taskName).TaskNameContains(taskNameContains).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesList`: PaginatedTaskScheduleResponseList
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).TaskName(taskName).TaskNameContains(taskNameContains).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesList`: PaginatedTaskScheduleResponseList
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesList`: %v\n", resp)
 }
 ```
 
@@ -193,26 +193,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskScheduleHref := "taskScheduleHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskScheduleHref := "taskScheduleHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesListRoles(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesListRoles(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesListRoles`: %v\n", resp)
 }
 ```
 
@@ -267,26 +267,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskScheduleHref := "taskScheduleHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskScheduleHref := "taskScheduleHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesMyPermissions(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesMyPermissions(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -341,26 +341,26 @@ Inspect a task schedule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskScheduleHref := "taskScheduleHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskScheduleHref := "taskScheduleHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesRead(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesRead`: TaskScheduleResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesRead(context.Background(), taskScheduleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesRead`: TaskScheduleResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesRead`: %v\n", resp)
 }
 ```
 
@@ -415,25 +415,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskScheduleHref := "taskScheduleHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	taskScheduleHref := "taskScheduleHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesRemoveRole(context.Background(), taskScheduleHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TaskSchedulesRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TaskSchedulesAPI.TaskSchedulesRemoveRole(context.Background(), taskScheduleHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TaskSchedulesAPI.TaskSchedulesRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TaskSchedulesRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `TaskSchedulesAPI.TaskSchedulesRemoveRole`: %v\n", resp)
 }
 ```
 

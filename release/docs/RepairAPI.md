@@ -22,25 +22,25 @@ Repair Artifact Storage
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    repair := *openapiclient.NewRepair() // Repair | 
+	pulpDomain := "pulpDomain_example" // string | 
+	repair := *openapiclient.NewRepair() // Repair | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepairAPI.RepairPost(context.Background(), pulpDomain).Repair(repair).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RepairAPI.RepairPost``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RepairPost`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RepairAPI.RepairPost`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepairAPI.RepairPost(context.Background(), pulpDomain).Repair(repair).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepairAPI.RepairPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepairPost`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepairAPI.RepairPost`: %v\n", resp)
 }
 ```
 

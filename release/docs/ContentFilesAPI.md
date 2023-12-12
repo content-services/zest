@@ -24,29 +24,29 @@ Create a file content
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path
-    repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
-    artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
-    file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
-    upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path
+	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
+	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentFileFilesCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentFileFilesCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesCreate`: %v\n", resp)
 }
 ```
 
@@ -104,37 +104,37 @@ List file contents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `relative_path` - Relative path * `-relative_path` - Relative path (descending) * `digest` - Digest * `-digest` - Digest (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    relativePath := "relativePath_example" // string | Filter results where relative_path matches value (optional)
-    repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-    repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
-    sha256 := "sha256_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `upstream_id` - Upstream id * `-upstream_id` - Upstream id (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `relative_path` - Relative path * `-relative_path` - Relative path (descending) * `digest` - Digest * `-digest` - Digest (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	relativePath := "relativePath_example" // string | Filter results where relative_path matches value (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	sha256 := "sha256_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RelativePath(relativePath).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentFileFilesList`: PaginatedfileFileContentResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RelativePath(relativePath).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentFileFilesList`: PaginatedfileFileContentResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesList`: %v\n", resp)
 }
 ```
 
@@ -200,26 +200,26 @@ Inspect a file content
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileContentHref := "fileFileContentHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileContentHref := "fileFileContentHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesRead(context.Background(), fileFileContentHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentFileFilesRead`: FileFileContentResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesRead(context.Background(), fileFileContentHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentFileFilesRead`: FileFileContentResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentFilesAPI.ContentFileFilesRead`: %v\n", resp)
 }
 ```
 

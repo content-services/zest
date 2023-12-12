@@ -27,25 +27,25 @@ Create a pulp importer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    pulpImporter := *openapiclient.NewPulpImporter("Name_example") // PulpImporter | 
+	pulpDomain := "pulpDomain_example" // string | 
+	pulpImporter := *openapiclient.NewPulpImporter("Name_example") // PulpImporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpCreate(context.Background(), pulpDomain).PulpImporter(pulpImporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportersCorePulpCreate`: PulpImporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpCreate(context.Background(), pulpDomain).PulpImporter(pulpImporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportersCorePulpCreate`: PulpImporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpCreate`: %v\n", resp)
 }
 ```
 
@@ -99,22 +99,22 @@ Delete a pulp importer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpImporterHref := "pulpImporterHref_example" // string | 
+	pulpImporterHref := "pulpImporterHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ImportersPulpAPI.ImportersCorePulpDelete(context.Background(), pulpImporterHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ImportersPulpAPI.ImportersCorePulpDelete(context.Background(), pulpImporterHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -167,41 +167,41 @@ List pulp importers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportersCorePulpList`: PaginatedPulpImporterResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportersCorePulpList`: PaginatedPulpImporterResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpList`: %v\n", resp)
 }
 ```
 
@@ -271,25 +271,25 @@ Update a pulp importer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpImporterHref := "pulpImporterHref_example" // string | 
-    patchedPulpImporter := *openapiclient.NewPatchedPulpImporter() // PatchedPulpImporter | 
+	pulpImporterHref := "pulpImporterHref_example" // string | 
+	patchedPulpImporter := *openapiclient.NewPatchedPulpImporter() // PatchedPulpImporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpPartialUpdate(context.Background(), pulpImporterHref).PatchedPulpImporter(patchedPulpImporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportersCorePulpPartialUpdate`: PulpImporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpPartialUpdate(context.Background(), pulpImporterHref).PatchedPulpImporter(patchedPulpImporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportersCorePulpPartialUpdate`: PulpImporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -343,26 +343,26 @@ Inspect a pulp importer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpImporterHref := "pulpImporterHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpImporterHref := "pulpImporterHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpRead(context.Background(), pulpImporterHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportersCorePulpRead`: PulpImporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpRead(context.Background(), pulpImporterHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportersCorePulpRead`: PulpImporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpRead`: %v\n", resp)
 }
 ```
 
@@ -417,25 +417,25 @@ Update a pulp importer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpImporterHref := "pulpImporterHref_example" // string | 
-    pulpImporter := *openapiclient.NewPulpImporter("Name_example") // PulpImporter | 
+	pulpImporterHref := "pulpImporterHref_example" // string | 
+	pulpImporter := *openapiclient.NewPulpImporter("Name_example") // PulpImporter | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpUpdate(context.Background(), pulpImporterHref).PulpImporter(pulpImporter).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ImportersCorePulpUpdate`: PulpImporterResponse
-    fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ImportersPulpAPI.ImportersCorePulpUpdate(context.Background(), pulpImporterHref).PulpImporter(pulpImporter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpAPI.ImportersCorePulpUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ImportersCorePulpUpdate`: PulpImporterResponse
+	fmt.Fprintf(os.Stdout, "Response from `ImportersPulpAPI.ImportersCorePulpUpdate`: %v\n", resp)
 }
 ```
 

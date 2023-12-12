@@ -24,25 +24,25 @@ Create an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupHref := "groupHref_example" // string | 
-    groupUser := *openapiclient.NewGroupUser("Username_example") // GroupUser | 
+	groupHref := "groupHref_example" // string | 
+	groupUser := *openapiclient.NewGroupUser("Username_example") // GroupUser | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersCreate(context.Background(), groupHref).GroupUser(groupUser).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GroupsUsersCreate`: GroupUserResponse
-    fmt.Fprintf(os.Stdout, "Response from `GroupsUsersAPI.GroupsUsersCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersCreate(context.Background(), groupHref).GroupUser(groupUser).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GroupsUsersCreate`: GroupUserResponse
+	fmt.Fprintf(os.Stdout, "Response from `GroupsUsersAPI.GroupsUsersCreate`: %v\n", resp)
 }
 ```
 
@@ -96,22 +96,22 @@ Delete an user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupsUserHref := "groupsUserHref_example" // string | 
+	groupsUserHref := "groupsUserHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.GroupsUsersAPI.GroupsUsersDelete(context.Background(), groupsUserHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.GroupsUsersAPI.GroupsUsersDelete(context.Background(), groupsUserHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -164,28 +164,28 @@ List users
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    groupHref := "groupHref_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	groupHref := "groupHref_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersList(context.Background(), groupHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GroupsUsersList`: PaginatedGroupUserResponseList
-    fmt.Fprintf(os.Stdout, "Response from `GroupsUsersAPI.GroupsUsersList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersList(context.Background(), groupHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GroupsUsersList`: PaginatedGroupUserResponseList
+	fmt.Fprintf(os.Stdout, "Response from `GroupsUsersAPI.GroupsUsersList`: %v\n", resp)
 }
 ```
 

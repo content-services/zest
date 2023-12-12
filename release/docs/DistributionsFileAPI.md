@@ -33,25 +33,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileAddRole(context.Background(), fileFileDistributionHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileAddRole(context.Background(), fileFileDistributionHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileAddRole`: %v\n", resp)
 }
 ```
 
@@ -105,25 +105,25 @@ Create a file distribution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    fileFileDistribution := *openapiclient.NewFileFileDistribution("BasePath_example", "Name_example") // FileFileDistribution | 
+	pulpDomain := "pulpDomain_example" // string | 
+	fileFileDistribution := *openapiclient.NewFileFileDistribution("BasePath_example", "Name_example") // FileFileDistribution | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileCreate(context.Background(), pulpDomain).FileFileDistribution(fileFileDistribution).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileCreate(context.Background(), pulpDomain).FileFileDistribution(fileFileDistribution).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileCreate`: %v\n", resp)
 }
 ```
 
@@ -177,24 +177,24 @@ Delete a file distribution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileDelete(context.Background(), fileFileDistributionHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileDelete(context.Background(), fileFileDistributionHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileDelete`: %v\n", resp)
 }
 ```
 
@@ -247,49 +247,49 @@ List file distributions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    basePath := "basePath_example" // string | Filter results where base_path matches value (optional)
-    basePathContains := "basePathContains_example" // string | Filter results where base_path contains value (optional)
-    basePathIcontains := "basePathIcontains_example" // string | Filter results where base_path contains value (optional)
-    basePathIn := []string{"Inner_example"} // []string | Filter results where base_path is in a comma-separated list of values (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `base_path` - Base path * `-base_path` - Base path (descending) * `hidden` - Hidden * `-hidden` - Hidden (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-    q := "q_example" // string |  (optional)
-    repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
-    repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
-    withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	basePath := "basePath_example" // string | Filter results where base_path matches value (optional)
+	basePathContains := "basePathContains_example" // string | Filter results where base_path contains value (optional)
+	basePathIcontains := "basePathIcontains_example" // string | Filter results where base_path contains value (optional)
+	basePathIn := []string{"Inner_example"} // []string | Filter results where base_path is in a comma-separated list of values (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `pulp_labels` - Pulp labels * `-pulp_labels` - Pulp labels (descending) * `base_path` - Base path * `-base_path` - Base path (descending) * `hidden` - Hidden * `-hidden` - Hidden (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
+	q := "q_example" // string |  (optional)
+	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
+	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
+	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileList`: PaginatedfileFileDistributionResponseList
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileList`: PaginatedfileFileDistributionResponseList
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileList`: %v\n", resp)
 }
 ```
 
@@ -367,26 +367,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileListRoles(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileListRoles(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileListRoles`: %v\n", resp)
 }
 ```
 
@@ -441,26 +441,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileMyPermissions(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileMyPermissions(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -515,25 +515,25 @@ Update a file distribution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    patchedfileFileDistribution := *openapiclient.NewPatchedfileFileDistribution() // PatchedfileFileDistribution | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	patchedfileFileDistribution := *openapiclient.NewPatchedfileFileDistribution() // PatchedfileFileDistribution | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFilePartialUpdate(context.Background(), fileFileDistributionHref).PatchedfileFileDistribution(patchedfileFileDistribution).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFilePartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFilePartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFilePartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFilePartialUpdate(context.Background(), fileFileDistributionHref).PatchedfileFileDistribution(patchedfileFileDistribution).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFilePartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFilePartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFilePartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -587,26 +587,26 @@ Inspect a file distribution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileRead(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileRead`: FileFileDistributionResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileRead(context.Background(), fileFileDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileRead`: FileFileDistributionResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileRead`: %v\n", resp)
 }
 ```
 
@@ -661,25 +661,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileRemoveRole(context.Background(), fileFileDistributionHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileRemoveRole(context.Background(), fileFileDistributionHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -733,25 +733,25 @@ Set a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileSetLabel(context.Background(), fileFileDistributionHref).SetLabel(setLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileSetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileSetLabel`: SetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileSetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileSetLabel(context.Background(), fileFileDistributionHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileSetLabel`: %v\n", resp)
 }
 ```
 
@@ -805,25 +805,25 @@ Unset a label
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileUnsetLabel(context.Background(), fileFileDistributionHref).UnsetLabel(unsetLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileUnsetLabel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileUnsetLabel`: UnsetLabelResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileUnsetLabel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileUnsetLabel(context.Background(), fileFileDistributionHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileUnsetLabel`: %v\n", resp)
 }
 ```
 
@@ -877,25 +877,25 @@ Update a file distribution
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
-    fileFileDistribution := *openapiclient.NewFileFileDistribution("BasePath_example", "Name_example") // FileFileDistribution | 
+	fileFileDistributionHref := "fileFileDistributionHref_example" // string | 
+	fileFileDistribution := *openapiclient.NewFileFileDistribution("BasePath_example", "Name_example") // FileFileDistribution | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileUpdate(context.Background(), fileFileDistributionHref).FileFileDistribution(fileFileDistribution).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DistributionsFileFileUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsFileAPI.DistributionsFileFileUpdate(context.Background(), fileFileDistributionHref).FileFileDistribution(fileFileDistribution).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsFileAPI.DistributionsFileFileUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsFileFileUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsFileAPI.DistributionsFileFileUpdate`: %v\n", resp)
 }
 ```
 

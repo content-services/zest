@@ -30,25 +30,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	taskHref := "taskHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksAddRole(context.Background(), taskHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksAddRole(context.Background(), taskHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksAddRole`: %v\n", resp)
 }
 ```
 
@@ -102,25 +102,25 @@ Cancel a task
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    patchedTaskCancel := *openapiclient.NewPatchedTaskCancel() // PatchedTaskCancel | 
+	taskHref := "taskHref_example" // string | 
+	patchedTaskCancel := *openapiclient.NewPatchedTaskCancel() // PatchedTaskCancel | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksCancel(context.Background(), taskHref).PatchedTaskCancel(patchedTaskCancel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksCancel``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksCancel`: TaskResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksCancel`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksCancel(context.Background(), taskHref).PatchedTaskCancel(patchedTaskCancel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksCancel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksCancel`: TaskResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksCancel`: %v\n", resp)
 }
 ```
 
@@ -174,22 +174,22 @@ Delete a task
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
+	taskHref := "taskHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.TasksAPI.TasksDelete(context.Background(), taskHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.TasksAPI.TasksDelete(context.Background(), taskHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -242,68 +242,68 @@ List tasks
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
+	"context"
+	"fmt"
+	"os"
     "time"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    childTasks := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where child_tasks matches value (optional)
-    createdResources := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
-    exclusiveResources := "exclusiveResources_example" // string |  (optional)
-    exclusiveResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    finishedAt := time.Now() // time.Time | Filter results where finished_at matches value (optional)
-    finishedAtGt := time.Now() // time.Time | Filter results where finished_at is greater than value (optional)
-    finishedAtGte := time.Now() // time.Time | Filter results where finished_at is greater than or equal to value (optional)
-    finishedAtLt := time.Now() // time.Time | Filter results where finished_at is less than value (optional)
-    finishedAtLte := time.Now() // time.Time | Filter results where finished_at is less than or equal to value (optional)
-    finishedAtRange := []time.Time{time.Now()} // []time.Time | Filter results where finished_at is between two comma separated values (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    loggingCid := "loggingCid_example" // string | Filter results where logging_cid matches value (optional)
-    loggingCidContains := "loggingCidContains_example" // string | Filter results where logging_cid contains value (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameNe := "nameNe_example" // string | Filter results where name not equal to value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `state` - State * `-state` - State (descending) * `name` - Name * `-name` - Name (descending) * `logging_cid` - Logging cid * `-logging_cid` - Logging cid (descending) * `started_at` - Started at * `-started_at` - Started at (descending) * `finished_at` - Finished at * `-finished_at` - Finished at (descending) * `error` - Error * `-error` - Error (descending) * `enc_args` - Enc args * `-enc_args` - Enc args (descending) * `enc_kwargs` - Enc kwargs * `-enc_kwargs` - Enc kwargs (descending) * `reserved_resources_record` - Reserved resources record * `-reserved_resources_record` - Reserved resources record (descending) * `versions` - Versions * `-versions` - Versions (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    parentTask := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where parent_task matches value (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    reservedResources := "reservedResources_example" // string |  (optional)
-    reservedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    reservedResourcesRecord := []string{"Inner_example"} // []string |  (optional)
-    sharedResources := "sharedResources_example" // string |  (optional)
-    sharedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    startedAt := time.Now() // time.Time | Filter results where started_at matches value (optional)
-    startedAtGt := time.Now() // time.Time | Filter results where started_at is greater than value (optional)
-    startedAtGte := time.Now() // time.Time | Filter results where started_at is greater than or equal to value (optional)
-    startedAtLt := time.Now() // time.Time | Filter results where started_at is less than value (optional)
-    startedAtLte := time.Now() // time.Time | Filter results where started_at is less than or equal to value (optional)
-    startedAtRange := []time.Time{time.Now()} // []time.Time | Filter results where started_at is between two comma separated values (optional)
-    state := "state_example" // string | Filter results where state matches value  * `waiting` - Waiting * `skipped` - Skipped * `running` - Running * `completed` - Completed * `failed` - Failed * `canceled` - Canceled * `canceling` - Canceling (optional)
-    stateIn := []string{"Inner_example"} // []string | Filter results where state is in a comma-separated list of values (optional)
-    stateNe := "stateNe_example" // string | Filter results where state not equal to value (optional)
-    taskGroup := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where task_group matches value (optional)
-    worker := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where worker matches value (optional)
-    workerIn := []string{"Inner_example"} // []string | Filter results where worker is in a comma-separated list of values (optional)
-    workerIsnull := true // bool | Filter results where worker has a null value (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	childTasks := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where child_tasks matches value (optional)
+	createdResources := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string |  (optional)
+	exclusiveResources := "exclusiveResources_example" // string |  (optional)
+	exclusiveResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	finishedAt := time.Now() // time.Time | Filter results where finished_at matches value (optional)
+	finishedAtGt := time.Now() // time.Time | Filter results where finished_at is greater than value (optional)
+	finishedAtGte := time.Now() // time.Time | Filter results where finished_at is greater than or equal to value (optional)
+	finishedAtLt := time.Now() // time.Time | Filter results where finished_at is less than value (optional)
+	finishedAtLte := time.Now() // time.Time | Filter results where finished_at is less than or equal to value (optional)
+	finishedAtRange := []time.Time{time.Now()} // []time.Time | Filter results where finished_at is between two comma separated values (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	loggingCid := "loggingCid_example" // string | Filter results where logging_cid matches value (optional)
+	loggingCidContains := "loggingCidContains_example" // string | Filter results where logging_cid contains value (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameNe := "nameNe_example" // string | Filter results where name not equal to value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `state` - State * `-state` - State (descending) * `name` - Name * `-name` - Name (descending) * `logging_cid` - Logging cid * `-logging_cid` - Logging cid (descending) * `started_at` - Started at * `-started_at` - Started at (descending) * `finished_at` - Finished at * `-finished_at` - Finished at (descending) * `error` - Error * `-error` - Error (descending) * `enc_args` - Enc args * `-enc_args` - Enc args (descending) * `enc_kwargs` - Enc kwargs * `-enc_kwargs` - Enc kwargs (descending) * `reserved_resources_record` - Reserved resources record * `-reserved_resources_record` - Reserved resources record (descending) * `versions` - Versions * `-versions` - Versions (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	parentTask := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where parent_task matches value (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	reservedResources := "reservedResources_example" // string |  (optional)
+	reservedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	reservedResourcesRecord := []string{"Inner_example"} // []string |  (optional)
+	sharedResources := "sharedResources_example" // string |  (optional)
+	sharedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	startedAt := time.Now() // time.Time | Filter results where started_at matches value (optional)
+	startedAtGt := time.Now() // time.Time | Filter results where started_at is greater than value (optional)
+	startedAtGte := time.Now() // time.Time | Filter results where started_at is greater than or equal to value (optional)
+	startedAtLt := time.Now() // time.Time | Filter results where started_at is less than value (optional)
+	startedAtLte := time.Now() // time.Time | Filter results where started_at is less than or equal to value (optional)
+	startedAtRange := []time.Time{time.Now()} // []time.Time | Filter results where started_at is between two comma separated values (optional)
+	state := "state_example" // string | Filter results where state matches value  * `waiting` - Waiting * `skipped` - Skipped * `running` - Running * `completed` - Completed * `failed` - Failed * `canceled` - Canceled * `canceling` - Canceling (optional)
+	stateIn := []string{"Inner_example"} // []string | Filter results where state is in a comma-separated list of values (optional)
+	stateNe := "stateNe_example" // string | Filter results where state not equal to value (optional)
+	taskGroup := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where task_group matches value (optional)
+	worker := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where worker matches value (optional)
+	workerIn := []string{"Inner_example"} // []string | Filter results where worker is in a comma-separated list of values (optional)
+	workerIsnull := true // bool | Filter results where worker has a null value (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksList(context.Background(), pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).ReservedResourcesRecord(reservedResourcesRecord).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksList`: PaginatedTaskResponseList
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksList(context.Background(), pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).ReservedResourcesRecord(reservedResourcesRecord).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksList`: PaginatedTaskResponseList
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksList`: %v\n", resp)
 }
 ```
 
@@ -399,26 +399,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskHref := "taskHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksListRoles(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksListRoles(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksListRoles`: %v\n", resp)
 }
 ```
 
@@ -473,26 +473,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskHref := "taskHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksMyPermissions(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksMyPermissions(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -547,25 +547,25 @@ Purge Completed Tasks
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    purge := *openapiclient.NewPurge() // Purge | 
+	pulpDomain := "pulpDomain_example" // string | 
+	purge := *openapiclient.NewPurge() // Purge | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksPurge(context.Background(), pulpDomain).Purge(purge).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksPurge``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksPurge`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksPurge`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksPurge(context.Background(), pulpDomain).Purge(purge).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksPurge``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksPurge`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksPurge`: %v\n", resp)
 }
 ```
 
@@ -619,26 +619,26 @@ Inspect a task
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	taskHref := "taskHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksRead(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksRead`: TaskResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksRead(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksRead`: TaskResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksRead`: %v\n", resp)
 }
 ```
 
@@ -693,25 +693,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    taskHref := "taskHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	taskHref := "taskHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TasksAPI.TasksRemoveRole(context.Background(), taskHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TasksRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksRemoveRole(context.Background(), taskHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksRemoveRole`: %v\n", resp)
 }
 ```
 

@@ -31,25 +31,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole`: %v\n", resp)
 }
 ```
 
@@ -103,25 +103,25 @@ Create a content redirect content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
+	pulpDomain := "pulpDomain_example" // string | 
+	contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate(context.Background(), pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectCreate`: ContentRedirectContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate(context.Background(), pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectCreate`: ContentRedirectContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate`: %v\n", resp)
 }
 ```
 
@@ -175,22 +175,22 @@ Delete a content redirect content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete(context.Background(), contentRedirectContentGuardHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete(context.Background(), contentRedirectContentGuardHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -243,41 +243,41 @@ List content redirect content guards
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectList`: PaginatedContentRedirectContentGuardResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectList`: PaginatedContentRedirectContentGuardResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList`: %v\n", resp)
 }
 ```
 
@@ -347,26 +347,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles`: %v\n", resp)
 }
 ```
 
@@ -421,26 +421,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -495,25 +495,25 @@ Update a content redirect content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    patchedContentRedirectContentGuard := *openapiclient.NewPatchedContentRedirectContentGuard() // PatchedContentRedirectContentGuard | 
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	patchedContentRedirectContentGuard := *openapiclient.NewPatchedContentRedirectContentGuard() // PatchedContentRedirectContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate(context.Background(), contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectPartialUpdate`: ContentRedirectContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate(context.Background(), contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectPartialUpdate`: ContentRedirectContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -567,26 +567,26 @@ Inspect a content redirect content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectRead`: ContentRedirectContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectRead`: ContentRedirectContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead`: %v\n", resp)
 }
 ```
 
@@ -641,25 +641,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -713,25 +713,25 @@ Update a content redirect content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
-    contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
+	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate(context.Background(), contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreContentRedirectUpdate`: ContentRedirectContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate(context.Background(), contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreContentRedirectUpdate`: ContentRedirectContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate`: %v\n", resp)
 }
 ```
 

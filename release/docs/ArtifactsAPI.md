@@ -25,32 +25,32 @@ Create an artifact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    file := os.NewFile(1234, "some_file") // *os.File | The stored file.
-    size := int64(789) // int64 | The size of the file in bytes. (optional)
-    md5 := "md5_example" // string | The MD5 checksum of the file if available. (optional)
-    sha1 := "sha1_example" // string | The SHA-1 checksum of the file if available. (optional)
-    sha224 := "sha224_example" // string | The SHA-224 checksum of the file if available. (optional)
-    sha256 := "sha256_example" // string | The SHA-256 checksum of the file if available. (optional)
-    sha384 := "sha384_example" // string | The SHA-384 checksum of the file if available. (optional)
-    sha512 := "sha512_example" // string | The SHA-512 checksum of the file if available. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	file := os.NewFile(1234, "some_file") // *os.File | The stored file.
+	size := int64(789) // int64 | The size of the file in bytes. (optional)
+	md5 := "md5_example" // string | The MD5 checksum of the file if available. (optional)
+	sha1 := "sha1_example" // string | The SHA-1 checksum of the file if available. (optional)
+	sha224 := "sha224_example" // string | The SHA-224 checksum of the file if available. (optional)
+	sha256 := "sha256_example" // string | The SHA-256 checksum of the file if available. (optional)
+	sha384 := "sha384_example" // string | The SHA-384 checksum of the file if available. (optional)
+	sha512 := "sha512_example" // string | The SHA-512 checksum of the file if available. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ArtifactsAPI.ArtifactsCreate(context.Background(), pulpDomain).File(file).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ArtifactsCreate`: ArtifactResponse
-    fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsCreate(context.Background(), pulpDomain).File(file).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ArtifactsCreate`: ArtifactResponse
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsCreate`: %v\n", resp)
 }
 ```
 
@@ -111,22 +111,22 @@ Delete an artifact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    artifactHref := "artifactHref_example" // string | 
+	artifactHref := "artifactHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ArtifactsAPI.ArtifactsDelete(context.Background(), artifactHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ArtifactsAPI.ArtifactsDelete(context.Background(), artifactHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -179,39 +179,39 @@ List artifacts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    md5 := "md5_example" // string | Filter results where md5 matches value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `file` - File * `-file` - File (descending) * `size` - Size * `-size` - Size (descending) * `md5` - Md5 * `-md5` - Md5 (descending) * `sha1` - Sha1 * `-sha1` - Sha1 (descending) * `sha224` - Sha224 * `-sha224` - Sha224 (descending) * `sha256` - Sha256 * `-sha256` - Sha256 (descending) * `sha384` - Sha384 * `-sha384` - Sha384 (descending) * `sha512` - Sha512 * `-sha512` - Sha512 (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-    sha1 := "sha1_example" // string | Filter results where sha1 matches value (optional)
-    sha224 := "sha224_example" // string | Filter results where sha224 matches value (optional)
-    sha256 := "sha256_example" // string | Filter results where sha256 matches value (optional)
-    sha384 := "sha384_example" // string | Filter results where sha384 matches value (optional)
-    sha512 := "sha512_example" // string | Filter results where sha512 matches value (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	md5 := "md5_example" // string | Filter results where md5 matches value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `file` - File * `-file` - File (descending) * `size` - Size * `-size` - Size (descending) * `md5` - Md5 * `-md5` - Md5 (descending) * `sha1` - Sha1 * `-sha1` - Sha1 (descending) * `sha224` - Sha224 * `-sha224` - Sha224 (descending) * `sha256` - Sha256 * `-sha256` - Sha256 (descending) * `sha384` - Sha384 * `-sha384` - Sha384 (descending) * `sha512` - Sha512 * `-sha512` - Sha512 (descending) * `timestamp_of_interest` - Timestamp of interest * `-timestamp_of_interest` - Timestamp of interest (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
+	sha1 := "sha1_example" // string | Filter results where sha1 matches value (optional)
+	sha224 := "sha224_example" // string | Filter results where sha224 matches value (optional)
+	sha256 := "sha256_example" // string | Filter results where sha256 matches value (optional)
+	sha384 := "sha384_example" // string | Filter results where sha384 matches value (optional)
+	sha512 := "sha512_example" // string | Filter results where sha512 matches value (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ArtifactsAPI.ArtifactsList(context.Background(), pulpDomain).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ArtifactsList`: PaginatedArtifactResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsList(context.Background(), pulpDomain).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ArtifactsList`: PaginatedArtifactResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsList`: %v\n", resp)
 }
 ```
 
@@ -279,26 +279,26 @@ Inspect an artifact
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    artifactHref := "artifactHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	artifactHref := "artifactHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ArtifactsAPI.ArtifactsRead(context.Background(), artifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ArtifactsRead`: ArtifactResponse
-    fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsRead(context.Background(), artifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ArtifactsRead`: ArtifactResponse
+	fmt.Fprintf(os.Stdout, "Response from `ArtifactsAPI.ArtifactsRead`: %v\n", resp)
 }
 ```
 

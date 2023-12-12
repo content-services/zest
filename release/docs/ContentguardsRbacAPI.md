@@ -31,25 +31,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacAddRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacAddRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacAddRole`: %v\n", resp)
 }
 ```
 
@@ -103,25 +103,25 @@ Create a rbac content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
+	pulpDomain := "pulpDomain_example" // string | 
+	rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacCreate(context.Background(), pulpDomain).RBACContentGuard(rBACContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacCreate`: RBACContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacCreate(context.Background(), pulpDomain).RBACContentGuard(rBACContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacCreate`: RBACContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacCreate`: %v\n", resp)
 }
 ```
 
@@ -175,22 +175,22 @@ Delete a rbac content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacDelete(context.Background(), rBACContentGuardHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacDelete(context.Background(), rBACContentGuardHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -243,41 +243,41 @@ List rbac content guards
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacList`: PaginatedRBACContentGuardResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacList`: PaginatedRBACContentGuardResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacList`: %v\n", resp)
 }
 ```
 
@@ -347,26 +347,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacListRoles(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacListRoles(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacListRoles`: %v\n", resp)
 }
 ```
 
@@ -421,26 +421,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -495,25 +495,25 @@ Update a rbac content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    patchedRBACContentGuard := *openapiclient.NewPatchedRBACContentGuard() // PatchedRBACContentGuard | 
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	patchedRBACContentGuard := *openapiclient.NewPatchedRBACContentGuard() // PatchedRBACContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate(context.Background(), rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacPartialUpdate`: RBACContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate(context.Background(), rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacPartialUpdate`: RBACContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -567,26 +567,26 @@ Inspect a rbac content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRead(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacRead`: RBACContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRead(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacRead`: RBACContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacRead`: %v\n", resp)
 }
 ```
 
@@ -641,25 +641,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -713,25 +713,25 @@ Update a rbac content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
-    rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
+	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacUpdate(context.Background(), rBACContentGuardHref).RBACContentGuard(rBACContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreRbacUpdate`: RBACContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacUpdate(context.Background(), rBACContentGuardHref).RBACContentGuard(rBACContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreRbacUpdate`: RBACContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsRbacAPI.ContentguardsCoreRbacUpdate`: %v\n", resp)
 }
 ```
 

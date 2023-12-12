@@ -22,24 +22,24 @@ Delete orphans
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
+	pulpDomain := "pulpDomain_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrphansAPI.OrphansDelete(context.Background(), pulpDomain).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrphansAPI.OrphansDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrphansDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrphansAPI.OrphansDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrphansAPI.OrphansDelete(context.Background(), pulpDomain).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrphansAPI.OrphansDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrphansDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `OrphansAPI.OrphansDelete`: %v\n", resp)
 }
 ```
 

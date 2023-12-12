@@ -22,25 +22,25 @@ Copy content
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    copy := *openapiclient.NewCopy(map[string]interface{}(123)) // Copy | 
+	pulpDomain := "pulpDomain_example" // string | 
+	copy := *openapiclient.NewCopy(map[string]interface{}(123)) // Copy | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RpmCopyAPI.CopyContent(context.Background(), pulpDomain).Copy(copy).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RpmCopyAPI.CopyContent``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CopyContent`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RpmCopyAPI.CopyContent`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RpmCopyAPI.CopyContent(context.Background(), pulpDomain).Copy(copy).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RpmCopyAPI.CopyContent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CopyContent`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RpmCopyAPI.CopyContent`: %v\n", resp)
 }
 ```
 

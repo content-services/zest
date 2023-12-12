@@ -27,25 +27,25 @@ Create a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
+	pulpDomain := "pulpDomain_example" // string | 
+	role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RolesAPI.RolesCreate(context.Background(), pulpDomain).Role(role).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RolesCreate`: RoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RolesAPI.RolesCreate(context.Background(), pulpDomain).Role(role).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RolesCreate`: RoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesCreate`: %v\n", resp)
 }
 ```
 
@@ -99,22 +99,22 @@ Delete a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    roleHref := "roleHref_example" // string | 
+	roleHref := "roleHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.RolesAPI.RolesDelete(context.Background(), roleHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RolesAPI.RolesDelete(context.Background(), roleHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -167,48 +167,48 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    containsPermission := []string{"Inner_example"} // []string | Filter roles that have any of the permissions in the list. (optional)
-    description := "description_example" // string | Filter results where description matches value (optional)
-    descriptionContains := "descriptionContains_example" // string | Filter results where description contains value (optional)
-    descriptionIcontains := "descriptionIcontains_example" // string | Filter results where description contains value (optional)
-    descriptionIexact := "descriptionIexact_example" // string | Filter results where description matches value (optional)
-    forObjectType := "forObjectType_example" // string | Filter roles that only have permissions for the specified object HREF. (optional)
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    locked := true // bool | Filter results where locked matches value (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `locked` - Locked * `-locked` - Locked (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	containsPermission := []string{"Inner_example"} // []string | Filter roles that have any of the permissions in the list. (optional)
+	description := "description_example" // string | Filter results where description matches value (optional)
+	descriptionContains := "descriptionContains_example" // string | Filter results where description contains value (optional)
+	descriptionIcontains := "descriptionIcontains_example" // string | Filter results where description contains value (optional)
+	descriptionIexact := "descriptionIexact_example" // string | Filter results where description matches value (optional)
+	forObjectType := "forObjectType_example" // string | Filter roles that only have permissions for the specified object HREF. (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	locked := true // bool | Filter results where locked matches value (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `locked` - Locked * `-locked` - Locked (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RolesAPI.RolesList(context.Background(), pulpDomain).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RolesList`: PaginatedRoleResponseList
-    fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RolesAPI.RolesList(context.Background(), pulpDomain).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RolesList`: PaginatedRoleResponseList
+	fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesList`: %v\n", resp)
 }
 ```
 
@@ -285,25 +285,25 @@ Update a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    roleHref := "roleHref_example" // string | 
-    patchedRole := *openapiclient.NewPatchedRole() // PatchedRole | 
+	roleHref := "roleHref_example" // string | 
+	patchedRole := *openapiclient.NewPatchedRole() // PatchedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RolesAPI.RolesPartialUpdate(context.Background(), roleHref).PatchedRole(patchedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RolesPartialUpdate`: RoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RolesAPI.RolesPartialUpdate(context.Background(), roleHref).PatchedRole(patchedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RolesPartialUpdate`: RoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -357,26 +357,26 @@ Inspect a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    roleHref := "roleHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	roleHref := "roleHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RolesAPI.RolesRead(context.Background(), roleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RolesRead`: RoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RolesAPI.RolesRead(context.Background(), roleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RolesRead`: RoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesRead`: %v\n", resp)
 }
 ```
 
@@ -431,25 +431,25 @@ Update a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    roleHref := "roleHref_example" // string | 
-    role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
+	roleHref := "roleHref_example" // string | 
+	role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RolesAPI.RolesUpdate(context.Background(), roleHref).Role(role).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RolesUpdate`: RoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RolesAPI.RolesUpdate(context.Background(), roleHref).Role(role).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RolesUpdate`: RoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RolesAPI.RolesUpdate`: %v\n", resp)
 }
 ```
 

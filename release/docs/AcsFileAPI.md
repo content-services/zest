@@ -32,25 +32,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileAddRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileAddRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileAddRole`: %v\n", resp)
 }
 ```
 
@@ -104,25 +104,25 @@ Create a file alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
+	pulpDomain := "pulpDomain_example" // string | 
+	fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileCreate(context.Background(), pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileCreate`: FileFileAlternateContentSourceResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileCreate(context.Background(), pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileCreate`: FileFileAlternateContentSourceResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileCreate`: %v\n", resp)
 }
 ```
 
@@ -176,24 +176,24 @@ Delete a file alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileDelete(context.Background(), fileFileAlternateContentSourceHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileDelete(context.Background(), fileFileAlternateContentSourceHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileDelete`: %v\n", resp)
 }
 ```
 
@@ -246,41 +246,41 @@ List file alternate content sources
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `last_refreshed` - Last refreshed * `-last_refreshed` - Last refreshed (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `last_refreshed` - Last refreshed * `-last_refreshed` - Last refreshed (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileList`: PaginatedfileFileAlternateContentSourceResponseList
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileList`: PaginatedfileFileAlternateContentSourceResponseList
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileList`: %v\n", resp)
 }
 ```
 
@@ -350,26 +350,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileListRoles(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileListRoles(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileListRoles`: %v\n", resp)
 }
 ```
 
@@ -424,26 +424,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileMyPermissions(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileMyPermissions(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -498,25 +498,25 @@ Update a file alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    patchedfileFileAlternateContentSource := *openapiclient.NewPatchedfileFileAlternateContentSource() // PatchedfileFileAlternateContentSource | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	patchedfileFileAlternateContentSource := *openapiclient.NewPatchedfileFileAlternateContentSource() // PatchedfileFileAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFilePartialUpdate(context.Background(), fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFilePartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFilePartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFilePartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFilePartialUpdate(context.Background(), fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFilePartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFilePartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFilePartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -570,26 +570,26 @@ Inspect a file alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileRead(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileRead`: FileFileAlternateContentSourceResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRead(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileRead`: FileFileAlternateContentSourceResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRead`: %v\n", resp)
 }
 ```
 
@@ -644,24 +644,24 @@ Refresh metadata
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileRefresh(context.Background(), fileFileAlternateContentSourceHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRefresh``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileRefresh`: TaskGroupOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRefresh`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRefresh(context.Background(), fileFileAlternateContentSourceHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRefresh``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileRefresh`: TaskGroupOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRefresh`: %v\n", resp)
 }
 ```
 
@@ -714,25 +714,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileRemoveRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRemoveRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -786,25 +786,25 @@ Update a file alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
-    fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
+	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsFileAPI.AcsFileFileUpdate(context.Background(), fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsFileFileUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileUpdate(context.Background(), fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsFileFileUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileUpdate`: %v\n", resp)
 }
 ```
 

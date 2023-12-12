@@ -25,25 +25,25 @@ Create a pulp export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpExporterHref := "pulpExporterHref_example" // string | 
-    pulpExport := *openapiclient.NewPulpExport() // PulpExport | 
+	pulpExporterHref := "pulpExporterHref_example" // string | 
+	pulpExport := *openapiclient.NewPulpExport() // PulpExport | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsCreate(context.Background(), pulpExporterHref).PulpExport(pulpExport).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCorePulpExportsCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsCreate(context.Background(), pulpExporterHref).PulpExport(pulpExport).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCorePulpExportsCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsCreate`: %v\n", resp)
 }
 ```
 
@@ -97,22 +97,22 @@ Delete a pulp export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpPulpExportHref := "pulpPulpExportHref_example" // string | 
+	pulpPulpExportHref := "pulpPulpExportHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsDelete(context.Background(), pulpPulpExportHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsDelete(context.Background(), pulpPulpExportHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -165,28 +165,28 @@ List pulp exports
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpExporterHref := "pulpExporterHref_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpExporterHref := "pulpExporterHref_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsList(context.Background(), pulpExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCorePulpExportsList`: PaginatedPulpExportResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsList(context.Background(), pulpExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCorePulpExportsList`: PaginatedPulpExportResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsList`: %v\n", resp)
 }
 ```
 
@@ -243,26 +243,26 @@ Inspect a pulp export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpPulpExportHref := "pulpPulpExportHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpPulpExportHref := "pulpPulpExportHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsRead(context.Background(), pulpPulpExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCorePulpExportsRead`: PulpExportResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersPulpExportsAPI.ExportersCorePulpExportsRead(context.Background(), pulpPulpExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersPulpExportsAPI.ExportersCorePulpExportsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCorePulpExportsRead`: PulpExportResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersPulpExportsAPI.ExportersCorePulpExportsRead`: %v\n", resp)
 }
 ```
 

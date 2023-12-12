@@ -32,25 +32,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmAddRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmAddRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmAddRole`: %v\n", resp)
 }
 ```
 
@@ -104,25 +104,25 @@ Create a rpm alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
+	pulpDomain := "pulpDomain_example" // string | 
+	rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmCreate`: RpmRpmAlternateContentSourceResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmCreate`: RpmRpmAlternateContentSourceResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmCreate`: %v\n", resp)
 }
 ```
 
@@ -176,24 +176,24 @@ Delete a rpm alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmDelete(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmDelete`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmDelete`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmDelete(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmDelete`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmDelete`: %v\n", resp)
 }
 ```
 
@@ -246,41 +246,41 @@ List rpm alternate content sources
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `last_refreshed` - Last refreshed * `-last_refreshed` - Last refreshed (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `last_refreshed` - Last refreshed * `-last_refreshed` - Last refreshed (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmList`: PaginatedrpmRpmAlternateContentSourceResponseList
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmList`: PaginatedrpmRpmAlternateContentSourceResponseList
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmList`: %v\n", resp)
 }
 ```
 
@@ -350,26 +350,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmListRoles(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmListRoles(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmListRoles`: %v\n", resp)
 }
 ```
 
@@ -424,26 +424,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmMyPermissions(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmMyPermissions(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -498,25 +498,25 @@ Update a rpm alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    patchedrpmRpmAlternateContentSource := *openapiclient.NewPatchedrpmRpmAlternateContentSource() // PatchedrpmRpmAlternateContentSource | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	patchedrpmRpmAlternateContentSource := *openapiclient.NewPatchedrpmRpmAlternateContentSource() // PatchedrpmRpmAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmPartialUpdate(context.Background(), rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmPartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmPartialUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmPartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmPartialUpdate(context.Background(), rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmPartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmPartialUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmPartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -570,26 +570,26 @@ Inspect a rpm alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRead(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmRead`: RpmRpmAlternateContentSourceResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRead(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmRead`: RpmRpmAlternateContentSourceResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRead`: %v\n", resp)
 }
 ```
 
@@ -644,24 +644,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRefresh(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRefresh``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmRefresh`: TaskGroupOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRefresh`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRefresh(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRefresh``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmRefresh`: TaskGroupOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRefresh`: %v\n", resp)
 }
 ```
 
@@ -714,25 +714,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRemoveRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRemoveRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -786,25 +786,25 @@ Update a rpm alternate content source
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
-    rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
+	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmUpdate(context.Background(), rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcsRpmRpmUpdate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmUpdate(context.Background(), rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcsRpmRpmUpdate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmUpdate`: %v\n", resp)
 }
 ```
 

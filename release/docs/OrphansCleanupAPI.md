@@ -22,25 +22,25 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    orphansCleanup := *openapiclient.NewOrphansCleanup() // OrphansCleanup | 
+	pulpDomain := "pulpDomain_example" // string | 
+	orphansCleanup := *openapiclient.NewOrphansCleanup() // OrphansCleanup | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrphansCleanupAPI.OrphansCleanupCleanup(context.Background(), pulpDomain).OrphansCleanup(orphansCleanup).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrphansCleanupAPI.OrphansCleanupCleanup``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `OrphansCleanupCleanup`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `OrphansCleanupAPI.OrphansCleanupCleanup`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OrphansCleanupAPI.OrphansCleanupCleanup(context.Background(), pulpDomain).OrphansCleanup(orphansCleanup).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OrphansCleanupAPI.OrphansCleanupCleanup``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OrphansCleanupCleanup`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `OrphansCleanupAPI.OrphansCleanupCleanup`: %v\n", resp)
 }
 ```
 

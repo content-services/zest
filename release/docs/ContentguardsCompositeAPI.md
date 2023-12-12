@@ -31,25 +31,25 @@ Add a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeAddRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole`: %v\n", resp)
 }
 ```
 
@@ -103,25 +103,25 @@ Create a composite content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
+	pulpDomain := "pulpDomain_example" // string | 
+	compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate(context.Background(), pulpDomain).CompositeContentGuard(compositeContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeCreate`: CompositeContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate(context.Background(), pulpDomain).CompositeContentGuard(compositeContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeCreate`: CompositeContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate`: %v\n", resp)
 }
 ```
 
@@ -175,22 +175,22 @@ Delete a composite content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete(context.Background(), compositeContentGuardHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete(context.Background(), compositeContentGuardHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -243,41 +243,41 @@ List composite content guards
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    name := "name_example" // string | Filter results where name matches value (optional)
-    nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
-    nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
-    nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
-    nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
-    nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
-    nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
-    nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
-    nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
-    pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-    q := "q_example" // string |  (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	name := "name_example" // string | Filter results where name matches value (optional)
+	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter results where name contains value (optional)
+	nameIexact := "nameIexact_example" // string | Filter results where name matches value (optional)
+	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
+	nameIregex := "nameIregex_example" // string | Filter results where name matches regex value (optional)
+	nameIstartswith := "nameIstartswith_example" // string | Filter results where name starts with value (optional)
+	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
+	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `name` - Name * `-name` - Name (descending) * `description` - Description * `-description` - Description (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string |  (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeList`: PaginatedCompositeContentGuardResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeList`: PaginatedCompositeContentGuardResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeList`: %v\n", resp)
 }
 ```
 
@@ -347,26 +347,26 @@ List roles
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeListRoles`: ObjectRolesResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles`: %v\n", resp)
 }
 ```
 
@@ -421,26 +421,26 @@ List user permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeMyPermissions`: MyPermissionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions`: %v\n", resp)
 }
 ```
 
@@ -495,25 +495,25 @@ Update a composite content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    patchedCompositeContentGuard := *openapiclient.NewPatchedCompositeContentGuard() // PatchedCompositeContentGuard | 
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	patchedCompositeContentGuard := *openapiclient.NewPatchedCompositeContentGuard() // PatchedCompositeContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate(context.Background(), compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositePartialUpdate`: CompositeContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate(context.Background(), compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositePartialUpdate`: CompositeContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate`: %v\n", resp)
 }
 ```
 
@@ -567,26 +567,26 @@ Inspect a composite content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRead(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeRead`: CompositeContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRead(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeRead`: CompositeContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeRead`: %v\n", resp)
 }
 ```
 
@@ -641,25 +641,25 @@ Remove a role
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeRemoveRole`: NestedRoleResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole`: %v\n", resp)
 }
 ```
 
@@ -713,25 +713,25 @@ Update a composite content guard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
-    compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
+	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate(context.Background(), compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ContentguardsCoreCompositeUpdate`: CompositeContentGuardResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate(context.Background(), compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentguardsCoreCompositeUpdate`: CompositeContentGuardResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate`: %v\n", resp)
 }
 ```
 

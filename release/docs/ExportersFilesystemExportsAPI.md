@@ -25,25 +25,25 @@ Create a filesystem export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
-    filesystemExport := *openapiclient.NewFilesystemExport() // FilesystemExport | 
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	filesystemExport := *openapiclient.NewFilesystemExport() // FilesystemExport | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate(context.Background(), filesystemExporterHref).FilesystemExport(filesystemExport).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemExportsCreate`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate(context.Background(), filesystemExporterHref).FilesystemExport(filesystemExport).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemExportsCreate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate`: %v\n", resp)
 }
 ```
 
@@ -97,22 +97,22 @@ Delete a filesystem export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
+	filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete(context.Background(), filesystemFilesystemExportHref).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete(context.Background(), filesystemFilesystemExportHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -165,28 +165,28 @@ List filesystem exports
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemExporterHref := "filesystemExporterHref_example" // string | 
-    limit := int32(56) // int32 | Number of results to return per page. (optional)
-    offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList(context.Background(), filesystemExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemExportsList`: PaginatedFilesystemExportResponseList
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList(context.Background(), filesystemExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemExportsList`: PaginatedFilesystemExportResponseList
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList`: %v\n", resp)
 }
 ```
 
@@ -243,26 +243,26 @@ Inspect a filesystem export
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
-    fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
-    excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+	filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead(context.Background(), filesystemFilesystemExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExportersCoreFilesystemExportsRead`: FilesystemExportResponse
-    fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead(context.Background(), filesystemFilesystemExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportersCoreFilesystemExportsRead`: FilesystemExportResponse
+	fmt.Fprintf(os.Stdout, "Response from `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead`: %v\n", resp)
 }
 ```
 

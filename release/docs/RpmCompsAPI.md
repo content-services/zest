@@ -22,27 +22,27 @@ Upload comps.xml
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/content-services/zest/release/v2023"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2023"
 )
 
 func main() {
-    pulpDomain := "pulpDomain_example" // string | 
-    file := os.NewFile(1234, "some_file") // *os.File | Full path of a comps.xml file that may be parsed into comps.xml Content units.
-    repository := "repository_example" // string | URI of an RPM repository the comps.xml content units should be associated to. (optional)
-    replace := true // bool | If true, incoming comps.xml replaces existing comps-related ContentUnits in the specified repository. (optional)
+	pulpDomain := "pulpDomain_example" // string | 
+	file := os.NewFile(1234, "some_file") // *os.File | Full path of a comps.xml file that may be parsed into comps.xml Content units.
+	repository := "repository_example" // string | URI of an RPM repository the comps.xml content units should be associated to. (optional)
+	replace := true // bool | If true, incoming comps.xml replaces existing comps-related ContentUnits in the specified repository. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RpmCompsAPI.RpmCompsUpload(context.Background(), pulpDomain).File(file).Repository(repository).Replace(replace).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RpmCompsAPI.RpmCompsUpload``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RpmCompsUpload`: AsyncOperationResponse
-    fmt.Fprintf(os.Stdout, "Response from `RpmCompsAPI.RpmCompsUpload`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RpmCompsAPI.RpmCompsUpload(context.Background(), pulpDomain).File(file).Repository(repository).Replace(replace).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RpmCompsAPI.RpmCompsUpload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RpmCompsUpload`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RpmCompsAPI.RpmCompsUpload`: %v\n", resp)
 }
 ```
 
