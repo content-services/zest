@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -975,7 +976,7 @@ func (o RpmUlnRemote) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *RpmUlnRemote) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RpmUlnRemote) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -988,7 +989,7 @@ func (o *RpmUlnRemote) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -1002,7 +1003,9 @@ func (o *RpmUlnRemote) UnmarshalJSON(bytes []byte) (err error) {
 
 	varRpmUlnRemote := _RpmUlnRemote{}
 
-	err = json.Unmarshal(bytes, &varRpmUlnRemote)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRpmUlnRemote)
 
 	if err != nil {
 		return err

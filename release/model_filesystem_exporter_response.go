@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"bytes"
 	"fmt"
 )
 
@@ -225,7 +226,7 @@ func (o FilesystemExporterResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FilesystemExporterResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *FilesystemExporterResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -236,7 +237,7 @@ func (o *FilesystemExporterResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -250,7 +251,9 @@ func (o *FilesystemExporterResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varFilesystemExporterResponse := _FilesystemExporterResponse{}
 
-	err = json.Unmarshal(bytes, &varFilesystemExporterResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFilesystemExporterResponse)
 
 	if err != nil {
 		return err

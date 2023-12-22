@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -167,7 +168,7 @@ func (o VersionResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VersionResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *VersionResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -180,7 +181,7 @@ func (o *VersionResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -194,7 +195,9 @@ func (o *VersionResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varVersionResponse := _VersionResponse{}
 
-	err = json.Unmarshal(bytes, &varVersionResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVersionResponse)
 
 	if err != nil {
 		return err

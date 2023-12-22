@@ -14,6 +14,7 @@ package zest
 import (
 	"encoding/json"
 	"time"
+	"bytes"
 	"fmt"
 )
 
@@ -230,7 +231,7 @@ func (o UploadDetailResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UploadDetailResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *UploadDetailResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -240,7 +241,7 @@ func (o *UploadDetailResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	allProperties := make(map[string]interface{})
 
-	err = json.Unmarshal(bytes, &allProperties)
+	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
 		return err;
@@ -254,7 +255,9 @@ func (o *UploadDetailResponse) UnmarshalJSON(bytes []byte) (err error) {
 
 	varUploadDetailResponse := _UploadDetailResponse{}
 
-	err = json.Unmarshal(bytes, &varUploadDetailResponse)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUploadDetailResponse)
 
 	if err != nil {
 		return err
