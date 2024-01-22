@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **MetadataSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **RetainPackageVersions** | Pointer to **int64** | The number of versions of each package to keep in the repository; older versions will be purged. The default is &#39;0&#39;, which will disable this feature and keep all versions of each package. | [optional] 
-**MetadataChecksumType** | Pointer to [**NullableMetadataChecksumTypeEnum**](MetadataChecksumTypeEnum.md) |  | [optional] 
+**ChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
+**MetadataChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **PackageChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**SqliteMetadata** | Pointer to **bool** | DEPRECATED: An option specifying whether Pulp should generate SQLite metadata. | [optional] [default to false]
 **RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
+**CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) |  | [optional] 
 
 ## Methods
 
@@ -273,22 +274,57 @@ SetRetainPackageVersions sets RetainPackageVersions field to given value.
 
 HasRetainPackageVersions returns a boolean if a field has been set.
 
+### GetChecksumType
+
+`func (o *RpmRpmRepository) GetChecksumType() PackageChecksumTypeEnum`
+
+GetChecksumType returns the ChecksumType field if non-nil, zero value otherwise.
+
+### GetChecksumTypeOk
+
+`func (o *RpmRpmRepository) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
+
+GetChecksumTypeOk returns a tuple with the ChecksumType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChecksumType
+
+`func (o *RpmRpmRepository) SetChecksumType(v PackageChecksumTypeEnum)`
+
+SetChecksumType sets ChecksumType field to given value.
+
+### HasChecksumType
+
+`func (o *RpmRpmRepository) HasChecksumType() bool`
+
+HasChecksumType returns a boolean if a field has been set.
+
+### SetChecksumTypeNil
+
+`func (o *RpmRpmRepository) SetChecksumTypeNil(b bool)`
+
+ SetChecksumTypeNil sets the value for ChecksumType to be an explicit nil
+
+### UnsetChecksumType
+`func (o *RpmRpmRepository) UnsetChecksumType()`
+
+UnsetChecksumType ensures that no value is present for ChecksumType, not even an explicit nil
 ### GetMetadataChecksumType
 
-`func (o *RpmRpmRepository) GetMetadataChecksumType() MetadataChecksumTypeEnum`
+`func (o *RpmRpmRepository) GetMetadataChecksumType() PackageChecksumTypeEnum`
 
 GetMetadataChecksumType returns the MetadataChecksumType field if non-nil, zero value otherwise.
 
 ### GetMetadataChecksumTypeOk
 
-`func (o *RpmRpmRepository) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool)`
+`func (o *RpmRpmRepository) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
 
 GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadataChecksumType
 
-`func (o *RpmRpmRepository) SetMetadataChecksumType(v MetadataChecksumTypeEnum)`
+`func (o *RpmRpmRepository) SetMetadataChecksumType(v PackageChecksumTypeEnum)`
 
 SetMetadataChecksumType sets MetadataChecksumType field to given value.
 
@@ -413,31 +449,6 @@ HasRepoGpgcheck returns a boolean if a field has been set.
 `func (o *RpmRpmRepository) UnsetRepoGpgcheck()`
 
 UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
-### GetSqliteMetadata
-
-`func (o *RpmRpmRepository) GetSqliteMetadata() bool`
-
-GetSqliteMetadata returns the SqliteMetadata field if non-nil, zero value otherwise.
-
-### GetSqliteMetadataOk
-
-`func (o *RpmRpmRepository) GetSqliteMetadataOk() (*bool, bool)`
-
-GetSqliteMetadataOk returns a tuple with the SqliteMetadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSqliteMetadata
-
-`func (o *RpmRpmRepository) SetSqliteMetadata(v bool)`
-
-SetSqliteMetadata sets SqliteMetadata field to given value.
-
-### HasSqliteMetadata
-
-`func (o *RpmRpmRepository) HasSqliteMetadata() bool`
-
-HasSqliteMetadata returns a boolean if a field has been set.
-
 ### GetRepoConfig
 
 `func (o *RpmRpmRepository) GetRepoConfig() map[string]interface{}`
@@ -463,6 +474,41 @@ SetRepoConfig sets RepoConfig field to given value.
 
 HasRepoConfig returns a boolean if a field has been set.
 
+### GetCompressionType
+
+`func (o *RpmRpmRepository) GetCompressionType() CompressionTypeEnum`
+
+GetCompressionType returns the CompressionType field if non-nil, zero value otherwise.
+
+### GetCompressionTypeOk
+
+`func (o *RpmRpmRepository) GetCompressionTypeOk() (*CompressionTypeEnum, bool)`
+
+GetCompressionTypeOk returns a tuple with the CompressionType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompressionType
+
+`func (o *RpmRpmRepository) SetCompressionType(v CompressionTypeEnum)`
+
+SetCompressionType sets CompressionType field to given value.
+
+### HasCompressionType
+
+`func (o *RpmRpmRepository) HasCompressionType() bool`
+
+HasCompressionType returns a boolean if a field has been set.
+
+### SetCompressionTypeNil
+
+`func (o *RpmRpmRepository) SetCompressionTypeNil(b bool)`
+
+ SetCompressionTypeNil sets the value for CompressionType to be an explicit nil
+
+### UnsetCompressionType
+`func (o *RpmRpmRepository) UnsetCompressionType()`
+
+UnsetCompressionType ensures that no value is present for CompressionType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

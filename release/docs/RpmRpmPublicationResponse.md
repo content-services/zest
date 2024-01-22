@@ -8,12 +8,14 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **RepositoryVersion** | Pointer to **string** |  | [optional] 
 **Repository** | Pointer to **string** | A URI of the repository to be published. | [optional] 
-**MetadataChecksumType** | Pointer to [**MetadataChecksumTypeEnum**](MetadataChecksumTypeEnum.md) |  | [optional] 
+**ChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
+**MetadataChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **PackageChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**SqliteMetadata** | Pointer to **bool** | DEPRECATED: An option specifying whether Pulp should generate SQLite metadata. | [optional] [default to false]
+**SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
 **RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
+**CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) |  | [optional] 
 
 ## Methods
 
@@ -134,22 +136,47 @@ SetRepository sets Repository field to given value.
 
 HasRepository returns a boolean if a field has been set.
 
+### GetChecksumType
+
+`func (o *RpmRpmPublicationResponse) GetChecksumType() PackageChecksumTypeEnum`
+
+GetChecksumType returns the ChecksumType field if non-nil, zero value otherwise.
+
+### GetChecksumTypeOk
+
+`func (o *RpmRpmPublicationResponse) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
+
+GetChecksumTypeOk returns a tuple with the ChecksumType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChecksumType
+
+`func (o *RpmRpmPublicationResponse) SetChecksumType(v PackageChecksumTypeEnum)`
+
+SetChecksumType sets ChecksumType field to given value.
+
+### HasChecksumType
+
+`func (o *RpmRpmPublicationResponse) HasChecksumType() bool`
+
+HasChecksumType returns a boolean if a field has been set.
+
 ### GetMetadataChecksumType
 
-`func (o *RpmRpmPublicationResponse) GetMetadataChecksumType() MetadataChecksumTypeEnum`
+`func (o *RpmRpmPublicationResponse) GetMetadataChecksumType() PackageChecksumTypeEnum`
 
 GetMetadataChecksumType returns the MetadataChecksumType field if non-nil, zero value otherwise.
 
 ### GetMetadataChecksumTypeOk
 
-`func (o *RpmRpmPublicationResponse) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool)`
+`func (o *RpmRpmPublicationResponse) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
 
 GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadataChecksumType
 
-`func (o *RpmRpmPublicationResponse) SetMetadataChecksumType(v MetadataChecksumTypeEnum)`
+`func (o *RpmRpmPublicationResponse) SetMetadataChecksumType(v PackageChecksumTypeEnum)`
 
 SetMetadataChecksumType sets MetadataChecksumType field to given value.
 
@@ -303,6 +330,31 @@ SetRepoConfig sets RepoConfig field to given value.
 `func (o *RpmRpmPublicationResponse) HasRepoConfig() bool`
 
 HasRepoConfig returns a boolean if a field has been set.
+
+### GetCompressionType
+
+`func (o *RpmRpmPublicationResponse) GetCompressionType() CompressionTypeEnum`
+
+GetCompressionType returns the CompressionType field if non-nil, zero value otherwise.
+
+### GetCompressionTypeOk
+
+`func (o *RpmRpmPublicationResponse) GetCompressionTypeOk() (*CompressionTypeEnum, bool)`
+
+GetCompressionTypeOk returns a tuple with the CompressionType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompressionType
+
+`func (o *RpmRpmPublicationResponse) SetCompressionType(v CompressionTypeEnum)`
+
+SetCompressionType sets CompressionType field to given value.
+
+### HasCompressionType
+
+`func (o *RpmRpmPublicationResponse) HasCompressionType() bool`
+
+HasCompressionType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

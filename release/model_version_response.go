@@ -28,6 +28,8 @@ type VersionResponse struct {
 	Version string `json:"version"`
 	// Python package name providing the component
 	Package string `json:"package"`
+	// Python module name of the component
+	Module string `json:"module"`
 	// Domain feature compatibility of component
 	DomainCompatible bool `json:"domain_compatible"`
 }
@@ -38,11 +40,12 @@ type _VersionResponse VersionResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVersionResponse(component string, version string, package_ string, domainCompatible bool) *VersionResponse {
+func NewVersionResponse(component string, version string, package_ string, module string, domainCompatible bool) *VersionResponse {
 	this := VersionResponse{}
 	this.Component = component
 	this.Version = version
 	this.Package = package_
+	this.Module = module
 	this.DomainCompatible = domainCompatible
 	return &this
 }
@@ -127,6 +130,30 @@ func (o *VersionResponse) SetPackage(v string) {
 	o.Package = v
 }
 
+// GetModule returns the Module field value
+func (o *VersionResponse) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *VersionResponse) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *VersionResponse) SetModule(v string) {
+	o.Module = v
+}
+
 // GetDomainCompatible returns the DomainCompatible field value
 func (o *VersionResponse) GetDomainCompatible() bool {
 	if o == nil {
@@ -164,6 +191,7 @@ func (o VersionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["component"] = o.Component
 	toSerialize["version"] = o.Version
 	toSerialize["package"] = o.Package
+	toSerialize["module"] = o.Module
 	toSerialize["domain_compatible"] = o.DomainCompatible
 	return toSerialize, nil
 }
@@ -176,6 +204,7 @@ func (o *VersionResponse) UnmarshalJSON(data []byte) (err error) {
 		"component",
 		"version",
 		"package",
+		"module",
 		"domain_compatible",
 	}
 

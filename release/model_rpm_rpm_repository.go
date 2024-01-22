@@ -37,16 +37,16 @@ type RpmRpmRepository struct {
 	MetadataSigningService NullableString `json:"metadata_signing_service,omitempty"`
 	// The number of versions of each package to keep in the repository; older versions will be purged. The default is '0', which will disable this feature and keep all versions of each package.
 	RetainPackageVersions *int64 `json:"retain_package_versions,omitempty"`
-	MetadataChecksumType NullableMetadataChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
+	ChecksumType NullablePackageChecksumTypeEnum `json:"checksum_type,omitempty"`
+	MetadataChecksumType NullablePackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
 	PackageChecksumType NullablePackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
 	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
 	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
-	// DEPRECATED: An option specifying whether Pulp should generate SQLite metadata.
-	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 }
 
 type _RpmRpmRepository RpmRpmRepository
@@ -60,8 +60,6 @@ func NewRpmRpmRepository(name string) *RpmRpmRepository {
 	this.Name = name
 	var autopublish bool = false
 	this.Autopublish = &autopublish
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -72,8 +70,6 @@ func NewRpmRpmRepositoryWithDefaults() *RpmRpmRepository {
 	this := RpmRpmRepository{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -365,10 +361,52 @@ func (o *RpmRpmRepository) SetRetainPackageVersions(v int64) {
 	o.RetainPackageVersions = &v
 }
 
+// GetChecksumType returns the ChecksumType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepository) GetChecksumType() PackageChecksumTypeEnum {
+	if o == nil || IsNil(o.ChecksumType.Get()) {
+		var ret PackageChecksumTypeEnum
+		return ret
+	}
+	return *o.ChecksumType.Get()
+}
+
+// GetChecksumTypeOk returns a tuple with the ChecksumType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepository) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ChecksumType.Get(), o.ChecksumType.IsSet()
+}
+
+// HasChecksumType returns a boolean if a field has been set.
+func (o *RpmRpmRepository) HasChecksumType() bool {
+	if o != nil && o.ChecksumType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetChecksumType gets a reference to the given NullablePackageChecksumTypeEnum and assigns it to the ChecksumType field.
+func (o *RpmRpmRepository) SetChecksumType(v PackageChecksumTypeEnum) {
+	o.ChecksumType.Set(&v)
+}
+// SetChecksumTypeNil sets the value for ChecksumType to be an explicit nil
+func (o *RpmRpmRepository) SetChecksumTypeNil() {
+	o.ChecksumType.Set(nil)
+}
+
+// UnsetChecksumType ensures that no value is present for ChecksumType, not even an explicit nil
+func (o *RpmRpmRepository) UnsetChecksumType() {
+	o.ChecksumType.Unset()
+}
+
 // GetMetadataChecksumType returns the MetadataChecksumType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmRpmRepository) GetMetadataChecksumType() MetadataChecksumTypeEnum {
+func (o *RpmRpmRepository) GetMetadataChecksumType() PackageChecksumTypeEnum {
 	if o == nil || IsNil(o.MetadataChecksumType.Get()) {
-		var ret MetadataChecksumTypeEnum
+		var ret PackageChecksumTypeEnum
 		return ret
 	}
 	return *o.MetadataChecksumType.Get()
@@ -377,7 +415,7 @@ func (o *RpmRpmRepository) GetMetadataChecksumType() MetadataChecksumTypeEnum {
 // GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmRpmRepository) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool) {
+func (o *RpmRpmRepository) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -393,8 +431,8 @@ func (o *RpmRpmRepository) HasMetadataChecksumType() bool {
 	return false
 }
 
-// SetMetadataChecksumType gets a reference to the given NullableMetadataChecksumTypeEnum and assigns it to the MetadataChecksumType field.
-func (o *RpmRpmRepository) SetMetadataChecksumType(v MetadataChecksumTypeEnum) {
+// SetMetadataChecksumType gets a reference to the given NullablePackageChecksumTypeEnum and assigns it to the MetadataChecksumType field.
+func (o *RpmRpmRepository) SetMetadataChecksumType(v PackageChecksumTypeEnum) {
 	o.MetadataChecksumType.Set(&v)
 }
 // SetMetadataChecksumTypeNil sets the value for MetadataChecksumType to be an explicit nil
@@ -533,38 +571,6 @@ func (o *RpmRpmRepository) UnsetRepoGpgcheck() {
 	o.RepoGpgcheck.Unset()
 }
 
-// GetSqliteMetadata returns the SqliteMetadata field value if set, zero value otherwise.
-func (o *RpmRpmRepository) GetSqliteMetadata() bool {
-	if o == nil || IsNil(o.SqliteMetadata) {
-		var ret bool
-		return ret
-	}
-	return *o.SqliteMetadata
-}
-
-// GetSqliteMetadataOk returns a tuple with the SqliteMetadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RpmRpmRepository) GetSqliteMetadataOk() (*bool, bool) {
-	if o == nil || IsNil(o.SqliteMetadata) {
-		return nil, false
-	}
-	return o.SqliteMetadata, true
-}
-
-// HasSqliteMetadata returns a boolean if a field has been set.
-func (o *RpmRpmRepository) HasSqliteMetadata() bool {
-	if o != nil && !IsNil(o.SqliteMetadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetSqliteMetadata gets a reference to the given bool and assigns it to the SqliteMetadata field.
-func (o *RpmRpmRepository) SetSqliteMetadata(v bool) {
-	o.SqliteMetadata = &v
-}
-
 // GetRepoConfig returns the RepoConfig field value if set, zero value otherwise.
 func (o *RpmRpmRepository) GetRepoConfig() map[string]interface{} {
 	if o == nil || IsNil(o.RepoConfig) {
@@ -595,6 +601,48 @@ func (o *RpmRpmRepository) HasRepoConfig() bool {
 // SetRepoConfig gets a reference to the given map[string]interface{} and assigns it to the RepoConfig field.
 func (o *RpmRpmRepository) SetRepoConfig(v map[string]interface{}) {
 	o.RepoConfig = v
+}
+
+// GetCompressionType returns the CompressionType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepository) GetCompressionType() CompressionTypeEnum {
+	if o == nil || IsNil(o.CompressionType.Get()) {
+		var ret CompressionTypeEnum
+		return ret
+	}
+	return *o.CompressionType.Get()
+}
+
+// GetCompressionTypeOk returns a tuple with the CompressionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepository) GetCompressionTypeOk() (*CompressionTypeEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompressionType.Get(), o.CompressionType.IsSet()
+}
+
+// HasCompressionType returns a boolean if a field has been set.
+func (o *RpmRpmRepository) HasCompressionType() bool {
+	if o != nil && o.CompressionType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompressionType gets a reference to the given NullableCompressionTypeEnum and assigns it to the CompressionType field.
+func (o *RpmRpmRepository) SetCompressionType(v CompressionTypeEnum) {
+	o.CompressionType.Set(&v)
+}
+// SetCompressionTypeNil sets the value for CompressionType to be an explicit nil
+func (o *RpmRpmRepository) SetCompressionTypeNil() {
+	o.CompressionType.Set(nil)
+}
+
+// UnsetCompressionType ensures that no value is present for CompressionType, not even an explicit nil
+func (o *RpmRpmRepository) UnsetCompressionType() {
+	o.CompressionType.Unset()
 }
 
 func (o RpmRpmRepository) MarshalJSON() ([]byte, error) {
@@ -629,6 +677,9 @@ func (o RpmRpmRepository) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetainPackageVersions) {
 		toSerialize["retain_package_versions"] = o.RetainPackageVersions
 	}
+	if o.ChecksumType.IsSet() {
+		toSerialize["checksum_type"] = o.ChecksumType.Get()
+	}
 	if o.MetadataChecksumType.IsSet() {
 		toSerialize["metadata_checksum_type"] = o.MetadataChecksumType.Get()
 	}
@@ -641,11 +692,11 @@ func (o RpmRpmRepository) ToMap() (map[string]interface{}, error) {
 	if o.RepoGpgcheck.IsSet() {
 		toSerialize["repo_gpgcheck"] = o.RepoGpgcheck.Get()
 	}
-	if !IsNil(o.SqliteMetadata) {
-		toSerialize["sqlite_metadata"] = o.SqliteMetadata
-	}
 	if !IsNil(o.RepoConfig) {
 		toSerialize["repo_config"] = o.RepoConfig
+	}
+	if o.CompressionType.IsSet() {
+		toSerialize["compression_type"] = o.CompressionType.Get()
 	}
 	return toSerialize, nil
 }

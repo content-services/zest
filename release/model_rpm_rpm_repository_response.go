@@ -43,16 +43,18 @@ type RpmRpmRepositoryResponse struct {
 	MetadataSigningService NullableString `json:"metadata_signing_service,omitempty"`
 	// The number of versions of each package to keep in the repository; older versions will be purged. The default is '0', which will disable this feature and keep all versions of each package.
 	RetainPackageVersions *int64 `json:"retain_package_versions,omitempty"`
-	MetadataChecksumType NullableMetadataChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
+	ChecksumType NullablePackageChecksumTypeEnum `json:"checksum_type,omitempty"`
+	MetadataChecksumType NullablePackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
 	PackageChecksumType NullablePackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
 	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
 	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
-	// DEPRECATED: An option specifying whether Pulp should generate SQLite metadata.
+	// REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 }
 
 type _RpmRpmRepositoryResponse RpmRpmRepositoryResponse
@@ -66,8 +68,6 @@ func NewRpmRpmRepositoryResponse(name string) *RpmRpmRepositoryResponse {
 	this.Name = name
 	var autopublish bool = false
 	this.Autopublish = &autopublish
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -78,8 +78,6 @@ func NewRpmRpmRepositoryResponseWithDefaults() *RpmRpmRepositoryResponse {
 	this := RpmRpmRepositoryResponse{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -499,10 +497,52 @@ func (o *RpmRpmRepositoryResponse) SetRetainPackageVersions(v int64) {
 	o.RetainPackageVersions = &v
 }
 
+// GetChecksumType returns the ChecksumType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetChecksumType() PackageChecksumTypeEnum {
+	if o == nil || IsNil(o.ChecksumType.Get()) {
+		var ret PackageChecksumTypeEnum
+		return ret
+	}
+	return *o.ChecksumType.Get()
+}
+
+// GetChecksumTypeOk returns a tuple with the ChecksumType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ChecksumType.Get(), o.ChecksumType.IsSet()
+}
+
+// HasChecksumType returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasChecksumType() bool {
+	if o != nil && o.ChecksumType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetChecksumType gets a reference to the given NullablePackageChecksumTypeEnum and assigns it to the ChecksumType field.
+func (o *RpmRpmRepositoryResponse) SetChecksumType(v PackageChecksumTypeEnum) {
+	o.ChecksumType.Set(&v)
+}
+// SetChecksumTypeNil sets the value for ChecksumType to be an explicit nil
+func (o *RpmRpmRepositoryResponse) SetChecksumTypeNil() {
+	o.ChecksumType.Set(nil)
+}
+
+// UnsetChecksumType ensures that no value is present for ChecksumType, not even an explicit nil
+func (o *RpmRpmRepositoryResponse) UnsetChecksumType() {
+	o.ChecksumType.Unset()
+}
+
 // GetMetadataChecksumType returns the MetadataChecksumType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmRpmRepositoryResponse) GetMetadataChecksumType() MetadataChecksumTypeEnum {
+func (o *RpmRpmRepositoryResponse) GetMetadataChecksumType() PackageChecksumTypeEnum {
 	if o == nil || IsNil(o.MetadataChecksumType.Get()) {
-		var ret MetadataChecksumTypeEnum
+		var ret PackageChecksumTypeEnum
 		return ret
 	}
 	return *o.MetadataChecksumType.Get()
@@ -511,7 +551,7 @@ func (o *RpmRpmRepositoryResponse) GetMetadataChecksumType() MetadataChecksumTyp
 // GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmRpmRepositoryResponse) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool) {
+func (o *RpmRpmRepositoryResponse) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -527,8 +567,8 @@ func (o *RpmRpmRepositoryResponse) HasMetadataChecksumType() bool {
 	return false
 }
 
-// SetMetadataChecksumType gets a reference to the given NullableMetadataChecksumTypeEnum and assigns it to the MetadataChecksumType field.
-func (o *RpmRpmRepositoryResponse) SetMetadataChecksumType(v MetadataChecksumTypeEnum) {
+// SetMetadataChecksumType gets a reference to the given NullablePackageChecksumTypeEnum and assigns it to the MetadataChecksumType field.
+func (o *RpmRpmRepositoryResponse) SetMetadataChecksumType(v PackageChecksumTypeEnum) {
 	o.MetadataChecksumType.Set(&v)
 }
 // SetMetadataChecksumTypeNil sets the value for MetadataChecksumType to be an explicit nil
@@ -731,6 +771,48 @@ func (o *RpmRpmRepositoryResponse) SetRepoConfig(v map[string]interface{}) {
 	o.RepoConfig = v
 }
 
+// GetCompressionType returns the CompressionType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetCompressionType() CompressionTypeEnum {
+	if o == nil || IsNil(o.CompressionType.Get()) {
+		var ret CompressionTypeEnum
+		return ret
+	}
+	return *o.CompressionType.Get()
+}
+
+// GetCompressionTypeOk returns a tuple with the CompressionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetCompressionTypeOk() (*CompressionTypeEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CompressionType.Get(), o.CompressionType.IsSet()
+}
+
+// HasCompressionType returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasCompressionType() bool {
+	if o != nil && o.CompressionType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCompressionType gets a reference to the given NullableCompressionTypeEnum and assigns it to the CompressionType field.
+func (o *RpmRpmRepositoryResponse) SetCompressionType(v CompressionTypeEnum) {
+	o.CompressionType.Set(&v)
+}
+// SetCompressionTypeNil sets the value for CompressionType to be an explicit nil
+func (o *RpmRpmRepositoryResponse) SetCompressionTypeNil() {
+	o.CompressionType.Set(nil)
+}
+
+// UnsetCompressionType ensures that no value is present for CompressionType, not even an explicit nil
+func (o *RpmRpmRepositoryResponse) UnsetCompressionType() {
+	o.CompressionType.Unset()
+}
+
 func (o RpmRpmRepositoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -775,6 +857,9 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetainPackageVersions) {
 		toSerialize["retain_package_versions"] = o.RetainPackageVersions
 	}
+	if o.ChecksumType.IsSet() {
+		toSerialize["checksum_type"] = o.ChecksumType.Get()
+	}
 	if o.MetadataChecksumType.IsSet() {
 		toSerialize["metadata_checksum_type"] = o.MetadataChecksumType.Get()
 	}
@@ -792,6 +877,9 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RepoConfig) {
 		toSerialize["repo_config"] = o.RepoConfig
+	}
+	if o.CompressionType.IsSet() {
+		toSerialize["compression_type"] = o.CompressionType.Get()
 	}
 	return toSerialize, nil
 }

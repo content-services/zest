@@ -27,16 +27,18 @@ type RpmRpmPublicationResponse struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// A URI of the repository to be published.
 	Repository *string `json:"repository,omitempty"`
-	MetadataChecksumType *MetadataChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
+	ChecksumType *PackageChecksumTypeEnum `json:"checksum_type,omitempty"`
+	MetadataChecksumType *PackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
 	PackageChecksumType *PackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
 	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
 	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
-	// DEPRECATED: An option specifying whether Pulp should generate SQLite metadata.
+	// REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
 }
 
 // NewRpmRpmPublicationResponse instantiates a new RpmRpmPublicationResponse object
@@ -45,8 +47,6 @@ type RpmRpmPublicationResponse struct {
 // will change when the set of required properties is changed
 func NewRpmRpmPublicationResponse() *RpmRpmPublicationResponse {
 	this := RpmRpmPublicationResponse{}
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -55,8 +55,6 @@ func NewRpmRpmPublicationResponse() *RpmRpmPublicationResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewRpmRpmPublicationResponseWithDefaults() *RpmRpmPublicationResponse {
 	this := RpmRpmPublicationResponse{}
-	var sqliteMetadata bool = false
-	this.SqliteMetadata = &sqliteMetadata
 	return &this
 }
 
@@ -188,10 +186,42 @@ func (o *RpmRpmPublicationResponse) SetRepository(v string) {
 	o.Repository = &v
 }
 
+// GetChecksumType returns the ChecksumType field value if set, zero value otherwise.
+func (o *RpmRpmPublicationResponse) GetChecksumType() PackageChecksumTypeEnum {
+	if o == nil || IsNil(o.ChecksumType) {
+		var ret PackageChecksumTypeEnum
+		return ret
+	}
+	return *o.ChecksumType
+}
+
+// GetChecksumTypeOk returns a tuple with the ChecksumType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmPublicationResponse) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
+	if o == nil || IsNil(o.ChecksumType) {
+		return nil, false
+	}
+	return o.ChecksumType, true
+}
+
+// HasChecksumType returns a boolean if a field has been set.
+func (o *RpmRpmPublicationResponse) HasChecksumType() bool {
+	if o != nil && !IsNil(o.ChecksumType) {
+		return true
+	}
+
+	return false
+}
+
+// SetChecksumType gets a reference to the given PackageChecksumTypeEnum and assigns it to the ChecksumType field.
+func (o *RpmRpmPublicationResponse) SetChecksumType(v PackageChecksumTypeEnum) {
+	o.ChecksumType = &v
+}
+
 // GetMetadataChecksumType returns the MetadataChecksumType field value if set, zero value otherwise.
-func (o *RpmRpmPublicationResponse) GetMetadataChecksumType() MetadataChecksumTypeEnum {
+func (o *RpmRpmPublicationResponse) GetMetadataChecksumType() PackageChecksumTypeEnum {
 	if o == nil || IsNil(o.MetadataChecksumType) {
-		var ret MetadataChecksumTypeEnum
+		var ret PackageChecksumTypeEnum
 		return ret
 	}
 	return *o.MetadataChecksumType
@@ -199,7 +229,7 @@ func (o *RpmRpmPublicationResponse) GetMetadataChecksumType() MetadataChecksumTy
 
 // GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmRpmPublicationResponse) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool) {
+func (o *RpmRpmPublicationResponse) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
 	if o == nil || IsNil(o.MetadataChecksumType) {
 		return nil, false
 	}
@@ -215,8 +245,8 @@ func (o *RpmRpmPublicationResponse) HasMetadataChecksumType() bool {
 	return false
 }
 
-// SetMetadataChecksumType gets a reference to the given MetadataChecksumTypeEnum and assigns it to the MetadataChecksumType field.
-func (o *RpmRpmPublicationResponse) SetMetadataChecksumType(v MetadataChecksumTypeEnum) {
+// SetMetadataChecksumType gets a reference to the given PackageChecksumTypeEnum and assigns it to the MetadataChecksumType field.
+func (o *RpmRpmPublicationResponse) SetMetadataChecksumType(v PackageChecksumTypeEnum) {
 	o.MetadataChecksumType = &v
 }
 
@@ -400,6 +430,38 @@ func (o *RpmRpmPublicationResponse) SetRepoConfig(v map[string]interface{}) {
 	o.RepoConfig = v
 }
 
+// GetCompressionType returns the CompressionType field value if set, zero value otherwise.
+func (o *RpmRpmPublicationResponse) GetCompressionType() CompressionTypeEnum {
+	if o == nil || IsNil(o.CompressionType) {
+		var ret CompressionTypeEnum
+		return ret
+	}
+	return *o.CompressionType
+}
+
+// GetCompressionTypeOk returns a tuple with the CompressionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmPublicationResponse) GetCompressionTypeOk() (*CompressionTypeEnum, bool) {
+	if o == nil || IsNil(o.CompressionType) {
+		return nil, false
+	}
+	return o.CompressionType, true
+}
+
+// HasCompressionType returns a boolean if a field has been set.
+func (o *RpmRpmPublicationResponse) HasCompressionType() bool {
+	if o != nil && !IsNil(o.CompressionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompressionType gets a reference to the given CompressionTypeEnum and assigns it to the CompressionType field.
+func (o *RpmRpmPublicationResponse) SetCompressionType(v CompressionTypeEnum) {
+	o.CompressionType = &v
+}
+
 func (o RpmRpmPublicationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -422,6 +484,9 @@ func (o RpmRpmPublicationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.ChecksumType) {
+		toSerialize["checksum_type"] = o.ChecksumType
+	}
 	if !IsNil(o.MetadataChecksumType) {
 		toSerialize["metadata_checksum_type"] = o.MetadataChecksumType
 	}
@@ -439,6 +504,9 @@ func (o RpmRpmPublicationResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RepoConfig) {
 		toSerialize["repo_config"] = o.RepoConfig
+	}
+	if !IsNil(o.CompressionType) {
+		toSerialize["compression_type"] = o.CompressionType
 	}
 	return toSerialize, nil
 }

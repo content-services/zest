@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/content-services/zest/release/v2023"
+	openapiclient "github.com/content-services/zest/release/v2024"
 )
 
 func main() {
@@ -52,8 +52,8 @@ func main() {
 	pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
 	pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
 	pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
-	pulpType := "pulpType_example" // string | Pulp type  * `rpm.rpm` - rpm.rpm * `rpm.uln` - rpm.uln * `file.file` - file.file (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.  * `rpm.rpm` - rpm.rpm * `rpm.uln` - rpm.uln * `file.file` - file.file (optional)
+	pulpType := "pulpType_example" // string | Pulp type  * `gem.gem` - gem.gem * `rpm.rpm` - rpm.rpm * `rpm.uln` - rpm.uln * `file.file` - file.file (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.  * `gem.gem` - gem.gem * `rpm.rpm` - rpm.rpm * `rpm.uln` - rpm.uln * `file.file` - file.file (optional)
 	q := "q_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
@@ -107,8 +107,8 @@ Name | Type | Description  | Notes
  **pulpLastUpdatedLt** | **time.Time** | Filter results where pulp_last_updated is less than value | 
  **pulpLastUpdatedLte** | **time.Time** | Filter results where pulp_last_updated is less than or equal to value | 
  **pulpLastUpdatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_last_updated is between two comma separated values | 
- **pulpType** | **string** | Pulp type  * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln * &#x60;file.file&#x60; - file.file | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.  * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln * &#x60;file.file&#x60; - file.file | 
+ **pulpType** | **string** | Pulp type  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln * &#x60;file.file&#x60; - file.file | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;rpm.uln&#x60; - rpm.uln * &#x60;file.file&#x60; - file.file | 
  **q** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 

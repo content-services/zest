@@ -7,13 +7,14 @@ Name | Type | Description | Notes
 **Component** | **string** | Name of a versioned component of Pulp | 
 **Version** | **string** | Version of the component (e.g. 3.0.0) | 
 **Package** | **string** | Python package name providing the component | 
+**Module** | **string** | Python module name of the component | 
 **DomainCompatible** | **bool** | Domain feature compatibility of component | 
 
 ## Methods
 
 ### NewVersionResponse
 
-`func NewVersionResponse(component string, version string, package_ string, domainCompatible bool, ) *VersionResponse`
+`func NewVersionResponse(component string, version string, package_ string, module string, domainCompatible bool, ) *VersionResponse`
 
 NewVersionResponse instantiates a new VersionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +87,26 @@ and a boolean to check if the value has been set.
 `func (o *VersionResponse) SetPackage(v string)`
 
 SetPackage sets Package field to given value.
+
+
+### GetModule
+
+`func (o *VersionResponse) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *VersionResponse) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *VersionResponse) SetModule(v string)`
+
+SetModule sets Module field to given value.
 
 
 ### GetDomainCompatible

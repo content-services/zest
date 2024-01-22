@@ -16,12 +16,14 @@ Name | Type | Description | Notes
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **MetadataSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **RetainPackageVersions** | Pointer to **int64** | The number of versions of each package to keep in the repository; older versions will be purged. The default is &#39;0&#39;, which will disable this feature and keep all versions of each package. | [optional] 
-**MetadataChecksumType** | Pointer to [**NullableMetadataChecksumTypeEnum**](MetadataChecksumTypeEnum.md) |  | [optional] 
+**ChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
+**MetadataChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **PackageChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) |  | [optional] 
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**SqliteMetadata** | Pointer to **bool** | DEPRECATED: An option specifying whether Pulp should generate SQLite metadata. | [optional] [default to false]
+**SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
 **RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
+**CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) |  | [optional] 
 
 ## Methods
 
@@ -377,22 +379,57 @@ SetRetainPackageVersions sets RetainPackageVersions field to given value.
 
 HasRetainPackageVersions returns a boolean if a field has been set.
 
+### GetChecksumType
+
+`func (o *RpmRpmRepositoryResponse) GetChecksumType() PackageChecksumTypeEnum`
+
+GetChecksumType returns the ChecksumType field if non-nil, zero value otherwise.
+
+### GetChecksumTypeOk
+
+`func (o *RpmRpmRepositoryResponse) GetChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
+
+GetChecksumTypeOk returns a tuple with the ChecksumType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChecksumType
+
+`func (o *RpmRpmRepositoryResponse) SetChecksumType(v PackageChecksumTypeEnum)`
+
+SetChecksumType sets ChecksumType field to given value.
+
+### HasChecksumType
+
+`func (o *RpmRpmRepositoryResponse) HasChecksumType() bool`
+
+HasChecksumType returns a boolean if a field has been set.
+
+### SetChecksumTypeNil
+
+`func (o *RpmRpmRepositoryResponse) SetChecksumTypeNil(b bool)`
+
+ SetChecksumTypeNil sets the value for ChecksumType to be an explicit nil
+
+### UnsetChecksumType
+`func (o *RpmRpmRepositoryResponse) UnsetChecksumType()`
+
+UnsetChecksumType ensures that no value is present for ChecksumType, not even an explicit nil
 ### GetMetadataChecksumType
 
-`func (o *RpmRpmRepositoryResponse) GetMetadataChecksumType() MetadataChecksumTypeEnum`
+`func (o *RpmRpmRepositoryResponse) GetMetadataChecksumType() PackageChecksumTypeEnum`
 
 GetMetadataChecksumType returns the MetadataChecksumType field if non-nil, zero value otherwise.
 
 ### GetMetadataChecksumTypeOk
 
-`func (o *RpmRpmRepositoryResponse) GetMetadataChecksumTypeOk() (*MetadataChecksumTypeEnum, bool)`
+`func (o *RpmRpmRepositoryResponse) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
 
 GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadataChecksumType
 
-`func (o *RpmRpmRepositoryResponse) SetMetadataChecksumType(v MetadataChecksumTypeEnum)`
+`func (o *RpmRpmRepositoryResponse) SetMetadataChecksumType(v PackageChecksumTypeEnum)`
 
 SetMetadataChecksumType sets MetadataChecksumType field to given value.
 
@@ -567,6 +604,41 @@ SetRepoConfig sets RepoConfig field to given value.
 
 HasRepoConfig returns a boolean if a field has been set.
 
+### GetCompressionType
+
+`func (o *RpmRpmRepositoryResponse) GetCompressionType() CompressionTypeEnum`
+
+GetCompressionType returns the CompressionType field if non-nil, zero value otherwise.
+
+### GetCompressionTypeOk
+
+`func (o *RpmRpmRepositoryResponse) GetCompressionTypeOk() (*CompressionTypeEnum, bool)`
+
+GetCompressionTypeOk returns a tuple with the CompressionType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompressionType
+
+`func (o *RpmRpmRepositoryResponse) SetCompressionType(v CompressionTypeEnum)`
+
+SetCompressionType sets CompressionType field to given value.
+
+### HasCompressionType
+
+`func (o *RpmRpmRepositoryResponse) HasCompressionType() bool`
+
+HasCompressionType returns a boolean if a field has been set.
+
+### SetCompressionTypeNil
+
+`func (o *RpmRpmRepositoryResponse) SetCompressionTypeNil(b bool)`
+
+ SetCompressionTypeNil sets the value for CompressionType to be an explicit nil
+
+### UnsetCompressionType
+`func (o *RpmRpmRepositoryResponse) UnsetCompressionType()`
+
+UnsetCompressionType ensures that no value is present for CompressionType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

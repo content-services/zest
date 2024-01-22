@@ -13,9 +13,10 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.43.0
-    rpm: 3.24.0
-    file: 3.43.0
+    core: 3.44.1
+    gem: 0.4.0
+    rpm: 3.25.0
+    file: 3.44.1
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -1984,6 +1985,7 @@ paths:
           Pulp type
 
           * `core.publishedmetadata` - core.publishedmetadata
+          * `gem.gem` - gem.gem
           * `rpm.advisory` - rpm.advisory
           * `rpm.packagegroup` - rpm.packagegroup
           * `rpm.packagecategory` - rpm.packagecategory
@@ -2004,6 +2006,7 @@ paths:
           enum:
           - core.publishedmetadata
           - file.file
+          - gem.gem
           - rpm.advisory
           - rpm.distribution_tree
           - rpm.modulemd
@@ -2021,6 +2024,7 @@ paths:
           Multiple values may be separated by commas.
 
           * `core.publishedmetadata` - core.publishedmetadata
+          * `gem.gem` - gem.gem
           * `rpm.advisory` - rpm.advisory
           * `rpm.packagegroup` - rpm.packagegroup
           * `rpm.packagecategory` - rpm.packagecategory
@@ -2042,6 +2046,7 @@ paths:
             enum:
             - core.publishedmetadata
             - file.file
+            - gem.gem
             - rpm.advisory
             - rpm.distribution_tree
             - rpm.modulemd
@@ -2384,6 +2389,305 @@ paths:
       summary: Inspect a file content
       tags:
       - "Content: Files"
+  /pulp/{pulp_domain}/api/v3/content/gem/gem/:
+    get:
+      description: A ViewSet for GemContent.
+      operationId: content_gem_gem_list
+      parameters:
+      - description: Filter results where checksum matches value
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `upstream_id` - Upstream id
+          * `-upstream_id` - Upstream id (descending)
+          * `timestamp_of_interest` - Timestamp of interest
+          * `-timestamp_of_interest` - Timestamp of interest (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `version` - Version
+          * `-version` - Version (descending)
+          * `platform` - Platform
+          * `-platform` - Platform (descending)
+          * `checksum` - Checksum
+          * `-checksum` - Checksum (descending)
+          * `prerelease` - Prerelease
+          * `-prerelease` - Prerelease (descending)
+          * `dependencies` - Dependencies
+          * `-dependencies` - Dependencies (descending)
+          * `required_ruby_version` - Required ruby version
+          * `-required_ruby_version` - Required ruby version (descending)
+          * `required_rubygems_version` - Required rubygems version
+          * `-required_rubygems_version` - Required rubygems version (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -checksum
+            - -dependencies
+            - -name
+            - -pk
+            - -platform
+            - -prerelease
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -required_ruby_version
+            - -required_rubygems_version
+            - -timestamp_of_interest
+            - -upstream_id
+            - -version
+            - checksum
+            - dependencies
+            - name
+            - pk
+            - platform
+            - prerelease
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - required_ruby_version
+            - required_rubygems_version
+            - timestamp_of_interest
+            - upstream_id
+            - version
+            type: string
+          type: array
+        style: form
+      - description: Filter results where prerelease matches value
+        explode: true
+        in: query
+        name: prerelease
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version matches value
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedgem.GemContentResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List gem contents
+      tags:
+      - "Content: Gem"
+    post:
+      description: "Trigger an asynchronous task to create content,optionally create\
+        \ new repository version."
+      operationId: content_gem_gem_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a gem content
+      tags:
+      - "Content: Gem"
+  '{gem_gem_content_href}':
+    get:
+      description: A ViewSet for GemContent.
+      operationId: content_gem_gem_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_content_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemContentResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a gem content
+      tags:
+      - "Content: Gem"
   /pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
     get:
       description: |-
@@ -8076,6 +8380,7 @@ paths:
           Pulp type
 
           * `core.artifact` - core.artifact
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: true
@@ -8086,6 +8391,7 @@ paths:
           enum:
           - core.artifact
           - file.file
+          - gem.gem
           - rpm.rpm
           type: string
         style: form
@@ -8093,6 +8399,7 @@ paths:
           Multiple values may be separated by commas.
 
           * `core.artifact` - core.artifact
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: false
@@ -8104,6 +8411,7 @@ paths:
             enum:
             - core.artifact
             - file.file
+            - gem.gem
             - rpm.rpm
             type: string
           type: array
@@ -9220,6 +9528,707 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: File"
+  /pulp/{pulp_domain}/api/v3/distributions/gem/gem/:
+    get:
+      description: ViewSet for GemDistributions.
+      operationId: distributions_gem_gem_list
+      parameters:
+      - description: Filter results where base_path matches value
+        explode: true
+        in: query
+        name: base_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_path__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `base_path` - Base path
+          * `-base_path` - Base path (descending)
+          * `hidden` - Hidden
+          * `-hidden` - Hidden (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository matches value
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where repository is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: repository__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedgem.GemDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List gem distributions
+      tags:
+      - "Distributions: Gem"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_gem_gem_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a gem distribution
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_gem_gem_delete
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a gem distribution
+      tags:
+      - "Distributions: Gem"
+    get:
+      description: ViewSet for GemDistributions.
+      operationId: distributions_gem_gem_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a gem distribution
+      tags:
+      - "Distributions: Gem"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_gem_gem_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem distribution
+      tags:
+      - "Distributions: Gem"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_gem_gem_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem distribution
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: distributions_gem_gem_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: distributions_gem_gem_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: distributions_gem_gem_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: distributions_gem_gem_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_gem_gem_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Gem"
+  '{gem_gem_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_gem_gem_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Gem"
   /pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
     get:
       description: ViewSet for RPM Distributions.
@@ -13138,6 +14147,7 @@ paths:
       - description: |-
           Pulp type
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: true
@@ -13147,12 +14157,14 @@ paths:
         schema:
           enum:
           - file.file
+          - gem.gem
           - rpm.rpm
           type: string
         style: form
       - description: |-
           Multiple values may be separated by commas.
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: false
@@ -13163,6 +14175,7 @@ paths:
           items:
             enum:
             - file.file
+            - gem.gem
             - rpm.rpm
             type: string
           type: array
@@ -13724,6 +14737,494 @@ paths:
       summary: Remove a role
       tags:
       - "Publications: File"
+  /pulp/{pulp_domain}/api/v3/publications/gem/gem/:
+    get:
+      description: A ViewSet for GemPublication.
+      operationId: publications_gem_gem_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `complete` - Complete
+          * `-complete` - Complete (descending)
+          * `pass_through` - Pass through
+          * `-pass_through` - Pass through (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -pass_through
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - complete
+            - pass_through
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository referenced by HREF
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedgem.GemPublicationResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List gem publications
+      tags:
+      - "Publications: Gem"
+    post:
+      description: Trigger an asynchronous task to publish gem content
+      operationId: publications_gem_gem_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemPublication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemPublication'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemPublication'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a gem publication
+      tags:
+      - "Publications: Gem"
+  '{gem_gem_publication_href}':
+    delete:
+      description: A ViewSet for GemPublication.
+      operationId: publications_gem_gem_delete
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a gem publication
+      tags:
+      - "Publications: Gem"
+    get:
+      description: A ViewSet for GemPublication.
+      operationId: publications_gem_gem_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemPublicationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a gem publication
+      tags:
+      - "Publications: Gem"
+  '{gem_gem_publication_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: publications_gem_gem_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Publications: Gem"
+  '{gem_gem_publication_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: publications_gem_gem_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Publications: Gem"
+  '{gem_gem_publication_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: publications_gem_gem_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Publications: Gem"
+  '{gem_gem_publication_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: publications_gem_gem_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Publications: Gem"
   /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/:
     get:
       description: ViewSet for Rpm Publications.
@@ -14541,6 +16042,7 @@ paths:
       - description: |-
           Pulp type
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `rpm.uln` - rpm.uln
           * `file.file` - file.file
@@ -14551,6 +16053,7 @@ paths:
         schema:
           enum:
           - file.file
+          - gem.gem
           - rpm.rpm
           - rpm.uln
           type: string
@@ -14558,6 +16061,7 @@ paths:
       - description: |-
           Multiple values may be separated by commas.
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `rpm.uln` - rpm.uln
           * `file.file` - file.file
@@ -14569,6 +16073,7 @@ paths:
           items:
             enum:
             - file.file
+            - gem.gem
             - rpm.rpm
             - rpm.uln
             type: string
@@ -15390,6 +16895,770 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: File"
+  /pulp/{pulp_domain}/api/v3/remotes/gem/gem/:
+    get:
+      description: A ViewSet for GemRemote.
+      operationId: remotes_gem_gem_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `url` - Url
+          * `-url` - Url (descending)
+          * `ca_cert` - Ca cert
+          * `-ca_cert` - Ca cert (descending)
+          * `client_cert` - Client cert
+          * `-client_cert` - Client cert (descending)
+          * `client_key` - Client key
+          * `-client_key` - Client key (descending)
+          * `tls_validation` - Tls validation
+          * `-tls_validation` - Tls validation (descending)
+          * `username` - Username
+          * `-username` - Username (descending)
+          * `password` - Password
+          * `-password` - Password (descending)
+          * `proxy_url` - Proxy url
+          * `-proxy_url` - Proxy url (descending)
+          * `proxy_username` - Proxy username
+          * `-proxy_username` - Proxy username (descending)
+          * `proxy_password` - Proxy password
+          * `-proxy_password` - Proxy password (descending)
+          * `download_concurrency` - Download concurrency
+          * `-download_concurrency` - Download concurrency (descending)
+          * `max_retries` - Max retries
+          * `-max_retries` - Max retries (descending)
+          * `policy` - Policy
+          * `-policy` - Policy (descending)
+          * `total_timeout` - Total timeout
+          * `-total_timeout` - Total timeout (descending)
+          * `connect_timeout` - Connect timeout
+          * `-connect_timeout` - Connect timeout (descending)
+          * `sock_connect_timeout` - Sock connect timeout
+          * `-sock_connect_timeout` - Sock connect timeout (descending)
+          * `sock_read_timeout` - Sock read timeout
+          * `-sock_read_timeout` - Sock read timeout (descending)
+          * `headers` - Headers
+          * `-headers` - Headers (descending)
+          * `rate_limit` - Rate limit
+          * `-rate_limit` - Rate limit (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -connect_timeout
+            - -download_concurrency
+            - -headers
+            - -max_retries
+            - -name
+            - -password
+            - -pk
+            - -policy
+            - -proxy_password
+            - -proxy_url
+            - -proxy_username
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -rate_limit
+            - -sock_connect_timeout
+            - -sock_read_timeout
+            - -tls_validation
+            - -total_timeout
+            - -url
+            - -username
+            - ca_cert
+            - client_cert
+            - client_key
+            - connect_timeout
+            - download_concurrency
+            - headers
+            - max_retries
+            - name
+            - password
+            - pk
+            - policy
+            - proxy_password
+            - proxy_url
+            - proxy_username
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - rate_limit
+            - sock_connect_timeout
+            - sock_read_timeout
+            - tls_validation
+            - total_timeout
+            - url
+            - username
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated matches value
+        explode: true
+        in: query
+        name: pulp_last_updated
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than value
+        explode: true
+        in: query
+        name: pulp_last_updated__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than value
+        explode: true
+        in: query
+        name: pulp_last_updated__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_last_updated__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedgem.GemRemoteResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List gem remotes
+      tags:
+      - "Remotes: Gem"
+    post:
+      description: A ViewSet for GemRemote.
+      operationId: remotes_gem_gem_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a gem remote
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: remotes_gem_gem_delete
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a gem remote
+      tags:
+      - "Remotes: Gem"
+    get:
+      description: A ViewSet for GemRemote.
+      operationId: remotes_gem_gem_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a gem remote
+      tags:
+      - "Remotes: Gem"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: remotes_gem_gem_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem remote
+      tags:
+      - "Remotes: Gem"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: remotes_gem_gem_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem remote
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: remotes_gem_gem_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: remotes_gem_gem_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: remotes_gem_gem_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: remotes_gem_gem_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_gem_gem_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Gem"
+  '{gem_gem_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_gem_gem_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Gem"
   /pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
     get:
       description: A ViewSet for RpmRemote.
@@ -17157,6 +19426,7 @@ paths:
       - description: |-
           Pulp type
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: true
@@ -17166,12 +19436,14 @@ paths:
         schema:
           enum:
           - file.file
+          - gem.gem
           - rpm.rpm
           type: string
         style: form
       - description: |-
           Multiple values may be separated by commas.
 
+          * `gem.gem` - gem.gem
           * `rpm.rpm` - rpm.rpm
           * `file.file` - file.file
         explode: false
@@ -17182,6 +19454,7 @@ paths:
           items:
             enum:
             - file.file
+            - gem.gem
             - rpm.rpm
             type: string
           type: array
@@ -18486,6 +20759,1169 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: File Versions"
+  /pulp/{pulp_domain}/api/v3/repositories/gem/gem/:
+    get:
+      description: A ViewSet for GemRepository.
+      operationId: repositories_gem_gem_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `pulp_type` - Pulp type
+          * `-pulp_type` - Pulp type (descending)
+          * `name` - Name
+          * `-name` - Name (descending)
+          * `pulp_labels` - Pulp labels
+          * `-pulp_labels` - Pulp labels (descending)
+          * `description` - Description
+          * `-description` - Description (descending)
+          * `next_version` - Next version
+          * `-next_version` - Next version (descending)
+          * `retain_repo_versions` - Retain repo versions
+          * `-retain_repo_versions` - Retain repo versions (descending)
+          * `user_hidden` - User hidden
+          * `-user_hidden` - User hidden (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedgem.GemRepositoryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List gem repositorys
+      tags:
+      - "Repositories: Gem"
+    post:
+      description: A ViewSet for GemRepository.
+      operationId: repositories_gem_gem_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a gem repository
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_gem_gem_delete
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a gem repository
+      tags:
+      - "Repositories: Gem"
+    get:
+      description: A ViewSet for GemRepository.
+      operationId: repositories_gem_gem_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gem.GemRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a gem repository
+      tags:
+      - "Repositories: Gem"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_gem_gem_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedgem.GemRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem repository
+      tags:
+      - "Repositories: Gem"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_gem_gem_update
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/gem.GemRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a gem repository
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: repositories_gem_gem_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: repositories_gem_gem_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}modify/':
+    post:
+      description: Trigger an asynchronous task to create a new repository version.
+      operationId: repositories_gem_gem_modify
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Modify Repository Content
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: repositories_gem_gem_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: repositories_gem_gem_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_gem_gem_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}sync/':
+    post:
+      description: Trigger an asynchronous task to sync gem content.
+      operationId: repositories_gem_gem_sync
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Sync from a remote
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_gem_gem_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: Gem"
+  '{gem_gem_repository_href}versions/':
+    get:
+      description: A ViewSet for a GemRepositoryVersion represents a single Gem repository
+        version.
+      operationId: repositories_gem_gem_versions_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: gem_gem_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number matches value
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than value
+        explode: true
+        in: query
+        name: number__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than or equal to value
+        explode: true
+        in: query
+        name: number__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than value
+        explode: true
+        in: query
+        name: number__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than or equal to value
+        explode: true
+        in: query
+        name: number__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is between two comma separated values
+        explode: false
+        in: query
+        name: number__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: |-
+          Ordering
+
+          * `pulp_id` - Pulp id
+          * `-pulp_id` - Pulp id (descending)
+          * `pulp_created` - Pulp created
+          * `-pulp_created` - Pulp created (descending)
+          * `pulp_last_updated` - Pulp last updated
+          * `-pulp_last_updated` - Pulp last updated (descending)
+          * `number` - Number
+          * `-number` - Number (descending)
+          * `complete` - Complete
+          * `-complete` - Complete (descending)
+          * `info` - Info
+          * `-info` - Info (descending)
+          * `pk` - Pk
+          * `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -info
+            - -number
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - complete
+            - info
+            - number
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRepositoryVersionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List repository versions
+      tags:
+      - "Repositories: Gem Versions"
+  '{gem_gem_repository_version_href}':
+    delete:
+      description: Trigger an asynchronous task to delete a repository version.
+      operationId: repositories_gem_gem_versions_delete
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a repository version
+      tags:
+      - "Repositories: Gem Versions"
+    get:
+      description: A ViewSet for a GemRepositoryVersion represents a single Gem repository
+        version.
+      operationId: repositories_gem_gem_versions_read
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryVersionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a repository version
+      tags:
+      - "Repositories: Gem Versions"
+  '{gem_gem_repository_version_href}repair/':
+    post:
+      description: Trigger an asynchronous task to repair a repository version.
+      operationId: repositories_gem_gem_versions_repair
+      parameters:
+      - explode: false
+        in: path
+        name: gem_gem_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Repair'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Gem Versions"
   /pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
     post:
       description: Trigger an asynchronous space reclaim operation.
@@ -24617,28 +28053,30 @@ components:
           key: pulp_labels
         pulp_href: https://openapi-generator.tech
         hidden: false
-        name: name
         base_url: base_url
+        name: name
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
           type: string
         pulp_href:
           format: uri
@@ -24648,10 +28086,8 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         pulp_created:
           description: Timestamp of creation.
@@ -24833,6 +28269,14 @@ components:
       required:
       - name
       type: object
+    CompressionTypeEnum:
+      description: |-
+        * `zstd` - zstd
+        * `gz` - gz
+      enum:
+      - zstd
+      - gz
+      type: string
     CompsXml:
       description: A serializer for comps.xml Upload API.
       properties:
@@ -25686,24 +29130,6 @@ components:
       - params
       - task
       type: object
-    MetadataChecksumTypeEnum:
-      description: |-
-        * `unknown` - unknown
-        * `md5` - md5
-        * `sha1` - sha1
-        * `sha224` - sha224
-        * `sha256` - sha256
-        * `sha384` - sha384
-        * `sha512` - sha512
-      enum:
-      - unknown
-      - md5
-      - sha1
-      - sha224
-      - sha256
-      - sha384
-      - sha512
-      type: string
     MethodEnum:
       description: |-
         * `write` - Export by writing
@@ -26008,8 +29434,8 @@ components:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
           hidden: false
-          name: name
           base_url: base_url
+          name: name
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
@@ -26017,8 +29443,8 @@ components:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
           hidden: false
-          name: name
           base_url: base_url
+          name: name
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
@@ -27773,6 +31199,271 @@ components:
             $ref: '#/components/schemas/file.FileRepositoryResponse'
           type: array
       type: object
+    Paginatedgem.GemContentResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          prerelease: true
+          checksum: checksum
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          required_ruby_version: required_ruby_version
+          required_rubygems_version: required_rubygems_version
+          version: version
+          platform: platform
+          artifacts: "{}"
+          dependencies:
+            key: dependencies
+        - pulp_href: https://openapi-generator.tech
+          prerelease: true
+          checksum: checksum
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          required_ruby_version: required_ruby_version
+          required_rubygems_version: required_rubygems_version
+          version: version
+          platform: platform
+          artifacts: "{}"
+          dependencies:
+            key: dependencies
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/gem.GemContentResponse'
+          type: array
+      type: object
+    Paginatedgem.GemDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/gem.GemDistributionResponse'
+          type: array
+      type: object
+    Paginatedgem.GemPublicationResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/gem.GemPublicationResponse'
+          type: array
+      type: object
+    Paginatedgem.GemRemoteResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          excludes:
+            key: excludes
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          prereleases: false
+          includes:
+            key: includes
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          excludes:
+            key: excludes
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          prereleases: false
+          includes:
+            key: includes
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/gem.GemRemoteResponse'
+          type: array
+      type: object
+    Paginatedgem.GemRepositoryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          remote: https://openapi-generator.tech
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          remote: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/gem.GemRepositoryResponse'
+          type: array
+      type: object
     Paginatedrpm.DistributionTreeResponseList:
       example:
         next: http://api.example.org/accounts/?offset=400&limit=100
@@ -28496,21 +32187,25 @@ components:
         count: 123
         results:
         - gpgcheck: 0
+          checksum_type: ""
           metadata_checksum_type: ""
           repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
           package_checksum_type: ""
+          compression_type: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           repository: https://openapi-generator.tech
           repo_config: "{}"
         - gpgcheck: 0
+          checksum_type: ""
           metadata_checksum_type: ""
           repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
           package_checksum_type: ""
+          compression_type: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           repository: https://openapi-generator.tech
@@ -28624,10 +32319,12 @@ components:
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
+          compression_type: ""
           description: description
           remote: https://openapi-generator.tech
           gpgcheck: 0
           latest_version_href: https://openapi-generator.tech
+          checksum_type: ""
           metadata_checksum_type: ""
           versions_href: https://openapi-generator.tech
           pulp_labels:
@@ -28643,10 +32340,12 @@ components:
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
+          compression_type: ""
           description: description
           remote: https://openapi-generator.tech
           gpgcheck: 0
           latest_version_href: https://openapi-generator.tech
+          checksum_type: ""
           metadata_checksum_type: ""
           versions_href: https://openapi-generator.tech
           pulp_labels:
@@ -29516,6 +33215,228 @@ components:
           nullable: true
           type: string
       type: object
+    Patchedgem.GemDistribution:
+      description: A Serializer for GemDistribution.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedgem.GemRemote:
+      description: A Serializer for GemRemote.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        prereleases:
+          default: false
+          type: boolean
+        includes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        excludes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      type: object
+    Patchedgem.GemRepository:
+      description: A Serializer for GemRepository.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      type: object
     Patchedrpm.RpmAlternateContentSource:
       description: Serializer for RPM alternate content source.
       properties:
@@ -29766,11 +33687,25 @@ components:
           format: int64
           minimum: 0
           type: integer
+        checksum_type:
+          allOf:
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
+          description: |-
+            The preferred checksum type during repo publish.
+
+            * `unknown` - unknown
+            * `md5` - md5
+            * `sha1` - sha1
+            * `sha224` - sha224
+            * `sha256` - sha256
+            * `sha384` - sha384
+            * `sha512` - sha512
+          nullable: true
         metadata_checksum_type:
           allOf:
-          - $ref: '#/components/schemas/MetadataChecksumTypeEnum'
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for metadata.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -29784,7 +33719,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for packages.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -29810,14 +33745,18 @@ components:
           minimum: 0
           nullable: true
           type: integer
-        sqlite_metadata:
-          default: false
-          description: "DEPRECATED: An option specifying whether Pulp should generate\
-            \ SQLite metadata."
-          type: boolean
         repo_config:
           description: A JSON document describing config.repo file
           type: object
+        compression_type:
+          allOf:
+          - $ref: '#/components/schemas/CompressionTypeEnum'
+          description: |-
+            The compression type to use for metadata files.
+
+            * `zstd` - zstd
+            * `gz` - gz
+          nullable: true
       type: object
     Patchedrpm.UlnRemote:
       description: A Serializer for UlnRemote.
@@ -31019,10 +34958,12 @@ components:
         versions:
         - component: component
           package: package
+          module: module
           domain_compatible: true
           version: version
         - component: component
           package: package
+          module: module
           domain_compatible: true
           version: version
         online_workers:
@@ -32056,6 +35997,7 @@ components:
       example:
         component: component
         package: package
+        module: module
         domain_compatible: true
         version: version
       properties:
@@ -32068,12 +36010,16 @@ components:
         package:
           description: Python package name providing the component
           type: string
+        module:
+          description: Python module name of the component
+          type: string
         domain_compatible:
           description: Domain feature compatibility of component
           type: boolean
       required:
       - component
       - domain_compatible
+      - module
       - package
       - version
       type: object
@@ -32844,6 +36790,656 @@ components:
           default: PULP_MANIFEST
           description: Filename to use for manifest file containing metadata for all
             the files.
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    gem.GemContent:
+      description: A Serializer for GemContent.
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+          writeOnly: true
+        file:
+          description: An uploaded file that should be turned into the artifact of
+            the content unit.
+          format: binary
+          type: string
+          writeOnly: true
+      type: object
+    gem.GemContentResponse:
+      description: A Serializer for GemContent.
+      example:
+        pulp_href: https://openapi-generator.tech
+        prerelease: true
+        checksum: checksum
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        required_ruby_version: required_ruby_version
+        required_rubygems_version: required_rubygems_version
+        version: version
+        platform: platform
+        artifacts: "{}"
+        dependencies:
+          key: dependencies
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        artifacts:
+          description: "A dict mapping relative paths inside the Content to the correspondingArtifact\
+            \ URLs. E.g.: {'relative/path': '/artifacts/1/'"
+          readOnly: true
+          type: object
+        checksum:
+          description: SHA256 checksum of the gem
+          readOnly: true
+          type: string
+        name:
+          description: Name of the gem
+          readOnly: true
+          type: string
+        version:
+          description: Version of the gem
+          readOnly: true
+          type: string
+        platform:
+          description: Platform of the gem
+          readOnly: true
+          type: string
+        prerelease:
+          description: Whether the gem is a prerelease
+          readOnly: true
+          type: boolean
+        dependencies:
+          additionalProperties:
+            nullable: true
+            type: string
+          readOnly: true
+          type: object
+        required_ruby_version:
+          description: Required ruby version of the gem
+          readOnly: true
+          type: string
+        required_rubygems_version:
+          description: Required rubygems version of the gem
+          readOnly: true
+          type: string
+      required:
+      - artifacts
+      type: object
+    gem.GemDistribution:
+      description: A Serializer for GemDistribution.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    gem.GemDistributionResponse:
+      description: A Serializer for GemDistribution.
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        base_url: base_url
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
+        repository: https://openapi-generator.tech
+        remote: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    gem.GemPublication:
+      description: A Serializer for GemPublication.
+      properties:
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+      type: object
+    gem.GemPublicationResponse:
+      description: A Serializer for GemPublication.
+      example:
+        pulp_href: https://openapi-generator.tech
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+      type: object
+    gem.GemRemote:
+      description: A Serializer for GemRemote.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        prereleases:
+          default: false
+          type: boolean
+        includes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        excludes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      required:
+      - name
+      - url
+      type: object
+    gem.GemRemoteResponse:
+      description: A Serializer for GemRemote.
+      example:
+        headers:
+        - "{}"
+        - "{}"
+        rate_limit: 7
+        excludes:
+          key: excludes
+        pulp_href: https://openapi-generator.tech
+        tls_validation: true
+        max_retries: 6
+        connect_timeout: 0.5962133916683182
+        client_cert: client_cert
+        prereleases: false
+        includes:
+          key: includes
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        sock_read_timeout: 0.23021358869347652
+        url: url
+        download_concurrency: 1
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        sock_connect_timeout: 0.5637376656633328
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        hidden_fields:
+        - is_set: true
+          name: name
+        - is_set: true
+          name: name
+        proxy_url: proxy_url
+        ca_cert: ca_cert
+        total_timeout: 0.14658129805029452
+        policy: ""
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this remote.
+          type: string
+        url:
+          description: The URL of an external content source.
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          nullable: true
+          type: string
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_last_updated:
+          description: Timestamp of the most recent update of the remote.
+          format: date-time
+          readOnly: true
+          type: string
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: immediate
+          description: |-
+            The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.
+
+            * `immediate` - When syncing, download all metadata and content now.
+            * `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.
+            * `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        hidden_fields:
+          description: List of hidden (write only) fields
+          items:
+            $ref: '#/components/schemas/RemoteResponse_hidden_fields_inner'
+          readOnly: true
+          type: array
+        prereleases:
+          default: false
+          type: boolean
+        includes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        excludes:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+      required:
+      - name
+      - url
+      type: object
+    gem.GemRepository:
+      description: A Serializer for GemRepository.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    gem.GemRepositoryResponse:
+      description: A Serializer for GemRepository.
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
           nullable: true
           type: string
       required:
@@ -34133,11 +38729,24 @@ components:
           description: A URI of the repository to be published.
           format: uri
           type: string
+        checksum_type:
+          allOf:
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
+          description: |-
+            The preferred checksum type used during repo publishes.
+
+            * `unknown` - unknown
+            * `md5` - md5
+            * `sha1` - sha1
+            * `sha224` - sha224
+            * `sha256` - sha256
+            * `sha384` - sha384
+            * `sha512` - sha512
         metadata_checksum_type:
           allOf:
-          - $ref: '#/components/schemas/MetadataChecksumTypeEnum'
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for metadata.
+            DEPRECATED: The checksum type for metadata.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34150,7 +38759,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for packages.
+            DEPRECATED: The checksum type for packages.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34175,24 +38784,29 @@ components:
           minimum: 0
           nullable: true
           type: integer
-        sqlite_metadata:
-          default: false
-          description: "DEPRECATED: An option specifying whether Pulp should generate\
-            \ SQLite metadata."
-          type: boolean
         repo_config:
           description: A JSON document describing config.repo file
           type: object
+        compression_type:
+          allOf:
+          - $ref: '#/components/schemas/CompressionTypeEnum'
+          description: |-
+            The compression type to use for metadata files.
+
+            * `zstd` - zstd
+            * `gz` - gz
       type: object
     rpm.RpmPublicationResponse:
       description: A Serializer for RpmPublication.
       example:
         gpgcheck: 0
+        checksum_type: ""
         metadata_checksum_type: ""
         repo_gpgcheck: 0
         pulp_href: https://openapi-generator.tech
         sqlite_metadata: false
         package_checksum_type: ""
+        compression_type: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         repository_version: https://openapi-generator.tech
         repository: https://openapi-generator.tech
@@ -34214,11 +38828,24 @@ components:
           description: A URI of the repository to be published.
           format: uri
           type: string
+        checksum_type:
+          allOf:
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
+          description: |-
+            The preferred checksum type used during repo publishes.
+
+            * `unknown` - unknown
+            * `md5` - md5
+            * `sha1` - sha1
+            * `sha224` - sha224
+            * `sha256` - sha256
+            * `sha384` - sha384
+            * `sha512` - sha512
         metadata_checksum_type:
           allOf:
-          - $ref: '#/components/schemas/MetadataChecksumTypeEnum'
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for metadata.
+            DEPRECATED: The checksum type for metadata.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34231,7 +38858,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for packages.
+            DEPRECATED: The checksum type for packages.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34258,12 +38885,21 @@ components:
           type: integer
         sqlite_metadata:
           default: false
-          description: "DEPRECATED: An option specifying whether Pulp should generate\
-            \ SQLite metadata."
+          description: "REMOVED: An option specifying whether Pulp should generate\
+            \ SQLite metadata. Not operation since pulp_rpm 3.25.0 release"
+          readOnly: true
           type: boolean
         repo_config:
           description: A JSON document describing config.repo file
           type: object
+        compression_type:
+          allOf:
+          - $ref: '#/components/schemas/CompressionTypeEnum'
+          description: |-
+            The compression type to use for metadata files.
+
+            * `zstd` - zstd
+            * `gz` - gz
       type: object
     rpm.RpmRemote:
       description: A Serializer for RpmRemote.
@@ -34604,11 +39240,25 @@ components:
           format: int64
           minimum: 0
           type: integer
+        checksum_type:
+          allOf:
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
+          description: |-
+            The preferred checksum type during repo publish.
+
+            * `unknown` - unknown
+            * `md5` - md5
+            * `sha1` - sha1
+            * `sha224` - sha224
+            * `sha256` - sha256
+            * `sha384` - sha384
+            * `sha512` - sha512
+          nullable: true
         metadata_checksum_type:
           allOf:
-          - $ref: '#/components/schemas/MetadataChecksumTypeEnum'
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for metadata.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34622,7 +39272,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for packages.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34648,14 +39298,18 @@ components:
           minimum: 0
           nullable: true
           type: integer
-        sqlite_metadata:
-          default: false
-          description: "DEPRECATED: An option specifying whether Pulp should generate\
-            \ SQLite metadata."
-          type: boolean
         repo_config:
           description: A JSON document describing config.repo file
           type: object
+        compression_type:
+          allOf:
+          - $ref: '#/components/schemas/CompressionTypeEnum'
+          description: |-
+            The compression type to use for metadata files.
+
+            * `zstd` - zstd
+            * `gz` - gz
+          nullable: true
       required:
       - name
       type: object
@@ -34665,10 +39319,12 @@ components:
         repo_gpgcheck: 0
         pulp_href: https://openapi-generator.tech
         sqlite_metadata: false
+        compression_type: ""
         description: description
         remote: https://openapi-generator.tech
         gpgcheck: 0
         latest_version_href: https://openapi-generator.tech
+        checksum_type: ""
         metadata_checksum_type: ""
         versions_href: https://openapi-generator.tech
         pulp_labels:
@@ -34740,11 +39396,25 @@ components:
           format: int64
           minimum: 0
           type: integer
+        checksum_type:
+          allOf:
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
+          description: |-
+            The preferred checksum type during repo publish.
+
+            * `unknown` - unknown
+            * `md5` - md5
+            * `sha1` - sha1
+            * `sha224` - sha224
+            * `sha256` - sha256
+            * `sha384` - sha384
+            * `sha512` - sha512
+          nullable: true
         metadata_checksum_type:
           allOf:
-          - $ref: '#/components/schemas/MetadataChecksumTypeEnum'
+          - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for metadata.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34758,7 +39428,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/PackageChecksumTypeEnum'
           description: |-
-            The checksum type for packages.
+            DEPRECATED: use CHECKSUM_TYPE instead.
 
             * `unknown` - unknown
             * `md5` - md5
@@ -34786,12 +39456,22 @@ components:
           type: integer
         sqlite_metadata:
           default: false
-          description: "DEPRECATED: An option specifying whether Pulp should generate\
-            \ SQLite metadata."
+          description: "REMOVED: An option specifying whether Pulp should generate\
+            \ SQLite metadata. Not operation since pulp_rpm 3.25.0 release"
+          readOnly: true
           type: boolean
         repo_config:
           description: A JSON document describing config.repo file
           type: object
+        compression_type:
+          allOf:
+          - $ref: '#/components/schemas/CompressionTypeEnum'
+          description: |-
+            The compression type to use for metadata files.
+
+            * `zstd` - zstd
+            * `gz` - gz
+          nullable: true
       required:
       - name
       type: object

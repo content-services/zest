@@ -66,6 +66,8 @@ type APIClient struct {
 
 	ContentFilesAPI *ContentFilesAPIService
 
+	ContentGemAPI *ContentGemAPIService
+
 	ContentModulemdDefaultsAPI *ContentModulemdDefaultsAPIService
 
 	ContentModulemdObsoletesAPI *ContentModulemdObsoletesAPIService
@@ -99,6 +101,8 @@ type APIClient struct {
 	DistributionsArtifactsAPI *DistributionsArtifactsAPIService
 
 	DistributionsFileAPI *DistributionsFileAPIService
+
+	DistributionsGemAPI *DistributionsGemAPIService
 
 	DistributionsRpmAPI *DistributionsRpmAPIService
 
@@ -136,11 +140,15 @@ type APIClient struct {
 
 	PublicationsFileAPI *PublicationsFileAPIService
 
+	PublicationsGemAPI *PublicationsGemAPIService
+
 	PublicationsRpmAPI *PublicationsRpmAPIService
 
 	RemotesAPI *RemotesAPIService
 
 	RemotesFileAPI *RemotesFileAPIService
+
+	RemotesGemAPI *RemotesGemAPIService
 
 	RemotesRpmAPI *RemotesRpmAPIService
 
@@ -153,6 +161,10 @@ type APIClient struct {
 	RepositoriesFileAPI *RepositoriesFileAPIService
 
 	RepositoriesFileVersionsAPI *RepositoriesFileVersionsAPIService
+
+	RepositoriesGemAPI *RepositoriesGemAPIService
+
+	RepositoriesGemVersionsAPI *RepositoriesGemVersionsAPIService
 
 	RepositoriesReclaimSpaceAPI *RepositoriesReclaimSpaceAPIService
 
@@ -213,6 +225,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentAdvisoriesAPI = (*ContentAdvisoriesAPIService)(&c.common)
 	c.ContentDistributionTreesAPI = (*ContentDistributionTreesAPIService)(&c.common)
 	c.ContentFilesAPI = (*ContentFilesAPIService)(&c.common)
+	c.ContentGemAPI = (*ContentGemAPIService)(&c.common)
 	c.ContentModulemdDefaultsAPI = (*ContentModulemdDefaultsAPIService)(&c.common)
 	c.ContentModulemdObsoletesAPI = (*ContentModulemdObsoletesAPIService)(&c.common)
 	c.ContentModulemdsAPI = (*ContentModulemdsAPIService)(&c.common)
@@ -230,6 +243,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DistributionsAPI = (*DistributionsAPIService)(&c.common)
 	c.DistributionsArtifactsAPI = (*DistributionsArtifactsAPIService)(&c.common)
 	c.DistributionsFileAPI = (*DistributionsFileAPIService)(&c.common)
+	c.DistributionsGemAPI = (*DistributionsGemAPIService)(&c.common)
 	c.DistributionsRpmAPI = (*DistributionsRpmAPIService)(&c.common)
 	c.DocsApiJsonAPI = (*DocsApiJsonAPIService)(&c.common)
 	c.DocsApiYamlAPI = (*DocsApiYamlAPIService)(&c.common)
@@ -248,15 +262,19 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrphansCleanupAPI = (*OrphansCleanupAPIService)(&c.common)
 	c.PublicationsAPI = (*PublicationsAPIService)(&c.common)
 	c.PublicationsFileAPI = (*PublicationsFileAPIService)(&c.common)
+	c.PublicationsGemAPI = (*PublicationsGemAPIService)(&c.common)
 	c.PublicationsRpmAPI = (*PublicationsRpmAPIService)(&c.common)
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)
 	c.RemotesFileAPI = (*RemotesFileAPIService)(&c.common)
+	c.RemotesGemAPI = (*RemotesGemAPIService)(&c.common)
 	c.RemotesRpmAPI = (*RemotesRpmAPIService)(&c.common)
 	c.RemotesUlnAPI = (*RemotesUlnAPIService)(&c.common)
 	c.RepairAPI = (*RepairAPIService)(&c.common)
 	c.RepositoriesAPI = (*RepositoriesAPIService)(&c.common)
 	c.RepositoriesFileAPI = (*RepositoriesFileAPIService)(&c.common)
 	c.RepositoriesFileVersionsAPI = (*RepositoriesFileVersionsAPIService)(&c.common)
+	c.RepositoriesGemAPI = (*RepositoriesGemAPIService)(&c.common)
+	c.RepositoriesGemVersionsAPI = (*RepositoriesGemVersionsAPIService)(&c.common)
 	c.RepositoriesReclaimSpaceAPI = (*RepositoriesReclaimSpaceAPIService)(&c.common)
 	c.RepositoriesRpmAPI = (*RepositoriesRpmAPIService)(&c.common)
 	c.RepositoriesRpmVersionsAPI = (*RepositoriesRpmVersionsAPIService)(&c.common)
