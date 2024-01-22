@@ -63,7 +63,7 @@ jobs:
         run: |
           curl http://localhost:8080/pulp/api/${{ steps.pulpRelease.outputs.PULP_MAJOR }}/docs/api.json > pulp_api.json
           echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' ./pulp_api.json )" > ./pulp_api.json
-          docker run --network=host --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+        docker run --network=host --rm -v ${PWD}:/local openapitools/openapi-generator-cli:latest-release generate \
           -i /local/pulp_api.json \
           -t /local/templates/ \
           -g go \
