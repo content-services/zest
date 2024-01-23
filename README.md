@@ -7,7 +7,7 @@ A Go binding for [Pulp](https://pulpproject.org/) focused on RPM and File conten
 Install it:
 
 ```
-go get -u  github.com/content-services/zest/release/v3/
+go get -u  github.com/content-services/zest/release/v2024/
 ```
 
 Use it:
