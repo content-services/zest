@@ -194,7 +194,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/access_policies/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/access_policies/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

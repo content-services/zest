@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcsRpmRpmAddRole**](AcsRpmAPI.md#AcsRpmRpmAddRole) | **Post** /{rpm_rpm_alternate_content_source_href}add_role/ | Add a role
-[**AcsRpmRpmCreate**](AcsRpmAPI.md#AcsRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | Create a rpm alternate content source
+[**AcsRpmRpmCreate**](AcsRpmAPI.md#AcsRpmRpmCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | Create a rpm alternate content source
 [**AcsRpmRpmDelete**](AcsRpmAPI.md#AcsRpmRpmDelete) | **Delete** /{rpm_rpm_alternate_content_source_href} | Delete a rpm alternate content source
-[**AcsRpmRpmList**](AcsRpmAPI.md#AcsRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | List rpm alternate content sources
+[**AcsRpmRpmList**](AcsRpmAPI.md#AcsRpmRpmList) | **Get** /api/pulp/{pulp_domain}/api/v3/acs/rpm/rpm/ | List rpm alternate content sources
 [**AcsRpmRpmListRoles**](AcsRpmAPI.md#AcsRpmRpmListRoles) | **Get** /{rpm_rpm_alternate_content_source_href}list_roles/ | List roles
 [**AcsRpmRpmMyPermissions**](AcsRpmAPI.md#AcsRpmRpmMyPermissions) | **Get** /{rpm_rpm_alternate_content_source_href}my_permissions/ | List user permissions
 [**AcsRpmRpmPartialUpdate**](AcsRpmAPI.md#AcsRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_alternate_content_source_href} | Update a rpm alternate content source

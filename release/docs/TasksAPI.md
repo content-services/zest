@@ -7,10 +7,10 @@ Method | HTTP request | Description
 [**TasksAddRole**](TasksAPI.md#TasksAddRole) | **Post** /{task_href}add_role/ | Add a role
 [**TasksCancel**](TasksAPI.md#TasksCancel) | **Patch** /{task_href} | Cancel a task
 [**TasksDelete**](TasksAPI.md#TasksDelete) | **Delete** /{task_href} | Delete a task
-[**TasksList**](TasksAPI.md#TasksList) | **Get** /pulp/{pulp_domain}/api/v3/tasks/ | List tasks
+[**TasksList**](TasksAPI.md#TasksList) | **Get** /api/pulp/{pulp_domain}/api/v3/tasks/ | List tasks
 [**TasksListRoles**](TasksAPI.md#TasksListRoles) | **Get** /{task_href}list_roles/ | List roles
 [**TasksMyPermissions**](TasksAPI.md#TasksMyPermissions) | **Get** /{task_href}my_permissions/ | List user permissions
-[**TasksPurge**](TasksAPI.md#TasksPurge) | **Post** /pulp/{pulp_domain}/api/v3/tasks/purge/ | Purge Completed Tasks
+[**TasksPurge**](TasksAPI.md#TasksPurge) | **Post** /api/pulp/{pulp_domain}/api/v3/tasks/purge/ | Purge Completed Tasks
 [**TasksRead**](TasksAPI.md#TasksRead) | **Get** /{task_href} | Inspect a task
 [**TasksRemoveRole**](TasksAPI.md#TasksRemoveRole) | **Post** /{task_href}remove_role/ | Remove a role
 

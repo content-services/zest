@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentGemGemCreate**](ContentGemAPI.md#ContentGemGemCreate) | **Post** /pulp/{pulp_domain}/api/v3/content/gem/gem/ | Create a gem content
-[**ContentGemGemList**](ContentGemAPI.md#ContentGemGemList) | **Get** /pulp/{pulp_domain}/api/v3/content/gem/gem/ | List gem contents
+[**ContentGemGemCreate**](ContentGemAPI.md#ContentGemGemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/gem/gem/ | Create a gem content
+[**ContentGemGemList**](ContentGemAPI.md#ContentGemGemList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/gem/gem/ | List gem contents
 [**ContentGemGemRead**](ContentGemAPI.md#ContentGemGemRead) | **Get** /{gem_gem_content_href} | Inspect a gem content
 
 

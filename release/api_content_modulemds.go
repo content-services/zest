@@ -73,7 +73,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsCreateExecute(r ContentM
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -334,7 +334,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DistributionsCoreArtifactsList**](DistributionsArtifactsAPI.md#DistributionsCoreArtifactsList) | **Get** /pulp/{pulp_domain}/api/v3/distributions/core/artifacts/ | List artifact distributions
+[**DistributionsCoreArtifactsList**](DistributionsArtifactsAPI.md#DistributionsCoreArtifactsList) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/core/artifacts/ | List artifact distributions
 [**DistributionsCoreArtifactsRead**](DistributionsArtifactsAPI.md#DistributionsCoreArtifactsRead) | **Get** /{artifact_distribution_href} | Inspect an artifact distribution
 
 

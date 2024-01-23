@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**UsersCreate**](UsersAPI.md#UsersCreate) | **Post** /pulp/{pulp_domain}/api/v3/users/ | Create an user
+[**UsersCreate**](UsersAPI.md#UsersCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/users/ | Create an user
 [**UsersDelete**](UsersAPI.md#UsersDelete) | **Delete** /{auth_user_href} | Delete an user
-[**UsersList**](UsersAPI.md#UsersList) | **Get** /pulp/{pulp_domain}/api/v3/users/ | List users
+[**UsersList**](UsersAPI.md#UsersList) | **Get** /api/pulp/{pulp_domain}/api/v3/users/ | List users
 [**UsersPartialUpdate**](UsersAPI.md#UsersPartialUpdate) | **Patch** /{auth_user_href} | Update an user
 [**UsersRead**](UsersAPI.md#UsersRead) | **Get** /{auth_user_href} | Inspect an user
 [**UsersUpdate**](UsersAPI.md#UsersUpdate) | **Put** /{auth_user_href} | Update an user

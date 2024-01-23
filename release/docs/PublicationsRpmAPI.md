@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PublicationsRpmRpmAddRole**](PublicationsRpmAPI.md#PublicationsRpmRpmAddRole) | **Post** /{rpm_rpm_publication_href}add_role/ | Add a role
-[**PublicationsRpmRpmCreate**](PublicationsRpmAPI.md#PublicationsRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | Create a rpm publication
+[**PublicationsRpmRpmCreate**](PublicationsRpmAPI.md#PublicationsRpmRpmCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | Create a rpm publication
 [**PublicationsRpmRpmDelete**](PublicationsRpmAPI.md#PublicationsRpmRpmDelete) | **Delete** /{rpm_rpm_publication_href} | Delete a rpm publication
-[**PublicationsRpmRpmList**](PublicationsRpmAPI.md#PublicationsRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | List rpm publications
+[**PublicationsRpmRpmList**](PublicationsRpmAPI.md#PublicationsRpmRpmList) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/rpm/rpm/ | List rpm publications
 [**PublicationsRpmRpmListRoles**](PublicationsRpmAPI.md#PublicationsRpmRpmListRoles) | **Get** /{rpm_rpm_publication_href}list_roles/ | List roles
 [**PublicationsRpmRpmMyPermissions**](PublicationsRpmAPI.md#PublicationsRpmRpmMyPermissions) | **Get** /{rpm_rpm_publication_href}my_permissions/ | List user permissions
 [**PublicationsRpmRpmRead**](PublicationsRpmAPI.md#PublicationsRpmRpmRead) | **Get** /{rpm_rpm_publication_href} | Inspect a rpm publication

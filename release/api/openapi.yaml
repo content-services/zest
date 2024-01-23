@@ -21,7 +21,7 @@ info:
 servers:
 - url: http://localhost:8080/
 paths:
-  /pulp/{pulp_domain}/api/v3/access_policies/:
+  /api/pulp/{pulp_domain}/api/v3/access_policies/:
     get:
       description: |-
         ViewSet for AccessPolicy.
@@ -396,7 +396,7 @@ paths:
       - cookieAuth: []
       tags:
       - Access_Policies
-  /pulp/{pulp_domain}/api/v3/acs/file/file/:
+  /api/pulp/{pulp_domain}/api/v3/acs/file/file/:
     get:
       description: |-
         Alternate Content Source ViewSet for File
@@ -978,7 +978,7 @@ paths:
       summary: Remove a role
       tags:
       - "Acs: File"
-  /pulp/{pulp_domain}/api/v3/acs/rpm/rpm/:
+  /api/pulp/{pulp_domain}/api/v3/acs/rpm/rpm/:
     get:
       description: ViewSet for ACS.
       operationId: acs_rpm_rpm_list
@@ -1550,7 +1550,7 @@ paths:
       summary: Remove a role
       tags:
       - "Acs: Rpm"
-  /pulp/{pulp_domain}/api/v3/artifacts/:
+  /api/pulp/{pulp_domain}/api/v3/artifacts/:
     get:
       description: |-
         A customized named ModelViewSet that knows how to register itself with the Pulp API router.
@@ -1914,7 +1914,7 @@ paths:
       summary: Inspect an artifact
       tags:
       - Artifacts
-  /pulp/{pulp_domain}/api/v3/content/:
+  /api/pulp/{pulp_domain}/api/v3/content/:
     get:
       description: Endpoint to list all content.
       operationId: content_list
@@ -2125,7 +2125,7 @@ paths:
       summary: List content
       tags:
       - Content
-  /pulp/{pulp_domain}/api/v3/content/file/files/:
+  /api/pulp/{pulp_domain}/api/v3/content/file/files/:
     get:
       description: |2-
 
@@ -2389,7 +2389,7 @@ paths:
       summary: Inspect a file content
       tags:
       - "Content: Files"
-  /pulp/{pulp_domain}/api/v3/content/gem/gem/:
+  /api/pulp/{pulp_domain}/api/v3/content/gem/gem/:
     get:
       description: A ViewSet for GemContent.
       operationId: content_gem_gem_list
@@ -2688,7 +2688,7 @@ paths:
       summary: Inspect a gem content
       tags:
       - "Content: Gem"
-  /pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
     get:
       description: |-
         A ViewSet for UpdateRecord.
@@ -3102,7 +3102,7 @@ paths:
       summary: Inspect an update record
       tags:
       - "Content: Advisories"
-  /pulp/{pulp_domain}/api/v3/content/rpm/distribution_trees/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/distribution_trees/:
     get:
       description: Distribution Tree Viewset.
       operationId: content_rpm_distribution_trees_list
@@ -3278,7 +3278,7 @@ paths:
       summary: Inspect a distribution tree
       tags:
       - "Content: Distribution_Trees"
-  /pulp/{pulp_domain}/api/v3/content/rpm/modulemd_defaults/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_defaults/:
     get:
       description: ViewSet for Modulemd.
       operationId: content_rpm_modulemd_defaults_list
@@ -3579,7 +3579,7 @@ paths:
       summary: Inspect a modulemd defaults
       tags:
       - "Content: Modulemd_Defaults"
-  /pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/:
     get:
       description: ViewSet for Modulemd.
       operationId: content_rpm_modulemd_obsoletes_list
@@ -3793,7 +3793,7 @@ paths:
       summary: Inspect a modulemd obsolete
       tags:
       - "Content: Modulemd_Obsoletes"
-  /pulp/{pulp_domain}/api/v3/content/rpm/modulemds/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/:
     get:
       description: ViewSet for Modulemd.
       operationId: content_rpm_modulemds_list
@@ -4178,7 +4178,7 @@ paths:
       summary: Inspect a modulemd
       tags:
       - "Content: Modulemds"
-  /pulp/{pulp_domain}/api/v3/content/rpm/packagecategories/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/packagecategories/:
     get:
       description: PackageCategory ViewSet.
       operationId: content_rpm_packagecategories_list
@@ -4354,7 +4354,7 @@ paths:
       summary: Inspect a package category
       tags:
       - "Content: Packagecategories"
-  /pulp/{pulp_domain}/api/v3/content/rpm/packageenvironments/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/packageenvironments/:
     get:
       description: PackageEnvironment ViewSet.
       operationId: content_rpm_packageenvironments_list
@@ -4530,7 +4530,7 @@ paths:
       summary: Inspect a package environment
       tags:
       - "Content: Packageenvironments"
-  /pulp/{pulp_domain}/api/v3/content/rpm/packagegroups/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/packagegroups/:
     get:
       description: PackageGroup ViewSet.
       operationId: content_rpm_packagegroups_list
@@ -4706,7 +4706,7 @@ paths:
       summary: Inspect a package group
       tags:
       - "Content: Packagegroups"
-  /pulp/{pulp_domain}/api/v3/content/rpm/packagelangpacks/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/packagelangpacks/:
     get:
       description: PackageLangpacks ViewSet.
       operationId: content_rpm_packagelangpacks_list
@@ -4882,7 +4882,7 @@ paths:
       summary: Inspect a package langpacks
       tags:
       - "Content: Packagelangpacks"
-  /pulp/{pulp_domain}/api/v3/content/rpm/packages/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/packages/:
     get:
       description: |-
         A ViewSet for Package.
@@ -5537,7 +5537,7 @@ paths:
       summary: Inspect a package
       tags:
       - "Content: Packages"
-  /pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/:
+  /api/pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/:
     get:
       description: RepoMetadataFile Viewset.
       operationId: content_rpm_repo_metadata_files_list
@@ -5713,7 +5713,7 @@ paths:
       summary: Inspect a repo metadata file
       tags:
       - "Content: Repo_Metadata_Files"
-  /pulp/{pulp_domain}/api/v3/contentguards/:
+  /api/pulp/{pulp_domain}/api/v3/contentguards/:
     get:
       description: Endpoint to list all contentguards.
       operationId: contentguards_list
@@ -5958,7 +5958,7 @@ paths:
       summary: List content guards
       tags:
       - Contentguards
-  /pulp/{pulp_domain}/api/v3/contentguards/core/composite/:
+  /api/pulp/{pulp_domain}/api/v3/contentguards/core/composite/:
     get:
       description: Content guard that queries a list-of content-guards for access
         permissions.
@@ -6507,7 +6507,7 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Composite"
-  /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/:
+  /api/pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/:
     get:
       description: Content guard to protect preauthenticated redirects to the content
         app.
@@ -7056,7 +7056,7 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Content_Redirect"
-  /pulp/{pulp_domain}/api/v3/contentguards/core/header/:
+  /api/pulp/{pulp_domain}/api/v3/contentguards/core/header/:
     get:
       description: Content guard to protect the content app using a specific header.
       operationId: contentguards_core_header_list
@@ -7599,7 +7599,7 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Header"
-  /pulp/{pulp_domain}/api/v3/contentguards/core/rbac/:
+  /api/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/:
     get:
       description: |-
         Viewset for creating contentguards that use RBAC to protect content.
@@ -8160,7 +8160,7 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Rbac"
-  /pulp/{pulp_domain}/api/v3/distributions/:
+  /api/pulp/{pulp_domain}/api/v3/distributions/:
     get:
       description: Provides base viewset for Distributions.
       operationId: distributions_list
@@ -8485,7 +8485,7 @@ paths:
       summary: List distributions
       tags:
       - Distributions
-  /pulp/{pulp_domain}/api/v3/distributions/core/artifacts/:
+  /api/pulp/{pulp_domain}/api/v3/distributions/core/artifacts/:
     get:
       description: ViewSet for ArtifactDistribution.
       operationId: distributions_core_artifacts_list
@@ -8815,7 +8815,7 @@ paths:
       summary: Inspect an artifact distribution
       tags:
       - "Distributions: Artifacts"
-  /pulp/{pulp_domain}/api/v3/distributions/file/file/:
+  /api/pulp/{pulp_domain}/api/v3/distributions/file/file/:
     get:
       description: |2-
 
@@ -9528,7 +9528,7 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: File"
-  /pulp/{pulp_domain}/api/v3/distributions/gem/gem/:
+  /api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/:
     get:
       description: ViewSet for GemDistributions.
       operationId: distributions_gem_gem_list
@@ -10229,7 +10229,7 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: Gem"
-  /pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
+  /api/pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
     get:
       description: ViewSet for RPM Distributions.
       operationId: distributions_rpm_rpm_list
@@ -10930,7 +10930,7 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: Rpm"
-  /pulp/{pulp_domain}/api/v3/domains/:
+  /api/pulp/{pulp_domain}/api/v3/domains/:
     get:
       description: |-
         ViewSet for Domain.
@@ -11334,7 +11334,7 @@ paths:
       summary: Update a domain
       tags:
       - Domains
-  /pulp/{pulp_domain}/api/v3/exporters/core/filesystem/:
+  /api/pulp/{pulp_domain}/api/v3/exporters/core/filesystem/:
     get:
       description: Endpoint for managing FilesystemExporters.
       operationId: exporters_core_filesystem_list
@@ -11883,7 +11883,7 @@ paths:
       summary: Update a filesystem exporter
       tags:
       - "Exporters: Filesystem"
-  /pulp/{pulp_domain}/api/v3/exporters/core/pulp/:
+  /api/pulp/{pulp_domain}/api/v3/exporters/core/pulp/:
     get:
       description: ViewSet for viewing PulpExporters.
       operationId: exporters_core_pulp_list
@@ -12428,7 +12428,7 @@ paths:
       summary: Update a pulp exporter
       tags:
       - "Exporters: Pulp"
-  /pulp/{pulp_domain}/api/v3/groups/:
+  /api/pulp/{pulp_domain}/api/v3/groups/:
     get:
       description: ViewSet for Group.
       operationId: groups_list
@@ -13333,7 +13333,7 @@ paths:
       summary: Remove a role
       tags:
       - Groups
-  /pulp/{pulp_domain}/api/v3/importers/core/pulp/:
+  /api/pulp/{pulp_domain}/api/v3/importers/core/pulp/:
     get:
       description: ViewSet for PulpImporters.
       operationId: importers_core_pulp_list
@@ -13870,7 +13870,7 @@ paths:
       summary: Update a pulp importer
       tags:
       - "Importers: Pulp"
-  /pulp/{pulp_domain}/api/v3/importers/core/pulp/import-check/:
+  /api/pulp/{pulp_domain}/api/v3/importers/core/pulp/import-check/:
     post:
       description: |-
         Evaluates validity of proposed PulpImport parameters 'toc', 'path', and 'repo_mapping'.
@@ -13915,7 +13915,7 @@ paths:
       summary: Validate the parameters to be used for a PulpImport call
       tags:
       - "Importers: Pulp Import-Check"
-  /pulp/{pulp_domain}/api/v3/orphans/:
+  /api/pulp/{pulp_domain}/api/v3/orphans/:
     delete:
       description: DEPRECATED! Trigger an asynchronous task that deletes all orphaned
         content and artifacts. Use the `POST /pulp/api/v3/orphans/cleanup/` call instead.
@@ -13942,7 +13942,7 @@ paths:
       summary: Delete orphans
       tags:
       - Orphans
-  /pulp/{pulp_domain}/api/v3/orphans/cleanup/:
+  /api/pulp/{pulp_domain}/api/v3/orphans/cleanup/:
     post:
       description: Trigger an asynchronous orphan cleanup operation.
       operationId: orphans_cleanup_cleanup
@@ -13979,7 +13979,7 @@ paths:
       - cookieAuth: []
       tags:
       - "Orphans: Cleanup"
-  /pulp/{pulp_domain}/api/v3/publications/:
+  /api/pulp/{pulp_domain}/api/v3/publications/:
     get:
       description: A base class for any publication viewset.
       operationId: publications_list
@@ -14237,7 +14237,7 @@ paths:
       summary: List publications
       tags:
       - Publications
-  /pulp/{pulp_domain}/api/v3/publications/file/file/:
+  /api/pulp/{pulp_domain}/api/v3/publications/file/file/:
     get:
       description: |2-
 
@@ -14737,7 +14737,7 @@ paths:
       summary: Remove a role
       tags:
       - "Publications: File"
-  /pulp/{pulp_domain}/api/v3/publications/gem/gem/:
+  /api/pulp/{pulp_domain}/api/v3/publications/gem/gem/:
     get:
       description: A ViewSet for GemPublication.
       operationId: publications_gem_gem_list
@@ -15225,7 +15225,7 @@ paths:
       summary: Remove a role
       tags:
       - "Publications: Gem"
-  /pulp/{pulp_domain}/api/v3/publications/rpm/rpm/:
+  /api/pulp/{pulp_domain}/api/v3/publications/rpm/rpm/:
     get:
       description: ViewSet for Rpm Publications.
       operationId: publications_rpm_rpm_list
@@ -15713,7 +15713,7 @@ paths:
       summary: Remove a role
       tags:
       - "Publications: Rpm"
-  /pulp/{pulp_domain}/api/v3/remotes/:
+  /api/pulp/{pulp_domain}/api/v3/remotes/:
     get:
       description: |-
         A customized named ModelViewSet that knows how to register itself with the Pulp API router.
@@ -16119,7 +16119,7 @@ paths:
       summary: List remotes
       tags:
       - Remotes
-  /pulp/{pulp_domain}/api/v3/remotes/file/file/:
+  /api/pulp/{pulp_domain}/api/v3/remotes/file/file/:
     get:
       description: |2-
 
@@ -16895,7 +16895,7 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: File"
-  /pulp/{pulp_domain}/api/v3/remotes/gem/gem/:
+  /api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/:
     get:
       description: A ViewSet for GemRemote.
       operationId: remotes_gem_gem_list
@@ -17659,7 +17659,7 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Gem"
-  /pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
+  /api/pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
     get:
       description: A ViewSet for RpmRemote.
       operationId: remotes_rpm_rpm_list
@@ -18423,7 +18423,7 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Rpm"
-  /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/:
+  /api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/:
     get:
       description: A ViewSet for UlnRemote.
       operationId: remotes_rpm_uln_list
@@ -19187,7 +19187,7 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Uln"
-  /pulp/{pulp_domain}/api/v3/repair/:
+  /api/pulp/{pulp_domain}/api/v3/repair/:
     post:
       description: "Trigger an asynchronous task that checks for missing or corrupted\
         \ artifacts, and attempts to redownload them."
@@ -19226,7 +19226,7 @@ paths:
       summary: Repair Artifact Storage
       tags:
       - Repair
-  /pulp/{pulp_domain}/api/v3/repositories/:
+  /api/pulp/{pulp_domain}/api/v3/repositories/:
     get:
       description: Endpoint to list all repositories.
       operationId: repositories_list
@@ -19585,7 +19585,7 @@ paths:
       summary: List repositories
       tags:
       - Repositories
-  /pulp/{pulp_domain}/api/v3/repositories/file/file/:
+  /api/pulp/{pulp_domain}/api/v3/repositories/file/file/:
     get:
       description: |2-
 
@@ -20759,7 +20759,7 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: File Versions"
-  /pulp/{pulp_domain}/api/v3/repositories/gem/gem/:
+  /api/pulp/{pulp_domain}/api/v3/repositories/gem/gem/:
     get:
       description: A ViewSet for GemRepository.
       operationId: repositories_gem_gem_list
@@ -21922,7 +21922,7 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Gem Versions"
-  /pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
+  /api/pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
     post:
       description: Trigger an asynchronous space reclaim operation.
       operationId: repositories_reclaim_space_reclaim
@@ -21959,7 +21959,7 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Reclaim_Space"
-  /pulp/{pulp_domain}/api/v3/repositories/rpm/rpm/:
+  /api/pulp/{pulp_domain}/api/v3/repositories/rpm/rpm/:
     get:
       description: A ViewSet for RpmRepository.
       operationId: repositories_rpm_rpm_list
@@ -23120,7 +23120,7 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Rpm Versions"
-  /pulp/{pulp_domain}/api/v3/repository_versions/:
+  /api/pulp/{pulp_domain}/api/v3/repository_versions/:
     get:
       description: A mixin to hold the shared get_queryset logic used by RepositoryVersionViewSets.
       operationId: repository_versions_list
@@ -23364,7 +23364,7 @@ paths:
       summary: List repository versions
       tags:
       - Repository_Versions
-  /pulp/{pulp_domain}/api/v3/roles/:
+  /api/pulp/{pulp_domain}/api/v3/roles/:
     get:
       description: ViewSet for Role.
       operationId: roles_list
@@ -23802,7 +23802,7 @@ paths:
       summary: Update a role
       tags:
       - Roles
-  /pulp/{pulp_domain}/api/v3/rpm/comps/:
+  /api/pulp/{pulp_domain}/api/v3/rpm/comps/:
     post:
       description: Trigger an asynchronous task to upload a comps.xml file.
       operationId: rpm_comps_upload
@@ -23837,7 +23837,7 @@ paths:
       summary: Upload comps.xml
       tags:
       - "Rpm: Comps"
-  /pulp/{pulp_domain}/api/v3/rpm/copy/:
+  /api/pulp/{pulp_domain}/api/v3/rpm/copy/:
     post:
       description: "Trigger an asynchronous task to copy RPM contentfrom one repository\
         \ into another, creating a newrepository version."
@@ -23876,7 +23876,7 @@ paths:
       summary: Copy content
       tags:
       - "Rpm: Copy"
-  /pulp/{pulp_domain}/api/v3/signing-services/:
+  /api/pulp/{pulp_domain}/api/v3/signing-services/:
     get:
       description: A ViewSet that supports browsing of existing signing services.
       operationId: signing_services_list
@@ -24064,7 +24064,7 @@ paths:
       summary: Inspect a signing service
       tags:
       - Signing-Services
-  /pulp/{pulp_domain}/api/v3/task-groups/:
+  /api/pulp/{pulp_domain}/api/v3/task-groups/:
     get:
       description: |-
         A customized named ModelViewSet that knows how to register itself with the Pulp API router.
@@ -24207,7 +24207,7 @@ paths:
       summary: Inspect a task group
       tags:
       - Task-Groups
-  /pulp/{pulp_domain}/api/v3/task-schedules/:
+  /api/pulp/{pulp_domain}/api/v3/task-schedules/:
     get:
       description: ViewSet to monitor task schedules.
       operationId: task_schedules_list
@@ -24583,7 +24583,7 @@ paths:
       summary: Remove a role
       tags:
       - Task-Schedules
-  /pulp/{pulp_domain}/api/v3/tasks/:
+  /api/pulp/{pulp_domain}/api/v3/tasks/:
     get:
       description: |-
         A customized named ModelViewSet that knows how to register itself with the Pulp API router.
@@ -25399,7 +25399,7 @@ paths:
       summary: Remove a role
       tags:
       - Tasks
-  /pulp/{pulp_domain}/api/v3/tasks/purge/:
+  /api/pulp/{pulp_domain}/api/v3/tasks/purge/:
     post:
       description: Trigger an asynchronous task that deletes completed tasks that
         finished prior to a specified timestamp.
@@ -25438,7 +25438,7 @@ paths:
       summary: Purge Completed Tasks
       tags:
       - Tasks
-  /pulp/{pulp_domain}/api/v3/uploads/:
+  /api/pulp/{pulp_domain}/api/v3/uploads/:
     get:
       description: View for chunked uploads.
       operationId: uploads_list
@@ -25941,7 +25941,7 @@ paths:
       summary: Remove a role
       tags:
       - Uploads
-  /pulp/{pulp_domain}/api/v3/upstream-pulps/:
+  /api/pulp/{pulp_domain}/api/v3/upstream-pulps/:
     get:
       description: API for configuring an upstream Pulp to replicate. This API is
         provided as a tech preview.
@@ -26373,7 +26373,7 @@ paths:
       summary: Replicate
       tags:
       - Upstream-Pulps
-  /pulp/{pulp_domain}/api/v3/users/:
+  /api/pulp/{pulp_domain}/api/v3/users/:
     get:
       description: ViewSet for User.
       operationId: users_list
@@ -27159,7 +27159,7 @@ paths:
       summary: Inspect an user role
       tags:
       - "Users: Roles"
-  /pulp/{pulp_domain}/api/v3/workers/:
+  /api/pulp/{pulp_domain}/api/v3/workers/:
     get:
       description: |-
         A customized named ModelViewSet that knows how to register itself with the Pulp API router.
@@ -27518,7 +27518,7 @@ paths:
       summary: Inspect a worker
       tags:
       - Workers
-  /pulp/api/v3/docs/api.json:
+  /api/pulp/api/v3/docs/api.json:
     get:
       description: |-
         OpenApi3 schema for this API. Format can be selected via content negotiation.
@@ -27665,7 +27665,7 @@ paths:
           description: ""
       tags:
       - "Docs: Api.Json"
-  /pulp/api/v3/docs/api.yaml:
+  /api/pulp/api/v3/docs/api.yaml:
     get:
       description: |-
         OpenApi3 schema for this API. Format can be selected via content negotiation.
@@ -27812,7 +27812,7 @@ paths:
           description: ""
       tags:
       - "Docs: Api.Yaml"
-  /pulp/api/v3/status/:
+  /api/pulp/api/v3/status/:
     get:
       description: |-
         Returns status and app information about Pulp.
@@ -28049,51 +28049,51 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_labels:
-          key: pulp_labels
         pulp_href: https://openapi-generator.tech
         hidden: false
+        pulp_labels:
+          key: pulp_labels
         base_url: base_url
         name: name
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
       required:
       - base_path
       - name
@@ -29430,19 +29430,19 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_labels:
-            key: pulp_labels
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_labels:
+            key: pulp_labels
           base_url: base_url
           name: name
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - pulp_labels:
-            key: pulp_labels
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_labels:
+            key: pulp_labels
           base_url: base_url
           name: name
           base_path: base_path

@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmModulemdObsoletesCreate**](ContentModulemdObsoletesAPI.md#ContentRpmModulemdObsoletesCreate) | **Post** /pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/ | Create a modulemd obsolete
-[**ContentRpmModulemdObsoletesList**](ContentModulemdObsoletesAPI.md#ContentRpmModulemdObsoletesList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/ | List modulemd obsoletes
+[**ContentRpmModulemdObsoletesCreate**](ContentModulemdObsoletesAPI.md#ContentRpmModulemdObsoletesCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/ | Create a modulemd obsolete
+[**ContentRpmModulemdObsoletesList**](ContentModulemdObsoletesAPI.md#ContentRpmModulemdObsoletesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_obsoletes/ | List modulemd obsoletes
 [**ContentRpmModulemdObsoletesRead**](ContentModulemdObsoletesAPI.md#ContentRpmModulemdObsoletesRead) | **Get** /{rpm_modulemd_obsolete_href} | Inspect a modulemd obsolete
 
 

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmPackageenvironmentsList**](ContentPackageenvironmentsAPI.md#ContentRpmPackageenvironmentsList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/packageenvironments/ | List package environments
+[**ContentRpmPackageenvironmentsList**](ContentPackageenvironmentsAPI.md#ContentRpmPackageenvironmentsList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packageenvironments/ | List package environments
 [**ContentRpmPackageenvironmentsRead**](ContentPackageenvironmentsAPI.md#ContentRpmPackageenvironmentsRead) | **Get** /{rpm_package_environment_href} | Inspect a package environment
 
 

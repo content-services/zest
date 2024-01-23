@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CopyContent**](RpmCopyAPI.md#CopyContent) | **Post** /pulp/{pulp_domain}/api/v3/rpm/copy/ | Copy content
+[**CopyContent**](RpmCopyAPI.md#CopyContent) | **Post** /api/pulp/{pulp_domain}/api/v3/rpm/copy/ | Copy content
 
 
 

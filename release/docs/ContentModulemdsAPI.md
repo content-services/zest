@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmModulemdsCreate**](ContentModulemdsAPI.md#ContentRpmModulemdsCreate) | **Post** /pulp/{pulp_domain}/api/v3/content/rpm/modulemds/ | Create a modulemd
-[**ContentRpmModulemdsList**](ContentModulemdsAPI.md#ContentRpmModulemdsList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/modulemds/ | List modulemds
+[**ContentRpmModulemdsCreate**](ContentModulemdsAPI.md#ContentRpmModulemdsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/ | Create a modulemd
+[**ContentRpmModulemdsList**](ContentModulemdsAPI.md#ContentRpmModulemdsList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/ | List modulemds
 [**ContentRpmModulemdsRead**](ContentModulemdsAPI.md#ContentRpmModulemdsRead) | **Get** /{rpm_modulemd_href} | Inspect a modulemd
 
 

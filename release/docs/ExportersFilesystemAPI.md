@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExportersCoreFilesystemCreate**](ExportersFilesystemAPI.md#ExportersCoreFilesystemCreate) | **Post** /pulp/{pulp_domain}/api/v3/exporters/core/filesystem/ | Create a filesystem exporter
+[**ExportersCoreFilesystemCreate**](ExportersFilesystemAPI.md#ExportersCoreFilesystemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/exporters/core/filesystem/ | Create a filesystem exporter
 [**ExportersCoreFilesystemDelete**](ExportersFilesystemAPI.md#ExportersCoreFilesystemDelete) | **Delete** /{filesystem_exporter_href} | Delete a filesystem exporter
-[**ExportersCoreFilesystemList**](ExportersFilesystemAPI.md#ExportersCoreFilesystemList) | **Get** /pulp/{pulp_domain}/api/v3/exporters/core/filesystem/ | List filesystem exporters
+[**ExportersCoreFilesystemList**](ExportersFilesystemAPI.md#ExportersCoreFilesystemList) | **Get** /api/pulp/{pulp_domain}/api/v3/exporters/core/filesystem/ | List filesystem exporters
 [**ExportersCoreFilesystemPartialUpdate**](ExportersFilesystemAPI.md#ExportersCoreFilesystemPartialUpdate) | **Patch** /{filesystem_exporter_href} | Update a filesystem exporter
 [**ExportersCoreFilesystemRead**](ExportersFilesystemAPI.md#ExportersCoreFilesystemRead) | **Get** /{filesystem_exporter_href} | Inspect a filesystem exporter
 [**ExportersCoreFilesystemUpdate**](ExportersFilesystemAPI.md#ExportersCoreFilesystemUpdate) | **Put** /{filesystem_exporter_href} | Update a filesystem exporter

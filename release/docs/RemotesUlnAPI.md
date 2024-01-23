@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RemotesRpmUlnAddRole**](RemotesUlnAPI.md#RemotesRpmUlnAddRole) | **Post** /{rpm_uln_remote_href}add_role/ | Add a role
-[**RemotesRpmUlnCreate**](RemotesUlnAPI.md#RemotesRpmUlnCreate) | **Post** /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | Create an uln remote
+[**RemotesRpmUlnCreate**](RemotesUlnAPI.md#RemotesRpmUlnCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | Create an uln remote
 [**RemotesRpmUlnDelete**](RemotesUlnAPI.md#RemotesRpmUlnDelete) | **Delete** /{rpm_uln_remote_href} | Delete an uln remote
-[**RemotesRpmUlnList**](RemotesUlnAPI.md#RemotesRpmUlnList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | List uln remotes
+[**RemotesRpmUlnList**](RemotesUlnAPI.md#RemotesRpmUlnList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/ | List uln remotes
 [**RemotesRpmUlnListRoles**](RemotesUlnAPI.md#RemotesRpmUlnListRoles) | **Get** /{rpm_uln_remote_href}list_roles/ | List roles
 [**RemotesRpmUlnMyPermissions**](RemotesUlnAPI.md#RemotesRpmUlnMyPermissions) | **Get** /{rpm_uln_remote_href}my_permissions/ | List user permissions
 [**RemotesRpmUlnPartialUpdate**](RemotesUlnAPI.md#RemotesRpmUlnPartialUpdate) | **Patch** /{rpm_uln_remote_href} | Update an uln remote

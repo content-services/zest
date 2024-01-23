@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UpstreamPulpsAddRole**](UpstreamPulpsAPI.md#UpstreamPulpsAddRole) | **Post** /{upstream_pulp_href}add_role/ | Add a role
-[**UpstreamPulpsCreate**](UpstreamPulpsAPI.md#UpstreamPulpsCreate) | **Post** /pulp/{pulp_domain}/api/v3/upstream-pulps/ | Create an upstream pulp
+[**UpstreamPulpsCreate**](UpstreamPulpsAPI.md#UpstreamPulpsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/upstream-pulps/ | Create an upstream pulp
 [**UpstreamPulpsDelete**](UpstreamPulpsAPI.md#UpstreamPulpsDelete) | **Delete** /{upstream_pulp_href} | Delete an upstream pulp
-[**UpstreamPulpsList**](UpstreamPulpsAPI.md#UpstreamPulpsList) | **Get** /pulp/{pulp_domain}/api/v3/upstream-pulps/ | List upstream pulps
+[**UpstreamPulpsList**](UpstreamPulpsAPI.md#UpstreamPulpsList) | **Get** /api/pulp/{pulp_domain}/api/v3/upstream-pulps/ | List upstream pulps
 [**UpstreamPulpsListRoles**](UpstreamPulpsAPI.md#UpstreamPulpsListRoles) | **Get** /{upstream_pulp_href}list_roles/ | List roles
 [**UpstreamPulpsMyPermissions**](UpstreamPulpsAPI.md#UpstreamPulpsMyPermissions) | **Get** /{upstream_pulp_href}my_permissions/ | List user permissions
 [**UpstreamPulpsPartialUpdate**](UpstreamPulpsAPI.md#UpstreamPulpsPartialUpdate) | **Patch** /{upstream_pulp_href} | Update an upstream pulp

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmPackagelangpacksList**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/packagelangpacks/ | List package langpackss
+[**ContentRpmPackagelangpacksList**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packagelangpacks/ | List package langpackss
 [**ContentRpmPackagelangpacksRead**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksRead) | **Get** /{rpm_package_langpacks_href} | Inspect a package langpacks
 
 

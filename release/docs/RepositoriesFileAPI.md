@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RepositoriesFileFileAddRole**](RepositoriesFileAPI.md#RepositoriesFileFileAddRole) | **Post** /{file_file_repository_href}add_role/ | Add a role
-[**RepositoriesFileFileCreate**](RepositoriesFileAPI.md#RepositoriesFileFileCreate) | **Post** /pulp/{pulp_domain}/api/v3/repositories/file/file/ | Create a file repository
+[**RepositoriesFileFileCreate**](RepositoriesFileAPI.md#RepositoriesFileFileCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/file/file/ | Create a file repository
 [**RepositoriesFileFileDelete**](RepositoriesFileAPI.md#RepositoriesFileFileDelete) | **Delete** /{file_file_repository_href} | Delete a file repository
-[**RepositoriesFileFileList**](RepositoriesFileAPI.md#RepositoriesFileFileList) | **Get** /pulp/{pulp_domain}/api/v3/repositories/file/file/ | List file repositorys
+[**RepositoriesFileFileList**](RepositoriesFileAPI.md#RepositoriesFileFileList) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/file/file/ | List file repositorys
 [**RepositoriesFileFileListRoles**](RepositoriesFileAPI.md#RepositoriesFileFileListRoles) | **Get** /{file_file_repository_href}list_roles/ | List roles
 [**RepositoriesFileFileModify**](RepositoriesFileAPI.md#RepositoriesFileFileModify) | **Post** /{file_file_repository_href}modify/ | Modify Repository Content
 [**RepositoriesFileFileMyPermissions**](RepositoriesFileAPI.md#RepositoriesFileFileMyPermissions) | **Get** /{file_file_repository_href}my_permissions/ | List user permissions

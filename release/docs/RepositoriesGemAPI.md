@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RepositoriesGemGemAddRole**](RepositoriesGemAPI.md#RepositoriesGemGemAddRole) | **Post** /{gem_gem_repository_href}add_role/ | Add a role
-[**RepositoriesGemGemCreate**](RepositoriesGemAPI.md#RepositoriesGemGemCreate) | **Post** /pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | Create a gem repository
+[**RepositoriesGemGemCreate**](RepositoriesGemAPI.md#RepositoriesGemGemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | Create a gem repository
 [**RepositoriesGemGemDelete**](RepositoriesGemAPI.md#RepositoriesGemGemDelete) | **Delete** /{gem_gem_repository_href} | Delete a gem repository
-[**RepositoriesGemGemList**](RepositoriesGemAPI.md#RepositoriesGemGemList) | **Get** /pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | List gem repositorys
+[**RepositoriesGemGemList**](RepositoriesGemAPI.md#RepositoriesGemGemList) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | List gem repositorys
 [**RepositoriesGemGemListRoles**](RepositoriesGemAPI.md#RepositoriesGemGemListRoles) | **Get** /{gem_gem_repository_href}list_roles/ | List roles
 [**RepositoriesGemGemModify**](RepositoriesGemAPI.md#RepositoriesGemGemModify) | **Post** /{gem_gem_repository_href}modify/ | Modify Repository Content
 [**RepositoriesGemGemMyPermissions**](RepositoriesGemAPI.md#RepositoriesGemGemMyPermissions) | **Get** /{gem_gem_repository_href}my_permissions/ | List user permissions

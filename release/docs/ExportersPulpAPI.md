@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExportersCorePulpCreate**](ExportersPulpAPI.md#ExportersCorePulpCreate) | **Post** /pulp/{pulp_domain}/api/v3/exporters/core/pulp/ | Create a pulp exporter
+[**ExportersCorePulpCreate**](ExportersPulpAPI.md#ExportersCorePulpCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/exporters/core/pulp/ | Create a pulp exporter
 [**ExportersCorePulpDelete**](ExportersPulpAPI.md#ExportersCorePulpDelete) | **Delete** /{pulp_exporter_href} | Delete a pulp exporter
-[**ExportersCorePulpList**](ExportersPulpAPI.md#ExportersCorePulpList) | **Get** /pulp/{pulp_domain}/api/v3/exporters/core/pulp/ | List pulp exporters
+[**ExportersCorePulpList**](ExportersPulpAPI.md#ExportersCorePulpList) | **Get** /api/pulp/{pulp_domain}/api/v3/exporters/core/pulp/ | List pulp exporters
 [**ExportersCorePulpPartialUpdate**](ExportersPulpAPI.md#ExportersCorePulpPartialUpdate) | **Patch** /{pulp_exporter_href} | Update a pulp exporter
 [**ExportersCorePulpRead**](ExportersPulpAPI.md#ExportersCorePulpRead) | **Get** /{pulp_exporter_href} | Inspect a pulp exporter
 [**ExportersCorePulpUpdate**](ExportersPulpAPI.md#ExportersCorePulpUpdate) | **Put** /{pulp_exporter_href} | Update a pulp exporter

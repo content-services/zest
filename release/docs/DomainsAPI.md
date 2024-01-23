@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DomainsCreate**](DomainsAPI.md#DomainsCreate) | **Post** /pulp/{pulp_domain}/api/v3/domains/ | Create a domain
+[**DomainsCreate**](DomainsAPI.md#DomainsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/domains/ | Create a domain
 [**DomainsDelete**](DomainsAPI.md#DomainsDelete) | **Delete** /{domain_href} | Delete a domain
-[**DomainsList**](DomainsAPI.md#DomainsList) | **Get** /pulp/{pulp_domain}/api/v3/domains/ | List domains
+[**DomainsList**](DomainsAPI.md#DomainsList) | **Get** /api/pulp/{pulp_domain}/api/v3/domains/ | List domains
 [**DomainsPartialUpdate**](DomainsAPI.md#DomainsPartialUpdate) | **Patch** /{domain_href} | Update a domain
 [**DomainsRead**](DomainsAPI.md#DomainsRead) | **Get** /{domain_href} | Inspect a domain
 [**DomainsUpdate**](DomainsAPI.md#DomainsUpdate) | **Put** /{domain_href} | Update a domain

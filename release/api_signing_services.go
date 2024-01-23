@@ -129,7 +129,7 @@ func (a *SigningServicesAPIService) SigningServicesListExecute(r SigningServices
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/signing-services/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/signing-services/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

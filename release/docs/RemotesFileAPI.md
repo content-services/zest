@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RemotesFileFileAddRole**](RemotesFileAPI.md#RemotesFileFileAddRole) | **Post** /{file_file_remote_href}add_role/ | Add a role
-[**RemotesFileFileCreate**](RemotesFileAPI.md#RemotesFileFileCreate) | **Post** /pulp/{pulp_domain}/api/v3/remotes/file/file/ | Create a file remote
+[**RemotesFileFileCreate**](RemotesFileAPI.md#RemotesFileFileCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/file/file/ | Create a file remote
 [**RemotesFileFileDelete**](RemotesFileAPI.md#RemotesFileFileDelete) | **Delete** /{file_file_remote_href} | Delete a file remote
-[**RemotesFileFileList**](RemotesFileAPI.md#RemotesFileFileList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/file/file/ | List file remotes
+[**RemotesFileFileList**](RemotesFileAPI.md#RemotesFileFileList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/file/file/ | List file remotes
 [**RemotesFileFileListRoles**](RemotesFileAPI.md#RemotesFileFileListRoles) | **Get** /{file_file_remote_href}list_roles/ | List roles
 [**RemotesFileFileMyPermissions**](RemotesFileAPI.md#RemotesFileFileMyPermissions) | **Get** /{file_file_remote_href}my_permissions/ | List user permissions
 [**RemotesFileFilePartialUpdate**](RemotesFileAPI.md#RemotesFileFilePartialUpdate) | **Patch** /{file_file_remote_href} | Update a file remote

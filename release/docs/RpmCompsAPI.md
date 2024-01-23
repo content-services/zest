@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RpmCompsUpload**](RpmCompsAPI.md#RpmCompsUpload) | **Post** /pulp/{pulp_domain}/api/v3/rpm/comps/ | Upload comps.xml
+[**RpmCompsUpload**](RpmCompsAPI.md#RpmCompsUpload) | **Post** /api/pulp/{pulp_domain}/api/v3/rpm/comps/ | Upload comps.xml
 
 
 

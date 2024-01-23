@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DocsApiYamlGet**](DocsApiYamlAPI.md#DocsApiYamlGet) | **Get** /pulp/api/v3/docs/api.yaml | 
+[**DocsApiYamlGet**](DocsApiYamlAPI.md#DocsApiYamlGet) | **Get** /api/pulp/api/v3/docs/api.yaml | 
 
 
 

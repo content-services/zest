@@ -73,7 +73,7 @@ func (a *ExportersPulpAPIService) ExportersCorePulpCreateExecute(r ExportersPulp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/exporters/core/pulp/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/exporters/core/pulp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -404,7 +404,7 @@ func (a *ExportersPulpAPIService) ExportersCorePulpListExecute(r ExportersPulpAP
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/exporters/core/pulp/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/exporters/core/pulp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

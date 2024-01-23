@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PublicationsFileFileAddRole**](PublicationsFileAPI.md#PublicationsFileFileAddRole) | **Post** /{file_file_publication_href}add_role/ | Add a role
-[**PublicationsFileFileCreate**](PublicationsFileAPI.md#PublicationsFileFileCreate) | **Post** /pulp/{pulp_domain}/api/v3/publications/file/file/ | Create a file publication
+[**PublicationsFileFileCreate**](PublicationsFileAPI.md#PublicationsFileFileCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/file/file/ | Create a file publication
 [**PublicationsFileFileDelete**](PublicationsFileAPI.md#PublicationsFileFileDelete) | **Delete** /{file_file_publication_href} | Delete a file publication
-[**PublicationsFileFileList**](PublicationsFileAPI.md#PublicationsFileFileList) | **Get** /pulp/{pulp_domain}/api/v3/publications/file/file/ | List file publications
+[**PublicationsFileFileList**](PublicationsFileAPI.md#PublicationsFileFileList) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/file/file/ | List file publications
 [**PublicationsFileFileListRoles**](PublicationsFileAPI.md#PublicationsFileFileListRoles) | **Get** /{file_file_publication_href}list_roles/ | List roles
 [**PublicationsFileFileMyPermissions**](PublicationsFileAPI.md#PublicationsFileFileMyPermissions) | **Get** /{file_file_publication_href}my_permissions/ | List user permissions
 [**PublicationsFileFileRead**](PublicationsFileAPI.md#PublicationsFileFileRead) | **Get** /{file_file_publication_href} | Inspect a file publication

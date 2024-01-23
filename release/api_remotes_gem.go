@@ -189,7 +189,7 @@ func (a *RemotesGemAPIService) RemotesGemGemCreateExecute(r RemotesGemAPIRemotes
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -569,7 +569,7 @@ func (a *RemotesGemAPIService) RemotesGemGemListExecute(r RemotesGemAPIRemotesGe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

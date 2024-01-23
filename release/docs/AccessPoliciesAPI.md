@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AccessPoliciesList**](AccessPoliciesAPI.md#AccessPoliciesList) | **Get** /pulp/{pulp_domain}/api/v3/access_policies/ | List access policys
+[**AccessPoliciesList**](AccessPoliciesAPI.md#AccessPoliciesList) | **Get** /api/pulp/{pulp_domain}/api/v3/access_policies/ | List access policys
 [**AccessPoliciesPartialUpdate**](AccessPoliciesAPI.md#AccessPoliciesPartialUpdate) | **Patch** /{access_policy_href} | Update an access policy
 [**AccessPoliciesRead**](AccessPoliciesAPI.md#AccessPoliciesRead) | **Get** /{access_policy_href} | Inspect an access policy
 [**AccessPoliciesReset**](AccessPoliciesAPI.md#AccessPoliciesReset) | **Post** /{access_policy_href}reset/ | 

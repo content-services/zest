@@ -189,7 +189,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnCreateExecute(r RemotesUlnAPIRemotes
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -569,7 +569,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnListExecute(r RemotesUlnAPIRemotesRp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

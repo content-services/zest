@@ -189,7 +189,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileCreateExecute(r Publica
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/publications/file/file/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -522,7 +522,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileListExecute(r Publicati
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/publications/file/file/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

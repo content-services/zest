@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentguardsCoreContentRedirectAddRole**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectAddRole) | **Post** /{content_redirect_content_guard_href}add_role/ | Add a role
-[**ContentguardsCoreContentRedirectCreate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectCreate) | **Post** /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | Create a content redirect content guard
+[**ContentguardsCoreContentRedirectCreate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | Create a content redirect content guard
 [**ContentguardsCoreContentRedirectDelete**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectDelete) | **Delete** /{content_redirect_content_guard_href} | Delete a content redirect content guard
-[**ContentguardsCoreContentRedirectList**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectList) | **Get** /pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | List content redirect content guards
+[**ContentguardsCoreContentRedirectList**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectList) | **Get** /api/pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/ | List content redirect content guards
 [**ContentguardsCoreContentRedirectListRoles**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectListRoles) | **Get** /{content_redirect_content_guard_href}list_roles/ | List roles
 [**ContentguardsCoreContentRedirectMyPermissions**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectMyPermissions) | **Get** /{content_redirect_content_guard_href}my_permissions/ | List user permissions
 [**ContentguardsCoreContentRedirectPartialUpdate**](ContentguardsContentRedirectAPI.md#ContentguardsCoreContentRedirectPartialUpdate) | **Patch** /{content_redirect_content_guard_href} | Update a content redirect content guard

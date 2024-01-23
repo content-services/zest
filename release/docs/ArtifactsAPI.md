@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArtifactsCreate**](ArtifactsAPI.md#ArtifactsCreate) | **Post** /pulp/{pulp_domain}/api/v3/artifacts/ | Create an artifact
+[**ArtifactsCreate**](ArtifactsAPI.md#ArtifactsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/artifacts/ | Create an artifact
 [**ArtifactsDelete**](ArtifactsAPI.md#ArtifactsDelete) | **Delete** /{artifact_href} | Delete an artifact
-[**ArtifactsList**](ArtifactsAPI.md#ArtifactsList) | **Get** /pulp/{pulp_domain}/api/v3/artifacts/ | List artifacts
+[**ArtifactsList**](ArtifactsAPI.md#ArtifactsList) | **Get** /api/pulp/{pulp_domain}/api/v3/artifacts/ | List artifacts
 [**ArtifactsRead**](ArtifactsAPI.md#ArtifactsRead) | **Get** /{artifact_href} | Inspect an artifact
 
 

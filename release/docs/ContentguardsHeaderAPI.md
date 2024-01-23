@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentguardsCoreHeaderAddRole**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderAddRole) | **Post** /{header_content_guard_href}add_role/ | Add a role
-[**ContentguardsCoreHeaderCreate**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderCreate) | **Post** /pulp/{pulp_domain}/api/v3/contentguards/core/header/ | Create a header content guard
+[**ContentguardsCoreHeaderCreate**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/contentguards/core/header/ | Create a header content guard
 [**ContentguardsCoreHeaderDelete**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderDelete) | **Delete** /{header_content_guard_href} | Delete a header content guard
-[**ContentguardsCoreHeaderList**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderList) | **Get** /pulp/{pulp_domain}/api/v3/contentguards/core/header/ | List header content guards
+[**ContentguardsCoreHeaderList**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderList) | **Get** /api/pulp/{pulp_domain}/api/v3/contentguards/core/header/ | List header content guards
 [**ContentguardsCoreHeaderListRoles**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderListRoles) | **Get** /{header_content_guard_href}list_roles/ | List roles
 [**ContentguardsCoreHeaderMyPermissions**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderMyPermissions) | **Get** /{header_content_guard_href}my_permissions/ | List user permissions
 [**ContentguardsCoreHeaderPartialUpdate**](ContentguardsHeaderAPI.md#ContentguardsCoreHeaderPartialUpdate) | **Patch** /{header_content_guard_href} | Update a header content guard

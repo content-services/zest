@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DocsApiJsonGet**](DocsApiJsonAPI.md#DocsApiJsonGet) | **Get** /pulp/api/v3/docs/api.json | 
+[**DocsApiJsonGet**](DocsApiJsonAPI.md#DocsApiJsonGet) | **Get** /api/pulp/api/v3/docs/api.json | 
 
 
 

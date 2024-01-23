@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentFileFilesCreate**](ContentFilesAPI.md#ContentFileFilesCreate) | **Post** /pulp/{pulp_domain}/api/v3/content/file/files/ | Create a file content
-[**ContentFileFilesList**](ContentFilesAPI.md#ContentFileFilesList) | **Get** /pulp/{pulp_domain}/api/v3/content/file/files/ | List file contents
+[**ContentFileFilesCreate**](ContentFilesAPI.md#ContentFileFilesCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/file/files/ | Create a file content
+[**ContentFileFilesList**](ContentFilesAPI.md#ContentFileFilesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/file/files/ | List file contents
 [**ContentFileFilesRead**](ContentFilesAPI.md#ContentFileFilesRead) | **Get** /{file_file_content_href} | Inspect a file content
 
 

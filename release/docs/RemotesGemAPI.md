@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RemotesGemGemAddRole**](RemotesGemAPI.md#RemotesGemGemAddRole) | **Post** /{gem_gem_remote_href}add_role/ | Add a role
-[**RemotesGemGemCreate**](RemotesGemAPI.md#RemotesGemGemCreate) | **Post** /pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | Create a gem remote
+[**RemotesGemGemCreate**](RemotesGemAPI.md#RemotesGemGemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | Create a gem remote
 [**RemotesGemGemDelete**](RemotesGemAPI.md#RemotesGemGemDelete) | **Delete** /{gem_gem_remote_href} | Delete a gem remote
-[**RemotesGemGemList**](RemotesGemAPI.md#RemotesGemGemList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | List gem remotes
+[**RemotesGemGemList**](RemotesGemAPI.md#RemotesGemGemList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | List gem remotes
 [**RemotesGemGemListRoles**](RemotesGemAPI.md#RemotesGemGemListRoles) | **Get** /{gem_gem_remote_href}list_roles/ | List roles
 [**RemotesGemGemMyPermissions**](RemotesGemAPI.md#RemotesGemGemMyPermissions) | **Get** /{gem_gem_remote_href}my_permissions/ | List user permissions
 [**RemotesGemGemPartialUpdate**](RemotesGemAPI.md#RemotesGemGemPartialUpdate) | **Patch** /{gem_gem_remote_href} | Update a gem remote

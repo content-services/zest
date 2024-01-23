@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GroupsAddRole**](GroupsAPI.md#GroupsAddRole) | **Post** /{group_href}add_role/ | Add a role
-[**GroupsCreate**](GroupsAPI.md#GroupsCreate) | **Post** /pulp/{pulp_domain}/api/v3/groups/ | Create a group
+[**GroupsCreate**](GroupsAPI.md#GroupsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/groups/ | Create a group
 [**GroupsDelete**](GroupsAPI.md#GroupsDelete) | **Delete** /{group_href} | Delete a group
-[**GroupsList**](GroupsAPI.md#GroupsList) | **Get** /pulp/{pulp_domain}/api/v3/groups/ | List groups
+[**GroupsList**](GroupsAPI.md#GroupsList) | **Get** /api/pulp/{pulp_domain}/api/v3/groups/ | List groups
 [**GroupsListRoles**](GroupsAPI.md#GroupsListRoles) | **Get** /{group_href}list_roles/ | List roles
 [**GroupsMyPermissions**](GroupsAPI.md#GroupsMyPermissions) | **Get** /{group_href}my_permissions/ | List user permissions
 [**GroupsPartialUpdate**](GroupsAPI.md#GroupsPartialUpdate) | **Patch** /{group_href} | Update a group

@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PublicationsGemGemAddRole**](PublicationsGemAPI.md#PublicationsGemGemAddRole) | **Post** /{gem_gem_publication_href}add_role/ | Add a role
-[**PublicationsGemGemCreate**](PublicationsGemAPI.md#PublicationsGemGemCreate) | **Post** /pulp/{pulp_domain}/api/v3/publications/gem/gem/ | Create a gem publication
+[**PublicationsGemGemCreate**](PublicationsGemAPI.md#PublicationsGemGemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/gem/gem/ | Create a gem publication
 [**PublicationsGemGemDelete**](PublicationsGemAPI.md#PublicationsGemGemDelete) | **Delete** /{gem_gem_publication_href} | Delete a gem publication
-[**PublicationsGemGemList**](PublicationsGemAPI.md#PublicationsGemGemList) | **Get** /pulp/{pulp_domain}/api/v3/publications/gem/gem/ | List gem publications
+[**PublicationsGemGemList**](PublicationsGemAPI.md#PublicationsGemGemList) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/gem/gem/ | List gem publications
 [**PublicationsGemGemListRoles**](PublicationsGemAPI.md#PublicationsGemGemListRoles) | **Get** /{gem_gem_publication_href}list_roles/ | List roles
 [**PublicationsGemGemMyPermissions**](PublicationsGemAPI.md#PublicationsGemGemMyPermissions) | **Get** /{gem_gem_publication_href}my_permissions/ | List user permissions
 [**PublicationsGemGemRead**](PublicationsGemAPI.md#PublicationsGemGemRead) | **Get** /{gem_gem_publication_href} | Inspect a gem publication

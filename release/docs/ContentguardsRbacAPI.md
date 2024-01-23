@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentguardsCoreRbacAddRole**](ContentguardsRbacAPI.md#ContentguardsCoreRbacAddRole) | **Post** /{r_b_a_c_content_guard_href}add_role/ | Add a role
-[**ContentguardsCoreRbacCreate**](ContentguardsRbacAPI.md#ContentguardsCoreRbacCreate) | **Post** /pulp/{pulp_domain}/api/v3/contentguards/core/rbac/ | Create a rbac content guard
+[**ContentguardsCoreRbacCreate**](ContentguardsRbacAPI.md#ContentguardsCoreRbacCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/ | Create a rbac content guard
 [**ContentguardsCoreRbacDelete**](ContentguardsRbacAPI.md#ContentguardsCoreRbacDelete) | **Delete** /{r_b_a_c_content_guard_href} | Delete a rbac content guard
-[**ContentguardsCoreRbacList**](ContentguardsRbacAPI.md#ContentguardsCoreRbacList) | **Get** /pulp/{pulp_domain}/api/v3/contentguards/core/rbac/ | List rbac content guards
+[**ContentguardsCoreRbacList**](ContentguardsRbacAPI.md#ContentguardsCoreRbacList) | **Get** /api/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/ | List rbac content guards
 [**ContentguardsCoreRbacListRoles**](ContentguardsRbacAPI.md#ContentguardsCoreRbacListRoles) | **Get** /{r_b_a_c_content_guard_href}list_roles/ | List roles
 [**ContentguardsCoreRbacMyPermissions**](ContentguardsRbacAPI.md#ContentguardsCoreRbacMyPermissions) | **Get** /{r_b_a_c_content_guard_href}my_permissions/ | List user permissions
 [**ContentguardsCoreRbacPartialUpdate**](ContentguardsRbacAPI.md#ContentguardsCoreRbacPartialUpdate) | **Patch** /{r_b_a_c_content_guard_href} | Update a rbac content guard

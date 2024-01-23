@@ -190,7 +190,7 @@ func (a *ContentguardsRbacAPIService) ContentguardsCoreRbacCreateExecute(r Conte
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -514,7 +514,7 @@ func (a *ContentguardsRbacAPIService) ContentguardsCoreRbacListExecute(r Content
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/core/rbac/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

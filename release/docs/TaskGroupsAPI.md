@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TaskGroupsList**](TaskGroupsAPI.md#TaskGroupsList) | **Get** /pulp/{pulp_domain}/api/v3/task-groups/ | List task groups
+[**TaskGroupsList**](TaskGroupsAPI.md#TaskGroupsList) | **Get** /api/pulp/{pulp_domain}/api/v3/task-groups/ | List task groups
 [**TaskGroupsRead**](TaskGroupsAPI.md#TaskGroupsRead) | **Get** /{task_group_href} | Inspect a task group
 
 

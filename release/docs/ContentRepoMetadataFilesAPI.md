@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmRepoMetadataFilesList**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/ | List repo metadata files
+[**ContentRpmRepoMetadataFilesList**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/ | List repo metadata files
 [**ContentRpmRepoMetadataFilesRead**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesRead) | **Get** /{rpm_repo_metadata_file_href} | Inspect a repo metadata file
 
 

@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DistributionsGemGemAddRole**](DistributionsGemAPI.md#DistributionsGemGemAddRole) | **Post** /{gem_gem_distribution_href}add_role/ | Add a role
-[**DistributionsGemGemCreate**](DistributionsGemAPI.md#DistributionsGemGemCreate) | **Post** /pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | Create a gem distribution
+[**DistributionsGemGemCreate**](DistributionsGemAPI.md#DistributionsGemGemCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | Create a gem distribution
 [**DistributionsGemGemDelete**](DistributionsGemAPI.md#DistributionsGemGemDelete) | **Delete** /{gem_gem_distribution_href} | Delete a gem distribution
-[**DistributionsGemGemList**](DistributionsGemAPI.md#DistributionsGemGemList) | **Get** /pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | List gem distributions
+[**DistributionsGemGemList**](DistributionsGemAPI.md#DistributionsGemGemList) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | List gem distributions
 [**DistributionsGemGemListRoles**](DistributionsGemAPI.md#DistributionsGemGemListRoles) | **Get** /{gem_gem_distribution_href}list_roles/ | List roles
 [**DistributionsGemGemMyPermissions**](DistributionsGemAPI.md#DistributionsGemGemMyPermissions) | **Get** /{gem_gem_distribution_href}my_permissions/ | List user permissions
 [**DistributionsGemGemPartialUpdate**](DistributionsGemAPI.md#DistributionsGemGemPartialUpdate) | **Patch** /{gem_gem_distribution_href} | Update a gem distribution

@@ -4,9 +4,9 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ImportersCorePulpCreate**](ImportersPulpAPI.md#ImportersCorePulpCreate) | **Post** /pulp/{pulp_domain}/api/v3/importers/core/pulp/ | Create a pulp importer
+[**ImportersCorePulpCreate**](ImportersPulpAPI.md#ImportersCorePulpCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/importers/core/pulp/ | Create a pulp importer
 [**ImportersCorePulpDelete**](ImportersPulpAPI.md#ImportersCorePulpDelete) | **Delete** /{pulp_importer_href} | Delete a pulp importer
-[**ImportersCorePulpList**](ImportersPulpAPI.md#ImportersCorePulpList) | **Get** /pulp/{pulp_domain}/api/v3/importers/core/pulp/ | List pulp importers
+[**ImportersCorePulpList**](ImportersPulpAPI.md#ImportersCorePulpList) | **Get** /api/pulp/{pulp_domain}/api/v3/importers/core/pulp/ | List pulp importers
 [**ImportersCorePulpPartialUpdate**](ImportersPulpAPI.md#ImportersCorePulpPartialUpdate) | **Patch** /{pulp_importer_href} | Update a pulp importer
 [**ImportersCorePulpRead**](ImportersPulpAPI.md#ImportersCorePulpRead) | **Get** /{pulp_importer_href} | Inspect a pulp importer
 [**ImportersCorePulpUpdate**](ImportersPulpAPI.md#ImportersCorePulpUpdate) | **Put** /{pulp_importer_href} | Update a pulp importer

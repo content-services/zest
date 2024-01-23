@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StatusRead**](StatusAPI.md#StatusRead) | **Get** /pulp/api/v3/status/ | Inspect status of Pulp
+[**StatusRead**](StatusAPI.md#StatusRead) | **Get** /api/pulp/api/v3/status/ | Inspect status of Pulp
 
 
 

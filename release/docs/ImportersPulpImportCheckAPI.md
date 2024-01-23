@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PulpImportCheckPost**](ImportersPulpImportCheckAPI.md#PulpImportCheckPost) | **Post** /pulp/{pulp_domain}/api/v3/importers/core/pulp/import-check/ | Validate the parameters to be used for a PulpImport call
+[**PulpImportCheckPost**](ImportersPulpImportCheckAPI.md#PulpImportCheckPost) | **Post** /api/pulp/{pulp_domain}/api/v3/importers/core/pulp/import-check/ | Validate the parameters to be used for a PulpImport call
 
 
 

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RepairPost**](RepairAPI.md#RepairPost) | **Post** /pulp/{pulp_domain}/api/v3/repair/ | Repair Artifact Storage
+[**RepairPost**](RepairAPI.md#RepairPost) | **Post** /api/pulp/{pulp_domain}/api/v3/repair/ | Repair Artifact Storage
 
 
 

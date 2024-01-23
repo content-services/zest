@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OrphansDelete**](OrphansAPI.md#OrphansDelete) | **Delete** /pulp/{pulp_domain}/api/v3/orphans/ | Delete orphans
+[**OrphansDelete**](OrphansAPI.md#OrphansDelete) | **Delete** /api/pulp/{pulp_domain}/api/v3/orphans/ | Delete orphans
 
 
 

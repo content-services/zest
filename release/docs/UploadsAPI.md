@@ -6,9 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UploadsAddRole**](UploadsAPI.md#UploadsAddRole) | **Post** /{upload_href}add_role/ | Add a role
 [**UploadsCommit**](UploadsAPI.md#UploadsCommit) | **Post** /{upload_href}commit/ | Finish an Upload
-[**UploadsCreate**](UploadsAPI.md#UploadsCreate) | **Post** /pulp/{pulp_domain}/api/v3/uploads/ | Create an upload
+[**UploadsCreate**](UploadsAPI.md#UploadsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/uploads/ | Create an upload
 [**UploadsDelete**](UploadsAPI.md#UploadsDelete) | **Delete** /{upload_href} | Delete an upload
-[**UploadsList**](UploadsAPI.md#UploadsList) | **Get** /pulp/{pulp_domain}/api/v3/uploads/ | List uploads
+[**UploadsList**](UploadsAPI.md#UploadsList) | **Get** /api/pulp/{pulp_domain}/api/v3/uploads/ | List uploads
 [**UploadsListRoles**](UploadsAPI.md#UploadsListRoles) | **Get** /{upload_href}list_roles/ | List roles
 [**UploadsMyPermissions**](UploadsAPI.md#UploadsMyPermissions) | **Get** /{upload_href}my_permissions/ | List user permissions
 [**UploadsRead**](UploadsAPI.md#UploadsRead) | **Get** /{upload_href} | Inspect an upload

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RemotesList**](RemotesAPI.md#RemotesList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/ | List remotes
+[**RemotesList**](RemotesAPI.md#RemotesList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/ | List remotes
 
 
 

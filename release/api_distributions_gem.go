@@ -188,7 +188,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemCreateExecute(r Distribu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -575,7 +575,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemListExecute(r Distributi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

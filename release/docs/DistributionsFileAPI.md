@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DistributionsFileFileAddRole**](DistributionsFileAPI.md#DistributionsFileFileAddRole) | **Post** /{file_file_distribution_href}add_role/ | Add a role
-[**DistributionsFileFileCreate**](DistributionsFileAPI.md#DistributionsFileFileCreate) | **Post** /pulp/{pulp_domain}/api/v3/distributions/file/file/ | Create a file distribution
+[**DistributionsFileFileCreate**](DistributionsFileAPI.md#DistributionsFileFileCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/file/file/ | Create a file distribution
 [**DistributionsFileFileDelete**](DistributionsFileAPI.md#DistributionsFileFileDelete) | **Delete** /{file_file_distribution_href} | Delete a file distribution
-[**DistributionsFileFileList**](DistributionsFileAPI.md#DistributionsFileFileList) | **Get** /pulp/{pulp_domain}/api/v3/distributions/file/file/ | List file distributions
+[**DistributionsFileFileList**](DistributionsFileAPI.md#DistributionsFileFileList) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/file/file/ | List file distributions
 [**DistributionsFileFileListRoles**](DistributionsFileAPI.md#DistributionsFileFileListRoles) | **Get** /{file_file_distribution_href}list_roles/ | List roles
 [**DistributionsFileFileMyPermissions**](DistributionsFileAPI.md#DistributionsFileFileMyPermissions) | **Get** /{file_file_distribution_href}my_permissions/ | List user permissions
 [**DistributionsFileFilePartialUpdate**](DistributionsFileAPI.md#DistributionsFileFilePartialUpdate) | **Patch** /{file_file_distribution_href} | Update a file distribution

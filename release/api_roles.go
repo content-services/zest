@@ -73,7 +73,7 @@ func (a *RolesAPIService) RolesCreateExecute(r RolesAPIRolesCreateRequest) (*Rol
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/roles/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -442,7 +442,7 @@ func (a *RolesAPIService) RolesListExecute(r RolesAPIRolesListRequest) (*Paginat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/{pulp_domain}/api/v3/roles/"
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

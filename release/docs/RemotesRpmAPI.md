@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**RemotesRpmRpmAddRole**](RemotesRpmAPI.md#RemotesRpmRpmAddRole) | **Post** /{rpm_rpm_remote_href}add_role/ | Add a role
-[**RemotesRpmRpmCreate**](RemotesRpmAPI.md#RemotesRpmRpmCreate) | **Post** /pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/ | Create a rpm remote
+[**RemotesRpmRpmCreate**](RemotesRpmAPI.md#RemotesRpmRpmCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/ | Create a rpm remote
 [**RemotesRpmRpmDelete**](RemotesRpmAPI.md#RemotesRpmRpmDelete) | **Delete** /{rpm_rpm_remote_href} | Delete a rpm remote
-[**RemotesRpmRpmList**](RemotesRpmAPI.md#RemotesRpmRpmList) | **Get** /pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/ | List rpm remotes
+[**RemotesRpmRpmList**](RemotesRpmAPI.md#RemotesRpmRpmList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/ | List rpm remotes
 [**RemotesRpmRpmListRoles**](RemotesRpmAPI.md#RemotesRpmRpmListRoles) | **Get** /{rpm_rpm_remote_href}list_roles/ | List roles
 [**RemotesRpmRpmMyPermissions**](RemotesRpmAPI.md#RemotesRpmRpmMyPermissions) | **Get** /{rpm_rpm_remote_href}my_permissions/ | List user permissions
 [**RemotesRpmRpmPartialUpdate**](RemotesRpmAPI.md#RemotesRpmRpmPartialUpdate) | **Patch** /{rpm_rpm_remote_href} | Update a rpm remote

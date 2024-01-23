@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RepositoryVersionsList**](RepositoryVersionsAPI.md#RepositoryVersionsList) | **Get** /pulp/{pulp_domain}/api/v3/repository_versions/ | List repository versions
+[**RepositoryVersionsList**](RepositoryVersionsAPI.md#RepositoryVersionsList) | **Get** /api/pulp/{pulp_domain}/api/v3/repository_versions/ | List repository versions
 
 
 

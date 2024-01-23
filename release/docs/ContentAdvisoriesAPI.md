@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ContentRpmAdvisoriesCreate**](ContentAdvisoriesAPI.md#ContentRpmAdvisoriesCreate) | **Post** /pulp/{pulp_domain}/api/v3/content/rpm/advisories/ | Create an update record
-[**ContentRpmAdvisoriesList**](ContentAdvisoriesAPI.md#ContentRpmAdvisoriesList) | **Get** /pulp/{pulp_domain}/api/v3/content/rpm/advisories/ | List update records
+[**ContentRpmAdvisoriesCreate**](ContentAdvisoriesAPI.md#ContentRpmAdvisoriesCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/ | Create an update record
+[**ContentRpmAdvisoriesList**](ContentAdvisoriesAPI.md#ContentRpmAdvisoriesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/ | List update records
 [**ContentRpmAdvisoriesRead**](ContentAdvisoriesAPI.md#ContentRpmAdvisoriesRead) | **Get** /{rpm_update_record_href} | Inspect an update record
 
 

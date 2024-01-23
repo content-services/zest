@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcsFileFileAddRole**](AcsFileAPI.md#AcsFileFileAddRole) | **Post** /{file_file_alternate_content_source_href}add_role/ | Add a role
-[**AcsFileFileCreate**](AcsFileAPI.md#AcsFileFileCreate) | **Post** /pulp/{pulp_domain}/api/v3/acs/file/file/ | Create a file alternate content source
+[**AcsFileFileCreate**](AcsFileAPI.md#AcsFileFileCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/acs/file/file/ | Create a file alternate content source
 [**AcsFileFileDelete**](AcsFileAPI.md#AcsFileFileDelete) | **Delete** /{file_file_alternate_content_source_href} | Delete a file alternate content source
-[**AcsFileFileList**](AcsFileAPI.md#AcsFileFileList) | **Get** /pulp/{pulp_domain}/api/v3/acs/file/file/ | List file alternate content sources
+[**AcsFileFileList**](AcsFileAPI.md#AcsFileFileList) | **Get** /api/pulp/{pulp_domain}/api/v3/acs/file/file/ | List file alternate content sources
 [**AcsFileFileListRoles**](AcsFileAPI.md#AcsFileFileListRoles) | **Get** /{file_file_alternate_content_source_href}list_roles/ | List roles
 [**AcsFileFileMyPermissions**](AcsFileAPI.md#AcsFileFileMyPermissions) | **Get** /{file_file_alternate_content_source_href}my_permissions/ | List user permissions
 [**AcsFileFilePartialUpdate**](AcsFileAPI.md#AcsFileFilePartialUpdate) | **Patch** /{file_file_alternate_content_source_href} | Update a file alternate content source
