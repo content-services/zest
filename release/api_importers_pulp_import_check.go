@@ -43,13 +43,7 @@ func (r ImportersPulpImportCheckAPIPulpImportCheckPostRequest) Execute() (*PulpI
 /*
 PulpImportCheckPost Validate the parameters to be used for a PulpImport call
 
-Evaluates validity of proposed PulpImport parameters 'toc', 'path', and 'repo_mapping'.
-
-* Checks that toc, path are in ALLOWED_IMPORT_PATHS
-* if ALLOWED:
-  * Checks that toc, path exist and are readable
-  * If toc specified, checks that containing dir is writeable
-* Checks that repo_mapping is valid JSON
+Evaluates validity of proposed PulpImport parameters 'toc', 'path', and 'repo_mapping'.* Checks that toc, path are in ALLOWED_IMPORT_PATHS* if ALLOWED:  * Checks that toc, path exist and are readable  * If toc specified, checks that containing dir is writeable* Checks that repo_mapping is valid JSON
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain

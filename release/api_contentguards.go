@@ -116,7 +116,7 @@ func (r ContentguardsAPIContentguardsListRequest) Offset(offset int32) Contentgu
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentguardsAPIContentguardsListRequest) Ordering(ordering []string) ContentguardsAPIContentguardsListRequest {
 	r.ordering = &ordering
 	return r
@@ -134,13 +134,13 @@ func (r ContentguardsAPIContentguardsListRequest) PulpIdIn(pulpIdIn []string) Co
 	return r
 }
 
-// Pulp type  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite
+// Pulp type* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite
 func (r ContentguardsAPIContentguardsListRequest) PulpType(pulpType string) ContentguardsAPIContentguardsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.  * &#x60;core.rbac&#x60; - core.rbac * &#x60;core.content_redirect&#x60; - core.content_redirect * &#x60;core.header&#x60; - core.header * &#x60;core.composite&#x60; - core.composite
+// Multiple values may be separated by commas.* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite
 func (r ContentguardsAPIContentguardsListRequest) PulpTypeIn(pulpTypeIn []string) ContentguardsAPIContentguardsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

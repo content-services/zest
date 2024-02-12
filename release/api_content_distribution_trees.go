@@ -54,7 +54,7 @@ func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) Offse
 	return r
 }
 
-// Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) Ordering(ordering []string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.ordering = &ordering
 	return r

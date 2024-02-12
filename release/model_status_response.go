@@ -30,9 +30,13 @@ type StatusResponse struct {
 	OnlineApiApps []ApiAppStatusResponse `json:"online_api_apps"`
 	// List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients.
 	OnlineContentApps []ContentAppStatusResponse `json:"online_content_apps"`
+	// Database connection information
 	DatabaseConnection DatabaseConnectionResponse `json:"database_connection"`
+	// Redis connection information
 	RedisConnection *RedisConnectionResponse `json:"redis_connection,omitempty"`
+	// Storage information
 	Storage *StorageResponse `json:"storage,omitempty"`
+	// Content-app settings
 	ContentSettings ContentSettingsResponse `json:"content_settings"`
 	// Is Domains enabled
 	DomainEnabled bool `json:"domain_enabled"`

@@ -24,6 +24,7 @@ type RpmRepositorySyncURL struct {
 	Remote *string `json:"remote,omitempty"`
 	// DEPRECATED: If ``True``, ``sync_policy`` will default to 'mirror_complete' instead of 'additive'.
 	Mirror NullableBool `json:"mirror,omitempty"`
+	// Options: 'additive', 'mirror_complete', 'mirror_content_only'. Default: 'additive'. Modifies how the sync is performed. 'mirror_complete' will clone the original metadata and create an automatic publication from it, but comes with some limitations and does not work for certain repositories. 'mirror_content_only' will change the repository contents to match the remote but the metadata will be regenerated and will not be bit-for-bit identical. 'additive' will retain the existing contents of the repository and add the contents of the repository being synced.* `additive` - additive* `mirror_complete` - mirror_complete* `mirror_content_only` - mirror_content_only
 	SyncPolicy NullableSyncPolicyEnum `json:"sync_policy,omitempty"`
 	// List of content types to skip during sync.
 	SkipTypes []SkipTypesEnum `json:"skip_types,omitempty"`

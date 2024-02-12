@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the most recent update of the remote. | [optional] [readonly] 
 **DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
-**Policy** | Pointer to [**RemoteResponsePolicyEnum**](RemoteResponsePolicyEnum.md) |  | [optional] [default to REMOTERESPONSEPOLICYENUM_IMMEDIATE]
+**Policy** | Pointer to [**RemoteResponsePolicyEnum**](RemoteResponsePolicyEnum.md) | The policy to use when downloading content.* &#x60;immediate&#x60; - immediate* &#x60;When syncing, download all metadata and content now.&#x60; - When syncing, download all metadata and content now. | [optional] [default to REMOTERESPONSEPOLICYENUM_IMMEDIATE]
 **TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 

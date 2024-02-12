@@ -35,8 +35,11 @@ type PatchedrpmRpmRepository struct {
 	MetadataSigningService NullableString `json:"metadata_signing_service,omitempty"`
 	// The number of versions of each package to keep in the repository; older versions will be purged. The default is '0', which will disable this feature and keep all versions of each package.
 	RetainPackageVersions *int64 `json:"retain_package_versions,omitempty"`
+	// The preferred checksum type during repo publish.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	ChecksumType NullablePackageChecksumTypeEnum `json:"checksum_type,omitempty"`
+	// DEPRECATED: use CHECKSUM_TYPE instead.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	MetadataChecksumType NullablePackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
+	// DEPRECATED: use CHECKSUM_TYPE instead.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	PackageChecksumType NullablePackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
 	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
@@ -44,6 +47,7 @@ type PatchedrpmRpmRepository struct {
 	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
 	// A JSON document describing config.repo file
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 }
 

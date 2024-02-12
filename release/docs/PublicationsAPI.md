@@ -35,7 +35,7 @@ func main() {
 	contentIn := "contentIn_example" // string | Content Unit referenced by HREF (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `pulp_type` - Pulp type * `-pulp_type` - Pulp type (descending) * `complete` - Complete * `-complete` - Complete (descending) * `pass_through` - Pass through * `-pass_through` - Pass through (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `complete` - Complete* `-complete` - Complete (descending)* `pass_through` - Pass through* `-pass_through` - Pass through (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
 	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
@@ -44,8 +44,8 @@ func main() {
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type  * `gem.gem` - gem.gem * `rpm.rpm` - rpm.rpm * `file.file` - file.file (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.  * `gem.gem` - gem.gem * `rpm.rpm` - rpm.rpm * `file.file` - file.file (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
 	q := "q_example" // string |  (optional)
 	repository := "repository_example" // string | Repository referenced by HREF (optional)
 	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF (optional)
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
  **contentIn** | **string** | Content Unit referenced by HREF | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;complete&#x60; - Complete * &#x60;-complete&#x60; - Complete (descending) * &#x60;pass_through&#x60; - Pass through * &#x60;-pass_through&#x60; - Pass through (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
  **pulpCreatedGte** | **time.Time** | Filter results where pulp_created is greater than or equal to value | 
@@ -93,8 +93,8 @@ Name | Type | Description  | Notes
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file | 
+ **pulpType** | **string** | Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
  **q** | **string** |  | 
  **repository** | **string** | Repository referenced by HREF | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF | 

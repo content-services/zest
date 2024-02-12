@@ -66,24 +66,7 @@ func (r TaskGroupsAPITaskGroupsListRequest) Execute() (*PaginatedTaskGroupRespon
 /*
 TaskGroupsList List task groups
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.
-
-This viewset is discoverable by its name.
-"Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.
-
-Attributes:
-    lookup_field (str): The name of the field by which an object should be looked up, in
-        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'
-    endpoint_name (str): The name of the final path segment that should identify the ViewSet's
-        collection endpoint.
-    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must
-        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.
-        None indicates this ViewSet should not be nested.
-    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs
-        to django model filter expressions that can be used with the corresponding value from
-        self.kwargs, used only by a nested ViewSet to filter based on the parent object's
-        identity.
-    schema (DefaultSchema): The schema class to use by default in a viewset.
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -229,24 +212,7 @@ func (r TaskGroupsAPITaskGroupsReadRequest) Execute() (*TaskGroupResponse, *http
 /*
 TaskGroupsRead Inspect a task group
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.
-
-This viewset is discoverable by its name.
-"Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.
-
-Attributes:
-    lookup_field (str): The name of the field by which an object should be looked up, in
-        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'
-    endpoint_name (str): The name of the final path segment that should identify the ViewSet's
-        collection endpoint.
-    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must
-        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.
-        None indicates this ViewSet should not be nested.
-    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs
-        to django model filter expressions that can be used with the corresponding value from
-        self.kwargs, used only by a nested ViewSet to filter based on the parent object's
-        identity.
-    schema (DefaultSchema): The schema class to use by default in a viewset.
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param taskGroupHref

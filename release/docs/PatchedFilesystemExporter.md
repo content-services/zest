@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Unique name of the file system exporter. | [optional] 
 **Path** | Pointer to **string** | File system location to export to. | [optional] 
-**Method** | Pointer to [**MethodEnum**](MethodEnum.md) |  | [optional] [default to METHODENUM_WRITE]
+**Method** | Pointer to [**MethodEnum**](MethodEnum.md) | Method of exporting* &#x60;write&#x60; - Export by writing* &#x60;hardlink&#x60; - Export by hardlinking* &#x60;symlink&#x60; - Export by symlinking | [optional] [default to METHODENUM_WRITE]
 
 ## Methods
 

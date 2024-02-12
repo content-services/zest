@@ -44,9 +44,7 @@ func (r DomainsAPIDomainsCreateRequest) Execute() (*DomainResponse, *http.Respon
 /*
 DomainsCreate Create a domain
 
-ViewSet for Domain.
-
-NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for Domain.NOTE: This API endpoint is in "tech preview" and subject to change
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -335,7 +333,7 @@ func (r DomainsAPIDomainsListRequest) Offset(offset int32) DomainsAPIDomainsList
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;storage_class&#x60; - Storage class * &#x60;-storage_class&#x60; - Storage class (descending) * &#x60;storage_settings&#x60; - Storage settings * &#x60;-storage_settings&#x60; - Storage settings (descending) * &#x60;redirect_to_object_storage&#x60; - Redirect to object storage * &#x60;-redirect_to_object_storage&#x60; - Redirect to object storage (descending) * &#x60;hide_guarded_distributions&#x60; - Hide guarded distributions * &#x60;-hide_guarded_distributions&#x60; - Hide guarded distributions (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;storage_class&#x60; - Storage class* &#x60;-storage_class&#x60; - Storage class (descending)* &#x60;storage_settings&#x60; - Storage settings* &#x60;-storage_settings&#x60; - Storage settings (descending)* &#x60;redirect_to_object_storage&#x60; - Redirect to object storage* &#x60;-redirect_to_object_storage&#x60; - Redirect to object storage (descending)* &#x60;hide_guarded_distributions&#x60; - Hide guarded distributions* &#x60;-hide_guarded_distributions&#x60; - Hide guarded distributions (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r DomainsAPIDomainsListRequest) Ordering(ordering []string) DomainsAPIDomainsListRequest {
 	r.ordering = &ordering
 	return r
@@ -377,9 +375,7 @@ func (r DomainsAPIDomainsListRequest) Execute() (*PaginatedDomainResponseList, *
 /*
 DomainsList List domains
 
-ViewSet for Domain.
-
-NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for Domain.NOTE: This API endpoint is in "tech preview" and subject to change
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -679,9 +675,7 @@ func (r DomainsAPIDomainsReadRequest) Execute() (*DomainResponse, *http.Response
 /*
 DomainsRead Inspect a domain
 
-ViewSet for Domain.
-
-NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for Domain.NOTE: This API endpoint is in "tech preview" and subject to change
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param domainHref

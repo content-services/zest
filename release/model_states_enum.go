@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// StatesEnum * `skipped` - skipped * `completed` - completed * `failed` - failed * `canceled` - canceled
+// StatesEnum * `skipped` - skipped* `completed` - completed* `failed` - failed* `canceled` - canceled
 type StatesEnum string
 
 // List of StatesEnum

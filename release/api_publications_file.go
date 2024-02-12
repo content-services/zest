@@ -269,10 +269,7 @@ func (r PublicationsFileAPIPublicationsFileFileDeleteRequest) Execute() (*http.R
 /*
 PublicationsFileFileDelete Delete a file publication
 
-
-A FilePublication contains metadata about all the File Content in a particular File Repository Version.
-Once a FilePublication has been created, it can be hosted using the
-File Distribution API.
+A FilePublication contains metadata about all the File Content in a particular File Repository Version.Once a FilePublication has been created, it can be hosted using theFile Distribution API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFilePublicationHref
@@ -400,7 +397,7 @@ func (r PublicationsFileAPIPublicationsFileFileListRequest) Offset(offset int32)
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;complete&#x60; - Complete * &#x60;-complete&#x60; - Complete (descending) * &#x60;pass_through&#x60; - Pass through * &#x60;-pass_through&#x60; - Pass through (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r PublicationsFileAPIPublicationsFileFileListRequest) Ordering(ordering []string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.ordering = &ordering
 	return r
@@ -490,10 +487,7 @@ func (r PublicationsFileAPIPublicationsFileFileListRequest) Execute() (*Paginate
 /*
 PublicationsFileFileList List file publications
 
-
-A FilePublication contains metadata about all the File Content in a particular File Repository Version.
-Once a FilePublication has been created, it can be hosted using the
-File Distribution API.
+A FilePublication contains metadata about all the File Content in a particular File Repository Version.Once a FilePublication has been created, it can be hosted using theFile Distribution API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -961,10 +955,7 @@ func (r PublicationsFileAPIPublicationsFileFileReadRequest) Execute() (*FileFile
 /*
 PublicationsFileFileRead Inspect a file publication
 
-
-A FilePublication contains metadata about all the File Content in a particular File Repository Version.
-Once a FilePublication has been created, it can be hosted using the
-File Distribution API.
+A FilePublication contains metadata about all the File Content in a particular File Repository Version.Once a FilePublication has been created, it can be hosted using theFile Distribution API.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFilePublicationHref

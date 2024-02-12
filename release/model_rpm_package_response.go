@@ -19,7 +19,7 @@ import (
 // checks if the RpmPackageResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RpmPackageResponse{}
 
-// RpmPackageResponse A Serializer for Package.  Add serializers for the new fields defined in Package and add those fields to the Meta class keeping fields from the parent class as well. Provide help_text.
+// RpmPackageResponse A Serializer for Package.Add serializers for the new fields defined in Package and add those fields to the Meta classkeeping fields from the parent class as well. Provide help_text.
 type RpmPackageResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.

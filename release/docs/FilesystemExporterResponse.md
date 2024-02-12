@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **Name** | **string** | Unique name of the file system exporter. | 
 **Path** | **string** | File system location to export to. | 
-**Method** | Pointer to [**MethodEnum**](MethodEnum.md) |  | [optional] [default to METHODENUM_WRITE]
+**Method** | Pointer to [**MethodEnum**](MethodEnum.md) | Method of exporting* &#x60;write&#x60; - Export by writing* &#x60;hardlink&#x60; - Export by hardlinking* &#x60;symlink&#x60; - Export by symlinking | [optional] [default to METHODENUM_WRITE]
 
 ## Methods
 

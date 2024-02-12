@@ -159,9 +159,7 @@ func (r RepositoriesFileAPIRepositoriesFileFileCreateRequest) Execute() (*FileFi
 /*
 RepositoriesFileFileCreate Create a file repository
 
-
-FileRepository represents a single file repository, to which content can be synced, added,
-or removed.
+FileRepository represents a single file repository, to which content can be synced, added,or removed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -468,7 +466,7 @@ func (r RepositoriesFileAPIRepositoriesFileFileListRequest) Offset(offset int32)
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pulp_labels&#x60; - Pulp labels * &#x60;-pulp_labels&#x60; - Pulp labels (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;next_version&#x60; - Next version * &#x60;-next_version&#x60; - Next version (descending) * &#x60;retain_repo_versions&#x60; - Retain repo versions * &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending) * &#x60;user_hidden&#x60; - User hidden * &#x60;-user_hidden&#x60; - User hidden (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesFileAPIRepositoriesFileFileListRequest) Ordering(ordering []string) RepositoriesFileAPIRepositoriesFileFileListRequest {
 	r.ordering = &ordering
 	return r
@@ -576,9 +574,7 @@ func (r RepositoriesFileAPIRepositoriesFileFileListRequest) Execute() (*Paginate
 /*
 RepositoriesFileFileList List file repositorys
 
-
-FileRepository represents a single file repository, to which content can be synced, added,
-or removed.
+FileRepository represents a single file repository, to which content can be synced, added,or removed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -1309,9 +1305,7 @@ func (r RepositoriesFileAPIRepositoriesFileFileReadRequest) Execute() (*FileFile
 /*
 RepositoriesFileFileRead Inspect a file repository
 
-
-FileRepository represents a single file repository, to which content can be synced, added,
-or removed.
+FileRepository represents a single file repository, to which content can be synced, added,or removed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFileRepositoryHref

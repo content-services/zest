@@ -20,7 +20,7 @@ import (
 // checks if the NestedRoleResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NestedRoleResponse{}
 
-// NestedRoleResponse Serializer to add/remove object roles to/from users/groups.  This is used in conjunction with ``pulpcore.app.viewsets.base.RolesMixin`` and requires the underlying object to be passed as ``content_object`` in the context.
+// NestedRoleResponse Serializer to add/remove object roles to/from users/groups.This is used in conjunction with ``pulpcore.app.viewsets.base.RolesMixin`` and requires theunderlying object to be passed as ``content_object`` in the context.
 type NestedRoleResponse struct {
 	Users []string `json:"users,omitempty"`
 	Groups []string `json:"groups,omitempty"`

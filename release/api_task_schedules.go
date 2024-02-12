@@ -182,7 +182,7 @@ func (r TaskSchedulesAPITaskSchedulesListRequest) Offset(offset int32) TaskSched
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;next_dispatch&#x60; - Next dispatch * &#x60;-next_dispatch&#x60; - Next dispatch (descending) * &#x60;dispatch_interval&#x60; - Dispatch interval * &#x60;-dispatch_interval&#x60; - Dispatch interval (descending) * &#x60;task_name&#x60; - Task name * &#x60;-task_name&#x60; - Task name (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;next_dispatch&#x60; - Next dispatch* &#x60;-next_dispatch&#x60; - Next dispatch (descending)* &#x60;dispatch_interval&#x60; - Dispatch interval* &#x60;-dispatch_interval&#x60; - Dispatch interval (descending)* &#x60;task_name&#x60; - Task name* &#x60;-task_name&#x60; - Task name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r TaskSchedulesAPITaskSchedulesListRequest) Ordering(ordering []string) TaskSchedulesAPITaskSchedulesListRequest {
 	r.ordering = &ordering
 	return r

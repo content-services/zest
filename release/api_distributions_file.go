@@ -480,7 +480,7 @@ func (r DistributionsFileAPIDistributionsFileFileListRequest) Offset(offset int3
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pulp_labels&#x60; - Pulp labels * &#x60;-pulp_labels&#x60; - Pulp labels (descending) * &#x60;base_path&#x60; - Base path * &#x60;-base_path&#x60; - Base path (descending) * &#x60;hidden&#x60; - Hidden * &#x60;-hidden&#x60; - Hidden (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r DistributionsFileAPIDistributionsFileFileListRequest) Ordering(ordering []string) DistributionsFileAPIDistributionsFileFileListRequest {
 	r.ordering = &ordering
 	return r
@@ -546,12 +546,7 @@ func (r DistributionsFileAPIDistributionsFileFileListRequest) Execute() (*Pagina
 /*
 DistributionsFileFileList List file distributions
 
-
-FileDistributions host File
-Publications which makes the metadata and the referenced File Content available to HTTP
-clients. Additionally, a FileDistribution with an associated FilePublication can be the target
-url of a File Remote , allowing
-another instance of Pulp to sync the content.
+FileDistributions host FilePublications which makes the metadata and the referenced File Content available to HTTPclients. Additionally, a FileDistribution with an associated FilePublication can be the targeturl of a File Remote , allowinganother instance of Pulp to sync the content.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -1155,12 +1150,7 @@ func (r DistributionsFileAPIDistributionsFileFileReadRequest) Execute() (*FileFi
 /*
 DistributionsFileFileRead Inspect a file distribution
 
-
-FileDistributions host File
-Publications which makes the metadata and the referenced File Content available to HTTP
-clients. Additionally, a FileDistribution with an associated FilePublication can be the target
-url of a File Remote , allowing
-another instance of Pulp to sync the content.
+FileDistributions host FilePublications which makes the metadata and the referenced File Content available to HTTPclients. Additionally, a FileDistribution with an associated FilePublication can be the targeturl of a File Remote , allowinganother instance of Pulp to sync the content.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFileDistributionHref

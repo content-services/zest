@@ -21,7 +21,7 @@ import (
 // checks if the RemoteResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RemoteResponse{}
 
-// RemoteResponse Every remote defined by a plugin should have a Remote serializer that inherits from this class. Please import from `pulpcore.plugin.serializers` rather than from this module directly.
+// RemoteResponse Every remote defined by a plugin should have a Remote serializer that inherits from thisclass. Please import from `pulpcore.plugin.serializers` rather than from this module directly.
 type RemoteResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
@@ -45,6 +45,7 @@ type RemoteResponse struct {
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
+	// The policy to use when downloading content.* `immediate` - immediate* `When syncing, download all metadata and content now.` - When syncing, download all metadata and content now.
 	Policy *RemoteResponsePolicyEnum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`

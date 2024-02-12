@@ -20,8 +20,11 @@ var _ MappedNullable = &PulpImportCheckResponse{}
 
 // PulpImportCheckResponse Return the response to a PulpImport import-check call.
 type PulpImportCheckResponse struct {
+	// Evaluation of proposed 'toc' file for PulpImport
 	Toc *EvaluationResponse `json:"toc,omitempty"`
+	// Evaluation of proposed 'path' file for PulpImport
 	Path *EvaluationResponse `json:"path,omitempty"`
+	// Evaluation of proposed 'repo_mapping' file for PulpImport
 	RepoMapping *EvaluationResponse `json:"repo_mapping,omitempty"`
 }
 

@@ -49,6 +49,7 @@ type GemGemRemote struct {
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
+	// The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
 	Policy *Policy762Enum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`

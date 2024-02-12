@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **OnlineWorkers** | [**[]WorkerResponse**](WorkerResponse.md) | List of online workers known to the application. An online worker is actively heartbeating and can respond to new work. | 
 **OnlineApiApps** | [**[]ApiAppStatusResponse**](ApiAppStatusResponse.md) | List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients. | 
 **OnlineContentApps** | [**[]ContentAppStatusResponse**](ContentAppStatusResponse.md) | List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients. | 
-**DatabaseConnection** | [**DatabaseConnectionResponse**](DatabaseConnectionResponse.md) |  | 
-**RedisConnection** | Pointer to [**RedisConnectionResponse**](RedisConnectionResponse.md) |  | [optional] 
-**Storage** | Pointer to [**StorageResponse**](StorageResponse.md) |  | [optional] 
-**ContentSettings** | [**ContentSettingsResponse**](ContentSettingsResponse.md) |  | 
+**DatabaseConnection** | [**DatabaseConnectionResponse**](DatabaseConnectionResponse.md) | Database connection information | 
+**RedisConnection** | Pointer to [**RedisConnectionResponse**](RedisConnectionResponse.md) | Redis connection information | [optional] 
+**Storage** | Pointer to [**StorageResponse**](StorageResponse.md) | Storage information | [optional] 
+**ContentSettings** | [**ContentSettingsResponse**](ContentSettingsResponse.md) | Content-app settings | 
 **DomainEnabled** | **bool** | Is Domains enabled | 
 
 ## Methods

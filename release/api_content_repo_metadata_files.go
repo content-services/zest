@@ -54,7 +54,7 @@ func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Offse
 	return r
 }
 
-// Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Ordering(ordering []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.ordering = &ordering
 	return r

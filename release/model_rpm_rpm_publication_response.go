@@ -27,8 +27,11 @@ type RpmRpmPublicationResponse struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// A URI of the repository to be published.
 	Repository *string `json:"repository,omitempty"`
+	// The preferred checksum type used during repo publishes.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	ChecksumType *PackageChecksumTypeEnum `json:"checksum_type,omitempty"`
+	// DEPRECATED: The checksum type for metadata.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	MetadataChecksumType *PackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
+	// DEPRECATED: The checksum type for packages.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	PackageChecksumType *PackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
 	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
@@ -38,6 +41,7 @@ type RpmRpmPublicationResponse struct {
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
 }
 

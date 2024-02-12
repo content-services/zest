@@ -30,6 +30,7 @@ type FilesystemExporterResponse struct {
 	Name string `json:"name"`
 	// File system location to export to.
 	Path string `json:"path"`
+	// Method of exporting* `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 	Method *MethodEnum `json:"method,omitempty"`
 }
 

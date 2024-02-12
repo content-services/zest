@@ -18,7 +18,7 @@ import (
 // checks if the ProgressReportResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ProgressReportResponse{}
 
-// ProgressReportResponse Base serializer for use with :class:`pulpcore.app.models.Model`  This ensures that all Serializers provide values for the 'pulp_href` field.  The class provides a default for the ``ref_name`` attribute in the ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions of plugins are namespaced properly.
+// ProgressReportResponse Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type ProgressReportResponse struct {
 	// The message shown to the user for the progress report.
 	Message *string `json:"message,omitempty"`

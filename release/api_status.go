@@ -35,15 +35,7 @@ func (r StatusAPIStatusReadRequest) Execute() (*StatusResponse, *http.Response, 
 /*
 StatusRead Inspect status of Pulp
 
-Returns status and app information about Pulp.
-
-Information includes:
- * version of pulpcore and loaded pulp plugins
- * known workers
- * known content apps
- * database connection status
- * redis connection status
- * disk usage information
+Returns status and app information about Pulp.Information includes: * version of pulpcore and loaded pulp plugins * known workers * known content apps * database connection status * redis connection status * disk usage information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return StatusAPIStatusReadRequest

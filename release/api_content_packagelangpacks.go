@@ -54,7 +54,7 @@ func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Offset(
 	return r
 }
 
-// Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Ordering(ordering []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.ordering = &ordering
 	return r

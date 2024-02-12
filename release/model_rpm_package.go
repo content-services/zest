@@ -19,7 +19,7 @@ import (
 // checks if the RpmPackage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RpmPackage{}
 
-// RpmPackage A Serializer for Package.  Add serializers for the new fields defined in Package and add those fields to the Meta class keeping fields from the parent class as well. Provide help_text.
+// RpmPackage A Serializer for Package.Add serializers for the new fields defined in Package and add those fields to the Meta classkeeping fields from the parent class as well. Provide help_text.
 type RpmPackage struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`

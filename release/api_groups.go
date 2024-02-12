@@ -423,7 +423,7 @@ func (r GroupsAPIGroupsListRequest) Offset(offset int32) GroupsAPIGroupsListRequ
 	return r
 }
 
-// Ordering  * &#x60;id&#x60; - Id * &#x60;-id&#x60; - Id (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r GroupsAPIGroupsListRequest) Ordering(ordering []string) GroupsAPIGroupsListRequest {
 	r.ordering = &ordering
 	return r

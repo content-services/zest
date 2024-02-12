@@ -56,10 +56,7 @@ func (r DocsApiJsonAPIDocsApiJsonGetRequest) Execute() (map[string]interface{}, 
 /*
 DocsApiJsonGet Method for DocsApiJsonGet
 
-OpenApi3 schema for this API. Format can be selected via content negotiation.
-
-- YAML: application/vnd.oai.openapi
-- JSON: application/vnd.oai.openapi+json
+OpenApi3 schema for this API. Format can be selected via content negotiation.- YAML: application/vnd.oai.openapi- JSON: application/vnd.oai.openapi+json
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return DocsApiJsonAPIDocsApiJsonGetRequest

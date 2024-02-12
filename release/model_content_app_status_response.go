@@ -19,7 +19,7 @@ import (
 // checks if the ContentAppStatusResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContentAppStatusResponse{}
 
-// ContentAppStatusResponse Base serializer for use with :class:`pulpcore.app.models.Model`  This ensures that all Serializers provide values for the 'pulp_href` field.  The class provides a default for the ``ref_name`` attribute in the ModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitions of plugins are namespaced properly.
+// ContentAppStatusResponse Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type ContentAppStatusResponse struct {
 	// The name of the worker.
 	Name *string `json:"name,omitempty"`

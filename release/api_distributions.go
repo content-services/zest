@@ -148,7 +148,7 @@ func (r DistributionsAPIDistributionsListRequest) Offset(offset int32) Distribut
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pulp_labels&#x60; - Pulp labels * &#x60;-pulp_labels&#x60; - Pulp labels (descending) * &#x60;base_path&#x60; - Base path * &#x60;-base_path&#x60; - Base path (descending) * &#x60;hidden&#x60; - Hidden * &#x60;-hidden&#x60; - Hidden (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r DistributionsAPIDistributionsListRequest) Ordering(ordering []string) DistributionsAPIDistributionsListRequest {
 	r.ordering = &ordering
 	return r
@@ -172,13 +172,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type  * &#x60;core.artifact&#x60; - core.artifact * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.  * &#x60;core.artifact&#x60; - core.artifact * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

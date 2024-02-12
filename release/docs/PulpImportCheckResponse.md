@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Toc** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
-**Path** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
-**RepoMapping** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) |  | [optional] 
+**Toc** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) | Evaluation of proposed &#39;toc&#39; file for PulpImport | [optional] 
+**Path** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) | Evaluation of proposed &#39;path&#39; file for PulpImport | [optional] 
+**RepoMapping** | Pointer to [**EvaluationResponse**](EvaluationResponse.md) | Evaluation of proposed &#39;repo_mapping&#39; file for PulpImport | [optional] 
 
 ## Methods
 

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// PackageChecksumTypeEnum * `unknown` - unknown * `md5` - md5 * `sha1` - sha1 * `sha224` - sha224 * `sha256` - sha256 * `sha384` - sha384 * `sha512` - sha512
+// PackageChecksumTypeEnum * `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 type PackageChecksumTypeEnum string
 
 // List of PackageChecksumTypeEnum

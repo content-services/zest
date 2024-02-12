@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// MethodEnum * `write` - Export by writing * `hardlink` - Export by hardlinking * `symlink` - Export by symlinking
+// MethodEnum * `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 type MethodEnum string
 
 // List of MethodEnum

@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// RemoteResponsePolicyEnum * `immediate` - immediate * `When syncing, download all metadata and content now.` - When syncing, download all metadata and content now.
+// RemoteResponsePolicyEnum * `immediate` - immediate* `When syncing, download all metadata and content now.` - When syncing, download all metadata and content now.
 type RemoteResponsePolicyEnum string
 
 // List of RemoteResponsePolicyEnum

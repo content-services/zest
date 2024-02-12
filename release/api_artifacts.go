@@ -95,24 +95,7 @@ func (r ArtifactsAPIArtifactsCreateRequest) Execute() (*ArtifactResponse, *http.
 /*
 ArtifactsCreate Create an artifact
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.
-
-This viewset is discoverable by its name.
-"Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.
-
-Attributes:
-    lookup_field (str): The name of the field by which an object should be looked up, in
-        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'
-    endpoint_name (str): The name of the final path segment that should identify the ViewSet's
-        collection endpoint.
-    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must
-        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.
-        None indicates this ViewSet should not be nested.
-    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs
-        to django model filter expressions that can be used with the corresponding value from
-        self.kwargs, used only by a nested ViewSet to filter based on the parent object's
-        identity.
-    schema (DefaultSchema): The schema class to use by default in a viewset.
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -376,7 +359,7 @@ func (r ArtifactsAPIArtifactsListRequest) Offset(offset int32) ArtifactsAPIArtif
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;file&#x60; - File * &#x60;-file&#x60; - File (descending) * &#x60;size&#x60; - Size * &#x60;-size&#x60; - Size (descending) * &#x60;md5&#x60; - Md5 * &#x60;-md5&#x60; - Md5 (descending) * &#x60;sha1&#x60; - Sha1 * &#x60;-sha1&#x60; - Sha1 (descending) * &#x60;sha224&#x60; - Sha224 * &#x60;-sha224&#x60; - Sha224 (descending) * &#x60;sha256&#x60; - Sha256 * &#x60;-sha256&#x60; - Sha256 (descending) * &#x60;sha384&#x60; - Sha384 * &#x60;-sha384&#x60; - Sha384 (descending) * &#x60;sha512&#x60; - Sha512 * &#x60;-sha512&#x60; - Sha512 (descending) * &#x60;timestamp_of_interest&#x60; - Timestamp of interest * &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;file&#x60; - File* &#x60;-file&#x60; - File (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;md5&#x60; - Md5* &#x60;-md5&#x60; - Md5 (descending)* &#x60;sha1&#x60; - Sha1* &#x60;-sha1&#x60; - Sha1 (descending)* &#x60;sha224&#x60; - Sha224* &#x60;-sha224&#x60; - Sha224 (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;sha384&#x60; - Sha384* &#x60;-sha384&#x60; - Sha384 (descending)* &#x60;sha512&#x60; - Sha512* &#x60;-sha512&#x60; - Sha512 (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ArtifactsAPIArtifactsListRequest) Ordering(ordering []string) ArtifactsAPIArtifactsListRequest {
 	r.ordering = &ordering
 	return r
@@ -454,24 +437,7 @@ func (r ArtifactsAPIArtifactsListRequest) Execute() (*PaginatedArtifactResponseL
 /*
 ArtifactsList List artifacts
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.
-
-This viewset is discoverable by its name.
-"Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.
-
-Attributes:
-    lookup_field (str): The name of the field by which an object should be looked up, in
-        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'
-    endpoint_name (str): The name of the final path segment that should identify the ViewSet's
-        collection endpoint.
-    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must
-        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.
-        None indicates this ViewSet should not be nested.
-    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs
-        to django model filter expressions that can be used with the corresponding value from
-        self.kwargs, used only by a nested ViewSet to filter based on the parent object's
-        identity.
-    schema (DefaultSchema): The schema class to use by default in a viewset.
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -650,24 +616,7 @@ func (r ArtifactsAPIArtifactsReadRequest) Execute() (*ArtifactResponse, *http.Re
 /*
 ArtifactsRead Inspect an artifact
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.
-
-This viewset is discoverable by its name.
-"Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.
-
-Attributes:
-    lookup_field (str): The name of the field by which an object should be looked up, in
-        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'
-    endpoint_name (str): The name of the final path segment that should identify the ViewSet's
-        collection endpoint.
-    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must
-        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.
-        None indicates this ViewSet should not be nested.
-    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs
-        to django model filter expressions that can be used with the corresponding value from
-        self.kwargs, used only by a nested ViewSet to filter based on the parent object's
-        identity.
-    schema (DefaultSchema): The schema class to use by default in a viewset.
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param artifactHref

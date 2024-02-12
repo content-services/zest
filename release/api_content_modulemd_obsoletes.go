@@ -169,7 +169,7 @@ func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) Offse
 	return r
 }
 
-// Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) Ordering(ordering []string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.ordering = &ordering
 	return r

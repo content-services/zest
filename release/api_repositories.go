@@ -134,7 +134,7 @@ func (r RepositoriesAPIRepositoriesListRequest) Offset(offset int32) Repositorie
 	return r
 }
 
-// Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;pulp_type&#x60; - Pulp type * &#x60;-pulp_type&#x60; - Pulp type (descending) * &#x60;name&#x60; - Name * &#x60;-name&#x60; - Name (descending) * &#x60;pulp_labels&#x60; - Pulp labels * &#x60;-pulp_labels&#x60; - Pulp labels (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;next_version&#x60; - Next version * &#x60;-next_version&#x60; - Next version (descending) * &#x60;retain_repo_versions&#x60; - Retain repo versions * &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending) * &#x60;user_hidden&#x60; - User hidden * &#x60;-user_hidden&#x60; - User hidden (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesAPIRepositoriesListRequest) Ordering(ordering []string) RepositoriesAPIRepositoriesListRequest {
 	r.ordering = &ordering
 	return r
@@ -158,13 +158,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file
+// Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.  * &#x60;gem.gem&#x60; - gem.gem * &#x60;rpm.rpm&#x60; - rpm.rpm * &#x60;file.file&#x60; - file.file
+// Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

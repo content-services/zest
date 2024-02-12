@@ -54,7 +54,7 @@ func (r ContentPackagegroupsAPIContentRpmPackagegroupsListRequest) Offset(offset
 	return r
 }
 
-// Ordering  * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentPackagegroupsAPIContentRpmPackagegroupsListRequest) Ordering(ordering []string) ContentPackagegroupsAPIContentRpmPackagegroupsListRequest {
 	r.ordering = &ordering
 	return r

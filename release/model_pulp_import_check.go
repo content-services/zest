@@ -18,7 +18,7 @@ import (
 // checks if the PulpImportCheck type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PulpImportCheck{}
 
-// PulpImportCheck Check validity of provided import-options.  Provides the ability to check that an import is 'sane' without having to actually create an importer.
+// PulpImportCheck Check validity of provided import-options.Provides the ability to check that an import is 'sane' without having to actuallycreate an importer.
 type PulpImportCheck struct {
 	// Path to export-tar-gz that will be imported.
 	Path *string `json:"path,omitempty"`

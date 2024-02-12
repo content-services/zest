@@ -278,7 +278,7 @@ func (r UsersRolesAPIUsersRolesListRequest) Offset(offset int32) UsersRolesAPIUs
 	return r
 }
 
-// Ordering  * &#x60;role&#x60; - Role * &#x60;-role&#x60; - Role (descending) * &#x60;description&#x60; - Description * &#x60;-description&#x60; - Description (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;role&#x60; - Role* &#x60;-role&#x60; - Role (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r UsersRolesAPIUsersRolesListRequest) Ordering(ordering []string) UsersRolesAPIUsersRolesListRequest {
 	r.ordering = &ordering
 	return r

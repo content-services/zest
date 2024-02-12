@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// CompressionTypeEnum * `zstd` - zstd * `gz` - gz
+// CompressionTypeEnum * `zstd` - zstd* `gz` - gz
 type CompressionTypeEnum string
 
 // List of CompressionTypeEnum

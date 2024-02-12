@@ -114,7 +114,7 @@ func main() {
 	numberLte := int32(56) // int32 | Filter results where number is less than or equal to value (optional)
 	numberRange := []int32{int32(123)} // []int32 | Filter results where number is between two comma separated values (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering  * `pulp_id` - Pulp id * `-pulp_id` - Pulp id (descending) * `pulp_created` - Pulp created * `-pulp_created` - Pulp created (descending) * `pulp_last_updated` - Pulp last updated * `-pulp_last_updated` - Pulp last updated (descending) * `number` - Number * `-number` - Number (descending) * `complete` - Complete * `-complete` - Complete (descending) * `info` - Info * `-info` - Info (descending) * `pk` - Pk * `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
 	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
  **numberLte** | **int32** | Filter results where number is less than or equal to value | 
  **numberRange** | **[]int32** | Filter results where number is between two comma separated values | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering  * &#x60;pulp_id&#x60; - Pulp id * &#x60;-pulp_id&#x60; - Pulp id (descending) * &#x60;pulp_created&#x60; - Pulp created * &#x60;-pulp_created&#x60; - Pulp created (descending) * &#x60;pulp_last_updated&#x60; - Pulp last updated * &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending) * &#x60;number&#x60; - Number * &#x60;-number&#x60; - Number (descending) * &#x60;complete&#x60; - Complete * &#x60;-complete&#x60; - Complete (descending) * &#x60;info&#x60; - Info * &#x60;-info&#x60; - Info (descending) * &#x60;pk&#x60; - Pk * &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
  **pulpCreatedGte** | **time.Time** | Filter results where pulp_created is greater than or equal to value | 

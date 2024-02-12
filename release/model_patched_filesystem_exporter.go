@@ -24,6 +24,7 @@ type PatchedFilesystemExporter struct {
 	Name *string `json:"name,omitempty"`
 	// File system location to export to.
 	Path *string `json:"path,omitempty"`
+	// Method of exporting* `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 	Method *MethodEnum `json:"method,omitempty"`
 }
 
