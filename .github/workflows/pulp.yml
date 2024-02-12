@@ -63,7 +63,8 @@ jobs:
         run: |
           curl http://localhost:8080/api/pulp/api/${{ steps.pulpRelease.outputs.PULP_MAJOR }}/docs/api.json > pulp_api.json
           echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' ./pulp_api.json )" > ./pulp_api.json
-          cat pulp_api.json | sed 's/\\n//g' > pulp_api.json #remove \n characters that break generation
+          cat pulp_api.json | sed 's/\\n//g' > pulp_api_new.json #remove \n characters that break generation
+          mv pulp_api_new.json pulp_api.json
           docker run --network=host --rm -v ${PWD}:/local openapitools/openapi-generator-cli:latest-release generate \
           -i /local/pulp_api.json \
           -t /local/templates/ \
