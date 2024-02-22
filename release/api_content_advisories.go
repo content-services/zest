@@ -183,6 +183,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -229,6 +230,12 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Offset(offset int32
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;updated_date&#x60; - Updated date* &#x60;-updated_date&#x60; - Updated date (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;issued_date&#x60; - Issued date* &#x60;-issued_date&#x60; - Issued date (descending)* &#x60;fromstr&#x60; - Fromstr* &#x60;-fromstr&#x60; - Fromstr (descending)* &#x60;status&#x60; - Status* &#x60;-status&#x60; - Status (descending)* &#x60;title&#x60; - Title* &#x60;-title&#x60; - Title (descending)* &#x60;summary&#x60; - Summary* &#x60;-summary&#x60; - Summary (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;type&#x60; - Type* &#x60;-type&#x60; - Type (descending)* &#x60;severity&#x60; - Severity* &#x60;-severity&#x60; - Severity (descending)* &#x60;solution&#x60; - Solution* &#x60;-solution&#x60; - Solution (descending)* &#x60;release&#x60; - Release* &#x60;-release&#x60; - Release (descending)* &#x60;rights&#x60; - Rights* &#x60;-rights&#x60; - Rights (descending)* &#x60;reboot_suggested&#x60; - Reboot suggested* &#x60;-reboot_suggested&#x60; - Reboot suggested (descending)* &#x60;pushcount&#x60; - Pushcount* &#x60;-pushcount&#x60; - Pushcount (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Ordering(ordering []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) OrphanedFor(orphanedFor float32) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -391,6 +398,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")

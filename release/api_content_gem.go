@@ -183,6 +183,7 @@ type ContentGemAPIContentGemGemListRequest struct {
 	name *string
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	prerelease *bool
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
@@ -222,6 +223,12 @@ func (r ContentGemAPIContentGemGemListRequest) Offset(offset int32) ContentGemAP
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;platform&#x60; - Platform* &#x60;-platform&#x60; - Platform (descending)* &#x60;checksum&#x60; - Checksum* &#x60;-checksum&#x60; - Checksum (descending)* &#x60;prerelease&#x60; - Prerelease* &#x60;-prerelease&#x60; - Prerelease (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;required_ruby_version&#x60; - Required ruby version* &#x60;-required_ruby_version&#x60; - Required ruby version (descending)* &#x60;required_rubygems_version&#x60; - Required rubygems version* &#x60;-required_rubygems_version&#x60; - Required rubygems version (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentGemAPIContentGemGemListRequest) Ordering(ordering []string) ContentGemAPIContentGemGemListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ContentGemAPIContentGemGemListRequest) OrphanedFor(orphanedFor float32) ContentGemAPIContentGemGemListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -342,6 +349,9 @@ func (a *ContentGemAPIService) ContentGemGemListExecute(r ContentGemAPIContentGe
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.prerelease != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "prerelease", r.prerelease, "")

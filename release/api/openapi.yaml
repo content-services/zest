@@ -13,10 +13,11 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.44.1
-    gem: 0.4.1
+    core: 3.46.0
+    gem: 0.5.0
     rpm: 3.25.0
-    file: 3.44.1
+    certguard: 3.46.0
+    file: 3.46.0
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -1595,6 +1596,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Artifacts have been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -1875,6 +1884,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2088,6 +2105,14 @@ paths:
             - upstream_id
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - explode: false
         in: path
@@ -2369,6 +2394,14 @@ paths:
             - version
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - description: Filter results where prerelease matches value
         explode: true
@@ -2679,6 +2712,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2967,6 +3008,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3188,6 +3237,14 @@ paths:
             - upstream_id
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - explode: false
         in: path
@@ -3423,6 +3480,14 @@ paths:
             - pk
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - explode: false
         in: path
@@ -3741,6 +3806,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3995,6 +4068,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -4166,6 +4247,14 @@ paths:
             - pk
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - explode: false
         in: path
@@ -4339,6 +4428,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -4510,6 +4607,14 @@ paths:
             - pk
             type: string
           type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
         style: form
       - explode: false
         in: path
@@ -4964,6 +5069,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - description: Filter results where pkgId matches value
         explode: true
         in: query
@@ -5268,6 +5381,14 @@ paths:
             type: string
           type: array
         style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -5562,13 +5683,16 @@ paths:
           type: array
         style: form
       - description: Pulp type* `core.rbac` - core.rbac* `core.content_redirect` -
-          core.content_redirect* `core.header` - core.header* `core.composite` - core.composite
+          core.content_redirect* `core.header` - core.header* `core.composite` - core.composite*
+          `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - certguard.rhsm
+          - certguard.x509
           - core.composite
           - core.content_redirect
           - core.header
@@ -5577,7 +5701,8 @@ paths:
         style: form
       - description: Multiple values may be separated by commas.* `core.rbac` - core.rbac*
           `core.content_redirect` - core.content_redirect* `core.header` - core.header*
-          `core.composite` - core.composite
+          `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509`
+          - certguard.x509
         explode: false
         in: query
         name: pulp_type__in
@@ -5585,6 +5710,8 @@ paths:
         schema:
           items:
             enum:
+            - certguard.rhsm
+            - certguard.x509
             - core.composite
             - core.content_redirect
             - core.header
@@ -5632,6 +5759,744 @@ paths:
       summary: List content guards
       tags:
       - Contentguards
+  /api/pulp/{pulp_domain}/api/v3/contentguards/certguard/rhsm/:
+    get:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `description`
+          - Description* `-description` - Description (descending)* `pk` - Pk* `-pk`
+          - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedcertguard.RHSMCertGuardResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List rhsm cert guards
+      tags:
+      - "Contentguards: Rhsm"
+    post:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a rhsm cert guard
+      tags:
+      - "Contentguards: Rhsm"
+  '{certguard_r_h_s_m_cert_guard_href}':
+    delete:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_delete
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_r_h_s_m_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a rhsm cert guard
+      tags:
+      - "Contentguards: Rhsm"
+    get:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_read
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_r_h_s_m_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a rhsm cert guard
+      tags:
+      - "Contentguards: Rhsm"
+    patch:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_r_h_s_m_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.RHSMCertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.RHSMCertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.RHSMCertGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a rhsm cert guard
+      tags:
+      - "Contentguards: Rhsm"
+    put:
+      description: RHSMCertGuard API Viewsets.
+      operationId: contentguards_certguard_rhsm_update
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_r_h_s_m_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/certguard.RHSMCertGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a rhsm cert guard
+      tags:
+      - "Contentguards: Rhsm"
+  /api/pulp/{pulp_domain}/api/v3/contentguards/certguard/x509/:
+    get:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `description`
+          - Description* `-description` - Description (descending)* `pk` - Pk* `-pk`
+          - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedcertguard.X509CertGuardResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List x509 cert guards
+      tags:
+      - "Contentguards: X509"
+    post:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.X509CertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a x509 cert guard
+      tags:
+      - "Contentguards: X509"
+  '{certguard_x509_cert_guard_href}':
+    delete:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_delete
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_x509_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a x509 cert guard
+      tags:
+      - "Contentguards: X509"
+    get:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_read
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_x509_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.X509CertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a x509 cert guard
+      tags:
+      - "Contentguards: X509"
+    patch:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_x509_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.X509CertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.X509CertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedcertguard.X509CertGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.X509CertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a x509 cert guard
+      tags:
+      - "Contentguards: X509"
+    put:
+      description: X509CertGuard API Viewsets.
+      operationId: contentguards_certguard_x509_update
+      parameters:
+      - explode: false
+        in: path
+        name: certguard_x509_cert_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/certguard.X509CertGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/certguard.X509CertGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a x509 cert guard
+      tags:
+      - "Contentguards: X509"
   /api/pulp/{pulp_domain}/api/v3/contentguards/core/composite/:
     get:
       description: Content guard that queries a list-of content-guards for access
@@ -27044,49 +27909,49 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        hidden: false
-        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        hidden: false
+        pulp_href: https://openapi-generator.tech
         name: name
         base_url: base_url
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
           type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
         pulp_href:
           format: uri
-          readOnly: true
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
           readOnly: true
           type: string
       required:
@@ -27533,6 +28398,7 @@ components:
       properties:
         name:
           description: A name for this domain.
+          maxLength: 50
           minLength: 1
           pattern: "^[-a-zA-Z0-9_]+$"
           type: string
@@ -27588,6 +28454,7 @@ components:
           type: string
         name:
           description: A name for this domain.
+          maxLength: 50
           pattern: "^[-a-zA-Z0-9_]+$"
           type: string
         description:
@@ -28359,19 +29226,19 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          hidden: false
+          pulp_href: https://openapi-generator.tech
           name: name
           base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          hidden: false
+          pulp_href: https://openapi-generator.tech
           name: name
           base_url: base_url
           base_path: base_path
@@ -29836,6 +30703,76 @@ components:
         results:
           items:
             $ref: '#/components/schemas/WorkerResponse'
+          type: array
+      type: object
+    Paginatedcertguard.RHSMCertGuardResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - ca_certificate: ca_certificate
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+        - ca_certificate: ca_certificate
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
+          type: array
+      type: object
+    Paginatedcertguard.X509CertGuardResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - ca_certificate: ca_certificate
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+        - ca_certificate: ca_certificate
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/certguard.X509CertGuardResponse'
           type: array
       type: object
     Paginatedfile.FileAlternateContentSourceResponseList:
@@ -31585,6 +32522,7 @@ components:
       properties:
         name:
           description: A name for this domain.
+          maxLength: 50
           minLength: 1
           pattern: "^[-a-zA-Z0-9_]+$"
           type: string
@@ -31903,6 +32841,42 @@ components:
           default: true
           description: Designates whether this user should be treated as active.
           type: boolean
+      type: object
+    Patchedcertguard.RHSMCertGuard:
+      description: RHSM Content Guard Serializer.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          minLength: 1
+          type: string
+      type: object
+    Patchedcertguard.X509CertGuard:
+      description: X.509 Content Guard Serializer.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          minLength: 1
+          type: string
       type: object
     Patchedfile.FileAlternateContentSource:
       description: Serializer for File alternate content source.
@@ -34953,6 +35927,114 @@ components:
           format: uri
           readOnly: true
           type: string
+      type: object
+    certguard.RHSMCertGuard:
+      description: RHSM Content Guard Serializer.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          minLength: 1
+          type: string
+      required:
+      - ca_certificate
+      - name
+      type: object
+    certguard.RHSMCertGuardResponse:
+      description: RHSM Content Guard Serializer.
+      example:
+        ca_certificate: ca_certificate
+        pulp_href: https://openapi-generator.tech
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          type: string
+      required:
+      - ca_certificate
+      - name
+      type: object
+    certguard.X509CertGuard:
+      description: X.509 Content Guard Serializer.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          minLength: 1
+          type: string
+      required:
+      - ca_certificate
+      - name
+      type: object
+    certguard.X509CertGuardResponse:
+      description: X.509 Content Guard Serializer.
+      example:
+        ca_certificate: ca_certificate
+        pulp_href: https://openapi-generator.tech
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        ca_certificate:
+          description: A Certificate Authority (CA) certificate (or a bundle thereof)
+            used to verify client-certificate authenticity.
+          type: string
+      required:
+      - ca_certificate
+      - name
       type: object
     file.FileAlternateContentSource:
       description: Serializer for File alternate content source.

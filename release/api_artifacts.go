@@ -328,6 +328,7 @@ type ArtifactsAPIArtifactsListRequest struct {
 	md5 *string
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -362,6 +363,12 @@ func (r ArtifactsAPIArtifactsListRequest) Offset(offset int32) ArtifactsAPIArtif
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;file&#x60; - File* &#x60;-file&#x60; - File (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;md5&#x60; - Md5* &#x60;-md5&#x60; - Md5 (descending)* &#x60;sha1&#x60; - Sha1* &#x60;-sha1&#x60; - Sha1 (descending)* &#x60;sha224&#x60; - Sha224* &#x60;-sha224&#x60; - Sha224 (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;sha384&#x60; - Sha384* &#x60;-sha384&#x60; - Sha384 (descending)* &#x60;sha512&#x60; - Sha512* &#x60;-sha512&#x60; - Sha512 (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ArtifactsAPIArtifactsListRequest) Ordering(ordering []string) ArtifactsAPIArtifactsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Artifacts have been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ArtifactsAPIArtifactsListRequest) OrphanedFor(orphanedFor float32) ArtifactsAPIArtifactsListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -485,6 +492,9 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")

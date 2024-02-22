@@ -205,6 +205,7 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -232,6 +233,12 @@ func (r ContentFilesAPIContentFileFilesListRequest) Offset(offset int32) Content
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;relative_path&#x60; - Relative path* &#x60;-relative_path&#x60; - Relative path (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentFilesAPIContentFileFilesListRequest) Ordering(ordering []string) ContentFilesAPIContentFileFilesListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ContentFilesAPIContentFileFilesListRequest) OrphanedFor(orphanedFor float32) ContentFilesAPIContentFileFilesListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -345,6 +352,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")

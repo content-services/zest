@@ -32,6 +32,7 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -57,6 +58,12 @@ func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Offset(
 // Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Ordering(ordering []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) OrphanedFor(orphanedFor float32) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -159,6 +166,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksListExecut
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")

@@ -26,6 +26,8 @@ api_contentguards_composite.go
 api_contentguards_content_redirect.go
 api_contentguards_header.go
 api_contentguards_rbac.go
+api_contentguards_rhsm.go
+api_contentguards_x509.go
 api_distributions.go
 api_distributions_artifacts.go
 api_distributions_file.go
@@ -92,6 +94,10 @@ docs/ArtifactDistributionResponse.md
 docs/ArtifactResponse.md
 docs/ArtifactsAPI.md
 docs/AsyncOperationResponse.md
+docs/CertguardRHSMCertGuard.md
+docs/CertguardRHSMCertGuardResponse.md
+docs/CertguardX509CertGuard.md
+docs/CertguardX509CertGuardResponse.md
 docs/ChecksumResponse.md
 docs/CompositeContentGuard.md
 docs/CompositeContentGuardResponse.md
@@ -122,6 +128,8 @@ docs/ContentguardsCompositeAPI.md
 docs/ContentguardsContentRedirectAPI.md
 docs/ContentguardsHeaderAPI.md
 docs/ContentguardsRbacAPI.md
+docs/ContentguardsRhsmAPI.md
+docs/ContentguardsX509API.md
 docs/Copy.md
 docs/DatabaseConnectionResponse.md
 docs/DistributionResponse.md
@@ -228,6 +236,8 @@ docs/PaginatedUpstreamPulpResponseList.md
 docs/PaginatedUserResponseList.md
 docs/PaginatedUserRoleResponseList.md
 docs/PaginatedWorkerResponseList.md
+docs/PaginatedcertguardRHSMCertGuardResponseList.md
+docs/PaginatedcertguardX509CertGuardResponseList.md
 docs/PaginatedfileFileAlternateContentSourceResponseList.md
 docs/PaginatedfileFileContentResponseList.md
 docs/PaginatedfileFileDistributionResponseList.md
@@ -270,6 +280,8 @@ docs/PatchedRole.md
 docs/PatchedTaskCancel.md
 docs/PatchedUpstreamPulp.md
 docs/PatchedUser.md
+docs/PatchedcertguardRHSMCertGuard.md
+docs/PatchedcertguardX509CertGuard.md
 docs/PatchedfileFileAlternateContentSource.md
 docs/PatchedfileFileDistribution.md
 docs/PatchedfileFileRemote.md
@@ -416,6 +428,10 @@ model_artifact.go
 model_artifact_distribution_response.go
 model_artifact_response.go
 model_async_operation_response.go
+model_certguard_rhsm_cert_guard.go
+model_certguard_rhsm_cert_guard_response.go
+model_certguard_x509_cert_guard.go
+model_certguard_x509_cert_guard_response.go
 model_checksum_response.go
 model_composite_content_guard.go
 model_composite_content_guard_response.go
@@ -513,6 +529,8 @@ model_paginated_upstream_pulp_response_list.go
 model_paginated_user_response_list.go
 model_paginated_user_role_response_list.go
 model_paginated_worker_response_list.go
+model_paginatedcertguard_rhsm_cert_guard_response_list.go
+model_paginatedcertguard_x509_cert_guard_response_list.go
 model_paginatedfile_file_alternate_content_source_response_list.go
 model_paginatedfile_file_content_response_list.go
 model_paginatedfile_file_distribution_response_list.go
@@ -555,6 +573,8 @@ model_patched_role.go
 model_patched_task_cancel.go
 model_patched_upstream_pulp.go
 model_patched_user.go
+model_patchedcertguard_rhsm_cert_guard.go
+model_patchedcertguard_x509_cert_guard.go
 model_patchedfile_file_alternate_content_source.go
 model_patchedfile_file_distribution.go
 model_patchedfile_file_remote.go
@@ -681,7 +701,9 @@ test/api_contentguards_composite_test.go
 test/api_contentguards_content_redirect_test.go
 test/api_contentguards_header_test.go
 test/api_contentguards_rbac_test.go
+test/api_contentguards_rhsm_test.go
 test/api_contentguards_test.go
+test/api_contentguards_x509_test.go
 test/api_distributions_artifacts_test.go
 test/api_distributions_file_test.go
 test/api_distributions_gem_test.go

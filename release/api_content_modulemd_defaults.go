@@ -149,6 +149,7 @@ type ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest struct {
 	moduleIn *[]string
 	offset *int32
 	ordering *[]string
+	orphanedFor *float32
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -189,6 +190,12 @@ func (r ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest) Offset(
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;module&#x60; - Module* &#x60;-module&#x60; - Module (descending)* &#x60;stream&#x60; - Stream* &#x60;-stream&#x60; - Stream (descending)* &#x60;profiles&#x60; - Profiles* &#x60;-profiles&#x60; - Profiles (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;snippet&#x60; - Snippet* &#x60;-snippet&#x60; - Snippet (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest) Ordering(ordering []string) ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+func (r ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest) OrphanedFor(orphanedFor float32) ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest {
+	r.orphanedFor = &orphanedFor
 	return r
 }
 
@@ -314,6 +321,9 @@ func (a *ContentModulemdDefaultsAPIService) ContentRpmModulemdDefaultsListExecut
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+	}
+	if r.orphanedFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
