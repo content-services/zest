@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"os"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type UploadChunk struct {
 	File *os.File `json:"file"`
 	// The SHA-256 checksum of the chunk if available.
 	Sha256 NullableString `json:"sha256,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UploadChunk UploadChunk
@@ -129,6 +129,11 @@ func (o UploadChunk) ToMap() (map[string]interface{}, error) {
 	if o.Sha256.IsSet() {
 		toSerialize["sha256"] = o.Sha256.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -156,15 +161,21 @@ func (o *UploadChunk) UnmarshalJSON(data []byte) (err error) {
 
 	varUploadChunk := _UploadChunk{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUploadChunk)
+	err = json.Unmarshal(data, &varUploadChunk)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UploadChunk(varUploadChunk)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "sha256")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

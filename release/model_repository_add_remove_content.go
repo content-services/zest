@@ -26,7 +26,10 @@ type RepositoryAddRemoveContent struct {
 	RemoveContentUnits []string `json:"remove_content_units,omitempty"`
 	// A repository version whose content will be used as the initial set of content for the new repository version
 	BaseVersion *string `json:"base_version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RepositoryAddRemoveContent RepositoryAddRemoveContent
 
 // NewRepositoryAddRemoveContent instantiates a new RepositoryAddRemoveContent object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o RepositoryAddRemoveContent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BaseVersion) {
 		toSerialize["base_version"] = o.BaseVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RepositoryAddRemoveContent) UnmarshalJSON(data []byte) (err error) {
+	varRepositoryAddRemoveContent := _RepositoryAddRemoveContent{}
+
+	err = json.Unmarshal(data, &varRepositoryAddRemoveContent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RepositoryAddRemoveContent(varRepositoryAddRemoveContent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "add_content_units")
+		delete(additionalProperties, "remove_content_units")
+		delete(additionalProperties, "base_version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRepositoryAddRemoveContent struct {

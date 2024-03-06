@@ -36,7 +36,10 @@ type PulpExportResponse struct {
 	OutputFileInfo map[string]interface{} `json:"output_file_info,omitempty"`
 	// Filename and sha256-checksum of table-of-contents for this export
 	TocInfo map[string]interface{} `json:"toc_info,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PulpExportResponse PulpExportResponse
 
 // NewPulpExportResponse instantiates a new PulpExportResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -355,7 +358,40 @@ func (o PulpExportResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TocInfo) {
 		toSerialize["toc_info"] = o.TocInfo
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PulpExportResponse) UnmarshalJSON(data []byte) (err error) {
+	varPulpExportResponse := _PulpExportResponse{}
+
+	err = json.Unmarshal(data, &varPulpExportResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpExportResponse(varPulpExportResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "task")
+		delete(additionalProperties, "exported_resources")
+		delete(additionalProperties, "params")
+		delete(additionalProperties, "output_file_info")
+		delete(additionalProperties, "toc_info")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePulpExportResponse struct {

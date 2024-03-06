@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &Upload{}
 type Upload struct {
 	// The size of the upload in bytes.
 	Size int64 `json:"size"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Upload Upload
@@ -81,6 +81,11 @@ func (o Upload) MarshalJSON() ([]byte, error) {
 func (o Upload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["size"] = o.Size
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *Upload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpload := _Upload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpload)
+	err = json.Unmarshal(data, &varUpload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Upload(varUpload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

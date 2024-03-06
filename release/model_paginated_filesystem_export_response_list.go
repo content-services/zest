@@ -24,7 +24,10 @@ type PaginatedFilesystemExportResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []FilesystemExportResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedFilesystemExportResponseList PaginatedFilesystemExportResponseList
 
 // NewPaginatedFilesystemExportResponseList instantiates a new PaginatedFilesystemExportResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedFilesystemExportResponseList) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedFilesystemExportResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedFilesystemExportResponseList := _PaginatedFilesystemExportResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedFilesystemExportResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedFilesystemExportResponseList(varPaginatedFilesystemExportResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedFilesystemExportResponseList struct {

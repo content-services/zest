@@ -24,7 +24,10 @@ type PaginatedContentRedirectContentGuardResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []ContentRedirectContentGuardResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedContentRedirectContentGuardResponseList PaginatedContentRedirectContentGuardResponseList
 
 // NewPaginatedContentRedirectContentGuardResponseList instantiates a new PaginatedContentRedirectContentGuardResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedContentRedirectContentGuardResponseList) ToMap() (map[string]in
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedContentRedirectContentGuardResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedContentRedirectContentGuardResponseList := _PaginatedContentRedirectContentGuardResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedContentRedirectContentGuardResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedContentRedirectContentGuardResponseList(varPaginatedContentRedirectContentGuardResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedContentRedirectContentGuardResponseList struct {

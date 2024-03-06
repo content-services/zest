@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &SetLabel{}
 type SetLabel struct {
 	Key string `json:"key"`
 	Value NullableString `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SetLabel SetLabel
@@ -109,6 +109,11 @@ func (o SetLabel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	toSerialize["value"] = o.Value.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *SetLabel) UnmarshalJSON(data []byte) (err error) {
 
 	varSetLabel := _SetLabel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSetLabel)
+	err = json.Unmarshal(data, &varSetLabel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SetLabel(varSetLabel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

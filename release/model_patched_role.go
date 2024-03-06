@@ -26,7 +26,10 @@ type PatchedRole struct {
 	Description NullableString `json:"description,omitempty"`
 	// List of permissions defining the role.
 	Permissions []string `json:"permissions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedRole PatchedRole
 
 // NewPatchedRole instantiates a new PatchedRole object
 // This constructor will assign default values to properties that have it defined,
@@ -170,7 +173,35 @@ func (o PatchedRole) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Permissions) {
 		toSerialize["permissions"] = o.Permissions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedRole) UnmarshalJSON(data []byte) (err error) {
+	varPatchedRole := _PatchedRole{}
+
+	err = json.Unmarshal(data, &varPatchedRole)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedRole(varPatchedRole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedRole struct {

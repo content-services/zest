@@ -33,7 +33,10 @@ type PatchedfileFileDistribution struct {
 	Repository NullableString `json:"repository,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedfileFileDistribution PatchedfileFileDistribution
 
 // NewPatchedfileFileDistribution instantiates a new PatchedfileFileDistribution object
 // This constructor will assign default values to properties that have it defined,
@@ -341,7 +344,39 @@ func (o PatchedfileFileDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedfileFileDistribution) UnmarshalJSON(data []byte) (err error) {
+	varPatchedfileFileDistribution := _PatchedfileFileDistribution{}
+
+	err = json.Unmarshal(data, &varPatchedfileFileDistribution)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedfileFileDistribution(varPatchedfileFileDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedfileFileDistribution struct {

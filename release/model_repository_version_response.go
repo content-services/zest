@@ -31,7 +31,10 @@ type RepositoryVersionResponse struct {
 	// A repository version whose content was used as the initial set of content for this repository version
 	BaseVersion *string `json:"base_version,omitempty"`
 	ContentSummary *RepositoryVersionResponseContentSummary `json:"content_summary,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RepositoryVersionResponse RepositoryVersionResponse
 
 // NewRepositoryVersionResponse instantiates a new RepositoryVersionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -305,7 +308,39 @@ func (o RepositoryVersionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ContentSummary) {
 		toSerialize["content_summary"] = o.ContentSummary
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RepositoryVersionResponse) UnmarshalJSON(data []byte) (err error) {
+	varRepositoryVersionResponse := _RepositoryVersionResponse{}
+
+	err = json.Unmarshal(data, &varRepositoryVersionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RepositoryVersionResponse(varRepositoryVersionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "number")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "base_version")
+		delete(additionalProperties, "content_summary")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRepositoryVersionResponse struct {

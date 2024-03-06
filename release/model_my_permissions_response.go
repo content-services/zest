@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &MyPermissionsResponse{}
 // MyPermissionsResponse struct for MyPermissionsResponse
 type MyPermissionsResponse struct {
 	Permissions []string `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MyPermissionsResponse MyPermissionsResponse
@@ -80,6 +80,11 @@ func (o MyPermissionsResponse) MarshalJSON() ([]byte, error) {
 func (o MyPermissionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *MyPermissionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMyPermissionsResponse := _MyPermissionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMyPermissionsResponse)
+	err = json.Unmarshal(data, &varMyPermissionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MyPermissionsResponse(varMyPermissionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

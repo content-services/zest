@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -38,6 +37,7 @@ type HeaderContentGuardResponse struct {
 	HeaderValue string `json:"header_value"`
 	// A JQ syntax compatible filter. If jq_filter is not set, then the value willonly be Base64 decoded and checked as an explicit string match.
 	JqFilter NullableString `json:"jq_filter,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HeaderContentGuardResponse HeaderContentGuardResponse
@@ -342,6 +342,11 @@ func (o HeaderContentGuardResponse) ToMap() (map[string]interface{}, error) {
 	if o.JqFilter.IsSet() {
 		toSerialize["jq_filter"] = o.JqFilter.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -371,15 +376,27 @@ func (o *HeaderContentGuardResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varHeaderContentGuardResponse := _HeaderContentGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHeaderContentGuardResponse)
+	err = json.Unmarshal(data, &varHeaderContentGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HeaderContentGuardResponse(varHeaderContentGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "header_name")
+		delete(additionalProperties, "header_value")
+		delete(additionalProperties, "jq_filter")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

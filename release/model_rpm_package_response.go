@@ -112,7 +112,10 @@ type RpmPackageResponse struct {
 	TimeBuild *int64 `json:"time_build,omitempty"`
 	// The 'file' time attribute in the primary XML - file mtime in seconds since the epoch.
 	TimeFile *int64 `json:"time_file,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmPackageResponse RpmPackageResponse
 
 // NewRpmPackageResponse instantiates a new RpmPackageResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -1751,7 +1754,78 @@ func (o RpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TimeFile) {
 		toSerialize["time_file"] = o.TimeFile
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
+	varRpmPackageResponse := _RpmPackageResponse{}
+
+	err = json.Unmarshal(data, &varRpmPackageResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmPackageResponse(varRpmPackageResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "sha1")
+		delete(additionalProperties, "sha224")
+		delete(additionalProperties, "sha256")
+		delete(additionalProperties, "sha384")
+		delete(additionalProperties, "sha512")
+		delete(additionalProperties, "artifact")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "epoch")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "release")
+		delete(additionalProperties, "arch")
+		delete(additionalProperties, "pkgId")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "summary")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "changelogs")
+		delete(additionalProperties, "files")
+		delete(additionalProperties, "requires")
+		delete(additionalProperties, "provides")
+		delete(additionalProperties, "conflicts")
+		delete(additionalProperties, "obsoletes")
+		delete(additionalProperties, "suggests")
+		delete(additionalProperties, "enhances")
+		delete(additionalProperties, "recommends")
+		delete(additionalProperties, "supplements")
+		delete(additionalProperties, "location_base")
+		delete(additionalProperties, "location_href")
+		delete(additionalProperties, "rpm_buildhost")
+		delete(additionalProperties, "rpm_group")
+		delete(additionalProperties, "rpm_license")
+		delete(additionalProperties, "rpm_packager")
+		delete(additionalProperties, "rpm_sourcerpm")
+		delete(additionalProperties, "rpm_vendor")
+		delete(additionalProperties, "rpm_header_start")
+		delete(additionalProperties, "rpm_header_end")
+		delete(additionalProperties, "is_modular")
+		delete(additionalProperties, "size_archive")
+		delete(additionalProperties, "size_installed")
+		delete(additionalProperties, "size_package")
+		delete(additionalProperties, "time_build")
+		delete(additionalProperties, "time_file")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmPackageResponse struct {

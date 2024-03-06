@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type MultipleArtifactContentResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dict mapping relative paths inside the Content to the correspondingArtifact URLs. E.g.: {'relative/path': '/artifacts/1/'
 	Artifacts map[string]interface{} `json:"artifacts"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MultipleArtifactContentResponse MultipleArtifactContentResponse
@@ -192,6 +192,11 @@ func (o MultipleArtifactContentResponse) ToMap() (map[string]interface{}, error)
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["artifacts"] = o.Artifacts
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,23 @@ func (o *MultipleArtifactContentResponse) UnmarshalJSON(data []byte) (err error)
 
 	varMultipleArtifactContentResponse := _MultipleArtifactContentResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMultipleArtifactContentResponse)
+	err = json.Unmarshal(data, &varMultipleArtifactContentResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MultipleArtifactContentResponse(varMultipleArtifactContentResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "artifacts")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

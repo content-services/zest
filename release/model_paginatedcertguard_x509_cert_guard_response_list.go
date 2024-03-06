@@ -24,7 +24,10 @@ type PaginatedcertguardX509CertGuardResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []CertguardX509CertGuardResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedcertguardX509CertGuardResponseList PaginatedcertguardX509CertGuardResponseList
 
 // NewPaginatedcertguardX509CertGuardResponseList instantiates a new PaginatedcertguardX509CertGuardResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedcertguardX509CertGuardResponseList) ToMap() (map[string]interfa
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedcertguardX509CertGuardResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedcertguardX509CertGuardResponseList := _PaginatedcertguardX509CertGuardResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedcertguardX509CertGuardResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedcertguardX509CertGuardResponseList(varPaginatedcertguardX509CertGuardResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedcertguardX509CertGuardResponseList struct {

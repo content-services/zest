@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type RpmPackageLangpacksResponse struct {
 	Matches map[string]interface{} `json:"matches"`
 	// Langpacks digest.
 	Digest NullableString `json:"digest"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmPackageLangpacksResponse RpmPackageLangpacksResponse
@@ -226,6 +226,11 @@ func (o RpmPackageLangpacksResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["matches"] = o.Matches
 	}
 	toSerialize["digest"] = o.Digest.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -254,15 +259,24 @@ func (o *RpmPackageLangpacksResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmPackageLangpacksResponse := _RpmPackageLangpacksResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmPackageLangpacksResponse)
+	err = json.Unmarshal(data, &varRpmPackageLangpacksResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmPackageLangpacksResponse(varRpmPackageLangpacksResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "matches")
+		delete(additionalProperties, "digest")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

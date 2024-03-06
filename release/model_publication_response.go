@@ -29,7 +29,10 @@ type PublicationResponse struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// A URI of the repository to be published.
 	Repository *string `json:"repository,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PublicationResponse PublicationResponse
 
 // NewPublicationResponse instantiates a new PublicationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o PublicationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PublicationResponse) UnmarshalJSON(data []byte) (err error) {
+	varPublicationResponse := _PublicationResponse{}
+
+	err = json.Unmarshal(data, &varPublicationResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PublicationResponse(varPublicationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePublicationResponse struct {

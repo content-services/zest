@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type CompositeContentGuard struct {
 	Description NullableString `json:"description,omitempty"`
 	// List of ContentGuards to ask for access-permission.
 	Guards []*string `json:"guards,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CompositeContentGuard CompositeContentGuard
@@ -165,6 +165,11 @@ func (o CompositeContentGuard) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Guards) {
 		toSerialize["guards"] = o.Guards
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,22 @@ func (o *CompositeContentGuard) UnmarshalJSON(data []byte) (err error) {
 
 	varCompositeContentGuard := _CompositeContentGuard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCompositeContentGuard)
+	err = json.Unmarshal(data, &varCompositeContentGuard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CompositeContentGuard(varCompositeContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "guards")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

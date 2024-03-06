@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -61,6 +60,7 @@ type FileFileRemoteResponse struct {
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileRemoteResponse FileFileRemoteResponse
@@ -878,6 +878,11 @@ func (o FileFileRemoteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HiddenFields) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -906,15 +911,39 @@ func (o *FileFileRemoteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFileFileRemoteResponse := _FileFileRemoteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileRemoteResponse)
+	err = json.Unmarshal(data, &varFileFileRemoteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileRemoteResponse(varFileFileRemoteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "proxy_url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "policy")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "hidden_fields")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

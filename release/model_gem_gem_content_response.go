@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -45,6 +44,7 @@ type GemGemContentResponse struct {
 	RequiredRubyVersion *string `json:"required_ruby_version,omitempty"`
 	// Required rubygems version of the gem
 	RequiredRubygemsVersion *string `json:"required_rubygems_version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GemGemContentResponse GemGemContentResponse
@@ -487,6 +487,11 @@ func (o GemGemContentResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RequiredRubygemsVersion) {
 		toSerialize["required_rubygems_version"] = o.RequiredRubygemsVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -514,15 +519,31 @@ func (o *GemGemContentResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGemGemContentResponse := _GemGemContentResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGemGemContentResponse)
+	err = json.Unmarshal(data, &varGemGemContentResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GemGemContentResponse(varGemGemContentResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "artifacts")
+		delete(additionalProperties, "checksum")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "prerelease")
+		delete(additionalProperties, "dependencies")
+		delete(additionalProperties, "required_ruby_version")
+		delete(additionalProperties, "required_rubygems_version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

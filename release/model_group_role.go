@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -27,6 +26,7 @@ type GroupRole struct {
 	ContentObject NullableString `json:"content_object"`
 	// Domain this role should be applied on, mutually exclusive with content_object.
 	Domain NullableString `json:"domain,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupRole GroupRole
@@ -157,6 +157,11 @@ func (o GroupRole) ToMap() (map[string]interface{}, error) {
 	if o.Domain.IsSet() {
 		toSerialize["domain"] = o.Domain.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -185,15 +190,22 @@ func (o *GroupRole) UnmarshalJSON(data []byte) (err error) {
 
 	varGroupRole := _GroupRole{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupRole)
+	err = json.Unmarshal(data, &varGroupRole)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupRole(varGroupRole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "content_object")
+		delete(additionalProperties, "domain")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

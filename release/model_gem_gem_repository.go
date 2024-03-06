@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type GemGemRepository struct {
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GemGemRepository GemGemRepository
@@ -258,6 +258,11 @@ func (o GemGemRepository) ToMap() (map[string]interface{}, error) {
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -285,15 +290,24 @@ func (o *GemGemRepository) UnmarshalJSON(data []byte) (err error) {
 
 	varGemGemRepository := _GemGemRepository{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGemGemRepository)
+	err = json.Unmarshal(data, &varGemGemRepository)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GemGemRepository(varGemGemRepository)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

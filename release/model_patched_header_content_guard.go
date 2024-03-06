@@ -30,7 +30,10 @@ type PatchedHeaderContentGuard struct {
 	HeaderValue *string `json:"header_value,omitempty"`
 	// A JQ syntax compatible filter. If jq_filter is not set, then the value willonly be Base64 decoded and checked as an explicit string match.
 	JqFilter NullableString `json:"jq_filter,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedHeaderContentGuard PatchedHeaderContentGuard
 
 // NewPatchedHeaderContentGuard instantiates a new PatchedHeaderContentGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -254,7 +257,37 @@ func (o PatchedHeaderContentGuard) ToMap() (map[string]interface{}, error) {
 	if o.JqFilter.IsSet() {
 		toSerialize["jq_filter"] = o.JqFilter.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedHeaderContentGuard) UnmarshalJSON(data []byte) (err error) {
+	varPatchedHeaderContentGuard := _PatchedHeaderContentGuard{}
+
+	err = json.Unmarshal(data, &varPatchedHeaderContentGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedHeaderContentGuard(varPatchedHeaderContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "header_name")
+		delete(additionalProperties, "header_value")
+		delete(additionalProperties, "jq_filter")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedHeaderContentGuard struct {

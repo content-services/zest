@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -63,6 +62,7 @@ type RpmUlnRemoteResponse struct {
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Base URL of the ULN server. If the uln_server_base_url is not provided pulp_rpm willuse the contents of the DEFAULT_ULN_SERVER_BASE_URL setting instead.
 	UlnServerBaseUrl NullableString `json:"uln_server_base_url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmUlnRemoteResponse RpmUlnRemoteResponse
@@ -925,6 +925,11 @@ func (o RpmUlnRemoteResponse) ToMap() (map[string]interface{}, error) {
 	if o.UlnServerBaseUrl.IsSet() {
 		toSerialize["uln_server_base_url"] = o.UlnServerBaseUrl.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -953,15 +958,40 @@ func (o *RpmUlnRemoteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmUlnRemoteResponse := _RpmUlnRemoteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmUlnRemoteResponse)
+	err = json.Unmarshal(data, &varRpmUlnRemoteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmUlnRemoteResponse(varRpmUlnRemoteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "proxy_url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "policy")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "hidden_fields")
+		delete(additionalProperties, "uln_server_base_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -22,7 +22,10 @@ var _ MappedNullable = &UploadChunkResponse{}
 type UploadChunkResponse struct {
 	Offset *int64 `json:"offset,omitempty"`
 	Size *int64 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UploadChunkResponse UploadChunkResponse
 
 // NewUploadChunkResponse instantiates a new UploadChunkResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o UploadChunkResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UploadChunkResponse) UnmarshalJSON(data []byte) (err error) {
+	varUploadChunkResponse := _UploadChunkResponse{}
+
+	err = json.Unmarshal(data, &varUploadChunkResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UploadChunkResponse(varUploadChunkResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "offset")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUploadChunkResponse struct {

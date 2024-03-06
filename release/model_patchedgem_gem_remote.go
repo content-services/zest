@@ -64,7 +64,10 @@ type PatchedgemGemRemote struct {
 	Prereleases *bool `json:"prereleases,omitempty"`
 	Includes map[string]string `json:"includes,omitempty"`
 	Excludes map[string]string `json:"excludes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedgemGemRemote PatchedgemGemRemote
 
 // NewPatchedgemGemRemote instantiates a new PatchedgemGemRemote object
 // This constructor will assign default values to properties that have it defined,
@@ -1093,7 +1096,56 @@ func (o PatchedgemGemRemote) ToMap() (map[string]interface{}, error) {
 	if o.Excludes != nil {
 		toSerialize["excludes"] = o.Excludes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedgemGemRemote) UnmarshalJSON(data []byte) (err error) {
+	varPatchedgemGemRemote := _PatchedgemGemRemote{}
+
+	err = json.Unmarshal(data, &varPatchedgemGemRemote)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedgemGemRemote(varPatchedgemGemRemote)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "client_key")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "proxy_url")
+		delete(additionalProperties, "proxy_username")
+		delete(additionalProperties, "proxy_password")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "policy")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "prereleases")
+		delete(additionalProperties, "includes")
+		delete(additionalProperties, "excludes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedgemGemRemote struct {

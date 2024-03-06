@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -44,6 +43,7 @@ type ArtifactResponse struct {
 	Sha384 NullableString `json:"sha384,omitempty"`
 	// The SHA-512 checksum of the file if available.
 	Sha512 NullableString `json:"sha512,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ArtifactResponse ArtifactResponse
@@ -511,6 +511,11 @@ func (o ArtifactResponse) ToMap() (map[string]interface{}, error) {
 	if o.Sha512.IsSet() {
 		toSerialize["sha512"] = o.Sha512.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -538,15 +543,30 @@ func (o *ArtifactResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varArtifactResponse := _ArtifactResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArtifactResponse)
+	err = json.Unmarshal(data, &varArtifactResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ArtifactResponse(varArtifactResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "sha1")
+		delete(additionalProperties, "sha224")
+		delete(additionalProperties, "sha256")
+		delete(additionalProperties, "sha384")
+		delete(additionalProperties, "sha512")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -39,6 +38,7 @@ type RepositoryResponse struct {
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RepositoryResponse RepositoryResponse
@@ -441,6 +441,11 @@ func (o RepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -468,15 +473,29 @@ func (o *RepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRepositoryResponse := _RepositoryResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRepositoryResponse)
+	err = json.Unmarshal(data, &varRepositoryResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RepositoryResponse(varRepositoryResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "versions_href")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "latest_version_href")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

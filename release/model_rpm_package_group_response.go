@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -50,6 +49,7 @@ type RpmPackageGroupResponse struct {
 	NameByLang map[string]interface{} `json:"name_by_lang"`
 	// PackageGroup digest.
 	Digest string `json:"digest"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmPackageGroupResponse RpmPackageGroupResponse
@@ -513,6 +513,11 @@ func (o RpmPackageGroupResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["name_by_lang"] = o.NameByLang
 	}
 	toSerialize["digest"] = o.Digest
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -547,15 +552,33 @@ func (o *RpmPackageGroupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmPackageGroupResponse := _RpmPackageGroupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmPackageGroupResponse)
+	err = json.Unmarshal(data, &varRpmPackageGroupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmPackageGroupResponse(varRpmPackageGroupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "user_visible")
+		delete(additionalProperties, "display_order")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "packages")
+		delete(additionalProperties, "biarch_only")
+		delete(additionalProperties, "desc_by_lang")
+		delete(additionalProperties, "name_by_lang")
+		delete(additionalProperties, "digest")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

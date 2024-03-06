@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type RBACContentGuardResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	Users []GroupUserResponse `json:"users,omitempty"`
 	Groups []GroupResponse `json:"groups,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RBACContentGuardResponse RBACContentGuardResponse
@@ -311,6 +311,11 @@ func (o RBACContentGuardResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Groups) {
 		toSerialize["groups"] = o.Groups
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -338,15 +343,26 @@ func (o *RBACContentGuardResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRBACContentGuardResponse := _RBACContentGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRBACContentGuardResponse)
+	err = json.Unmarshal(data, &varRBACContentGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RBACContentGuardResponse(varRBACContentGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "users")
+		delete(additionalProperties, "groups")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

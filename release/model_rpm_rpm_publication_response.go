@@ -45,7 +45,10 @@ type RpmRpmPublicationResponse struct {
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmRpmPublicationResponse RpmRpmPublicationResponse
 
 // NewRpmRpmPublicationResponse instantiates a new RpmRpmPublicationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -549,7 +552,45 @@ func (o RpmRpmPublicationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CompressionType) {
 		toSerialize["compression_type"] = o.CompressionType
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmRpmPublicationResponse) UnmarshalJSON(data []byte) (err error) {
+	varRpmRpmPublicationResponse := _RpmRpmPublicationResponse{}
+
+	err = json.Unmarshal(data, &varRpmRpmPublicationResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmRpmPublicationResponse(varRpmRpmPublicationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "metadata_checksum_type")
+		delete(additionalProperties, "package_checksum_type")
+		delete(additionalProperties, "gpgcheck")
+		delete(additionalProperties, "repo_gpgcheck")
+		delete(additionalProperties, "sqlite_metadata")
+		delete(additionalProperties, "repo_config")
+		delete(additionalProperties, "compression_type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmRpmPublicationResponse struct {

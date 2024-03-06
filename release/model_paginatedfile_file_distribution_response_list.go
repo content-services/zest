@@ -24,7 +24,10 @@ type PaginatedfileFileDistributionResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []FileFileDistributionResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedfileFileDistributionResponseList PaginatedfileFileDistributionResponseList
 
 // NewPaginatedfileFileDistributionResponseList instantiates a new PaginatedfileFileDistributionResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedfileFileDistributionResponseList) ToMap() (map[string]interface
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedfileFileDistributionResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedfileFileDistributionResponseList := _PaginatedfileFileDistributionResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedfileFileDistributionResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedfileFileDistributionResponseList(varPaginatedfileFileDistributionResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedfileFileDistributionResponseList struct {

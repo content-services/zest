@@ -27,7 +27,10 @@ type PatchedPulpExporter struct {
 	Repositories []string `json:"repositories,omitempty"`
 	// Last attempted export for this PulpExporter
 	LastExport NullableString `json:"last_export,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedPulpExporter PatchedPulpExporter
 
 // NewPatchedPulpExporter instantiates a new PatchedPulpExporter object
 // This constructor will assign default values to properties that have it defined,
@@ -206,7 +209,36 @@ func (o PatchedPulpExporter) ToMap() (map[string]interface{}, error) {
 	if o.LastExport.IsSet() {
 		toSerialize["last_export"] = o.LastExport.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedPulpExporter) UnmarshalJSON(data []byte) (err error) {
+	varPatchedPulpExporter := _PatchedPulpExporter{}
+
+	err = json.Unmarshal(data, &varPatchedPulpExporter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedPulpExporter(varPatchedPulpExporter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "repositories")
+		delete(additionalProperties, "last_export")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedPulpExporter struct {

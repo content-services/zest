@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"os"
-	"bytes"
 	"fmt"
 )
 
@@ -33,6 +32,7 @@ type FileFileContent struct {
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileContent FileFileContent
@@ -230,6 +230,11 @@ func (o FileFileContent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -257,15 +262,24 @@ func (o *FileFileContent) UnmarshalJSON(data []byte) (err error) {
 
 	varFileFileContent := _FileFileContent{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileContent)
+	err = json.Unmarshal(data, &varFileFileContent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileContent(varFileFileContent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "artifact")
+		delete(additionalProperties, "relative_path")
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "upload")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

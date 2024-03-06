@@ -33,7 +33,10 @@ type FileFilePublicationResponse struct {
 	Distributions []string `json:"distributions,omitempty"`
 	// Filename to use for manifest file containing metadata for all the files.
 	Manifest NullableString `json:"manifest,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FileFilePublicationResponse FileFilePublicationResponse
 
 // NewFileFilePublicationResponse instantiates a new FileFilePublicationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -321,7 +324,39 @@ func (o FileFilePublicationResponse) ToMap() (map[string]interface{}, error) {
 	if o.Manifest.IsSet() {
 		toSerialize["manifest"] = o.Manifest.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FileFilePublicationResponse) UnmarshalJSON(data []byte) (err error) {
+	varFileFilePublicationResponse := _FileFilePublicationResponse{}
+
+	err = json.Unmarshal(data, &varFileFilePublicationResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FileFilePublicationResponse(varFileFilePublicationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "distributions")
+		delete(additionalProperties, "manifest")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFileFilePublicationResponse struct {

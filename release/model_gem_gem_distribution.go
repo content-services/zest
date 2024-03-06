@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -37,6 +36,7 @@ type GemGemDistribution struct {
 	Publication NullableString `json:"publication,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote NullableString `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GemGemDistribution GemGemDistribution
@@ -374,6 +374,11 @@ func (o GemGemDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -402,15 +407,27 @@ func (o *GemGemDistribution) UnmarshalJSON(data []byte) (err error) {
 
 	varGemGemDistribution := _GemGemDistribution{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGemGemDistribution)
+	err = json.Unmarshal(data, &varGemGemDistribution)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GemGemDistribution(varGemGemDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

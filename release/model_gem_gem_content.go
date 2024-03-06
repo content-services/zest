@@ -27,7 +27,10 @@ type GemGemContent struct {
 	Artifact *string `json:"artifact,omitempty"`
 	// An uploaded file that should be turned into the artifact of the content unit.
 	File **os.File `json:"file,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GemGemContent GemGemContent
 
 // NewGemGemContent instantiates a new GemGemContent object
 // This constructor will assign default values to properties that have it defined,
@@ -161,7 +164,35 @@ func (o GemGemContent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.File) {
 		toSerialize["file"] = o.File
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GemGemContent) UnmarshalJSON(data []byte) (err error) {
+	varGemGemContent := _GemGemContent{}
+
+	err = json.Unmarshal(data, &varGemGemContent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GemGemContent(varGemGemContent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "artifact")
+		delete(additionalProperties, "file")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGemGemContent struct {

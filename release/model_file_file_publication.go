@@ -25,7 +25,10 @@ type FileFilePublication struct {
 	Repository *string `json:"repository,omitempty"`
 	// Filename to use for manifest file containing metadata for all the files.
 	Manifest NullableString `json:"manifest,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FileFilePublication FileFilePublication
 
 // NewFileFilePublication instantiates a new FileFilePublication object
 // This constructor will assign default values to properties that have it defined,
@@ -173,7 +176,35 @@ func (o FileFilePublication) ToMap() (map[string]interface{}, error) {
 	if o.Manifest.IsSet() {
 		toSerialize["manifest"] = o.Manifest.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FileFilePublication) UnmarshalJSON(data []byte) (err error) {
+	varFileFilePublication := _FileFilePublication{}
+
+	err = json.Unmarshal(data, &varFileFilePublication)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FileFilePublication(varFileFilePublication)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "manifest")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFileFilePublication struct {

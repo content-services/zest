@@ -24,7 +24,10 @@ type PatchedContentRedirectContentGuard struct {
 	Name *string `json:"name,omitempty"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedContentRedirectContentGuard PatchedContentRedirectContentGuard
 
 // NewPatchedContentRedirectContentGuard instantiates a new PatchedContentRedirectContentGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -133,7 +136,34 @@ func (o PatchedContentRedirectContentGuard) ToMap() (map[string]interface{}, err
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedContentRedirectContentGuard) UnmarshalJSON(data []byte) (err error) {
+	varPatchedContentRedirectContentGuard := _PatchedContentRedirectContentGuard{}
+
+	err = json.Unmarshal(data, &varPatchedContentRedirectContentGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedContentRedirectContentGuard(varPatchedContentRedirectContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedContentRedirectContentGuard struct {

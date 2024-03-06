@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -46,6 +45,7 @@ type RpmModulemdObsoleteResponse struct {
 	ObsoletedByModuleName NullableString `json:"obsoleted_by_module_name"`
 	// Obsolete by module stream.
 	ObsoletedByModuleStream NullableString `json:"obsoleted_by_module_stream"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmModulemdObsoleteResponse RpmModulemdObsoleteResponse
@@ -426,6 +426,11 @@ func (o RpmModulemdObsoleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["eol_date"] = o.EolDate.Get()
 	toSerialize["obsoleted_by_module_name"] = o.ObsoletedByModuleName.Get()
 	toSerialize["obsoleted_by_module_stream"] = o.ObsoletedByModuleStream.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -461,15 +466,31 @@ func (o *RpmModulemdObsoleteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmModulemdObsoleteResponse := _RpmModulemdObsoleteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmModulemdObsoleteResponse)
+	err = json.Unmarshal(data, &varRpmModulemdObsoleteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmModulemdObsoleteResponse(varRpmModulemdObsoleteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "modified")
+		delete(additionalProperties, "module_name")
+		delete(additionalProperties, "module_stream")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "override_previous")
+		delete(additionalProperties, "module_context")
+		delete(additionalProperties, "eol_date")
+		delete(additionalProperties, "obsoleted_by_module_name")
+		delete(additionalProperties, "obsoleted_by_module_stream")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

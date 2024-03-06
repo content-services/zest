@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -57,6 +56,7 @@ type TaskResponse struct {
 	CreatedResources []string `json:"created_resources,omitempty"`
 	// A list of resources required by that task.
 	ReservedResourcesRecord []string `json:"reserved_resources_record,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TaskResponse TaskResponse
@@ -700,6 +700,11 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReservedResourcesRecord) {
 		toSerialize["reserved_resources_record"] = o.ReservedResourcesRecord
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -728,15 +733,37 @@ func (o *TaskResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTaskResponse := _TaskResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTaskResponse)
+	err = json.Unmarshal(data, &varTaskResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TaskResponse(varTaskResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "logging_cid")
+		delete(additionalProperties, "created_by")
+		delete(additionalProperties, "unblocked_at")
+		delete(additionalProperties, "started_at")
+		delete(additionalProperties, "finished_at")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "worker")
+		delete(additionalProperties, "parent_task")
+		delete(additionalProperties, "child_tasks")
+		delete(additionalProperties, "task_group")
+		delete(additionalProperties, "progress_reports")
+		delete(additionalProperties, "created_resources")
+		delete(additionalProperties, "reserved_resources_record")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

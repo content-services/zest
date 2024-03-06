@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -42,6 +41,7 @@ type VariantResponse struct {
 	DebugRepository NullableString `json:"debug_repository"`
 	// Relative path to a pem file that identifies a product.
 	Identity NullableString `json:"identity"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VariantResponse VariantResponse
@@ -343,6 +343,11 @@ func (o VariantResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["debug_packages"] = o.DebugPackages.Get()
 	toSerialize["debug_repository"] = o.DebugRepository.Get()
 	toSerialize["identity"] = o.Identity.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -379,15 +384,29 @@ func (o *VariantResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varVariantResponse := _VariantResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVariantResponse)
+	err = json.Unmarshal(data, &varVariantResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VariantResponse(varVariantResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "variant_id")
+		delete(additionalProperties, "uid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "packages")
+		delete(additionalProperties, "source_packages")
+		delete(additionalProperties, "source_repository")
+		delete(additionalProperties, "debug_packages")
+		delete(additionalProperties, "debug_repository")
+		delete(additionalProperties, "identity")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ReclaimSpace struct {
 	RepoHrefs []interface{} `json:"repo_hrefs"`
 	// Will exclude repo versions from space reclaim.
 	RepoVersionsKeeplist []string `json:"repo_versions_keeplist,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ReclaimSpace ReclaimSpace
@@ -118,6 +118,11 @@ func (o ReclaimSpace) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RepoVersionsKeeplist) {
 		toSerialize["repo_versions_keeplist"] = o.RepoVersionsKeeplist
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -145,15 +150,21 @@ func (o *ReclaimSpace) UnmarshalJSON(data []byte) (err error) {
 
 	varReclaimSpace := _ReclaimSpace{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReclaimSpace)
+	err = json.Unmarshal(data, &varReclaimSpace)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ReclaimSpace(varReclaimSpace)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repo_hrefs")
+		delete(additionalProperties, "repo_versions_keeplist")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type CertguardRHSMCertGuardResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	// A Certificate Authority (CA) certificate (or a bundle thereof) used to verify client-certificate authenticity.
 	CaCertificate string `json:"ca_certificate"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CertguardRHSMCertGuardResponse CertguardRHSMCertGuardResponse
@@ -267,6 +267,11 @@ func (o CertguardRHSMCertGuardResponse) ToMap() (map[string]interface{}, error) 
 		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["ca_certificate"] = o.CaCertificate
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -295,15 +300,25 @@ func (o *CertguardRHSMCertGuardResponse) UnmarshalJSON(data []byte) (err error) 
 
 	varCertguardRHSMCertGuardResponse := _CertguardRHSMCertGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertguardRHSMCertGuardResponse)
+	err = json.Unmarshal(data, &varCertguardRHSMCertGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CertguardRHSMCertGuardResponse(varCertguardRHSMCertGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "ca_certificate")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

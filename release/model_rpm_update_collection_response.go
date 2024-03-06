@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type RpmUpdateCollectionResponse struct {
 	Module map[string]interface{} `json:"module"`
 	// List of packages
 	Packages []map[string]interface{} `json:"packages,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmUpdateCollectionResponse RpmUpdateCollectionResponse
@@ -182,6 +182,11 @@ func (o RpmUpdateCollectionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Packages) {
 		toSerialize["packages"] = o.Packages
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -211,15 +216,23 @@ func (o *RpmUpdateCollectionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmUpdateCollectionResponse := _RpmUpdateCollectionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmUpdateCollectionResponse)
+	err = json.Unmarshal(data, &varRpmUpdateCollectionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmUpdateCollectionResponse(varRpmUpdateCollectionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "shortname")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "packages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -24,7 +24,10 @@ type OrphansCleanup struct {
 	ContentHrefs []interface{} `json:"content_hrefs,omitempty"`
 	// The time in minutes for how long Pulp will hold orphan Content and Artifacts before they become candidates for deletion by this orphan cleanup task. This should ideally be longer than your longest running task otherwise any content created during that task could be cleaned up before the task finishes. If not specified, a default value is taken from the setting ORPHAN_PROTECTION_TIME.
 	OrphanProtectionTime NullableInt64 `json:"orphan_protection_time,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrphansCleanup OrphansCleanup
 
 // NewOrphansCleanup instantiates a new OrphansCleanup object
 // This constructor will assign default values to properties that have it defined,
@@ -133,7 +136,34 @@ func (o OrphansCleanup) ToMap() (map[string]interface{}, error) {
 	if o.OrphanProtectionTime.IsSet() {
 		toSerialize["orphan_protection_time"] = o.OrphanProtectionTime.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OrphansCleanup) UnmarshalJSON(data []byte) (err error) {
+	varOrphansCleanup := _OrphansCleanup{}
+
+	err = json.Unmarshal(data, &varOrphansCleanup)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OrphansCleanup(varOrphansCleanup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content_hrefs")
+		delete(additionalProperties, "orphan_protection_time")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOrphansCleanup struct {

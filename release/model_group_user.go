@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &GroupUser{}
 type GroupUser struct {
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	Username string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupUser GroupUser
@@ -81,6 +81,11 @@ func (o GroupUser) MarshalJSON() ([]byte, error) {
 func (o GroupUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *GroupUser) UnmarshalJSON(data []byte) (err error) {
 
 	varGroupUser := _GroupUser{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupUser)
+	err = json.Unmarshal(data, &varGroupUser)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupUser(varGroupUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

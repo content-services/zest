@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type SigningServiceResponse struct {
 	PubkeyFingerprint string `json:"pubkey_fingerprint"`
 	// An absolute path to a script which is going to be used for the signing.
 	Script string `json:"script"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SigningServiceResponse SigningServiceResponse
@@ -276,6 +276,11 @@ func (o SigningServiceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["public_key"] = o.PublicKey
 	toSerialize["pubkey_fingerprint"] = o.PubkeyFingerprint
 	toSerialize["script"] = o.Script
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -306,15 +311,26 @@ func (o *SigningServiceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSigningServiceResponse := _SigningServiceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSigningServiceResponse)
+	err = json.Unmarshal(data, &varSigningServiceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SigningServiceResponse(varSigningServiceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "public_key")
+		delete(additionalProperties, "pubkey_fingerprint")
+		delete(additionalProperties, "script")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

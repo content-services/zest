@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &ObjectRolesResponse{}
 // ObjectRolesResponse struct for ObjectRolesResponse
 type ObjectRolesResponse struct {
 	Roles []NestedRoleResponse `json:"roles"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ObjectRolesResponse ObjectRolesResponse
@@ -80,6 +80,11 @@ func (o ObjectRolesResponse) MarshalJSON() ([]byte, error) {
 func (o ObjectRolesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["roles"] = o.Roles
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ObjectRolesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varObjectRolesResponse := _ObjectRolesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varObjectRolesResponse)
+	err = json.Unmarshal(data, &varObjectRolesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ObjectRolesResponse(varObjectRolesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

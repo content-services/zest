@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type VersionResponse struct {
 	Module string `json:"module"`
 	// Domain feature compatibility of component
 	DomainCompatible bool `json:"domain_compatible"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VersionResponse VersionResponse
@@ -193,6 +193,11 @@ func (o VersionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["package"] = o.Package
 	toSerialize["module"] = o.Module
 	toSerialize["domain_compatible"] = o.DomainCompatible
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *VersionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varVersionResponse := _VersionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVersionResponse)
+	err = json.Unmarshal(data, &varVersionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VersionResponse(varVersionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "component")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "package")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "domain_compatible")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

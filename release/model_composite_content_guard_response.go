@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type CompositeContentGuardResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	// List of ContentGuards to ask for access-permission.
 	Guards []*string `json:"guards,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CompositeContentGuardResponse CompositeContentGuardResponse
@@ -276,6 +276,11 @@ func (o CompositeContentGuardResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Guards) {
 		toSerialize["guards"] = o.Guards
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -303,15 +308,25 @@ func (o *CompositeContentGuardResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCompositeContentGuardResponse := _CompositeContentGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCompositeContentGuardResponse)
+	err = json.Unmarshal(data, &varCompositeContentGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CompositeContentGuardResponse(varCompositeContentGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "guards")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

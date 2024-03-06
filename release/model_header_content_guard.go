@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type HeaderContentGuard struct {
 	HeaderValue string `json:"header_value"`
 	// A JQ syntax compatible filter. If jq_filter is not set, then the value willonly be Base64 decoded and checked as an explicit string match.
 	JqFilter NullableString `json:"jq_filter,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HeaderContentGuard HeaderContentGuard
@@ -231,6 +231,11 @@ func (o HeaderContentGuard) ToMap() (map[string]interface{}, error) {
 	if o.JqFilter.IsSet() {
 		toSerialize["jq_filter"] = o.JqFilter.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -260,15 +265,24 @@ func (o *HeaderContentGuard) UnmarshalJSON(data []byte) (err error) {
 
 	varHeaderContentGuard := _HeaderContentGuard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHeaderContentGuard)
+	err = json.Unmarshal(data, &varHeaderContentGuard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HeaderContentGuard(varHeaderContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "header_name")
+		delete(additionalProperties, "header_value")
+		delete(additionalProperties, "jq_filter")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

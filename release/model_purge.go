@@ -25,7 +25,10 @@ type Purge struct {
 	FinishedBefore *time.Time `json:"finished_before,omitempty"`
 	// List of task-states to be purged. Only 'final' states are allowed.
 	States []StatesEnum `json:"states,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Purge Purge
 
 // NewPurge instantiates a new Purge object
 // This constructor will assign default values to properties that have it defined,
@@ -124,7 +127,34 @@ func (o Purge) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.States) {
 		toSerialize["states"] = o.States
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Purge) UnmarshalJSON(data []byte) (err error) {
+	varPurge := _Purge{}
+
+	err = json.Unmarshal(data, &varPurge)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Purge(varPurge)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "finished_before")
+		delete(additionalProperties, "states")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePurge struct {

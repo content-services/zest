@@ -22,7 +22,10 @@ var _ MappedNullable = &Repair{}
 type Repair struct {
 	// Will verify that the checksum of all stored files matches what saved in the database. Otherwise only the existence of the files will be checked. Enabled by default
 	VerifyChecksums *bool `json:"verify_checksums,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Repair Repair
 
 // NewRepair instantiates a new Repair object
 // This constructor will assign default values to properties that have it defined,
@@ -90,7 +93,33 @@ func (o Repair) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VerifyChecksums) {
 		toSerialize["verify_checksums"] = o.VerifyChecksums
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Repair) UnmarshalJSON(data []byte) (err error) {
+	varRepair := _Repair{}
+
+	err = json.Unmarshal(data, &varRepair)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Repair(varRepair)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "verify_checksums")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRepair struct {

@@ -26,7 +26,10 @@ type PulpImport struct {
 	Toc *string `json:"toc,omitempty"`
 	// If True, missing repositories will be automatically created during the import.
 	CreateRepositories *bool `json:"create_repositories,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PulpImport PulpImport
 
 // NewPulpImport instantiates a new PulpImport object
 // This constructor will assign default values to properties that have it defined,
@@ -164,7 +167,35 @@ func (o PulpImport) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreateRepositories) {
 		toSerialize["create_repositories"] = o.CreateRepositories
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PulpImport) UnmarshalJSON(data []byte) (err error) {
+	varPulpImport := _PulpImport{}
+
+	err = json.Unmarshal(data, &varPulpImport)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpImport(varPulpImport)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "toc")
+		delete(additionalProperties, "create_repositories")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePulpImport struct {

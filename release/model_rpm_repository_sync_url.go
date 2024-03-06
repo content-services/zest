@@ -30,7 +30,10 @@ type RpmRepositorySyncURL struct {
 	SkipTypes []SkipTypesEnum `json:"skip_types,omitempty"`
 	// Whether or not to optimize sync.
 	Optimize *bool `json:"optimize,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmRepositorySyncURL RpmRepositorySyncURL
 
 // NewRpmRepositorySyncURL instantiates a new RpmRepositorySyncURL object
 // This constructor will assign default values to properties that have it defined,
@@ -258,7 +261,37 @@ func (o RpmRepositorySyncURL) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Optimize) {
 		toSerialize["optimize"] = o.Optimize
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmRepositorySyncURL) UnmarshalJSON(data []byte) (err error) {
+	varRpmRepositorySyncURL := _RpmRepositorySyncURL{}
+
+	err = json.Unmarshal(data, &varRpmRepositorySyncURL)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmRepositorySyncURL(varRpmRepositorySyncURL)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "mirror")
+		delete(additionalProperties, "sync_policy")
+		delete(additionalProperties, "skip_types")
+		delete(additionalProperties, "optimize")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmRepositorySyncURL struct {

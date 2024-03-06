@@ -62,7 +62,10 @@ type RpmUpdateRecordResponse struct {
 	References []map[string]interface{} `json:"references,omitempty"`
 	// Reboot suggested
 	RebootSuggested *bool `json:"reboot_suggested,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmUpdateRecordResponse RpmUpdateRecordResponse
 
 // NewRpmUpdateRecordResponse instantiates a new RpmUpdateRecordResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -826,7 +829,53 @@ func (o RpmUpdateRecordResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RebootSuggested) {
 		toSerialize["reboot_suggested"] = o.RebootSuggested
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmUpdateRecordResponse) UnmarshalJSON(data []byte) (err error) {
+	varRpmUpdateRecordResponse := _RpmUpdateRecordResponse{}
+
+	err = json.Unmarshal(data, &varRpmUpdateRecordResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmUpdateRecordResponse(varRpmUpdateRecordResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "updated_date")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "issued_date")
+		delete(additionalProperties, "fromstr")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "summary")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "severity")
+		delete(additionalProperties, "solution")
+		delete(additionalProperties, "release")
+		delete(additionalProperties, "rights")
+		delete(additionalProperties, "pushcount")
+		delete(additionalProperties, "pkglist")
+		delete(additionalProperties, "references")
+		delete(additionalProperties, "reboot_suggested")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmUpdateRecordResponse struct {

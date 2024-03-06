@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type UploadResponse struct {
 	Size int64 `json:"size"`
 	// Timestamp when upload is committed.
 	Completed *time.Time `json:"completed,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UploadResponse UploadResponse
@@ -229,6 +229,11 @@ func (o UploadResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Completed) {
 		toSerialize["completed"] = o.Completed
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,24 @@ func (o *UploadResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUploadResponse := _UploadResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUploadResponse)
+	err = json.Unmarshal(data, &varUploadResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UploadResponse(varUploadResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "completed")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

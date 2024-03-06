@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ContentRedirectContentGuard struct {
 	Name string `json:"name"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContentRedirectContentGuard ContentRedirectContentGuard
@@ -128,6 +128,11 @@ func (o ContentRedirectContentGuard) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -155,15 +160,21 @@ func (o *ContentRedirectContentGuard) UnmarshalJSON(data []byte) (err error) {
 
 	varContentRedirectContentGuard := _ContentRedirectContentGuard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContentRedirectContentGuard)
+	err = json.Unmarshal(data, &varContentRedirectContentGuard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContentRedirectContentGuard(varContentRedirectContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

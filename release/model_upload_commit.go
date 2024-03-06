@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &UploadCommit{}
 type UploadCommit struct {
 	// The expected sha256 checksum for the file.
 	Sha256 string `json:"sha256"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UploadCommit UploadCommit
@@ -81,6 +81,11 @@ func (o UploadCommit) MarshalJSON() ([]byte, error) {
 func (o UploadCommit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["sha256"] = o.Sha256
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *UploadCommit) UnmarshalJSON(data []byte) (err error) {
 
 	varUploadCommit := _UploadCommit{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUploadCommit)
+	err = json.Unmarshal(data, &varUploadCommit)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UploadCommit(varUploadCommit)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "sha256")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

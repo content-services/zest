@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &TaskGroupOperationResponse{}
 type TaskGroupOperationResponse struct {
 	// The href of the task group.
 	TaskGroup string `json:"task_group"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TaskGroupOperationResponse TaskGroupOperationResponse
@@ -81,6 +81,11 @@ func (o TaskGroupOperationResponse) MarshalJSON() ([]byte, error) {
 func (o TaskGroupOperationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["task_group"] = o.TaskGroup
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *TaskGroupOperationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTaskGroupOperationResponse := _TaskGroupOperationResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTaskGroupOperationResponse)
+	err = json.Unmarshal(data, &varTaskGroupOperationResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TaskGroupOperationResponse(varTaskGroupOperationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "task_group")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -34,7 +34,10 @@ type WorkerResponse struct {
 	Versions *map[string]string `json:"versions,omitempty"`
 	// The task this worker is currently executing, or empty if the worker is not currently assigned to a task.
 	CurrentTask *string `json:"current_task,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WorkerResponse WorkerResponse
 
 // NewWorkerResponse instantiates a new WorkerResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -308,7 +311,39 @@ func (o WorkerResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CurrentTask) {
 		toSerialize["current_task"] = o.CurrentTask
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WorkerResponse) UnmarshalJSON(data []byte) (err error) {
+	varWorkerResponse := _WorkerResponse{}
+
+	err = json.Unmarshal(data, &varWorkerResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WorkerResponse(varWorkerResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_heartbeat")
+		delete(additionalProperties, "versions")
+		delete(additionalProperties, "current_task")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWorkerResponse struct {

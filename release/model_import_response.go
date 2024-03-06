@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type ImportResponse struct {
 	Task string `json:"task"`
 	// Any parameters that were used to create the import.
 	Params map[string]interface{} `json:"params"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImportResponse ImportResponse
@@ -220,6 +220,11 @@ func (o ImportResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["task"] = o.Task
 	toSerialize["params"] = o.Params
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -248,15 +253,24 @@ func (o *ImportResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varImportResponse := _ImportResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImportResponse)
+	err = json.Unmarshal(data, &varImportResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImportResponse(varImportResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "task")
+		delete(additionalProperties, "params")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

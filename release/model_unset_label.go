@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &UnsetLabel{}
 // UnsetLabel Serializer for synchronously setting a label.
 type UnsetLabel struct {
 	Key string `json:"key"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UnsetLabel UnsetLabel
@@ -80,6 +80,11 @@ func (o UnsetLabel) MarshalJSON() ([]byte, error) {
 func (o UnsetLabel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UnsetLabel) UnmarshalJSON(data []byte) (err error) {
 
 	varUnsetLabel := _UnsetLabel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUnsetLabel)
+	err = json.Unmarshal(data, &varUnsetLabel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UnsetLabel(varUnsetLabel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

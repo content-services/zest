@@ -29,7 +29,10 @@ type PatchedrpmRpmAlternateContentSource struct {
 	Paths []string `json:"paths,omitempty"`
 	// The remote to provide alternate content source.
 	Remote *string `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedrpmRpmAlternateContentSource PatchedrpmRpmAlternateContentSource
 
 // NewPatchedrpmRpmAlternateContentSource instantiates a new PatchedrpmRpmAlternateContentSource object
 // This constructor will assign default values to properties that have it defined,
@@ -208,7 +211,36 @@ func (o PatchedrpmRpmAlternateContentSource) ToMap() (map[string]interface{}, er
 	if !IsNil(o.Remote) {
 		toSerialize["remote"] = o.Remote
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedrpmRpmAlternateContentSource) UnmarshalJSON(data []byte) (err error) {
+	varPatchedrpmRpmAlternateContentSource := _PatchedrpmRpmAlternateContentSource{}
+
+	err = json.Unmarshal(data, &varPatchedrpmRpmAlternateContentSource)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedrpmRpmAlternateContentSource(varPatchedrpmRpmAlternateContentSource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_refreshed")
+		delete(additionalProperties, "paths")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedrpmRpmAlternateContentSource struct {

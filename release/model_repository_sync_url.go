@@ -24,7 +24,10 @@ type RepositorySyncURL struct {
 	Remote *string `json:"remote,omitempty"`
 	// If ``True``, synchronization will remove all content that is not present in the remote repository. If ``False``, sync will be additive only.
 	Mirror *bool `json:"mirror,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RepositorySyncURL RepositorySyncURL
 
 // NewRepositorySyncURL instantiates a new RepositorySyncURL object
 // This constructor will assign default values to properties that have it defined,
@@ -127,7 +130,34 @@ func (o RepositorySyncURL) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Mirror) {
 		toSerialize["mirror"] = o.Mirror
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RepositorySyncURL) UnmarshalJSON(data []byte) (err error) {
+	varRepositorySyncURL := _RepositorySyncURL{}
+
+	err = json.Unmarshal(data, &varRepositorySyncURL)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RepositorySyncURL(varRepositorySyncURL)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "mirror")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRepositorySyncURL struct {

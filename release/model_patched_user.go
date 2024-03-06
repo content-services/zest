@@ -34,7 +34,10 @@ type PatchedUser struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 	// Designates whether this user should be treated as active.
 	IsActive *bool `json:"is_active,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedUser PatchedUser
 
 // NewPatchedUser instantiates a new PatchedUser object
 // This constructor will assign default values to properties that have it defined,
@@ -326,7 +329,39 @@ func (o PatchedUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsActive) {
 		toSerialize["is_active"] = o.IsActive
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedUser) UnmarshalJSON(data []byte) (err error) {
+	varPatchedUser := _PatchedUser{}
+
+	err = json.Unmarshal(data, &varPatchedUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedUser(varPatchedUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "is_staff")
+		delete(additionalProperties, "is_active")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedUser struct {

@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &DatabaseConnectionResponse{}
 type DatabaseConnectionResponse struct {
 	// Info about whether the app can connect to the database
 	Connected bool `json:"connected"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DatabaseConnectionResponse DatabaseConnectionResponse
@@ -81,6 +81,11 @@ func (o DatabaseConnectionResponse) MarshalJSON() ([]byte, error) {
 func (o DatabaseConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connected"] = o.Connected
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *DatabaseConnectionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDatabaseConnectionResponse := _DatabaseConnectionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDatabaseConnectionResponse)
+	err = json.Unmarshal(data, &varDatabaseConnectionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DatabaseConnectionResponse(varDatabaseConnectionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "connected")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

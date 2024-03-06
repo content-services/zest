@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type FileFileDistribution struct {
 	Repository NullableString `json:"repository,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileDistribution FileFileDistribution
@@ -327,6 +327,11 @@ func (o FileFileDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -355,15 +360,26 @@ func (o *FileFileDistribution) UnmarshalJSON(data []byte) (err error) {
 
 	varFileFileDistribution := _FileFileDistribution{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileDistribution)
+	err = json.Unmarshal(data, &varFileFileDistribution)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileDistribution(varFileFileDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

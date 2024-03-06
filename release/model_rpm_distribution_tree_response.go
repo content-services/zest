@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -55,6 +54,7 @@ type RpmDistributionTreeResponse struct {
 	Checksums []ChecksumResponse `json:"checksums"`
 	Images []ImageResponse `json:"images"`
 	Variants []VariantResponse `json:"variants"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmDistributionTreeResponse RpmDistributionTreeResponse
@@ -603,6 +603,11 @@ func (o RpmDistributionTreeResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["checksums"] = o.Checksums
 	toSerialize["images"] = o.Images
 	toSerialize["variants"] = o.Variants
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -647,15 +652,38 @@ func (o *RpmDistributionTreeResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmDistributionTreeResponse := _RpmDistributionTreeResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmDistributionTreeResponse)
+	err = json.Unmarshal(data, &varRpmDistributionTreeResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmDistributionTreeResponse(varRpmDistributionTreeResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "header_version")
+		delete(additionalProperties, "release_name")
+		delete(additionalProperties, "release_short")
+		delete(additionalProperties, "release_version")
+		delete(additionalProperties, "release_is_layered")
+		delete(additionalProperties, "base_product_name")
+		delete(additionalProperties, "base_product_short")
+		delete(additionalProperties, "base_product_version")
+		delete(additionalProperties, "arch")
+		delete(additionalProperties, "build_timestamp")
+		delete(additionalProperties, "instimage")
+		delete(additionalProperties, "mainimage")
+		delete(additionalProperties, "discnum")
+		delete(additionalProperties, "totaldiscs")
+		delete(additionalProperties, "addons")
+		delete(additionalProperties, "checksums")
+		delete(additionalProperties, "images")
+		delete(additionalProperties, "variants")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

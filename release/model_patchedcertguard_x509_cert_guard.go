@@ -26,7 +26,10 @@ type PatchedcertguardX509CertGuard struct {
 	Description NullableString `json:"description,omitempty"`
 	// A Certificate Authority (CA) certificate (or a bundle thereof) used to verify client-certificate authenticity.
 	CaCertificate *string `json:"ca_certificate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedcertguardX509CertGuard PatchedcertguardX509CertGuard
 
 // NewPatchedcertguardX509CertGuard instantiates a new PatchedcertguardX509CertGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -170,7 +173,35 @@ func (o PatchedcertguardX509CertGuard) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CaCertificate) {
 		toSerialize["ca_certificate"] = o.CaCertificate
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedcertguardX509CertGuard) UnmarshalJSON(data []byte) (err error) {
+	varPatchedcertguardX509CertGuard := _PatchedcertguardX509CertGuard{}
+
+	err = json.Unmarshal(data, &varPatchedcertguardX509CertGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedcertguardX509CertGuard(varPatchedcertguardX509CertGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "ca_certificate")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedcertguardX509CertGuard struct {

@@ -26,7 +26,10 @@ type PatchedCompositeContentGuard struct {
 	Description NullableString `json:"description,omitempty"`
 	// List of ContentGuards to ask for access-permission.
 	Guards []*string `json:"guards,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedCompositeContentGuard PatchedCompositeContentGuard
 
 // NewPatchedCompositeContentGuard instantiates a new PatchedCompositeContentGuard object
 // This constructor will assign default values to properties that have it defined,
@@ -170,7 +173,35 @@ func (o PatchedCompositeContentGuard) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Guards) {
 		toSerialize["guards"] = o.Guards
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedCompositeContentGuard) UnmarshalJSON(data []byte) (err error) {
+	varPatchedCompositeContentGuard := _PatchedCompositeContentGuard{}
+
+	err = json.Unmarshal(data, &varPatchedCompositeContentGuard)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedCompositeContentGuard(varPatchedCompositeContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "guards")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedCompositeContentGuard struct {

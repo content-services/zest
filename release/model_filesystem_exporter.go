@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type FilesystemExporter struct {
 	Path string `json:"path"`
 	// Method of exporting* `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 	Method *MethodEnum `json:"method,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FilesystemExporter FilesystemExporter
@@ -150,6 +150,11 @@ func (o FilesystemExporter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *FilesystemExporter) UnmarshalJSON(data []byte) (err error) {
 
 	varFilesystemExporter := _FilesystemExporter{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFilesystemExporter)
+	err = json.Unmarshal(data, &varFilesystemExporter)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FilesystemExporter(varFilesystemExporter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

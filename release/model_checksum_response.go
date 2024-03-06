@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ChecksumResponse struct {
 	Path string `json:"path"`
 	// Checksum for the file.
 	Checksum string `json:"checksum"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChecksumResponse ChecksumResponse
@@ -109,6 +109,11 @@ func (o ChecksumResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["path"] = o.Path
 	toSerialize["checksum"] = o.Checksum
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *ChecksumResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varChecksumResponse := _ChecksumResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChecksumResponse)
+	err = json.Unmarshal(data, &varChecksumResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChecksumResponse(varChecksumResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "checksum")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

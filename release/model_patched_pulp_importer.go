@@ -24,7 +24,10 @@ type PatchedPulpImporter struct {
 	Name *string `json:"name,omitempty"`
 	// Mapping of repo names in an export file to the repo names in Pulp. For example, if the export has a repo named 'foo' and the repo to import content into was 'bar', the mapping would be \"{'foo': 'bar'}\".
 	RepoMapping *map[string]string `json:"repo_mapping,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedPulpImporter PatchedPulpImporter
 
 // NewPatchedPulpImporter instantiates a new PatchedPulpImporter object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o PatchedPulpImporter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RepoMapping) {
 		toSerialize["repo_mapping"] = o.RepoMapping
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedPulpImporter) UnmarshalJSON(data []byte) (err error) {
+	varPatchedPulpImporter := _PatchedPulpImporter{}
+
+	err = json.Unmarshal(data, &varPatchedPulpImporter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedPulpImporter(varPatchedPulpImporter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repo_mapping")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedPulpImporter struct {

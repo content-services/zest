@@ -31,7 +31,10 @@ type RpmPackage struct {
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmPackage RpmPackage
 
 // NewRpmPackage instantiates a new RpmPackage object
 // This constructor will assign default values to properties that have it defined,
@@ -235,7 +238,37 @@ func (o RpmPackage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmPackage) UnmarshalJSON(data []byte) (err error) {
+	varRpmPackage := _RpmPackage{}
+
+	err = json.Unmarshal(data, &varRpmPackage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmPackage(varRpmPackage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "artifact")
+		delete(additionalProperties, "relative_path")
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "upload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmPackage struct {

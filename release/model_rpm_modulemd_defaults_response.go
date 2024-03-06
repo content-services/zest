@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type RpmModulemdDefaultsResponse struct {
 	Stream string `json:"stream"`
 	// Default profiles for modulemd streams.
 	Profiles map[string]interface{} `json:"profiles"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmModulemdDefaultsResponse RpmModulemdDefaultsResponse
@@ -248,6 +248,11 @@ func (o RpmModulemdDefaultsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["module"] = o.Module
 	toSerialize["stream"] = o.Stream
 	toSerialize["profiles"] = o.Profiles
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -277,15 +282,25 @@ func (o *RpmModulemdDefaultsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmModulemdDefaultsResponse := _RpmModulemdDefaultsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmModulemdDefaultsResponse)
+	err = json.Unmarshal(data, &varRpmModulemdDefaultsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmModulemdDefaultsResponse(varRpmModulemdDefaultsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "stream")
+		delete(additionalProperties, "profiles")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

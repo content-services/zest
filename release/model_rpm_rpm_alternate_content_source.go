@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type RpmRpmAlternateContentSource struct {
 	Paths []string `json:"paths,omitempty"`
 	// The remote to provide alternate content source.
 	Remote string `json:"remote"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRpmAlternateContentSource RpmRpmAlternateContentSource
@@ -194,6 +194,11 @@ func (o RpmRpmAlternateContentSource) ToMap() (map[string]interface{}, error) {
 		toSerialize["paths"] = o.Paths
 	}
 	toSerialize["remote"] = o.Remote
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,23 @@ func (o *RpmRpmAlternateContentSource) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmRpmAlternateContentSource := _RpmRpmAlternateContentSource{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRpmAlternateContentSource)
+	err = json.Unmarshal(data, &varRpmRpmAlternateContentSource)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRpmAlternateContentSource(varRpmRpmAlternateContentSource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_refreshed")
+		delete(additionalProperties, "paths")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

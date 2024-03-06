@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"os"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type CompsXml struct {
 	Repository *string `json:"repository,omitempty"`
 	// If true, incoming comps.xml replaces existing comps-related ContentUnits in the specified repository.
 	Replace *bool `json:"replace,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CompsXml CompsXml
@@ -156,6 +156,11 @@ func (o CompsXml) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Replace) {
 		toSerialize["replace"] = o.Replace
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -183,15 +188,22 @@ func (o *CompsXml) UnmarshalJSON(data []byte) (err error) {
 
 	varCompsXml := _CompsXml{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCompsXml)
+	err = json.Unmarshal(data, &varCompsXml)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CompsXml(varCompsXml)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "replace")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

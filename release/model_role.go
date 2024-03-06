@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type Role struct {
 	Description NullableString `json:"description,omitempty"`
 	// List of permissions defining the role.
 	Permissions []string `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Role Role
@@ -156,6 +156,11 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -184,15 +189,22 @@ func (o *Role) UnmarshalJSON(data []byte) (err error) {
 
 	varRole := _Role{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRole)
+	err = json.Unmarshal(data, &varRole)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Role(varRole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

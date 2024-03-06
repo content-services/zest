@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -43,6 +42,7 @@ type FileFileRepositoryResponse struct {
 	Autopublish *bool `json:"autopublish,omitempty"`
 	// Filename to use for manifest file containing metadata for all the files.
 	Manifest NullableString `json:"manifest,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileRepositoryResponse FileFileRepositoryResponse
@@ -533,6 +533,11 @@ func (o FileFileRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if o.Manifest.IsSet() {
 		toSerialize["manifest"] = o.Manifest.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -560,15 +565,31 @@ func (o *FileFileRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFileFileRepositoryResponse := _FileFileRepositoryResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileRepositoryResponse)
+	err = json.Unmarshal(data, &varFileFileRepositoryResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileRepositoryResponse(varFileFileRepositoryResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "versions_href")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "latest_version_href")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "manifest")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

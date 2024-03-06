@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type RpmRpmAlternateContentSourceResponse struct {
 	Paths []string `json:"paths,omitempty"`
 	// The remote to provide alternate content source.
 	Remote string `json:"remote"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRpmAlternateContentSourceResponse RpmRpmAlternateContentSourceResponse
@@ -304,6 +304,11 @@ func (o RpmRpmAlternateContentSourceResponse) ToMap() (map[string]interface{}, e
 		toSerialize["paths"] = o.Paths
 	}
 	toSerialize["remote"] = o.Remote
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -332,15 +337,26 @@ func (o *RpmRpmAlternateContentSourceResponse) UnmarshalJSON(data []byte) (err e
 
 	varRpmRpmAlternateContentSourceResponse := _RpmRpmAlternateContentSourceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRpmAlternateContentSourceResponse)
+	err = json.Unmarshal(data, &varRpmRpmAlternateContentSourceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRpmAlternateContentSourceResponse(varRpmRpmAlternateContentSourceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_refreshed")
+		delete(additionalProperties, "paths")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -22,7 +22,10 @@ var _ MappedNullable = &PatchedTaskCancel{}
 type PatchedTaskCancel struct {
 	// The desired state of the task. Only 'canceled' is accepted.
 	State *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedTaskCancel PatchedTaskCancel
 
 // NewPatchedTaskCancel instantiates a new PatchedTaskCancel object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o PatchedTaskCancel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedTaskCancel) UnmarshalJSON(data []byte) (err error) {
+	varPatchedTaskCancel := _PatchedTaskCancel{}
+
+	err = json.Unmarshal(data, &varPatchedTaskCancel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedTaskCancel(varPatchedTaskCancel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedTaskCancel struct {

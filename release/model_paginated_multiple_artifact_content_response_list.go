@@ -24,7 +24,10 @@ type PaginatedMultipleArtifactContentResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []MultipleArtifactContentResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedMultipleArtifactContentResponseList PaginatedMultipleArtifactContentResponseList
 
 // NewPaginatedMultipleArtifactContentResponseList instantiates a new PaginatedMultipleArtifactContentResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedMultipleArtifactContentResponseList) ToMap() (map[string]interf
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedMultipleArtifactContentResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedMultipleArtifactContentResponseList := _PaginatedMultipleArtifactContentResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedMultipleArtifactContentResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedMultipleArtifactContentResponseList(varPaginatedMultipleArtifactContentResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedMultipleArtifactContentResponseList struct {

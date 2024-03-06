@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type AccessPolicyResponse struct {
 	Customized *bool `json:"customized,omitempty"`
 	// A callable for performing queryset scoping. See plugin documentation for valid callables. Set to blank to turn off queryset scoping.
 	QuerysetScoping map[string]interface{} `json:"queryset_scoping,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessPolicyResponse AccessPolicyResponse
@@ -377,6 +377,11 @@ func (o AccessPolicyResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.QuerysetScoping) {
 		toSerialize["queryset_scoping"] = o.QuerysetScoping
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -404,15 +409,28 @@ func (o *AccessPolicyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessPolicyResponse := _AccessPolicyResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessPolicyResponse)
+	err = json.Unmarshal(data, &varAccessPolicyResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessPolicyResponse(varAccessPolicyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "permissions_assignment")
+		delete(additionalProperties, "creation_hooks")
+		delete(additionalProperties, "statements")
+		delete(additionalProperties, "viewset_name")
+		delete(additionalProperties, "customized")
+		delete(additionalProperties, "queryset_scoping")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -22,7 +22,10 @@ var _ MappedNullable = &PatchedGroup{}
 type PatchedGroup struct {
 	// Name
 	Name *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedGroup PatchedGroup
 
 // NewPatchedGroup instantiates a new PatchedGroup object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o PatchedGroup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedGroup) UnmarshalJSON(data []byte) (err error) {
+	varPatchedGroup := _PatchedGroup{}
+
+	err = json.Unmarshal(data, &varPatchedGroup)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedGroup(varPatchedGroup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedGroup struct {

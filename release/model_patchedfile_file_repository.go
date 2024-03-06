@@ -33,7 +33,10 @@ type PatchedfileFileRepository struct {
 	Autopublish *bool `json:"autopublish,omitempty"`
 	// Filename to use for manifest file containing metadata for all the files.
 	Manifest NullableString `json:"manifest,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedfileFileRepository PatchedfileFileRepository
 
 // NewPatchedfileFileRepository instantiates a new PatchedfileFileRepository object
 // This constructor will assign default values to properties that have it defined,
@@ -355,7 +358,39 @@ func (o PatchedfileFileRepository) ToMap() (map[string]interface{}, error) {
 	if o.Manifest.IsSet() {
 		toSerialize["manifest"] = o.Manifest.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedfileFileRepository) UnmarshalJSON(data []byte) (err error) {
+	varPatchedfileFileRepository := _PatchedfileFileRepository{}
+
+	err = json.Unmarshal(data, &varPatchedfileFileRepository)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedfileFileRepository(varPatchedfileFileRepository)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "manifest")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedfileFileRepository struct {

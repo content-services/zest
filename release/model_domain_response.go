@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type DomainResponse struct {
 	RedirectToObjectStorage *bool `json:"redirect_to_object_storage,omitempty"`
 	// Boolean to hide distributions with a content guard in the content app.
 	HideGuardedDistributions *bool `json:"hide_guarded_distributions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DomainResponse DomainResponse
@@ -377,6 +377,11 @@ func (o DomainResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HideGuardedDistributions) {
 		toSerialize["hide_guarded_distributions"] = o.HideGuardedDistributions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -406,15 +411,28 @@ func (o *DomainResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDomainResponse := _DomainResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDomainResponse)
+	err = json.Unmarshal(data, &varDomainResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DomainResponse(varDomainResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "storage_class")
+		delete(additionalProperties, "storage_settings")
+		delete(additionalProperties, "redirect_to_object_storage")
+		delete(additionalProperties, "hide_guarded_distributions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type FilesystemExporterResponse struct {
 	Path string `json:"path"`
 	// Method of exporting* `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 	Method *MethodEnum `json:"method,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FilesystemExporterResponse FilesystemExporterResponse
@@ -261,6 +261,11 @@ func (o FilesystemExporterResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -289,15 +294,25 @@ func (o *FilesystemExporterResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFilesystemExporterResponse := _FilesystemExporterResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFilesystemExporterResponse)
+	err = json.Unmarshal(data, &varFilesystemExporterResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FilesystemExporterResponse(varFilesystemExporterResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

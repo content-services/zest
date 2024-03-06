@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type PulpImporterResponse struct {
 	Name string `json:"name"`
 	// Mapping of repo names in an export file to the repo names in Pulp. For example, if the export has a repo named 'foo' and the repo to import content into was 'bar', the mapping would be \"{'foo': 'bar'}\".
 	RepoMapping *map[string]string `json:"repo_mapping,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PulpImporterResponse PulpImporterResponse
@@ -229,6 +229,11 @@ func (o PulpImporterResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RepoMapping) {
 		toSerialize["repo_mapping"] = o.RepoMapping
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,24 @@ func (o *PulpImporterResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPulpImporterResponse := _PulpImporterResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPulpImporterResponse)
+	err = json.Unmarshal(data, &varPulpImporterResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PulpImporterResponse(varPulpImporterResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repo_mapping")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

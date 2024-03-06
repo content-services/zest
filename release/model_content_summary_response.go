@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type ContentSummaryResponse struct {
 	Added map[string]map[string]interface{} `json:"added"`
 	Removed map[string]map[string]interface{} `json:"removed"`
 	Present map[string]map[string]interface{} `json:"present"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContentSummaryResponse ContentSummaryResponse
@@ -134,6 +134,11 @@ func (o ContentSummaryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["added"] = o.Added
 	toSerialize["removed"] = o.Removed
 	toSerialize["present"] = o.Present
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *ContentSummaryResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varContentSummaryResponse := _ContentSummaryResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContentSummaryResponse)
+	err = json.Unmarshal(data, &varContentSummaryResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContentSummaryResponse(varContentSummaryResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "added")
+		delete(additionalProperties, "removed")
+		delete(additionalProperties, "present")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

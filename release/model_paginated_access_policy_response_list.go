@@ -24,7 +24,10 @@ type PaginatedAccessPolicyResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []AccessPolicyResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedAccessPolicyResponseList PaginatedAccessPolicyResponseList
 
 // NewPaginatedAccessPolicyResponseList instantiates a new PaginatedAccessPolicyResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedAccessPolicyResponseList) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedAccessPolicyResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedAccessPolicyResponseList := _PaginatedAccessPolicyResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedAccessPolicyResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedAccessPolicyResponseList(varPaginatedAccessPolicyResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedAccessPolicyResponseList struct {

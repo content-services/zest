@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type ContentRedirectContentGuardResponse struct {
 	Name string `json:"name"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContentRedirectContentGuardResponse ContentRedirectContentGuardResponse
@@ -239,6 +239,11 @@ func (o ContentRedirectContentGuardResponse) ToMap() (map[string]interface{}, er
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -266,15 +271,24 @@ func (o *ContentRedirectContentGuardResponse) UnmarshalJSON(data []byte) (err er
 
 	varContentRedirectContentGuardResponse := _ContentRedirectContentGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContentRedirectContentGuardResponse)
+	err = json.Unmarshal(data, &varContentRedirectContentGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContentRedirectContentGuardResponse(varContentRedirectContentGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

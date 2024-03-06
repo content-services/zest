@@ -24,7 +24,10 @@ type PaginatedCompositeContentGuardResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []CompositeContentGuardResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedCompositeContentGuardResponseList PaginatedCompositeContentGuardResponseList
 
 // NewPaginatedCompositeContentGuardResponseList instantiates a new PaginatedCompositeContentGuardResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedCompositeContentGuardResponseList) ToMap() (map[string]interfac
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedCompositeContentGuardResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedCompositeContentGuardResponseList := _PaginatedCompositeContentGuardResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedCompositeContentGuardResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedCompositeContentGuardResponseList(varPaginatedCompositeContentGuardResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedCompositeContentGuardResponseList struct {

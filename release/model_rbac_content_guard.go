@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type RBACContentGuard struct {
 	Name string `json:"name"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RBACContentGuard RBACContentGuard
@@ -128,6 +128,11 @@ func (o RBACContentGuard) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -155,15 +160,21 @@ func (o *RBACContentGuard) UnmarshalJSON(data []byte) (err error) {
 
 	varRBACContentGuard := _RBACContentGuard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRBACContentGuard)
+	err = json.Unmarshal(data, &varRBACContentGuard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RBACContentGuard(varRBACContentGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

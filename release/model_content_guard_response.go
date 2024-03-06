@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type ContentGuardResponse struct {
 	Name string `json:"name"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContentGuardResponse ContentGuardResponse
@@ -239,6 +239,11 @@ func (o ContentGuardResponse) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -266,15 +271,24 @@ func (o *ContentGuardResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varContentGuardResponse := _ContentGuardResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContentGuardResponse)
+	err = json.Unmarshal(data, &varContentGuardResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContentGuardResponse(varContentGuardResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

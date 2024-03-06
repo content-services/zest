@@ -24,7 +24,10 @@ type PaginatedPulpExporterResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []PulpExporterResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedPulpExporterResponseList PaginatedPulpExporterResponseList
 
 // NewPaginatedPulpExporterResponseList instantiates a new PaginatedPulpExporterResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedPulpExporterResponseList) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedPulpExporterResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedPulpExporterResponseList := _PaginatedPulpExporterResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedPulpExporterResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedPulpExporterResponseList(varPaginatedPulpExporterResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedPulpExporterResponseList struct {

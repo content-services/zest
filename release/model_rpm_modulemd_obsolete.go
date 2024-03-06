@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -44,6 +43,7 @@ type RpmModulemdObsolete struct {
 	ObsoletedByModuleStream NullableString `json:"obsoleted_by_module_stream"`
 	// Module Obsolete snippet.
 	Snippet string `json:"snippet"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmModulemdObsolete RpmModulemdObsolete
@@ -380,6 +380,11 @@ func (o RpmModulemdObsolete) ToMap() (map[string]interface{}, error) {
 	toSerialize["obsoleted_by_module_name"] = o.ObsoletedByModuleName.Get()
 	toSerialize["obsoleted_by_module_stream"] = o.ObsoletedByModuleStream.Get()
 	toSerialize["snippet"] = o.Snippet
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -416,15 +421,30 @@ func (o *RpmModulemdObsolete) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmModulemdObsolete := _RpmModulemdObsolete{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmModulemdObsolete)
+	err = json.Unmarshal(data, &varRpmModulemdObsolete)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmModulemdObsolete(varRpmModulemdObsolete)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "modified")
+		delete(additionalProperties, "module_name")
+		delete(additionalProperties, "module_stream")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "override_previous")
+		delete(additionalProperties, "module_context")
+		delete(additionalProperties, "eol_date")
+		delete(additionalProperties, "obsoleted_by_module_name")
+		delete(additionalProperties, "obsoleted_by_module_stream")
+		delete(additionalProperties, "snippet")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

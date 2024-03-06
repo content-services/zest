@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -36,6 +35,7 @@ type RoleResponse struct {
 	Permissions []string `json:"permissions"`
 	// True if the role is system managed.
 	Locked *bool `json:"locked,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RoleResponse RoleResponse
@@ -304,6 +304,11 @@ func (o RoleResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -332,15 +337,26 @@ func (o *RoleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRoleResponse := _RoleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRoleResponse)
+	err = json.Unmarshal(data, &varRoleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RoleResponse(varRoleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "locked")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

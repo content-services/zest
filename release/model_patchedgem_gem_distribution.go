@@ -35,7 +35,10 @@ type PatchedgemGemDistribution struct {
 	Publication NullableString `json:"publication,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote NullableString `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedgemGemDistribution PatchedgemGemDistribution
 
 // NewPatchedgemGemDistribution instantiates a new PatchedgemGemDistribution object
 // This constructor will assign default values to properties that have it defined,
@@ -388,7 +391,40 @@ func (o PatchedgemGemDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedgemGemDistribution) UnmarshalJSON(data []byte) (err error) {
+	varPatchedgemGemDistribution := _PatchedgemGemDistribution{}
+
+	err = json.Unmarshal(data, &varPatchedgemGemDistribution)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedgemGemDistribution(varPatchedgemGemDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedgemGemDistribution struct {

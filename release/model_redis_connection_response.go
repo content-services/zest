@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &RedisConnectionResponse{}
 type RedisConnectionResponse struct {
 	// Info about whether the app can connect to Redis
 	Connected bool `json:"connected"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RedisConnectionResponse RedisConnectionResponse
@@ -81,6 +81,11 @@ func (o RedisConnectionResponse) MarshalJSON() ([]byte, error) {
 func (o RedisConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connected"] = o.Connected
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *RedisConnectionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRedisConnectionResponse := _RedisConnectionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRedisConnectionResponse)
+	err = json.Unmarshal(data, &varRedisConnectionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RedisConnectionResponse(varRedisConnectionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "connected")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

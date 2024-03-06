@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -30,6 +29,7 @@ type AccessPolicy struct {
 	Statements []map[string]interface{} `json:"statements"`
 	// A callable for performing queryset scoping. See plugin documentation for valid callables. Set to blank to turn off queryset scoping.
 	QuerysetScoping map[string]interface{} `json:"queryset_scoping,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessPolicy AccessPolicy
@@ -192,6 +192,11 @@ func (o AccessPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.QuerysetScoping) {
 		toSerialize["queryset_scoping"] = o.QuerysetScoping
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,23 @@ func (o *AccessPolicy) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessPolicy := _AccessPolicy{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessPolicy)
+	err = json.Unmarshal(data, &varAccessPolicy)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessPolicy(varAccessPolicy)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "permissions_assignment")
+		delete(additionalProperties, "creation_hooks")
+		delete(additionalProperties, "statements")
+		delete(additionalProperties, "queryset_scoping")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

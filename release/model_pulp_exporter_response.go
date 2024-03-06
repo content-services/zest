@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -35,6 +34,7 @@ type PulpExporterResponse struct {
 	Repositories []string `json:"repositories"`
 	// Last attempted export for this PulpExporter
 	LastExport NullableString `json:"last_export,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PulpExporterResponse PulpExporterResponse
@@ -294,6 +294,11 @@ func (o PulpExporterResponse) ToMap() (map[string]interface{}, error) {
 	if o.LastExport.IsSet() {
 		toSerialize["last_export"] = o.LastExport.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -323,15 +328,26 @@ func (o *PulpExporterResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPulpExporterResponse := _PulpExporterResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPulpExporterResponse)
+	err = json.Unmarshal(data, &varPulpExporterResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PulpExporterResponse(varPulpExporterResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "repositories")
+		delete(additionalProperties, "last_export")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

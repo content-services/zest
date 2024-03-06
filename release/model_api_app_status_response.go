@@ -27,7 +27,10 @@ type ApiAppStatusResponse struct {
 	LastHeartbeat *time.Time `json:"last_heartbeat,omitempty"`
 	// Versions of the components installed.
 	Versions *map[string]string `json:"versions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiAppStatusResponse ApiAppStatusResponse
 
 // NewApiAppStatusResponse instantiates a new ApiAppStatusResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -161,7 +164,35 @@ func (o ApiAppStatusResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Versions) {
 		toSerialize["versions"] = o.Versions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiAppStatusResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiAppStatusResponse := _ApiAppStatusResponse{}
+
+	err = json.Unmarshal(data, &varApiAppStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiAppStatusResponse(varApiAppStatusResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_heartbeat")
+		delete(additionalProperties, "versions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiAppStatusResponse struct {

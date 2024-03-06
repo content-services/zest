@@ -29,7 +29,10 @@ type PatchedgemGemRepository struct {
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedgemGemRepository PatchedgemGemRepository
 
 // NewPatchedgemGemRepository instantiates a new PatchedgemGemRepository object
 // This constructor will assign default values to properties that have it defined,
@@ -263,7 +266,37 @@ func (o PatchedgemGemRepository) ToMap() (map[string]interface{}, error) {
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedgemGemRepository) UnmarshalJSON(data []byte) (err error) {
+	varPatchedgemGemRepository := _PatchedgemGemRepository{}
+
+	err = json.Unmarshal(data, &varPatchedgemGemRepository)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedgemGemRepository(varPatchedgemGemRepository)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedgemGemRepository struct {

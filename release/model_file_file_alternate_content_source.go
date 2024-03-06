@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -31,6 +30,7 @@ type FileFileAlternateContentSource struct {
 	Paths []string `json:"paths,omitempty"`
 	// The remote to provide alternate content source.
 	Remote string `json:"remote"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileAlternateContentSource FileFileAlternateContentSource
@@ -194,6 +194,11 @@ func (o FileFileAlternateContentSource) ToMap() (map[string]interface{}, error) 
 		toSerialize["paths"] = o.Paths
 	}
 	toSerialize["remote"] = o.Remote
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,23 @@ func (o *FileFileAlternateContentSource) UnmarshalJSON(data []byte) (err error) 
 
 	varFileFileAlternateContentSource := _FileFileAlternateContentSource{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileAlternateContentSource)
+	err = json.Unmarshal(data, &varFileFileAlternateContentSource)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileAlternateContentSource(varFileFileAlternateContentSource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_refreshed")
+		delete(additionalProperties, "paths")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

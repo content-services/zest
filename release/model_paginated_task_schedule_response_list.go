@@ -24,7 +24,10 @@ type PaginatedTaskScheduleResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []TaskScheduleResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedTaskScheduleResponseList PaginatedTaskScheduleResponseList
 
 // NewPaginatedTaskScheduleResponseList instantiates a new PaginatedTaskScheduleResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedTaskScheduleResponseList) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedTaskScheduleResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedTaskScheduleResponseList := _PaginatedTaskScheduleResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedTaskScheduleResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedTaskScheduleResponseList(varPaginatedTaskScheduleResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedTaskScheduleResponseList struct {

@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -34,6 +33,7 @@ type Domain struct {
 	RedirectToObjectStorage *bool `json:"redirect_to_object_storage,omitempty"`
 	// Boolean to hide distributions with a content guard in the content app.
 	HideGuardedDistributions *bool `json:"hide_guarded_distributions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Domain Domain
@@ -266,6 +266,11 @@ func (o Domain) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HideGuardedDistributions) {
 		toSerialize["hide_guarded_distributions"] = o.HideGuardedDistributions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -295,15 +300,25 @@ func (o *Domain) UnmarshalJSON(data []byte) (err error) {
 
 	varDomain := _Domain{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDomain)
+	err = json.Unmarshal(data, &varDomain)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Domain(varDomain)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "storage_class")
+		delete(additionalProperties, "storage_settings")
+		delete(additionalProperties, "redirect_to_object_storage")
+		delete(additionalProperties, "hide_guarded_distributions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

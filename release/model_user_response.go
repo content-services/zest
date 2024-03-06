@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -42,6 +41,7 @@ type UserResponse struct {
 	Groups []UserGroupResponse `json:"groups,omitempty"`
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserResponse UserResponse
@@ -457,6 +457,11 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HiddenFields) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -484,15 +489,30 @@ func (o *UserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUserResponse := _UserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserResponse)
+	err = json.Unmarshal(data, &varUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserResponse(varUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "is_staff")
+		delete(additionalProperties, "is_active")
+		delete(additionalProperties, "date_joined")
+		delete(additionalProperties, "groups")
+		delete(additionalProperties, "hidden_fields")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

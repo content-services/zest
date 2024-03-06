@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -29,6 +28,7 @@ type ImageResponse struct {
 	// Compatible platforms.
 	Platforms string `json:"platforms"`
 	Artifact NullableArtifactResponse `json:"artifact"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageResponse ImageResponse
@@ -166,6 +166,11 @@ func (o ImageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["path"] = o.Path
 	toSerialize["platforms"] = o.Platforms
 	toSerialize["artifact"] = o.Artifact.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -196,15 +201,23 @@ func (o *ImageResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varImageResponse := _ImageResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageResponse)
+	err = json.Unmarshal(data, &varImageResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageResponse(varImageResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "platforms")
+		delete(additionalProperties, "artifact")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

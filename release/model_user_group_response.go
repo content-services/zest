@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type UserGroupResponse struct {
 	// Name.
 	Name string `json:"name"`
 	PulpHref *string `json:"pulp_href,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserGroupResponse UserGroupResponse
@@ -117,6 +117,11 @@ func (o UserGroupResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *UserGroupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUserGroupResponse := _UserGroupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserGroupResponse)
+	err = json.Unmarshal(data, &varUserGroupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserGroupResponse(varUserGroupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_href")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

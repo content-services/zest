@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -43,6 +42,7 @@ type TaskGroupResponse struct {
 	Canceling *int64 `json:"canceling,omitempty"`
 	GroupProgressReports []GroupProgressReportResponse `json:"group_progress_reports,omitempty"`
 	Tasks []MinimalTaskResponse `json:"tasks,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TaskGroupResponse TaskGroupResponse
@@ -476,6 +476,11 @@ func (o TaskGroupResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tasks) {
 		toSerialize["tasks"] = o.Tasks
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -504,15 +509,31 @@ func (o *TaskGroupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTaskGroupResponse := _TaskGroupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTaskGroupResponse)
+	err = json.Unmarshal(data, &varTaskGroupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TaskGroupResponse(varTaskGroupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "all_tasks_dispatched")
+		delete(additionalProperties, "waiting")
+		delete(additionalProperties, "skipped")
+		delete(additionalProperties, "running")
+		delete(additionalProperties, "completed")
+		delete(additionalProperties, "canceled")
+		delete(additionalProperties, "failed")
+		delete(additionalProperties, "canceling")
+		delete(additionalProperties, "group_progress_reports")
+		delete(additionalProperties, "tasks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

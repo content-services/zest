@@ -26,7 +26,10 @@ type PulpImportCheckResponse struct {
 	Path *EvaluationResponse `json:"path,omitempty"`
 	// Evaluation of proposed 'repo_mapping' file for PulpImport
 	RepoMapping *EvaluationResponse `json:"repo_mapping,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PulpImportCheckResponse PulpImportCheckResponse
 
 // NewPulpImportCheckResponse instantiates a new PulpImportCheckResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o PulpImportCheckResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RepoMapping) {
 		toSerialize["repo_mapping"] = o.RepoMapping
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PulpImportCheckResponse) UnmarshalJSON(data []byte) (err error) {
+	varPulpImportCheckResponse := _PulpImportCheckResponse{}
+
+	err = json.Unmarshal(data, &varPulpImportCheckResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpImportCheckResponse(varPulpImportCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "toc")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "repo_mapping")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePulpImportCheckResponse struct {

@@ -23,7 +23,10 @@ type GemGemPublication struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// A URI of the repository to be published.
 	Repository *string `json:"repository,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GemGemPublication GemGemPublication
 
 // NewGemGemPublication instantiates a new GemGemPublication object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o GemGemPublication) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GemGemPublication) UnmarshalJSON(data []byte) (err error) {
+	varGemGemPublication := _GemGemPublication{}
+
+	err = json.Unmarshal(data, &varGemGemPublication)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GemGemPublication(varGemGemPublication)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGemGemPublication struct {

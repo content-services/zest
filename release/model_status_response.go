@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -40,6 +39,7 @@ type StatusResponse struct {
 	ContentSettings ContentSettingsResponse `json:"content_settings"`
 	// Is Domains enabled
 	DomainEnabled bool `json:"domain_enabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StatusResponse StatusResponse
@@ -323,6 +323,11 @@ func (o StatusResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["content_settings"] = o.ContentSettings
 	toSerialize["domain_enabled"] = o.DomainEnabled
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -356,15 +361,28 @@ func (o *StatusResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varStatusResponse := _StatusResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStatusResponse)
+	err = json.Unmarshal(data, &varStatusResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StatusResponse(varStatusResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "versions")
+		delete(additionalProperties, "online_workers")
+		delete(additionalProperties, "online_api_apps")
+		delete(additionalProperties, "online_content_apps")
+		delete(additionalProperties, "database_connection")
+		delete(additionalProperties, "redis_connection")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "content_settings")
+		delete(additionalProperties, "domain_enabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

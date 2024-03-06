@@ -26,7 +26,10 @@ type PatchedFilesystemExporter struct {
 	Path *string `json:"path,omitempty"`
 	// Method of exporting* `write` - Export by writing* `hardlink` - Export by hardlinking* `symlink` - Export by symlinking
 	Method *MethodEnum `json:"method,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedFilesystemExporter PatchedFilesystemExporter
 
 // NewPatchedFilesystemExporter instantiates a new PatchedFilesystemExporter object
 // This constructor will assign default values to properties that have it defined,
@@ -164,7 +167,35 @@ func (o PatchedFilesystemExporter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedFilesystemExporter) UnmarshalJSON(data []byte) (err error) {
+	varPatchedFilesystemExporter := _PatchedFilesystemExporter{}
+
+	err = json.Unmarshal(data, &varPatchedFilesystemExporter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedFilesystemExporter(varPatchedFilesystemExporter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "method")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedFilesystemExporter struct {

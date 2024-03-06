@@ -93,7 +93,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader:    make(map[string]string),
-		UserAgent:        "OpenAPI-Generator/4ead5b9864b4839e4e5d2a6348bd7d266e863bc57952eab83695d62ad2ea3652/go",
+		UserAgent:        "OpenAPI-Generator/9d5beb82a436bd89a92e4d8a965b73beb94ad5f37d2e4353b86e245a563d9642/go",
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{

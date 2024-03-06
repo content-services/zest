@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -38,6 +37,7 @@ type TaskScheduleResponse struct {
 	NextDispatch NullableTime `json:"next_dispatch,omitempty"`
 	// The last task dispatched by this schedule.
 	LastTask *string `json:"last_task,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TaskScheduleResponse TaskScheduleResponse
@@ -334,6 +334,11 @@ func (o TaskScheduleResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LastTask) {
 		toSerialize["last_task"] = o.LastTask
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -363,15 +368,27 @@ func (o *TaskScheduleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTaskScheduleResponse := _TaskScheduleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTaskScheduleResponse)
+	err = json.Unmarshal(data, &varTaskScheduleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TaskScheduleResponse(varTaskScheduleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "task_name")
+		delete(additionalProperties, "dispatch_interval")
+		delete(additionalProperties, "next_dispatch")
+		delete(additionalProperties, "last_task")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

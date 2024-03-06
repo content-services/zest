@@ -32,7 +32,10 @@ type PulpExport struct {
 	ChunkSize *string `json:"chunk_size,omitempty"`
 	// List of explicit last-exported-repo-version hrefs (replaces last_export).
 	StartVersions []string `json:"start_versions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PulpExport PulpExport
 
 // NewPulpExport instantiates a new PulpExport object
 // This constructor will assign default values to properties that have it defined,
@@ -289,7 +292,38 @@ func (o PulpExport) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartVersions) {
 		toSerialize["start_versions"] = o.StartVersions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PulpExport) UnmarshalJSON(data []byte) (err error) {
+	varPulpExport := _PulpExport{}
+
+	err = json.Unmarshal(data, &varPulpExport)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PulpExport(varPulpExport)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "task")
+		delete(additionalProperties, "full")
+		delete(additionalProperties, "dry_run")
+		delete(additionalProperties, "versions")
+		delete(additionalProperties, "chunk_size")
+		delete(additionalProperties, "start_versions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePulpExport struct {

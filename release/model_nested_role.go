@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type NestedRole struct {
 	Users []string `json:"users,omitempty"`
 	Groups []string `json:"groups,omitempty"`
 	Role string `json:"role"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NestedRole NestedRole
@@ -152,6 +152,11 @@ func (o NestedRole) ToMap() (map[string]interface{}, error) {
 		toSerialize["groups"] = o.Groups
 	}
 	toSerialize["role"] = o.Role
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *NestedRole) UnmarshalJSON(data []byte) (err error) {
 
 	varNestedRole := _NestedRole{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNestedRole)
+	err = json.Unmarshal(data, &varNestedRole)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NestedRole(varNestedRole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "users")
+		delete(additionalProperties, "groups")
+		delete(additionalProperties, "role")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

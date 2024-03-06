@@ -24,7 +24,10 @@ type PaginatedRBACContentGuardResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []RBACContentGuardResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedRBACContentGuardResponseList PaginatedRBACContentGuardResponseList
 
 // NewPaginatedRBACContentGuardResponseList instantiates a new PaginatedRBACContentGuardResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedRBACContentGuardResponseList) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedRBACContentGuardResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedRBACContentGuardResponseList := _PaginatedRBACContentGuardResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedRBACContentGuardResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedRBACContentGuardResponseList(varPaginatedRBACContentGuardResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedRBACContentGuardResponseList struct {

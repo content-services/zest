@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type RpmUpdateCollection struct {
 	Shortname NullableString `json:"shortname"`
 	// Collection modular NSVCA.
 	Module map[string]interface{} `json:"module"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmUpdateCollection RpmUpdateCollection
@@ -145,6 +145,11 @@ func (o RpmUpdateCollection) ToMap() (map[string]interface{}, error) {
 	if o.Module != nil {
 		toSerialize["module"] = o.Module
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -174,15 +179,22 @@ func (o *RpmUpdateCollection) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmUpdateCollection := _RpmUpdateCollection{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmUpdateCollection)
+	err = json.Unmarshal(data, &varRpmUpdateCollection)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmUpdateCollection(varRpmUpdateCollection)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "shortname")
+		delete(additionalProperties, "module")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

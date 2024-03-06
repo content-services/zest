@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type StorageResponse struct {
 	Used NullableInt64 `json:"used"`
 	// Number of free bytes
 	Free NullableInt64 `json:"free"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StorageResponse StorageResponse
@@ -143,6 +143,11 @@ func (o StorageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["total"] = o.Total.Get()
 	toSerialize["used"] = o.Used.Get()
 	toSerialize["free"] = o.Free.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *StorageResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varStorageResponse := _StorageResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStorageResponse)
+	err = json.Unmarshal(data, &varStorageResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StorageResponse(varStorageResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "used")
+		delete(additionalProperties, "free")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

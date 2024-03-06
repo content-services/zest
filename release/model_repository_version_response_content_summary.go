@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -25,6 +24,7 @@ type RepositoryVersionResponseContentSummary struct {
 	Added map[string]map[string]interface{} `json:"added"`
 	Removed map[string]map[string]interface{} `json:"removed"`
 	Present map[string]map[string]interface{} `json:"present"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RepositoryVersionResponseContentSummary RepositoryVersionResponseContentSummary
@@ -134,6 +134,11 @@ func (o RepositoryVersionResponseContentSummary) ToMap() (map[string]interface{}
 	toSerialize["added"] = o.Added
 	toSerialize["removed"] = o.Removed
 	toSerialize["present"] = o.Present
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *RepositoryVersionResponseContentSummary) UnmarshalJSON(data []byte) (er
 
 	varRepositoryVersionResponseContentSummary := _RepositoryVersionResponseContentSummary{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRepositoryVersionResponseContentSummary)
+	err = json.Unmarshal(data, &varRepositoryVersionResponseContentSummary)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RepositoryVersionResponseContentSummary(varRepositoryVersionResponseContentSummary)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "added")
+		delete(additionalProperties, "removed")
+		delete(additionalProperties, "present")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

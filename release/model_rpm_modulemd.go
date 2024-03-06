@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -48,6 +47,7 @@ type RpmModulemd struct {
 	Profiles map[string]interface{} `json:"profiles"`
 	// Description of module.
 	Description string `json:"description"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmModulemd RpmModulemd
@@ -456,6 +456,11 @@ func (o RpmModulemd) ToMap() (map[string]interface{}, error) {
 		toSerialize["profiles"] = o.Profiles
 	}
 	toSerialize["description"] = o.Description
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -492,15 +497,32 @@ func (o *RpmModulemd) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmModulemd := _RpmModulemd{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmModulemd)
+	err = json.Unmarshal(data, &varRpmModulemd)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmModulemd(varRpmModulemd)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "stream")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "static_context")
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "arch")
+		delete(additionalProperties, "artifacts")
+		delete(additionalProperties, "dependencies")
+		delete(additionalProperties, "packages")
+		delete(additionalProperties, "snippet")
+		delete(additionalProperties, "profiles")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

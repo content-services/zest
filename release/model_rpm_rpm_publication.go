@@ -37,7 +37,10 @@ type RpmRpmPublication struct {
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmRpmPublication RpmRpmPublication
 
 // NewRpmRpmPublication instantiates a new RpmRpmPublication object
 // This constructor will assign default values to properties that have it defined,
@@ -401,7 +404,41 @@ func (o RpmRpmPublication) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CompressionType) {
 		toSerialize["compression_type"] = o.CompressionType
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmRpmPublication) UnmarshalJSON(data []byte) (err error) {
+	varRpmRpmPublication := _RpmRpmPublication{}
+
+	err = json.Unmarshal(data, &varRpmRpmPublication)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmRpmPublication(varRpmRpmPublication)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "metadata_checksum_type")
+		delete(additionalProperties, "package_checksum_type")
+		delete(additionalProperties, "gpgcheck")
+		delete(additionalProperties, "repo_gpgcheck")
+		delete(additionalProperties, "repo_config")
+		delete(additionalProperties, "compression_type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmRpmPublication struct {

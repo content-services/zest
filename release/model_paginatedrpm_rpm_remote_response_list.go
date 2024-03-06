@@ -24,7 +24,10 @@ type PaginatedrpmRpmRemoteResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []RpmRpmRemoteResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedrpmRpmRemoteResponseList PaginatedrpmRpmRemoteResponseList
 
 // NewPaginatedrpmRpmRemoteResponseList instantiates a new PaginatedrpmRpmRemoteResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedrpmRpmRemoteResponseList) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedrpmRpmRemoteResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedrpmRpmRemoteResponseList := _PaginatedrpmRpmRemoteResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedrpmRpmRemoteResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedrpmRpmRemoteResponseList(varPaginatedrpmRpmRemoteResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedrpmRpmRemoteResponseList struct {

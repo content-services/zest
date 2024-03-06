@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -32,6 +31,7 @@ type AddonResponse struct {
 	Type string `json:"type"`
 	// Relative path to directory with binary RPMs.
 	Packages string `json:"packages"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AddonResponse AddonResponse
@@ -193,6 +193,11 @@ func (o AddonResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
 	toSerialize["packages"] = o.Packages
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *AddonResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAddonResponse := _AddonResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddonResponse)
+	err = json.Unmarshal(data, &varAddonResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AddonResponse(varAddonResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "addon_id")
+		delete(additionalProperties, "uid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "packages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

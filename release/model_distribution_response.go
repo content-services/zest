@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -41,6 +40,7 @@ type DistributionResponse struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionResponse DistributionResponse
@@ -428,6 +428,11 @@ func (o DistributionResponse) ToMap() (map[string]interface{}, error) {
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -456,15 +461,29 @@ func (o *DistributionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDistributionResponse := _DistributionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionResponse)
+	err = json.Unmarshal(data, &varDistributionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionResponse(varDistributionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

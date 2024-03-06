@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type EvaluationResponse struct {
 	IsValid bool `json:"is_valid"`
 	// Messages describing results of all evaluations done. May be an empty list.
 	Messages []string `json:"messages"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EvaluationResponse EvaluationResponse
@@ -137,6 +137,11 @@ func (o EvaluationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["context"] = o.Context
 	toSerialize["is_valid"] = o.IsValid
 	toSerialize["messages"] = o.Messages
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *EvaluationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varEvaluationResponse := _EvaluationResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEvaluationResponse)
+	err = json.Unmarshal(data, &varEvaluationResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EvaluationResponse(varEvaluationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "is_valid")
+		delete(additionalProperties, "messages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

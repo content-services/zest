@@ -24,7 +24,10 @@ type PaginatedGroupResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []GroupResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedGroupResponseList PaginatedGroupResponseList
 
 // NewPaginatedGroupResponseList instantiates a new PaginatedGroupResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedGroupResponseList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedGroupResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedGroupResponseList := _PaginatedGroupResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedGroupResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedGroupResponseList(varPaginatedGroupResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedGroupResponseList struct {

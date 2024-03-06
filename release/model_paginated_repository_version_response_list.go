@@ -24,7 +24,10 @@ type PaginatedRepositoryVersionResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []RepositoryVersionResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedRepositoryVersionResponseList PaginatedRepositoryVersionResponseList
 
 // NewPaginatedRepositoryVersionResponseList instantiates a new PaginatedRepositoryVersionResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedRepositoryVersionResponseList) ToMap() (map[string]interface{},
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedRepositoryVersionResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedRepositoryVersionResponseList := _PaginatedRepositoryVersionResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedRepositoryVersionResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedRepositoryVersionResponseList(varPaginatedRepositoryVersionResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedRepositoryVersionResponseList struct {

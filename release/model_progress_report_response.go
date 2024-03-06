@@ -32,7 +32,10 @@ type ProgressReportResponse struct {
 	Done *int64 `json:"done,omitempty"`
 	// The suffix to be shown with the progress report.
 	Suffix NullableString `json:"suffix,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProgressReportResponse ProgressReportResponse
 
 // NewProgressReportResponse instantiates a new ProgressReportResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -281,7 +284,38 @@ func (o ProgressReportResponse) ToMap() (map[string]interface{}, error) {
 	if o.Suffix.IsSet() {
 		toSerialize["suffix"] = o.Suffix.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProgressReportResponse) UnmarshalJSON(data []byte) (err error) {
+	varProgressReportResponse := _ProgressReportResponse{}
+
+	err = json.Unmarshal(data, &varProgressReportResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProgressReportResponse(varProgressReportResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "total")
+		delete(additionalProperties, "done")
+		delete(additionalProperties, "suffix")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProgressReportResponse struct {

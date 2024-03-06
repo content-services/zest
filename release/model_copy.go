@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type Copy struct {
 	Config map[string]interface{} `json:"config"`
 	// Also copy dependencies of the content being copied.
 	DependencySolving *bool `json:"dependency_solving,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Copy Copy
@@ -122,6 +122,11 @@ func (o Copy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DependencySolving) {
 		toSerialize["dependency_solving"] = o.DependencySolving
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -149,15 +154,21 @@ func (o *Copy) UnmarshalJSON(data []byte) (err error) {
 
 	varCopy := _Copy{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCopy)
+	err = json.Unmarshal(data, &varCopy)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Copy(varCopy)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "dependency_solving")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

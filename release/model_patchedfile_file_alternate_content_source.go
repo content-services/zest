@@ -29,7 +29,10 @@ type PatchedfileFileAlternateContentSource struct {
 	Paths []string `json:"paths,omitempty"`
 	// The remote to provide alternate content source.
 	Remote *string `json:"remote,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedfileFileAlternateContentSource PatchedfileFileAlternateContentSource
 
 // NewPatchedfileFileAlternateContentSource instantiates a new PatchedfileFileAlternateContentSource object
 // This constructor will assign default values to properties that have it defined,
@@ -208,7 +211,36 @@ func (o PatchedfileFileAlternateContentSource) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Remote) {
 		toSerialize["remote"] = o.Remote
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedfileFileAlternateContentSource) UnmarshalJSON(data []byte) (err error) {
+	varPatchedfileFileAlternateContentSource := _PatchedfileFileAlternateContentSource{}
+
+	err = json.Unmarshal(data, &varPatchedfileFileAlternateContentSource)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedfileFileAlternateContentSource(varPatchedfileFileAlternateContentSource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_refreshed")
+		delete(additionalProperties, "paths")
+		delete(additionalProperties, "remote")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedfileFileAlternateContentSource struct {

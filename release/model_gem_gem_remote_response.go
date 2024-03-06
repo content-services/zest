@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -64,6 +63,7 @@ type GemGemRemoteResponse struct {
 	Prereleases *bool `json:"prereleases,omitempty"`
 	Includes map[string]string `json:"includes,omitempty"`
 	Excludes map[string]string `json:"excludes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GemGemRemoteResponse GemGemRemoteResponse
@@ -992,6 +992,11 @@ func (o GemGemRemoteResponse) ToMap() (map[string]interface{}, error) {
 	if o.Excludes != nil {
 		toSerialize["excludes"] = o.Excludes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -1020,15 +1025,42 @@ func (o *GemGemRemoteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGemGemRemoteResponse := _GemGemRemoteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGemGemRemoteResponse)
+	err = json.Unmarshal(data, &varGemGemRemoteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GemGemRemoteResponse(varGemGemRemoteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "proxy_url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "policy")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "hidden_fields")
+		delete(additionalProperties, "prereleases")
+		delete(additionalProperties, "includes")
+		delete(additionalProperties, "excludes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

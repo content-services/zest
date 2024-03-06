@@ -32,7 +32,10 @@ type PatchedDomain struct {
 	RedirectToObjectStorage *bool `json:"redirect_to_object_storage,omitempty"`
 	// Boolean to hide distributions with a content guard in the content app.
 	HideGuardedDistributions *bool `json:"hide_guarded_distributions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedDomain PatchedDomain
 
 // NewPatchedDomain instantiates a new PatchedDomain object
 // This constructor will assign default values to properties that have it defined,
@@ -289,7 +292,38 @@ func (o PatchedDomain) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HideGuardedDistributions) {
 		toSerialize["hide_guarded_distributions"] = o.HideGuardedDistributions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedDomain) UnmarshalJSON(data []byte) (err error) {
+	varPatchedDomain := _PatchedDomain{}
+
+	err = json.Unmarshal(data, &varPatchedDomain)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedDomain(varPatchedDomain)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "storage_class")
+		delete(additionalProperties, "storage_settings")
+		delete(additionalProperties, "redirect_to_object_storage")
+		delete(additionalProperties, "hide_guarded_distributions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedDomain struct {

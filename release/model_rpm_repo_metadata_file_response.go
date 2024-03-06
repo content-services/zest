@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -50,6 +49,7 @@ type RpmRepoMetadataFileResponse struct {
 	ChecksumType string `json:"checksum_type"`
 	// Checksum for the file.
 	Checksum string `json:"checksum"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRepoMetadataFileResponse RpmRepoMetadataFileResponse
@@ -535,6 +535,11 @@ func (o RpmRepoMetadataFileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["data_type"] = o.DataType
 	toSerialize["checksum_type"] = o.ChecksumType
 	toSerialize["checksum"] = o.Checksum
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -565,15 +570,33 @@ func (o *RpmRepoMetadataFileResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmRepoMetadataFileResponse := _RpmRepoMetadataFileResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRepoMetadataFileResponse)
+	err = json.Unmarshal(data, &varRpmRepoMetadataFileResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRepoMetadataFileResponse(varRpmRepoMetadataFileResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "md5")
+		delete(additionalProperties, "sha1")
+		delete(additionalProperties, "sha224")
+		delete(additionalProperties, "sha256")
+		delete(additionalProperties, "sha384")
+		delete(additionalProperties, "sha512")
+		delete(additionalProperties, "artifact")
+		delete(additionalProperties, "relative_path")
+		delete(additionalProperties, "data_type")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "checksum")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -27,7 +27,10 @@ type RpmUpdateRecord struct {
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RpmUpdateRecord RpmUpdateRecord
 
 // NewRpmUpdateRecord instantiates a new RpmUpdateRecord object
 // This constructor will assign default values to properties that have it defined,
@@ -161,7 +164,35 @@ func (o RpmUpdateRecord) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RpmUpdateRecord) UnmarshalJSON(data []byte) (err error) {
+	varRpmUpdateRecord := _RpmUpdateRecord{}
+
+	err = json.Unmarshal(data, &varRpmUpdateRecord)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RpmUpdateRecord(varRpmUpdateRecord)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "upload")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRpmUpdateRecord struct {

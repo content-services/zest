@@ -32,7 +32,10 @@ type FilesystemExportResponse struct {
 	ExportedResources []string `json:"exported_resources,omitempty"`
 	// Any additional parameters that were used to create the export.
 	Params map[string]interface{} `json:"params,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FilesystemExportResponse FilesystemExportResponse
 
 // NewFilesystemExportResponse instantiates a new FilesystemExportResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -281,7 +284,38 @@ func (o FilesystemExportResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Params) {
 		toSerialize["params"] = o.Params
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FilesystemExportResponse) UnmarshalJSON(data []byte) (err error) {
+	varFilesystemExportResponse := _FilesystemExportResponse{}
+
+	err = json.Unmarshal(data, &varFilesystemExportResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FilesystemExportResponse(varFilesystemExportResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "task")
+		delete(additionalProperties, "exported_resources")
+		delete(additionalProperties, "params")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFilesystemExportResponse struct {

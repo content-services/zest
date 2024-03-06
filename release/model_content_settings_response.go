@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ContentSettingsResponse struct {
 	ContentOrigin string `json:"content_origin"`
 	// The CONTENT_PATH_PREFIX setting for this Pulp instance
 	ContentPathPrefix string `json:"content_path_prefix"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContentSettingsResponse ContentSettingsResponse
@@ -109,6 +109,11 @@ func (o ContentSettingsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["content_origin"] = o.ContentOrigin
 	toSerialize["content_path_prefix"] = o.ContentPathPrefix
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *ContentSettingsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varContentSettingsResponse := _ContentSettingsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContentSettingsResponse)
+	err = json.Unmarshal(data, &varContentSettingsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContentSettingsResponse(varContentSettingsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content_origin")
+		delete(additionalProperties, "content_path_prefix")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

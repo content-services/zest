@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -43,6 +42,7 @@ type FileFileDistributionResponse struct {
 	Repository NullableString `json:"repository,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileFileDistributionResponse FileFileDistributionResponse
@@ -475,6 +475,11 @@ func (o FileFileDistributionResponse) ToMap() (map[string]interface{}, error) {
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -503,15 +508,30 @@ func (o *FileFileDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varFileFileDistributionResponse := _FileFileDistributionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileFileDistributionResponse)
+	err = json.Unmarshal(data, &varFileFileDistributionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileFileDistributionResponse(varFileFileDistributionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -28,7 +28,10 @@ type FilesystemExport struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// The URI of the last-exported-repo-version.
 	StartRepositoryVersion *string `json:"start_repository_version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FilesystemExport FilesystemExport
 
 // NewFilesystemExport instantiates a new FilesystemExport object
 // This constructor will assign default values to properties that have it defined,
@@ -207,7 +210,36 @@ func (o FilesystemExport) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartRepositoryVersion) {
 		toSerialize["start_repository_version"] = o.StartRepositoryVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *FilesystemExport) UnmarshalJSON(data []byte) (err error) {
+	varFilesystemExport := _FilesystemExport{}
+
+	err = json.Unmarshal(data, &varFilesystemExport)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FilesystemExport(varFilesystemExport)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "task")
+		delete(additionalProperties, "publication")
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "start_repository_version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFilesystemExport struct {

@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &RemoteResponseHiddenFieldsInner{}
 type RemoteResponseHiddenFieldsInner struct {
 	Name string `json:"name"`
 	IsSet bool `json:"is_set"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RemoteResponseHiddenFieldsInner RemoteResponseHiddenFieldsInner
@@ -107,6 +107,11 @@ func (o RemoteResponseHiddenFieldsInner) ToMap() (map[string]interface{}, error)
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["is_set"] = o.IsSet
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *RemoteResponseHiddenFieldsInner) UnmarshalJSON(data []byte) (err error)
 
 	varRemoteResponseHiddenFieldsInner := _RemoteResponseHiddenFieldsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRemoteResponseHiddenFieldsInner)
+	err = json.Unmarshal(data, &varRemoteResponseHiddenFieldsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RemoteResponseHiddenFieldsInner(varRemoteResponseHiddenFieldsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "is_set")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

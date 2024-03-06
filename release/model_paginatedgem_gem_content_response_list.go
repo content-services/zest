@@ -24,7 +24,10 @@ type PaginatedgemGemContentResponseList struct {
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
 	Results []GemGemContentResponse `json:"results,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PaginatedgemGemContentResponseList PaginatedgemGemContentResponseList
 
 // NewPaginatedgemGemContentResponseList instantiates a new PaginatedgemGemContentResponseList object
 // This constructor will assign default values to properties that have it defined,
@@ -213,7 +216,36 @@ func (o PaginatedgemGemContentResponseList) ToMap() (map[string]interface{}, err
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PaginatedgemGemContentResponseList) UnmarshalJSON(data []byte) (err error) {
+	varPaginatedgemGemContentResponseList := _PaginatedgemGemContentResponseList{}
+
+	err = json.Unmarshal(data, &varPaginatedgemGemContentResponseList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaginatedgemGemContentResponseList(varPaginatedgemGemContentResponseList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "next")
+		delete(additionalProperties, "previous")
+		delete(additionalProperties, "results")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePaginatedgemGemContentResponseList struct {

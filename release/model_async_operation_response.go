@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ var _ MappedNullable = &AsyncOperationResponse{}
 type AsyncOperationResponse struct {
 	// The href of the task.
 	Task string `json:"task"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AsyncOperationResponse AsyncOperationResponse
@@ -81,6 +81,11 @@ func (o AsyncOperationResponse) MarshalJSON() ([]byte, error) {
 func (o AsyncOperationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["task"] = o.Task
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *AsyncOperationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAsyncOperationResponse := _AsyncOperationResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAsyncOperationResponse)
+	err = json.Unmarshal(data, &varAsyncOperationResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AsyncOperationResponse(varAsyncOperationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "task")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

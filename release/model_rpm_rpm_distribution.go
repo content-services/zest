@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -37,6 +36,7 @@ type RpmRpmDistribution struct {
 	Publication NullableString `json:"publication,omitempty"`
 	// An option specifying whether Pulp should generate *.repo files.
 	GenerateRepoConfig *bool `json:"generate_repo_config,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRpmDistribution RpmRpmDistribution
@@ -368,6 +368,11 @@ func (o RpmRpmDistribution) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.GenerateRepoConfig) {
 		toSerialize["generate_repo_config"] = o.GenerateRepoConfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -396,15 +401,27 @@ func (o *RpmRpmDistribution) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmRpmDistribution := _RpmRpmDistribution{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRpmDistribution)
+	err = json.Unmarshal(data, &varRpmRpmDistribution)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRpmDistribution(varRpmRpmDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "publication")
+		delete(additionalProperties, "generate_repo_config")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -63,6 +62,7 @@ type RpmRpmRemoteResponse struct {
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Authentication token for SLES repositories.
 	SlesAuthToken NullableString `json:"sles_auth_token,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRpmRemoteResponse RpmRpmRemoteResponse
@@ -925,6 +925,11 @@ func (o RpmRpmRemoteResponse) ToMap() (map[string]interface{}, error) {
 	if o.SlesAuthToken.IsSet() {
 		toSerialize["sles_auth_token"] = o.SlesAuthToken.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -953,15 +958,40 @@ func (o *RpmRpmRemoteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmRpmRemoteResponse := _RpmRpmRemoteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRpmRemoteResponse)
+	err = json.Unmarshal(data, &varRpmRpmRemoteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRpmRemoteResponse(varRpmRpmRemoteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "proxy_url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "policy")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "rate_limit")
+		delete(additionalProperties, "hidden_fields")
+		delete(additionalProperties, "sles_auth_token")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

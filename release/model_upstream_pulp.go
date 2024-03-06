@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -44,6 +43,7 @@ type UpstreamPulp struct {
 	Password NullableString `json:"password,omitempty"`
 	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
 	PulpLabelSelect NullableString `json:"pulp_label_select,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpstreamPulp UpstreamPulp
@@ -503,6 +503,11 @@ func (o UpstreamPulp) ToMap() (map[string]interface{}, error) {
 	if o.PulpLabelSelect.IsSet() {
 		toSerialize["pulp_label_select"] = o.PulpLabelSelect.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -532,15 +537,30 @@ func (o *UpstreamPulp) UnmarshalJSON(data []byte) (err error) {
 
 	varUpstreamPulp := _UpstreamPulp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpstreamPulp)
+	err = json.Unmarshal(data, &varUpstreamPulp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpstreamPulp(varUpstreamPulp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "api_root")
+		delete(additionalProperties, "domain")
+		delete(additionalProperties, "ca_cert")
+		delete(additionalProperties, "client_cert")
+		delete(additionalProperties, "client_key")
+		delete(additionalProperties, "tls_validation")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "pulp_label_select")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

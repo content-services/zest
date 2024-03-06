@@ -13,7 +13,6 @@ package zest
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -28,6 +27,7 @@ type CertguardX509CertGuard struct {
 	Description NullableString `json:"description,omitempty"`
 	// A Certificate Authority (CA) certificate (or a bundle thereof) used to verify client-certificate authenticity.
 	CaCertificate string `json:"ca_certificate"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CertguardX509CertGuard CertguardX509CertGuard
@@ -156,6 +156,11 @@ func (o CertguardX509CertGuard) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["ca_certificate"] = o.CaCertificate
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -184,15 +189,22 @@ func (o *CertguardX509CertGuard) UnmarshalJSON(data []byte) (err error) {
 
 	varCertguardX509CertGuard := _CertguardX509CertGuard{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertguardX509CertGuard)
+	err = json.Unmarshal(data, &varCertguardX509CertGuard)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CertguardX509CertGuard(varCertguardX509CertGuard)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "ca_certificate")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

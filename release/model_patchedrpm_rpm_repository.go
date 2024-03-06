@@ -49,7 +49,10 @@ type PatchedrpmRpmRepository struct {
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchedrpmRpmRepository PatchedrpmRpmRepository
 
 // NewPatchedrpmRpmRepository instantiates a new PatchedrpmRpmRepository object
 // This constructor will assign default values to properties that have it defined,
@@ -707,7 +710,47 @@ func (o PatchedrpmRpmRepository) ToMap() (map[string]interface{}, error) {
 	if o.CompressionType.IsSet() {
 		toSerialize["compression_type"] = o.CompressionType.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchedrpmRpmRepository) UnmarshalJSON(data []byte) (err error) {
+	varPatchedrpmRpmRepository := _PatchedrpmRpmRepository{}
+
+	err = json.Unmarshal(data, &varPatchedrpmRpmRepository)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedrpmRpmRepository(varPatchedrpmRpmRepository)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "metadata_signing_service")
+		delete(additionalProperties, "retain_package_versions")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "metadata_checksum_type")
+		delete(additionalProperties, "package_checksum_type")
+		delete(additionalProperties, "gpgcheck")
+		delete(additionalProperties, "repo_gpgcheck")
+		delete(additionalProperties, "repo_config")
+		delete(additionalProperties, "compression_type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchedrpmRpmRepository struct {

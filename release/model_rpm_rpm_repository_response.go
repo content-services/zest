@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -61,6 +60,7 @@ type RpmRpmRepositoryResponse struct {
 	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RpmRpmRepositoryResponse RpmRpmRepositoryResponse
@@ -922,6 +922,11 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if o.CompressionType.IsSet() {
 		toSerialize["compression_type"] = o.CompressionType.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -949,15 +954,40 @@ func (o *RpmRpmRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRpmRpmRepositoryResponse := _RpmRpmRepositoryResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRpmRpmRepositoryResponse)
+	err = json.Unmarshal(data, &varRpmRpmRepositoryResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RpmRpmRepositoryResponse(varRpmRpmRepositoryResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "versions_href")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "latest_version_href")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "remote")
+		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "metadata_signing_service")
+		delete(additionalProperties, "retain_package_versions")
+		delete(additionalProperties, "checksum_type")
+		delete(additionalProperties, "metadata_checksum_type")
+		delete(additionalProperties, "package_checksum_type")
+		delete(additionalProperties, "gpgcheck")
+		delete(additionalProperties, "repo_gpgcheck")
+		delete(additionalProperties, "sqlite_metadata")
+		delete(additionalProperties, "repo_config")
+		delete(additionalProperties, "compression_type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
