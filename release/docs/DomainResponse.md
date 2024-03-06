@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Name** | **string** | A name for this domain. | 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | Backend storage class for domain.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage | 
@@ -81,6 +82,31 @@ SetPulpCreated sets PulpCreated field to given value.
 `func (o *DomainResponse) HasPulpCreated() bool`
 
 HasPulpCreated returns a boolean if a field has been set.
+
+### GetPulpLastUpdated
+
+`func (o *DomainResponse) GetPulpLastUpdated() time.Time`
+
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
+
+### GetPulpLastUpdatedOk
+
+`func (o *DomainResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
+
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLastUpdated
+
+`func (o *DomainResponse) SetPulpLastUpdated(v time.Time)`
+
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
+
+### HasPulpLastUpdated
+
+`func (o *DomainResponse) HasPulpLastUpdated() bool`
+
+HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetName
 

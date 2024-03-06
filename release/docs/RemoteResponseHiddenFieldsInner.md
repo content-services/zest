@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**IsSet** | Pointer to **bool** |  | [optional] 
+**Name** | **string** |  | 
+**IsSet** | **bool** |  | 
 
 ## Methods
 
 ### NewRemoteResponseHiddenFieldsInner
 
-`func NewRemoteResponseHiddenFieldsInner() *RemoteResponseHiddenFieldsInner`
+`func NewRemoteResponseHiddenFieldsInner(name string, isSet bool, ) *RemoteResponseHiddenFieldsInner`
 
 NewRemoteResponseHiddenFieldsInner instantiates a new RemoteResponseHiddenFieldsInner object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *RemoteResponseHiddenFieldsInner) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetIsSet
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetIsSet sets IsSet field to given value.
 
-### HasIsSet
-
-`func (o *RemoteResponseHiddenFieldsInner) HasIsSet() bool`
-
-HasIsSet returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

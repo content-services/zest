@@ -26,6 +26,8 @@ type UpstreamPulpResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// Timestamp of the most recent update of the remote.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A unique name for this Pulp server.
 	Name string `json:"name"`
 	// The transport, hostname, and an optional port of the Pulp server. e.g. https://example.com
@@ -40,8 +42,6 @@ type UpstreamPulpResponse struct {
 	ClientCert NullableString `json:"client_cert,omitempty"`
 	// If True, TLS peer validation must be performed.
 	TlsValidation *bool `json:"tls_validation,omitempty"`
-	// Timestamp of the most recent update of the remote.
-	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
@@ -132,6 +132,38 @@ func (o *UpstreamPulpResponse) HasPulpCreated() bool {
 // SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
 func (o *UpstreamPulpResponse) SetPulpCreated(v time.Time) {
 	o.PulpCreated = &v
+}
+
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *UpstreamPulpResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpLastUpdated
+}
+
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpstreamPulpResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		return nil, false
+	}
+	return o.PulpLastUpdated, true
+}
+
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *UpstreamPulpResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetName returns the Name field value
@@ -364,38 +396,6 @@ func (o *UpstreamPulpResponse) SetTlsValidation(v bool) {
 	o.TlsValidation = &v
 }
 
-// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
-func (o *UpstreamPulpResponse) GetPulpLastUpdated() time.Time {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.PulpLastUpdated
-}
-
-// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpstreamPulpResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		return nil, false
-	}
-	return o.PulpLastUpdated, true
-}
-
-// HasPulpLastUpdated returns a boolean if a field has been set.
-func (o *UpstreamPulpResponse) HasPulpLastUpdated() bool {
-	if o != nil && !IsNil(o.PulpLastUpdated) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
-func (o *UpstreamPulpResponse) SetPulpLastUpdated(v time.Time) {
-	o.PulpLastUpdated = &v
-}
-
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
 func (o *UpstreamPulpResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
@@ -486,6 +486,9 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["base_url"] = o.BaseUrl
 	toSerialize["api_root"] = o.ApiRoot
@@ -500,9 +503,6 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TlsValidation) {
 		toSerialize["tls_validation"] = o.TlsValidation
-	}
-	if !IsNil(o.PulpLastUpdated) {
-		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	if !IsNil(o.HiddenFields) {
 		toSerialize["hidden_fields"] = o.HiddenFields

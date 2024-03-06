@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Name** | **string** | Unique name of the file system exporter. | 
 **Path** | **string** | File system location to export to. | 
 **Method** | Pointer to [**MethodEnum**](MethodEnum.md) | Method of exporting* &#x60;write&#x60; - Export by writing* &#x60;hardlink&#x60; - Export by hardlinking* &#x60;symlink&#x60; - Export by symlinking | [optional] [default to METHODENUM_WRITE]
@@ -78,6 +79,31 @@ SetPulpCreated sets PulpCreated field to given value.
 `func (o *FilesystemExporterResponse) HasPulpCreated() bool`
 
 HasPulpCreated returns a boolean if a field has been set.
+
+### GetPulpLastUpdated
+
+`func (o *FilesystemExporterResponse) GetPulpLastUpdated() time.Time`
+
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
+
+### GetPulpLastUpdatedOk
+
+`func (o *FilesystemExporterResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
+
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLastUpdated
+
+`func (o *FilesystemExporterResponse) SetPulpLastUpdated(v time.Time)`
+
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
+
+### HasPulpLastUpdated
+
+`func (o *FilesystemExporterResponse) HasPulpLastUpdated() bool`
+
+HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetName
 

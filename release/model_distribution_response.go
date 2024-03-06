@@ -26,6 +26,8 @@ type DistributionResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
 	// The URL for accessing the publication as defined by this distribution.
@@ -128,6 +130,38 @@ func (o *DistributionResponse) HasPulpCreated() bool {
 // SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
 func (o *DistributionResponse) SetPulpCreated(v time.Time) {
 	o.PulpCreated = &v
+}
+
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *DistributionResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpLastUpdated
+}
+
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		return nil, false
+	}
+	return o.PulpLastUpdated, true
+}
+
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *DistributionResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *DistributionResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetBasePath returns the BasePath field value
@@ -373,6 +407,9 @@ func (o DistributionResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
+	}
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["base_path"] = o.BasePath
 	if !IsNil(o.BaseUrl) {

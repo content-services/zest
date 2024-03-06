@@ -26,6 +26,8 @@ type RpmRpmRemoteResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// Timestamp of the most recent update of the remote.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A unique name for this remote.
 	Name string `json:"name"`
 	// The URL of an external content source.
@@ -39,8 +41,6 @@ type RpmRpmRemoteResponse struct {
 	// The proxy URL. Format: scheme://host:port
 	ProxyUrl NullableString `json:"proxy_url,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// Timestamp of the most recent update of the remote.
-	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// Total number of simultaneous connections. If not set then the default value will be used.
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
@@ -152,6 +152,38 @@ func (o *RpmRpmRemoteResponse) HasPulpCreated() bool {
 // SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
 func (o *RpmRpmRemoteResponse) SetPulpCreated(v time.Time) {
 	o.PulpCreated = &v
+}
+
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *RpmRpmRemoteResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpLastUpdated
+}
+
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmRemoteResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		return nil, false
+	}
+	return o.PulpLastUpdated, true
+}
+
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *RpmRpmRemoteResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *RpmRpmRemoteResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetName returns the Name field value
@@ -390,38 +422,6 @@ func (o *RpmRpmRemoteResponse) HasPulpLabels() bool {
 // SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
 func (o *RpmRpmRemoteResponse) SetPulpLabels(v map[string]string) {
 	o.PulpLabels = &v
-}
-
-// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
-func (o *RpmRpmRemoteResponse) GetPulpLastUpdated() time.Time {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.PulpLastUpdated
-}
-
-// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RpmRpmRemoteResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		return nil, false
-	}
-	return o.PulpLastUpdated, true
-}
-
-// HasPulpLastUpdated returns a boolean if a field has been set.
-func (o *RpmRpmRemoteResponse) HasPulpLastUpdated() bool {
-	if o != nil && !IsNil(o.PulpLastUpdated) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
-func (o *RpmRpmRemoteResponse) SetPulpLastUpdated(v time.Time) {
-	o.PulpLastUpdated = &v
 }
 
 // GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -872,6 +872,9 @@ func (o RpmRpmRemoteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["url"] = o.Url
 	if o.CaCert.IsSet() {
@@ -888,9 +891,6 @@ func (o RpmRpmRemoteResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if !IsNil(o.PulpLastUpdated) {
-		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	if o.DownloadConcurrency.IsSet() {
 		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()

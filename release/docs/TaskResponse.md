@@ -6,12 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **State** | Pointer to **string** | The current state of the task. The possible values include: &#39;waiting&#39;, &#39;skipped&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;canceled&#39; and &#39;canceling&#39;. | [optional] [readonly] 
 **Name** | **string** | The name of task. | 
 **LoggingCid** | **string** | The logging correlation id associated with this task | 
 **CreatedBy** | Pointer to **string** | User who dispatched this task. | [optional] [readonly] 
-**StartedAt** | Pointer to **time.Time** | Timestamp of the when this task started execution. | [optional] [readonly] 
-**FinishedAt** | Pointer to **time.Time** | Timestamp of the when this task stopped execution. | [optional] [readonly] 
+**UnblockedAt** | Pointer to **time.Time** | Timestamp of when this task was identified ready for pickup. | [optional] [readonly] 
+**StartedAt** | Pointer to **time.Time** | Timestamp of when this task started execution. | [optional] [readonly] 
+**FinishedAt** | Pointer to **time.Time** | Timestamp of when this task stopped execution. | [optional] [readonly] 
 **Error** | Pointer to **map[string]string** | A JSON Object of a fatal error encountered during the execution of this task. | [optional] [readonly] 
 **Worker** | Pointer to **string** | The worker associated with this task. This field is empty if a worker is not yet assigned. | [optional] [readonly] 
 **ParentTask** | Pointer to **string** | The parent task that spawned this task. | [optional] [readonly] 
@@ -89,6 +91,31 @@ SetPulpCreated sets PulpCreated field to given value.
 `func (o *TaskResponse) HasPulpCreated() bool`
 
 HasPulpCreated returns a boolean if a field has been set.
+
+### GetPulpLastUpdated
+
+`func (o *TaskResponse) GetPulpLastUpdated() time.Time`
+
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
+
+### GetPulpLastUpdatedOk
+
+`func (o *TaskResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
+
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLastUpdated
+
+`func (o *TaskResponse) SetPulpLastUpdated(v time.Time)`
+
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
+
+### HasPulpLastUpdated
+
+`func (o *TaskResponse) HasPulpLastUpdated() bool`
+
+HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetState
 
@@ -179,6 +206,31 @@ SetCreatedBy sets CreatedBy field to given value.
 `func (o *TaskResponse) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
+
+### GetUnblockedAt
+
+`func (o *TaskResponse) GetUnblockedAt() time.Time`
+
+GetUnblockedAt returns the UnblockedAt field if non-nil, zero value otherwise.
+
+### GetUnblockedAtOk
+
+`func (o *TaskResponse) GetUnblockedAtOk() (*time.Time, bool)`
+
+GetUnblockedAtOk returns a tuple with the UnblockedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnblockedAt
+
+`func (o *TaskResponse) SetUnblockedAt(v time.Time)`
+
+SetUnblockedAt sets UnblockedAt field to given value.
+
+### HasUnblockedAt
+
+`func (o *TaskResponse) HasUnblockedAt() bool`
+
+HasUnblockedAt returns a boolean if a field has been set.
 
 ### GetStartedAt
 

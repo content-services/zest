@@ -6,10 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Name** | **string** | The name of task. | 
 **State** | Pointer to **string** | The current state of the task. The possible values include: &#39;waiting&#39;, &#39;skipped&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;canceled&#39; and &#39;canceling&#39;. | [optional] [readonly] 
-**StartedAt** | Pointer to **time.Time** | Timestamp of the when this task started execution. | [optional] [readonly] 
-**FinishedAt** | Pointer to **time.Time** | Timestamp of the when this task stopped execution. | [optional] [readonly] 
+**UnblockedAt** | Pointer to **time.Time** | Timestamp of when this task was identified ready for pickup. | [optional] [readonly] 
+**StartedAt** | Pointer to **time.Time** | Timestamp of when this task started execution. | [optional] [readonly] 
+**FinishedAt** | Pointer to **time.Time** | Timestamp of when this task stopped execution. | [optional] [readonly] 
 **Worker** | Pointer to **string** | The worker associated with this task. This field is empty if a worker is not yet assigned. | [optional] [readonly] 
 
 ## Methods
@@ -81,6 +83,31 @@ SetPulpCreated sets PulpCreated field to given value.
 
 HasPulpCreated returns a boolean if a field has been set.
 
+### GetPulpLastUpdated
+
+`func (o *MinimalTaskResponse) GetPulpLastUpdated() time.Time`
+
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
+
+### GetPulpLastUpdatedOk
+
+`func (o *MinimalTaskResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
+
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLastUpdated
+
+`func (o *MinimalTaskResponse) SetPulpLastUpdated(v time.Time)`
+
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
+
+### HasPulpLastUpdated
+
+`func (o *MinimalTaskResponse) HasPulpLastUpdated() bool`
+
+HasPulpLastUpdated returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *MinimalTaskResponse) GetName() string`
@@ -125,6 +152,31 @@ SetState sets State field to given value.
 `func (o *MinimalTaskResponse) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetUnblockedAt
+
+`func (o *MinimalTaskResponse) GetUnblockedAt() time.Time`
+
+GetUnblockedAt returns the UnblockedAt field if non-nil, zero value otherwise.
+
+### GetUnblockedAtOk
+
+`func (o *MinimalTaskResponse) GetUnblockedAtOk() (*time.Time, bool)`
+
+GetUnblockedAtOk returns a tuple with the UnblockedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUnblockedAt
+
+`func (o *MinimalTaskResponse) SetUnblockedAt(v time.Time)`
+
+SetUnblockedAt sets UnblockedAt field to given value.
+
+### HasUnblockedAt
+
+`func (o *MinimalTaskResponse) HasUnblockedAt() bool`
+
+HasUnblockedAt returns a boolean if a field has been set.
 
 ### GetStartedAt
 

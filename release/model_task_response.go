@@ -26,6 +26,8 @@ type TaskResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// The current state of the task. The possible values include: 'waiting', 'skipped', 'running', 'completed', 'failed', 'canceled' and 'canceling'.
 	State *string `json:"state,omitempty"`
 	// The name of task.
@@ -34,9 +36,11 @@ type TaskResponse struct {
 	LoggingCid string `json:"logging_cid"`
 	// User who dispatched this task.
 	CreatedBy *string `json:"created_by,omitempty"`
-	// Timestamp of the when this task started execution.
+	// Timestamp of when this task was identified ready for pickup.
+	UnblockedAt *time.Time `json:"unblocked_at,omitempty"`
+	// Timestamp of when this task started execution.
 	StartedAt *time.Time `json:"started_at,omitempty"`
-	// Timestamp of the when this task stopped execution.
+	// Timestamp of when this task stopped execution.
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// A JSON Object of a fatal error encountered during the execution of this task.
 	Error *map[string]string `json:"error,omitempty"`
@@ -138,6 +142,38 @@ func (o *TaskResponse) HasPulpCreated() bool {
 // SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
 func (o *TaskResponse) SetPulpCreated(v time.Time) {
 	o.PulpCreated = &v
+}
+
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *TaskResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpLastUpdated
+}
+
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		return nil, false
+	}
+	return o.PulpLastUpdated, true
+}
+
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *TaskResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *TaskResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -250,6 +286,38 @@ func (o *TaskResponse) HasCreatedBy() bool {
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *TaskResponse) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetUnblockedAt returns the UnblockedAt field value if set, zero value otherwise.
+func (o *TaskResponse) GetUnblockedAt() time.Time {
+	if o == nil || IsNil(o.UnblockedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UnblockedAt
+}
+
+// GetUnblockedAtOk returns a tuple with the UnblockedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskResponse) GetUnblockedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UnblockedAt) {
+		return nil, false
+	}
+	return o.UnblockedAt, true
+}
+
+// HasUnblockedAt returns a boolean if a field has been set.
+func (o *TaskResponse) HasUnblockedAt() bool {
+	if o != nil && !IsNil(o.UnblockedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnblockedAt gets a reference to the given time.Time and assigns it to the UnblockedAt field.
+func (o *TaskResponse) SetUnblockedAt(v time.Time) {
+	o.UnblockedAt = &v
 }
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
@@ -588,6 +656,9 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
@@ -595,6 +666,9 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["logging_cid"] = o.LoggingCid
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
+	}
+	if !IsNil(o.UnblockedAt) {
+		toSerialize["unblocked_at"] = o.UnblockedAt
 	}
 	if !IsNil(o.StartedAt) {
 		toSerialize["started_at"] = o.StartedAt

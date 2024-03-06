@@ -13,6 +13,8 @@ package zest
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RemoteResponseHiddenFieldsInner type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,20 @@ var _ MappedNullable = &RemoteResponseHiddenFieldsInner{}
 
 // RemoteResponseHiddenFieldsInner struct for RemoteResponseHiddenFieldsInner
 type RemoteResponseHiddenFieldsInner struct {
-	Name *string `json:"name,omitempty"`
-	IsSet *bool `json:"is_set,omitempty"`
+	Name string `json:"name"`
+	IsSet bool `json:"is_set"`
 }
+
+type _RemoteResponseHiddenFieldsInner RemoteResponseHiddenFieldsInner
 
 // NewRemoteResponseHiddenFieldsInner instantiates a new RemoteResponseHiddenFieldsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemoteResponseHiddenFieldsInner() *RemoteResponseHiddenFieldsInner {
+func NewRemoteResponseHiddenFieldsInner(name string, isSet bool) *RemoteResponseHiddenFieldsInner {
 	this := RemoteResponseHiddenFieldsInner{}
+	this.Name = name
+	this.IsSet = isSet
 	return &this
 }
 
@@ -41,68 +47,52 @@ func NewRemoteResponseHiddenFieldsInnerWithDefaults() *RemoteResponseHiddenField
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *RemoteResponseHiddenFieldsInner) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *RemoteResponseHiddenFieldsInner) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *RemoteResponseHiddenFieldsInner) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *RemoteResponseHiddenFieldsInner) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetIsSet returns the IsSet field value if set, zero value otherwise.
+// GetIsSet returns the IsSet field value
 func (o *RemoteResponseHiddenFieldsInner) GetIsSet() bool {
-	if o == nil || IsNil(o.IsSet) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.IsSet
+
+	return o.IsSet
 }
 
-// GetIsSetOk returns a tuple with the IsSet field value if set, nil otherwise
+// GetIsSetOk returns a tuple with the IsSet field value
 // and a boolean to check if the value has been set.
 func (o *RemoteResponseHiddenFieldsInner) GetIsSetOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsSet) {
+	if o == nil {
 		return nil, false
 	}
-	return o.IsSet, true
+	return &o.IsSet, true
 }
 
-// HasIsSet returns a boolean if a field has been set.
-func (o *RemoteResponseHiddenFieldsInner) HasIsSet() bool {
-	if o != nil && !IsNil(o.IsSet) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsSet gets a reference to the given bool and assigns it to the IsSet field.
+// SetIsSet sets field value
 func (o *RemoteResponseHiddenFieldsInner) SetIsSet(v bool) {
-	o.IsSet = &v
+	o.IsSet = v
 }
 
 func (o RemoteResponseHiddenFieldsInner) MarshalJSON() ([]byte, error) {
@@ -115,13 +105,47 @@ func (o RemoteResponseHiddenFieldsInner) MarshalJSON() ([]byte, error) {
 
 func (o RemoteResponseHiddenFieldsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.IsSet) {
-		toSerialize["is_set"] = o.IsSet
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["is_set"] = o.IsSet
 	return toSerialize, nil
+}
+
+func (o *RemoteResponseHiddenFieldsInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"is_set",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRemoteResponseHiddenFieldsInner := _RemoteResponseHiddenFieldsInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRemoteResponseHiddenFieldsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RemoteResponseHiddenFieldsInner(varRemoteResponseHiddenFieldsInner)
+
+	return err
 }
 
 type NullableRemoteResponseHiddenFieldsInner struct {

@@ -26,13 +26,17 @@ type MinimalTaskResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// The name of task.
 	Name string `json:"name"`
 	// The current state of the task. The possible values include: 'waiting', 'skipped', 'running', 'completed', 'failed', 'canceled' and 'canceling'.
 	State *string `json:"state,omitempty"`
-	// Timestamp of the when this task started execution.
+	// Timestamp of when this task was identified ready for pickup.
+	UnblockedAt *time.Time `json:"unblocked_at,omitempty"`
+	// Timestamp of when this task started execution.
 	StartedAt *time.Time `json:"started_at,omitempty"`
-	// Timestamp of the when this task stopped execution.
+	// Timestamp of when this task stopped execution.
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// The worker associated with this task. This field is empty if a worker is not yet assigned.
 	Worker *string `json:"worker,omitempty"`
@@ -122,6 +126,38 @@ func (o *MinimalTaskResponse) SetPulpCreated(v time.Time) {
 	o.PulpCreated = &v
 }
 
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *MinimalTaskResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpLastUpdated
+}
+
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MinimalTaskResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		return nil, false
+	}
+	return o.PulpLastUpdated, true
+}
+
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *MinimalTaskResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *MinimalTaskResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
+}
+
 // GetName returns the Name field value
 func (o *MinimalTaskResponse) GetName() string {
 	if o == nil {
@@ -176,6 +212,38 @@ func (o *MinimalTaskResponse) HasState() bool {
 // SetState gets a reference to the given string and assigns it to the State field.
 func (o *MinimalTaskResponse) SetState(v string) {
 	o.State = &v
+}
+
+// GetUnblockedAt returns the UnblockedAt field value if set, zero value otherwise.
+func (o *MinimalTaskResponse) GetUnblockedAt() time.Time {
+	if o == nil || IsNil(o.UnblockedAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.UnblockedAt
+}
+
+// GetUnblockedAtOk returns a tuple with the UnblockedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MinimalTaskResponse) GetUnblockedAtOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.UnblockedAt) {
+		return nil, false
+	}
+	return o.UnblockedAt, true
+}
+
+// HasUnblockedAt returns a boolean if a field has been set.
+func (o *MinimalTaskResponse) HasUnblockedAt() bool {
+	if o != nil && !IsNil(o.UnblockedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUnblockedAt gets a reference to the given time.Time and assigns it to the UnblockedAt field.
+func (o *MinimalTaskResponse) SetUnblockedAt(v time.Time) {
+	o.UnblockedAt = &v
 }
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
@@ -290,9 +358,15 @@ func (o MinimalTaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.UnblockedAt) {
+		toSerialize["unblocked_at"] = o.UnblockedAt
 	}
 	if !IsNil(o.StartedAt) {
 		toSerialize["started_at"] = o.StartedAt
