@@ -72,7 +72,7 @@ jobs:
           -o /local/release --minimal-update --skip-validate-spec \
           --git-user-id=content-services --git-repo-id=zest/release/${{ steps.pulpRelease.outputs.MAJOR_VERSION }} \
           --package-name=zest -p enumClassPrefix=true  -p structPrefix=true \
-          -p disallowAdditionalPropertiesIfNotPresent=true \
+          -p disallowAdditionalPropertiesIfNotPresent=false \
           -p packageVersion=${{ steps.pulpRelease.outputs.PULP_TAG }} \
           --global-property skipFormModel=false #for ansible plugin
 
