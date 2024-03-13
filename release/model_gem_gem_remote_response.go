@@ -872,7 +872,7 @@ func (o *GemGemRemoteResponse) GetIncludesOk() (*map[string]string, bool) {
 
 // HasIncludes returns a boolean if a field has been set.
 func (o *GemGemRemoteResponse) HasIncludes() bool {
-	if o != nil && IsNil(o.Includes) {
+	if o != nil && !IsNil(o.Includes) {
 		return true
 	}
 
@@ -905,7 +905,7 @@ func (o *GemGemRemoteResponse) GetExcludesOk() (*map[string]string, bool) {
 
 // HasExcludes returns a boolean if a field has been set.
 func (o *GemGemRemoteResponse) HasExcludes() bool {
-	if o != nil && IsNil(o.Excludes) {
+	if o != nil && !IsNil(o.Excludes) {
 		return true
 	}
 
