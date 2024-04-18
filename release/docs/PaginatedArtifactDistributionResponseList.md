@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Count** | Pointer to **int32** |  | [optional] 
+**Count** | **int32** |  | 
 **Next** | Pointer to **NullableString** |  | [optional] 
 **Previous** | Pointer to **NullableString** |  | [optional] 
-**Results** | Pointer to [**[]ArtifactDistributionResponse**](ArtifactDistributionResponse.md) |  | [optional] 
+**Results** | [**[]ArtifactDistributionResponse**](ArtifactDistributionResponse.md) |  | 
 
 ## Methods
 
 ### NewPaginatedArtifactDistributionResponseList
 
-`func NewPaginatedArtifactDistributionResponseList() *PaginatedArtifactDistributionResponseList`
+`func NewPaginatedArtifactDistributionResponseList(count int32, results []ArtifactDistributionResponse, ) *PaginatedArtifactDistributionResponseList`
 
 NewPaginatedArtifactDistributionResponseList instantiates a new PaginatedArtifactDistributionResponseList object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetCount sets Count field to given value.
 
-### HasCount
-
-`func (o *PaginatedArtifactDistributionResponseList) HasCount() bool`
-
-HasCount returns a boolean if a field has been set.
 
 ### GetNext
 
@@ -142,11 +137,6 @@ and a boolean to check if the value has been set.
 
 SetResults sets Results field to given value.
 
-### HasResults
-
-`func (o *PaginatedArtifactDistributionResponseList) HasResults() bool`
-
-HasResults returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

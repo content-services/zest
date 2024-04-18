@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PaginatedPulpImporterResponseList type satisfies the MappedNullable interface at compile time
@@ -20,10 +21,10 @@ var _ MappedNullable = &PaginatedPulpImporterResponseList{}
 
 // PaginatedPulpImporterResponseList struct for PaginatedPulpImporterResponseList
 type PaginatedPulpImporterResponseList struct {
-	Count *int32 `json:"count,omitempty"`
+	Count int32 `json:"count"`
 	Next NullableString `json:"next,omitempty"`
 	Previous NullableString `json:"previous,omitempty"`
-	Results []PulpImporterResponse `json:"results,omitempty"`
+	Results []PulpImporterResponse `json:"results"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,8 +34,10 @@ type _PaginatedPulpImporterResponseList PaginatedPulpImporterResponseList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedPulpImporterResponseList() *PaginatedPulpImporterResponseList {
+func NewPaginatedPulpImporterResponseList(count int32, results []PulpImporterResponse) *PaginatedPulpImporterResponseList {
 	this := PaginatedPulpImporterResponseList{}
+	this.Count = count
+	this.Results = results
 	return &this
 }
 
@@ -46,36 +49,28 @@ func NewPaginatedPulpImporterResponseListWithDefaults() *PaginatedPulpImporterRe
 	return &this
 }
 
-// GetCount returns the Count field value if set, zero value otherwise.
+// GetCount returns the Count field value
 func (o *PaginatedPulpImporterResponseList) GetCount() int32 {
-	if o == nil || IsNil(o.Count) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Count
+
+	return o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
 func (o *PaginatedPulpImporterResponseList) GetCountOk() (*int32, bool) {
-	if o == nil || IsNil(o.Count) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Count, true
+	return &o.Count, true
 }
 
-// HasCount returns a boolean if a field has been set.
-func (o *PaginatedPulpImporterResponseList) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
-		return true
-	}
-
-	return false
-}
-
-// SetCount gets a reference to the given int32 and assigns it to the Count field.
+// SetCount sets field value
 func (o *PaginatedPulpImporterResponseList) SetCount(v int32) {
-	o.Count = &v
+	o.Count = v
 }
 
 // GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -162,34 +157,26 @@ func (o *PaginatedPulpImporterResponseList) UnsetPrevious() {
 	o.Previous.Unset()
 }
 
-// GetResults returns the Results field value if set, zero value otherwise.
+// GetResults returns the Results field value
 func (o *PaginatedPulpImporterResponseList) GetResults() []PulpImporterResponse {
-	if o == nil || IsNil(o.Results) {
+	if o == nil {
 		var ret []PulpImporterResponse
 		return ret
 	}
+
 	return o.Results
 }
 
-// GetResultsOk returns a tuple with the Results field value if set, nil otherwise
+// GetResultsOk returns a tuple with the Results field value
 // and a boolean to check if the value has been set.
 func (o *PaginatedPulpImporterResponseList) GetResultsOk() ([]PulpImporterResponse, bool) {
-	if o == nil || IsNil(o.Results) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Results, true
 }
 
-// HasResults returns a boolean if a field has been set.
-func (o *PaginatedPulpImporterResponseList) HasResults() bool {
-	if o != nil && !IsNil(o.Results) {
-		return true
-	}
-
-	return false
-}
-
-// SetResults gets a reference to the given []PulpImporterResponse and assigns it to the Results field.
+// SetResults sets field value
 func (o *PaginatedPulpImporterResponseList) SetResults(v []PulpImporterResponse) {
 	o.Results = v
 }
@@ -204,18 +191,14 @@ func (o PaginatedPulpImporterResponseList) MarshalJSON() ([]byte, error) {
 
 func (o PaginatedPulpImporterResponseList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
-	}
+	toSerialize["count"] = o.Count
 	if o.Next.IsSet() {
 		toSerialize["next"] = o.Next.Get()
 	}
 	if o.Previous.IsSet() {
 		toSerialize["previous"] = o.Previous.Get()
 	}
-	if !IsNil(o.Results) {
-		toSerialize["results"] = o.Results
-	}
+	toSerialize["results"] = o.Results
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -225,6 +208,28 @@ func (o PaginatedPulpImporterResponseList) ToMap() (map[string]interface{}, erro
 }
 
 func (o *PaginatedPulpImporterResponseList) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"count",
+		"results",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
 	varPaginatedPulpImporterResponseList := _PaginatedPulpImporterResponseList{}
 
 	err = json.Unmarshal(data, &varPaginatedPulpImporterResponseList)

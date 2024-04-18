@@ -13,11 +13,11 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.49.0
+    core: 3.50.2
     gem: 0.5.0
-    rpm: 3.25.1
-    certguard: 3.49.0
-    file: 3.49.0
+    rpm: 3.25.2
+    certguard: 3.50.2
+    file: 3.50.2
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -24838,7 +24838,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Deprecated, will be removed in pulpcore 3.55. Use reserved_resources\
+          \ instead."
+        explode: true
         in: query
         name: reserved_resources_record
         required: false
@@ -27920,14 +27922,14 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        pulp_href: https://openapi-generator.tech
         hidden: false
         base_url: base_url
         name: name
-        base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
@@ -27936,32 +27938,19 @@ components:
           format: uri
           nullable: true
           type: string
-        pulp_href:
-          format: uri
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
           readOnly: true
           type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
           type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
@@ -27970,6 +27959,19 @@ components:
           format: date-time
           readOnly: true
           type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
@@ -29350,6 +29352,9 @@ components:
           items:
             $ref: '#/components/schemas/AccessPolicyResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedArtifactDistributionResponseList:
       example:
@@ -29357,24 +29362,24 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          pulp_href: https://openapi-generator.tech
           hidden: false
           base_url: base_url
           name: name
-          base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          pulp_href: https://openapi-generator.tech
           hidden: false
           base_url: base_url
           name: name
-          base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
@@ -29395,6 +29400,9 @@ components:
           items:
             $ref: '#/components/schemas/ArtifactDistributionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedArtifactResponseList:
       example:
@@ -29442,6 +29450,9 @@ components:
           items:
             $ref: '#/components/schemas/ArtifactResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedCompositeContentGuardResponseList:
       example:
@@ -29483,6 +29494,9 @@ components:
           items:
             $ref: '#/components/schemas/CompositeContentGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedContentGuardResponseList:
       example:
@@ -29518,6 +29532,9 @@ components:
           items:
             $ref: '#/components/schemas/ContentGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedContentRedirectContentGuardResponseList:
       example:
@@ -29553,6 +29570,9 @@ components:
           items:
             $ref: '#/components/schemas/ContentRedirectContentGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedDistributionResponseList:
       example:
@@ -29600,6 +29620,9 @@ components:
           items:
             $ref: '#/components/schemas/DistributionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedDomainResponseList:
       example:
@@ -29643,6 +29666,9 @@ components:
           items:
             $ref: '#/components/schemas/DomainResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedFilesystemExportResponseList:
       example:
@@ -29684,6 +29710,9 @@ components:
           items:
             $ref: '#/components/schemas/FilesystemExportResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedFilesystemExporterResponseList:
       example:
@@ -29721,6 +29750,9 @@ components:
           items:
             $ref: '#/components/schemas/FilesystemExporterResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedGroupResponseList:
       example:
@@ -29752,6 +29784,9 @@ components:
           items:
             $ref: '#/components/schemas/GroupResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedGroupRoleResponseList:
       example:
@@ -29797,6 +29832,9 @@ components:
           items:
             $ref: '#/components/schemas/GroupRoleResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedGroupUserResponseList:
       example:
@@ -29826,6 +29864,9 @@ components:
           items:
             $ref: '#/components/schemas/GroupUserResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedHeaderContentGuardResponseList:
       example:
@@ -29867,6 +29908,9 @@ components:
           items:
             $ref: '#/components/schemas/HeaderContentGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedImportResponseList:
       example:
@@ -29902,6 +29946,9 @@ components:
           items:
             $ref: '#/components/schemas/ImportResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedMultipleArtifactContentResponseList:
       example:
@@ -29935,6 +29982,9 @@ components:
           items:
             $ref: '#/components/schemas/MultipleArtifactContentResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedPublicationResponseList:
       example:
@@ -29970,6 +30020,9 @@ components:
           items:
             $ref: '#/components/schemas/PublicationResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedPulpExportResponseList:
       example:
@@ -30015,6 +30068,9 @@ components:
           items:
             $ref: '#/components/schemas/PulpExportResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedPulpExporterResponseList:
       example:
@@ -30058,6 +30114,9 @@ components:
           items:
             $ref: '#/components/schemas/PulpExporterResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedPulpImporterResponseList:
       example:
@@ -30095,6 +30154,9 @@ components:
           items:
             $ref: '#/components/schemas/PulpImporterResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedRBACContentGuardResponseList:
       example:
@@ -30154,6 +30216,9 @@ components:
           items:
             $ref: '#/components/schemas/RBACContentGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedRemoteResponseList:
       example:
@@ -30233,6 +30298,9 @@ components:
           items:
             $ref: '#/components/schemas/RemoteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedRepositoryResponseList:
       example:
@@ -30280,6 +30348,9 @@ components:
           items:
             $ref: '#/components/schemas/RepositoryResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedRepositoryVersionResponseList:
       example:
@@ -30331,6 +30402,9 @@ components:
           items:
             $ref: '#/components/schemas/RepositoryVersionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedRoleResponseList:
       example:
@@ -30374,6 +30448,9 @@ components:
           items:
             $ref: '#/components/schemas/RoleResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedSigningServiceResponseList:
       example:
@@ -30413,6 +30490,9 @@ components:
           items:
             $ref: '#/components/schemas/SigningServiceResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedTaskGroupResponseList:
       example:
@@ -30518,6 +30598,9 @@ components:
           items:
             $ref: '#/components/schemas/TaskGroupResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedTaskResponseList:
       example:
@@ -30617,6 +30700,9 @@ components:
           items:
             $ref: '#/components/schemas/TaskResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedTaskScheduleResponseList:
       example:
@@ -30658,6 +30744,9 @@ components:
           items:
             $ref: '#/components/schemas/TaskScheduleResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedUploadResponseList:
       example:
@@ -30693,6 +30782,9 @@ components:
           items:
             $ref: '#/components/schemas/UploadResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedUpstreamPulpResponseList:
       example:
@@ -30750,6 +30842,9 @@ components:
           items:
             $ref: '#/components/schemas/UpstreamPulpResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedUserResponseList:
       example:
@@ -30813,6 +30908,9 @@ components:
           items:
             $ref: '#/components/schemas/UserResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedUserRoleResponseList:
       example:
@@ -30858,6 +30956,9 @@ components:
           items:
             $ref: '#/components/schemas/UserRoleResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PaginatedWorkerResponseList:
       example:
@@ -30899,6 +31000,9 @@ components:
           items:
             $ref: '#/components/schemas/WorkerResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedcertguard.RHSMCertGuardResponseList:
       example:
@@ -30936,6 +31040,9 @@ components:
           items:
             $ref: '#/components/schemas/certguard.RHSMCertGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedcertguard.X509CertGuardResponseList:
       example:
@@ -30973,6 +31080,9 @@ components:
           items:
             $ref: '#/components/schemas/certguard.X509CertGuardResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FileAlternateContentSourceResponseList:
       example:
@@ -31016,6 +31126,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FileAlternateContentSourceResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FileContentResponseList:
       example:
@@ -31063,6 +31176,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FileContentResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FileDistributionResponseList:
       example:
@@ -31112,6 +31228,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FileDistributionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FilePublicationResponseList:
       example:
@@ -31155,6 +31274,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FilePublicationResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FileRemoteResponseList:
       example:
@@ -31234,6 +31356,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FileRemoteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedfile.FileRepositoryResponseList:
       example:
@@ -31285,6 +31410,9 @@ components:
           items:
             $ref: '#/components/schemas/file.FileRepositoryResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedgem.GemContentResponseList:
       example:
@@ -31336,6 +31464,9 @@ components:
           items:
             $ref: '#/components/schemas/gem.GemContentResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedgem.GemDistributionResponseList:
       example:
@@ -31387,6 +31518,9 @@ components:
           items:
             $ref: '#/components/schemas/gem.GemDistributionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedgem.GemPublicationResponseList:
       example:
@@ -31422,6 +31556,9 @@ components:
           items:
             $ref: '#/components/schemas/gem.GemPublicationResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedgem.GemRemoteResponseList:
       example:
@@ -31511,6 +31648,9 @@ components:
           items:
             $ref: '#/components/schemas/gem.GemRemoteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedgem.GemRepositoryResponseList:
       example:
@@ -31558,6 +31698,9 @@ components:
           items:
             $ref: '#/components/schemas/gem.GemRepositoryResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.DistributionTreeResponseList:
       example:
@@ -31705,6 +31848,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.DistributionTreeResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.ModulemdDefaultsResponseList:
       example:
@@ -31742,6 +31888,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.ModulemdDefaultsResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.ModulemdObsoleteResponseList:
       example:
@@ -31791,6 +31940,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.ModulemdObsoleteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.ModulemdResponseList:
       example:
@@ -31848,6 +32000,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.ModulemdResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.PackageCategoryResponseList:
       example:
@@ -31895,6 +32050,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.PackageCategoryResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.PackageEnvironmentResponseList:
       example:
@@ -31944,6 +32102,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.PackageEnvironmentResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.PackageGroupResponseList:
       example:
@@ -31997,6 +32158,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.PackageGroupResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.PackageLangpacksResponseList:
       example:
@@ -32032,6 +32196,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.PackageLangpacksResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.PackageResponseList:
       example:
@@ -32149,6 +32316,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.PackageResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RepoMetadataFileResponseList:
       example:
@@ -32202,6 +32372,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RepoMetadataFileResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RpmAlternateContentSourceResponseList:
       example:
@@ -32245,6 +32418,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RpmAlternateContentSourceResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RpmDistributionResponseList:
       example:
@@ -32296,6 +32472,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RpmDistributionResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RpmPublicationResponseList:
       example:
@@ -32347,6 +32526,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RpmPublicationResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RpmRemoteResponseList:
       example:
@@ -32428,6 +32610,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RpmRemoteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.RpmRepositoryResponseList:
       example:
@@ -32497,6 +32682,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.RpmRepositoryResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.UlnRemoteResponseList:
       example:
@@ -32578,6 +32766,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.UlnRemoteResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     Paginatedrpm.UpdateRecordResponseList:
       example:
@@ -32673,6 +32864,9 @@ components:
           items:
             $ref: '#/components/schemas/rpm.UpdateRecordResponse'
           type: array
+      required:
+      - count
+      - results
       type: object
     PatchedAccessPolicy:
       description: Serializer for AccessPolicy.

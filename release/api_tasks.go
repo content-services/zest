@@ -554,6 +554,7 @@ func (r TasksAPITasksListRequest) ReservedResourcesIn(reservedResourcesIn []stri
 	return r
 }
 
+// Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead.
 func (r TasksAPITasksListRequest) ReservedResourcesRecord(reservedResourcesRecord []string) TasksAPITasksListRequest {
 	r.reservedResourcesRecord = &reservedResourcesRecord
 	return r

@@ -276,7 +276,7 @@ func main() {
 	q := "q_example" // string |  (optional)
 	reservedResources := "reservedResources_example" // string |  (optional)
 	reservedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	reservedResourcesRecord := []string{"Inner_example"} // []string |  (optional)
+	reservedResourcesRecord := []string{"Inner_example"} // []string | Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead. (optional)
 	sharedResources := "sharedResources_example" // string |  (optional)
 	sharedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	startedAt := time.Now() // time.Time | Filter results where started_at matches value (optional)
@@ -348,7 +348,7 @@ Name | Type | Description  | Notes
  **q** | **string** |  | 
  **reservedResources** | **string** |  | 
  **reservedResourcesIn** | **[]string** | Multiple values may be separated by commas. | 
- **reservedResourcesRecord** | **[]string** |  | 
+ **reservedResourcesRecord** | **[]string** | Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead. | 
  **sharedResources** | **string** |  | 
  **sharedResourcesIn** | **[]string** | Multiple values may be separated by commas. | 
  **startedAt** | **time.Time** | Filter results where started_at matches value | 
