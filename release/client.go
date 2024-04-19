@@ -136,6 +136,8 @@ type APIClient struct {
 
 	ImportersPulpImportsAPI *ImportersPulpImportsAPIService
 
+	LivezAPI *LivezAPIService
+
 	OrphansAPI *OrphansAPIService
 
 	OrphansCleanupAPI *OrphansCleanupAPIService
@@ -264,6 +266,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ImportersPulpAPI = (*ImportersPulpAPIService)(&c.common)
 	c.ImportersPulpImportCheckAPI = (*ImportersPulpImportCheckAPIService)(&c.common)
 	c.ImportersPulpImportsAPI = (*ImportersPulpImportsAPIService)(&c.common)
+	c.LivezAPI = (*LivezAPIService)(&c.common)
 	c.OrphansAPI = (*OrphansAPIService)(&c.common)
 	c.OrphansCleanupAPI = (*OrphansCleanupAPIService)(&c.common)
 	c.PublicationsAPI = (*PublicationsAPIService)(&c.common)

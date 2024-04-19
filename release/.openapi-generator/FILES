@@ -46,6 +46,7 @@ api_groups_users.go
 api_importers_pulp.go
 api_importers_pulp_import_check.go
 api_importers_pulp_imports.go
+api_livez.go
 api_orphans.go
 api_orphans_cleanup.go
 api_publications.go
@@ -191,6 +192,7 @@ docs/ImportResponse.md
 docs/ImportersPulpAPI.md
 docs/ImportersPulpImportCheckAPI.md
 docs/ImportersPulpImportsAPI.md
+docs/LivezAPI.md
 docs/MethodEnum.md
 docs/MinimalTaskResponse.md
 docs/MultipleArtifactContentResponse.md
@@ -722,6 +724,7 @@ test/api_groups_users_test.go
 test/api_importers_pulp_import_check_test.go
 test/api_importers_pulp_imports_test.go
 test/api_importers_pulp_test.go
+test/api_livez_test.go
 test/api_orphans_cleanup_test.go
 test/api_orphans_test.go
 test/api_publications_file_test.go
