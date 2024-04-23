@@ -15,6 +15,7 @@ info:
   x-pulp-app-versions:
     core: 3.50.2
     gem: 0.5.0
+    ostree: 2.3.0
     rpm: 3.25.2
     certguard: 3.50.2
     file: 3.50.2
@@ -1922,13 +1923,16 @@ paths:
           type: array
         style: form
       - description: Pulp type* `core.publishedmetadata` - core.publishedmetadata*
-          `gem.gem` - gem.gem* `rpm.advisory` - rpm.advisory* `rpm.packagegroup` -
-          rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
-          - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
-          `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
-          - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
-          `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `file.file` - file.file
+          `gem.gem` - gem.gem* `ostree.object` - ostree.object* `ostree.commit` -
+          ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
+          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `rpm.advisory`
+          - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
+          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
+          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
+          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
+          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
+          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
+          `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -1938,6 +1942,12 @@ paths:
           - core.publishedmetadata
           - file.file
           - gem.gem
+          - ostree.commit
+          - ostree.config
+          - ostree.content
+          - ostree.object
+          - ostree.refs
+          - ostree.summary
           - rpm.advisory
           - rpm.distribution_tree
           - rpm.modulemd
@@ -1952,13 +1962,16 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.publishedmetadata`
-          - core.publishedmetadata* `gem.gem` - gem.gem* `rpm.advisory` - rpm.advisory*
-          `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory*
-          `rpm.packageenvironment` - rpm.packageenvironment* `rpm.packagelangpacks`
-          - rpm.packagelangpacks* `rpm.repo_metadata_file` - rpm.repo_metadata_file*
-          `rpm.distribution_tree` - rpm.distribution_tree* `rpm.package` - rpm.package*
-          `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults` - rpm.modulemd_defaults*
-          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete* `file.file` - file.file
+          - core.publishedmetadata* `gem.gem` - gem.gem* `ostree.object` - ostree.object*
+          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
+          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
+          `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
+          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
+          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
+          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
+          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
+          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
+          `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -1969,6 +1982,12 @@ paths:
             - core.publishedmetadata
             - file.file
             - gem.gem
+            - ostree.commit
+            - ostree.config
+            - ostree.content
+            - ostree.object
+            - ostree.refs
+            - ostree.summary
             - rpm.advisory
             - rpm.distribution_tree
             - rpm.modulemd
@@ -2592,6 +2611,1298 @@ paths:
       summary: Inspect a gem content
       tags:
       - "Content: Gem"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/commits/:
+    get:
+      description: A ViewSet class for OSTree commits.
+      operationId: content_ostree_commits_list
+      parameters:
+      - description: Filter results where checksum matches value
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `checksum` - Checksum* `-checksum`
+          - Checksum (descending)* `relative_path` - Relative path* `-relative_path`
+          - Relative path (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -checksum
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -relative_path
+            - -timestamp_of_interest
+            - -upstream_id
+            - checksum
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - relative_path
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeCommitResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree commits
+      tags:
+      - "Content: Commits"
+  '{ostree_ostree_commit_href}':
+    get:
+      description: A ViewSet class for OSTree commits.
+      operationId: content_ostree_commits_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_commit_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeCommitResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree commit
+      tags:
+      - "Content: Commits"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/configs/:
+    get:
+      description: A ViewSet class for OSTree repository configurations.
+      operationId: content_ostree_configs_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -pk
+            - pk
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeConfigResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree configs
+      tags:
+      - "Content: Configs"
+  '{ostree_ostree_config_href}':
+    get:
+      description: A ViewSet class for OSTree repository configurations.
+      operationId: content_ostree_configs_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_config_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeConfigResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree config
+      tags:
+      - "Content: Configs"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/content/:
+    get:
+      description: "A ViewSet class for uncategorized content units (e.g., static\
+        \ deltas)."
+      operationId: content_ostree_content_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -pk
+            - pk
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeContentResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree contents
+      tags:
+      - "Content: Content"
+    post:
+      description: "Trigger an asynchronous task to create content,optionally create\
+        \ new repository version."
+      operationId: content_ostree_content_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an ostree content
+      tags:
+      - "Content: Content"
+  '{ostree_ostree_content_href}':
+    get:
+      description: "A ViewSet class for uncategorized content units (e.g., static\
+        \ deltas)."
+      operationId: content_ostree_content_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_content_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeContentResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree content
+      tags:
+      - "Content: Content"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/objects/:
+    get:
+      description: "A ViewSet class for OSTree objects (e.g., dirtree, dirmeta, file)."
+      operationId: content_ostree_objects_list
+      parameters:
+      - description: Filter results where checksum matches value
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `typ` - Typ* `-typ` - Typ (descending)*
+          `checksum` - Checksum* `-checksum` - Checksum (descending)* `relative_path`
+          - Relative path* `-relative_path` - Relative path (descending)* `pk` - Pk*
+          `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -checksum
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -relative_path
+            - -timestamp_of_interest
+            - -typ
+            - -upstream_id
+            - checksum
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - relative_path
+            - timestamp_of_interest
+            - typ
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeObjectResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree objects
+      tags:
+      - "Content: Objects"
+  '{ostree_ostree_object_href}':
+    get:
+      description: "A ViewSet class for OSTree objects (e.g., dirtree, dirmeta, file)."
+      operationId: content_ostree_objects_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_object_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeObjectResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree object
+      tags:
+      - "Content: Objects"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/refs/:
+    get:
+      description: A ViewSet class for OSTree head commits.
+      operationId: content_ostree_refs_list
+      parameters:
+      - explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `name` - Name* `-name` - Name (descending)*
+          `relative_path` - Relative path* `-relative_path` - Relative path (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -relative_path
+            - -timestamp_of_interest
+            - -upstream_id
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - relative_path
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeRefResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree refs
+      tags:
+      - "Content: Refs"
+  '{ostree_ostree_ref_href}':
+    get:
+      description: A ViewSet class for OSTree head commits.
+      operationId: content_ostree_refs_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_ref_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeRefResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree ref
+      tags:
+      - "Content: Refs"
+  /api/pulp/{pulp_domain}/api/v3/content/ostree/summaries/:
+    get:
+      description: A ViewSet class for OSTree repository summary files.
+      operationId: content_ostree_summaries_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -pk
+            - pk
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeSummaryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree summarys
+      tags:
+      - "Content: Summaries"
+  '{ostree_ostree_summary_href}':
+    get:
+      description: A ViewSet class for OSTree repository summary files.
+      operationId: content_ostree_summaries_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_summary_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeSummaryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree summary
+      tags:
+      - "Content: Summaries"
   /api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
     get:
       description: "A ViewSet for UpdateRecord.Define endpoint name which will appear\
@@ -8857,7 +10168,7 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `gem.gem` - gem.gem*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -8867,12 +10178,13 @@ paths:
           - core.artifact
           - file.file
           - gem.gem
+          - ostree.ostree
           - rpm.rpm
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `file.file` -
-          file.file
+          - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `rpm.rpm`
+          - rpm.rpm* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -8883,6 +10195,7 @@ paths:
             - core.artifact
             - file.file
             - gem.gem
+            - ostree.ostree
             - rpm.rpm
             type: string
           type: array
@@ -10655,6 +11968,694 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: Gem"
+  /api/pulp/{pulp_domain}/api/v3/distributions/ostree/ostree/:
+    get:
+      description: A ViewSet class for OSTree distributions.
+      operationId: distributions_ostree_ostree_list
+      parameters:
+      - description: Filter results where base_path matches value
+        explode: true
+        in: query
+        name: base_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_path__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `base_path` -
+          Base path* `-base_path` - Base path (descending)* `hidden` - Hidden* `-hidden`
+          - Hidden (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository matches value
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where repository is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: repository__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree distributions
+      tags:
+      - "Distributions: Ostree"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_ostree_ostree_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an ostree distribution
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_ostree_ostree_delete
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an ostree distribution
+      tags:
+      - "Distributions: Ostree"
+    get:
+      description: A ViewSet class for OSTree distributions.
+      operationId: distributions_ostree_ostree_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree distribution
+      tags:
+      - "Distributions: Ostree"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_ostree_ostree_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree distribution
+      tags:
+      - "Distributions: Ostree"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_ostree_ostree_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree distribution
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: distributions_ostree_ostree_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: distributions_ostree_ostree_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: distributions_ostree_ostree_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: distributions_ostree_ostree_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_ostree_ostree_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Ostree"
+  '{ostree_ostree_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_ostree_ostree_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Ostree"
   /api/pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
     get:
       description: ViewSet for RPM Distributions.
@@ -16297,8 +18298,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `rpm.uln`
-          - rpm.uln* `file.file` - file.file
+      - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
+          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -16307,12 +18308,14 @@ paths:
           enum:
           - file.file
           - gem.gem
+          - ostree.ostree
           - rpm.rpm
           - rpm.uln
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln*
+          `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -16322,6 +18325,7 @@ paths:
             enum:
             - file.file
             - gem.gem
+            - ostree.ostree
             - rpm.rpm
             - rpm.uln
             type: string
@@ -17839,6 +19843,739 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Gem"
+  /api/pulp/{pulp_domain}/api/v3/remotes/ostree/ostree/:
+    get:
+      description: A ViewSet class for OSTree remote repositories.
+      operationId: remotes_ostree_ostree_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `url` - Url* `-url`
+          - Url (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)*
+          `client_cert` - Client cert* `-client_cert` - Client cert (descending)*
+          `client_key` - Client key* `-client_key` - Client key (descending)* `tls_validation`
+          - Tls validation* `-tls_validation` - Tls validation (descending)* `username`
+          - Username* `-username` - Username (descending)* `password` - Password*
+          `-password` - Password (descending)* `proxy_url` - Proxy url* `-proxy_url`
+          - Proxy url (descending)* `proxy_username` - Proxy username* `-proxy_username`
+          - Proxy username (descending)* `proxy_password` - Proxy password* `-proxy_password`
+          - Proxy password (descending)* `download_concurrency` - Download concurrency*
+          `-download_concurrency` - Download concurrency (descending)* `max_retries`
+          - Max retries* `-max_retries` - Max retries (descending)* `policy` - Policy*
+          `-policy` - Policy (descending)* `total_timeout` - Total timeout* `-total_timeout`
+          - Total timeout (descending)* `connect_timeout` - Connect timeout* `-connect_timeout`
+          - Connect timeout (descending)* `sock_connect_timeout` - Sock connect timeout*
+          `-sock_connect_timeout` - Sock connect timeout (descending)* `sock_read_timeout`
+          - Sock read timeout* `-sock_read_timeout` - Sock read timeout (descending)*
+          `headers` - Headers* `-headers` - Headers (descending)* `rate_limit` - Rate
+          limit* `-rate_limit` - Rate limit (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -connect_timeout
+            - -download_concurrency
+            - -headers
+            - -max_retries
+            - -name
+            - -password
+            - -pk
+            - -policy
+            - -proxy_password
+            - -proxy_url
+            - -proxy_username
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -rate_limit
+            - -sock_connect_timeout
+            - -sock_read_timeout
+            - -tls_validation
+            - -total_timeout
+            - -url
+            - -username
+            - ca_cert
+            - client_cert
+            - client_key
+            - connect_timeout
+            - download_concurrency
+            - headers
+            - max_retries
+            - name
+            - password
+            - pk
+            - policy
+            - proxy_password
+            - proxy_url
+            - proxy_username
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - rate_limit
+            - sock_connect_timeout
+            - sock_read_timeout
+            - tls_validation
+            - total_timeout
+            - url
+            - username
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated matches value
+        explode: true
+        in: query
+        name: pulp_last_updated
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than value
+        explode: true
+        in: query
+        name: pulp_last_updated__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than value
+        explode: true
+        in: query
+        name: pulp_last_updated__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_last_updated__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeRemoteResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree remotes
+      tags:
+      - "Remotes: Ostree"
+    post:
+      description: A ViewSet class for OSTree remote repositories.
+      operationId: remotes_ostree_ostree_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an ostree remote
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: remotes_ostree_ostree_delete
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an ostree remote
+      tags:
+      - "Remotes: Ostree"
+    get:
+      description: A ViewSet class for OSTree remote repositories.
+      operationId: remotes_ostree_ostree_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree remote
+      tags:
+      - "Remotes: Ostree"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: remotes_ostree_ostree_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree remote
+      tags:
+      - "Remotes: Ostree"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: remotes_ostree_ostree_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree remote
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: remotes_ostree_ostree_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: remotes_ostree_ostree_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: remotes_ostree_ostree_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: remotes_ostree_ostree_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_ostree_ostree_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Ostree"
+  '{ostree_ostree_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_ostree_ostree_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Ostree"
   /api/pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
     get:
       description: A ViewSet for RpmRemote.
@@ -19527,8 +22264,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `file.file`
-          - file.file
+      - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
+          `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -19537,11 +22274,12 @@ paths:
           enum:
           - file.file
           - gem.gem
+          - ostree.ostree
           - rpm.rpm
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -19551,6 +22289,7 @@ paths:
             enum:
             - file.file
             - gem.gem
+            - ostree.ostree
             - rpm.rpm
             type: string
           type: array
@@ -21958,6 +24697,1217 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Gem Versions"
+  /api/pulp/{pulp_domain}/api/v3/repositories/ostree/ostree/:
+    get:
+      description: A ViewSet class for OSTree repositories.
+      operationId: repositories_ostree_ostree_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description`
+          - Description* `-description` - Description (descending)* `next_version`
+          - Next version* `-next_version` - Next version (descending)* `retain_repo_versions`
+          - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)*
+          `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedostree.OstreeRepositoryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List ostree repositorys
+      tags:
+      - "Repositories: Ostree"
+    post:
+      description: A ViewSet class for OSTree repositories.
+      operationId: repositories_ostree_ostree_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an ostree repository
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_ostree_ostree_delete
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an ostree repository
+      tags:
+      - "Repositories: Ostree"
+    get:
+      description: A ViewSet class for OSTree repositories.
+      operationId: repositories_ostree_ostree_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ostree.OstreeRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an ostree repository
+      tags:
+      - "Repositories: Ostree"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_ostree_ostree_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedostree.OstreeRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree repository
+      tags:
+      - "Repositories: Ostree"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_ostree_ostree_update
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ostree.OstreeRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an ostree repository
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: repositories_ostree_ostree_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}import_all/':
+    post:
+      description: Trigger an asynchronous task to import all refs and commits to
+        a repository.
+      operationId: repositories_ostree_ostree_import_all
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OstreeImportAll'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OstreeImportAll'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OstreeImportAll'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Import refs and commits to a repository
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}import_commits/':
+    post:
+      description: Trigger an asynchronous task to append child commits to a repository.
+      operationId: repositories_ostree_ostree_import_commits
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OstreeImportCommitsToRef'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OstreeImportCommitsToRef'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OstreeImportCommitsToRef'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Append child commits to a repository
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: repositories_ostree_ostree_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}modify/':
+    post:
+      description: Trigger an asynchronous task to modify content.
+      operationId: repositories_ostree_ostree_modify
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Modify repository
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: repositories_ostree_ostree_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: repositories_ostree_ostree_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_ostree_ostree_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}sync/':
+    post:
+      description: Trigger an asynchronous task to sync content.
+      operationId: repositories_ostree_ostree_sync
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Sync from remote
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_ostree_ostree_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: Ostree"
+  '{ostree_ostree_repository_href}versions/':
+    get:
+      description: A ViewSet class that represents a single OSTree repository version.
+      operationId: repositories_ostree_ostree_versions_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number matches value
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than value
+        explode: true
+        in: query
+        name: number__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than or equal to value
+        explode: true
+        in: query
+        name: number__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than value
+        explode: true
+        in: query
+        name: number__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than or equal to value
+        explode: true
+        in: query
+        name: number__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is between two comma separated values
+        explode: false
+        in: query
+        name: number__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `number` - Number* `-number` - Number (descending)*
+          `complete` - Complete* `-complete` - Complete (descending)* `info` - Info*
+          `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -info
+            - -number
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - complete
+            - info
+            - number
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRepositoryVersionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List repository versions
+      tags:
+      - "Repositories: Ostree Versions"
+  '{ostree_ostree_repository_version_href}':
+    delete:
+      description: Trigger an asynchronous task to delete a repository version.
+      operationId: repositories_ostree_ostree_versions_delete
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a repository version
+      tags:
+      - "Repositories: Ostree Versions"
+    get:
+      description: A ViewSet class that represents a single OSTree repository version.
+      operationId: repositories_ostree_ostree_versions_read
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryVersionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a repository version
+      tags:
+      - "Repositories: Ostree Versions"
+  '{ostree_ostree_repository_version_href}repair/':
+    post:
+      description: Trigger an asynchronous task to repair a repository version.
+      operationId: repositories_ostree_ostree_versions_repair
+      parameters:
+      - explode: false
+        in: path
+        name: ostree_ostree_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Repair'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Ostree Versions"
   /api/pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
     post:
       description: Trigger an asynchronous space reclaim operation.
@@ -27932,30 +31882,30 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_labels:
-          key: pulp_labels
         hidden: false
         pulp_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
         name: name
         base_url: base_url
-        pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
+        pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         content_guard:
@@ -27968,21 +31918,21 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
           readOnly: true
           type: string
       required:
@@ -29296,6 +33246,51 @@ components:
           nullable: true
           type: integer
       type: object
+    OstreeImportAll:
+      description: A Serializer class for importing all refs and commits to a repository.
+      example:
+        artifact: https://openapi-generator.tech
+        repository_name: repository_name
+      properties:
+        artifact:
+          description: An artifact representing OSTree content compressed as a tarball.
+          format: uri
+          type: string
+        repository_name:
+          description: The name of a repository that contains the compressed OSTree
+            content.
+          minLength: 1
+          type: string
+      required:
+      - artifact
+      - repository_name
+      type: object
+    OstreeImportCommitsToRef:
+      description: A Serializer class for appending child commits to a repository.
+      example:
+        artifact: https://openapi-generator.tech
+        ref: ref
+        repository_name: repository_name
+      properties:
+        artifact:
+          description: An artifact representing OSTree content compressed as a tarball.
+          format: uri
+          type: string
+        repository_name:
+          description: The name of a repository that contains the compressed OSTree
+            content.
+          minLength: 1
+          type: string
+        ref:
+          description: The name of a ref branch that holds the reference to the last
+            commit.
+          minLength: 1
+          type: string
+      required:
+      - artifact
+      - ref
+      - repository_name
+      type: object
     PackageChecksumTypeEnum:
       description: '* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` -
         sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512'
@@ -29372,24 +33367,24 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_labels:
-            key: pulp_labels
-          hidden: false
+        - hidden: false
           pulp_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
           name: name
           base_url: base_url
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - pulp_labels:
-            key: pulp_labels
-          hidden: false
+        - hidden: false
           pulp_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
           name: name
           base_url: base_url
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
@@ -31712,6 +35707,456 @@ components:
       - count
       - results
       type: object
+    Paginatedostree.OstreeCommitResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          checksum: checksum
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+          parent_commit: https://openapi-generator.tech
+          objs:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          checksum: checksum
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+          parent_commit: https://openapi-generator.tech
+          objs:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeCommitResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeConfigResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeConfigResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeContentResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          digest: digest
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          digest: digest
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeContentResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
+            key: pulp_labels
+          base_url: base_url
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeDistributionResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeObjectResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          checksum: checksum
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          typ: 0
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          checksum: checksum
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          typ: 0
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeObjectResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeRefResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          commit: https://openapi-generator.tech
+          checksum: checksum
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          commit: https://openapi-generator.tech
+          checksum: checksum
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeRefResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeRemoteResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          depth: 0
+          pulp_labels:
+            key: pulp_labels
+          exclude_refs:
+          - exclude_refs
+          - exclude_refs
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          include_refs:
+          - include_refs
+          - include_refs
+          policy: ""
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          url: url
+          download_concurrency: 1
+          depth: 0
+          pulp_labels:
+            key: pulp_labels
+          exclude_refs:
+          - exclude_refs
+          - exclude_refs
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          include_refs:
+          - include_refs
+          - include_refs
+          policy: ""
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeRemoteResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeRepositoryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          compute_delta: true
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          compute_delta: true
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeRepositoryResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedostree.OstreeSummaryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+        - artifact: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          relative_path: relative_path
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/ostree.OstreeSummaryResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
     Paginatedrpm.DistributionTreeResponseList:
       example:
         next: http://api.example.org/accounts/?offset=400&limit=100
@@ -33792,6 +38237,235 @@ components:
           nullable: true
           type: string
       type: object
+    Patchedostree.OstreeDistribution:
+      description: A Serializer class for an OSTree distribution.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedostree.OstreeRemote:
+      description: A Serializer class for a remote OSTree repository.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy462Enum'
+          default: immediate
+          description: "        immediate - All OSTree objects are downloaded and\
+            \ saved during synchronization.        on_demand - Only commits, dirtrees,\
+            \ and refs are downloaded. Other OSTree objects are                  \
+            \  not downloaded until they are requested for the first time by a client.\
+            \        * `immediate` - immediate* `on_demand` - on_demand"
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        depth:
+          default: 0
+          description: An option to specify how many commits to traverse.
+          format: int64
+          minimum: 0
+          type: integer
+        include_refs:
+          description: "            A list of refs to include during a sync.     \
+            \       The wildcards *, ? are recognized.            'include_refs' is\
+            \ evaluated before 'exclude_refs'.            "
+          items:
+            maxLength: 255
+            minLength: 1
+            type: string
+          nullable: true
+          type: array
+        exclude_refs:
+          description: "            A list of tags to exclude during a sync.     \
+            \       The wildcards *, ? are recognized.            'exclude_refs' is\
+            \ evaluated after 'include_refs'.            "
+          items:
+            maxLength: 255
+            minLength: 1
+            type: string
+          nullable: true
+          type: array
+      type: object
+    Patchedostree.OstreeRepository:
+      description: A Serializer class for an OSTree repository.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        compute_delta:
+          default: true
+          type: boolean
+      type: object
     Patchedrpm.RpmAlternateContentSource:
       description: Serializer for RPM alternate content source.
       properties:
@@ -34233,6 +38907,12 @@ components:
           nullable: true
           type: string
       type: object
+    Policy462Enum:
+      description: '* `immediate` - immediate* `on_demand` - on_demand'
+      enum:
+      - immediate
+      - on_demand
+      type: string
     Policy762Enum:
       description: "* `immediate` - When syncing, download all metadata and content\
         \ now.* `on_demand` - When syncing, download metadata, but do not download\
@@ -38088,6 +42768,855 @@ components:
           type: string
       required:
       - name
+      type: object
+    ostree.OstreeCommitResponse:
+      description: A Serializer class for OSTree commits.
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        checksum: checksum
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+        parent_commit: https://openapi-generator.tech
+        objs:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+        parent_commit:
+          format: uri
+          nullable: true
+          type: string
+        checksum:
+          type: string
+        objs:
+          items:
+            format: uri
+            type: string
+          type: array
+      required:
+      - artifact
+      - checksum
+      - objs
+      - relative_path
+      type: object
+    ostree.OstreeConfigResponse:
+      description: A Serializer class for OSTree repository configuration files.
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+      required:
+      - artifact
+      - relative_path
+      type: object
+    ostree.OstreeContent:
+      description: "A Serializer class for uncategorized content units (e.g., static\
+        \ deltas)."
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          minLength: 1
+          type: string
+        digest:
+          minLength: 1
+          type: string
+      required:
+      - artifact
+      - digest
+      - relative_path
+      type: object
+    ostree.OstreeContentResponse:
+      description: "A Serializer class for uncategorized content units (e.g., static\
+        \ deltas)."
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        digest: digest
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          type: string
+        digest:
+          type: string
+      required:
+      - artifact
+      - digest
+      - relative_path
+      type: object
+    ostree.OstreeDistribution:
+      description: A Serializer class for an OSTree distribution.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    ostree.OstreeDistributionResponse:
+      description: A Serializer class for an OSTree distribution.
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        pulp_labels:
+          key: pulp_labels
+        base_url: base_url
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
+        repository_version: https://openapi-generator.tech
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    ostree.OstreeObjectResponse:
+      description: "A Serializer class for OSTree objects (e.g., dirtree, dirmeta,\
+        \ file)."
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        checksum: checksum
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        typ: 0
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+        checksum:
+          type: string
+        typ:
+          description: '            The type of an object. All values are described
+            by the mapping declared at            https://lazka.github.io/pgi-docs/OSTree-1.0/enums.html#OSTree.ObjectType            '
+          format: int64
+          type: integer
+      required:
+      - artifact
+      - checksum
+      - relative_path
+      - typ
+      type: object
+    ostree.OstreeRefResponse:
+      description: A Serializer class for OSTree head commits.
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        commit: https://openapi-generator.tech
+        checksum: checksum
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+        commit:
+          format: uri
+          type: string
+        checksum:
+          readOnly: true
+          type: string
+        name:
+          type: string
+      required:
+      - artifact
+      - commit
+      - name
+      - relative_path
+      type: object
+    ostree.OstreeRemote:
+      description: A Serializer class for a remote OSTree repository.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy462Enum'
+          default: immediate
+          description: "        immediate - All OSTree objects are downloaded and\
+            \ saved during synchronization.        on_demand - Only commits, dirtrees,\
+            \ and refs are downloaded. Other OSTree objects are                  \
+            \  not downloaded until they are requested for the first time by a client.\
+            \        * `immediate` - immediate* `on_demand` - on_demand"
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        depth:
+          default: 0
+          description: An option to specify how many commits to traverse.
+          format: int64
+          minimum: 0
+          type: integer
+        include_refs:
+          description: "            A list of refs to include during a sync.     \
+            \       The wildcards *, ? are recognized.            'include_refs' is\
+            \ evaluated before 'exclude_refs'.            "
+          items:
+            maxLength: 255
+            minLength: 1
+            type: string
+          nullable: true
+          type: array
+        exclude_refs:
+          description: "            A list of tags to exclude during a sync.     \
+            \       The wildcards *, ? are recognized.            'exclude_refs' is\
+            \ evaluated after 'include_refs'.            "
+          items:
+            maxLength: 255
+            minLength: 1
+            type: string
+          nullable: true
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    ostree.OstreeRemoteResponse:
+      description: A Serializer class for a remote OSTree repository.
+      example:
+        headers:
+        - "{}"
+        - "{}"
+        rate_limit: 7
+        pulp_href: https://openapi-generator.tech
+        tls_validation: true
+        max_retries: 6
+        connect_timeout: 0.5962133916683182
+        client_cert: client_cert
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        sock_read_timeout: 0.23021358869347652
+        url: url
+        download_concurrency: 1
+        depth: 0
+        pulp_labels:
+          key: pulp_labels
+        exclude_refs:
+        - exclude_refs
+        - exclude_refs
+        name: name
+        sock_connect_timeout: 0.5637376656633328
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        hidden_fields:
+        - is_set: true
+          name: name
+        - is_set: true
+          name: name
+        proxy_url: proxy_url
+        ca_cert: ca_cert
+        total_timeout: 0.14658129805029452
+        include_refs:
+        - include_refs
+        - include_refs
+        policy: ""
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: Timestamp of the most recent update of the remote.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this remote.
+          type: string
+        url:
+          description: The URL of an external content source.
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          nullable: true
+          type: string
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy462Enum'
+          default: immediate
+          description: "        immediate - All OSTree objects are downloaded and\
+            \ saved during synchronization.        on_demand - Only commits, dirtrees,\
+            \ and refs are downloaded. Other OSTree objects are                  \
+            \  not downloaded until they are requested for the first time by a client.\
+            \        * `immediate` - immediate* `on_demand` - on_demand"
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        hidden_fields:
+          description: List of hidden (write only) fields
+          items:
+            $ref: '#/components/schemas/RemoteResponse_hidden_fields_inner'
+          readOnly: true
+          type: array
+        depth:
+          default: 0
+          description: An option to specify how many commits to traverse.
+          format: int64
+          minimum: 0
+          type: integer
+        include_refs:
+          description: "            A list of refs to include during a sync.     \
+            \       The wildcards *, ? are recognized.            'include_refs' is\
+            \ evaluated before 'exclude_refs'.            "
+          items:
+            maxLength: 255
+            type: string
+          nullable: true
+          type: array
+        exclude_refs:
+          description: "            A list of tags to exclude during a sync.     \
+            \       The wildcards *, ? are recognized.            'exclude_refs' is\
+            \ evaluated after 'include_refs'.            "
+          items:
+            maxLength: 255
+            type: string
+          nullable: true
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    ostree.OstreeRepository:
+      description: A Serializer class for an OSTree repository.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        compute_delta:
+          default: true
+          type: boolean
+      required:
+      - name
+      type: object
+    ostree.OstreeRepositoryResponse:
+      description: A Serializer class for an OSTree repository.
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        compute_delta: true
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        compute_delta:
+          default: true
+          type: boolean
+      required:
+      - name
+      type: object
+    ostree.OstreeSummaryResponse:
+      description: A Serializer class for an OSTree summary file.
+      example:
+        artifact: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        relative_path: relative_path
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          type: string
+      required:
+      - artifact
+      - relative_path
       type: object
     rpm.DistributionTreeResponse:
       description: DistributionTree serializer.

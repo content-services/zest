@@ -62,6 +62,12 @@ type APIClient struct {
 
 	ContentAdvisoriesAPI *ContentAdvisoriesAPIService
 
+	ContentCommitsAPI *ContentCommitsAPIService
+
+	ContentConfigsAPI *ContentConfigsAPIService
+
+	ContentContentAPI *ContentContentAPIService
+
 	ContentDistributionTreesAPI *ContentDistributionTreesAPIService
 
 	ContentFilesAPI *ContentFilesAPIService
@@ -74,6 +80,8 @@ type APIClient struct {
 
 	ContentModulemdsAPI *ContentModulemdsAPIService
 
+	ContentObjectsAPI *ContentObjectsAPIService
+
 	ContentPackagecategoriesAPI *ContentPackagecategoriesAPIService
 
 	ContentPackageenvironmentsAPI *ContentPackageenvironmentsAPIService
@@ -84,7 +92,11 @@ type APIClient struct {
 
 	ContentPackagesAPI *ContentPackagesAPIService
 
+	ContentRefsAPI *ContentRefsAPIService
+
 	ContentRepoMetadataFilesAPI *ContentRepoMetadataFilesAPIService
+
+	ContentSummariesAPI *ContentSummariesAPIService
 
 	ContentguardsAPI *ContentguardsAPIService
 
@@ -107,6 +119,8 @@ type APIClient struct {
 	DistributionsFileAPI *DistributionsFileAPIService
 
 	DistributionsGemAPI *DistributionsGemAPIService
+
+	DistributionsOstreeAPI *DistributionsOstreeAPIService
 
 	DistributionsRpmAPI *DistributionsRpmAPIService
 
@@ -156,6 +170,8 @@ type APIClient struct {
 
 	RemotesGemAPI *RemotesGemAPIService
 
+	RemotesOstreeAPI *RemotesOstreeAPIService
+
 	RemotesRpmAPI *RemotesRpmAPIService
 
 	RemotesUlnAPI *RemotesUlnAPIService
@@ -171,6 +187,10 @@ type APIClient struct {
 	RepositoriesGemAPI *RepositoriesGemAPIService
 
 	RepositoriesGemVersionsAPI *RepositoriesGemVersionsAPIService
+
+	RepositoriesOstreeAPI *RepositoriesOstreeAPIService
+
+	RepositoriesOstreeVersionsAPI *RepositoriesOstreeVersionsAPIService
 
 	RepositoriesReclaimSpaceAPI *RepositoriesReclaimSpaceAPIService
 
@@ -229,18 +249,24 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ArtifactsAPI = (*ArtifactsAPIService)(&c.common)
 	c.ContentAPI = (*ContentAPIService)(&c.common)
 	c.ContentAdvisoriesAPI = (*ContentAdvisoriesAPIService)(&c.common)
+	c.ContentCommitsAPI = (*ContentCommitsAPIService)(&c.common)
+	c.ContentConfigsAPI = (*ContentConfigsAPIService)(&c.common)
+	c.ContentContentAPI = (*ContentContentAPIService)(&c.common)
 	c.ContentDistributionTreesAPI = (*ContentDistributionTreesAPIService)(&c.common)
 	c.ContentFilesAPI = (*ContentFilesAPIService)(&c.common)
 	c.ContentGemAPI = (*ContentGemAPIService)(&c.common)
 	c.ContentModulemdDefaultsAPI = (*ContentModulemdDefaultsAPIService)(&c.common)
 	c.ContentModulemdObsoletesAPI = (*ContentModulemdObsoletesAPIService)(&c.common)
 	c.ContentModulemdsAPI = (*ContentModulemdsAPIService)(&c.common)
+	c.ContentObjectsAPI = (*ContentObjectsAPIService)(&c.common)
 	c.ContentPackagecategoriesAPI = (*ContentPackagecategoriesAPIService)(&c.common)
 	c.ContentPackageenvironmentsAPI = (*ContentPackageenvironmentsAPIService)(&c.common)
 	c.ContentPackagegroupsAPI = (*ContentPackagegroupsAPIService)(&c.common)
 	c.ContentPackagelangpacksAPI = (*ContentPackagelangpacksAPIService)(&c.common)
 	c.ContentPackagesAPI = (*ContentPackagesAPIService)(&c.common)
+	c.ContentRefsAPI = (*ContentRefsAPIService)(&c.common)
 	c.ContentRepoMetadataFilesAPI = (*ContentRepoMetadataFilesAPIService)(&c.common)
+	c.ContentSummariesAPI = (*ContentSummariesAPIService)(&c.common)
 	c.ContentguardsAPI = (*ContentguardsAPIService)(&c.common)
 	c.ContentguardsCompositeAPI = (*ContentguardsCompositeAPIService)(&c.common)
 	c.ContentguardsContentRedirectAPI = (*ContentguardsContentRedirectAPIService)(&c.common)
@@ -252,6 +278,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DistributionsArtifactsAPI = (*DistributionsArtifactsAPIService)(&c.common)
 	c.DistributionsFileAPI = (*DistributionsFileAPIService)(&c.common)
 	c.DistributionsGemAPI = (*DistributionsGemAPIService)(&c.common)
+	c.DistributionsOstreeAPI = (*DistributionsOstreeAPIService)(&c.common)
 	c.DistributionsRpmAPI = (*DistributionsRpmAPIService)(&c.common)
 	c.DocsApiJsonAPI = (*DocsApiJsonAPIService)(&c.common)
 	c.DocsApiYamlAPI = (*DocsApiYamlAPIService)(&c.common)
@@ -276,6 +303,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)
 	c.RemotesFileAPI = (*RemotesFileAPIService)(&c.common)
 	c.RemotesGemAPI = (*RemotesGemAPIService)(&c.common)
+	c.RemotesOstreeAPI = (*RemotesOstreeAPIService)(&c.common)
 	c.RemotesRpmAPI = (*RemotesRpmAPIService)(&c.common)
 	c.RemotesUlnAPI = (*RemotesUlnAPIService)(&c.common)
 	c.RepairAPI = (*RepairAPIService)(&c.common)
@@ -284,6 +312,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RepositoriesFileVersionsAPI = (*RepositoriesFileVersionsAPIService)(&c.common)
 	c.RepositoriesGemAPI = (*RepositoriesGemAPIService)(&c.common)
 	c.RepositoriesGemVersionsAPI = (*RepositoriesGemVersionsAPIService)(&c.common)
+	c.RepositoriesOstreeAPI = (*RepositoriesOstreeAPIService)(&c.common)
+	c.RepositoriesOstreeVersionsAPI = (*RepositoriesOstreeVersionsAPIService)(&c.common)
 	c.RepositoriesReclaimSpaceAPI = (*RepositoriesReclaimSpaceAPIService)(&c.common)
 	c.RepositoriesRpmAPI = (*RepositoriesRpmAPIService)(&c.common)
 	c.RepositoriesRpmVersionsAPI = (*RepositoriesRpmVersionsAPIService)(&c.common)
