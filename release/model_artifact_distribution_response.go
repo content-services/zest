@@ -22,22 +22,22 @@ var _ MappedNullable = &ArtifactDistributionResponse{}
 
 // ArtifactDistributionResponse A serializer for ArtifactDistribution.
 type ArtifactDistributionResponse struct {
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// Timestamp of creation.
-	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// An optional content-guard.
+	ContentGuard NullableString `json:"content_guard,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
-	// An optional content-guard.
-	ContentGuard NullableString `json:"content_guard,omitempty"`
+	PulpHref *string `json:"pulp_href,omitempty"`
 	// The URL for accessing the publication as defined by this distribution.
 	BaseUrl *string `json:"base_url,omitempty"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
+	// Timestamp of creation.
+	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name string `json:"name"`
-	PulpHref *string `json:"pulp_href,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -66,68 +66,46 @@ func NewArtifactDistributionResponseWithDefaults() *ArtifactDistributionResponse
 	return &this
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *ArtifactDistributionResponse) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+// GetContentGuard returns the ContentGuard field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ArtifactDistributionResponse) GetContentGuard() string {
+	if o == nil || IsNil(o.ContentGuard.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.PulpLabels
+	return *o.ContentGuard.Get()
 }
 
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArtifactDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PulpLabels, true
+	return o.ContentGuard.Get(), o.ContentGuard.IsSet()
 }
 
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *ArtifactDistributionResponse) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
+// HasContentGuard returns a boolean if a field has been set.
+func (o *ArtifactDistributionResponse) HasContentGuard() bool {
+	if o != nil && o.ContentGuard.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *ArtifactDistributionResponse) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
+// SetContentGuard gets a reference to the given NullableString and assigns it to the ContentGuard field.
+func (o *ArtifactDistributionResponse) SetContentGuard(v string) {
+	o.ContentGuard.Set(&v)
+}
+// SetContentGuardNil sets the value for ContentGuard to be an explicit nil
+func (o *ArtifactDistributionResponse) SetContentGuardNil() {
+	o.ContentGuard.Set(nil)
 }
 
-// GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
-func (o *ArtifactDistributionResponse) GetPulpCreated() time.Time {
-	if o == nil || IsNil(o.PulpCreated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.PulpCreated
-}
-
-// GetPulpCreatedOk returns a tuple with the PulpCreated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ArtifactDistributionResponse) GetPulpCreatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PulpCreated) {
-		return nil, false
-	}
-	return o.PulpCreated, true
-}
-
-// HasPulpCreated returns a boolean if a field has been set.
-func (o *ArtifactDistributionResponse) HasPulpCreated() bool {
-	if o != nil && !IsNil(o.PulpCreated) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
-func (o *ArtifactDistributionResponse) SetPulpCreated(v time.Time) {
-	o.PulpCreated = &v
+// UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
+func (o *ArtifactDistributionResponse) UnsetContentGuard() {
+	o.ContentGuard.Unset()
 }
 
 // GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
@@ -186,78 +164,36 @@ func (o *ArtifactDistributionResponse) SetBasePath(v string) {
 	o.BasePath = v
 }
 
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ArtifactDistributionResponse) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
-		return ret
-	}
-	return *o.Hidden
-}
-
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
-		return nil, false
-	}
-	return o.Hidden, true
-}
-
-// HasHidden returns a boolean if a field has been set.
-func (o *ArtifactDistributionResponse) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
-		return true
-	}
-
-	return false
-}
-
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ArtifactDistributionResponse) SetHidden(v bool) {
-	o.Hidden = &v
-}
-
-// GetContentGuard returns the ContentGuard field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ArtifactDistributionResponse) GetContentGuard() string {
-	if o == nil || IsNil(o.ContentGuard.Get()) {
+// GetPulpHref returns the PulpHref field value if set, zero value otherwise.
+func (o *ArtifactDistributionResponse) GetPulpHref() string {
+	if o == nil || IsNil(o.PulpHref) {
 		var ret string
 		return ret
 	}
-	return *o.ContentGuard.Get()
+	return *o.PulpHref
 }
 
-// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
+// GetPulpHrefOk returns a tuple with the PulpHref field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool) {
-	if o == nil {
+func (o *ArtifactDistributionResponse) GetPulpHrefOk() (*string, bool) {
+	if o == nil || IsNil(o.PulpHref) {
 		return nil, false
 	}
-	return o.ContentGuard.Get(), o.ContentGuard.IsSet()
+	return o.PulpHref, true
 }
 
-// HasContentGuard returns a boolean if a field has been set.
-func (o *ArtifactDistributionResponse) HasContentGuard() bool {
-	if o != nil && o.ContentGuard.IsSet() {
+// HasPulpHref returns a boolean if a field has been set.
+func (o *ArtifactDistributionResponse) HasPulpHref() bool {
+	if o != nil && !IsNil(o.PulpHref) {
 		return true
 	}
 
 	return false
 }
 
-// SetContentGuard gets a reference to the given NullableString and assigns it to the ContentGuard field.
-func (o *ArtifactDistributionResponse) SetContentGuard(v string) {
-	o.ContentGuard.Set(&v)
-}
-// SetContentGuardNil sets the value for ContentGuard to be an explicit nil
-func (o *ArtifactDistributionResponse) SetContentGuardNil() {
-	o.ContentGuard.Set(nil)
-}
-
-// UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
-func (o *ArtifactDistributionResponse) UnsetContentGuard() {
-	o.ContentGuard.Unset()
+// SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
+func (o *ArtifactDistributionResponse) SetPulpHref(v string) {
+	o.PulpHref = &v
 }
 
 // GetBaseUrl returns the BaseUrl field value if set, zero value otherwise.
@@ -292,6 +228,70 @@ func (o *ArtifactDistributionResponse) SetBaseUrl(v string) {
 	o.BaseUrl = &v
 }
 
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ArtifactDistributionResponse) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ArtifactDistributionResponse) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ArtifactDistributionResponse) SetHidden(v bool) {
+	o.Hidden = &v
+}
+
+// GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
+func (o *ArtifactDistributionResponse) GetPulpCreated() time.Time {
+	if o == nil || IsNil(o.PulpCreated) {
+		var ret time.Time
+		return ret
+	}
+	return *o.PulpCreated
+}
+
+// GetPulpCreatedOk returns a tuple with the PulpCreated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArtifactDistributionResponse) GetPulpCreatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpCreated) {
+		return nil, false
+	}
+	return o.PulpCreated, true
+}
+
+// HasPulpCreated returns a boolean if a field has been set.
+func (o *ArtifactDistributionResponse) HasPulpCreated() bool {
+	if o != nil && !IsNil(o.PulpCreated) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpCreated gets a reference to the given time.Time and assigns it to the PulpCreated field.
+func (o *ArtifactDistributionResponse) SetPulpCreated(v time.Time) {
+	o.PulpCreated = &v
+}
+
 // GetName returns the Name field value
 func (o *ArtifactDistributionResponse) GetName() string {
 	if o == nil {
@@ -316,36 +316,36 @@ func (o *ArtifactDistributionResponse) SetName(v string) {
 	o.Name = v
 }
 
-// GetPulpHref returns the PulpHref field value if set, zero value otherwise.
-func (o *ArtifactDistributionResponse) GetPulpHref() string {
-	if o == nil || IsNil(o.PulpHref) {
-		var ret string
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *ArtifactDistributionResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
 		return ret
 	}
-	return *o.PulpHref
+	return *o.PulpLabels
 }
 
-// GetPulpHrefOk returns a tuple with the PulpHref field value if set, nil otherwise
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArtifactDistributionResponse) GetPulpHrefOk() (*string, bool) {
-	if o == nil || IsNil(o.PulpHref) {
+func (o *ArtifactDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
-	return o.PulpHref, true
+	return o.PulpLabels, true
 }
 
-// HasPulpHref returns a boolean if a field has been set.
-func (o *ArtifactDistributionResponse) HasPulpHref() bool {
-	if o != nil && !IsNil(o.PulpHref) {
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *ArtifactDistributionResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
-func (o *ArtifactDistributionResponse) SetPulpHref(v string) {
-	o.PulpHref = &v
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *ArtifactDistributionResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 func (o ArtifactDistributionResponse) MarshalJSON() ([]byte, error) {
@@ -358,28 +358,28 @@ func (o ArtifactDistributionResponse) MarshalJSON() ([]byte, error) {
 
 func (o ArtifactDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if !IsNil(o.PulpCreated) {
-		toSerialize["pulp_created"] = o.PulpCreated
+	if o.ContentGuard.IsSet() {
+		toSerialize["content_guard"] = o.ContentGuard.Get()
 	}
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["base_path"] = o.BasePath
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
-	}
-	if o.ContentGuard.IsSet() {
-		toSerialize["content_guard"] = o.ContentGuard.Get()
+	if !IsNil(o.PulpHref) {
+		toSerialize["pulp_href"] = o.PulpHref
 	}
 	if !IsNil(o.BaseUrl) {
 		toSerialize["base_url"] = o.BaseUrl
 	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.PulpCreated) {
+		toSerialize["pulp_created"] = o.PulpCreated
+	}
 	toSerialize["name"] = o.Name
-	if !IsNil(o.PulpHref) {
-		toSerialize["pulp_href"] = o.PulpHref
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -425,15 +425,15 @@ func (o *ArtifactDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "hidden")
-		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "base_url")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}
 
