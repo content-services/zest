@@ -13,12 +13,12 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.54.0
+    core: 3.54.1
     gem: 0.5.1
-    ostree: 2.3.0
+    ostree: 2.3.1
     rpm: 3.25.3
-    certguard: 3.54.0
-    file: 3.54.0
+    certguard: 3.54.1
+    file: 3.54.1
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -31884,8 +31884,8 @@ components:
       example:
         pulp_labels:
           key: pulp_labels
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         name: name
         base_url: base_url
         base_path: base_path
@@ -31901,8 +31901,23 @@ components:
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         pulp_last_updated:
@@ -31912,27 +31927,12 @@ components:
           format: date-time
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
       required:
@@ -33369,8 +33369,8 @@ components:
         results:
         - pulp_labels:
             key: pulp_labels
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           name: name
           base_url: base_url
           base_path: base_path
@@ -33379,8 +33379,8 @@ components:
           content_guard: https://openapi-generator.tech
         - pulp_labels:
             key: pulp_labels
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           name: name
           base_url: base_url
           base_path: base_path
