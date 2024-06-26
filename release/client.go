@@ -122,6 +122,8 @@ type APIClient struct {
 
 	DistributionsOstreeAPI *DistributionsOstreeAPIService
 
+	DistributionsPypiAPI *DistributionsPypiAPIService
+
 	DistributionsRpmAPI *DistributionsRpmAPIService
 
 	DocsApiJsonAPI *DocsApiJsonAPIService
@@ -162,7 +164,17 @@ type APIClient struct {
 
 	PublicationsGemAPI *PublicationsGemAPIService
 
+	PublicationsPypiAPI *PublicationsPypiAPIService
+
 	PublicationsRpmAPI *PublicationsRpmAPIService
+
+	PypiAPI *PypiAPIService
+
+	PypiLegacyAPI *PypiLegacyAPIService
+
+	PypiMetadataAPI *PypiMetadataAPIService
+
+	PypiSimpleAPI *PypiSimpleAPIService
 
 	RemotesAPI *RemotesAPIService
 
@@ -171,6 +183,8 @@ type APIClient struct {
 	RemotesGemAPI *RemotesGemAPIService
 
 	RemotesOstreeAPI *RemotesOstreeAPIService
+
+	RemotesPythonAPI *RemotesPythonAPIService
 
 	RemotesRpmAPI *RemotesRpmAPIService
 
@@ -191,6 +205,10 @@ type APIClient struct {
 	RepositoriesOstreeAPI *RepositoriesOstreeAPIService
 
 	RepositoriesOstreeVersionsAPI *RepositoriesOstreeVersionsAPIService
+
+	RepositoriesPythonAPI *RepositoriesPythonAPIService
+
+	RepositoriesPythonVersionsAPI *RepositoriesPythonVersionsAPIService
 
 	RepositoriesReclaimSpaceAPI *RepositoriesReclaimSpaceAPIService
 
@@ -279,6 +297,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DistributionsFileAPI = (*DistributionsFileAPIService)(&c.common)
 	c.DistributionsGemAPI = (*DistributionsGemAPIService)(&c.common)
 	c.DistributionsOstreeAPI = (*DistributionsOstreeAPIService)(&c.common)
+	c.DistributionsPypiAPI = (*DistributionsPypiAPIService)(&c.common)
 	c.DistributionsRpmAPI = (*DistributionsRpmAPIService)(&c.common)
 	c.DocsApiJsonAPI = (*DocsApiJsonAPIService)(&c.common)
 	c.DocsApiYamlAPI = (*DocsApiYamlAPIService)(&c.common)
@@ -299,11 +318,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PublicationsAPI = (*PublicationsAPIService)(&c.common)
 	c.PublicationsFileAPI = (*PublicationsFileAPIService)(&c.common)
 	c.PublicationsGemAPI = (*PublicationsGemAPIService)(&c.common)
+	c.PublicationsPypiAPI = (*PublicationsPypiAPIService)(&c.common)
 	c.PublicationsRpmAPI = (*PublicationsRpmAPIService)(&c.common)
+	c.PypiAPI = (*PypiAPIService)(&c.common)
+	c.PypiLegacyAPI = (*PypiLegacyAPIService)(&c.common)
+	c.PypiMetadataAPI = (*PypiMetadataAPIService)(&c.common)
+	c.PypiSimpleAPI = (*PypiSimpleAPIService)(&c.common)
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)
 	c.RemotesFileAPI = (*RemotesFileAPIService)(&c.common)
 	c.RemotesGemAPI = (*RemotesGemAPIService)(&c.common)
 	c.RemotesOstreeAPI = (*RemotesOstreeAPIService)(&c.common)
+	c.RemotesPythonAPI = (*RemotesPythonAPIService)(&c.common)
 	c.RemotesRpmAPI = (*RemotesRpmAPIService)(&c.common)
 	c.RemotesUlnAPI = (*RemotesUlnAPIService)(&c.common)
 	c.RepairAPI = (*RepairAPIService)(&c.common)
@@ -314,6 +339,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RepositoriesGemVersionsAPI = (*RepositoriesGemVersionsAPIService)(&c.common)
 	c.RepositoriesOstreeAPI = (*RepositoriesOstreeAPIService)(&c.common)
 	c.RepositoriesOstreeVersionsAPI = (*RepositoriesOstreeVersionsAPIService)(&c.common)
+	c.RepositoriesPythonAPI = (*RepositoriesPythonAPIService)(&c.common)
+	c.RepositoriesPythonVersionsAPI = (*RepositoriesPythonVersionsAPIService)(&c.common)
 	c.RepositoriesReclaimSpaceAPI = (*RepositoriesReclaimSpaceAPIService)(&c.common)
 	c.RepositoriesRpmAPI = (*RepositoriesRpmAPIService)(&c.common)
 	c.RepositoriesRpmVersionsAPI = (*RepositoriesRpmVersionsAPIService)(&c.common)

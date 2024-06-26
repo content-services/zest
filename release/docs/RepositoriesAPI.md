@@ -46,8 +46,8 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
 	q := "q_example" // string |  (optional)
 	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
@@ -106,8 +106,8 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **pulpType** | **string** | Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
+ **pulpType** | **string** | Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
  **q** | **string** |  | 
  **remote** | **string** | Foreign Key referenced by HREF | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 

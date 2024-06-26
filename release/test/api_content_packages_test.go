@@ -22,6 +22,48 @@ func Test_zest_ContentPackagesAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test ContentPackagesAPIService ContentPythonPackagesCreate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentPythonPackagesCreate(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentPythonPackagesList", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentPythonPackagesList(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentPythonPackagesRead", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pythonPythonPackageContentHref string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentPythonPackagesRead(context.Background(), pythonPythonPackageContentHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ContentPackagesAPIService ContentRpmPackagesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

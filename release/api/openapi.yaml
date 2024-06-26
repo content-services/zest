@@ -16,6 +16,7 @@ info:
     core: 3.54.1
     gem: 0.5.1
     ostree: 2.3.1
+    python: 3.12.0
     rpm: 3.25.3
     certguard: 3.54.1
     file: 3.54.1
@@ -1925,10 +1926,10 @@ paths:
       - description: Pulp type* `core.publishedmetadata` - core.publishedmetadata*
           `gem.gem` - gem.gem* `ostree.object` - ostree.object* `ostree.commit` -
           ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
-          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `rpm.advisory`
-          - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
-          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
-          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
+          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `python.python`
+          - python.python* `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup*
+          `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment` -
+          rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
           - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
           `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
           - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
@@ -1948,6 +1949,7 @@ paths:
           - ostree.object
           - ostree.refs
           - ostree.summary
+          - python.python
           - rpm.advisory
           - rpm.distribution_tree
           - rpm.modulemd
@@ -1965,13 +1967,13 @@ paths:
           - core.publishedmetadata* `gem.gem` - gem.gem* `ostree.object` - ostree.object*
           `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
           - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
-          `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
-          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
-          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
-          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
-          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
-          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `file.file` - file.file
+          `python.python` - python.python* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
+          - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
+          - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
+          `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
+          - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
+          `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
+          - rpm.modulemd_obsolete* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -1988,6 +1990,7 @@ paths:
             - ostree.object
             - ostree.refs
             - ostree.summary
+            - python.python
             - rpm.advisory
             - rpm.distribution_tree
             - rpm.modulemd
@@ -3903,6 +3906,528 @@ paths:
       summary: Inspect an ostree summary
       tags:
       - "Content: Summaries"
+  /api/pulp/{pulp_domain}/api/v3/content/python/packages/:
+    get:
+      description: "PythonPackageContent represents each individually installable\
+        \ Python package. In the Pythonecosystem, this is called a Python Distribution,\
+        \ sometimes (ambiguously) refered to as apackage. In Pulp Python, we refer\
+        \ to it as PythonPackageContent. EachPythonPackageContent corresponds to a\
+        \ single filename, for example`pulpcore-3.0.0rc1-py3-none-any.whl` or `pulpcore-3.0.0rc1.tar.gz`."
+      operationId: content_python_packages_list
+      parameters:
+      - description: Filter results where author matches value
+        explode: true
+        in: query
+        name: author
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where author is in a comma-separated list of values
+        explode: false
+        in: query
+        name: author__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where filename matches value
+        explode: true
+        in: query
+        name: filename
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where filename contains value
+        explode: true
+        in: query
+        name: filename__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where filename is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: filename__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where keywords contains value
+        explode: true
+        in: query
+        name: keywords__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where keywords is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: keywords__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `filename` - Filename* `-filename`
+          - Filename (descending)* `packagetype` - Packagetype* `-packagetype` - Packagetype
+          (descending)* `name` - Name* `-name` - Name (descending)* `version` - Version*
+          `-version` - Version (descending)* `sha256` - Sha256* `-sha256` - Sha256
+          (descending)* `python_version` - Python version* `-python_version` - Python
+          version (descending)* `metadata_version` - Metadata version* `-metadata_version`
+          - Metadata version (descending)* `summary` - Summary* `-summary` - Summary
+          (descending)* `description` - Description* `-description` - Description
+          (descending)* `keywords` - Keywords* `-keywords` - Keywords (descending)*
+          `home_page` - Home page* `-home_page` - Home page (descending)* `download_url`
+          - Download url* `-download_url` - Download url (descending)* `author` -
+          Author* `-author` - Author (descending)* `author_email` - Author email*
+          `-author_email` - Author email (descending)* `maintainer` - Maintainer*
+          `-maintainer` - Maintainer (descending)* `maintainer_email` - Maintainer
+          email* `-maintainer_email` - Maintainer email (descending)* `license` -
+          License* `-license` - License (descending)* `requires_python` - Requires
+          python* `-requires_python` - Requires python (descending)* `project_url`
+          - Project url* `-project_url` - Project url (descending)* `platform` - Platform*
+          `-platform` - Platform (descending)* `supported_platform` - Supported platform*
+          `-supported_platform` - Supported platform (descending)* `requires_dist`
+          - Requires dist* `-requires_dist` - Requires dist (descending)* `provides_dist`
+          - Provides dist* `-provides_dist` - Provides dist (descending)* `obsoletes_dist`
+          - Obsoletes dist* `-obsoletes_dist` - Obsoletes dist (descending)* `requires_external`
+          - Requires external* `-requires_external` - Requires external (descending)*
+          `classifiers` - Classifiers* `-classifiers` - Classifiers (descending)*
+          `project_urls` - Project urls* `-project_urls` - Project urls (descending)*
+          `description_content_type` - Description content type* `-description_content_type`
+          - Description content type (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -author
+            - -author_email
+            - -classifiers
+            - -description
+            - -description_content_type
+            - -download_url
+            - -filename
+            - -home_page
+            - -keywords
+            - -license
+            - -maintainer
+            - -maintainer_email
+            - -metadata_version
+            - -name
+            - -obsoletes_dist
+            - -packagetype
+            - -pk
+            - -platform
+            - -project_url
+            - -project_urls
+            - -provides_dist
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -python_version
+            - -requires_dist
+            - -requires_external
+            - -requires_python
+            - -sha256
+            - -summary
+            - -supported_platform
+            - -timestamp_of_interest
+            - -upstream_id
+            - -version
+            - author
+            - author_email
+            - classifiers
+            - description
+            - description_content_type
+            - download_url
+            - filename
+            - home_page
+            - keywords
+            - license
+            - maintainer
+            - maintainer_email
+            - metadata_version
+            - name
+            - obsoletes_dist
+            - packagetype
+            - pk
+            - platform
+            - project_url
+            - project_urls
+            - provides_dist
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - python_version
+            - requires_dist
+            - requires_external
+            - requires_python
+            - sha256
+            - summary
+            - supported_platform
+            - timestamp_of_interest
+            - upstream_id
+            - version
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter results where packagetype matches value* `bdist_dmg` -
+          bdist_dmg* `bdist_dumb` - bdist_dumb* `bdist_egg` - bdist_egg* `bdist_msi`
+          - bdist_msi* `bdist_rpm` - bdist_rpm* `bdist_wheel` - bdist_wheel* `bdist_wininst`
+          - bdist_wininst* `sdist` - sdist
+        explode: true
+        in: query
+        name: packagetype
+        required: false
+        schema:
+          enum:
+          - bdist_dmg
+          - bdist_dumb
+          - bdist_egg
+          - bdist_msi
+          - bdist_rpm
+          - bdist_wheel
+          - bdist_wininst
+          - sdist
+          type: string
+        style: form
+      - description: Filter results where packagetype is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: packagetype__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where requires_python matches value
+        explode: true
+        in: query
+        name: requires_python
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where requires_python contains value
+        explode: true
+        in: query
+        name: requires_python__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where requires_python is in a comma-separated
+          list of values
+        explode: false
+        in: query
+        name: requires_python__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where sha256 matches value
+        explode: true
+        in: query
+        name: sha256
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where sha256 is in a comma-separated list of values
+        explode: false
+        in: query
+        name: sha256__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where version matches value
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version is greater than value
+        explode: true
+        in: query
+        name: version__gt
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version is greater than or equal to value
+        explode: true
+        in: query
+        name: version__gte
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version is less than value
+        explode: true
+        in: query
+        name: version__lt
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version is less than or equal to value
+        explode: true
+        in: query
+        name: version__lte
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedpython.PythonPackageContentResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List python package contents
+      tags:
+      - "Content: Packages"
+    post:
+      description: "Trigger an asynchronous task to create content,optionally create\
+        \ new repository version."
+      operationId: content_python_packages_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonPackageContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonPackageContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a python package content
+      tags:
+      - "Content: Packages"
+  '{python_python_package_content_href}':
+    get:
+      description: "PythonPackageContent represents each individually installable\
+        \ Python package. In the Pythonecosystem, this is called a Python Distribution,\
+        \ sometimes (ambiguously) refered to as apackage. In Pulp Python, we refer\
+        \ to it as PythonPackageContent. EachPythonPackageContent corresponds to a\
+        \ single filename, for example`pulpcore-3.0.0rc1-py3-none-any.whl` or `pulpcore-3.0.0rc1.tar.gz`."
+      operationId: content_python_packages_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_package_content_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonPackageContentResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a python package content
+      tags:
+      - "Content: Packages"
   /api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/:
     get:
       description: "A ViewSet for UpdateRecord.Define endpoint name which will appear\
@@ -10168,7 +10693,8 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
+          - rpm.rpm* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -10179,12 +10705,13 @@ paths:
           - file.file
           - gem.gem
           - ostree.ostree
+          - python.python
           - rpm.rpm
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `rpm.rpm`
-          - rpm.rpm* `file.file` - file.file
+          - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python`
+          - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -10196,6 +10723,7 @@ paths:
             - file.file
             - gem.gem
             - ostree.ostree
+            - python.python
             - rpm.rpm
             type: string
           type: array
@@ -12656,6 +13184,700 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: Ostree"
+  /api/pulp/{pulp_domain}/api/v3/distributions/python/pypi/:
+    get:
+      description: "Pulp Python Distributions are used to distribute Python content\
+        \ fromPython Repositories orPython Publications.  Pulp PythonDistributions\
+        \ should not be confused with \"Python Distribution\" as defined by the Pythoncommunity.\
+        \ In Pulp usage, Python content is referred to as Python Package Content."
+      operationId: distributions_python_pypi_list
+      parameters:
+      - description: Filter results where base_path matches value
+        explode: true
+        in: query
+        name: base_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_path__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `base_path` -
+          Base path* `-base_path` - Base path (descending)* `hidden` - Hidden* `-hidden`
+          - Hidden (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository matches value
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where repository is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: repository__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedpython.PythonDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List python distributions
+      tags:
+      - "Distributions: Pypi"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_python_pypi_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a python distribution
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_python_pypi_delete
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a python distribution
+      tags:
+      - "Distributions: Pypi"
+    get:
+      description: "Pulp Python Distributions are used to distribute Python content\
+        \ fromPython Repositories orPython Publications.  Pulp PythonDistributions\
+        \ should not be confused with \"Python Distribution\" as defined by the Pythoncommunity.\
+        \ In Pulp usage, Python content is referred to as Python Package Content."
+      operationId: distributions_python_pypi_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a python distribution
+      tags:
+      - "Distributions: Pypi"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_python_pypi_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python distribution
+      tags:
+      - "Distributions: Pypi"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_python_pypi_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python distribution
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: distributions_python_pypi_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: distributions_python_pypi_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: distributions_python_pypi_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: distributions_python_pypi_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_python_pypi_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Pypi"
+  '{python_python_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_python_pypi_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Pypi"
   /api/pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/:
     get:
       description: ViewSet for RPM Distributions.
@@ -16481,8 +17703,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm* `file.file`
-          - file.file
+      - description: Pulp type* `gem.gem` - gem.gem* `python.python` - python.python*
+          `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -16491,11 +17713,12 @@ paths:
           enum:
           - file.file
           - gem.gem
+          - python.python
           - rpm.rpm
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -16505,6 +17728,7 @@ paths:
             enum:
             - file.file
             - gem.gem
+            - python.python
             - rpm.rpm
             type: string
           type: array
@@ -17528,6 +18752,488 @@ paths:
       summary: Remove a role
       tags:
       - "Publications: Gem"
+  /api/pulp/{pulp_domain}/api/v3/publications/python/pypi/:
+    get:
+      description: "Python Publications refer to the Python Package content in a repository\
+        \ version, and includemetadata about that content."
+      operationId: publications_python_pypi_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `complete` - Complete* `-complete` - Complete (descending)*
+          `pass_through` - Pass through* `-pass_through` - Pass through (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -pass_through
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - complete
+            - pass_through
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository referenced by HREF
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedpython.PythonPublicationResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List python publications
+      tags:
+      - "Publications: Pypi"
+    post:
+      description: "Dispatches a publish task, which generates metadata that will\
+        \ be used by pip."
+      operationId: publications_python_pypi_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonPublication'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonPublication'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonPublication'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a python publication
+      tags:
+      - "Publications: Pypi"
+  '{python_python_publication_href}':
+    delete:
+      description: "Python Publications refer to the Python Package content in a repository\
+        \ version, and includemetadata about that content."
+      operationId: publications_python_pypi_delete
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a python publication
+      tags:
+      - "Publications: Pypi"
+    get:
+      description: "Python Publications refer to the Python Package content in a repository\
+        \ version, and includemetadata about that content."
+      operationId: publications_python_pypi_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonPublicationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a python publication
+      tags:
+      - "Publications: Pypi"
+  '{python_python_publication_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: publications_python_pypi_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Publications: Pypi"
+  '{python_python_publication_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: publications_python_pypi_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Publications: Pypi"
+  '{python_python_publication_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: publications_python_pypi_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Publications: Pypi"
+  '{python_python_publication_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: publications_python_pypi_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_publication_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Publications: Pypi"
   /api/pulp/{pulp_domain}/api/v3/publications/rpm/rpm/:
     get:
       description: ViewSet for Rpm Publications.
@@ -18299,7 +20005,8 @@ paths:
           type: array
         style: form
       - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
-          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file
+          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln*
+          `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -18309,13 +20016,14 @@ paths:
           - file.file
           - gem.gem
           - ostree.ostree
+          - python.python
           - rpm.rpm
           - rpm.uln
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln*
-          `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
+          - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -18326,6 +20034,7 @@ paths:
             - file.file
             - gem.gem
             - ostree.ostree
+            - python.python
             - rpm.rpm
             - rpm.uln
             type: string
@@ -20576,6 +22285,784 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Ostree"
+  /api/pulp/{pulp_domain}/api/v3/remotes/python/python/:
+    get:
+      description: "Python Remotes are representations of an external repository of\
+        \ Python content, eg.PyPI.  Fields include upstream repository config. Python\
+        \ Remotes are also used to `sync` fromupstream repositories, and contains\
+        \ sync settings."
+      operationId: remotes_python_python_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `url` - Url* `-url`
+          - Url (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)*
+          `client_cert` - Client cert* `-client_cert` - Client cert (descending)*
+          `client_key` - Client key* `-client_key` - Client key (descending)* `tls_validation`
+          - Tls validation* `-tls_validation` - Tls validation (descending)* `username`
+          - Username* `-username` - Username (descending)* `password` - Password*
+          `-password` - Password (descending)* `proxy_url` - Proxy url* `-proxy_url`
+          - Proxy url (descending)* `proxy_username` - Proxy username* `-proxy_username`
+          - Proxy username (descending)* `proxy_password` - Proxy password* `-proxy_password`
+          - Proxy password (descending)* `download_concurrency` - Download concurrency*
+          `-download_concurrency` - Download concurrency (descending)* `max_retries`
+          - Max retries* `-max_retries` - Max retries (descending)* `policy` - Policy*
+          `-policy` - Policy (descending)* `total_timeout` - Total timeout* `-total_timeout`
+          - Total timeout (descending)* `connect_timeout` - Connect timeout* `-connect_timeout`
+          - Connect timeout (descending)* `sock_connect_timeout` - Sock connect timeout*
+          `-sock_connect_timeout` - Sock connect timeout (descending)* `sock_read_timeout`
+          - Sock read timeout* `-sock_read_timeout` - Sock read timeout (descending)*
+          `headers` - Headers* `-headers` - Headers (descending)* `rate_limit` - Rate
+          limit* `-rate_limit` - Rate limit (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -connect_timeout
+            - -download_concurrency
+            - -headers
+            - -max_retries
+            - -name
+            - -password
+            - -pk
+            - -policy
+            - -proxy_password
+            - -proxy_url
+            - -proxy_username
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -rate_limit
+            - -sock_connect_timeout
+            - -sock_read_timeout
+            - -tls_validation
+            - -total_timeout
+            - -url
+            - -username
+            - ca_cert
+            - client_cert
+            - client_key
+            - connect_timeout
+            - download_concurrency
+            - headers
+            - max_retries
+            - name
+            - password
+            - pk
+            - policy
+            - proxy_password
+            - proxy_url
+            - proxy_username
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - rate_limit
+            - sock_connect_timeout
+            - sock_read_timeout
+            - tls_validation
+            - total_timeout
+            - url
+            - username
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated matches value
+        explode: true
+        in: query
+        name: pulp_last_updated
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than value
+        explode: true
+        in: query
+        name: pulp_last_updated__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than value
+        explode: true
+        in: query
+        name: pulp_last_updated__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_last_updated__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedpython.PythonRemoteResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List python remotes
+      tags:
+      - "Remotes: Python"
+    post:
+      description: "Python Remotes are representations of an external repository of\
+        \ Python content, eg.PyPI.  Fields include upstream repository config. Python\
+        \ Remotes are also used to `sync` fromupstream repositories, and contains\
+        \ sync settings."
+      operationId: remotes_python_python_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a python remote
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: remotes_python_python_delete
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a python remote
+      tags:
+      - "Remotes: Python"
+    get:
+      description: "Python Remotes are representations of an external repository of\
+        \ Python content, eg.PyPI.  Fields include upstream repository config. Python\
+        \ Remotes are also used to `sync` fromupstream repositories, and contains\
+        \ sync settings."
+      operationId: remotes_python_python_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a python remote
+      tags:
+      - "Remotes: Python"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: remotes_python_python_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python remote
+      tags:
+      - "Remotes: Python"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: remotes_python_python_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python remote
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: remotes_python_python_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: remotes_python_python_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: remotes_python_python_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: remotes_python_python_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_python_python_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Python"
+  '{python_python_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_python_python_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Python"
+  /api/pulp/{pulp_domain}/api/v3/remotes/python/python/from_bandersnatch/:
+    post:
+      description: Takes the fields specified in the Bandersnatch config and creates
+        a Python Remote from it.
+      operationId: remotes_python_python_from_bandersnatch
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PythonBanderRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PythonBanderRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create from Bandersnatch
+      tags:
+      - "Remotes: Python"
   /api/pulp/{pulp_domain}/api/v3/remotes/rpm/rpm/:
     get:
       description: A ViewSet for RpmRemote.
@@ -22265,7 +24752,7 @@ paths:
           type: string
         style: form
       - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
         explode: true
         in: query
         name: pulp_type
@@ -22275,11 +24762,13 @@ paths:
           - file.file
           - gem.gem
           - ostree.ostree
+          - python.python
           - rpm.rpm
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
+          - rpm.rpm* `file.file` - file.file
         explode: false
         in: query
         name: pulp_type__in
@@ -22290,6 +24779,7 @@ paths:
             - file.file
             - gem.gem
             - ostree.ostree
+            - python.python
             - rpm.rpm
             type: string
           type: array
@@ -25908,6 +28398,1147 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Ostree Versions"
+  /api/pulp/{pulp_domain}/api/v3/repositories/python/python/:
+    get:
+      description: "PythonRepository represents a single Python repository, to which\
+        \ content can besynced, added, or removed."
+      operationId: repositories_python_python_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description`
+          - Description* `-description` - Description (descending)* `next_version`
+          - Next version* `-next_version` - Next version (descending)* `retain_repo_versions`
+          - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)*
+          `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedpython.PythonRepositoryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List python repositorys
+      tags:
+      - "Repositories: Python"
+    post:
+      description: "PythonRepository represents a single Python repository, to which\
+        \ content can besynced, added, or removed."
+      operationId: repositories_python_python_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a python repository
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_python_python_delete
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a python repository
+      tags:
+      - "Repositories: Python"
+    get:
+      description: "PythonRepository represents a single Python repository, to which\
+        \ content can besynced, added, or removed."
+      operationId: repositories_python_python_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/python.PythonRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a python repository
+      tags:
+      - "Repositories: Python"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_python_python_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedpython.PythonRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python repository
+      tags:
+      - "Repositories: Python"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_python_python_update
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/python.PythonRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a python repository
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: repositories_python_python_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: repositories_python_python_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}modify/':
+    post:
+      description: Trigger an asynchronous task to create a new repository version.
+      operationId: repositories_python_python_modify
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Modify Repository Content
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: repositories_python_python_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: repositories_python_python_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_python_python_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}sync/':
+    post:
+      description: "Trigger an asynchronous task to sync python content. The sync\
+        \ task will retrieve Pythoncontent from the specified `Remote` and update\
+        \ the specified `Respository`, creating anew  `RepositoryVersion`."
+      operationId: repositories_python_python_sync
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositorySyncURL'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Sync from remote
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_python_python_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: Python"
+  '{python_python_repository_href}versions/':
+    get:
+      description: PythonRepositoryVersion represents a single Python repository version.
+      operationId: repositories_python_python_versions_list
+      parameters:
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Content Unit referenced by HREF
+        explode: true
+        in: query
+        name: content__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number matches value
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than value
+        explode: true
+        in: query
+        name: number__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than or equal to value
+        explode: true
+        in: query
+        name: number__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than value
+        explode: true
+        in: query
+        name: number__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than or equal to value
+        explode: true
+        in: query
+        name: number__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is between two comma separated values
+        explode: false
+        in: query
+        name: number__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `number` - Number* `-number` - Number (descending)*
+          `complete` - Complete* `-complete` - Complete (descending)* `info` - Info*
+          `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -info
+            - -number
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - complete
+            - info
+            - number
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: python_python_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRepositoryVersionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List repository versions
+      tags:
+      - "Repositories: Python Versions"
+  '{python_python_repository_version_href}':
+    delete:
+      description: Trigger an asynchronous task to delete a repository version.
+      operationId: repositories_python_python_versions_delete
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a repository version
+      tags:
+      - "Repositories: Python Versions"
+    get:
+      description: PythonRepositoryVersion represents a single Python repository version.
+      operationId: repositories_python_python_versions_read
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryVersionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a repository version
+      tags:
+      - "Repositories: Python Versions"
+  '{python_python_repository_version_href}repair/':
+    post:
+      description: Trigger an asynchronous task to repair a repository version.
+      operationId: repositories_python_python_versions_repair
+      parameters:
+      - explode: false
+        in: path
+        name: python_python_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Repair'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Python Versions"
   /api/pulp/{pulp_domain}/api/v3/repositories/reclaim_space/:
     post:
       description: Trigger an asynchronous space reclaim operation.
@@ -31666,6 +35297,312 @@ paths:
       summary: Inspect status of Pulp
       tags:
       - Status
+  /pypi/{pulp_domain}/{path}/:
+    get:
+      description: Gets package summary stats of index.
+      operationId: pypi_read
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Get index summary
+      tags:
+      - Pypi
+  /pypi/{pulp_domain}/{path}/legacy/:
+    post:
+      description: Upload package to the index.This is the endpoint that tools like
+        Twine and Poetry use for their upload commands.
+      operationId: pypi_legacy_create
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PackageUpload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PackageUpload'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadTaskResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Upload a package
+      tags:
+      - "Pypi: Legacy"
+  /pypi/{pulp_domain}/{path}/pypi/{meta}/:
+    get:
+      description: "Retrieves the package's core-metadata specified byhttps://packaging.python.org/specifications/core-metadata/.`meta`\
+        \ must be a path in form of `{package}/json/` or `{package}/{version}/json/`"
+      operationId: pypi_pypi_read
+      parameters:
+      - explode: false
+        in: path
+        name: meta
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageMetadataResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Get package metadata
+      tags:
+      - "Pypi: Metadata"
+  /pypi/{pulp_domain}/{path}/simple/:
+    get:
+      description: Gets the simple api html page for the index.
+      operationId: pypi_simple_read
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Get index simple page
+      tags:
+      - "Pypi: Simple"
+    post:
+      description: "Upload package to the index.This endpoint has the same functionality\
+        \ as the upload endpoint at the `/legacy` url of theindex. This is provided\
+        \ for convenience for users who want a single index url for all theirPython\
+        \ tools. (pip, twine, poetry, pipenv, ...)"
+      operationId: pypi_simple_create
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PackageUpload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PackageUpload'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadTaskResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Upload a package
+      tags:
+      - "Pypi: Simple"
+  /pypi/{pulp_domain}/{path}/simple/{package}/:
+    get:
+      description: Retrieves the simple api html page for a package.
+      operationId: pypi_simple_package_read
+      parameters:
+      - explode: false
+        in: path
+        name: package
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Get package simple page
+      tags:
+      - "Pypi: Simple"
 components:
   schemas:
     AccessPolicy:
@@ -31886,53 +35823,53 @@ components:
           key: pulp_labels
         pulp_href: https://openapi-generator.tech
         hidden: false
-        name: name
         base_url: base_url
-        base_path: base_path
+        name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
           type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        pulp_href:
-          format: uri
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
           readOnly: true
           type: string
       required:
@@ -32534,6 +36471,15 @@ components:
       - is_valid
       - messages
       type: object
+    ExcludePlatformsEnum:
+      description: '* `windows` - windows* `macos` - macos* `freebsd` - freebsd* `linux`
+        - linux'
+      enum:
+      - windows
+      - macos
+      - freebsd
+      - linux
+      type: string
     FilesystemExport:
       description: Serializer for FilesystemExports.
       example:
@@ -33303,6 +37249,90 @@ components:
       - sha384
       - sha512
       type: string
+    PackageMetadataResponse:
+      description: A Serializer for a package's metadata.
+      example:
+        urls: "{}"
+        last_serial: 0
+        info: "{}"
+        releases: "{}"
+      properties:
+        last_serial:
+          description: Cache value from last PyPI sync
+          format: int64
+          type: integer
+        info:
+          description: Core metadata of the package
+          type: object
+        releases:
+          description: List of all the releases of the package
+          type: object
+        urls:
+          type: object
+      required:
+      - info
+      - last_serial
+      - releases
+      - urls
+      type: object
+    PackageTypesEnum:
+      description: '* `bdist_dmg` - bdist_dmg* `bdist_dumb` - bdist_dumb* `bdist_egg`
+        - bdist_egg* `bdist_msi` - bdist_msi* `bdist_rpm` - bdist_rpm* `bdist_wheel`
+        - bdist_wheel* `bdist_wininst` - bdist_wininst* `sdist` - sdist'
+      enum:
+      - bdist_dmg
+      - bdist_dumb
+      - bdist_egg
+      - bdist_msi
+      - bdist_rpm
+      - bdist_wheel
+      - bdist_wininst
+      - sdist
+      type: string
+    PackageUpload:
+      description: A Serializer for Python packages being uploaded to the index.
+      properties:
+        content:
+          description: A Python package release file to upload to the index.
+          format: binary
+          type: string
+          writeOnly: true
+        action:
+          default: file_upload
+          description: "Defaults to `file_upload`, don't change it or request will\
+            \ fail!"
+          minLength: 1
+          type: string
+        sha256_digest:
+          description: SHA256 of package to validate upload integrity.
+          maxLength: 64
+          minLength: 64
+          type: string
+      required:
+      - content
+      - sha256_digest
+      type: object
+    PackageUploadTaskResponse:
+      description: A Serializer for responding to a package upload task.
+      example:
+        task: task
+        session: session
+        task_start_time: 2000-01-23T04:56:07.000+00:00
+      properties:
+        session:
+          nullable: true
+          type: string
+        task:
+          type: string
+        task_start_time:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - session
+      - task
+      - task_start_time
+      type: object
     PaginatedAccessPolicyResponseList:
       example:
         next: http://api.example.org/accounts/?offset=400&limit=100
@@ -33371,20 +37401,20 @@ components:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
           hidden: false
-          name: name
           base_url: base_url
-          base_path: base_path
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
         - pulp_labels:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
           hidden: false
-          name: name
           base_url: base_url
-          base_path: base_path
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
@@ -36157,6 +40187,358 @@ components:
       - count
       - results
       type: object
+    Paginatedpython.PythonDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          base_path: base_path
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          allow_uploads: true
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          base_path: base_path
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          allow_uploads: true
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/python.PythonDistributionResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedpython.PythonPackageContentResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - obsoletes_dist: "{}"
+          sha256: ""
+          keywords: keywords
+          description: description
+          project_url: project_url
+          project_urls: "{}"
+          maintainer: maintainer
+          platform: platform
+          artifact: https://openapi-generator.tech
+          home_page: home_page
+          requires_dist: "{}"
+          download_url: download_url
+          classifiers: "{}"
+          author_email: author_email
+          requires_python: requires_python
+          metadata_version: metadata_version
+          summary: summary
+          pulp_href: https://openapi-generator.tech
+          requires_external: "{}"
+          author: author
+          provides_dist: "{}"
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          version: version
+          supported_platform: supported_platform
+          license: license
+          filename: filename
+          name: name
+          maintainer_email: maintainer_email
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          packagetype: packagetype
+          description_content_type: description_content_type
+        - obsoletes_dist: "{}"
+          sha256: ""
+          keywords: keywords
+          description: description
+          project_url: project_url
+          project_urls: "{}"
+          maintainer: maintainer
+          platform: platform
+          artifact: https://openapi-generator.tech
+          home_page: home_page
+          requires_dist: "{}"
+          download_url: download_url
+          classifiers: "{}"
+          author_email: author_email
+          requires_python: requires_python
+          metadata_version: metadata_version
+          summary: summary
+          pulp_href: https://openapi-generator.tech
+          requires_external: "{}"
+          author: author
+          provides_dist: "{}"
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          version: version
+          supported_platform: supported_platform
+          license: license
+          filename: filename
+          name: name
+          maintainer_email: maintainer_email
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          packagetype: packagetype
+          description_content_type: description_content_type
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/python.PythonPackageContentResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedpython.PythonPublicationResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          distributions:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          distributions:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/python.PythonPublicationResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedpython.PythonRemoteResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - excludes:
+          - excludes
+          - excludes
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          prereleases: true
+          sock_read_timeout: 0.23021358869347652
+          package_types:
+          - bdist_dmg
+          - bdist_dmg
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+          headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          includes:
+          - includes
+          - includes
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          exclude_platforms:
+          - windows
+          - windows
+          proxy_url: proxy_url
+          keep_latest_packages: 9
+        - excludes:
+          - excludes
+          - excludes
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          prereleases: true
+          sock_read_timeout: 0.23021358869347652
+          package_types:
+          - bdist_dmg
+          - bdist_dmg
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+          headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          includes:
+          - includes
+          - includes
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          exclude_platforms:
+          - windows
+          - windows
+          proxy_url: proxy_url
+          keep_latest_packages: 9
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/python.PythonRemoteResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedpython.PythonRepositoryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          autopublish: false
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          autopublish: false
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/python.PythonRepositoryResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
     Paginatedrpm.DistributionTreeResponseList:
       example:
         next: http://api.example.org/accounts/?offset=400&limit=100
@@ -38466,6 +42848,260 @@ components:
           default: true
           type: boolean
       type: object
+    Patchedpython.PythonDistribution:
+      description: Serializer for Pulp distributions for the Python type.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        allow_uploads:
+          default: true
+          description: Allow packages to be uploaded to this index.
+          type: boolean
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedpython.PythonRemote:
+      description: A Serializer for PythonRemote.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: on_demand
+          description: "The policy to use when downloading content. The possible values\
+            \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
+            \ default.* `immediate` - When syncing, download all metadata and content\
+            \ now.* `on_demand` - When syncing, download metadata, but do not download\
+            \ content now. Instead, download content as clients request it, and save\
+            \ it in Pulp to be served for future client requests.* `streamed` - When\
+            \ syncing, download metadata, but do not download content now. Instead,download\
+            \ content as clients request it, but never save it in Pulp. This causes\
+            \ future requests for that same content to have to be downloaded again."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        includes:
+          description: A list containing project specifiers for Python packages to
+            include.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        excludes:
+          description: A list containing project specifiers for Python packages to
+            exclude.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        prereleases:
+          description: Whether or not to include pre-release packages in the sync.
+          type: boolean
+        package_types:
+          description: The package types to sync for Python content. Leave blank to
+            get everypackage type.
+          items:
+            $ref: '#/components/schemas/PackageTypesEnum'
+          type: array
+        keep_latest_packages:
+          default: 0
+          description: "The amount of latest versions of a package to keep on sync,\
+            \ includespre-releases if synced. Default 0 keeps all versions."
+          format: int64
+          type: integer
+        exclude_platforms:
+          description: "List of platforms to exclude syncing Python packages for.\
+            \ Possible valuesinclude: windows, macos, freebsd, and linux."
+          items:
+            $ref: '#/components/schemas/ExcludePlatformsEnum'
+          type: array
+      type: object
+    Patchedpython.PythonRepository:
+      description: Serializer for Python Repositories.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+      type: object
     Patchedrpm.RpmAlternateContentSource:
       description: Serializer for RPM alternate content source.
       properties:
@@ -39349,6 +43985,37 @@ components:
             $ref: '#/components/schemas/StatesEnum'
           type: array
       type: object
+    PythonBanderRemote:
+      description: A Serializer for the initial step of creating a Python Remote from
+        a Bandersnatch config file
+      properties:
+        config:
+          description: A Bandersnatch config that may be used to construct a Python
+            Remote.
+          format: binary
+          type: string
+          writeOnly: true
+        name:
+          description: A unique name for this remote
+          minLength: 1
+          type: string
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: on_demand
+          description: "The policy to use when downloading content. The possible values\
+            \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
+            \ default.* `immediate` - When syncing, download all metadata and content\
+            \ now.* `on_demand` - When syncing, download metadata, but do not download\
+            \ content now. Instead, download content as clients request it, and save\
+            \ it in Pulp to be served for future client requests.* `streamed` - When\
+            \ syncing, download metadata, but do not download content now. Instead,download\
+            \ content as clients request it, but never save it in Pulp. This causes\
+            \ future requests for that same content to have to be downloaded again."
+      required:
+      - config
+      - name
+      type: object
     RBACContentGuard:
       description: Base serializer for use with :class:`pulpcore.app.models.Model`This
         ensures that all Serializers provide values for the 'pulp_href` field.The
@@ -40161,6 +44828,30 @@ components:
       - free
       - total
       - used
+      type: object
+    SummaryResponse:
+      description: A Serializer for summary information of an index.
+      example:
+        projects: 0
+        files: 1
+        releases: 6
+      properties:
+        projects:
+          description: Number of Python projects in index
+          format: int64
+          type: integer
+        releases:
+          description: Number of Python distribution releases in index
+          format: int64
+          type: integer
+        files:
+          description: Number of files for all distributions in index
+          format: int64
+          type: integer
+      required:
+      - files
+      - projects
+      - releases
       type: object
     SyncPolicyEnum:
       description: '* `additive` - additive* `mirror_complete` - mirror_complete*
@@ -43617,6 +48308,951 @@ components:
       required:
       - artifact
       - relative_path
+      type: object
+    python.PythonDistribution:
+      description: Serializer for Pulp distributions for the Python type.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        allow_uploads:
+          default: true
+          description: Allow packages to be uploaded to this index.
+          type: boolean
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    python.PythonDistributionResponse:
+      description: Serializer for Pulp distributions for the Python type.
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        base_url: base_url
+        base_path: base_path
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        remote: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        allow_uploads: true
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        publication:
+          description: Publication to be served
+          format: uri
+          nullable: true
+          type: string
+        allow_uploads:
+          default: true
+          description: Allow packages to be uploaded to this index.
+          type: boolean
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    python.PythonPackageContent:
+      description: A Serializer for PythonPackageContent.
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          minLength: 1
+          type: string
+          writeOnly: true
+        file:
+          description: An uploaded file that may be turned into the content unit.
+          format: binary
+          type: string
+          writeOnly: true
+        upload:
+          description: An uncommitted upload that may be turned into the content unit.
+          format: uri
+          type: string
+          writeOnly: true
+        sha256:
+          default: ""
+          description: The SHA256 digest of this package.
+          minLength: 1
+          type: string
+        summary:
+          description: A one-line summary of what the package does.
+          type: string
+        description:
+          description: A longer description of the package that can run to several
+            paragraphs.
+          type: string
+        description_content_type:
+          description: "A string stating the markup syntax (if any) used in the distribution’\
+            s description, so that tools can intelligently render the description."
+          type: string
+        keywords:
+          description: Additional keywords to be used to assist searching for the
+            package in a larger catalog.
+          type: string
+        home_page:
+          description: The URL for the package's home page.
+          type: string
+        download_url:
+          description: Legacy field denoting the URL from which this package can be
+            downloaded.
+          type: string
+        author:
+          description: "Text containing the author's name. Contact information can\
+            \ also be added, separated with newlines."
+          type: string
+        author_email:
+          description: 'The author''s e-mail address. '
+          type: string
+        maintainer:
+          description: The maintainer's name at a minimum; additional contact information
+            may be provided.
+          type: string
+        maintainer_email:
+          description: The maintainer's e-mail address.
+          type: string
+        license:
+          description: Text indicating the license covering the distribution
+          type: string
+        requires_python:
+          description: The Python version(s) that the distribution is guaranteed to
+            be compatible with.
+          type: string
+        project_url:
+          description: "A browsable URL for the project and a label for it, separated\
+            \ by a comma."
+          type: string
+        project_urls:
+          description: A dictionary of labels and URLs for the project.
+          type: object
+        platform:
+          description: "A comma-separated list of platform specifications, summarizing\
+            \ the operating systems supported by the package."
+          type: string
+        supported_platform:
+          description: 'Field to specify the OS and CPU for which the binary package
+            was compiled. '
+          type: string
+        requires_dist:
+          description: A JSON list containing names of some other distutils project
+            required by this distribution.
+          type: object
+        provides_dist:
+          description: A JSON list containing names of a Distutils project which is
+            contained within this distribution.
+          type: object
+        obsoletes_dist:
+          description: "A JSON list containing names of a distutils project's distribution\
+            \ which this distribution renders obsolete, meaning that the two projects\
+            \ should not be installed at the same time."
+          type: object
+        requires_external:
+          description: A JSON list containing some dependency in the system that the
+            distribution is to be used.
+          type: object
+        classifiers:
+          description: A JSON list containing classification values for a Python package.
+          type: object
+      required:
+      - relative_path
+      type: object
+    python.PythonPackageContentResponse:
+      description: A Serializer for PythonPackageContent.
+      example:
+        obsoletes_dist: "{}"
+        sha256: ""
+        keywords: keywords
+        description: description
+        project_url: project_url
+        project_urls: "{}"
+        maintainer: maintainer
+        platform: platform
+        artifact: https://openapi-generator.tech
+        home_page: home_page
+        requires_dist: "{}"
+        download_url: download_url
+        classifiers: "{}"
+        author_email: author_email
+        requires_python: requires_python
+        metadata_version: metadata_version
+        summary: summary
+        pulp_href: https://openapi-generator.tech
+        requires_external: "{}"
+        author: author
+        provides_dist: "{}"
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        version: version
+        supported_platform: supported_platform
+        license: license
+        filename: filename
+        name: name
+        maintainer_email: maintainer_email
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        packagetype: packagetype
+        description_content_type: description_content_type
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        filename:
+          description: "The name of the distribution package, usually of the format:\
+            \ {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform\
+            \ tag}.{packagetype}"
+          readOnly: true
+          type: string
+        packagetype:
+          description: "The type of the distribution package (e.g. sdist, bdist_wheel,\
+            \ bdist_egg, etc)"
+          readOnly: true
+          type: string
+        name:
+          description: The name of the python project.
+          readOnly: true
+          type: string
+        version:
+          description: The packages version number.
+          readOnly: true
+          type: string
+        sha256:
+          default: ""
+          description: The SHA256 digest of this package.
+          type: string
+        metadata_version:
+          description: Version of the file format
+          readOnly: true
+          type: string
+        summary:
+          description: A one-line summary of what the package does.
+          type: string
+        description:
+          description: A longer description of the package that can run to several
+            paragraphs.
+          type: string
+        description_content_type:
+          description: "A string stating the markup syntax (if any) used in the distribution’\
+            s description, so that tools can intelligently render the description."
+          type: string
+        keywords:
+          description: Additional keywords to be used to assist searching for the
+            package in a larger catalog.
+          type: string
+        home_page:
+          description: The URL for the package's home page.
+          type: string
+        download_url:
+          description: Legacy field denoting the URL from which this package can be
+            downloaded.
+          type: string
+        author:
+          description: "Text containing the author's name. Contact information can\
+            \ also be added, separated with newlines."
+          type: string
+        author_email:
+          description: 'The author''s e-mail address. '
+          type: string
+        maintainer:
+          description: The maintainer's name at a minimum; additional contact information
+            may be provided.
+          type: string
+        maintainer_email:
+          description: The maintainer's e-mail address.
+          type: string
+        license:
+          description: Text indicating the license covering the distribution
+          type: string
+        requires_python:
+          description: The Python version(s) that the distribution is guaranteed to
+            be compatible with.
+          type: string
+        project_url:
+          description: "A browsable URL for the project and a label for it, separated\
+            \ by a comma."
+          type: string
+        project_urls:
+          description: A dictionary of labels and URLs for the project.
+          type: object
+        platform:
+          description: "A comma-separated list of platform specifications, summarizing\
+            \ the operating systems supported by the package."
+          type: string
+        supported_platform:
+          description: 'Field to specify the OS and CPU for which the binary package
+            was compiled. '
+          type: string
+        requires_dist:
+          description: A JSON list containing names of some other distutils project
+            required by this distribution.
+          type: object
+        provides_dist:
+          description: A JSON list containing names of a Distutils project which is
+            contained within this distribution.
+          type: object
+        obsoletes_dist:
+          description: "A JSON list containing names of a distutils project's distribution\
+            \ which this distribution renders obsolete, meaning that the two projects\
+            \ should not be installed at the same time."
+          type: object
+        requires_external:
+          description: A JSON list containing some dependency in the system that the
+            distribution is to be used.
+          type: object
+        classifiers:
+          description: A JSON list containing classification values for a Python package.
+          type: object
+      type: object
+    python.PythonPublication:
+      description: A Serializer for PythonPublication.
+      properties:
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+      type: object
+    python.PythonPublicationResponse:
+      description: A Serializer for PythonPublication.
+      example:
+        pulp_href: https://openapi-generator.tech
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        repository_version: https://openapi-generator.tech
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        distributions:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        repository_version:
+          format: uri
+          type: string
+        repository:
+          description: A URI of the repository to be published.
+          format: uri
+          type: string
+        distributions:
+          description: This publication is currently being hosted as configured by
+            these distributions.
+          items:
+            format: uri
+            type: string
+          readOnly: true
+          type: array
+      type: object
+    python.PythonRemote:
+      description: A Serializer for PythonRemote.
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: on_demand
+          description: "The policy to use when downloading content. The possible values\
+            \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
+            \ default.* `immediate` - When syncing, download all metadata and content\
+            \ now.* `on_demand` - When syncing, download metadata, but do not download\
+            \ content now. Instead, download content as clients request it, and save\
+            \ it in Pulp to be served for future client requests.* `streamed` - When\
+            \ syncing, download metadata, but do not download content now. Instead,download\
+            \ content as clients request it, but never save it in Pulp. This causes\
+            \ future requests for that same content to have to be downloaded again."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        includes:
+          description: A list containing project specifiers for Python packages to
+            include.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        excludes:
+          description: A list containing project specifiers for Python packages to
+            exclude.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        prereleases:
+          description: Whether or not to include pre-release packages in the sync.
+          type: boolean
+        package_types:
+          description: The package types to sync for Python content. Leave blank to
+            get everypackage type.
+          items:
+            $ref: '#/components/schemas/PackageTypesEnum'
+          type: array
+        keep_latest_packages:
+          default: 0
+          description: "The amount of latest versions of a package to keep on sync,\
+            \ includespre-releases if synced. Default 0 keeps all versions."
+          format: int64
+          type: integer
+        exclude_platforms:
+          description: "List of platforms to exclude syncing Python packages for.\
+            \ Possible valuesinclude: windows, macos, freebsd, and linux."
+          items:
+            $ref: '#/components/schemas/ExcludePlatformsEnum'
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    python.PythonRemoteResponse:
+      description: A Serializer for PythonRemote.
+      example:
+        excludes:
+        - excludes
+        - excludes
+        connect_timeout: 0.5962133916683182
+        client_cert: client_cert
+        prereleases: true
+        sock_read_timeout: 0.23021358869347652
+        package_types:
+        - bdist_dmg
+        - bdist_dmg
+        ca_cert: ca_cert
+        total_timeout: 0.14658129805029452
+        policy: ""
+        headers:
+        - "{}"
+        - "{}"
+        rate_limit: 7
+        pulp_href: https://openapi-generator.tech
+        tls_validation: true
+        max_retries: 6
+        includes:
+        - includes
+        - includes
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        url: url
+        download_concurrency: 1
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        sock_connect_timeout: 0.5637376656633328
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        hidden_fields:
+        - is_set: true
+          name: name
+        - is_set: true
+          name: name
+        exclude_platforms:
+        - windows
+        - windows
+        proxy_url: proxy_url
+        keep_latest_packages: 9
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: Timestamp of the most recent update of the remote.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this remote.
+          type: string
+        url:
+          description: The URL of an external content source.
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          nullable: true
+          type: string
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/Policy762Enum'
+          default: on_demand
+          description: "The policy to use when downloading content. The possible values\
+            \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
+            \ default.* `immediate` - When syncing, download all metadata and content\
+            \ now.* `on_demand` - When syncing, download metadata, but do not download\
+            \ content now. Instead, download content as clients request it, and save\
+            \ it in Pulp to be served for future client requests.* `streamed` - When\
+            \ syncing, download metadata, but do not download content now. Instead,download\
+            \ content as clients request it, but never save it in Pulp. This causes\
+            \ future requests for that same content to have to be downloaded again."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        hidden_fields:
+          description: List of hidden (write only) fields
+          items:
+            $ref: '#/components/schemas/RemoteResponse_hidden_fields_inner'
+          readOnly: true
+          type: array
+        includes:
+          description: A list containing project specifiers for Python packages to
+            include.
+          items:
+            type: string
+          type: array
+        excludes:
+          description: A list containing project specifiers for Python packages to
+            exclude.
+          items:
+            type: string
+          type: array
+        prereleases:
+          description: Whether or not to include pre-release packages in the sync.
+          type: boolean
+        package_types:
+          description: The package types to sync for Python content. Leave blank to
+            get everypackage type.
+          items:
+            $ref: '#/components/schemas/PackageTypesEnum'
+          type: array
+        keep_latest_packages:
+          default: 0
+          description: "The amount of latest versions of a package to keep on sync,\
+            \ includespre-releases if synced. Default 0 keeps all versions."
+          format: int64
+          type: integer
+        exclude_platforms:
+          description: "List of platforms to exclude syncing Python packages for.\
+            \ Possible valuesinclude: windows, macos, freebsd, and linux."
+          items:
+            $ref: '#/components/schemas/ExcludePlatformsEnum'
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    python.PythonRepository:
+      description: Serializer for Python Repositories.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+      required:
+      - name
+      type: object
+    python.PythonRepositoryResponse:
+      description: Serializer for Python Repositories.
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        autopublish: false
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+        autopublish:
+          default: false
+          description: "Whether to automatically create publications for new repository\
+            \ versions, and update any distributions pointing to this repository."
+          type: boolean
+      required:
+      - name
       type: object
     rpm.DistributionTreeResponse:
       description: DistributionTree serializer.
