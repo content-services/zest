@@ -429,7 +429,6 @@ docs/RepositoryAddRemoveContent.md
 docs/RepositoryResponse.md
 docs/RepositorySyncURL.md
 docs/RepositoryVersionResponse.md
-docs/RepositoryVersionResponseContentSummary.md
 docs/RepositoryVersionsAPI.md
 docs/Role.md
 docs/RoleResponse.md
@@ -757,7 +756,6 @@ model_repository_add_remove_content.go
 model_repository_response.go
 model_repository_sync_url.go
 model_repository_version_response.go
-model_repository_version_response_content_summary.go
 model_role.go
 model_role_response.go
 model_rpm_distribution_tree_response.go

@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedDomain{}
 // PatchedDomain Serializer for Domain.
 type PatchedDomain struct {
 	// A name for this domain.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[-a-zA-Z0-9_]+$"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
 	// Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage

@@ -30,7 +30,8 @@ type RepositoryVersionResponse struct {
 	Repository *string `json:"repository,omitempty"`
 	// A repository version whose content was used as the initial set of content for this repository version
 	BaseVersion *string `json:"base_version,omitempty"`
-	ContentSummary *RepositoryVersionResponseContentSummary `json:"content_summary,omitempty"`
+	// Various count summaries of the content in the version and the HREF to view them.
+	ContentSummary *ContentSummaryResponse `json:"content_summary,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -246,9 +247,9 @@ func (o *RepositoryVersionResponse) SetBaseVersion(v string) {
 }
 
 // GetContentSummary returns the ContentSummary field value if set, zero value otherwise.
-func (o *RepositoryVersionResponse) GetContentSummary() RepositoryVersionResponseContentSummary {
+func (o *RepositoryVersionResponse) GetContentSummary() ContentSummaryResponse {
 	if o == nil || IsNil(o.ContentSummary) {
-		var ret RepositoryVersionResponseContentSummary
+		var ret ContentSummaryResponse
 		return ret
 	}
 	return *o.ContentSummary
@@ -256,7 +257,7 @@ func (o *RepositoryVersionResponse) GetContentSummary() RepositoryVersionRespons
 
 // GetContentSummaryOk returns a tuple with the ContentSummary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RepositoryVersionResponse) GetContentSummaryOk() (*RepositoryVersionResponseContentSummary, bool) {
+func (o *RepositoryVersionResponse) GetContentSummaryOk() (*ContentSummaryResponse, bool) {
 	if o == nil || IsNil(o.ContentSummary) {
 		return nil, false
 	}
@@ -272,8 +273,8 @@ func (o *RepositoryVersionResponse) HasContentSummary() bool {
 	return false
 }
 
-// SetContentSummary gets a reference to the given RepositoryVersionResponseContentSummary and assigns it to the ContentSummary field.
-func (o *RepositoryVersionResponse) SetContentSummary(v RepositoryVersionResponseContentSummary) {
+// SetContentSummary gets a reference to the given ContentSummaryResponse and assigns it to the ContentSummary field.
+func (o *RepositoryVersionResponse) SetContentSummary(v ContentSummaryResponse) {
 	o.ContentSummary = &v
 }
 

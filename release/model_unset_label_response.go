@@ -21,7 +21,7 @@ var _ MappedNullable = &UnsetLabelResponse{}
 
 // UnsetLabelResponse Serializer for synchronously setting a label.
 type UnsetLabelResponse struct {
-	Key string `json:"key"`
+	Key string `json:"key" validate:"regexp=^[-a-zA-Z0-9_]+$"`
 	Value *string `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
