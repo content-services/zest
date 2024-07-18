@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
-**BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
-**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
+**BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
+**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 
 ## Methods
 
 ### NewArtifactDistributionResponse
 
-`func NewArtifactDistributionResponse(basePath string, name string, ) *ArtifactDistributionResponse`
+`func NewArtifactDistributionResponse(name string, basePath string, ) *ArtifactDistributionResponse`
 
 NewArtifactDistributionResponse instantiates a new ArtifactDistributionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -33,76 +33,66 @@ NewArtifactDistributionResponseWithDefaults instantiates a new ArtifactDistribut
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetBasePath
+### GetPulpLabels
 
-`func (o *ArtifactDistributionResponse) GetBasePath() string`
+`func (o *ArtifactDistributionResponse) GetPulpLabels() map[string]string`
 
-GetBasePath returns the BasePath field if non-nil, zero value otherwise.
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
-### GetBasePathOk
+### GetPulpLabelsOk
 
-`func (o *ArtifactDistributionResponse) GetBasePathOk() (*string, bool)`
+`func (o *ArtifactDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool)`
 
-GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBasePath
+### SetPulpLabels
 
-`func (o *ArtifactDistributionResponse) SetBasePath(v string)`
+`func (o *ArtifactDistributionResponse) SetPulpLabels(v map[string]string)`
 
-SetBasePath sets BasePath field to given value.
+SetPulpLabels sets PulpLabels field to given value.
 
+### HasPulpLabels
 
-### GetBaseUrl
+`func (o *ArtifactDistributionResponse) HasPulpLabels() bool`
 
-`func (o *ArtifactDistributionResponse) GetBaseUrl() string`
+HasPulpLabels returns a boolean if a field has been set.
 
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
+### GetContentGuard
 
-### GetBaseUrlOk
+`func (o *ArtifactDistributionResponse) GetContentGuard() string`
 
-`func (o *ArtifactDistributionResponse) GetBaseUrlOk() (*string, bool)`
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
 
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
+### GetContentGuardOk
+
+`func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool)`
+
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBaseUrl
+### SetContentGuard
 
-`func (o *ArtifactDistributionResponse) SetBaseUrl(v string)`
+`func (o *ArtifactDistributionResponse) SetContentGuard(v string)`
 
-SetBaseUrl sets BaseUrl field to given value.
+SetContentGuard sets ContentGuard field to given value.
 
-### HasBaseUrl
+### HasContentGuard
 
-`func (o *ArtifactDistributionResponse) HasBaseUrl() bool`
+`func (o *ArtifactDistributionResponse) HasContentGuard() bool`
 
-HasBaseUrl returns a boolean if a field has been set.
+HasContentGuard returns a boolean if a field has been set.
 
-### GetHidden
+### SetContentGuardNil
 
-`func (o *ArtifactDistributionResponse) GetHidden() bool`
+`func (o *ArtifactDistributionResponse) SetContentGuardNil(b bool)`
 
-GetHidden returns the Hidden field if non-nil, zero value otherwise.
+ SetContentGuardNil sets the value for ContentGuard to be an explicit nil
 
-### GetHiddenOk
+### UnsetContentGuard
+`func (o *ArtifactDistributionResponse) UnsetContentGuard()`
 
-`func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool)`
-
-GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHidden
-
-`func (o *ArtifactDistributionResponse) SetHidden(v bool)`
-
-SetHidden sets Hidden field to given value.
-
-### HasHidden
-
-`func (o *ArtifactDistributionResponse) HasHidden() bool`
-
-HasHidden returns a boolean if a field has been set.
-
+UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
 ### GetName
 
 `func (o *ArtifactDistributionResponse) GetName() string`
@@ -173,66 +163,51 @@ SetPulpLastUpdated sets PulpLastUpdated field to given value.
 
 HasPulpLastUpdated returns a boolean if a field has been set.
 
-### GetPulpLabels
+### GetBaseUrl
 
-`func (o *ArtifactDistributionResponse) GetPulpLabels() map[string]string`
+`func (o *ArtifactDistributionResponse) GetBaseUrl() string`
 
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
 
-### GetPulpLabelsOk
+### GetBaseUrlOk
 
-`func (o *ArtifactDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *ArtifactDistributionResponse) GetBaseUrlOk() (*string, bool)`
 
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPulpLabels
+### SetBaseUrl
 
-`func (o *ArtifactDistributionResponse) SetPulpLabels(v map[string]string)`
+`func (o *ArtifactDistributionResponse) SetBaseUrl(v string)`
 
-SetPulpLabels sets PulpLabels field to given value.
+SetBaseUrl sets BaseUrl field to given value.
 
-### HasPulpLabels
+### HasBaseUrl
 
-`func (o *ArtifactDistributionResponse) HasPulpLabels() bool`
+`func (o *ArtifactDistributionResponse) HasBaseUrl() bool`
 
-HasPulpLabels returns a boolean if a field has been set.
+HasBaseUrl returns a boolean if a field has been set.
 
-### GetContentGuard
+### GetBasePath
 
-`func (o *ArtifactDistributionResponse) GetContentGuard() string`
+`func (o *ArtifactDistributionResponse) GetBasePath() string`
 
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+GetBasePath returns the BasePath field if non-nil, zero value otherwise.
 
-### GetContentGuardOk
+### GetBasePathOk
 
-`func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool)`
+`func (o *ArtifactDistributionResponse) GetBasePathOk() (*string, bool)`
 
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContentGuard
+### SetBasePath
 
-`func (o *ArtifactDistributionResponse) SetContentGuard(v string)`
+`func (o *ArtifactDistributionResponse) SetBasePath(v string)`
 
-SetContentGuard sets ContentGuard field to given value.
+SetBasePath sets BasePath field to given value.
 
-### HasContentGuard
 
-`func (o *ArtifactDistributionResponse) HasContentGuard() bool`
-
-HasContentGuard returns a boolean if a field has been set.
-
-### SetContentGuardNil
-
-`func (o *ArtifactDistributionResponse) SetContentGuardNil(b bool)`
-
- SetContentGuardNil sets the value for ContentGuard to be an explicit nil
-
-### UnsetContentGuard
-`func (o *ArtifactDistributionResponse) UnsetContentGuard()`
-
-UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
 ### GetPulpHref
 
 `func (o *ArtifactDistributionResponse) GetPulpHref() string`
@@ -257,6 +232,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *ArtifactDistributionResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetHidden
+
+`func (o *ArtifactDistributionResponse) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *ArtifactDistributionResponse) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *ArtifactDistributionResponse) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
