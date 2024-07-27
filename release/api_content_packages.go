@@ -35,6 +35,7 @@ type ContentPackagesAPIContentPythonPackagesCreateRequest struct {
 	artifact *string
 	file *os.File
 	upload *string
+	fileUrl *string
 	sha256 *string
 	summary *string
 	description *string
@@ -49,14 +50,14 @@ type ContentPackagesAPIContentPythonPackagesCreateRequest struct {
 	license *string
 	requiresPython *string
 	projectUrl *string
-	projectUrls *map[string]interface{}
+	projectUrls *interface{}
 	platform *string
 	supportedPlatform *string
-	requiresDist *map[string]interface{}
-	providesDist *map[string]interface{}
-	obsoletesDist *map[string]interface{}
-	requiresExternal *map[string]interface{}
-	classifiers *map[string]interface{}
+	requiresDist *interface{}
+	providesDist *interface{}
+	obsoletesDist *interface{}
+	requiresExternal *interface{}
+	classifiers *interface{}
 }
 
 // Path where the artifact is located relative to distributions base_path
@@ -86,6 +87,12 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) File(file *os.File
 // An uncommitted upload that may be turned into the content unit.
 func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Upload(upload string) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) FileUrl(fileUrl string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.fileUrl = &fileUrl
 	return r
 }
 
@@ -174,7 +181,7 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrl(project
 }
 
 // A dictionary of labels and URLs for the project.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrls(projectUrls map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrls(projectUrls interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.projectUrls = &projectUrls
 	return r
 }
@@ -192,31 +199,31 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) SupportedPlatform(
 }
 
 // A JSON list containing names of some other distutils project required by this distribution.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.requiresDist = &requiresDist
 	return r
 }
 
 // A JSON list containing names of a Distutils project which is contained within this distribution.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesDist(providesDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesDist(providesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.providesDist = &providesDist
 	return r
 }
 
 // A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.obsoletesDist = &obsoletesDist
 	return r
 }
 
 // A JSON list containing some dependency in the system that the distribution is to be used.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresExternal(requiresExternal map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresExternal(requiresExternal interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.requiresExternal = &requiresExternal
 	return r
 }
 
 // A JSON list containing classification values for a Python package.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.classifiers = &classifiers
 	return r
 }
@@ -314,6 +321,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 	}
 	if r.upload != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
 	}
 	if r.sha256 != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "")
@@ -1016,6 +1026,7 @@ type ContentPackagesAPIContentRpmPackagesCreateRequest struct {
 	relativePath *string
 	file *os.File
 	upload *string
+	fileUrl *string
 }
 
 // A URI of a repository the new content unit should be associated with.
@@ -1048,6 +1059,12 @@ func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Upload(upload string)
 	return r
 }
 
+// A url that Pulp can download and turn into the content unit.
+func (r ContentPackagesAPIContentRpmPackagesCreateRequest) FileUrl(fileUrl string) ContentPackagesAPIContentRpmPackagesCreateRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
 func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
 	return r.ApiService.ContentRpmPackagesCreateExecute(r)
 }
@@ -1055,7 +1072,7 @@ func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Execute() (*AsyncOper
 /*
 ContentRpmPackagesCreate Create a package
 
-Trigger an asynchronous task to create content,optionally create new repository version.
+Trigger an asynchronous task to create an RPM package,optionally create new repository version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -1137,6 +1154,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 	}
 	if r.upload != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

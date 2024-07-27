@@ -45,7 +45,7 @@ type FileFileRemoteResponse struct {
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
 	// The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the default.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
-	Policy *Policy762Enum `json:"policy,omitempty"`
+	Policy *Policy692Enum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
 	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
@@ -73,7 +73,7 @@ func NewFileFileRemoteResponse(name string, url string) *FileFileRemoteResponse 
 	this := FileFileRemoteResponse{}
 	this.Name = name
 	this.Url = url
-	var policy Policy762Enum = POLICY762ENUM_IMMEDIATE
+	var policy Policy692Enum = POLICY692ENUM_IMMEDIATE
 	this.Policy = &policy
 	return &this
 }
@@ -83,7 +83,7 @@ func NewFileFileRemoteResponse(name string, url string) *FileFileRemoteResponse 
 // but it doesn't guarantee that properties required by API are set
 func NewFileFileRemoteResponseWithDefaults() *FileFileRemoteResponse {
 	this := FileFileRemoteResponse{}
-	var policy Policy762Enum = POLICY762ENUM_IMMEDIATE
+	var policy Policy692Enum = POLICY692ENUM_IMMEDIATE
 	this.Policy = &policy
 	return &this
 }
@@ -507,9 +507,9 @@ func (o *FileFileRemoteResponse) UnsetMaxRetries() {
 }
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *FileFileRemoteResponse) GetPolicy() Policy762Enum {
+func (o *FileFileRemoteResponse) GetPolicy() Policy692Enum {
 	if o == nil || IsNil(o.Policy) {
-		var ret Policy762Enum
+		var ret Policy692Enum
 		return ret
 	}
 	return *o.Policy
@@ -517,7 +517,7 @@ func (o *FileFileRemoteResponse) GetPolicy() Policy762Enum {
 
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileFileRemoteResponse) GetPolicyOk() (*Policy762Enum, bool) {
+func (o *FileFileRemoteResponse) GetPolicyOk() (*Policy692Enum, bool) {
 	if o == nil || IsNil(o.Policy) {
 		return nil, false
 	}
@@ -533,8 +533,8 @@ func (o *FileFileRemoteResponse) HasPolicy() bool {
 	return false
 }
 
-// SetPolicy gets a reference to the given Policy762Enum and assigns it to the Policy field.
-func (o *FileFileRemoteResponse) SetPolicy(v Policy762Enum) {
+// SetPolicy gets a reference to the given Policy692Enum and assigns it to the Policy field.
+func (o *FileFileRemoteResponse) SetPolicy(v Policy692Enum) {
 	o.Policy = &v
 }
 

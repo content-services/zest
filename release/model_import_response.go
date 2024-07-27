@@ -30,7 +30,7 @@ type ImportResponse struct {
 	// A URI of the Task that ran the Import.
 	Task string `json:"task"`
 	// Any parameters that were used to create the import.
-	Params map[string]interface{} `json:"params"`
+	Params interface{} `json:"params"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,7 +40,7 @@ type _ImportResponse ImportResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImportResponse(task string, params map[string]interface{}) *ImportResponse {
+func NewImportResponse(task string, params interface{}) *ImportResponse {
 	this := ImportResponse{}
 	this.Task = task
 	this.Params = params
@@ -176,9 +176,10 @@ func (o *ImportResponse) SetTask(v string) {
 }
 
 // GetParams returns the Params field value
-func (o *ImportResponse) GetParams() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ImportResponse) GetParams() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -187,15 +188,16 @@ func (o *ImportResponse) GetParams() map[string]interface{} {
 
 // GetParamsOk returns a tuple with the Params field value
 // and a boolean to check if the value has been set.
-func (o *ImportResponse) GetParamsOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ImportResponse) GetParamsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Params) {
+		return nil, false
 	}
-	return o.Params, true
+	return &o.Params, true
 }
 
 // SetParams sets field value
-func (o *ImportResponse) SetParams(v map[string]interface{}) {
+func (o *ImportResponse) SetParams(v interface{}) {
 	o.Params = v
 }
 
@@ -219,7 +221,9 @@ func (o ImportResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["task"] = o.Task
-	toSerialize["params"] = o.Params
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

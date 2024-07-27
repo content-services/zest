@@ -33,6 +33,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest struct {
 	repository *string
 	file *os.File
 	upload *string
+	fileUrl *string
 }
 
 // A URI of a repository the new content unit should be associated with.
@@ -50,6 +51,12 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) File(file *os.Fil
 // An uncommitted upload that may be turned into the content unit.
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) Upload(upload string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
 	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) FileUrl(fileUrl string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
+	r.fileUrl = &fileUrl
 	return r
 }
 
@@ -136,6 +143,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesCreateExecute(r Conten
 	}
 	if r.upload != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

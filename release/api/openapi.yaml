@@ -13,13 +13,13 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.54.1
-    gem: 0.5.1
+    core: 3.56.1
+    gem: 0.6.1
     ostree: 2.4.3
-    python: 3.12.0
-    rpm: 3.25.3
-    certguard: 3.54.1
-    file: 3.54.1
+    python: 3.12.1
+    rpm: 3.27.1
+    certguard: 3.56.1
+    file: 3.56.1
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -7102,8 +7102,8 @@ paths:
       tags:
       - "Content: Packages"
     post:
-      description: "Trigger an asynchronous task to create content,optionally create\
-        \ new repository version."
+      description: "Trigger an asynchronous task to create an RPM package,optionally\
+        \ create new repository version."
       operationId: content_rpm_packages_create
       parameters:
       - explode: false
@@ -31446,6 +31446,43 @@ paths:
       summary: Copy content
       tags:
       - "Rpm: Copy"
+  /api/pulp/{pulp_domain}/api/v3/rpm/prune/:
+    post:
+      description: Trigger an asynchronous old-Package-prune operation.
+      operationId: rpm_prune_prune_packages
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrunePackages'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PrunePackages'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PrunePackages'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGroupOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Rpm: Prune"
   /api/pulp/{pulp_domain}/api/v3/signing-services/:
     get:
       description: A ViewSet that supports browsing of existing signing services.
@@ -32417,18 +32454,6 @@ paths:
         schema:
           items:
             type: string
-          type: array
-        style: form
-      - description: "Deprecated, will be removed in pulpcore 3.55. Use reserved_resources\
-          \ instead."
-        explode: true
-        in: query
-        name: reserved_resources_record
-        required: false
-        schema:
-          items:
-            type: string
-          nullable: true
           type: array
         style: form
       - explode: true
@@ -35819,40 +35844,21 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
-        hidden: false
         pulp_labels:
           key: pulp_labels
-        name: name
+        pulp_href: https://openapi-generator.tech
+        hidden: false
         base_url: base_url
-        base_path: base_path
+        name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
           readOnly: true
           type: string
@@ -35861,16 +35867,35 @@ components:
             nullable: true
             type: string
           type: object
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         base_url:
           description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
       required:
       - base_path
@@ -36240,13 +36265,12 @@ components:
     Copy:
       description: A serializer for Content Copy API.
       example:
-        config: "{}"
+        config: ""
         dependency_solving: true
       properties:
         config:
           description: "A JSON document describing sources, destinations, and content\
             \ to be copied"
-          type: object
         dependency_solving:
           default: true
           description: Also copy dependencies of the content being copied.
@@ -36519,7 +36543,7 @@ components:
         - https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        params: "{}"
+        params: ""
       properties:
         pulp_href:
           format: uri
@@ -36552,7 +36576,6 @@ components:
         params:
           description: Any additional parameters that were used to create the export.
           readOnly: true
-          type: object
       type: object
     FilesystemExporter:
       description: Serializer for FilesystemExporters.
@@ -36930,7 +36953,7 @@ components:
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        params: "{}"
+        params: ""
       properties:
         pulp_href:
           format: uri
@@ -36954,7 +36977,6 @@ components:
           type: string
         params:
           description: Any parameters that were used to create the import.
-          type: object
       required:
       - params
       - task
@@ -37252,10 +37274,10 @@ components:
     PackageMetadataResponse:
       description: A Serializer for a package's metadata.
       example:
-        urls: "{}"
+        urls: ""
         last_serial: 0
-        info: "{}"
-        releases: "{}"
+        info: ""
+        releases: ""
       properties:
         last_serial:
           description: Cache value from last PyPI sync
@@ -37263,12 +37285,9 @@ components:
           type: integer
         info:
           description: Core metadata of the package
-          type: object
         releases:
           description: List of all the releases of the package
-          type: object
-        urls:
-          type: object
+        urls: {}
       required:
       - info
       - last_serial
@@ -37397,24 +37416,24 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          name: name
+          pulp_href: https://openapi-generator.tech
+          hidden: false
           base_url: base_url
-          base_path: base_path
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          name: name
+          pulp_href: https://openapi-generator.tech
+          hidden: false
           base_url: base_url
-          base_path: base_path
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
       properties:
@@ -37718,7 +37737,7 @@ components:
           - https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
+          params: ""
         - task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           exported_resources:
@@ -37726,7 +37745,7 @@ components:
           - https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
+          params: ""
       properties:
         count:
           example: 123
@@ -37957,12 +37976,12 @@ components:
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
+          params: ""
         - task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
+          params: ""
       properties:
         count:
           example: 123
@@ -38065,8 +38084,8 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - output_file_info: "{}"
-          toc_info: "{}"
+        - output_file_info: ""
+          toc_info: ""
           task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           exported_resources:
@@ -38074,9 +38093,9 @@ components:
           - https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
-        - output_file_info: "{}"
-          toc_info: "{}"
+          params: ""
+        - output_file_info: ""
+          toc_info: ""
           task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           exported_resources:
@@ -38084,7 +38103,7 @@ components:
           - https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          params: "{}"
+          params: ""
       properties:
         count:
           example: 123
@@ -40237,27 +40256,27 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - obsoletes_dist: "{}"
+        - obsoletes_dist: ""
           sha256: ""
           keywords: keywords
           description: description
           project_url: project_url
-          project_urls: "{}"
+          project_urls: ""
           maintainer: maintainer
           platform: platform
           artifact: https://openapi-generator.tech
           home_page: home_page
-          requires_dist: "{}"
+          requires_dist: ""
           download_url: download_url
-          classifiers: "{}"
+          classifiers: ""
           author_email: author_email
           requires_python: requires_python
           metadata_version: metadata_version
           summary: summary
           pulp_href: https://openapi-generator.tech
-          requires_external: "{}"
+          requires_external: ""
           author: author
-          provides_dist: "{}"
+          provides_dist: ""
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           version: version
           supported_platform: supported_platform
@@ -40268,27 +40287,27 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           packagetype: packagetype
           description_content_type: description_content_type
-        - obsoletes_dist: "{}"
+        - obsoletes_dist: ""
           sha256: ""
           keywords: keywords
           description: description
           project_url: project_url
-          project_urls: "{}"
+          project_urls: ""
           maintainer: maintainer
           platform: platform
           artifact: https://openapi-generator.tech
           home_page: home_page
-          requires_dist: "{}"
+          requires_dist: ""
           download_url: download_url
-          classifiers: "{}"
+          classifiers: ""
           author_email: author_email
           requires_python: requires_python
           metadata_version: metadata_version
           summary: summary
           pulp_href: https://openapi-generator.tech
-          requires_external: "{}"
+          requires_external: ""
           author: author
-          provides_dist: "{}"
+          provides_dist: ""
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           version: version
           supported_platform: supported_platform
@@ -40686,13 +40705,13 @@ components:
         - pulp_href: https://openapi-generator.tech
           stream: stream
           module: module
-          profiles: "{}"
+          profiles: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           stream: stream
           module: module
-          profiles: "{}"
+          profiles: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -40776,37 +40795,37 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
-          profiles: "{}"
+          profiles: ""
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           packages:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
           version: version
-          dependencies: "{}"
+          dependencies: ""
           static_context: true
           stream: stream
           name: name
           context: context
           pulp_created: 2000-01-23T04:56:07.000+00:00
           arch: arch
-          artifacts: "{}"
+          artifacts: ""
         - pulp_href: https://openapi-generator.tech
-          profiles: "{}"
+          profiles: ""
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           packages:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
           version: version
-          dependencies: "{}"
+          dependencies: ""
           static_context: true
           stream: stream
           name: name
           context: context
           pulp_created: 2000-01-23T04:56:07.000+00:00
           arch: arch
-          artifacts: "{}"
+          artifacts: ""
       properties:
         count:
           example: 123
@@ -40836,24 +40855,24 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           name: name
           display_order: 0
-          group_ids: "{}"
+          group_ids: ""
           digest: digest
           description: description
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           name: name
           display_order: 0
-          group_ids: "{}"
+          group_ids: ""
           digest: digest
           description: description
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -40886,27 +40905,27 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           name: name
           display_order: 0
-          group_ids: "{}"
+          group_ids: ""
           digest: digest
           description: description
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          option_ids: "{}"
+          option_ids: ""
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           name: name
           display_order: 0
-          group_ids: "{}"
+          group_ids: ""
           digest: digest
           description: description
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          option_ids: "{}"
+          option_ids: ""
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -40939,29 +40958,29 @@ components:
         results:
         - biarch_only: true
           pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           display_order: 0
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          packages: "{}"
+          packages: ""
           default: true
           name: name
           digest: digest
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           user_visible: true
         - biarch_only: true
           pulp_href: https://openapi-generator.tech
-          desc_by_lang: "{}"
+          desc_by_lang: ""
           display_order: 0
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          packages: "{}"
+          packages: ""
           default: true
           name: name
           digest: digest
-          name_by_lang: "{}"
+          name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           user_visible: true
@@ -40997,12 +41016,12 @@ components:
           digest: digest
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          matches: "{}"
+          matches: ""
         - pulp_href: https://openapi-generator.tech
           digest: digest
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          matches: "{}"
+          matches: ""
       properties:
         count:
           example: 123
@@ -41033,7 +41052,7 @@ components:
         results:
         - rpm_header_end: 6
           size_installed: 5
-          enhances: "{}"
+          enhances: ""
           sha256: sha256
           release: release
           size_package: 5
@@ -41043,43 +41062,43 @@ components:
           epoch: epoch
           rpm_vendor: rpm_vendor
           artifact: https://openapi-generator.tech
-          suggests: "{}"
+          suggests: ""
           location_href: location_href
           checksum_type: checksum_type
           rpm_sourcerpm: rpm_sourcerpm
-          provides: "{}"
+          provides: ""
           size_archive: 1
-          conflicts: "{}"
+          conflicts: ""
           pkgId: pkgId
           sha384: sha384
           summary: summary
           is_modular: true
           pulp_href: https://openapi-generator.tech
-          changelogs: "{}"
+          changelogs: ""
           rpm_packager: rpm_packager
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           version: version
-          obsoletes: "{}"
+          obsoletes: ""
           rpm_license: rpm_license
           url: url
           rpm_group: rpm_group
           sha1: sha1
-          supplements: "{}"
+          supplements: ""
           name: name
-          files: "{}"
+          files: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           location_base: location_base
           rpm_header_start: 0
           time_build: 2
           arch: arch
-          recommends: "{}"
+          recommends: ""
           rpm_buildhost: rpm_buildhost
           md5: md5
-          requires: "{}"
+          requires: ""
         - rpm_header_end: 6
           size_installed: 5
-          enhances: "{}"
+          enhances: ""
           sha256: sha256
           release: release
           size_package: 5
@@ -41089,40 +41108,40 @@ components:
           epoch: epoch
           rpm_vendor: rpm_vendor
           artifact: https://openapi-generator.tech
-          suggests: "{}"
+          suggests: ""
           location_href: location_href
           checksum_type: checksum_type
           rpm_sourcerpm: rpm_sourcerpm
-          provides: "{}"
+          provides: ""
           size_archive: 1
-          conflicts: "{}"
+          conflicts: ""
           pkgId: pkgId
           sha384: sha384
           summary: summary
           is_modular: true
           pulp_href: https://openapi-generator.tech
-          changelogs: "{}"
+          changelogs: ""
           rpm_packager: rpm_packager
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           version: version
-          obsoletes: "{}"
+          obsoletes: ""
           rpm_license: rpm_license
           url: url
           rpm_group: rpm_group
           sha1: sha1
-          supplements: "{}"
+          supplements: ""
           name: name
-          files: "{}"
+          files: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           location_base: location_base
           rpm_header_start: 0
           time_build: 2
           arch: arch
-          recommends: "{}"
+          recommends: ""
           rpm_buildhost: rpm_buildhost
           md5: md5
-          requires: "{}"
+          requires: ""
       properties:
         count:
           example: 123
@@ -41319,7 +41338,7 @@ components:
           metadata_checksum_type: ""
           package_checksum_type: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          repo_config: "{}"
+          repo_config: ""
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
@@ -41332,7 +41351,7 @@ components:
           metadata_checksum_type: ""
           package_checksum_type: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          repo_config: "{}"
+          repo_config: ""
       properties:
         count:
           example: 123
@@ -41448,6 +41467,7 @@ components:
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
+          package_signing_fingerprint: ""
           compression_type: ""
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -41464,12 +41484,14 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
+          package_signing_service: https://openapi-generator.tech
           retain_package_versions: 0
-          repo_config: "{}"
+          repo_config: ""
           metadata_signing_service: https://openapi-generator.tech
         - repo_gpgcheck: 0
           pulp_href: https://openapi-generator.tech
           sqlite_metadata: false
+          package_signing_fingerprint: ""
           compression_type: ""
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -41486,8 +41508,9 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
+          package_signing_service: https://openapi-generator.tech
           retain_package_versions: 0
-          repo_config: "{}"
+          repo_config: ""
           metadata_signing_service: https://openapi-generator.tech
       properties:
         count:
@@ -41605,13 +41628,13 @@ components:
           severity: severity
           pulp_href: https://openapi-generator.tech
           pkglist:
-          - module: "{}"
+          - module: ""
             name: name
             packages:
             - "{}"
             - "{}"
             shortname: shortname
-          - module: "{}"
+          - module: ""
             name: name
             packages:
             - "{}"
@@ -41640,13 +41663,13 @@ components:
           severity: severity
           pulp_href: https://openapi-generator.tech
           pkglist:
-          - module: "{}"
+          - module: ""
             name: name
             packages:
             - "{}"
             - "{}"
             shortname: shortname
-          - module: "{}"
+          - module: ""
             name: name
             packages:
             - "{}"
@@ -42286,7 +42309,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -42508,7 +42531,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -42727,7 +42750,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy462Enum'
+          - $ref: '#/components/schemas/PolicyBfeEnum'
           default: immediate
           description: "        immediate - All OSTree objects are downloaded and\
             \ saved during synchronization.        on_demand - Only commits, dirtrees,\
@@ -42966,7 +42989,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: on_demand
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
@@ -43238,7 +43261,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -43336,6 +43359,18 @@ components:
           format: uri
           nullable: true
           type: string
+        package_signing_service:
+          description: A reference to an associated package signing service.
+          format: uri
+          nullable: true
+          type: string
+        package_signing_fingerprint:
+          default: ""
+          description: The pubkey V4 fingerprint (160 bits) to be passed to the package
+            signing service.The signing service will use that on signing operations
+            related to this repository.
+          maxLength: 40
+          type: string
         retain_package_versions:
           description: "The number of versions of each package to keep in the repository;\
             \ older versions will be purged. The default is '0', which will disable\
@@ -43382,7 +43417,6 @@ components:
           type: integer
         repo_config:
           description: A JSON document describing config.repo file
-          type: object
         compression_type:
           allOf:
           - $ref: '#/components/schemas/CompressionTypeEnum'
@@ -43470,7 +43504,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -43531,13 +43565,7 @@ components:
           nullable: true
           type: string
       type: object
-    Policy462Enum:
-      description: '* `immediate` - immediate* `on_demand` - on_demand'
-      enum:
-      - immediate
-      - on_demand
-      type: string
-    Policy762Enum:
+    Policy692Enum:
       description: "* `immediate` - When syncing, download all metadata and content\
         \ now.* `on_demand` - When syncing, download metadata, but do not download\
         \ content now. Instead, download content as clients request it, and save it\
@@ -43549,6 +43577,12 @@ components:
       - immediate
       - on_demand
       - streamed
+      type: string
+    PolicyBfeEnum:
+      description: '* `immediate` - immediate* `on_demand` - on_demand'
+      enum:
+      - immediate
+      - on_demand
       type: string
     ProgressReportResponse:
       description: Base serializer for use with :class:`pulpcore.app.models.Model`This
@@ -43593,6 +43627,38 @@ components:
           nullable: true
           readOnly: true
           type: string
+      type: object
+    PrunePackages:
+      description: Serializer for prune-old-Packages operation.
+      example:
+        dry_run: false
+        repo_hrefs:
+        - repo_hrefs
+        - repo_hrefs
+        keep_days: 0
+      properties:
+        repo_hrefs:
+          description: "Will prune old packages from the specified list of repos.\
+            \ Use ['*'] to specify all repos. Will prune based on the specified repositories'\
+            \ latest_versions."
+          items:
+            minLength: 1
+            type: string
+          type: array
+        keep_days:
+          default: 14
+          description: Prune packages introduced *prior-to* this many days ago. Default
+            is 14. A value of 0 implies 'keep latest package only.'
+          format: int64
+          minimum: 0
+          type: integer
+        dry_run:
+          default: false
+          description: Determine what would-be-pruned and log the list of packages.
+            Intended as a debugging aid.
+          type: boolean
+      required:
+      - repo_hrefs
       type: object
     PublicationResponse:
       description: Base serializer for use with :class:`pulpcore.app.models.Model`This
@@ -43687,8 +43753,8 @@ components:
     PulpExportResponse:
       description: Serializer for PulpExports.
       example:
-        output_file_info: "{}"
-        toc_info: "{}"
+        output_file_info: ""
+        toc_info: ""
         task: https://openapi-generator.tech
         pulp_href: https://openapi-generator.tech
         exported_resources:
@@ -43696,7 +43762,7 @@ components:
         - https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        params: "{}"
+        params: ""
       properties:
         pulp_href:
           format: uri
@@ -43729,16 +43795,13 @@ components:
         params:
           description: Any additional parameters that were used to create the export.
           readOnly: true
-          type: object
         output_file_info:
           description: "Dictionary of filename: sha256hash entries for export-output-file(s)"
           readOnly: true
-          type: object
         toc_info:
           description: Filename and sha256-checksum of table-of-contents for this
             export
           readOnly: true
-          type: object
       type: object
     PulpExporter:
       description: Serializer for pulp exporters.
@@ -43989,7 +44052,7 @@ components:
           type: string
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: on_demand
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
@@ -46096,6 +46159,11 @@ components:
           format: uri
           type: string
           writeOnly: true
+        file_url:
+          description: A url that Pulp can download and turn into the content unit.
+          minLength: 1
+          type: string
+          writeOnly: true
       required:
       - relative_path
       type: object
@@ -46428,7 +46496,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -46572,7 +46640,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -47106,7 +47174,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -47270,7 +47338,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -47897,7 +47965,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy462Enum'
+          - $ref: '#/components/schemas/PolicyBfeEnum'
           default: immediate
           description: "        immediate - All OSTree objects are downloaded and\
             \ saved during synchronization.        on_demand - Only commits, dirtrees,\
@@ -48070,7 +48138,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy462Enum'
+          - $ref: '#/components/schemas/PolicyBfeEnum'
           default: immediate
           description: "        immediate - All OSTree objects are downloaded and\
             \ saved during synchronization.        on_demand - Only commits, dirtrees,\
@@ -48458,6 +48526,11 @@ components:
           format: uri
           type: string
           writeOnly: true
+        file_url:
+          description: A url that Pulp can download and turn into the content unit.
+          minLength: 1
+          type: string
+          writeOnly: true
         sha256:
           default: ""
           description: The SHA256 digest of this package.
@@ -48512,7 +48585,6 @@ components:
           type: string
         project_urls:
           description: A dictionary of labels and URLs for the project.
-          type: object
         platform:
           description: "A comma-separated list of platform specifications, summarizing\
             \ the operating systems supported by the package."
@@ -48524,50 +48596,45 @@ components:
         requires_dist:
           description: A JSON list containing names of some other distutils project
             required by this distribution.
-          type: object
         provides_dist:
           description: A JSON list containing names of a Distutils project which is
             contained within this distribution.
-          type: object
         obsoletes_dist:
           description: "A JSON list containing names of a distutils project's distribution\
             \ which this distribution renders obsolete, meaning that the two projects\
             \ should not be installed at the same time."
-          type: object
         requires_external:
           description: A JSON list containing some dependency in the system that the
             distribution is to be used.
-          type: object
         classifiers:
           description: A JSON list containing classification values for a Python package.
-          type: object
       required:
       - relative_path
       type: object
     python.PythonPackageContentResponse:
       description: A Serializer for PythonPackageContent.
       example:
-        obsoletes_dist: "{}"
+        obsoletes_dist: ""
         sha256: ""
         keywords: keywords
         description: description
         project_url: project_url
-        project_urls: "{}"
+        project_urls: ""
         maintainer: maintainer
         platform: platform
         artifact: https://openapi-generator.tech
         home_page: home_page
-        requires_dist: "{}"
+        requires_dist: ""
         download_url: download_url
-        classifiers: "{}"
+        classifiers: ""
         author_email: author_email
         requires_python: requires_python
         metadata_version: metadata_version
         summary: summary
         pulp_href: https://openapi-generator.tech
-        requires_external: "{}"
+        requires_external: ""
         author: author
-        provides_dist: "{}"
+        provides_dist: ""
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         version: version
         supported_platform: supported_platform
@@ -48675,7 +48742,6 @@ components:
           type: string
         project_urls:
           description: A dictionary of labels and URLs for the project.
-          type: object
         platform:
           description: "A comma-separated list of platform specifications, summarizing\
             \ the operating systems supported by the package."
@@ -48687,23 +48753,18 @@ components:
         requires_dist:
           description: A JSON list containing names of some other distutils project
             required by this distribution.
-          type: object
         provides_dist:
           description: A JSON list containing names of a Distutils project which is
             contained within this distribution.
-          type: object
         obsoletes_dist:
           description: "A JSON list containing names of a distutils project's distribution\
             \ which this distribution renders obsolete, meaning that the two projects\
             \ should not be installed at the same time."
-          type: object
         requires_external:
           description: A JSON list containing some dependency in the system that the
             distribution is to be used.
-          type: object
         classifiers:
           description: A JSON list containing classification values for a Python package.
-          type: object
       type: object
     python.PythonPublication:
       description: A Serializer for PythonPublication.
@@ -48842,7 +48903,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: on_demand
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
@@ -49035,7 +49096,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: on_demand
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the\
@@ -49432,11 +49493,9 @@ components:
         artifacts:
           description: Modulemd artifacts.
           nullable: true
-          type: object
         dependencies:
           description: Modulemd dependencies.
           nullable: true
-          type: object
         packages:
           description: Modulemd artifacts' packages.
           items:
@@ -49452,7 +49511,6 @@ components:
         profiles:
           description: Modulemd profiles.
           nullable: true
-          type: object
         description:
           description: Description of module.
           minLength: 1
@@ -49488,7 +49546,6 @@ components:
           type: string
         profiles:
           description: Default profiles for modulemd streams.
-          type: object
         snippet:
           description: Modulemd default snippet
           minLength: 1
@@ -49506,7 +49563,7 @@ components:
         pulp_href: https://openapi-generator.tech
         stream: stream
         module: module
-        profiles: "{}"
+        profiles: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -49534,7 +49591,6 @@ components:
           type: string
         profiles:
           description: Default profiles for modulemd streams.
-          type: object
       required:
       - module
       - profiles
@@ -49686,21 +49742,21 @@ components:
       description: Modulemd serializer.
       example:
         pulp_href: https://openapi-generator.tech
-        profiles: "{}"
+        profiles: ""
         description: description
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         packages:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
         version: version
-        dependencies: "{}"
+        dependencies: ""
         static_context: true
         stream: stream
         name: name
         context: context
         pulp_created: 2000-01-23T04:56:07.000+00:00
         arch: arch
-        artifacts: "{}"
+        artifacts: ""
       properties:
         pulp_href:
           format: uri
@@ -49739,11 +49795,9 @@ components:
         artifacts:
           description: Modulemd artifacts.
           nullable: true
-          type: object
         dependencies:
           description: Modulemd dependencies.
           nullable: true
-          type: object
         packages:
           description: Modulemd artifacts' packages.
           items:
@@ -49754,7 +49808,6 @@ components:
         profiles:
           description: Modulemd profiles.
           nullable: true
-          type: object
         description:
           description: Description of module.
           type: string
@@ -49800,18 +49853,23 @@ components:
           format: uri
           type: string
           writeOnly: true
+        file_url:
+          description: A url that Pulp can download and turn into the content unit.
+          minLength: 1
+          type: string
+          writeOnly: true
       type: object
     rpm.PackageCategoryResponse:
       description: PackageCategory serializer.
       example:
         pulp_href: https://openapi-generator.tech
-        desc_by_lang: "{}"
+        desc_by_lang: ""
         name: name
         display_order: 0
-        group_ids: "{}"
+        group_ids: ""
         digest: digest
         description: description
-        name_by_lang: "{}"
+        name_by_lang: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         id: id
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -49849,15 +49907,12 @@ components:
         group_ids:
           description: Category group list.
           nullable: true
-          type: object
         desc_by_lang:
           description: Category description by language.
           nullable: true
-          type: object
         name_by_lang:
           description: Category name by language.
           nullable: true
-          type: object
         digest:
           description: Category digest.
           type: string
@@ -49875,15 +49930,15 @@ components:
       description: PackageEnvironment serializer.
       example:
         pulp_href: https://openapi-generator.tech
-        desc_by_lang: "{}"
+        desc_by_lang: ""
         name: name
         display_order: 0
-        group_ids: "{}"
+        group_ids: ""
         digest: digest
         description: description
-        name_by_lang: "{}"
+        name_by_lang: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        option_ids: "{}"
+        option_ids: ""
         id: id
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -49920,19 +49975,15 @@ components:
         group_ids:
           description: Environment group list.
           nullable: true
-          type: object
         option_ids:
           description: Environment option ids
           nullable: true
-          type: object
         desc_by_lang:
           description: Environment description by language.
           nullable: true
-          type: object
         name_by_lang:
           description: Environment name by language.
           nullable: true
-          type: object
         digest:
           description: Environment digest.
           type: string
@@ -49952,15 +50003,15 @@ components:
       example:
         biarch_only: true
         pulp_href: https://openapi-generator.tech
-        desc_by_lang: "{}"
+        desc_by_lang: ""
         display_order: 0
         description: description
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        packages: "{}"
+        packages: ""
         default: true
         name: name
         digest: digest
-        name_by_lang: "{}"
+        name_by_lang: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         id: id
         user_visible: true
@@ -50004,18 +50055,15 @@ components:
         packages:
           description: PackageGroup package list.
           nullable: true
-          type: object
         biarch_only:
           description: PackageGroup biarch only.
           type: boolean
         desc_by_lang:
           description: PackageGroup description by language.
           nullable: true
-          type: object
         name_by_lang:
           description: PackageGroup name by language.
           nullable: true
-          type: object
         digest:
           description: PackageGroup digest.
           type: string
@@ -50036,7 +50084,7 @@ components:
         digest: digest
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        matches: "{}"
+        matches: ""
       properties:
         pulp_href:
           format: uri
@@ -50057,7 +50105,6 @@ components:
         matches:
           description: Langpacks matches.
           nullable: true
-          type: object
         digest:
           description: Langpacks digest.
           nullable: true
@@ -50073,7 +50120,7 @@ components:
       example:
         rpm_header_end: 6
         size_installed: 5
-        enhances: "{}"
+        enhances: ""
         sha256: sha256
         release: release
         size_package: 5
@@ -50083,40 +50130,40 @@ components:
         epoch: epoch
         rpm_vendor: rpm_vendor
         artifact: https://openapi-generator.tech
-        suggests: "{}"
+        suggests: ""
         location_href: location_href
         checksum_type: checksum_type
         rpm_sourcerpm: rpm_sourcerpm
-        provides: "{}"
+        provides: ""
         size_archive: 1
-        conflicts: "{}"
+        conflicts: ""
         pkgId: pkgId
         sha384: sha384
         summary: summary
         is_modular: true
         pulp_href: https://openapi-generator.tech
-        changelogs: "{}"
+        changelogs: ""
         rpm_packager: rpm_packager
         sha224: sha224
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         version: version
-        obsoletes: "{}"
+        obsoletes: ""
         rpm_license: rpm_license
         url: url
         rpm_group: rpm_group
         sha1: sha1
-        supplements: "{}"
+        supplements: ""
         name: name
-        files: "{}"
+        files: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         location_base: location_base
         rpm_header_start: 0
         time_build: 2
         arch: arch
-        recommends: "{}"
+        recommends: ""
         rpm_buildhost: rpm_buildhost
         md5: md5
-        requires: "{}"
+        requires: ""
       properties:
         pulp_href:
           format: uri
@@ -50205,45 +50252,45 @@ components:
           readOnly: true
           type: string
         changelogs:
+          default: "[]"
           description: Changelogs that package contains
           readOnly: true
-          type: object
         files:
+          default: "[]"
           description: Files that package contains
           readOnly: true
-          type: object
         requires:
+          default: "[]"
           description: Capabilities the package requires
           readOnly: true
-          type: object
         provides:
+          default: "[]"
           description: Capabilities the package provides
           readOnly: true
-          type: object
         conflicts:
+          default: "[]"
           description: Capabilities the package conflicts
           readOnly: true
-          type: object
         obsoletes:
+          default: "[]"
           description: Capabilities the package obsoletes
           readOnly: true
-          type: object
         suggests:
+          default: "[]"
           description: Capabilities the package suggests
           readOnly: true
-          type: object
         enhances:
+          default: "[]"
           description: Capabilities the package enhances
           readOnly: true
-          type: object
         recommends:
+          default: "[]"
           description: Capabilities the package recommends
           readOnly: true
-          type: object
         supplements:
+          default: "[]"
           description: Capabilities the package supplements
           readOnly: true
-          type: object
         location_base:
           description: Base location of this package
           readOnly: true
@@ -50644,7 +50691,6 @@ components:
           type: integer
         repo_config:
           description: A JSON document describing config.repo file
-          type: object
         compression_type:
           allOf:
           - $ref: '#/components/schemas/CompressionTypeEnum'
@@ -50666,7 +50712,7 @@ components:
         metadata_checksum_type: ""
         package_checksum_type: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        repo_config: "{}"
+        repo_config: ""
       properties:
         pulp_href:
           format: uri
@@ -50733,7 +50779,6 @@ components:
           type: boolean
         repo_config:
           description: A JSON document describing config.repo file
-          type: object
         compression_type:
           allOf:
           - $ref: '#/components/schemas/CompressionTypeEnum'
@@ -50822,7 +50867,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -50972,7 +51017,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -51078,6 +51123,18 @@ components:
           format: uri
           nullable: true
           type: string
+        package_signing_service:
+          description: A reference to an associated package signing service.
+          format: uri
+          nullable: true
+          type: string
+        package_signing_fingerprint:
+          default: ""
+          description: The pubkey V4 fingerprint (160 bits) to be passed to the package
+            signing service.The signing service will use that on signing operations
+            related to this repository.
+          maxLength: 40
+          type: string
         retain_package_versions:
           description: "The number of versions of each package to keep in the repository;\
             \ older versions will be purged. The default is '0', which will disable\
@@ -51124,7 +51181,6 @@ components:
           type: integer
         repo_config:
           description: A JSON document describing config.repo file
-          type: object
         compression_type:
           allOf:
           - $ref: '#/components/schemas/CompressionTypeEnum'
@@ -51140,6 +51196,7 @@ components:
         repo_gpgcheck: 0
         pulp_href: https://openapi-generator.tech
         sqlite_metadata: false
+        package_signing_fingerprint: ""
         compression_type: ""
         description: description
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -51156,8 +51213,9 @@ components:
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         retain_repo_versions: 1
+        package_signing_service: https://openapi-generator.tech
         retain_package_versions: 0
-        repo_config: "{}"
+        repo_config: ""
         metadata_signing_service: https://openapi-generator.tech
       properties:
         pulp_href:
@@ -51218,6 +51276,18 @@ components:
           format: uri
           nullable: true
           type: string
+        package_signing_service:
+          description: A reference to an associated package signing service.
+          format: uri
+          nullable: true
+          type: string
+        package_signing_fingerprint:
+          default: ""
+          description: The pubkey V4 fingerprint (160 bits) to be passed to the package
+            signing service.The signing service will use that on signing operations
+            related to this repository.
+          maxLength: 40
+          type: string
         retain_package_versions:
           description: "The number of versions of each package to keep in the repository;\
             \ older versions will be purged. The default is '0', which will disable\
@@ -51270,7 +51340,6 @@ components:
           type: boolean
         repo_config:
           description: A JSON document describing config.repo file
-          type: object
         compression_type:
           allOf:
           - $ref: '#/components/schemas/CompressionTypeEnum'
@@ -51360,7 +51429,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -51515,7 +51584,7 @@ components:
           type: integer
         policy:
           allOf:
-          - $ref: '#/components/schemas/Policy762Enum'
+          - $ref: '#/components/schemas/Policy692Enum'
           default: immediate
           description: "The policy to use when downloading content. The possible values\
             \ include: 'immediate', 'on_demand', and 'streamed'. 'immediate' is the\
@@ -51598,7 +51667,6 @@ components:
         module:
           description: Collection modular NSVCA.
           nullable: true
-          type: object
       required:
       - module
       - name
@@ -51607,7 +51675,7 @@ components:
     rpm.UpdateCollectionResponse:
       description: A Serializer for UpdateCollection.
       example:
-        module: "{}"
+        module: ""
         name: name
         packages:
         - "{}"
@@ -51625,7 +51693,6 @@ components:
         module:
           description: Collection modular NSVCA.
           nullable: true
-          type: object
         packages:
           description: List of packages
           items:
@@ -51656,6 +51723,11 @@ components:
           format: uri
           type: string
           writeOnly: true
+        file_url:
+          description: A url that Pulp can download and turn into the content unit.
+          minLength: 1
+          type: string
+          writeOnly: true
       type: object
     rpm.UpdateRecordResponse:
       description: A Serializer for UpdateRecord.
@@ -51664,13 +51736,13 @@ components:
         severity: severity
         pulp_href: https://openapi-generator.tech
         pkglist:
-        - module: "{}"
+        - module: ""
           name: name
           packages:
           - "{}"
           - "{}"
           shortname: shortname
-        - module: "{}"
+        - module: ""
           name: name
           packages:
           - "{}"

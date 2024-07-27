@@ -90,6 +90,7 @@ api_repository_versions.go
 api_roles.go
 api_rpm_comps.go
 api_rpm_copy.go
+api_rpm_prune.go
 api_signing_services.go
 api_status.go
 api_task_groups.go
@@ -363,9 +364,10 @@ docs/PatchedrpmRpmDistribution.md
 docs/PatchedrpmRpmRemote.md
 docs/PatchedrpmRpmRepository.md
 docs/PatchedrpmUlnRemote.md
-docs/Policy462Enum.md
-docs/Policy762Enum.md
+docs/Policy692Enum.md
+docs/PolicyBfeEnum.md
 docs/ProgressReportResponse.md
+docs/PrunePackages.md
 docs/PublicationResponse.md
 docs/PublicationsAPI.md
 docs/PublicationsFileAPI.md
@@ -448,6 +450,7 @@ docs/RpmPackageEnvironmentResponse.md
 docs/RpmPackageGroupResponse.md
 docs/RpmPackageLangpacksResponse.md
 docs/RpmPackageResponse.md
+docs/RpmPruneAPI.md
 docs/RpmRepoMetadataFileResponse.md
 docs/RpmRepositorySyncURL.md
 docs/RpmRpmAlternateContentSource.md
@@ -719,9 +722,10 @@ model_patchedrpm_rpm_distribution.go
 model_patchedrpm_rpm_remote.go
 model_patchedrpm_rpm_repository.go
 model_patchedrpm_uln_remote.go
-model_policy462_enum.go
-model_policy762_enum.go
+model_policy692_enum.go
+model_policy_bfe_enum.go
 model_progress_report_response.go
+model_prune_packages.go
 model_publication_response.go
 model_pulp_export.go
 model_pulp_export_response.go
@@ -910,6 +914,7 @@ test/api_repository_versions_test.go
 test/api_roles_test.go
 test/api_rpm_comps_test.go
 test/api_rpm_copy_test.go
+test/api_rpm_prune_test.go
 test/api_signing_services_test.go
 test/api_status_test.go
 test/api_task_groups_test.go

@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## TasksList
 
-> PaginatedTaskResponseList TasksList(ctx, pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).ReservedResourcesRecord(reservedResourcesRecord).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedTaskResponseList TasksList(ctx, pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List tasks
 
@@ -276,7 +276,6 @@ func main() {
 	q := "q_example" // string |  (optional)
 	reservedResources := "reservedResources_example" // string |  (optional)
 	reservedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	reservedResourcesRecord := []string{"Inner_example"} // []string | Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead. (optional)
 	sharedResources := "sharedResources_example" // string |  (optional)
 	sharedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	startedAt := time.Now() // time.Time | Filter results where started_at matches value (optional)
@@ -297,7 +296,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TasksAPI.TasksList(context.Background(), pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).ReservedResourcesRecord(reservedResourcesRecord).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.TasksAPI.TasksList(context.Background(), pulpDomain).ChildTasks(childTasks).CreatedResources(createdResources).ExclusiveResources(exclusiveResources).ExclusiveResourcesIn(exclusiveResourcesIn).FinishedAt(finishedAt).FinishedAtGt(finishedAtGt).FinishedAtGte(finishedAtGte).FinishedAtLt(finishedAtLt).FinishedAtLte(finishedAtLte).FinishedAtRange(finishedAtRange).Limit(limit).LoggingCid(loggingCid).LoggingCidContains(loggingCidContains).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).Offset(offset).Ordering(ordering).ParentTask(parentTask).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ReservedResources(reservedResources).ReservedResourcesIn(reservedResourcesIn).SharedResources(sharedResources).SharedResourcesIn(sharedResourcesIn).StartedAt(startedAt).StartedAtGt(startedAtGt).StartedAtGte(startedAtGte).StartedAtLt(startedAtLt).StartedAtLte(startedAtLte).StartedAtRange(startedAtRange).State(state).StateIn(stateIn).StateNe(stateNe).TaskGroup(taskGroup).Worker(worker).WorkerIn(workerIn).WorkerIsnull(workerIsnull).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -348,7 +347,6 @@ Name | Type | Description  | Notes
  **q** | **string** |  | 
  **reservedResources** | **string** |  | 
  **reservedResourcesIn** | **[]string** | Multiple values may be separated by commas. | 
- **reservedResourcesRecord** | **[]string** | Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead. | 
  **sharedResources** | **string** |  | 
  **sharedResourcesIn** | **[]string** | Multiple values may be separated by commas. | 
  **startedAt** | **time.Time** | Filter results where started_at matches value | 

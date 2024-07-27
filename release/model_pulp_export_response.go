@@ -31,11 +31,11 @@ type PulpExportResponse struct {
 	// Resources that were exported.
 	ExportedResources []string `json:"exported_resources,omitempty"`
 	// Any additional parameters that were used to create the export.
-	Params map[string]interface{} `json:"params,omitempty"`
+	Params interface{} `json:"params,omitempty"`
 	// Dictionary of filename: sha256hash entries for export-output-file(s)
-	OutputFileInfo map[string]interface{} `json:"output_file_info,omitempty"`
+	OutputFileInfo interface{} `json:"output_file_info,omitempty"`
 	// Filename and sha256-checksum of table-of-contents for this export
-	TocInfo map[string]interface{} `json:"toc_info,omitempty"`
+	TocInfo interface{} `json:"toc_info,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -228,10 +228,10 @@ func (o *PulpExportResponse) SetExportedResources(v []string) {
 	o.ExportedResources = v
 }
 
-// GetParams returns the Params field value if set, zero value otherwise.
-func (o *PulpExportResponse) GetParams() map[string]interface{} {
-	if o == nil || IsNil(o.Params) {
-		var ret map[string]interface{}
+// GetParams returns the Params field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PulpExportResponse) GetParams() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Params
@@ -239,11 +239,12 @@ func (o *PulpExportResponse) GetParams() map[string]interface{} {
 
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpExportResponse) GetParamsOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PulpExportResponse) GetParamsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Params) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Params, true
+	return &o.Params, true
 }
 
 // HasParams returns a boolean if a field has been set.
@@ -255,15 +256,15 @@ func (o *PulpExportResponse) HasParams() bool {
 	return false
 }
 
-// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
-func (o *PulpExportResponse) SetParams(v map[string]interface{}) {
+// SetParams gets a reference to the given interface{} and assigns it to the Params field.
+func (o *PulpExportResponse) SetParams(v interface{}) {
 	o.Params = v
 }
 
-// GetOutputFileInfo returns the OutputFileInfo field value if set, zero value otherwise.
-func (o *PulpExportResponse) GetOutputFileInfo() map[string]interface{} {
-	if o == nil || IsNil(o.OutputFileInfo) {
-		var ret map[string]interface{}
+// GetOutputFileInfo returns the OutputFileInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PulpExportResponse) GetOutputFileInfo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.OutputFileInfo
@@ -271,11 +272,12 @@ func (o *PulpExportResponse) GetOutputFileInfo() map[string]interface{} {
 
 // GetOutputFileInfoOk returns a tuple with the OutputFileInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpExportResponse) GetOutputFileInfoOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PulpExportResponse) GetOutputFileInfoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.OutputFileInfo) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.OutputFileInfo, true
+	return &o.OutputFileInfo, true
 }
 
 // HasOutputFileInfo returns a boolean if a field has been set.
@@ -287,15 +289,15 @@ func (o *PulpExportResponse) HasOutputFileInfo() bool {
 	return false
 }
 
-// SetOutputFileInfo gets a reference to the given map[string]interface{} and assigns it to the OutputFileInfo field.
-func (o *PulpExportResponse) SetOutputFileInfo(v map[string]interface{}) {
+// SetOutputFileInfo gets a reference to the given interface{} and assigns it to the OutputFileInfo field.
+func (o *PulpExportResponse) SetOutputFileInfo(v interface{}) {
 	o.OutputFileInfo = v
 }
 
-// GetTocInfo returns the TocInfo field value if set, zero value otherwise.
-func (o *PulpExportResponse) GetTocInfo() map[string]interface{} {
-	if o == nil || IsNil(o.TocInfo) {
-		var ret map[string]interface{}
+// GetTocInfo returns the TocInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PulpExportResponse) GetTocInfo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.TocInfo
@@ -303,11 +305,12 @@ func (o *PulpExportResponse) GetTocInfo() map[string]interface{} {
 
 // GetTocInfoOk returns a tuple with the TocInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PulpExportResponse) GetTocInfoOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PulpExportResponse) GetTocInfoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TocInfo) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.TocInfo, true
+	return &o.TocInfo, true
 }
 
 // HasTocInfo returns a boolean if a field has been set.
@@ -319,8 +322,8 @@ func (o *PulpExportResponse) HasTocInfo() bool {
 	return false
 }
 
-// SetTocInfo gets a reference to the given map[string]interface{} and assigns it to the TocInfo field.
-func (o *PulpExportResponse) SetTocInfo(v map[string]interface{}) {
+// SetTocInfo gets a reference to the given interface{} and assigns it to the TocInfo field.
+func (o *PulpExportResponse) SetTocInfo(v interface{}) {
 	o.TocInfo = v
 }
 
@@ -349,13 +352,13 @@ func (o PulpExportResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExportedResources) {
 		toSerialize["exported_resources"] = o.ExportedResources
 	}
-	if !IsNil(o.Params) {
+	if o.Params != nil {
 		toSerialize["params"] = o.Params
 	}
-	if !IsNil(o.OutputFileInfo) {
+	if o.OutputFileInfo != nil {
 		toSerialize["output_file_info"] = o.OutputFileInfo
 	}
-	if !IsNil(o.TocInfo) {
+	if o.TocInfo != nil {
 		toSerialize["toc_info"] = o.TocInfo
 	}
 

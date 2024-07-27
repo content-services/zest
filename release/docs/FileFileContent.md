@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **RelativePath** | **string** | Path where the artifact is located relative to distributions base_path | 
 **File** | Pointer to ***os.File** | An uploaded file that may be turned into the content unit. | [optional] 
 **Upload** | Pointer to **string** | An uncommitted upload that may be turned into the content unit. | [optional] 
+**FileUrl** | Pointer to **string** | A url that Pulp can download and turn into the content unit. | [optional] 
 
 ## Methods
 
@@ -148,6 +149,31 @@ SetUpload sets Upload field to given value.
 `func (o *FileFileContent) HasUpload() bool`
 
 HasUpload returns a boolean if a field has been set.
+
+### GetFileUrl
+
+`func (o *FileFileContent) GetFileUrl() string`
+
+GetFileUrl returns the FileUrl field if non-nil, zero value otherwise.
+
+### GetFileUrlOk
+
+`func (o *FileFileContent) GetFileUrlOk() (*string, bool)`
+
+GetFileUrlOk returns a tuple with the FileUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileUrl
+
+`func (o *FileFileContent) SetFileUrl(v string)`
+
+SetFileUrl sets FileUrl field to given value.
+
+### HasFileUrl
+
+`func (o *FileFileContent) HasFileUrl() bool`
+
+HasFileUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

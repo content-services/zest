@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | ***os.File** | A Bandersnatch config that may be used to construct a Python Remote. | 
 **Name** | **string** | A unique name for this remote | 
-**Policy** | Pointer to [**Policy762Enum**](Policy762Enum.md) | The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY762ENUM_ON_DEMAND]
+**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_ON_DEMAND]
 
 ## Methods
 
@@ -69,20 +69,20 @@ SetName sets Name field to given value.
 
 ### GetPolicy
 
-`func (o *PythonBanderRemote) GetPolicy() Policy762Enum`
+`func (o *PythonBanderRemote) GetPolicy() Policy692Enum`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *PythonBanderRemote) GetPolicyOk() (*Policy762Enum, bool)`
+`func (o *PythonBanderRemote) GetPolicyOk() (*Policy692Enum, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPolicy
 
-`func (o *PythonBanderRemote) SetPolicy(v Policy762Enum)`
+`func (o *PythonBanderRemote) SetPolicy(v Policy692Enum)`
 
 SetPolicy sets Policy field to given value.
 

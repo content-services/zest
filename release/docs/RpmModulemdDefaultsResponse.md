@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Module** | **string** | Modulemd name. | 
 **Stream** | **string** | Modulemd default stream. | 
-**Profiles** | **map[string]interface{}** | Default profiles for modulemd streams. | 
+**Profiles** | **interface{}** | Default profiles for modulemd streams. | 
 
 ## Methods
 
 ### NewRpmModulemdDefaultsResponse
 
-`func NewRpmModulemdDefaultsResponse(module string, stream string, profiles map[string]interface{}, ) *RpmModulemdDefaultsResponse`
+`func NewRpmModulemdDefaultsResponse(module string, stream string, profiles interface{}, ) *RpmModulemdDefaultsResponse`
 
 NewRpmModulemdDefaultsResponse instantiates a new RpmModulemdDefaultsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -147,24 +147,34 @@ SetStream sets Stream field to given value.
 
 ### GetProfiles
 
-`func (o *RpmModulemdDefaultsResponse) GetProfiles() map[string]interface{}`
+`func (o *RpmModulemdDefaultsResponse) GetProfiles() interface{}`
 
 GetProfiles returns the Profiles field if non-nil, zero value otherwise.
 
 ### GetProfilesOk
 
-`func (o *RpmModulemdDefaultsResponse) GetProfilesOk() (*map[string]interface{}, bool)`
+`func (o *RpmModulemdDefaultsResponse) GetProfilesOk() (*interface{}, bool)`
 
 GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfiles
 
-`func (o *RpmModulemdDefaultsResponse) SetProfiles(v map[string]interface{})`
+`func (o *RpmModulemdDefaultsResponse) SetProfiles(v interface{})`
 
 SetProfiles sets Profiles field to given value.
 
 
+### SetProfilesNil
+
+`func (o *RpmModulemdDefaultsResponse) SetProfilesNil(b bool)`
+
+ SetProfilesNil sets the value for Profiles to be an explicit nil
+
+### UnsetProfiles
+`func (o *RpmModulemdDefaultsResponse) UnsetProfiles()`
+
+UnsetProfiles ensures that no value is present for Profiles, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

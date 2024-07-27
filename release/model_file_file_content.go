@@ -32,6 +32,8 @@ type FileFileContent struct {
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
+	// A url that Pulp can download and turn into the content unit.
+	FileUrl *string `json:"file_url,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -207,6 +209,38 @@ func (o *FileFileContent) SetUpload(v string) {
 	o.Upload = &v
 }
 
+// GetFileUrl returns the FileUrl field value if set, zero value otherwise.
+func (o *FileFileContent) GetFileUrl() string {
+	if o == nil || IsNil(o.FileUrl) {
+		var ret string
+		return ret
+	}
+	return *o.FileUrl
+}
+
+// GetFileUrlOk returns a tuple with the FileUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFileContent) GetFileUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FileUrl) {
+		return nil, false
+	}
+	return o.FileUrl, true
+}
+
+// HasFileUrl returns a boolean if a field has been set.
+func (o *FileFileContent) HasFileUrl() bool {
+	if o != nil && !IsNil(o.FileUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFileUrl gets a reference to the given string and assigns it to the FileUrl field.
+func (o *FileFileContent) SetFileUrl(v string) {
+	o.FileUrl = &v
+}
+
 func (o FileFileContent) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -229,6 +263,9 @@ func (o FileFileContent) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Upload) {
 		toSerialize["upload"] = o.Upload
+	}
+	if !IsNil(o.FileUrl) {
+		toSerialize["file_url"] = o.FileUrl
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -278,6 +315,7 @@ func (o *FileFileContent) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "file")
 		delete(additionalProperties, "upload")
+		delete(additionalProperties, "file_url")
 		o.AdditionalProperties = additionalProperties
 	}
 

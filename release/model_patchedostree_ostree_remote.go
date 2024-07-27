@@ -48,7 +48,7 @@ type PatchedostreeOstreeRemote struct {
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
 	//         immediate - All OSTree objects are downloaded and saved during synchronization.        on_demand - Only commits, dirtrees, and refs are downloaded. Other OSTree objects are                    not downloaded until they are requested for the first time by a client.        * `immediate` - immediate* `on_demand` - on_demand
-	Policy *Policy462Enum `json:"policy,omitempty"`
+	Policy *PolicyBfeEnum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
 	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
@@ -78,7 +78,7 @@ type _PatchedostreeOstreeRemote PatchedostreeOstreeRemote
 // will change when the set of required properties is changed
 func NewPatchedostreeOstreeRemote() *PatchedostreeOstreeRemote {
 	this := PatchedostreeOstreeRemote{}
-	var policy Policy462Enum = POLICY462ENUM_IMMEDIATE
+	var policy PolicyBfeEnum = POLICYBFEENUM_IMMEDIATE
 	this.Policy = &policy
 	var depth int64 = 0
 	this.Depth = &depth
@@ -90,7 +90,7 @@ func NewPatchedostreeOstreeRemote() *PatchedostreeOstreeRemote {
 // but it doesn't guarantee that properties required by API are set
 func NewPatchedostreeOstreeRemoteWithDefaults() *PatchedostreeOstreeRemote {
 	this := PatchedostreeOstreeRemote{}
-	var policy Policy462Enum = POLICY462ENUM_IMMEDIATE
+	var policy PolicyBfeEnum = POLICYBFEENUM_IMMEDIATE
 	this.Policy = &policy
 	var depth int64 = 0
 	this.Depth = &depth
@@ -646,9 +646,9 @@ func (o *PatchedostreeOstreeRemote) UnsetMaxRetries() {
 }
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *PatchedostreeOstreeRemote) GetPolicy() Policy462Enum {
+func (o *PatchedostreeOstreeRemote) GetPolicy() PolicyBfeEnum {
 	if o == nil || IsNil(o.Policy) {
-		var ret Policy462Enum
+		var ret PolicyBfeEnum
 		return ret
 	}
 	return *o.Policy
@@ -656,7 +656,7 @@ func (o *PatchedostreeOstreeRemote) GetPolicy() Policy462Enum {
 
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedostreeOstreeRemote) GetPolicyOk() (*Policy462Enum, bool) {
+func (o *PatchedostreeOstreeRemote) GetPolicyOk() (*PolicyBfeEnum, bool) {
 	if o == nil || IsNil(o.Policy) {
 		return nil, false
 	}
@@ -672,8 +672,8 @@ func (o *PatchedostreeOstreeRemote) HasPolicy() bool {
 	return false
 }
 
-// SetPolicy gets a reference to the given Policy462Enum and assigns it to the Policy field.
-func (o *PatchedostreeOstreeRemote) SetPolicy(v Policy462Enum) {
+// SetPolicy gets a reference to the given PolicyBfeEnum and assigns it to the Policy field.
+func (o *PatchedostreeOstreeRemote) SetPolicy(v PolicyBfeEnum) {
 	o.Policy = &v
 }
 

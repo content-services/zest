@@ -67,21 +67,21 @@ type PythonPythonPackageContentResponse struct {
 	// A browsable URL for the project and a label for it, separated by a comma.
 	ProjectUrl *string `json:"project_url,omitempty"`
 	// A dictionary of labels and URLs for the project.
-	ProjectUrls map[string]interface{} `json:"project_urls,omitempty"`
+	ProjectUrls interface{} `json:"project_urls,omitempty"`
 	// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
 	Platform *string `json:"platform,omitempty"`
 	// Field to specify the OS and CPU for which the binary package was compiled. 
 	SupportedPlatform *string `json:"supported_platform,omitempty"`
 	// A JSON list containing names of some other distutils project required by this distribution.
-	RequiresDist map[string]interface{} `json:"requires_dist,omitempty"`
+	RequiresDist interface{} `json:"requires_dist,omitempty"`
 	// A JSON list containing names of a Distutils project which is contained within this distribution.
-	ProvidesDist map[string]interface{} `json:"provides_dist,omitempty"`
+	ProvidesDist interface{} `json:"provides_dist,omitempty"`
 	// A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
-	ObsoletesDist map[string]interface{} `json:"obsoletes_dist,omitempty"`
+	ObsoletesDist interface{} `json:"obsoletes_dist,omitempty"`
 	// A JSON list containing some dependency in the system that the distribution is to be used.
-	RequiresExternal map[string]interface{} `json:"requires_external,omitempty"`
+	RequiresExternal interface{} `json:"requires_external,omitempty"`
 	// A JSON list containing classification values for a Python package.
-	Classifiers map[string]interface{} `json:"classifiers,omitempty"`
+	Classifiers interface{} `json:"classifiers,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -844,10 +844,10 @@ func (o *PythonPythonPackageContentResponse) SetProjectUrl(v string) {
 	o.ProjectUrl = &v
 }
 
-// GetProjectUrls returns the ProjectUrls field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetProjectUrls() map[string]interface{} {
-	if o == nil || IsNil(o.ProjectUrls) {
-		var ret map[string]interface{}
+// GetProjectUrls returns the ProjectUrls field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetProjectUrls() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.ProjectUrls
@@ -855,11 +855,12 @@ func (o *PythonPythonPackageContentResponse) GetProjectUrls() map[string]interfa
 
 // GetProjectUrlsOk returns a tuple with the ProjectUrls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetProjectUrlsOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetProjectUrlsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ProjectUrls) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.ProjectUrls, true
+	return &o.ProjectUrls, true
 }
 
 // HasProjectUrls returns a boolean if a field has been set.
@@ -871,8 +872,8 @@ func (o *PythonPythonPackageContentResponse) HasProjectUrls() bool {
 	return false
 }
 
-// SetProjectUrls gets a reference to the given map[string]interface{} and assigns it to the ProjectUrls field.
-func (o *PythonPythonPackageContentResponse) SetProjectUrls(v map[string]interface{}) {
+// SetProjectUrls gets a reference to the given interface{} and assigns it to the ProjectUrls field.
+func (o *PythonPythonPackageContentResponse) SetProjectUrls(v interface{}) {
 	o.ProjectUrls = v
 }
 
@@ -940,10 +941,10 @@ func (o *PythonPythonPackageContentResponse) SetSupportedPlatform(v string) {
 	o.SupportedPlatform = &v
 }
 
-// GetRequiresDist returns the RequiresDist field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetRequiresDist() map[string]interface{} {
-	if o == nil || IsNil(o.RequiresDist) {
-		var ret map[string]interface{}
+// GetRequiresDist returns the RequiresDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetRequiresDist() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.RequiresDist
@@ -951,11 +952,12 @@ func (o *PythonPythonPackageContentResponse) GetRequiresDist() map[string]interf
 
 // GetRequiresDistOk returns a tuple with the RequiresDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.RequiresDist) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.RequiresDist, true
+	return &o.RequiresDist, true
 }
 
 // HasRequiresDist returns a boolean if a field has been set.
@@ -967,15 +969,15 @@ func (o *PythonPythonPackageContentResponse) HasRequiresDist() bool {
 	return false
 }
 
-// SetRequiresDist gets a reference to the given map[string]interface{} and assigns it to the RequiresDist field.
-func (o *PythonPythonPackageContentResponse) SetRequiresDist(v map[string]interface{}) {
+// SetRequiresDist gets a reference to the given interface{} and assigns it to the RequiresDist field.
+func (o *PythonPythonPackageContentResponse) SetRequiresDist(v interface{}) {
 	o.RequiresDist = v
 }
 
-// GetProvidesDist returns the ProvidesDist field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetProvidesDist() map[string]interface{} {
-	if o == nil || IsNil(o.ProvidesDist) {
-		var ret map[string]interface{}
+// GetProvidesDist returns the ProvidesDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetProvidesDist() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.ProvidesDist
@@ -983,11 +985,12 @@ func (o *PythonPythonPackageContentResponse) GetProvidesDist() map[string]interf
 
 // GetProvidesDistOk returns a tuple with the ProvidesDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetProvidesDistOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetProvidesDistOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ProvidesDist) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.ProvidesDist, true
+	return &o.ProvidesDist, true
 }
 
 // HasProvidesDist returns a boolean if a field has been set.
@@ -999,15 +1002,15 @@ func (o *PythonPythonPackageContentResponse) HasProvidesDist() bool {
 	return false
 }
 
-// SetProvidesDist gets a reference to the given map[string]interface{} and assigns it to the ProvidesDist field.
-func (o *PythonPythonPackageContentResponse) SetProvidesDist(v map[string]interface{}) {
+// SetProvidesDist gets a reference to the given interface{} and assigns it to the ProvidesDist field.
+func (o *PythonPythonPackageContentResponse) SetProvidesDist(v interface{}) {
 	o.ProvidesDist = v
 }
 
-// GetObsoletesDist returns the ObsoletesDist field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetObsoletesDist() map[string]interface{} {
-	if o == nil || IsNil(o.ObsoletesDist) {
-		var ret map[string]interface{}
+// GetObsoletesDist returns the ObsoletesDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetObsoletesDist() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.ObsoletesDist
@@ -1015,11 +1018,12 @@ func (o *PythonPythonPackageContentResponse) GetObsoletesDist() map[string]inter
 
 // GetObsoletesDistOk returns a tuple with the ObsoletesDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ObsoletesDist) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.ObsoletesDist, true
+	return &o.ObsoletesDist, true
 }
 
 // HasObsoletesDist returns a boolean if a field has been set.
@@ -1031,15 +1035,15 @@ func (o *PythonPythonPackageContentResponse) HasObsoletesDist() bool {
 	return false
 }
 
-// SetObsoletesDist gets a reference to the given map[string]interface{} and assigns it to the ObsoletesDist field.
-func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v map[string]interface{}) {
+// SetObsoletesDist gets a reference to the given interface{} and assigns it to the ObsoletesDist field.
+func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v interface{}) {
 	o.ObsoletesDist = v
 }
 
-// GetRequiresExternal returns the RequiresExternal field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetRequiresExternal() map[string]interface{} {
-	if o == nil || IsNil(o.RequiresExternal) {
-		var ret map[string]interface{}
+// GetRequiresExternal returns the RequiresExternal field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetRequiresExternal() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.RequiresExternal
@@ -1047,11 +1051,12 @@ func (o *PythonPythonPackageContentResponse) GetRequiresExternal() map[string]in
 
 // GetRequiresExternalOk returns a tuple with the RequiresExternal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetRequiresExternalOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetRequiresExternalOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.RequiresExternal) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.RequiresExternal, true
+	return &o.RequiresExternal, true
 }
 
 // HasRequiresExternal returns a boolean if a field has been set.
@@ -1063,15 +1068,15 @@ func (o *PythonPythonPackageContentResponse) HasRequiresExternal() bool {
 	return false
 }
 
-// SetRequiresExternal gets a reference to the given map[string]interface{} and assigns it to the RequiresExternal field.
-func (o *PythonPythonPackageContentResponse) SetRequiresExternal(v map[string]interface{}) {
+// SetRequiresExternal gets a reference to the given interface{} and assigns it to the RequiresExternal field.
+func (o *PythonPythonPackageContentResponse) SetRequiresExternal(v interface{}) {
 	o.RequiresExternal = v
 }
 
-// GetClassifiers returns the Classifiers field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetClassifiers() map[string]interface{} {
-	if o == nil || IsNil(o.Classifiers) {
-		var ret map[string]interface{}
+// GetClassifiers returns the Classifiers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetClassifiers() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Classifiers
@@ -1079,11 +1084,12 @@ func (o *PythonPythonPackageContentResponse) GetClassifiers() map[string]interfa
 
 // GetClassifiersOk returns a tuple with the Classifiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Classifiers) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Classifiers, true
+	return &o.Classifiers, true
 }
 
 // HasClassifiers returns a boolean if a field has been set.
@@ -1095,8 +1101,8 @@ func (o *PythonPythonPackageContentResponse) HasClassifiers() bool {
 	return false
 }
 
-// SetClassifiers gets a reference to the given map[string]interface{} and assigns it to the Classifiers field.
-func (o *PythonPythonPackageContentResponse) SetClassifiers(v map[string]interface{}) {
+// SetClassifiers gets a reference to the given interface{} and assigns it to the Classifiers field.
+func (o *PythonPythonPackageContentResponse) SetClassifiers(v interface{}) {
 	o.Classifiers = v
 }
 
@@ -1179,7 +1185,7 @@ func (o PythonPythonPackageContentResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.ProjectUrl) {
 		toSerialize["project_url"] = o.ProjectUrl
 	}
-	if !IsNil(o.ProjectUrls) {
+	if o.ProjectUrls != nil {
 		toSerialize["project_urls"] = o.ProjectUrls
 	}
 	if !IsNil(o.Platform) {
@@ -1188,19 +1194,19 @@ func (o PythonPythonPackageContentResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.SupportedPlatform) {
 		toSerialize["supported_platform"] = o.SupportedPlatform
 	}
-	if !IsNil(o.RequiresDist) {
+	if o.RequiresDist != nil {
 		toSerialize["requires_dist"] = o.RequiresDist
 	}
-	if !IsNil(o.ProvidesDist) {
+	if o.ProvidesDist != nil {
 		toSerialize["provides_dist"] = o.ProvidesDist
 	}
-	if !IsNil(o.ObsoletesDist) {
+	if o.ObsoletesDist != nil {
 		toSerialize["obsoletes_dist"] = o.ObsoletesDist
 	}
-	if !IsNil(o.RequiresExternal) {
+	if o.RequiresExternal != nil {
 		toSerialize["requires_external"] = o.RequiresExternal
 	}
-	if !IsNil(o.Classifiers) {
+	if o.Classifiers != nil {
 		toSerialize["classifiers"] = o.Classifiers
 	}
 

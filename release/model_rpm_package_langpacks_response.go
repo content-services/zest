@@ -28,7 +28,7 @@ type RpmPackageLangpacksResponse struct {
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// Langpacks matches.
-	Matches map[string]interface{} `json:"matches"`
+	Matches interface{} `json:"matches"`
 	// Langpacks digest.
 	Digest NullableString `json:"digest"`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +40,7 @@ type _RpmPackageLangpacksResponse RpmPackageLangpacksResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmPackageLangpacksResponse(matches map[string]interface{}, digest NullableString) *RpmPackageLangpacksResponse {
+func NewRpmPackageLangpacksResponse(matches interface{}, digest NullableString) *RpmPackageLangpacksResponse {
 	this := RpmPackageLangpacksResponse{}
 	this.Matches = matches
 	this.Digest = digest
@@ -152,10 +152,10 @@ func (o *RpmPackageLangpacksResponse) SetPulpLastUpdated(v time.Time) {
 }
 
 // GetMatches returns the Matches field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmPackageLangpacksResponse) GetMatches() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmPackageLangpacksResponse) GetMatches() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -165,15 +165,15 @@ func (o *RpmPackageLangpacksResponse) GetMatches() map[string]interface{} {
 // GetMatchesOk returns a tuple with the Matches field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageLangpacksResponse) GetMatchesOk() (map[string]interface{}, bool) {
+func (o *RpmPackageLangpacksResponse) GetMatchesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Matches) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Matches, true
+	return &o.Matches, true
 }
 
 // SetMatches sets field value
-func (o *RpmPackageLangpacksResponse) SetMatches(v map[string]interface{}) {
+func (o *RpmPackageLangpacksResponse) SetMatches(v interface{}) {
 	o.Matches = v
 }
 

@@ -388,7 +388,6 @@ type TasksAPITasksListRequest struct {
 	q *string
 	reservedResources *string
 	reservedResourcesIn *[]string
-	reservedResourcesRecord *[]string
 	sharedResources *string
 	sharedResourcesIn *[]string
 	startedAt *time.Time
@@ -551,12 +550,6 @@ func (r TasksAPITasksListRequest) ReservedResources(reservedResources string) Ta
 // Multiple values may be separated by commas.
 func (r TasksAPITasksListRequest) ReservedResourcesIn(reservedResourcesIn []string) TasksAPITasksListRequest {
 	r.reservedResourcesIn = &reservedResourcesIn
-	return r
-}
-
-// Deprecated, will be removed in pulpcore 3.55. Use reserved_resources instead.
-func (r TasksAPITasksListRequest) ReservedResourcesRecord(reservedResourcesRecord []string) TasksAPITasksListRequest {
-	r.reservedResourcesRecord = &reservedResourcesRecord
 	return r
 }
 
@@ -779,17 +772,6 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.reservedResourcesIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources__in", r.reservedResourcesIn, "csv")
-	}
-	if r.reservedResourcesRecord != nil {
-		t := *r.reservedResourcesRecord
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources_record", s.Index(i).Interface(), "multi")
-			}
-		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources_record", t, "multi")
-		}
 	}
 	if r.sharedResources != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources", r.sharedResources, "")

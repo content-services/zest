@@ -35,6 +35,7 @@ type ContentFilesAPIContentFileFilesCreateRequest struct {
 	artifact *string
 	file *os.File
 	upload *string
+	fileUrl *string
 }
 
 // Path where the artifact is located relative to distributions base_path
@@ -64,6 +65,12 @@ func (r ContentFilesAPIContentFileFilesCreateRequest) File(file *os.File) Conten
 // An uncommitted upload that may be turned into the content unit.
 func (r ContentFilesAPIContentFileFilesCreateRequest) Upload(upload string) ContentFilesAPIContentFileFilesCreateRequest {
 	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentFilesAPIContentFileFilesCreateRequest) FileUrl(fileUrl string) ContentFilesAPIContentFileFilesCreateRequest {
+	r.fileUrl = &fileUrl
 	return r
 }
 
@@ -160,6 +167,9 @@ func (a *ContentFilesAPIService) ContentFileFilesCreateExecute(r ContentFilesAPI
 	}
 	if r.upload != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

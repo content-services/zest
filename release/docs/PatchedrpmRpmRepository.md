@@ -11,13 +11,15 @@ Name | Type | Description | Notes
 **Remote** | Pointer to **NullableString** | An optional remote to use by default when syncing. | [optional] 
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **MetadataSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
+**PackageSigningService** | Pointer to **NullableString** | A reference to an associated package signing service. | [optional] 
+**PackageSigningFingerprint** | Pointer to **string** | The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository. | [optional] [default to ""]
 **RetainPackageVersions** | Pointer to **int64** | The number of versions of each package to keep in the repository; older versions will be purged. The default is &#39;0&#39;, which will disable this feature and keep all versions of each package. | [optional] 
 **ChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | The preferred checksum type during repo publish.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **MetadataChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: use CHECKSUM_TYPE instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **PackageChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: use CHECKSUM_TYPE instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
+**RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
 **CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
 
 ## Methods
@@ -254,6 +256,66 @@ HasMetadataSigningService returns a boolean if a field has been set.
 `func (o *PatchedrpmRpmRepository) UnsetMetadataSigningService()`
 
 UnsetMetadataSigningService ensures that no value is present for MetadataSigningService, not even an explicit nil
+### GetPackageSigningService
+
+`func (o *PatchedrpmRpmRepository) GetPackageSigningService() string`
+
+GetPackageSigningService returns the PackageSigningService field if non-nil, zero value otherwise.
+
+### GetPackageSigningServiceOk
+
+`func (o *PatchedrpmRpmRepository) GetPackageSigningServiceOk() (*string, bool)`
+
+GetPackageSigningServiceOk returns a tuple with the PackageSigningService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPackageSigningService
+
+`func (o *PatchedrpmRpmRepository) SetPackageSigningService(v string)`
+
+SetPackageSigningService sets PackageSigningService field to given value.
+
+### HasPackageSigningService
+
+`func (o *PatchedrpmRpmRepository) HasPackageSigningService() bool`
+
+HasPackageSigningService returns a boolean if a field has been set.
+
+### SetPackageSigningServiceNil
+
+`func (o *PatchedrpmRpmRepository) SetPackageSigningServiceNil(b bool)`
+
+ SetPackageSigningServiceNil sets the value for PackageSigningService to be an explicit nil
+
+### UnsetPackageSigningService
+`func (o *PatchedrpmRpmRepository) UnsetPackageSigningService()`
+
+UnsetPackageSigningService ensures that no value is present for PackageSigningService, not even an explicit nil
+### GetPackageSigningFingerprint
+
+`func (o *PatchedrpmRpmRepository) GetPackageSigningFingerprint() string`
+
+GetPackageSigningFingerprint returns the PackageSigningFingerprint field if non-nil, zero value otherwise.
+
+### GetPackageSigningFingerprintOk
+
+`func (o *PatchedrpmRpmRepository) GetPackageSigningFingerprintOk() (*string, bool)`
+
+GetPackageSigningFingerprintOk returns a tuple with the PackageSigningFingerprint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPackageSigningFingerprint
+
+`func (o *PatchedrpmRpmRepository) SetPackageSigningFingerprint(v string)`
+
+SetPackageSigningFingerprint sets PackageSigningFingerprint field to given value.
+
+### HasPackageSigningFingerprint
+
+`func (o *PatchedrpmRpmRepository) HasPackageSigningFingerprint() bool`
+
+HasPackageSigningFingerprint returns a boolean if a field has been set.
+
 ### GetRetainPackageVersions
 
 `func (o *PatchedrpmRpmRepository) GetRetainPackageVersions() int64`
@@ -456,20 +518,20 @@ HasRepoGpgcheck returns a boolean if a field has been set.
 UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
 ### GetRepoConfig
 
-`func (o *PatchedrpmRpmRepository) GetRepoConfig() map[string]interface{}`
+`func (o *PatchedrpmRpmRepository) GetRepoConfig() interface{}`
 
 GetRepoConfig returns the RepoConfig field if non-nil, zero value otherwise.
 
 ### GetRepoConfigOk
 
-`func (o *PatchedrpmRpmRepository) GetRepoConfigOk() (*map[string]interface{}, bool)`
+`func (o *PatchedrpmRpmRepository) GetRepoConfigOk() (*interface{}, bool)`
 
 GetRepoConfigOk returns a tuple with the RepoConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepoConfig
 
-`func (o *PatchedrpmRpmRepository) SetRepoConfig(v map[string]interface{})`
+`func (o *PatchedrpmRpmRepository) SetRepoConfig(v interface{})`
 
 SetRepoConfig sets RepoConfig field to given value.
 
@@ -479,6 +541,16 @@ SetRepoConfig sets RepoConfig field to given value.
 
 HasRepoConfig returns a boolean if a field has been set.
 
+### SetRepoConfigNil
+
+`func (o *PatchedrpmRpmRepository) SetRepoConfigNil(b bool)`
+
+ SetRepoConfigNil sets the value for RepoConfig to be an explicit nil
+
+### UnsetRepoConfig
+`func (o *PatchedrpmRpmRepository) UnsetRepoConfig()`
+
+UnsetRepoConfig ensures that no value is present for RepoConfig, not even an explicit nil
 ### GetCompressionType
 
 `func (o *PatchedrpmRpmRepository) GetCompressionType() CompressionTypeEnum`

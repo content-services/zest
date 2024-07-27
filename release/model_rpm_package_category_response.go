@@ -36,11 +36,11 @@ type RpmPackageCategoryResponse struct {
 	// Category display order.
 	DisplayOrder NullableInt64 `json:"display_order"`
 	// Category group list.
-	GroupIds map[string]interface{} `json:"group_ids"`
+	GroupIds interface{} `json:"group_ids"`
 	// Category description by language.
-	DescByLang map[string]interface{} `json:"desc_by_lang"`
+	DescByLang interface{} `json:"desc_by_lang"`
 	// Category name by language.
-	NameByLang map[string]interface{} `json:"name_by_lang"`
+	NameByLang interface{} `json:"name_by_lang"`
 	// Category digest.
 	Digest string `json:"digest"`
 	AdditionalProperties map[string]interface{}
@@ -52,7 +52,7 @@ type _RpmPackageCategoryResponse RpmPackageCategoryResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmPackageCategoryResponse(id string, name string, description string, displayOrder NullableInt64, groupIds map[string]interface{}, descByLang map[string]interface{}, nameByLang map[string]interface{}, digest string) *RpmPackageCategoryResponse {
+func NewRpmPackageCategoryResponse(id string, name string, description string, displayOrder NullableInt64, groupIds interface{}, descByLang interface{}, nameByLang interface{}, digest string) *RpmPackageCategoryResponse {
 	this := RpmPackageCategoryResponse{}
 	this.Id = id
 	this.Name = name
@@ -268,10 +268,10 @@ func (o *RpmPackageCategoryResponse) SetDisplayOrder(v int64) {
 }
 
 // GetGroupIds returns the GroupIds field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmPackageCategoryResponse) GetGroupIds() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmPackageCategoryResponse) GetGroupIds() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -281,23 +281,23 @@ func (o *RpmPackageCategoryResponse) GetGroupIds() map[string]interface{} {
 // GetGroupIdsOk returns a tuple with the GroupIds field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageCategoryResponse) GetGroupIdsOk() (map[string]interface{}, bool) {
+func (o *RpmPackageCategoryResponse) GetGroupIdsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.GroupIds) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.GroupIds, true
+	return &o.GroupIds, true
 }
 
 // SetGroupIds sets field value
-func (o *RpmPackageCategoryResponse) SetGroupIds(v map[string]interface{}) {
+func (o *RpmPackageCategoryResponse) SetGroupIds(v interface{}) {
 	o.GroupIds = v
 }
 
 // GetDescByLang returns the DescByLang field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmPackageCategoryResponse) GetDescByLang() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmPackageCategoryResponse) GetDescByLang() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -307,23 +307,23 @@ func (o *RpmPackageCategoryResponse) GetDescByLang() map[string]interface{} {
 // GetDescByLangOk returns a tuple with the DescByLang field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageCategoryResponse) GetDescByLangOk() (map[string]interface{}, bool) {
+func (o *RpmPackageCategoryResponse) GetDescByLangOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DescByLang) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.DescByLang, true
+	return &o.DescByLang, true
 }
 
 // SetDescByLang sets field value
-func (o *RpmPackageCategoryResponse) SetDescByLang(v map[string]interface{}) {
+func (o *RpmPackageCategoryResponse) SetDescByLang(v interface{}) {
 	o.DescByLang = v
 }
 
 // GetNameByLang returns the NameByLang field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmPackageCategoryResponse) GetNameByLang() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmPackageCategoryResponse) GetNameByLang() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -333,15 +333,15 @@ func (o *RpmPackageCategoryResponse) GetNameByLang() map[string]interface{} {
 // GetNameByLangOk returns a tuple with the NameByLang field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageCategoryResponse) GetNameByLangOk() (map[string]interface{}, bool) {
+func (o *RpmPackageCategoryResponse) GetNameByLangOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.NameByLang) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.NameByLang, true
+	return &o.NameByLang, true
 }
 
 // SetNameByLang sets field value
-func (o *RpmPackageCategoryResponse) SetNameByLang(v map[string]interface{}) {
+func (o *RpmPackageCategoryResponse) SetNameByLang(v interface{}) {
 	o.NameByLang = v
 }
 

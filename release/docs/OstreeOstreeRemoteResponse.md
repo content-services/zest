@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
-**Policy** | Pointer to [**Policy462Enum**](Policy462Enum.md) |         immediate - All OSTree objects are downloaded and saved during synchronization.        on_demand - Only commits, dirtrees, and refs are downloaded. Other OSTree objects are                    not downloaded until they are requested for the first time by a client.        * &#x60;immediate&#x60; - immediate* &#x60;on_demand&#x60; - on_demand | [optional] [default to POLICY462ENUM_IMMEDIATE]
+**Policy** | Pointer to [**PolicyBfeEnum**](PolicyBfeEnum.md) |         immediate - All OSTree objects are downloaded and saved during synchronization.        on_demand - Only commits, dirtrees, and refs are downloaded. Other OSTree objects are                    not downloaded until they are requested for the first time by a client.        * &#x60;immediate&#x60; - immediate* &#x60;on_demand&#x60; - on_demand | [optional] [default to POLICYBFEENUM_IMMEDIATE]
 **TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
@@ -389,20 +389,20 @@ HasMaxRetries returns a boolean if a field has been set.
 UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
 ### GetPolicy
 
-`func (o *OstreeOstreeRemoteResponse) GetPolicy() Policy462Enum`
+`func (o *OstreeOstreeRemoteResponse) GetPolicy() PolicyBfeEnum`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *OstreeOstreeRemoteResponse) GetPolicyOk() (*Policy462Enum, bool)`
+`func (o *OstreeOstreeRemoteResponse) GetPolicyOk() (*PolicyBfeEnum, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPolicy
 
-`func (o *OstreeOstreeRemoteResponse) SetPolicy(v Policy462Enum)`
+`func (o *OstreeOstreeRemoteResponse) SetPolicy(v PolicyBfeEnum)`
 
 SetPolicy sets Policy field to given value.
 

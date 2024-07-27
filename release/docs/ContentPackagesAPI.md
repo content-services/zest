@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## ContentPythonPackagesCreate
 
-> AsyncOperationResponse ContentPythonPackagesCreate(ctx, pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Sha256(sha256).Summary(summary).Description(description).DescriptionContentType(descriptionContentType).Keywords(keywords).HomePage(homePage).DownloadUrl(downloadUrl).Author(author).AuthorEmail(authorEmail).Maintainer(maintainer).MaintainerEmail(maintainerEmail).License(license).RequiresPython(requiresPython).ProjectUrl(projectUrl).ProjectUrls(projectUrls).Platform(platform).SupportedPlatform(supportedPlatform).RequiresDist(requiresDist).ProvidesDist(providesDist).ObsoletesDist(obsoletesDist).RequiresExternal(requiresExternal).Classifiers(classifiers).Execute()
+> AsyncOperationResponse ContentPythonPackagesCreate(ctx, pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).Sha256(sha256).Summary(summary).Description(description).DescriptionContentType(descriptionContentType).Keywords(keywords).HomePage(homePage).DownloadUrl(downloadUrl).Author(author).AuthorEmail(authorEmail).Maintainer(maintainer).MaintainerEmail(maintainerEmail).License(license).RequiresPython(requiresPython).ProjectUrl(projectUrl).ProjectUrls(projectUrls).Platform(platform).SupportedPlatform(supportedPlatform).RequiresDist(requiresDist).ProvidesDist(providesDist).ObsoletesDist(obsoletesDist).RequiresExternal(requiresExternal).Classifiers(classifiers).Execute()
 
 Create a python package content
 
@@ -40,6 +40,7 @@ func main() {
 	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
 	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
 	sha256 := "sha256_example" // string | The SHA256 digest of this package. (optional) (default to "")
 	summary := "summary_example" // string | A one-line summary of what the package does. (optional)
 	description := "description_example" // string | A longer description of the package that can run to several paragraphs. (optional)
@@ -54,18 +55,18 @@ func main() {
 	license := "license_example" // string | Text indicating the license covering the distribution (optional)
 	requiresPython := "requiresPython_example" // string | The Python version(s) that the distribution is guaranteed to be compatible with. (optional)
 	projectUrl := "projectUrl_example" // string | A browsable URL for the project and a label for it, separated by a comma. (optional)
-	projectUrls := map[string]interface{}{ ... } // map[string]interface{} | A dictionary of labels and URLs for the project. (optional)
+	projectUrls := TODO // interface{} | A dictionary of labels and URLs for the project. (optional)
 	platform := "platform_example" // string | A comma-separated list of platform specifications, summarizing the operating systems supported by the package. (optional)
 	supportedPlatform := "supportedPlatform_example" // string | Field to specify the OS and CPU for which the binary package was compiled.  (optional)
-	requiresDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of some other distutils project required by this distribution. (optional)
-	providesDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of a Distutils project which is contained within this distribution. (optional)
-	obsoletesDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. (optional)
-	requiresExternal := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing some dependency in the system that the distribution is to be used. (optional)
-	classifiers := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing classification values for a Python package. (optional)
+	requiresDist := TODO // interface{} | A JSON list containing names of some other distutils project required by this distribution. (optional)
+	providesDist := TODO // interface{} | A JSON list containing names of a Distutils project which is contained within this distribution. (optional)
+	obsoletesDist := TODO // interface{} | A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. (optional)
+	requiresExternal := TODO // interface{} | A JSON list containing some dependency in the system that the distribution is to be used. (optional)
+	classifiers := TODO // interface{} | A JSON list containing classification values for a Python package. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackagesAPI.ContentPythonPackagesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Sha256(sha256).Summary(summary).Description(description).DescriptionContentType(descriptionContentType).Keywords(keywords).HomePage(homePage).DownloadUrl(downloadUrl).Author(author).AuthorEmail(authorEmail).Maintainer(maintainer).MaintainerEmail(maintainerEmail).License(license).RequiresPython(requiresPython).ProjectUrl(projectUrl).ProjectUrls(projectUrls).Platform(platform).SupportedPlatform(supportedPlatform).RequiresDist(requiresDist).ProvidesDist(providesDist).ObsoletesDist(obsoletesDist).RequiresExternal(requiresExternal).Classifiers(classifiers).Execute()
+	resp, r, err := apiClient.ContentPackagesAPI.ContentPythonPackagesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).Sha256(sha256).Summary(summary).Description(description).DescriptionContentType(descriptionContentType).Keywords(keywords).HomePage(homePage).DownloadUrl(downloadUrl).Author(author).AuthorEmail(authorEmail).Maintainer(maintainer).MaintainerEmail(maintainerEmail).License(license).RequiresPython(requiresPython).ProjectUrl(projectUrl).ProjectUrls(projectUrls).Platform(platform).SupportedPlatform(supportedPlatform).RequiresDist(requiresDist).ProvidesDist(providesDist).ObsoletesDist(obsoletesDist).RequiresExternal(requiresExternal).Classifiers(classifiers).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentPythonPackagesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -96,6 +97,7 @@ Name | Type | Description  | Notes
  **artifact** | **string** | Artifact file representing the physical content | 
  **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
  **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
+ **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
  **sha256** | **string** | The SHA256 digest of this package. | [default to &quot;&quot;]
  **summary** | **string** | A one-line summary of what the package does. | 
  **description** | **string** | A longer description of the package that can run to several paragraphs. | 
@@ -110,14 +112,14 @@ Name | Type | Description  | Notes
  **license** | **string** | Text indicating the license covering the distribution | 
  **requiresPython** | **string** | The Python version(s) that the distribution is guaranteed to be compatible with. | 
  **projectUrl** | **string** | A browsable URL for the project and a label for it, separated by a comma. | 
- **projectUrls** | [**map[string]interface{}**](map[string]interface{}.md) | A dictionary of labels and URLs for the project. | 
+ **projectUrls** | [**interface{}**](interface{}.md) | A dictionary of labels and URLs for the project. | 
  **platform** | **string** | A comma-separated list of platform specifications, summarizing the operating systems supported by the package. | 
  **supportedPlatform** | **string** | Field to specify the OS and CPU for which the binary package was compiled.  | 
- **requiresDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of some other distutils project required by this distribution. | 
- **providesDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of a Distutils project which is contained within this distribution. | 
- **obsoletesDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | 
- **requiresExternal** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing some dependency in the system that the distribution is to be used. | 
- **classifiers** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing classification values for a Python package. | 
+ **requiresDist** | [**interface{}**](interface{}.md) | A JSON list containing names of some other distutils project required by this distribution. | 
+ **providesDist** | [**interface{}**](interface{}.md) | A JSON list containing names of a Distutils project which is contained within this distribution. | 
+ **obsoletesDist** | [**interface{}**](interface{}.md) | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | 
+ **requiresExternal** | [**interface{}**](interface{}.md) | A JSON list containing some dependency in the system that the distribution is to be used. | 
+ **classifiers** | [**interface{}**](interface{}.md) | A JSON list containing classification values for a Python package. | 
 
 ### Return type
 
@@ -349,7 +351,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackagesCreate
 
-> AsyncOperationResponse ContentRpmPackagesCreate(ctx, pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).Execute()
+> AsyncOperationResponse ContentRpmPackagesCreate(ctx, pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).FileUrl(fileUrl).Execute()
 
 Create a package
 
@@ -374,10 +376,11 @@ func main() {
 	relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
 	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesCreate(context.Background(), pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).Execute()
+	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesCreate(context.Background(), pulpDomain).Repository(repository).Artifact(artifact).RelativePath(relativePath).File(file).Upload(upload).FileUrl(fileUrl).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,6 +411,7 @@ Name | Type | Description  | Notes
  **relativePath** | **string** | Path where the artifact is located relative to distributions base_path | 
  **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
  **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
+ **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
 
 ### Return type
 

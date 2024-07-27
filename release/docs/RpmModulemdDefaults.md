@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
 **Module** | **string** | Modulemd name. | 
 **Stream** | **string** | Modulemd default stream. | 
-**Profiles** | **map[string]interface{}** | Default profiles for modulemd streams. | 
+**Profiles** | **interface{}** | Default profiles for modulemd streams. | 
 **Snippet** | **string** | Modulemd default snippet | 
 
 ## Methods
 
 ### NewRpmModulemdDefaults
 
-`func NewRpmModulemdDefaults(module string, stream string, profiles map[string]interface{}, snippet string, ) *RpmModulemdDefaults`
+`func NewRpmModulemdDefaults(module string, stream string, profiles interface{}, snippet string, ) *RpmModulemdDefaults`
 
 NewRpmModulemdDefaults instantiates a new RpmModulemdDefaults object
 This constructor will assign default values to properties that have it defined,
@@ -96,24 +96,34 @@ SetStream sets Stream field to given value.
 
 ### GetProfiles
 
-`func (o *RpmModulemdDefaults) GetProfiles() map[string]interface{}`
+`func (o *RpmModulemdDefaults) GetProfiles() interface{}`
 
 GetProfiles returns the Profiles field if non-nil, zero value otherwise.
 
 ### GetProfilesOk
 
-`func (o *RpmModulemdDefaults) GetProfilesOk() (*map[string]interface{}, bool)`
+`func (o *RpmModulemdDefaults) GetProfilesOk() (*interface{}, bool)`
 
 GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfiles
 
-`func (o *RpmModulemdDefaults) SetProfiles(v map[string]interface{})`
+`func (o *RpmModulemdDefaults) SetProfiles(v interface{})`
 
 SetProfiles sets Profiles field to given value.
 
 
+### SetProfilesNil
+
+`func (o *RpmModulemdDefaults) SetProfilesNil(b bool)`
+
+ SetProfilesNil sets the value for Profiles to be an explicit nil
+
+### UnsetProfiles
+`func (o *RpmModulemdDefaults) UnsetProfiles()`
+
+UnsetProfiles ensures that no value is present for Profiles, not even an explicit nil
 ### GetSnippet
 
 `func (o *RpmModulemdDefaults) GetSnippet() string`

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Task** | Pointer to **NullableString** | A URI of the task that ran the Export. | [optional] 
 **ExportedResources** | Pointer to **[]string** | Resources that were exported. | [optional] [readonly] 
-**Params** | Pointer to **map[string]interface{}** | Any additional parameters that were used to create the export. | [optional] [readonly] 
+**Params** | Pointer to **interface{}** | Any additional parameters that were used to create the export. | [optional] [readonly] 
 
 ## Methods
 
@@ -167,20 +167,20 @@ HasExportedResources returns a boolean if a field has been set.
 
 ### GetParams
 
-`func (o *FilesystemExportResponse) GetParams() map[string]interface{}`
+`func (o *FilesystemExportResponse) GetParams() interface{}`
 
 GetParams returns the Params field if non-nil, zero value otherwise.
 
 ### GetParamsOk
 
-`func (o *FilesystemExportResponse) GetParamsOk() (*map[string]interface{}, bool)`
+`func (o *FilesystemExportResponse) GetParamsOk() (*interface{}, bool)`
 
 GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParams
 
-`func (o *FilesystemExportResponse) SetParams(v map[string]interface{})`
+`func (o *FilesystemExportResponse) SetParams(v interface{})`
 
 SetParams sets Params field to given value.
 
@@ -190,6 +190,16 @@ SetParams sets Params field to given value.
 
 HasParams returns a boolean if a field has been set.
 
+### SetParamsNil
+
+`func (o *FilesystemExportResponse) SetParamsNil(b bool)`
+
+ SetParamsNil sets the value for Params to be an explicit nil
+
+### UnsetParams
+`func (o *FilesystemExportResponse) UnsetParams()`
+
+UnsetParams ensures that no value is present for Params, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

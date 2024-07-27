@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
-**Matches** | **map[string]interface{}** | Langpacks matches. | 
+**Matches** | **interface{}** | Langpacks matches. | 
 **Digest** | **NullableString** | Langpacks digest. | 
 
 ## Methods
 
 ### NewRpmPackageLangpacksResponse
 
-`func NewRpmPackageLangpacksResponse(matches map[string]interface{}, digest NullableString, ) *RpmPackageLangpacksResponse`
+`func NewRpmPackageLangpacksResponse(matches interface{}, digest NullableString, ) *RpmPackageLangpacksResponse`
 
 NewRpmPackageLangpacksResponse instantiates a new RpmPackageLangpacksResponse object
 This constructor will assign default values to properties that have it defined,
@@ -106,20 +106,20 @@ HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetMatches
 
-`func (o *RpmPackageLangpacksResponse) GetMatches() map[string]interface{}`
+`func (o *RpmPackageLangpacksResponse) GetMatches() interface{}`
 
 GetMatches returns the Matches field if non-nil, zero value otherwise.
 
 ### GetMatchesOk
 
-`func (o *RpmPackageLangpacksResponse) GetMatchesOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageLangpacksResponse) GetMatchesOk() (*interface{}, bool)`
 
 GetMatchesOk returns a tuple with the Matches field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMatches
 
-`func (o *RpmPackageLangpacksResponse) SetMatches(v map[string]interface{})`
+`func (o *RpmPackageLangpacksResponse) SetMatches(v interface{})`
 
 SetMatches sets Matches field to given value.
 

@@ -224,6 +224,8 @@ type APIClient struct {
 
 	RpmCopyAPI *RpmCopyAPIService
 
+	RpmPruneAPI *RpmPruneAPIService
+
 	SigningServicesAPI *SigningServicesAPIService
 
 	StatusAPI *StatusAPIService
@@ -348,6 +350,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RolesAPI = (*RolesAPIService)(&c.common)
 	c.RpmCompsAPI = (*RpmCompsAPIService)(&c.common)
 	c.RpmCopyAPI = (*RpmCopyAPIService)(&c.common)
+	c.RpmPruneAPI = (*RpmPruneAPIService)(&c.common)
 	c.SigningServicesAPI = (*SigningServicesAPIService)(&c.common)
 	c.StatusAPI = (*StatusAPIService)(&c.common)
 	c.TaskGroupsAPI = (*TaskGroupsAPIService)(&c.common)

@@ -32,7 +32,7 @@ type RpmModulemdDefaultsResponse struct {
 	// Modulemd default stream.
 	Stream string `json:"stream"`
 	// Default profiles for modulemd streams.
-	Profiles map[string]interface{} `json:"profiles"`
+	Profiles interface{} `json:"profiles"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,7 +42,7 @@ type _RpmModulemdDefaultsResponse RpmModulemdDefaultsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmModulemdDefaultsResponse(module string, stream string, profiles map[string]interface{}) *RpmModulemdDefaultsResponse {
+func NewRpmModulemdDefaultsResponse(module string, stream string, profiles interface{}) *RpmModulemdDefaultsResponse {
 	this := RpmModulemdDefaultsResponse{}
 	this.Module = module
 	this.Stream = stream
@@ -203,9 +203,10 @@ func (o *RpmModulemdDefaultsResponse) SetStream(v string) {
 }
 
 // GetProfiles returns the Profiles field value
-func (o *RpmModulemdDefaultsResponse) GetProfiles() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemdDefaultsResponse) GetProfiles() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -214,15 +215,16 @@ func (o *RpmModulemdDefaultsResponse) GetProfiles() map[string]interface{} {
 
 // GetProfilesOk returns a tuple with the Profiles field value
 // and a boolean to check if the value has been set.
-func (o *RpmModulemdDefaultsResponse) GetProfilesOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmModulemdDefaultsResponse) GetProfilesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Profiles) {
+		return nil, false
 	}
-	return o.Profiles, true
+	return &o.Profiles, true
 }
 
 // SetProfiles sets field value
-func (o *RpmModulemdDefaultsResponse) SetProfiles(v map[string]interface{}) {
+func (o *RpmModulemdDefaultsResponse) SetProfiles(v interface{}) {
 	o.Profiles = v
 }
 
@@ -247,7 +249,9 @@ func (o RpmModulemdDefaultsResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["module"] = o.Module
 	toSerialize["stream"] = o.Stream
-	toSerialize["profiles"] = o.Profiles
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

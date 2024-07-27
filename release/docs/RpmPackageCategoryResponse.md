@@ -11,16 +11,16 @@ Name | Type | Description | Notes
 **Name** | **string** | Category name. | 
 **Description** | **string** | Category description. | 
 **DisplayOrder** | **NullableInt64** | Category display order. | 
-**GroupIds** | **map[string]interface{}** | Category group list. | 
-**DescByLang** | **map[string]interface{}** | Category description by language. | 
-**NameByLang** | **map[string]interface{}** | Category name by language. | 
+**GroupIds** | **interface{}** | Category group list. | 
+**DescByLang** | **interface{}** | Category description by language. | 
+**NameByLang** | **interface{}** | Category name by language. | 
 **Digest** | **string** | Category digest. | 
 
 ## Methods
 
 ### NewRpmPackageCategoryResponse
 
-`func NewRpmPackageCategoryResponse(id string, name string, description string, displayOrder NullableInt64, groupIds map[string]interface{}, descByLang map[string]interface{}, nameByLang map[string]interface{}, digest string, ) *RpmPackageCategoryResponse`
+`func NewRpmPackageCategoryResponse(id string, name string, description string, displayOrder NullableInt64, groupIds interface{}, descByLang interface{}, nameByLang interface{}, digest string, ) *RpmPackageCategoryResponse`
 
 NewRpmPackageCategoryResponse instantiates a new RpmPackageCategoryResponse object
 This constructor will assign default values to properties that have it defined,
@@ -202,20 +202,20 @@ SetDisplayOrder sets DisplayOrder field to given value.
 UnsetDisplayOrder ensures that no value is present for DisplayOrder, not even an explicit nil
 ### GetGroupIds
 
-`func (o *RpmPackageCategoryResponse) GetGroupIds() map[string]interface{}`
+`func (o *RpmPackageCategoryResponse) GetGroupIds() interface{}`
 
 GetGroupIds returns the GroupIds field if non-nil, zero value otherwise.
 
 ### GetGroupIdsOk
 
-`func (o *RpmPackageCategoryResponse) GetGroupIdsOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageCategoryResponse) GetGroupIdsOk() (*interface{}, bool)`
 
 GetGroupIdsOk returns a tuple with the GroupIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupIds
 
-`func (o *RpmPackageCategoryResponse) SetGroupIds(v map[string]interface{})`
+`func (o *RpmPackageCategoryResponse) SetGroupIds(v interface{})`
 
 SetGroupIds sets GroupIds field to given value.
 
@@ -232,20 +232,20 @@ SetGroupIds sets GroupIds field to given value.
 UnsetGroupIds ensures that no value is present for GroupIds, not even an explicit nil
 ### GetDescByLang
 
-`func (o *RpmPackageCategoryResponse) GetDescByLang() map[string]interface{}`
+`func (o *RpmPackageCategoryResponse) GetDescByLang() interface{}`
 
 GetDescByLang returns the DescByLang field if non-nil, zero value otherwise.
 
 ### GetDescByLangOk
 
-`func (o *RpmPackageCategoryResponse) GetDescByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageCategoryResponse) GetDescByLangOk() (*interface{}, bool)`
 
 GetDescByLangOk returns a tuple with the DescByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescByLang
 
-`func (o *RpmPackageCategoryResponse) SetDescByLang(v map[string]interface{})`
+`func (o *RpmPackageCategoryResponse) SetDescByLang(v interface{})`
 
 SetDescByLang sets DescByLang field to given value.
 
@@ -262,20 +262,20 @@ SetDescByLang sets DescByLang field to given value.
 UnsetDescByLang ensures that no value is present for DescByLang, not even an explicit nil
 ### GetNameByLang
 
-`func (o *RpmPackageCategoryResponse) GetNameByLang() map[string]interface{}`
+`func (o *RpmPackageCategoryResponse) GetNameByLang() interface{}`
 
 GetNameByLang returns the NameByLang field if non-nil, zero value otherwise.
 
 ### GetNameByLangOk
 
-`func (o *RpmPackageCategoryResponse) GetNameByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageCategoryResponse) GetNameByLangOk() (*interface{}, bool)`
 
 GetNameByLangOk returns a tuple with the NameByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNameByLang
 
-`func (o *RpmPackageCategoryResponse) SetNameByLang(v map[string]interface{})`
+`func (o *RpmPackageCategoryResponse) SetNameByLang(v interface{})`
 
 SetNameByLang sets NameByLang field to given value.
 

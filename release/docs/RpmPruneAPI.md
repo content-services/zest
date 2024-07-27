@@ -1,18 +1,18 @@
-# \RpmCopyAPI
+# \RpmPruneAPI
 
 All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CopyContent**](RpmCopyAPI.md#CopyContent) | **Post** /api/pulp/{pulp_domain}/api/v3/rpm/copy/ | Copy content
+[**RpmPrunePrunePackages**](RpmPruneAPI.md#RpmPrunePrunePackages) | **Post** /api/pulp/{pulp_domain}/api/v3/rpm/prune/ | 
 
 
 
-## CopyContent
+## RpmPrunePrunePackages
 
-> AsyncOperationResponse CopyContent(ctx, pulpDomain).Copy(copy).Execute()
+> TaskGroupOperationResponse RpmPrunePrunePackages(ctx, pulpDomain).PrunePackages(prunePackages).Execute()
 
-Copy content
+
 
 
 
@@ -30,17 +30,17 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	copy := *openapiclient.NewCopy(interface{}(123)) // Copy | 
+	prunePackages := *openapiclient.NewPrunePackages([]string{"RepoHrefs_example"}) // PrunePackages | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RpmCopyAPI.CopyContent(context.Background(), pulpDomain).Copy(copy).Execute()
+	resp, r, err := apiClient.RpmPruneAPI.RpmPrunePrunePackages(context.Background(), pulpDomain).PrunePackages(prunePackages).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RpmCopyAPI.CopyContent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RpmPruneAPI.RpmPrunePrunePackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CopyContent`: AsyncOperationResponse
-	fmt.Fprintf(os.Stdout, "Response from `RpmCopyAPI.CopyContent`: %v\n", resp)
+	// response from `RpmPrunePrunePackages`: TaskGroupOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RpmPruneAPI.RpmPrunePrunePackages`: %v\n", resp)
 }
 ```
 
@@ -54,17 +54,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCopyContentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRpmPrunePrunePackagesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **copy** | [**Copy**](Copy.md) |  | 
+ **prunePackages** | [**PrunePackages**](PrunePackages.md) |  | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**TaskGroupOperationResponse**](TaskGroupOperationResponse.md)
 
 ### Authorization
 

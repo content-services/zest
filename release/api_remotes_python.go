@@ -367,7 +367,7 @@ type RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest struct {
 	pulpDomain string
 	config *os.File
 	name *string
-	policy *Policy762Enum
+	policy *Policy692Enum
 }
 
 // A Bandersnatch config that may be used to construct a Python Remote.
@@ -383,7 +383,7 @@ func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) Name(name st
 }
 
 // The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
-func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) Policy(policy Policy762Enum) RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest {
+func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) Policy(policy Policy692Enum) RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest {
 	r.policy = &policy
 	return r
 }

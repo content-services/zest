@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ContentFileFilesCreate
 
-> AsyncOperationResponse ContentFileFilesCreate(ctx, pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Execute()
+> AsyncOperationResponse ContentFileFilesCreate(ctx, pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).Execute()
 
 Create a file content
 
@@ -37,10 +37,11 @@ func main() {
 	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
 	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).Execute()
+	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesCreate(context.Background(), pulpDomain).RelativePath(relativePath).Repository(repository).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
  **artifact** | **string** | Artifact file representing the physical content | 
  **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
  **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
+ **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
 
 ### Return type
 

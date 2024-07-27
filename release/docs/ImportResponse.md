@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Task** | **string** | A URI of the Task that ran the Import. | 
-**Params** | **map[string]interface{}** | Any parameters that were used to create the import. | 
+**Params** | **interface{}** | Any parameters that were used to create the import. | 
 
 ## Methods
 
 ### NewImportResponse
 
-`func NewImportResponse(task string, params map[string]interface{}, ) *ImportResponse`
+`func NewImportResponse(task string, params interface{}, ) *ImportResponse`
 
 NewImportResponse instantiates a new ImportResponse object
 This constructor will assign default values to properties that have it defined,
@@ -126,24 +126,34 @@ SetTask sets Task field to given value.
 
 ### GetParams
 
-`func (o *ImportResponse) GetParams() map[string]interface{}`
+`func (o *ImportResponse) GetParams() interface{}`
 
 GetParams returns the Params field if non-nil, zero value otherwise.
 
 ### GetParamsOk
 
-`func (o *ImportResponse) GetParamsOk() (*map[string]interface{}, bool)`
+`func (o *ImportResponse) GetParamsOk() (*interface{}, bool)`
 
 GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParams
 
-`func (o *ImportResponse) SetParams(v map[string]interface{})`
+`func (o *ImportResponse) SetParams(v interface{})`
 
 SetParams sets Params field to given value.
 
 
+### SetParamsNil
+
+`func (o *ImportResponse) SetParamsNil(b bool)`
+
+ SetParamsNil sets the value for Params to be an explicit nil
+
+### UnsetParams
+`func (o *ImportResponse) UnsetParams()`
+
+UnsetParams ensures that no value is present for Params, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

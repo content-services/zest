@@ -32,7 +32,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	rpmModulemdDefaults := *openapiclient.NewRpmModulemdDefaults("Module_example", "Stream_example", map[string]interface{}(123), "Snippet_example") // RpmModulemdDefaults | 
+	rpmModulemdDefaults := *openapiclient.NewRpmModulemdDefaults("Module_example", "Stream_example", interface{}(123), "Snippet_example") // RpmModulemdDefaults | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

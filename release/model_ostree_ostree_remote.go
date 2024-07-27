@@ -49,7 +49,7 @@ type OstreeOstreeRemote struct {
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
 	//         immediate - All OSTree objects are downloaded and saved during synchronization.        on_demand - Only commits, dirtrees, and refs are downloaded. Other OSTree objects are                    not downloaded until they are requested for the first time by a client.        * `immediate` - immediate* `on_demand` - on_demand
-	Policy *Policy462Enum `json:"policy,omitempty"`
+	Policy *PolicyBfeEnum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
 	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
@@ -81,7 +81,7 @@ func NewOstreeOstreeRemote(name string, url string) *OstreeOstreeRemote {
 	this := OstreeOstreeRemote{}
 	this.Name = name
 	this.Url = url
-	var policy Policy462Enum = POLICY462ENUM_IMMEDIATE
+	var policy PolicyBfeEnum = POLICYBFEENUM_IMMEDIATE
 	this.Policy = &policy
 	var depth int64 = 0
 	this.Depth = &depth
@@ -93,7 +93,7 @@ func NewOstreeOstreeRemote(name string, url string) *OstreeOstreeRemote {
 // but it doesn't guarantee that properties required by API are set
 func NewOstreeOstreeRemoteWithDefaults() *OstreeOstreeRemote {
 	this := OstreeOstreeRemote{}
-	var policy Policy462Enum = POLICY462ENUM_IMMEDIATE
+	var policy PolicyBfeEnum = POLICYBFEENUM_IMMEDIATE
 	this.Policy = &policy
 	var depth int64 = 0
 	this.Depth = &depth
@@ -633,9 +633,9 @@ func (o *OstreeOstreeRemote) UnsetMaxRetries() {
 }
 
 // GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *OstreeOstreeRemote) GetPolicy() Policy462Enum {
+func (o *OstreeOstreeRemote) GetPolicy() PolicyBfeEnum {
 	if o == nil || IsNil(o.Policy) {
-		var ret Policy462Enum
+		var ret PolicyBfeEnum
 		return ret
 	}
 	return *o.Policy
@@ -643,7 +643,7 @@ func (o *OstreeOstreeRemote) GetPolicy() Policy462Enum {
 
 // GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OstreeOstreeRemote) GetPolicyOk() (*Policy462Enum, bool) {
+func (o *OstreeOstreeRemote) GetPolicyOk() (*PolicyBfeEnum, bool) {
 	if o == nil || IsNil(o.Policy) {
 		return nil, false
 	}
@@ -659,8 +659,8 @@ func (o *OstreeOstreeRemote) HasPolicy() bool {
 	return false
 }
 
-// SetPolicy gets a reference to the given Policy462Enum and assigns it to the Policy field.
-func (o *OstreeOstreeRemote) SetPolicy(v Policy462Enum) {
+// SetPolicy gets a reference to the given PolicyBfeEnum and assigns it to the Policy field.
+func (o *OstreeOstreeRemote) SetPolicy(v PolicyBfeEnum) {
 	o.Policy = &v
 }
 

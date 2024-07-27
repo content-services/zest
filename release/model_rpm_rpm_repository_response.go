@@ -42,6 +42,10 @@ type RpmRpmRepositoryResponse struct {
 	Autopublish *bool `json:"autopublish,omitempty"`
 	// A reference to an associated signing service.
 	MetadataSigningService NullableString `json:"metadata_signing_service,omitempty"`
+	// A reference to an associated package signing service.
+	PackageSigningService NullableString `json:"package_signing_service,omitempty"`
+	// The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository.
+	PackageSigningFingerprint *string `json:"package_signing_fingerprint,omitempty"`
 	// The number of versions of each package to keep in the repository; older versions will be purged. The default is '0', which will disable this feature and keep all versions of each package.
 	RetainPackageVersions *int64 `json:"retain_package_versions,omitempty"`
 	// The preferred checksum type during repo publish.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
@@ -57,7 +61,7 @@ type RpmRpmRepositoryResponse struct {
 	// REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
-	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	RepoConfig interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -74,6 +78,8 @@ func NewRpmRpmRepositoryResponse(name string) *RpmRpmRepositoryResponse {
 	this.Name = name
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var packageSigningFingerprint string = ""
+	this.PackageSigningFingerprint = &packageSigningFingerprint
 	return &this
 }
 
@@ -84,6 +90,8 @@ func NewRpmRpmRepositoryResponseWithDefaults() *RpmRpmRepositoryResponse {
 	this := RpmRpmRepositoryResponse{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var packageSigningFingerprint string = ""
+	this.PackageSigningFingerprint = &packageSigningFingerprint
 	return &this
 }
 
@@ -503,6 +511,80 @@ func (o *RpmRpmRepositoryResponse) UnsetMetadataSigningService() {
 	o.MetadataSigningService.Unset()
 }
 
+// GetPackageSigningService returns the PackageSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetPackageSigningService() string {
+	if o == nil || IsNil(o.PackageSigningService.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PackageSigningService.Get()
+}
+
+// GetPackageSigningServiceOk returns a tuple with the PackageSigningService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetPackageSigningServiceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PackageSigningService.Get(), o.PackageSigningService.IsSet()
+}
+
+// HasPackageSigningService returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasPackageSigningService() bool {
+	if o != nil && o.PackageSigningService.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPackageSigningService gets a reference to the given NullableString and assigns it to the PackageSigningService field.
+func (o *RpmRpmRepositoryResponse) SetPackageSigningService(v string) {
+	o.PackageSigningService.Set(&v)
+}
+// SetPackageSigningServiceNil sets the value for PackageSigningService to be an explicit nil
+func (o *RpmRpmRepositoryResponse) SetPackageSigningServiceNil() {
+	o.PackageSigningService.Set(nil)
+}
+
+// UnsetPackageSigningService ensures that no value is present for PackageSigningService, not even an explicit nil
+func (o *RpmRpmRepositoryResponse) UnsetPackageSigningService() {
+	o.PackageSigningService.Unset()
+}
+
+// GetPackageSigningFingerprint returns the PackageSigningFingerprint field value if set, zero value otherwise.
+func (o *RpmRpmRepositoryResponse) GetPackageSigningFingerprint() string {
+	if o == nil || IsNil(o.PackageSigningFingerprint) {
+		var ret string
+		return ret
+	}
+	return *o.PackageSigningFingerprint
+}
+
+// GetPackageSigningFingerprintOk returns a tuple with the PackageSigningFingerprint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmRepositoryResponse) GetPackageSigningFingerprintOk() (*string, bool) {
+	if o == nil || IsNil(o.PackageSigningFingerprint) {
+		return nil, false
+	}
+	return o.PackageSigningFingerprint, true
+}
+
+// HasPackageSigningFingerprint returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasPackageSigningFingerprint() bool {
+	if o != nil && !IsNil(o.PackageSigningFingerprint) {
+		return true
+	}
+
+	return false
+}
+
+// SetPackageSigningFingerprint gets a reference to the given string and assigns it to the PackageSigningFingerprint field.
+func (o *RpmRpmRepositoryResponse) SetPackageSigningFingerprint(v string) {
+	o.PackageSigningFingerprint = &v
+}
+
 // GetRetainPackageVersions returns the RetainPackageVersions field value if set, zero value otherwise.
 func (o *RpmRpmRepositoryResponse) GetRetainPackageVersions() int64 {
 	if o == nil || IsNil(o.RetainPackageVersions) {
@@ -777,10 +859,10 @@ func (o *RpmRpmRepositoryResponse) SetSqliteMetadata(v bool) {
 	o.SqliteMetadata = &v
 }
 
-// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise.
-func (o *RpmRpmRepositoryResponse) GetRepoConfig() map[string]interface{} {
-	if o == nil || IsNil(o.RepoConfig) {
-		var ret map[string]interface{}
+// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetRepoConfig() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.RepoConfig
@@ -788,11 +870,12 @@ func (o *RpmRpmRepositoryResponse) GetRepoConfig() map[string]interface{} {
 
 // GetRepoConfigOk returns a tuple with the RepoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmRpmRepositoryResponse) GetRepoConfigOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetRepoConfigOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.RepoConfig) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.RepoConfig, true
+	return &o.RepoConfig, true
 }
 
 // HasRepoConfig returns a boolean if a field has been set.
@@ -804,8 +887,8 @@ func (o *RpmRpmRepositoryResponse) HasRepoConfig() bool {
 	return false
 }
 
-// SetRepoConfig gets a reference to the given map[string]interface{} and assigns it to the RepoConfig field.
-func (o *RpmRpmRepositoryResponse) SetRepoConfig(v map[string]interface{}) {
+// SetRepoConfig gets a reference to the given interface{} and assigns it to the RepoConfig field.
+func (o *RpmRpmRepositoryResponse) SetRepoConfig(v interface{}) {
 	o.RepoConfig = v
 }
 
@@ -895,6 +978,12 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if o.MetadataSigningService.IsSet() {
 		toSerialize["metadata_signing_service"] = o.MetadataSigningService.Get()
 	}
+	if o.PackageSigningService.IsSet() {
+		toSerialize["package_signing_service"] = o.PackageSigningService.Get()
+	}
+	if !IsNil(o.PackageSigningFingerprint) {
+		toSerialize["package_signing_fingerprint"] = o.PackageSigningFingerprint
+	}
 	if !IsNil(o.RetainPackageVersions) {
 		toSerialize["retain_package_versions"] = o.RetainPackageVersions
 	}
@@ -916,7 +1005,7 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SqliteMetadata) {
 		toSerialize["sqlite_metadata"] = o.SqliteMetadata
 	}
-	if !IsNil(o.RepoConfig) {
+	if o.RepoConfig != nil {
 		toSerialize["repo_config"] = o.RepoConfig
 	}
 	if o.CompressionType.IsSet() {
@@ -977,6 +1066,8 @@ func (o *RpmRpmRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "autopublish")
 		delete(additionalProperties, "metadata_signing_service")
+		delete(additionalProperties, "package_signing_service")
+		delete(additionalProperties, "package_signing_fingerprint")
 		delete(additionalProperties, "retain_package_versions")
 		delete(additionalProperties, "checksum_type")
 		delete(additionalProperties, "metadata_checksum_type")

@@ -11,17 +11,17 @@ Name | Type | Description | Notes
 **Name** | **string** | Environment name. | 
 **Description** | **string** | Environment description. | 
 **DisplayOrder** | **NullableInt64** | Environment display order. | 
-**GroupIds** | **map[string]interface{}** | Environment group list. | 
-**OptionIds** | **map[string]interface{}** | Environment option ids | 
-**DescByLang** | **map[string]interface{}** | Environment description by language. | 
-**NameByLang** | **map[string]interface{}** | Environment name by language. | 
+**GroupIds** | **interface{}** | Environment group list. | 
+**OptionIds** | **interface{}** | Environment option ids | 
+**DescByLang** | **interface{}** | Environment description by language. | 
+**NameByLang** | **interface{}** | Environment name by language. | 
 **Digest** | **string** | Environment digest. | 
 
 ## Methods
 
 ### NewRpmPackageEnvironmentResponse
 
-`func NewRpmPackageEnvironmentResponse(id string, name string, description string, displayOrder NullableInt64, groupIds map[string]interface{}, optionIds map[string]interface{}, descByLang map[string]interface{}, nameByLang map[string]interface{}, digest string, ) *RpmPackageEnvironmentResponse`
+`func NewRpmPackageEnvironmentResponse(id string, name string, description string, displayOrder NullableInt64, groupIds interface{}, optionIds interface{}, descByLang interface{}, nameByLang interface{}, digest string, ) *RpmPackageEnvironmentResponse`
 
 NewRpmPackageEnvironmentResponse instantiates a new RpmPackageEnvironmentResponse object
 This constructor will assign default values to properties that have it defined,
@@ -203,20 +203,20 @@ SetDisplayOrder sets DisplayOrder field to given value.
 UnsetDisplayOrder ensures that no value is present for DisplayOrder, not even an explicit nil
 ### GetGroupIds
 
-`func (o *RpmPackageEnvironmentResponse) GetGroupIds() map[string]interface{}`
+`func (o *RpmPackageEnvironmentResponse) GetGroupIds() interface{}`
 
 GetGroupIds returns the GroupIds field if non-nil, zero value otherwise.
 
 ### GetGroupIdsOk
 
-`func (o *RpmPackageEnvironmentResponse) GetGroupIdsOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageEnvironmentResponse) GetGroupIdsOk() (*interface{}, bool)`
 
 GetGroupIdsOk returns a tuple with the GroupIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGroupIds
 
-`func (o *RpmPackageEnvironmentResponse) SetGroupIds(v map[string]interface{})`
+`func (o *RpmPackageEnvironmentResponse) SetGroupIds(v interface{})`
 
 SetGroupIds sets GroupIds field to given value.
 
@@ -233,20 +233,20 @@ SetGroupIds sets GroupIds field to given value.
 UnsetGroupIds ensures that no value is present for GroupIds, not even an explicit nil
 ### GetOptionIds
 
-`func (o *RpmPackageEnvironmentResponse) GetOptionIds() map[string]interface{}`
+`func (o *RpmPackageEnvironmentResponse) GetOptionIds() interface{}`
 
 GetOptionIds returns the OptionIds field if non-nil, zero value otherwise.
 
 ### GetOptionIdsOk
 
-`func (o *RpmPackageEnvironmentResponse) GetOptionIdsOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageEnvironmentResponse) GetOptionIdsOk() (*interface{}, bool)`
 
 GetOptionIdsOk returns a tuple with the OptionIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptionIds
 
-`func (o *RpmPackageEnvironmentResponse) SetOptionIds(v map[string]interface{})`
+`func (o *RpmPackageEnvironmentResponse) SetOptionIds(v interface{})`
 
 SetOptionIds sets OptionIds field to given value.
 
@@ -263,20 +263,20 @@ SetOptionIds sets OptionIds field to given value.
 UnsetOptionIds ensures that no value is present for OptionIds, not even an explicit nil
 ### GetDescByLang
 
-`func (o *RpmPackageEnvironmentResponse) GetDescByLang() map[string]interface{}`
+`func (o *RpmPackageEnvironmentResponse) GetDescByLang() interface{}`
 
 GetDescByLang returns the DescByLang field if non-nil, zero value otherwise.
 
 ### GetDescByLangOk
 
-`func (o *RpmPackageEnvironmentResponse) GetDescByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageEnvironmentResponse) GetDescByLangOk() (*interface{}, bool)`
 
 GetDescByLangOk returns a tuple with the DescByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescByLang
 
-`func (o *RpmPackageEnvironmentResponse) SetDescByLang(v map[string]interface{})`
+`func (o *RpmPackageEnvironmentResponse) SetDescByLang(v interface{})`
 
 SetDescByLang sets DescByLang field to given value.
 
@@ -293,20 +293,20 @@ SetDescByLang sets DescByLang field to given value.
 UnsetDescByLang ensures that no value is present for DescByLang, not even an explicit nil
 ### GetNameByLang
 
-`func (o *RpmPackageEnvironmentResponse) GetNameByLang() map[string]interface{}`
+`func (o *RpmPackageEnvironmentResponse) GetNameByLang() interface{}`
 
 GetNameByLang returns the NameByLang field if non-nil, zero value otherwise.
 
 ### GetNameByLangOk
 
-`func (o *RpmPackageEnvironmentResponse) GetNameByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageEnvironmentResponse) GetNameByLangOk() (*interface{}, bool)`
 
 GetNameByLangOk returns a tuple with the NameByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNameByLang
 
-`func (o *RpmPackageEnvironmentResponse) SetNameByLang(v map[string]interface{})`
+`func (o *RpmPackageEnvironmentResponse) SetNameByLang(v interface{})`
 
 SetNameByLang sets NameByLang field to given value.
 
