@@ -18,6 +18,7 @@ info:
     ostree: 2.4.3
     python: 3.12.1
     rpm: 3.27.1
+    service: 0.1.0
     certguard: 3.56.1
     file: 3.56.1
   x-pulp-domain-enabled: true
@@ -35844,8 +35845,8 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         pulp_labels:
           key: pulp_labels
         name: name
@@ -35860,6 +35861,17 @@ components:
           format: date-time
           readOnly: true
           type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
@@ -35868,15 +35880,6 @@ components:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
           type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
@@ -35890,12 +35893,10 @@ components:
             nullable: true
             type: string
           type: object
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
           type: string
       required:
       - base_path
@@ -37416,8 +37417,8 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
           name: name
@@ -37426,8 +37427,8 @@ components:
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           content_guard: https://openapi-generator.tech
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
           name: name
