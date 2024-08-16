@@ -35861,32 +35861,19 @@ components:
             nullable: true
             type: string
           type: object
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_href:
-          format: uri
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
           type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
@@ -35895,8 +35882,21 @@ components:
           format: date-time
           readOnly: true
           type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
       required:
       - base_path
