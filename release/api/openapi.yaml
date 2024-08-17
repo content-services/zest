@@ -35847,8 +35847,8 @@ components:
       example:
         pulp_labels:
           key: pulp_labels
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         base_url: base_url
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -35861,20 +35861,26 @@ components:
             nullable: true
             type: string
           type: object
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
@@ -35882,21 +35888,15 @@ components:
           format: date-time
           readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
       required:
       - base_path
@@ -37419,8 +37419,8 @@ components:
         results:
         - pulp_labels:
             key: pulp_labels
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           base_url: base_url
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -37429,8 +37429,8 @@ components:
           content_guard: https://openapi-generator.tech
         - pulp_labels:
             key: pulp_labels
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           base_url: base_url
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
