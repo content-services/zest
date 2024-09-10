@@ -699,134 +699,134 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	localVarFormParams := url.Values{}
 
 	if r.childTasks != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "child_tasks", r.childTasks, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "child_tasks", r.childTasks, "form", "")
 	}
 	if r.createdResources != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "created_resources", r.createdResources, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_resources", r.createdResources, "form", "")
 	}
 	if r.exclusiveResources != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources", r.exclusiveResources, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources", r.exclusiveResources, "form", "")
 	}
 	if r.exclusiveResourcesIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources__in", r.exclusiveResourcesIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources__in", r.exclusiveResourcesIn, "form", "csv")
 	}
 	if r.finishedAt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at", r.finishedAt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at", r.finishedAt, "form", "")
 	}
 	if r.finishedAtGt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gt", r.finishedAtGt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gt", r.finishedAtGt, "form", "")
 	}
 	if r.finishedAtGte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gte", r.finishedAtGte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gte", r.finishedAtGte, "form", "")
 	}
 	if r.finishedAtLt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lt", r.finishedAtLt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lt", r.finishedAtLt, "form", "")
 	}
 	if r.finishedAtLte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lte", r.finishedAtLte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lte", r.finishedAtLte, "form", "")
 	}
 	if r.finishedAtRange != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__range", r.finishedAtRange, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__range", r.finishedAtRange, "form", "csv")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.loggingCid != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid", r.loggingCid, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid", r.loggingCid, "form", "")
 	}
 	if r.loggingCidContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid__contains", r.loggingCidContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid__contains", r.loggingCidContains, "form", "")
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.nameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "form", "")
 	}
 	if r.nameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
 	}
 	if r.nameNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.parentTask != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_task", r.parentTask, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_task", r.parentTask, "form", "")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.reservedResources != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources", r.reservedResources, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources", r.reservedResources, "form", "")
 	}
 	if r.reservedResourcesIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources__in", r.reservedResourcesIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources__in", r.reservedResourcesIn, "form", "csv")
 	}
 	if r.sharedResources != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources", r.sharedResources, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources", r.sharedResources, "form", "")
 	}
 	if r.sharedResourcesIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources__in", r.sharedResourcesIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources__in", r.sharedResourcesIn, "form", "csv")
 	}
 	if r.startedAt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at", r.startedAt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at", r.startedAt, "form", "")
 	}
 	if r.startedAtGt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gt", r.startedAtGt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gt", r.startedAtGt, "form", "")
 	}
 	if r.startedAtGte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gte", r.startedAtGte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gte", r.startedAtGte, "form", "")
 	}
 	if r.startedAtLt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lt", r.startedAtLt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lt", r.startedAtLt, "form", "")
 	}
 	if r.startedAtLte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lte", r.startedAtLte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lte", r.startedAtLte, "form", "")
 	}
 	if r.startedAtRange != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__range", r.startedAtRange, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__range", r.startedAtRange, "form", "csv")
 	}
 	if r.state != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "form", "")
 	}
 	if r.stateIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "state__in", r.stateIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state__in", r.stateIn, "form", "csv")
 	}
 	if r.stateNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "state__ne", r.stateNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state__ne", r.stateNe, "form", "")
 	}
 	if r.taskGroup != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "task_group", r.taskGroup, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "task_group", r.taskGroup, "form", "")
 	}
 	if r.worker != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "worker", r.worker, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker", r.worker, "form", "")
 	}
 	if r.workerIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__in", r.workerIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__in", r.workerIn, "form", "csv")
 	}
 	if r.workerIsnull != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__isnull", r.workerIsnull, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__isnull", r.workerIsnull, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -834,10 +834,10 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -963,10 +963,10 @@ func (a *TasksAPIService) TasksListRolesExecute(r TasksAPITasksListRolesRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -974,10 +974,10 @@ func (a *TasksAPIService) TasksListRolesExecute(r TasksAPITasksListRolesRequest)
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1103,10 +1103,10 @@ func (a *TasksAPIService) TasksMyPermissionsExecute(r TasksAPITasksMyPermissions
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -1114,10 +1114,10 @@ func (a *TasksAPIService) TasksMyPermissionsExecute(r TasksAPITasksMyPermissions
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1358,10 +1358,10 @@ func (a *TasksAPIService) TasksReadExecute(r TasksAPITasksReadRequest) (*TaskRes
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -1369,10 +1369,10 @@ func (a *TasksAPIService) TasksReadExecute(r TasksAPITasksReadRequest) (*TaskRes
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

@@ -598,44 +598,44 @@ func (a *UploadsAPIService) UploadsListExecute(r UploadsAPIUploadsListRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
 	}
 	if r.sizeGt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size__gt", r.sizeGt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size__gt", r.sizeGt, "form", "")
 	}
 	if r.sizeLt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size__lt", r.sizeLt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size__lt", r.sizeLt, "form", "")
 	}
 	if r.sizeRange != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size__range", r.sizeRange, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size__range", r.sizeRange, "form", "csv")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -643,10 +643,10 @@ func (a *UploadsAPIService) UploadsListExecute(r UploadsAPIUploadsListRequest) (
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -772,10 +772,10 @@ func (a *UploadsAPIService) UploadsListRolesExecute(r UploadsAPIUploadsListRoles
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -783,10 +783,10 @@ func (a *UploadsAPIService) UploadsListRolesExecute(r UploadsAPIUploadsListRoles
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -912,10 +912,10 @@ func (a *UploadsAPIService) UploadsMyPermissionsExecute(r UploadsAPIUploadsMyPer
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -923,10 +923,10 @@ func (a *UploadsAPIService) UploadsMyPermissionsExecute(r UploadsAPIUploadsMyPer
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1052,10 +1052,10 @@ func (a *UploadsAPIService) UploadsReadExecute(r UploadsAPIUploadsReadRequest) (
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -1063,10 +1063,10 @@ func (a *UploadsAPIService) UploadsReadExecute(r UploadsAPIUploadsReadRequest) (
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1332,7 +1332,7 @@ func (a *UploadsAPIService) UploadsUpdateExecute(r UploadsAPIUploadsUpdateReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Range", r.contentRange, "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Range", r.contentRange, "simple", "")
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -1351,7 +1351,7 @@ func (a *UploadsAPIService) UploadsUpdateExecute(r UploadsAPIUploadsUpdateReques
 		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

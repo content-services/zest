@@ -201,62 +201,62 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 	localVarFormParams := url.Values{}
 
 	if r.customized != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "customized", r.customized, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "customized", r.customized, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.viewsetName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name", r.viewsetName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name", r.viewsetName, "form", "")
 	}
 	if r.viewsetNameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__contains", r.viewsetNameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__contains", r.viewsetNameContains, "form", "")
 	}
 	if r.viewsetNameIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__icontains", r.viewsetNameIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__icontains", r.viewsetNameIcontains, "form", "")
 	}
 	if r.viewsetNameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iexact", r.viewsetNameIexact, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iexact", r.viewsetNameIexact, "form", "")
 	}
 	if r.viewsetNameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__in", r.viewsetNameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__in", r.viewsetNameIn, "form", "csv")
 	}
 	if r.viewsetNameIregex != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iregex", r.viewsetNameIregex, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__iregex", r.viewsetNameIregex, "form", "")
 	}
 	if r.viewsetNameIstartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__istartswith", r.viewsetNameIstartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__istartswith", r.viewsetNameIstartswith, "form", "")
 	}
 	if r.viewsetNameRegex != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__regex", r.viewsetNameRegex, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__regex", r.viewsetNameRegex, "form", "")
 	}
 	if r.viewsetNameStartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__startswith", r.viewsetNameStartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "viewset_name__startswith", r.viewsetNameStartswith, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -264,10 +264,10 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -508,10 +508,10 @@ func (a *AccessPoliciesAPIService) AccessPoliciesReadExecute(r AccessPoliciesAPI
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -519,10 +519,10 @@ func (a *AccessPoliciesAPIService) AccessPoliciesReadExecute(r AccessPoliciesAPI
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

@@ -170,25 +170,25 @@ func (a *ArtifactsAPIService) ArtifactsCreateExecute(r ArtifactsAPIArtifactsCrea
 		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "size", r.size, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "size", r.size, "", "")
 	}
 	if r.md5 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "md5", r.md5, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "md5", r.md5, "", "")
 	}
 	if r.sha1 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha1", r.sha1, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha1", r.sha1, "", "")
 	}
 	if r.sha224 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha224", r.sha224, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha224", r.sha224, "", "")
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
 	}
 	if r.sha384 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha384", r.sha384, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha384", r.sha384, "", "")
 	}
 	if r.sha512 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha512", r.sha512, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha512", r.sha512, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -482,56 +482,56 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.md5 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "md5", r.md5, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "md5", r.md5, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.orphanedFor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.repositoryVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
 	}
 	if r.sha1 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha1", r.sha1, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha1", r.sha1, "form", "")
 	}
 	if r.sha224 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha224", r.sha224, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha224", r.sha224, "form", "")
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "form", "")
 	}
 	if r.sha384 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha384", r.sha384, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha384", r.sha384, "form", "")
 	}
 	if r.sha512 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha512", r.sha512, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha512", r.sha512, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -539,10 +539,10 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -668,10 +668,10 @@ func (a *ArtifactsAPIService) ArtifactsReadExecute(r ArtifactsAPIArtifactsReadRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -679,10 +679,10 @@ func (a *ArtifactsAPIService) ArtifactsReadExecute(r ArtifactsAPIArtifactsReadRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

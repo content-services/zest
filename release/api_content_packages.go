@@ -296,12 +296,12 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.repository != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
 	if r.artifact != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -320,76 +320,76 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
 	if r.upload != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
 	}
 	if r.fileUrl != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
 	}
 	if r.summary != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "summary", r.summary, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "summary", r.summary, "", "")
 	}
 	if r.description != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
 	}
 	if r.descriptionContentType != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "description_content_type", r.descriptionContentType, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "description_content_type", r.descriptionContentType, "", "")
 	}
 	if r.keywords != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "keywords", r.keywords, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "keywords", r.keywords, "", "")
 	}
 	if r.homePage != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "home_page", r.homePage, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "home_page", r.homePage, "", "")
 	}
 	if r.downloadUrl != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "download_url", r.downloadUrl, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "download_url", r.downloadUrl, "", "")
 	}
 	if r.author != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "author", r.author, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "author", r.author, "", "")
 	}
 	if r.authorEmail != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "author_email", r.authorEmail, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "author_email", r.authorEmail, "", "")
 	}
 	if r.maintainer != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer", r.maintainer, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer", r.maintainer, "", "")
 	}
 	if r.maintainerEmail != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer_email", r.maintainerEmail, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer_email", r.maintainerEmail, "", "")
 	}
 	if r.license != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "license", r.license, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "license", r.license, "", "")
 	}
 	if r.requiresPython != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "requires_python", r.requiresPython, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_python", r.requiresPython, "", "")
 	}
 	if r.projectUrl != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "project_url", r.projectUrl, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "project_url", r.projectUrl, "", "")
 	}
 	if r.projectUrls != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "project_urls", r.projectUrls, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "project_urls", r.projectUrls, "", "")
 	}
 	if r.platform != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "platform", r.platform, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "platform", r.platform, "", "")
 	}
 	if r.supportedPlatform != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "supported_platform", r.supportedPlatform, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "supported_platform", r.supportedPlatform, "", "")
 	}
 	if r.requiresDist != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "requires_dist", r.requiresDist, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_dist", r.requiresDist, "", "")
 	}
 	if r.providesDist != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "provides_dist", r.providesDist, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "provides_dist", r.providesDist, "", "")
 	}
 	if r.obsoletesDist != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "obsoletes_dist", r.obsoletesDist, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "obsoletes_dist", r.obsoletesDist, "", "")
 	}
 	if r.requiresExternal != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "requires_external", r.requiresExternal, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_external", r.requiresExternal, "", "")
 	}
 	if r.classifiers != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "classifiers", r.classifiers, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "classifiers", r.classifiers, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -709,107 +709,107 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	localVarFormParams := url.Values{}
 
 	if r.author != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "author", r.author, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "author", r.author, "form", "")
 	}
 	if r.authorIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "author__in", r.authorIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "author__in", r.authorIn, "form", "csv")
 	}
 	if r.filename != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "filename", r.filename, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filename", r.filename, "form", "")
 	}
 	if r.filenameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "filename__contains", r.filenameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filename__contains", r.filenameContains, "form", "")
 	}
 	if r.filenameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "filename__in", r.filenameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filename__in", r.filenameIn, "form", "csv")
 	}
 	if r.keywordsContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "keywords__contains", r.keywordsContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "keywords__contains", r.keywordsContains, "form", "")
 	}
 	if r.keywordsIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "keywords__in", r.keywordsIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "keywords__in", r.keywordsIn, "form", "csv")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.nameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.orphanedFor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
 	}
 	if r.packagetype != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "packagetype", r.packagetype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "packagetype", r.packagetype, "form", "")
 	}
 	if r.packagetypeIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "packagetype__in", r.packagetypeIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "packagetype__in", r.packagetypeIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.repositoryVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
 	}
 	if r.repositoryVersionAdded != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_added", r.repositoryVersionAdded, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_added", r.repositoryVersionAdded, "form", "")
 	}
 	if r.repositoryVersionRemoved != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_removed", r.repositoryVersionRemoved, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_removed", r.repositoryVersionRemoved, "form", "")
 	}
 	if r.requiresPython != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python", r.requiresPython, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python", r.requiresPython, "form", "")
 	}
 	if r.requiresPythonContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python__contains", r.requiresPythonContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python__contains", r.requiresPythonContains, "form", "")
 	}
 	if r.requiresPythonIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python__in", r.requiresPythonIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "requires_python__in", r.requiresPythonIn, "form", "csv")
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "form", "")
 	}
 	if r.sha256In != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256__in", r.sha256In, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256__in", r.sha256In, "form", "csv")
 	}
 	if r.version != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version", r.version, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version", r.version, "form", "")
 	}
 	if r.versionGt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__gt", r.versionGt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__gt", r.versionGt, "form", "")
 	}
 	if r.versionGte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__gte", r.versionGte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__gte", r.versionGte, "form", "")
 	}
 	if r.versionLt != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__lt", r.versionLt, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__lt", r.versionLt, "form", "")
 	}
 	if r.versionLte != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__lte", r.versionLte, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__lte", r.versionLte, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -817,10 +817,10 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -946,10 +946,10 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesReadExecute(r ContentPa
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -957,10 +957,10 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesReadExecute(r ContentPa
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1127,13 +1127,13 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.repository != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
 	if r.artifact != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
 	}
 	if r.relativePath != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
 	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
@@ -1153,10 +1153,10 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
 	if r.upload != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
 	}
 	if r.fileUrl != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1523,128 +1523,128 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	localVarFormParams := url.Values{}
 
 	if r.arch != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "arch", r.arch, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "arch", r.arch, "form", "")
 	}
 	if r.archContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__contains", r.archContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__contains", r.archContains, "form", "")
 	}
 	if r.archIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__in", r.archIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__in", r.archIn, "form", "csv")
 	}
 	if r.archNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__ne", r.archNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__ne", r.archNe, "form", "")
 	}
 	if r.archStartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__startswith", r.archStartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "arch__startswith", r.archStartswith, "form", "")
 	}
 	if r.checksumType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type", r.checksumType, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type", r.checksumType, "form", "")
 	}
 	if r.checksumTypeIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type__in", r.checksumTypeIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type__in", r.checksumTypeIn, "form", "csv")
 	}
 	if r.checksumTypeNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type__ne", r.checksumTypeNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checksum_type__ne", r.checksumTypeNe, "form", "")
 	}
 	if r.epoch != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch", r.epoch, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch", r.epoch, "form", "")
 	}
 	if r.epochIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch__in", r.epochIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch__in", r.epochIn, "form", "csv")
 	}
 	if r.epochNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch__ne", r.epochNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "epoch__ne", r.epochNe, "form", "")
 	}
 	if r.filename != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "filename", r.filename, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "filename", r.filename, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.name != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.nameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "form", "")
 	}
 	if r.nameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
 	}
 	if r.nameNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "form", "")
 	}
 	if r.nameStartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.orphanedFor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
 	}
 	if r.pkgId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pkgId", r.pkgId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pkgId", r.pkgId, "form", "")
 	}
 	if r.pkgIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pkgId__in", r.pkgIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pkgId__in", r.pkgIdIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.release != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "release", r.release, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "release", r.release, "form", "")
 	}
 	if r.releaseContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "release__contains", r.releaseContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "release__contains", r.releaseContains, "form", "")
 	}
 	if r.releaseIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "release__in", r.releaseIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "release__in", r.releaseIn, "form", "csv")
 	}
 	if r.releaseNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "release__ne", r.releaseNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "release__ne", r.releaseNe, "form", "")
 	}
 	if r.releaseStartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "release__startswith", r.releaseStartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "release__startswith", r.releaseStartswith, "form", "")
 	}
 	if r.repositoryVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
 	}
 	if r.repositoryVersionAdded != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_added", r.repositoryVersionAdded, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_added", r.repositoryVersionAdded, "form", "")
 	}
 	if r.repositoryVersionRemoved != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_removed", r.repositoryVersionRemoved, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version_removed", r.repositoryVersionRemoved, "form", "")
 	}
 	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "form", "")
 	}
 	if r.version != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version", r.version, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version", r.version, "form", "")
 	}
 	if r.versionIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__in", r.versionIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__in", r.versionIn, "form", "csv")
 	}
 	if r.versionNe != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "version__ne", r.versionNe, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version__ne", r.versionNe, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -1652,10 +1652,10 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -1781,10 +1781,10 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesReadExecute(r ContentPacka
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -1792,10 +1792,10 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesReadExecute(r ContentPacka
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

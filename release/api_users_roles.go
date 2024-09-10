@@ -384,53 +384,53 @@ func (a *UsersRolesAPIService) UsersRolesListExecute(r UsersRolesAPIUsersRolesLi
 	localVarFormParams := url.Values{}
 
 	if r.contentObject != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content_object", r.contentObject, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content_object", r.contentObject, "form", "")
 	}
 	if r.domain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "domain", r.domain, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.role != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "role", r.role, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "role", r.role, "form", "")
 	}
 	if r.roleContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "role__contains", r.roleContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "role__contains", r.roleContains, "form", "")
 	}
 	if r.roleIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "role__icontains", r.roleIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "role__icontains", r.roleIcontains, "form", "")
 	}
 	if r.roleIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "role__in", r.roleIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "role__in", r.roleIn, "form", "csv")
 	}
 	if r.roleStartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "role__startswith", r.roleStartswith, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "role__startswith", r.roleStartswith, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -438,10 +438,10 @@ func (a *UsersRolesAPIService) UsersRolesListExecute(r UsersRolesAPIUsersRolesLi
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -567,10 +567,10 @@ func (a *UsersRolesAPIService) UsersRolesReadExecute(r UsersRolesAPIUsersRolesRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -578,10 +578,10 @@ func (a *UsersRolesAPIService) UsersRolesReadExecute(r UsersRolesAPIUsersRolesRe
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

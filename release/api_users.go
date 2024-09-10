@@ -493,98 +493,98 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 	localVarFormParams := url.Values{}
 
 	if r.email != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
 	}
 	if r.emailContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email__contains", r.emailContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email__contains", r.emailContains, "form", "")
 	}
 	if r.emailIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email__icontains", r.emailIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email__icontains", r.emailIcontains, "form", "")
 	}
 	if r.emailIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email__iexact", r.emailIexact, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email__iexact", r.emailIexact, "form", "")
 	}
 	if r.emailIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email__in", r.emailIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email__in", r.emailIn, "form", "csv")
 	}
 	if r.firstName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name", r.firstName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name", r.firstName, "form", "")
 	}
 	if r.firstNameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__contains", r.firstNameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__contains", r.firstNameContains, "form", "")
 	}
 	if r.firstNameIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__icontains", r.firstNameIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__icontains", r.firstNameIcontains, "form", "")
 	}
 	if r.firstNameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__iexact", r.firstNameIexact, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__iexact", r.firstNameIexact, "form", "")
 	}
 	if r.firstNameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__in", r.firstNameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_name__in", r.firstNameIn, "form", "csv")
 	}
 	if r.isActive != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "form", "")
 	}
 	if r.isStaff != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is_staff", r.isStaff, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is_staff", r.isStaff, "form", "")
 	}
 	if r.lastName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name", r.lastName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name", r.lastName, "form", "")
 	}
 	if r.lastNameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__contains", r.lastNameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__contains", r.lastNameContains, "form", "")
 	}
 	if r.lastNameIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__icontains", r.lastNameIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__icontains", r.lastNameIcontains, "form", "")
 	}
 	if r.lastNameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__iexact", r.lastNameIexact, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__iexact", r.lastNameIexact, "form", "")
 	}
 	if r.lastNameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__in", r.lastNameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_name__in", r.lastNameIn, "form", "csv")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
 	if r.pulpIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
 	}
 	if r.q != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.username != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username", r.username, "form", "")
 	}
 	if r.usernameContains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "username__contains", r.usernameContains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username__contains", r.usernameContains, "form", "")
 	}
 	if r.usernameIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "username__icontains", r.usernameIcontains, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username__icontains", r.usernameIcontains, "form", "")
 	}
 	if r.usernameIexact != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "username__iexact", r.usernameIexact, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username__iexact", r.usernameIexact, "form", "")
 	}
 	if r.usernameIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "username__in", r.usernameIn, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "username__in", r.usernameIn, "form", "csv")
 	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -592,10 +592,10 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -836,10 +836,10 @@ func (a *UsersAPIService) UsersReadExecute(r UsersAPIUsersReadRequest) (*UserRes
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
 		}
 	}
 	if r.excludeFields != nil {
@@ -847,10 +847,10 @@ func (a *UsersAPIService) UsersReadExecute(r UsersAPIUsersReadRequest) (*UserRes
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "multi")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

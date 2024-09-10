@@ -149,9 +149,9 @@ func (a *PypiLegacyAPIService) PypiLegacyCreateExecute(r PypiLegacyAPIPypiLegacy
 		formFiles = append(formFiles, formFile{fileBytes: contentLocalVarFileBytes, fileName: contentLocalVarFileName, formFileName: contentLocalVarFormFileName})
 	}
 	if r.action != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "action", r.action, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "action", r.action, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "sha256_digest", r.sha256Digest, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "sha256_digest", r.sha256Digest, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -134,10 +134,10 @@ func (a *RpmCompsAPIService) RpmCompsUploadExecute(r RpmCompsAPIRpmCompsUploadRe
 		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
 	}
 	if r.repository != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
 	if r.replace != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "replace", r.replace, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "replace", r.replace, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
