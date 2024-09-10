@@ -191,15 +191,15 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", s.Index(i).Interface(), "{{collectionFormat}}")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", "", "{{style}}", s.Index(i).Interface(), "{{collectionFormat}}")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", t, "{{collectionFormat}}")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", t, "{{style}}", "{{collectionFormat}}")
 		}
 	}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	{{/isCollectionFormatMulti}}
 	{{/required}}
 	{{^required}}
@@ -209,14 +209,14 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", s.Index(i).Interface(), "{{collectionFormat}}")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", s.Index(i).Interface(), "{{style}}", "{{collectionFormat}}")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", t, "{{collectionFormat}}")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", t, "{{style}}", "{{collectionFormat}}")
 		}
 	{{/isCollectionFormatMulti}}
 	{{^isCollectionFormatMulti}}
-		parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	{{/isCollectionFormatMulti}}
 	}
 	{{/required}}
@@ -244,11 +244,11 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 	}
 {{#headerParams}}
 	{{#required}}
-	parameterAddToHeaderOrQuery(localVarHeaderParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	{{/required}}
 	{{^required}}
 	if r.{{paramName}} != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	}
 	{{/required}}
 {{/headerParams}}
@@ -274,7 +274,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 {{/isFile}}
 {{^isFile}}
 {{#required}}
-	parameterAddToHeaderOrQuery(localVarFormParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+	parameterAddToHeaderOrQuery(localVarFormParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 {{/required}}
 {{^required}}
 {{#isModel}}
@@ -288,7 +288,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 {{/isModel}}
 {{^isModel}}
 	if r.{{paramName}} != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "{{baseName}}", r.{{paramName}}, "{{collectionFormat}}")
+		parameterAddToHeaderOrQuery(localVarFormParams, "{{baseName}}", r.{{paramName}}, "{{style}}", "{{collectionFormat}}")
 	}
 {{/isModel}}
 {{/required}}
