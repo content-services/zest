@@ -720,6 +720,7 @@ func (r RepositoriesOstreeAPIRepositoriesOstreeOstreeListRequest) PulpLabelSelec
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesOstreeAPIRepositoriesOstreeOstreeListRequest) Q(q string) RepositoriesOstreeAPIRepositoriesOstreeOstreeListRequest {
 	r.q = &q
 	return r

@@ -504,6 +504,7 @@ func (r DistributionsFileAPIDistributionsFileFileListRequest) PulpLabelSelect(pu
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r DistributionsFileAPIDistributionsFileFileListRequest) Q(q string) DistributionsFileAPIDistributionsFileFileListRequest {
 	r.q = &q
 	return r

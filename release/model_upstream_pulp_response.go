@@ -45,6 +45,8 @@ type UpstreamPulpResponse struct {
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
 	PulpLabelSelect NullableString `json:"pulp_label_select,omitempty"`
+	// Timestamp of the last replication that occurred. Equals to 'null' if no replication task has been executed.
+	LastReplication *time.Time `json:"last_replication,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -470,6 +472,38 @@ func (o *UpstreamPulpResponse) UnsetPulpLabelSelect() {
 	o.PulpLabelSelect.Unset()
 }
 
+// GetLastReplication returns the LastReplication field value if set, zero value otherwise.
+func (o *UpstreamPulpResponse) GetLastReplication() time.Time {
+	if o == nil || IsNil(o.LastReplication) {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastReplication
+}
+
+// GetLastReplicationOk returns a tuple with the LastReplication field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpstreamPulpResponse) GetLastReplicationOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.LastReplication) {
+		return nil, false
+	}
+	return o.LastReplication, true
+}
+
+// HasLastReplication returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasLastReplication() bool {
+	if o != nil && !IsNil(o.LastReplication) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastReplication gets a reference to the given time.Time and assigns it to the LastReplication field.
+func (o *UpstreamPulpResponse) SetLastReplication(v time.Time) {
+	o.LastReplication = &v
+}
+
 func (o UpstreamPulpResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -509,6 +543,9 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.PulpLabelSelect.IsSet() {
 		toSerialize["pulp_label_select"] = o.PulpLabelSelect.Get()
+	}
+	if !IsNil(o.LastReplication) {
+		toSerialize["last_replication"] = o.LastReplication
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -567,6 +604,7 @@ func (o *UpstreamPulpResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tls_validation")
 		delete(additionalProperties, "hidden_fields")
 		delete(additionalProperties, "pulp_label_select")
+		delete(additionalProperties, "last_replication")
 		o.AdditionalProperties = additionalProperties
 	}
 

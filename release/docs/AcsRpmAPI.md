@@ -268,7 +268,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `last_refreshed` - Last refreshed* `-last_refreshed` - Last refreshed (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;last_refreshed&#x60; - Last refreshed* &#x60;-last_refreshed&#x60; - Last refreshed (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

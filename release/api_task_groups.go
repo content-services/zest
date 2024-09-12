@@ -25,6 +25,131 @@ import (
 // TaskGroupsAPIService TaskGroupsAPI service
 type TaskGroupsAPIService service
 
+type TaskGroupsAPITaskGroupsCancelRequest struct {
+	ctx context.Context
+	ApiService *TaskGroupsAPIService
+	taskGroupHref string
+	patchedTaskCancel *PatchedTaskCancel
+}
+
+func (r TaskGroupsAPITaskGroupsCancelRequest) PatchedTaskCancel(patchedTaskCancel PatchedTaskCancel) TaskGroupsAPITaskGroupsCancelRequest {
+	r.patchedTaskCancel = &patchedTaskCancel
+	return r
+}
+
+func (r TaskGroupsAPITaskGroupsCancelRequest) Execute() (*TaskGroupResponse, *http.Response, error) {
+	return r.ApiService.TaskGroupsCancelExecute(r)
+}
+
+/*
+TaskGroupsCancel Cancel a task group
+
+This operation cancels a task group.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param taskGroupHref
+ @return TaskGroupsAPITaskGroupsCancelRequest
+*/
+func (a *TaskGroupsAPIService) TaskGroupsCancel(ctx context.Context, taskGroupHref string) TaskGroupsAPITaskGroupsCancelRequest {
+	return TaskGroupsAPITaskGroupsCancelRequest{
+		ApiService: a,
+		ctx: ctx,
+		taskGroupHref: taskGroupHref,
+	}
+}
+
+// Execute executes the request
+//  @return TaskGroupResponse
+func (a *TaskGroupsAPIService) TaskGroupsCancelExecute(r TaskGroupsAPITaskGroupsCancelRequest) (*TaskGroupResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TaskGroupResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TaskGroupsAPIService.TaskGroupsCancel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{task_group_href}"
+	localVarPath = strings.Replace(localVarPath, "{"+"task_group_href"+"}", url.PathEscape(parameterValueToString(r.taskGroupHref, "taskGroupHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.patchedTaskCancel == nil {
+		return localVarReturnValue, nil, reportError("patchedTaskCancel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.patchedTaskCancel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v TaskGroupResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type TaskGroupsAPITaskGroupsListRequest struct {
 	ctx context.Context
 	ApiService *TaskGroupsAPIService
@@ -65,8 +190,6 @@ func (r TaskGroupsAPITaskGroupsListRequest) Execute() (*PaginatedTaskGroupRespon
 
 /*
 TaskGroupsList List task groups
-
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -211,8 +334,6 @@ func (r TaskGroupsAPITaskGroupsReadRequest) Execute() (*TaskGroupResponse, *http
 
 /*
 TaskGroupsRead Inspect a task group
-
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param taskGroupHref

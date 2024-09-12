@@ -79,6 +79,7 @@ func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) PulpI
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Q(q string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.q = &q
 	return r

@@ -170,6 +170,7 @@ func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) PulpLabe
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) Q(q string) DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest {
 	r.q = &q
 	return r

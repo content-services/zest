@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**TasksList**](TasksAPI.md#TasksList) | **Get** /api/pulp/{pulp_domain}/api/v3/tasks/ | List tasks
 [**TasksListRoles**](TasksAPI.md#TasksListRoles) | **Get** /{task_href}list_roles/ | List roles
 [**TasksMyPermissions**](TasksAPI.md#TasksMyPermissions) | **Get** /{task_href}my_permissions/ | List user permissions
+[**TasksProfileArtifacts**](TasksAPI.md#TasksProfileArtifacts) | **Get** /{task_href}profile_artifacts/ | Fetch downloadable links for profile artifacts
 [**TasksPurge**](TasksAPI.md#TasksPurge) | **Post** /api/pulp/{pulp_domain}/api/v3/tasks/purge/ | Purge Completed Tasks
 [**TasksRead**](TasksAPI.md#TasksRead) | **Get** /{task_href} | Inspect a task
 [**TasksRemoveRole**](TasksAPI.md#TasksRemoveRole) | **Post** /{task_href}remove_role/ | Remove a role
@@ -273,7 +274,7 @@ func main() {
 	parentTask := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where parent_task matches value (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	reservedResources := "reservedResources_example" // string |  (optional)
 	reservedResourcesIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	sharedResources := "sharedResources_example" // string |  (optional)
@@ -344,7 +345,7 @@ Name | Type | Description  | Notes
  **parentTask** | **string** | Filter results where parent_task matches value | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **reservedResources** | **string** |  | 
  **reservedResourcesIn** | **[]string** | Multiple values may be separated by commas. | 
  **sharedResources** | **string** |  | 
@@ -516,6 +517,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MyPermissionsResponse**](MyPermissionsResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TasksProfileArtifacts
+
+> ProfileArtifactResponse TasksProfileArtifacts(ctx, taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+Fetch downloadable links for profile artifacts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2024"
+)
+
+func main() {
+	taskHref := "taskHref_example" // string | 
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksProfileArtifacts(context.Background(), taskHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksProfileArtifacts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksProfileArtifacts`: ProfileArtifactResponse
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksProfileArtifacts`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**taskHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTasksProfileArtifactsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**ProfileArtifactResponse**](ProfileArtifactResponse.md)
 
 ### Authorization
 

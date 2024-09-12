@@ -13,14 +13,14 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.56.1
+    core: 3.60.0
+    python: 3.12.3
+    service: 0.1.0
     gem: 0.6.1
     ostree: 2.4.3
-    python: 3.12.1
+    certguard: 3.60.0
+    file: 3.60.0
     rpm: 3.27.1
-    service: 0.1.0
-    certguard: 3.56.1
-    file: 3.56.1
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -121,7 +121,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -536,7 +538,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -1101,7 +1105,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -1636,7 +1642,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -1925,16 +1933,16 @@ paths:
           type: array
         style: form
       - description: Pulp type* `core.publishedmetadata` - core.publishedmetadata*
-          `gem.gem` - gem.gem* `ostree.object` - ostree.object* `ostree.commit` -
-          ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
-          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `python.python`
-          - python.python* `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup*
-          `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment` -
-          rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
-          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
-          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
-          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `file.file` - file.file
+          `python.python` - python.python* `gem.gem` - gem.gem* `ostree.object` -
+          ostree.object* `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs*
+          `ostree.content` - ostree.content* `ostree.config` - ostree.config* `ostree.summary`
+          - ostree.summary* `file.file` - file.file* `rpm.advisory` - rpm.advisory*
+          `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory*
+          `rpm.packageenvironment` - rpm.packageenvironment* `rpm.packagelangpacks`
+          - rpm.packagelangpacks* `rpm.repo_metadata_file` - rpm.repo_metadata_file*
+          `rpm.distribution_tree` - rpm.distribution_tree* `rpm.package` - rpm.package*
+          `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults` - rpm.modulemd_defaults*
+          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
         explode: true
         in: query
         name: pulp_type
@@ -1965,16 +1973,16 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.publishedmetadata`
-          - core.publishedmetadata* `gem.gem` - gem.gem* `ostree.object` - ostree.object*
-          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
-          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
-          `python.python` - python.python* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
-          - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
-          - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
-          `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
-          - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
-          `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `file.file` - file.file
+          - core.publishedmetadata* `python.python` - python.python* `gem.gem` - gem.gem*
+          `ostree.object` - ostree.object* `ostree.commit` - ostree.commit* `ostree.refs`
+          - ostree.refs* `ostree.content` - ostree.content* `ostree.config` - ostree.config*
+          `ostree.summary` - ostree.summary* `file.file` - file.file* `rpm.advisory`
+          - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
+          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
+          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
+          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
+          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
+          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
         explode: false
         in: query
         name: pulp_type__in
@@ -2006,7 +2014,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -2166,7 +2176,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -2463,7 +2475,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -2718,7 +2732,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -2898,7 +2914,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -3079,7 +3097,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -3333,7 +3353,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -3618,7 +3640,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -3798,7 +3822,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -4196,7 +4222,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -4586,7 +4614,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -4882,7 +4912,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -5112,7 +5144,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -5355,7 +5389,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -5680,7 +5716,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -5942,7 +5980,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -6122,7 +6162,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -6302,7 +6344,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -6482,7 +6526,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -6961,7 +7007,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -7255,7 +7303,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -7556,7 +7606,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -7751,7 +7803,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -8120,7 +8174,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -8490,7 +8546,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -9029,7 +9087,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -9567,7 +9627,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -10102,7 +10164,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -10693,9 +10757,9 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `core.artifact` - core.artifact* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
-          - rpm.rpm* `file.file` - file.file
+      - description: Pulp type* `core.artifact` - core.artifact* `python.python` -
+          python.python* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `file.file`
+          - file.file* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -10711,8 +10775,8 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python`
-          - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
+          - core.artifact* `python.python` - python.python* `gem.gem` - gem.gem* `ostree.ostree`
+          - ostree.ostree* `file.file` - file.file* `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -10729,7 +10793,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -11001,7 +11067,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -11321,7 +11389,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -12012,7 +12082,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -12700,7 +12772,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -13391,7 +13465,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -14082,7 +14158,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -14733,7 +14811,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -15110,7 +15190,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -15644,7 +15726,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -16152,7 +16236,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -16317,7 +16403,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -17067,7 +17155,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -17704,8 +17794,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `python.python` - python.python*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file
+      - description: Pulp type* `python.python` - python.python* `gem.gem` - gem.gem*
+          `file.file` - file.file* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -17718,8 +17808,9 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
+      - description: Multiple values may be separated by commas.* `python.python`
+          - python.python* `gem.gem` - gem.gem* `file.file` - file.file* `rpm.rpm`
+          - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -17734,7 +17825,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -17948,7 +18041,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -18430,7 +18525,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -18909,7 +19006,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -19390,7 +19489,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -20005,9 +20106,9 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
-          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln*
-          `file.file` - file.file
+      - description: Pulp type* `python.python` - python.python* `gem.gem` - gem.gem*
+          `ostree.ostree` - ostree.ostree* `file.file` - file.file* `rpm.rpm` - rpm.rpm*
+          `rpm.uln` - rpm.uln
         explode: true
         in: query
         name: pulp_type
@@ -20022,9 +20123,9 @@ paths:
           - rpm.uln
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
-          - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file
+      - description: Multiple values may be separated by commas.* `python.python`
+          - python.python* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `file.file`
+          - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln
         explode: false
         in: query
         name: pulp_type__in
@@ -20041,7 +20142,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -20360,7 +20463,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -21097,7 +21202,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -21830,7 +21937,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -22566,7 +22675,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -23341,7 +23452,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -24074,7 +24187,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -24752,8 +24867,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
-          `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file
+      - description: Pulp type* `python.python` - python.python* `gem.gem` - gem.gem*
+          `ostree.ostree` - ostree.ostree* `file.file` - file.file* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -24767,9 +24882,9 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `gem.gem` - gem.gem*
-          `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm`
-          - rpm.rpm* `file.file` - file.file
+      - description: Multiple values may be separated by commas.* `python.python`
+          - python.python* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `file.file`
+          - file.file* `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -24785,7 +24900,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -25095,7 +25212,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -25905,7 +26024,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -26233,7 +26354,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -27042,7 +27165,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -27371,7 +27496,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -28254,7 +28381,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -28583,7 +28712,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -29395,7 +29526,9 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -29760,7 +29893,9 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -30561,7 +30696,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -30906,7 +31043,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -31159,7 +31298,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -31576,7 +31717,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -31663,22 +31806,6 @@ paths:
       - Signing-Services
   /api/pulp/{pulp_domain}/api/v3/task-groups/:
     get:
-      description: "A customized named ModelViewSet that knows how to register itself\
-        \ with the Pulp API router.This viewset is discoverable by its name.\"Normal\"\
-        \ Django Models and Master/Detail models are supported by the ``register_with``\
-        \ method.Attributes:    lookup_field (str): The name of the field by which\
-        \ an object should be looked up, in        addition to any parent lookups\
-        \ if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The\
-        \ name of the final path segment that should identify the ViewSet's      \
-        \  collection endpoint.    nest_prefix (str): Optional prefix under which\
-        \ this ViewSet should be nested. This must        correspond to the \"parent_prefix\"\
-        \ of a router with rest_framework_nested.NestedMixin.        None indicates\
-        \ this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional\
-        \ mapping of key names that would appear in self.kwargs        to django model\
-        \ filter expressions that can be used with the corresponding value from  \
-        \      self.kwargs, used only by a nested ViewSet to filter based on the parent\
-        \ object's        identity.    schema (DefaultSchema): The schema class to\
-        \ use by default in a viewset."
       operationId: task_groups_list
       parameters:
       - description: Number of results to return per page.
@@ -31740,22 +31867,6 @@ paths:
       - Task-Groups
   '{task_group_href}':
     get:
-      description: "A customized named ModelViewSet that knows how to register itself\
-        \ with the Pulp API router.This viewset is discoverable by its name.\"Normal\"\
-        \ Django Models and Master/Detail models are supported by the ``register_with``\
-        \ method.Attributes:    lookup_field (str): The name of the field by which\
-        \ an object should be looked up, in        addition to any parent lookups\
-        \ if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The\
-        \ name of the final path segment that should identify the ViewSet's      \
-        \  collection endpoint.    nest_prefix (str): Optional prefix under which\
-        \ this ViewSet should be nested. This must        correspond to the \"parent_prefix\"\
-        \ of a router with rest_framework_nested.NestedMixin.        None indicates\
-        \ this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional\
-        \ mapping of key names that would appear in self.kwargs        to django model\
-        \ filter expressions that can be used with the corresponding value from  \
-        \      self.kwargs, used only by a nested ViewSet to filter based on the parent\
-        \ object's        identity.    schema (DefaultSchema): The schema class to\
-        \ use by default in a viewset."
       operationId: task_groups_read
       parameters:
       - explode: false
@@ -31796,6 +31907,48 @@ paths:
       - basicAuth: []
       - cookieAuth: []
       summary: Inspect a task group
+      tags:
+      - Task-Groups
+    patch:
+      description: This operation cancels a task group.
+      operationId: task_groups_cancel
+      parameters:
+      - explode: false
+        in: path
+        name: task_group_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskCancel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskCancel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTaskCancel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGroupResponse'
+          description: ""
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGroupResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Cancel a task group
       tags:
       - Task-Groups
   /api/pulp/{pulp_domain}/api/v3/task-schedules/:
@@ -31898,7 +32051,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -32433,7 +32588,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -32901,6 +33058,51 @@ paths:
       summary: List user permissions
       tags:
       - Tasks
+  '{task_href}profile_artifacts/':
+    get:
+      description: Return pre-signed URLs used for downloading raw profile artifacts.
+      operationId: tasks_profile_artifacts
+      parameters:
+      - explode: false
+        in: path
+        name: task_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileArtifactResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Fetch downloadable links for profile artifacts
+      tags:
+      - Tasks
   '{task_href}remove_role/':
     post:
       description: Remove a role for this object from users/groups.
@@ -33052,7 +33254,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -34142,7 +34346,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -34487,7 +34693,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -34908,7 +35116,9 @@ paths:
             type: string
           type: array
         style: form
-      - explode: true
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
         in: query
         name: q
         required: false
@@ -35766,11 +35976,11 @@ components:
       - uid
       type: object
     ApiAppStatusResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         versions:
           key: versions
@@ -35795,11 +36005,11 @@ components:
           type: object
       type: object
     Artifact:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       properties:
         file:
           description: The stored file.
@@ -35849,16 +36059,14 @@ components:
         hidden: false
         pulp_labels:
           key: pulp_labels
-        name: name
         base_url: base_url
+        no_content_change_since: no_content_change_since
+        name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         content_guard: https://openapi-generator.tech
       properties:
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
@@ -35870,29 +36078,38 @@ components:
           format: uri
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -35903,11 +36120,11 @@ components:
       - name
       type: object
     ArtifactResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         sha1: sha1
         sha384: sha384
@@ -36000,11 +36217,11 @@ components:
       - path
       type: object
     CompositeContentGuard:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         name: name
         description: description
@@ -36032,11 +36249,11 @@ components:
       - name
       type: object
     CompositeContentGuardResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         name: name
@@ -36109,11 +36326,11 @@ components:
       - file
       type: object
     ContentAppStatusResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         versions:
           key: versions
@@ -36138,11 +36355,11 @@ components:
           type: object
       type: object
     ContentGuardResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         name: name
@@ -36311,6 +36528,7 @@ components:
         pulp_labels:
           key: pulp_labels
         base_url: base_url
+        no_content_change_since: no_content_change_since
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
@@ -36347,6 +36565,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false
@@ -36659,11 +36883,11 @@ components:
       - name
       type: object
     GroupProgressReportResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         total: 9
         code: code
@@ -36991,11 +37215,11 @@ components:
       - symlink
       type: string
     MinimalTaskResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         finished_at: 2000-01-23T04:56:07.000+00:00
@@ -37057,11 +37281,11 @@ components:
       - name
       type: object
     MultipleArtifactContentResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -37421,8 +37645,9 @@ components:
           hidden: false
           pulp_labels:
             key: pulp_labels
-          name: name
           base_url: base_url
+          no_content_change_since: no_content_change_since
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -37431,8 +37656,9 @@ components:
           hidden: false
           pulp_labels:
             key: pulp_labels
-          name: name
           base_url: base_url
+          no_content_change_since: no_content_change_since
+          name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -37640,6 +37866,7 @@ components:
           pulp_labels:
             key: pulp_labels
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -37651,6 +37878,7 @@ components:
           pulp_labels:
             key: pulp_labels
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -38839,34 +39067,36 @@ components:
           tls_validation: true
           client_cert: client_cert
           pulp_label_select: pulp_label_select
+          last_replication: 2000-01-23T04:56:07.000+00:00
+          base_url: base_url
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          api_root: api_root
           domain: domain
           name: name
-          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           hidden_fields:
           - is_set: true
             name: name
           - is_set: true
             name: name
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           ca_cert: ca_cert
-          api_root: api_root
         - pulp_href: https://openapi-generator.tech
           tls_validation: true
           client_cert: client_cert
           pulp_label_select: pulp_label_select
+          last_replication: 2000-01-23T04:56:07.000+00:00
+          base_url: base_url
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          api_root: api_root
           domain: domain
           name: name
-          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           hidden_fields:
           - is_set: true
             name: name
           - is_set: true
             name: name
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           ca_cert: ca_cert
-          api_root: api_root
       properties:
         count:
           example: 123
@@ -39235,6 +39465,7 @@ components:
             key: pulp_labels
           publication: https://openapi-generator.tech
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -39247,6 +39478,7 @@ components:
             key: pulp_labels
           publication: https://openapi-generator.tech
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -39519,30 +39751,32 @@ components:
         results:
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
           base_url: base_url
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
           base_url: base_url
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -39882,6 +40116,7 @@ components:
           pulp_labels:
             key: pulp_labels
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -39894,6 +40129,7 @@ components:
           pulp_labels:
             key: pulp_labels
           base_url: base_url
+          no_content_change_since: no_content_change_since
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
@@ -40204,6 +40440,7 @@ components:
         - pulp_href: https://openapi-generator.tech
           hidden: false
           base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
@@ -40218,6 +40455,7 @@ components:
         - pulp_href: https://openapi-generator.tech
           hidden: false
           base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
@@ -41275,30 +41513,32 @@ components:
         results:
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
-          generate_repo_config: false
           base_url: base_url
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          generate_repo_config: false
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
-          generate_repo_config: false
           base_url: base_url
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          generate_repo_config: false
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -41753,11 +41993,11 @@ components:
           type: object
       type: object
     PatchedCompositeContentGuard:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         name: name
         description: description
@@ -41957,11 +42197,11 @@ components:
           type: object
       type: object
     PatchedRBACContentGuard:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         name: name
         description: description
@@ -42001,11 +42241,6 @@ components:
           type: array
       type: object
     PatchedTaskCancel:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
       example:
         state: state
       properties:
@@ -43585,12 +43820,25 @@ components:
       - immediate
       - on_demand
       type: string
+    ProfileArtifactResponse:
+      example:
+        urls:
+          key: https://openapi-generator.tech
+      properties:
+        urls:
+          additionalProperties:
+            format: uri
+            type: string
+          type: object
+      required:
+      - urls
+      type: object
     ProgressReportResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         total: 0
         code: code
@@ -43662,11 +43910,11 @@ components:
       - repo_hrefs
       type: object
     PublicationResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -44069,11 +44317,11 @@ components:
       - name
       type: object
     RBACContentGuard:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         name: name
         description: description
@@ -44091,11 +44339,11 @@ components:
       - name
       type: object
     RBACContentGuardResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         name: name
@@ -44349,11 +44597,11 @@ components:
           type: boolean
       type: object
     RepositoryAddRemoveContent:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         base_version: https://openapi-generator.tech
         remove_content_units:
@@ -44385,11 +44633,11 @@ components:
           type: string
       type: object
     RepositoryResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         latest_version_href: https://openapi-generator.tech
         pulp_href: https://openapi-generator.tech
@@ -44472,11 +44720,11 @@ components:
           type: boolean
       type: object
     RepositoryVersionResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         number: 0
         base_version: https://openapi-generator.tech
@@ -44924,11 +45172,11 @@ components:
       - task_group
       type: object
     TaskGroupResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         running: 1
         canceling: 7
@@ -45031,11 +45279,11 @@ components:
       - description
       type: object
     TaskResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         reserved_resources_record:
         - reserved_resources_record
@@ -45175,11 +45423,11 @@ components:
       - name
       type: object
     TaskScheduleResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         task_name: task_name
         dispatch_interval: dispatch_interval
@@ -45482,18 +45730,19 @@ components:
         tls_validation: true
         client_cert: client_cert
         pulp_label_select: pulp_label_select
+        last_replication: 2000-01-23T04:56:07.000+00:00
+        base_url: base_url
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        api_root: api_root
         domain: domain
         name: name
-        base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
         hidden_fields:
         - is_set: true
           name: name
         - is_set: true
           name: name
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         ca_cert: ca_cert
-        api_root: api_root
       properties:
         pulp_href:
           format: uri
@@ -45545,6 +45794,12 @@ components:
           description: "One or more comma separated labels that will be used to filter\
             \ distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\""
           nullable: true
+          type: string
+        last_replication:
+          description: Timestamp of the last replication that occurred. Equals to
+            'null' if no replication task has been executed.
+          format: date-time
+          readOnly: true
           type: string
       required:
       - api_root
@@ -45876,11 +46131,11 @@ components:
       - version
       type: object
     WorkerResponse:
-      description: Base serializer for use with :class:`pulpcore.app.models.Model`This
-        ensures that all Serializers provide values for the 'pulp_href` field.The
-        class provides a default for the ``ref_name`` attribute in theModelSerializers's
-        ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced
-        properly.
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
       example:
         pulp_href: https://openapi-generator.tech
         versions:
@@ -46284,6 +46539,7 @@ components:
           key: pulp_labels
         publication: https://openapi-generator.tech
         base_url: base_url
+        no_content_change_since: no_content_change_since
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
@@ -46320,6 +46576,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false
@@ -46975,17 +47237,18 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         hidden: false
-        pulp_labels:
-          key: pulp_labels
-        publication: https://openapi-generator.tech
         base_url: base_url
-        name: name
-        pulp_created: 2000-01-23T04:56:07.000+00:00
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
         remote: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
@@ -47016,6 +47279,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false
@@ -47721,6 +47990,7 @@ components:
         pulp_labels:
           key: pulp_labels
         base_url: base_url
+        no_content_change_since: no_content_change_since
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
@@ -47758,6 +48028,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false
@@ -48421,6 +48697,7 @@ components:
         pulp_href: https://openapi-generator.tech
         hidden: false
         base_url: base_url
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
@@ -48461,6 +48738,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false
@@ -50574,17 +50857,18 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         hidden: false
-        pulp_labels:
-          key: pulp_labels
-        publication: https://openapi-generator.tech
-        generate_repo_config: false
         base_url: base_url
-        name: name
-        pulp_created: 2000-01-23T04:56:07.000+00:00
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        generate_repo_config: false
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
@@ -50615,6 +50899,12 @@ components:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         hidden:
           default: false

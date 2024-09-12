@@ -49,9 +49,9 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `core.artifact` - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.artifact` - core.artifact* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `rpm.rpm` - rpm.rpm* `file.file` - file.file (optional)
-	q := "q_example" // string |  (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `core.artifact` - core.artifact* `python.python` - python.python* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.artifact` - core.artifact* `python.python` - python.python* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
 	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
 	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
@@ -105,9 +105,9 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **pulpType** | **string** | Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file | 
- **q** | **string** |  | 
+ **pulpType** | **string** | Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Filter results where repository matches value | 
  **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
  **withContent** | **string** | Filter distributions based on the content served by them | 

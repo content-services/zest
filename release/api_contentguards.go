@@ -146,6 +146,7 @@ func (r ContentguardsAPIContentguardsListRequest) PulpTypeIn(pulpTypeIn []string
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentguardsAPIContentguardsListRequest) Q(q string) ContentguardsAPIContentguardsListRequest {
 	r.q = &q
 	return r

@@ -200,6 +200,7 @@ func (r TaskSchedulesAPITaskSchedulesListRequest) PulpIdIn(pulpIdIn []string) Ta
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r TaskSchedulesAPITaskSchedulesListRequest) Q(q string) TaskSchedulesAPITaskSchedulesListRequest {
 	r.q = &q
 	return r

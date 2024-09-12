@@ -79,6 +79,7 @@ func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) PulpI
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) Q(q string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.q = &q
 	return r

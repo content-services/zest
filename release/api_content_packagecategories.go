@@ -79,6 +79,7 @@ func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) PulpI
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) Q(q string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
 	r.q = &q
 	return r

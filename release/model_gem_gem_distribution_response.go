@@ -33,6 +33,8 @@ type GemGemDistributionResponse struct {
 	BaseUrl *string `json:"base_url,omitempty"`
 	// An optional content-guard.
 	ContentGuard NullableString `json:"content_guard,omitempty"`
+	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
+	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
@@ -264,6 +266,38 @@ func (o *GemGemDistributionResponse) SetContentGuardNil() {
 // UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
 func (o *GemGemDistributionResponse) UnsetContentGuard() {
 	o.ContentGuard.Unset()
+}
+
+// GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
+func (o *GemGemDistributionResponse) GetNoContentChangeSince() string {
+	if o == nil || IsNil(o.NoContentChangeSince) {
+		var ret string
+		return ret
+	}
+	return *o.NoContentChangeSince
+}
+
+// GetNoContentChangeSinceOk returns a tuple with the NoContentChangeSince field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GemGemDistributionResponse) GetNoContentChangeSinceOk() (*string, bool) {
+	if o == nil || IsNil(o.NoContentChangeSince) {
+		return nil, false
+	}
+	return o.NoContentChangeSince, true
+}
+
+// HasNoContentChangeSince returns a boolean if a field has been set.
+func (o *GemGemDistributionResponse) HasNoContentChangeSince() bool {
+	if o != nil && !IsNil(o.NoContentChangeSince) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoContentChangeSince gets a reference to the given string and assigns it to the NoContentChangeSince field.
+func (o *GemGemDistributionResponse) SetNoContentChangeSince(v string) {
+	o.NoContentChangeSince = &v
 }
 
 // GetHidden returns the Hidden field value if set, zero value otherwise.
@@ -506,6 +540,9 @@ func (o GemGemDistributionResponse) ToMap() (map[string]interface{}, error) {
 	if o.ContentGuard.IsSet() {
 		toSerialize["content_guard"] = o.ContentGuard.Get()
 	}
+	if !IsNil(o.NoContentChangeSince) {
+		toSerialize["no_content_change_since"] = o.NoContentChangeSince
+	}
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
@@ -572,6 +609,7 @@ func (o *GemGemDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "base_url")
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "no_content_change_since")
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")

@@ -516,6 +516,7 @@ func (r RemotesFileAPIRemotesFileFileListRequest) PulpLastUpdatedRange(pulpLastU
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RemotesFileAPIRemotesFileFileListRequest) Q(q string) RemotesFileAPIRemotesFileFileListRequest {
 	r.q = &q
 	return r

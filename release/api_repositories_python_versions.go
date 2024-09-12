@@ -265,6 +265,7 @@ func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest) Q(q string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest {
 	r.q = &q
 	return r

@@ -250,6 +250,7 @@ func (r ContentGemAPIContentGemGemListRequest) PulpIdIn(pulpIdIn []string) Conte
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentGemAPIContentGemGemListRequest) Q(q string) ContentGemAPIContentGemGemListRequest {
 	r.q = &q
 	return r

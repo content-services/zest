@@ -85,6 +85,7 @@ func (r AccessPoliciesAPIAccessPoliciesListRequest) PulpIdIn(pulpIdIn []string) 
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r AccessPoliciesAPIAccessPoliciesListRequest) Q(q string) AccessPoliciesAPIAccessPoliciesListRequest {
 	r.q = &q
 	return r

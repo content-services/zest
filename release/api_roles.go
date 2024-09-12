@@ -389,6 +389,7 @@ func (r RolesAPIRolesListRequest) PulpIdIn(pulpIdIn []string) RolesAPIRolesListR
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RolesAPIRolesListRequest) Q(q string) RolesAPIRolesListRequest {
 	r.q = &q
 	return r

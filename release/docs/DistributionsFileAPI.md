@@ -274,7 +274,7 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
 	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
 	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Filter results where repository matches value | 
  **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
  **withContent** | **string** | Filter distributions based on the content served by them | 

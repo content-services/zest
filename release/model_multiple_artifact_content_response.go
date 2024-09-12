@@ -20,7 +20,7 @@ import (
 // checks if the MultipleArtifactContentResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MultipleArtifactContentResponse{}
 
-// MultipleArtifactContentResponse Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// MultipleArtifactContentResponse Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type MultipleArtifactContentResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Timestamp of creation.

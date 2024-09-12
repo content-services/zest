@@ -401,6 +401,7 @@ func (r UsersAPIUsersListRequest) PulpIdIn(pulpIdIn []string) UsersAPIUsersListR
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r UsersAPIUsersListRequest) Q(q string) UsersAPIUsersListRequest {
 	r.q = &q
 	return r

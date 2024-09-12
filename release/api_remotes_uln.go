@@ -516,6 +516,7 @@ func (r RemotesUlnAPIRemotesRpmUlnListRequest) PulpLastUpdatedRange(pulpLastUpda
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RemotesUlnAPIRemotesRpmUlnListRequest) Q(q string) RemotesUlnAPIRemotesRpmUlnListRequest {
 	r.q = &q
 	return r

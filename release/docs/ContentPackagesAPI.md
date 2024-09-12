@@ -178,7 +178,7 @@ func main() {
 	packagetypeIn := []string{"Inner_example"} // []string | Filter results where packagetype is in a comma-separated list of values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
  **packagetypeIn** | **[]string** | Filter results where packagetype is in a comma-separated list of values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF | 
  **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 
  **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF | 
@@ -478,7 +478,7 @@ func main() {
 	pkgIdIn := []string{"Inner_example"} // []string | Filter results where pkgId is in a comma-separated list of values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	release := "release_example" // string | Filter results where release matches value (optional)
 	releaseContains := "releaseContains_example" // string | Filter results where release contains value (optional)
 	releaseIn := []string{"Inner_example"} // []string | Filter results where release is in a comma-separated list of values (optional)
@@ -547,7 +547,7 @@ Name | Type | Description  | Notes
  **pkgIdIn** | **[]string** | Filter results where pkgId is in a comma-separated list of values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **release** | **string** | Filter results where release matches value | 
  **releaseContains** | **string** | Filter results where release contains value | 
  **releaseIn** | **[]string** | Filter results where release is in a comma-separated list of values | 

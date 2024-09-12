@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
 **HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **PulpLabelSelect** | Pointer to **NullableString** | One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \&quot;foo&#x3D;bar,key&#x3D;val\&quot; or \&quot;foo,key\&quot; | [optional] 
+**LastReplication** | Pointer to **time.Time** | Timestamp of the last replication that occurred. Equals to &#39;null&#39; if no replication task has been executed. | [optional] [readonly] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ HasPulpLabelSelect returns a boolean if a field has been set.
 `func (o *UpstreamPulpResponse) UnsetPulpLabelSelect()`
 
 UnsetPulpLabelSelect ensures that no value is present for PulpLabelSelect, not even an explicit nil
+### GetLastReplication
+
+`func (o *UpstreamPulpResponse) GetLastReplication() time.Time`
+
+GetLastReplication returns the LastReplication field if non-nil, zero value otherwise.
+
+### GetLastReplicationOk
+
+`func (o *UpstreamPulpResponse) GetLastReplicationOk() (*time.Time, bool)`
+
+GetLastReplicationOk returns a tuple with the LastReplication field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastReplication
+
+`func (o *UpstreamPulpResponse) SetLastReplication(v time.Time)`
+
+SetLastReplication sets LastReplication field to given value.
+
+### HasLastReplication
+
+`func (o *UpstreamPulpResponse) HasLastReplication() bool`
+
+HasLastReplication returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

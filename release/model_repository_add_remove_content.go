@@ -18,7 +18,7 @@ import (
 // checks if the RepositoryAddRemoveContent type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &RepositoryAddRemoveContent{}
 
-// RepositoryAddRemoveContent Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// RepositoryAddRemoveContent Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type RepositoryAddRemoveContent struct {
 	// A list of content units to add to a new repository version. This content is added after remove_content_units are removed.
 	AddContentUnits []string `json:"add_content_units,omitempty"`

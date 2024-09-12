@@ -211,6 +211,7 @@ func (r ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest) PulpIdI
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest) Q(q string) ContentModulemdDefaultsAPIContentRpmModulemdDefaultsListRequest {
 	r.q = &q
 	return r

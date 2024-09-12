@@ -265,6 +265,7 @@ func (r RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest) Q(q string) RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest {
 	r.q = &q
 	return r

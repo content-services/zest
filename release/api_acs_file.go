@@ -466,6 +466,7 @@ func (r AcsFileAPIAcsFileFileListRequest) PulpIdIn(pulpIdIn []string) AcsFileAPI
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r AcsFileAPIAcsFileFileListRequest) Q(q string) AcsFileAPIAcsFileFileListRequest {
 	r.q = &q
 	return r

@@ -187,6 +187,7 @@ func (r WorkersAPIWorkersListRequest) PulpIdIn(pulpIdIn []string) WorkersAPIWork
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r WorkersAPIWorkersListRequest) Q(q string) WorkersAPIWorkersListRequest {
 	r.q = &q
 	return r

@@ -451,6 +451,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) PulpIdIn(pulpIdIn []str
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) Q(q string) PublicationsRpmAPIPublicationsRpmRpmListRequest {
 	r.q = &q
 	return r

@@ -441,6 +441,7 @@ func (r GroupsAPIGroupsListRequest) PulpIdIn(pulpIdIn []string) GroupsAPIGroupsL
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r GroupsAPIGroupsListRequest) Q(q string) GroupsAPIGroupsListRequest {
 	r.q = &q
 	return r

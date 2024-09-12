@@ -504,6 +504,7 @@ func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) PulpLabelSelect(
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) Q(q string) DistributionsPypiAPIDistributionsPythonPypiListRequest {
 	r.q = &q
 	return r

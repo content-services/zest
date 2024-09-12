@@ -328,7 +328,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `size` - Size* `-size` - Size (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	size := int32(56) // int32 | Filter results where size matches value (optional)
 	sizeGt := int32(56) // int32 | Filter results where size is greater than value (optional)
 	sizeLt := int32(56) // int32 | Filter results where size is less than value (optional)
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **size** | **int32** | Filter results where size matches value | 
  **sizeGt** | **int32** | Filter results where size is greater than value | 
  **sizeLt** | **int32** | Filter results where size is less than value | 

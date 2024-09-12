@@ -455,6 +455,7 @@ func (r ContentguardsCompositeAPIContentguardsCoreCompositeListRequest) PulpIdIn
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeListRequest) Q(q string) ContentguardsCompositeAPIContentguardsCoreCompositeListRequest {
 	r.q = &q
 	return r

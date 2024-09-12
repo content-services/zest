@@ -264,6 +264,7 @@ func (r ContentFilesAPIContentFileFilesListRequest) PulpIdIn(pulpIdIn []string) 
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentFilesAPIContentFileFilesListRequest) Q(q string) ContentFilesAPIContentFileFilesListRequest {
 	r.q = &q
 	return r

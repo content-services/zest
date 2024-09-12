@@ -265,6 +265,7 @@ func (r RepositoriesRpmVersionsAPIRepositoriesRpmRpmVersionsListRequest) PulpHre
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesRpmVersionsAPIRepositoriesRpmRpmVersionsListRequest) Q(q string) RepositoriesRpmVersionsAPIRepositoriesRpmRpmVersionsListRequest {
 	r.q = &q
 	return r

@@ -20,7 +20,7 @@ import (
 // checks if the Artifact type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Artifact{}
 
-// Artifact Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// Artifact Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type Artifact struct {
 	// The stored file.
 	File *os.File `json:"file"`

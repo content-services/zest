@@ -76,6 +76,7 @@ func (r SigningServicesAPISigningServicesListRequest) PulpIdIn(pulpIdIn []string
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r SigningServicesAPISigningServicesListRequest) Q(q string) SigningServicesAPISigningServicesListRequest {
 	r.q = &q
 	return r

@@ -120,7 +120,7 @@ func main() {
 	orphanedFor := float32(8.14) // float32 | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	relativePath := "relativePath_example" // string | Filter results where relative_path matches value (optional)
 	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
  **orphanedFor** | **float32** | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **relativePath** | **string** | Filter results where relative_path matches value | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF | 
  **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 

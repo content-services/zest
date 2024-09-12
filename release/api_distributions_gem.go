@@ -504,6 +504,7 @@ func (r DistributionsGemAPIDistributionsGemGemListRequest) PulpLabelSelect(pulpL
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r DistributionsGemAPIDistributionsGemGemListRequest) Q(q string) DistributionsGemAPIDistributionsGemGemListRequest {
 	r.q = &q
 	return r

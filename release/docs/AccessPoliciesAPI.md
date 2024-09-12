@@ -40,7 +40,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `creation_hooks` - Creation hooks* `-creation_hooks` - Creation hooks (descending)* `statements` - Statements* `-statements` - Statements (descending)* `viewset_name` - Viewset name* `-viewset_name` - Viewset name (descending)* `customized` - Customized* `-customized` - Customized (descending)* `queryset_scoping` - Queryset scoping* `-queryset_scoping` - Queryset scoping (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	viewsetName := "viewsetName_example" // string | Filter results where viewset_name matches value (optional)
 	viewsetNameContains := "viewsetNameContains_example" // string | Filter results where viewset_name contains value (optional)
 	viewsetNameIcontains := "viewsetNameIcontains_example" // string | Filter results where viewset_name contains value (optional)
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;creation_hooks&#x60; - Creation hooks* &#x60;-creation_hooks&#x60; - Creation hooks (descending)* &#x60;statements&#x60; - Statements* &#x60;-statements&#x60; - Statements (descending)* &#x60;viewset_name&#x60; - Viewset name* &#x60;-viewset_name&#x60; - Viewset name (descending)* &#x60;customized&#x60; - Customized* &#x60;-customized&#x60; - Customized (descending)* &#x60;queryset_scoping&#x60; - Queryset scoping* &#x60;-queryset_scoping&#x60; - Queryset scoping (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **viewsetName** | **string** | Filter results where viewset_name matches value | 
  **viewsetNameContains** | **string** | Filter results where viewset_name contains value | 
  **viewsetNameIcontains** | **string** | Filter results where viewset_name contains value | 

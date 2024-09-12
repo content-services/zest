@@ -384,6 +384,7 @@ func (r ArtifactsAPIArtifactsListRequest) PulpIdIn(pulpIdIn []string) ArtifactsA
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ArtifactsAPIArtifactsListRequest) Q(q string) ArtifactsAPIArtifactsListRequest {
 	r.q = &q
 	return r

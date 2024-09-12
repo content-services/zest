@@ -516,6 +516,7 @@ func (r RemotesOstreeAPIRemotesOstreeOstreeListRequest) PulpLastUpdatedRange(pul
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RemotesOstreeAPIRemotesOstreeOstreeListRequest) Q(q string) RemotesOstreeAPIRemotesOstreeOstreeListRequest {
 	r.q = &q
 	return r

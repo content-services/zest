@@ -79,6 +79,7 @@ func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) P
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) Q(q string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
 	r.q = &q
 	return r

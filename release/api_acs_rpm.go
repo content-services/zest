@@ -466,6 +466,7 @@ func (r AcsRpmAPIAcsRpmRpmListRequest) PulpIdIn(pulpIdIn []string) AcsRpmAPIAcsR
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r AcsRpmAPIAcsRpmRpmListRequest) Q(q string) AcsRpmAPIAcsRpmRpmListRequest {
 	r.q = &q
 	return r

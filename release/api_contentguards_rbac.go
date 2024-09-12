@@ -455,6 +455,7 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacListRequest) PulpIdIn(pulpIdIn 
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentguardsRbacAPIContentguardsCoreRbacListRequest) Q(q string) ContentguardsRbacAPIContentguardsCoreRbacListRequest {
 	r.q = &q
 	return r

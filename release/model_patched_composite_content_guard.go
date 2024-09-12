@@ -18,7 +18,7 @@ import (
 // checks if the PatchedCompositeContentGuard type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedCompositeContentGuard{}
 
-// PatchedCompositeContentGuard Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// PatchedCompositeContentGuard Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type PatchedCompositeContentGuard struct {
 	// The unique name.
 	Name *string `json:"name,omitempty"`

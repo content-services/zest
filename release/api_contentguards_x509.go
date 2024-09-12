@@ -340,6 +340,7 @@ func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) PulpIdIn(pulp
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentguardsX509APIContentguardsCertguardX509ListRequest) Q(q string) ContentguardsX509APIContentguardsCertguardX509ListRequest {
 	r.q = &q
 	return r

@@ -569,6 +569,7 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) PulpIdIn(pulpIdIn []
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Q(q string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.q = &q
 	return r
@@ -1390,6 +1391,7 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpIdIn(pulpIdIn []str
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagesAPIContentRpmPackagesListRequest) Q(q string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.q = &q
 	return r

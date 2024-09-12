@@ -451,6 +451,7 @@ func (r PublicationsGemAPIPublicationsGemGemListRequest) PulpIdIn(pulpIdIn []str
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r PublicationsGemAPIPublicationsGemGemListRequest) Q(q string) PublicationsGemAPIPublicationsGemGemListRequest {
 	r.q = &q
 	return r

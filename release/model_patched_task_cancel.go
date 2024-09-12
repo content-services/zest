@@ -18,7 +18,7 @@ import (
 // checks if the PatchedTaskCancel type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedTaskCancel{}
 
-// PatchedTaskCancel Base serializer for use with :class:`pulpcore.app.models.Model`This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// PatchedTaskCancel struct for PatchedTaskCancel
 type PatchedTaskCancel struct {
 	// The desired state of the task. Only 'canceled' is accepted.
 	State *string `json:"state,omitempty"`

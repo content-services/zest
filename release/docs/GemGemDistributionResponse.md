@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
 **ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
+**NoContentChangeSince** | Pointer to **string** | Timestamp since when the distributed content served by this distribution has not changed. If equals to &#x60;null&#x60;, no guarantee is provided about content changes. | [optional] [readonly] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
@@ -191,6 +192,31 @@ HasContentGuard returns a boolean if a field has been set.
 `func (o *GemGemDistributionResponse) UnsetContentGuard()`
 
 UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
+### GetNoContentChangeSince
+
+`func (o *GemGemDistributionResponse) GetNoContentChangeSince() string`
+
+GetNoContentChangeSince returns the NoContentChangeSince field if non-nil, zero value otherwise.
+
+### GetNoContentChangeSinceOk
+
+`func (o *GemGemDistributionResponse) GetNoContentChangeSinceOk() (*string, bool)`
+
+GetNoContentChangeSinceOk returns a tuple with the NoContentChangeSince field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoContentChangeSince
+
+`func (o *GemGemDistributionResponse) SetNoContentChangeSince(v string)`
+
+SetNoContentChangeSince sets NoContentChangeSince field to given value.
+
+### HasNoContentChangeSince
+
+`func (o *GemGemDistributionResponse) HasNoContentChangeSince() bool`
+
+HasNoContentChangeSince returns a boolean if a field has been set.
+
 ### GetHidden
 
 `func (o *GemGemDistributionResponse) GetHidden() bool`

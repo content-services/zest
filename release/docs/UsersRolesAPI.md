@@ -180,7 +180,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `role` - Role* `-role` - Role (descending)* `description` - Description* `-description` - Description (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	role := "role_example" // string |  (optional)
 	roleContains := "roleContains_example" // string |  (optional)
 	roleIcontains := "roleIcontains_example" // string |  (optional)
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;role&#x60; - Role* &#x60;-role&#x60; - Role (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **role** | **string** |  | 
  **roleContains** | **string** |  | 
  **roleIcontains** | **string** |  | 

@@ -490,6 +490,7 @@ func (r RepositoriesPythonAPIRepositoriesPythonPythonListRequest) PulpLabelSelec
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesPythonAPIRepositoriesPythonPythonListRequest) Q(q string) RepositoriesPythonAPIRepositoriesPythonPythonListRequest {
 	r.q = &q
 	return r

@@ -366,6 +366,7 @@ docs/PatchedrpmRpmRepository.md
 docs/PatchedrpmUlnRemote.md
 docs/Policy692Enum.md
 docs/PolicyBfeEnum.md
+docs/ProfileArtifactResponse.md
 docs/ProgressReportResponse.md
 docs/PrunePackages.md
 docs/PublicationResponse.md
@@ -724,6 +725,7 @@ model_patchedrpm_rpm_repository.go
 model_patchedrpm_uln_remote.go
 model_policy692_enum.go
 model_policy_bfe_enum.go
+model_profile_artifact_response.go
 model_progress_report_response.go
 model_prune_packages.go
 model_publication_response.go

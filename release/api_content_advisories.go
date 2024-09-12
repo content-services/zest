@@ -261,6 +261,7 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) PulpIdIn(pulpIdIn [
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Q(q string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.q = &q
 	return r

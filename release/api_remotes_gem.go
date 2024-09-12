@@ -516,6 +516,7 @@ func (r RemotesGemAPIRemotesGemGemListRequest) PulpLastUpdatedRange(pulpLastUpda
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RemotesGemAPIRemotesGemGemListRequest) Q(q string) RemotesGemAPIRemotesGemGemListRequest {
 	r.q = &q
 	return r

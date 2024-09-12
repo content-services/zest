@@ -197,7 +197,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `id` - Id* `-id` - Id (descending)* `password` - Password* `-password` - Password (descending)* `last_login` - Last login* `-last_login` - Last login (descending)* `is_superuser` - Is superuser* `-is_superuser` - Is superuser (descending)* `username` - Username* `-username` - Username (descending)* `first_name` - First name* `-first_name` - First name (descending)* `last_name` - Last name* `-last_name` - Last name (descending)* `email` - Email* `-email` - Email (descending)* `is_staff` - Is staff* `-is_staff` - Is staff (descending)* `is_active` - Is active* `-is_active` - Is active (descending)* `date_joined` - Date joined* `-date_joined` - Date joined (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	username := "username_example" // string | Filter results where username matches value (optional)
 	usernameContains := "usernameContains_example" // string | Filter results where username contains value (optional)
 	usernameIcontains := "usernameIcontains_example" // string | Filter results where username contains value (optional)
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;last_login&#x60; - Last login* &#x60;-last_login&#x60; - Last login (descending)* &#x60;is_superuser&#x60; - Is superuser* &#x60;-is_superuser&#x60; - Is superuser (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;first_name&#x60; - First name* &#x60;-first_name&#x60; - First name (descending)* &#x60;last_name&#x60; - Last name* &#x60;-last_name&#x60; - Last name (descending)* &#x60;email&#x60; - Email* &#x60;-email&#x60; - Email (descending)* &#x60;is_staff&#x60; - Is staff* &#x60;-is_staff&#x60; - Is staff (descending)* &#x60;is_active&#x60; - Is active* &#x60;-is_active&#x60; - Is active (descending)* &#x60;date_joined&#x60; - Date joined* &#x60;-date_joined&#x60; - Date joined (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **username** | **string** | Filter results where username matches value | 
  **usernameContains** | **string** | Filter results where username contains value | 
  **usernameIcontains** | **string** | Filter results where username contains value | 

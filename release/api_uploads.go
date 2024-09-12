@@ -512,6 +512,7 @@ func (r UploadsAPIUploadsListRequest) PulpIdIn(pulpIdIn []string) UploadsAPIUplo
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r UploadsAPIUploadsListRequest) Q(q string) UploadsAPIUploadsListRequest {
 	r.q = &q
 	return r

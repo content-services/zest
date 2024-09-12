@@ -79,6 +79,7 @@ func (r ContentSummariesAPIContentOstreeSummariesListRequest) PulpIdIn(pulpIdIn 
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentSummariesAPIContentOstreeSummariesListRequest) Q(q string) ContentSummariesAPIContentOstreeSummariesListRequest {
 	r.q = &q
 	return r

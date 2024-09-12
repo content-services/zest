@@ -419,7 +419,7 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
 	retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **remote** | **string** | Foreign Key referenced by HREF | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 
  **retainRepoVersionsGt** | **int32** | Filter results where retain_repo_versions is greater than value | 

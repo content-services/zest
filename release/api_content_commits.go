@@ -86,6 +86,7 @@ func (r ContentCommitsAPIContentOstreeCommitsListRequest) PulpIdIn(pulpIdIn []st
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentCommitsAPIContentOstreeCommitsListRequest) Q(q string) ContentCommitsAPIContentOstreeCommitsListRequest {
 	r.q = &q
 	return r

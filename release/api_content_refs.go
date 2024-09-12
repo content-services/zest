@@ -148,6 +148,7 @@ func (r ContentRefsAPIContentOstreeRefsListRequest) PulpIdIn(pulpIdIn []string) 
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r ContentRefsAPIContentOstreeRefsListRequest) Q(q string) ContentRefsAPIContentOstreeRefsListRequest {
 	r.q = &q
 	return r

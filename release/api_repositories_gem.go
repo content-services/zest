@@ -490,6 +490,7 @@ func (r RepositoriesGemAPIRepositoriesGemGemListRequest) PulpLabelSelect(pulpLab
 	return r
 }
 
+// Filter results by using NOT, AND and OR operations on other filters
 func (r RepositoriesGemAPIRepositoriesGemGemListRequest) Q(q string) RepositoriesGemAPIRepositoriesGemGemListRequest {
 	r.q = &q
 	return r

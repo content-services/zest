@@ -22,6 +22,20 @@ func Test_zest_TaskGroupsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test TaskGroupsAPIService TaskGroupsCancel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var taskGroupHref string
+
+		resp, httpRes, err := apiClient.TaskGroupsAPI.TaskGroupsCancel(context.Background(), taskGroupHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test TaskGroupsAPIService TaskGroupsList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

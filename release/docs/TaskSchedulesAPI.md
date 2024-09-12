@@ -114,7 +114,7 @@ func main() {
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `next_dispatch` - Next dispatch* `-next_dispatch` - Next dispatch (descending)* `dispatch_interval` - Dispatch interval* `-dispatch_interval` - Dispatch interval (descending)* `task_name` - Task name* `-task_name` - Task name (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	q := "q_example" // string |  (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	taskName := "taskName_example" // string | Filter results where task_name matches value (optional)
 	taskNameContains := "taskNameContains_example" // string | Filter results where task_name contains value (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;next_dispatch&#x60; - Next dispatch* &#x60;-next_dispatch&#x60; - Next dispatch (descending)* &#x60;dispatch_interval&#x60; - Dispatch interval* &#x60;-dispatch_interval&#x60; - Dispatch interval (descending)* &#x60;task_name&#x60; - Task name* &#x60;-task_name&#x60; - Task name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **q** | **string** |  | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **taskName** | **string** | Filter results where task_name matches value | 
  **taskNameContains** | **string** | Filter results where task_name contains value | 
  **fields** | **[]string** | A list of fields to include in the response. | 
