@@ -158,13 +158,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
