@@ -534,6 +534,121 @@ func (a *DomainsAPIService) DomainsListExecute(r DomainsAPIDomainsListRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type DomainsAPIDomainsMigrateRequest struct {
+	ctx context.Context
+	ApiService *DomainsAPIService
+	pulpDomain string
+	domainBackendMigrator *DomainBackendMigrator
+}
+
+func (r DomainsAPIDomainsMigrateRequest) DomainBackendMigrator(domainBackendMigrator DomainBackendMigrator) DomainsAPIDomainsMigrateRequest {
+	r.domainBackendMigrator = &domainBackendMigrator
+	return r
+}
+
+func (r DomainsAPIDomainsMigrateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.DomainsMigrateExecute(r)
+}
+
+/*
+DomainsMigrate Migrate storage backend
+
+Migrate the domain's storage backend to a new one.Launches a background task to copy the domain's artifacts over to the supplied storagebackend. Then updates the domain's storage settings to the new storage backend. This taskdoes not delete the stored files of the artifacts from the previous backend.**IMPORTANT** This task will block all other tasks within the domain until the migration iscompleted, essentially putting the domain into a read only state. Content will still beserved from the old storage backend until the migration has completed, so don't removethe old backend until then. Note, this endpoint is not allowed on the default domain.This feature is in Tech Preview and is subject to future change and thus not guaranteed tobe backwards compatible.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return DomainsAPIDomainsMigrateRequest
+*/
+func (a *DomainsAPIService) DomainsMigrate(ctx context.Context, pulpDomain string) DomainsAPIDomainsMigrateRequest {
+	return DomainsAPIDomainsMigrateRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *DomainsAPIService) DomainsMigrateExecute(r DomainsAPIDomainsMigrateRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsAPIService.DomainsMigrate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/domains/migrate/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.domainBackendMigrator == nil {
+		return localVarReturnValue, nil, reportError("domainBackendMigrator is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.domainBackendMigrator
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DomainsAPIDomainsPartialUpdateRequest struct {
 	ctx context.Context
 	ApiService *DomainsAPIService

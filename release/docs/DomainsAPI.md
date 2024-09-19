@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**DomainsCreate**](DomainsAPI.md#DomainsCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/domains/ | Create a domain
 [**DomainsDelete**](DomainsAPI.md#DomainsDelete) | **Delete** /{domain_href} | Delete a domain
 [**DomainsList**](DomainsAPI.md#DomainsList) | **Get** /api/pulp/{pulp_domain}/api/v3/domains/ | List domains
+[**DomainsMigrate**](DomainsAPI.md#DomainsMigrate) | **Post** /api/pulp/{pulp_domain}/api/v3/domains/migrate/ | Migrate storage backend
 [**DomainsPartialUpdate**](DomainsAPI.md#DomainsPartialUpdate) | **Patch** /{domain_href} | Update a domain
 [**DomainsRead**](DomainsAPI.md#DomainsRead) | **Get** /{domain_href} | Inspect a domain
 [**DomainsUpdate**](DomainsAPI.md#DomainsUpdate) | **Put** /{domain_href} | Update a domain
@@ -252,6 +253,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DomainsMigrate
+
+> AsyncOperationResponse DomainsMigrate(ctx, pulpDomain).DomainBackendMigrator(domainBackendMigrator).Execute()
+
+Migrate storage backend
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2024"
+)
+
+func main() {
+	pulpDomain := "pulpDomain_example" // string | 
+	domainBackendMigrator := *openapiclient.NewDomainBackendMigrator(openapiclient.StorageClassEnum("pulpcore.app.models.storage.FileSystem"), map[string]interface{}(123)) // DomainBackendMigrator | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DomainsAPI.DomainsMigrate(context.Background(), pulpDomain).DomainBackendMigrator(domainBackendMigrator).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsMigrate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DomainsMigrate`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `DomainsAPI.DomainsMigrate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pulpDomain** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDomainsMigrateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **domainBackendMigrator** | [**DomainBackendMigrator**](DomainBackendMigrator.md) |  | 
+
+### Return type
+
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

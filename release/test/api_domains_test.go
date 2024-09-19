@@ -64,6 +64,20 @@ func Test_zest_DomainsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DomainsAPIService DomainsMigrate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.DomainsAPI.DomainsMigrate(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DomainsAPIService DomainsPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
