@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmVersionsList
 
-> PaginatedRepositoryVersionResponseList RepositoriesRpmRpmVersionsList(ctx, rpmRpmRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRepositoryVersionResponseList RepositoriesRpmRpmVersionsList(ctx, rpmRpmRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List repository versions
 
@@ -104,8 +104,8 @@ import (
 
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
-	content := "content_example" // string | Content Unit referenced by HREF (optional)
-	contentIn := "contentIn_example" // string | Content Unit referenced by HREF (optional)
+	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
+	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	number := int32(56) // int32 | Filter results where number matches value (optional)
 	numberGt := int32(56) // int32 | Filter results where number is greater than value (optional)
@@ -115,6 +115,7 @@ func main() {
 	numberRange := []int32{int32(123)} // []int32 | Filter results where number is between two comma separated values (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
 	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
@@ -128,7 +129,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmVersionsAPI.RepositoriesRpmRpmVersionsList(context.Background(), rpmRpmRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesRpmVersionsAPI.RepositoriesRpmRpmVersionsList(context.Background(), rpmRpmRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmVersionsAPI.RepositoriesRpmRpmVersionsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -154,8 +155,8 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmVersions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **content** | **string** | Content Unit referenced by HREF | 
- **contentIn** | **string** | Content Unit referenced by HREF | 
+ **content** | **string** | Content Unit referenced by HREF/PRN | 
+ **contentIn** | **[]string** | Multiple values may be separated by commas. | 
  **limit** | **int32** | Number of results to return per page. | 
  **number** | **int32** | Filter results where number matches value | 
  **numberGt** | **int32** | Filter results where number is greater than value | 
@@ -165,6 +166,7 @@ Name | Type | Description  | Notes
  **numberRange** | **[]int32** | Filter results where number is between two comma separated values | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
  **pulpCreatedGte** | **time.Time** | Filter results where pulp_created is greater than or equal to value | 

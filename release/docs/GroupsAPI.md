@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## GroupsList
 
-> PaginatedGroupResponseList GroupsList(ctx, pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedGroupResponseList GroupsList(ctx, pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List groups
 
@@ -261,6 +261,7 @@ func main() {
 	nameIn := []string{"Inner_example"} // []string | Filter results where name is in a comma-separated list of values (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `id` - Id* `-id` - Id (descending)* `name` - Name* `-name` - Name (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
@@ -269,7 +270,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsList(context.Background(), pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsList(context.Background(), pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -305,6 +306,7 @@ Name | Type | Description  | Notes
  **nameIn** | **[]string** | Filter results where name is in a comma-separated list of values | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 

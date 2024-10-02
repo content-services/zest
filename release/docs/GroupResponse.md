@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name | 
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** |  | [optional] [readonly] 
 **Id** | Pointer to **int64** |  | [optional] [readonly] 
 
 ## Methods
@@ -71,6 +72,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *GroupResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *GroupResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *GroupResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *GroupResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *GroupResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
 
 ### GetId
 

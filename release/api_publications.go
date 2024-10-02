@@ -31,10 +31,11 @@ type PublicationsAPIPublicationsListRequest struct {
 	ApiService *PublicationsAPIService
 	pulpDomain string
 	content *string
-	contentIn *string
+	contentIn *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
@@ -52,14 +53,14 @@ type PublicationsAPIPublicationsListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r PublicationsAPIPublicationsListRequest) Content(content string) PublicationsAPIPublicationsListRequest {
 	r.content = &content
 	return r
 }
 
-// Content Unit referenced by HREF
-func (r PublicationsAPIPublicationsListRequest) ContentIn(contentIn string) PublicationsAPIPublicationsListRequest {
+// Multiple values may be separated by commas.
+func (r PublicationsAPIPublicationsListRequest) ContentIn(contentIn []string) PublicationsAPIPublicationsListRequest {
 	r.contentIn = &contentIn
 	return r
 }
@@ -79,6 +80,12 @@ func (r PublicationsAPIPublicationsListRequest) Offset(offset int32) Publication
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r PublicationsAPIPublicationsListRequest) Ordering(ordering []string) PublicationsAPIPublicationsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r PublicationsAPIPublicationsListRequest) PrnIn(prnIn []string) PublicationsAPIPublicationsListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -130,13 +137,13 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file
+// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python
 func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file
+// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -148,13 +155,13 @@ func (r PublicationsAPIPublicationsListRequest) Q(q string) PublicationsAPIPubli
 	return r
 }
 
-// Repository referenced by HREF
+// Repository referenced by HREF/PRN
 func (r PublicationsAPIPublicationsListRequest) Repository(repository string) PublicationsAPIPublicationsListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r PublicationsAPIPublicationsListRequest) RepositoryVersion(repositoryVersion string) PublicationsAPIPublicationsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -220,7 +227,7 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}
 	if r.contentIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "csv")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -230,6 +237,9 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpCreated != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")

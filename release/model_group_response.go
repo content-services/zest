@@ -24,6 +24,7 @@ type GroupResponse struct {
 	// Name
 	Name string `json:"name"`
 	PulpHref *string `json:"pulp_href,omitempty"`
+	Prn *string `json:"prn,omitempty"`
 	Id *int64 `json:"id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -104,6 +105,38 @@ func (o *GroupResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
 }
 
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *GroupResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *GroupResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *GroupResponse) SetPrn(v string) {
+	o.Prn = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GroupResponse) GetId() int64 {
 	if o == nil || IsNil(o.Id) {
@@ -149,6 +182,9 @@ func (o GroupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
+	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -198,6 +234,7 @@ func (o *GroupResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties
 	}

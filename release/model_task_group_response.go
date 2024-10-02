@@ -22,6 +22,8 @@ var _ MappedNullable = &TaskGroupResponse{}
 // TaskGroupResponse Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type TaskGroupResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
+	// The Pulp Resource Name (PRN).
+	Prn *string `json:"prn,omitempty"`
 	// A description of the task group.
 	Description string `json:"description"`
 	// Whether all tasks have been spawned for this task group.
@@ -96,6 +98,38 @@ func (o *TaskGroupResponse) HasPulpHref() bool {
 // SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
 func (o *TaskGroupResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
+}
+
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *TaskGroupResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskGroupResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *TaskGroupResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *TaskGroupResponse) SetPrn(v string) {
+	o.Prn = &v
 }
 
 // GetDescription returns the Description field value
@@ -447,6 +481,9 @@ func (o TaskGroupResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
+	}
 	toSerialize["description"] = o.Description
 	toSerialize["all_tasks_dispatched"] = o.AllTasksDispatched
 	if !IsNil(o.Waiting) {
@@ -521,6 +558,7 @@ func (o *TaskGroupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "all_tasks_dispatched")
 		delete(additionalProperties, "waiting")

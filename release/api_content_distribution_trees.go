@@ -33,6 +33,7 @@ type ContentDistributionTreesAPIContentRpmDistributionTreesListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -68,6 +69,12 @@ func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) Orpha
 }
 
 // Multiple values may be separated by commas.
+func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) PrnIn(prnIn []string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) PulpHrefIn(pulpHrefIn []string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -85,19 +92,19 @@ func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) Q(q s
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) RepositoryVersion(repositoryVersion string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentDistributionTreesAPIContentRpmDistributionTreesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentDistributionTreesAPIContentRpmDistributionTreesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -170,6 +177,9 @@ func (a *ContentDistributionTreesAPIService) ContentRpmDistributionTreesListExec
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

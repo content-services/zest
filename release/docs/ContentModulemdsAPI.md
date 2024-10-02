@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsList
 
-> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List modulemds
 
@@ -114,12 +114,13 @@ func main() {
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest` - Timestamp of interest (descending)* `name` - Name* `-name` - Name (descending)* `stream` - Stream* `-stream` - Stream (descending)* `version` - Version* `-version` - Version (descending)* `context` - Context* `-context` - Context (descending)* `arch` - Arch* `-arch` - Arch (descending)* `static_context` - Static context* `-static_context` - Static context (descending)* `dependencies` - Dependencies* `-dependencies` - Dependencies (descending)* `artifacts` - Artifacts* `-artifacts` - Artifacts (descending)* `profiles` - Profiles* `-profiles` - Profiles (descending)* `description` - Description* `-description` - Description (descending)* `digest` - Digest* `-digest` - Digest (descending)* `snippet` - Snippet* `-snippet` - Snippet (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	orphanedFor := float32(8.14) // float32 | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
 	sha256 := "sha256_example" // string |  (optional)
 	stream := "stream_example" // string | Filter results where stream matches value (optional)
 	streamIn := []string{"Inner_example"} // []string | Filter results where stream is in a comma-separated list of values (optional)
@@ -130,7 +131,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -166,12 +167,13 @@ Name | Type | Description  | Notes
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;stream&#x60; - Stream* &#x60;-stream&#x60; - Stream (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;context&#x60; - Context* &#x60;-context&#x60; - Context (descending)* &#x60;arch&#x60; - Arch* &#x60;-arch&#x60; - Arch (descending)* &#x60;static_context&#x60; - Static context* &#x60;-static_context&#x60; - Static context (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;artifacts&#x60; - Artifacts* &#x60;-artifacts&#x60; - Artifacts (descending)* &#x60;profiles&#x60; - Profiles* &#x60;-profiles&#x60; - Profiles (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;snippet&#x60; - Snippet* &#x60;-snippet&#x60; - Snippet (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **orphanedFor** | **float32** | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF | 
+ **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
  **sha256** | **string** |  | 
  **stream** | **string** | Filter results where stream matches value | 
  **streamIn** | **[]string** | Filter results where stream is in a comma-separated list of values | 

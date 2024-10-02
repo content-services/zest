@@ -24,6 +24,7 @@ type GroupUserResponse struct {
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	Username string `json:"username"`
 	PulpHref *string `json:"pulp_href,omitempty"`
+	Prn *string `json:"prn,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -103,6 +104,38 @@ func (o *GroupUserResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
 }
 
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *GroupUserResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GroupUserResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *GroupUserResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *GroupUserResponse) SetPrn(v string) {
+	o.Prn = &v
+}
+
 func (o GroupUserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -116,6 +149,9 @@ func (o GroupUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["username"] = o.Username
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
+	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -162,6 +198,7 @@ func (o *GroupUserResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ## ContentPythonPackagesList
 
-> PaginatedpythonPythonPackageContentResponseList ContentPythonPackagesList(ctx, pulpDomain).Author(author).AuthorIn(authorIn).Filename(filename).FilenameContains(filenameContains).FilenameIn(filenameIn).KeywordsContains(keywordsContains).KeywordsIn(keywordsIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packagetype(packagetype).PackagetypeIn(packagetypeIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).RequiresPython(requiresPython).RequiresPythonContains(requiresPythonContains).RequiresPythonIn(requiresPythonIn).Sha256(sha256).Sha256In(sha256In).Version(version).VersionGt(versionGt).VersionGte(versionGte).VersionLt(versionLt).VersionLte(versionLte).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedpythonPythonPackageContentResponseList ContentPythonPackagesList(ctx, pulpDomain).Author(author).AuthorIn(authorIn).Filename(filename).FilenameContains(filenameContains).FilenameIn(filenameIn).KeywordsContains(keywordsContains).KeywordsIn(keywordsIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packagetype(packagetype).PackagetypeIn(packagetypeIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).RequiresPython(requiresPython).RequiresPythonContains(requiresPythonContains).RequiresPythonIn(requiresPythonIn).Sha256(sha256).Sha256In(sha256In).Version(version).VersionGt(versionGt).VersionGte(versionGte).VersionLt(versionLt).VersionLte(versionLte).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List python package contents
 
@@ -176,12 +176,13 @@ func main() {
 	orphanedFor := float32(8.14) // float32 | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. (optional)
 	packagetype := "packagetype_example" // string | Filter results where packagetype matches value* `bdist_dmg` - bdist_dmg* `bdist_dumb` - bdist_dumb* `bdist_egg` - bdist_egg* `bdist_msi` - bdist_msi* `bdist_rpm` - bdist_rpm* `bdist_wheel` - bdist_wheel* `bdist_wininst` - bdist_wininst* `sdist` - sdist (optional)
 	packagetypeIn := []string{"Inner_example"} // []string | Filter results where packagetype is in a comma-separated list of values (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
 	requiresPython := "requiresPython_example" // string | Filter results where requires_python matches value (optional)
 	requiresPythonContains := "requiresPythonContains_example" // string | Filter results where requires_python contains value (optional)
 	requiresPythonIn := []string{"Inner_example"} // []string | Filter results where requires_python is in a comma-separated list of values (optional)
@@ -197,7 +198,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackagesAPI.ContentPythonPackagesList(context.Background(), pulpDomain).Author(author).AuthorIn(authorIn).Filename(filename).FilenameContains(filenameContains).FilenameIn(filenameIn).KeywordsContains(keywordsContains).KeywordsIn(keywordsIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packagetype(packagetype).PackagetypeIn(packagetypeIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).RequiresPython(requiresPython).RequiresPythonContains(requiresPythonContains).RequiresPythonIn(requiresPythonIn).Sha256(sha256).Sha256In(sha256In).Version(version).VersionGt(versionGt).VersionGte(versionGte).VersionLt(versionLt).VersionLte(versionLte).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentPackagesAPI.ContentPythonPackagesList(context.Background(), pulpDomain).Author(author).AuthorIn(authorIn).Filename(filename).FilenameContains(filenameContains).FilenameIn(filenameIn).KeywordsContains(keywordsContains).KeywordsIn(keywordsIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packagetype(packagetype).PackagetypeIn(packagetypeIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).RequiresPython(requiresPython).RequiresPythonContains(requiresPythonContains).RequiresPythonIn(requiresPythonIn).Sha256(sha256).Sha256In(sha256In).Version(version).VersionGt(versionGt).VersionGte(versionGte).VersionLt(versionLt).VersionLte(versionLte).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentPythonPackagesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -238,12 +239,13 @@ Name | Type | Description  | Notes
  **orphanedFor** | **float32** | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. | 
  **packagetype** | **string** | Filter results where packagetype matches value* &#x60;bdist_dmg&#x60; - bdist_dmg* &#x60;bdist_dumb&#x60; - bdist_dumb* &#x60;bdist_egg&#x60; - bdist_egg* &#x60;bdist_msi&#x60; - bdist_msi* &#x60;bdist_rpm&#x60; - bdist_rpm* &#x60;bdist_wheel&#x60; - bdist_wheel* &#x60;bdist_wininst&#x60; - bdist_wininst* &#x60;sdist&#x60; - sdist | 
  **packagetypeIn** | **[]string** | Filter results where packagetype is in a comma-separated list of values | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF | 
+ **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
  **requiresPython** | **string** | Filter results where requires_python matches value | 
  **requiresPythonContains** | **string** | Filter results where requires_python contains value | 
  **requiresPythonIn** | **[]string** | Filter results where requires_python is in a comma-separated list of values | 
@@ -433,7 +435,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackagesList
 
-> PaginatedrpmPackageResponseList ContentRpmPackagesList(ctx, pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmPackageResponseList ContentRpmPackagesList(ctx, pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PkgId(pkgId).PkgIdIn(pkgIdIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages
 
@@ -476,6 +478,7 @@ func main() {
 	orphanedFor := float32(8.14) // float32 | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. (optional)
 	pkgId := "pkgId_example" // string | Filter results where pkgId matches value (optional)
 	pkgIdIn := []string{"Inner_example"} // []string | Filter results where pkgId is in a comma-separated list of values (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
@@ -484,9 +487,9 @@ func main() {
 	releaseIn := []string{"Inner_example"} // []string | Filter results where release is in a comma-separated list of values (optional)
 	releaseNe := "releaseNe_example" // string | Filter results where release not equal to value (optional)
 	releaseStartswith := "releaseStartswith_example" // string | Filter results where release starts with value (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF (optional)
+	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
 	sha256 := "sha256_example" // string |  (optional)
 	version := "version_example" // string | Filter results where version matches value (optional)
 	versionIn := []string{"Inner_example"} // []string | Filter results where version is in a comma-separated list of values (optional)
@@ -496,7 +499,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PkgId(pkgId).PkgIdIn(pkgIdIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Arch(arch).ArchContains(archContains).ArchIn(archIn).ArchNe(archNe).ArchStartswith(archStartswith).ChecksumType(checksumType).ChecksumTypeIn(checksumTypeIn).ChecksumTypeNe(checksumTypeNe).Epoch(epoch).EpochIn(epochIn).EpochNe(epochNe).Filename(filename).Limit(limit).Name(name).NameContains(nameContains).NameIn(nameIn).NameNe(nameNe).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PkgId(pkgId).PkgIdIn(pkgIdIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Release(release).ReleaseContains(releaseContains).ReleaseIn(releaseIn).ReleaseNe(releaseNe).ReleaseStartswith(releaseStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Version(version).VersionIn(versionIn).VersionNe(versionNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagesAPI.ContentRpmPackagesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -545,6 +548,7 @@ Name | Type | Description  | Notes
  **orphanedFor** | **float32** | Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME. | 
  **pkgId** | **string** | Filter results where pkgId matches value | 
  **pkgIdIn** | **[]string** | Filter results where pkgId is in a comma-separated list of values | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
@@ -553,9 +557,9 @@ Name | Type | Description  | Notes
  **releaseIn** | **[]string** | Filter results where release is in a comma-separated list of values | 
  **releaseNe** | **string** | Filter results where release not equal to value | 
  **releaseStartswith** | **string** | Filter results where release starts with value | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF | 
+ **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
  **sha256** | **string** |  | 
  **version** | **string** | Filter results where version matches value | 
  **versionIn** | **[]string** | Filter results where version is in a comma-separated list of values | 

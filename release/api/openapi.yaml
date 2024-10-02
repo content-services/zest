@@ -13,12 +13,12 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.61.0
+    core: 3.63.0
     rpm: 3.27.1
+    certguard: 3.63.0
+    file: 3.63.0
     gem: 0.6.1
     python: 3.12.3
-    certguard: 3.61.0
-    file: 3.61.0
     service: 0.1.0
     ostree: 2.4.3
   x-pulp-domain-enabled: true
@@ -89,6 +89,16 @@ paths:
             - queryset_scoping
             - statements
             - viewset_name
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -506,6 +516,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -1076,6 +1096,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -1613,6 +1643,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -1651,7 +1691,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -1903,6 +1943,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -1939,7 +1989,7 @@ paths:
           - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
           `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
           - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file*
+          `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python*
           `ostree.object` - ostree.object* `ostree.commit` - ostree.commit* `ostree.refs`
           - ostree.refs* `ostree.content` - ostree.content* `ostree.config` - ostree.config*
           `ostree.summary` - ostree.summary
@@ -1979,10 +2029,10 @@ paths:
           `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
           - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
           `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `gem.gem` - gem.gem* `python.python` - python.python*
-          `file.file` - file.file* `ostree.object` - ostree.object* `ostree.commit`
-          - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
-          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary
+          - rpm.modulemd_obsolete* `file.file` - file.file* `gem.gem` - gem.gem* `python.python`
+          - python.python* `ostree.object` - ostree.object* `ostree.commit` - ostree.commit*
+          `ostree.refs` - ostree.refs* `ostree.content` - ostree.content* `ostree.config`
+          - ostree.config* `ostree.summary` - ostree.summary
         explode: false
         in: query
         name: pulp_type__in
@@ -2023,7 +2073,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -2031,7 +2081,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -2039,7 +2089,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -2147,6 +2197,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2193,7 +2253,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -2201,7 +2261,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -2209,7 +2269,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -2446,6 +2506,16 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2484,7 +2554,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -2492,7 +2562,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -2500,7 +2570,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -2703,6 +2773,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2741,7 +2821,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -2749,7 +2829,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -2757,7 +2837,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -2885,6 +2965,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -2923,7 +3013,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -2931,7 +3021,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -2939,7 +3029,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -3068,6 +3158,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3106,7 +3206,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -3114,7 +3214,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -3122,7 +3222,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -3324,6 +3424,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3362,7 +3472,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -3370,7 +3480,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -3378,7 +3488,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -3611,6 +3721,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3649,7 +3769,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -3657,7 +3777,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -3665,7 +3785,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -3793,6 +3913,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -3831,7 +3961,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -3839,7 +3969,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -3847,7 +3977,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -4193,6 +4323,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -4231,7 +4371,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -4239,7 +4379,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -4247,7 +4387,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -4585,6 +4725,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -4623,7 +4773,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -4631,7 +4781,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -4639,7 +4789,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -4883,6 +5033,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -4921,7 +5081,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -4929,7 +5089,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -4937,7 +5097,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -5115,6 +5275,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -5153,7 +5323,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -5161,7 +5331,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -5169,7 +5339,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -5360,6 +5530,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -5398,7 +5578,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -5406,7 +5586,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -5414,7 +5594,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -5687,6 +5867,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -5725,7 +5915,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -5733,7 +5923,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -5741,7 +5931,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -5951,6 +6141,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -5989,7 +6189,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -5997,7 +6197,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -6005,7 +6205,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -6133,6 +6333,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -6171,7 +6381,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -6179,7 +6389,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -6187,7 +6397,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -6315,6 +6525,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -6353,7 +6573,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -6361,7 +6581,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -6369,7 +6589,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -6497,6 +6717,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -6535,7 +6765,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -6543,7 +6773,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -6551,7 +6781,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -6978,6 +7208,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -7059,7 +7299,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -7067,7 +7307,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -7075,7 +7315,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -7274,6 +7514,16 @@ paths:
         schema:
           type: number
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -7312,7 +7562,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -7320,7 +7570,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_added
@@ -7328,7 +7578,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version_removed
@@ -7537,6 +7787,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -7771,6 +8031,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -8145,6 +8415,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -8514,6 +8794,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -9058,6 +9348,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -9598,6 +9898,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -10132,6 +10442,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -10720,6 +11040,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -10758,7 +11088,7 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `rpm.rpm` - rpm.rpm*
-          `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file*
+          `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python*
           `ostree.ostree` - ostree.ostree
         explode: true
         in: query
@@ -10775,8 +11105,8 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `python.python`
-          - python.python* `file.file` - file.file* `ostree.ostree` - ostree.ostree
+          - core.artifact* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `gem.gem`
+          - gem.gem* `python.python` - python.python* `ostree.ostree` - ostree.ostree
         explode: false
         in: query
         name: pulp_type__in
@@ -11027,6 +11357,16 @@ paths:
             - pulp_labels
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -11349,6 +11689,16 @@ paths:
             - pulp_labels
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -12045,6 +12395,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -12732,6 +13092,16 @@ paths:
             - pulp_labels
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -13428,6 +13798,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -14121,6 +14501,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -14782,6 +15172,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -15206,6 +15606,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -15745,6 +16155,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -16255,6 +16675,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -16427,6 +16857,16 @@ paths:
             - pk
             - pulp_created
             - role
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -17174,6 +17614,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -17692,7 +18142,7 @@ paths:
       description: A base class for any publication viewset.
       operationId: publications_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -17700,13 +18150,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -17752,6 +18204,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -17842,8 +18304,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `python.python`
-          - python.python* `file.file` - file.file
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `gem.gem`
+          - gem.gem* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -17857,7 +18319,7 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
-          `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file
+          `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -17881,7 +18343,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository referenced by HREF
+      - description: Repository referenced by HREF/PRN
         explode: true
         in: query
         name: repository
@@ -17889,7 +18351,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -17938,7 +18400,7 @@ paths:
         \ created, it can be hosted using theFile Distribution API."
       operationId: publications_file_file_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -17946,13 +18408,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -17998,6 +18462,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -18097,7 +18571,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository referenced by HREF
+      - description: Repository referenced by HREF/PRN
         explode: true
         in: query
         name: repository
@@ -18105,7 +18579,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -18422,7 +18896,7 @@ paths:
       description: A ViewSet for GemPublication.
       operationId: publications_gem_gem_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -18430,13 +18904,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -18482,6 +18958,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -18581,7 +19067,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository referenced by HREF
+      - description: Repository referenced by HREF/PRN
         explode: true
         in: query
         name: repository
@@ -18589,7 +19075,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -18903,7 +19389,7 @@ paths:
         \ version, and includemetadata about that content."
       operationId: publications_python_pypi_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -18911,13 +19397,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -18963,6 +19451,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -19062,7 +19560,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository referenced by HREF
+      - description: Repository referenced by HREF/PRN
         explode: true
         in: query
         name: repository
@@ -19070,7 +19568,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -19386,7 +19884,7 @@ paths:
       description: ViewSet for Rpm Publications.
       operationId: publications_rpm_rpm_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -19394,13 +19892,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -19446,6 +19946,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -19545,7 +20055,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository referenced by HREF
+      - description: Repository referenced by HREF/PRN
         explode: true
         in: query
         name: repository
@@ -19553,7 +20063,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Repository Version referenced by HREF
+      - description: Repository Version referenced by HREF/PRN
         explode: true
         in: query
         name: repository_version
@@ -20057,6 +20567,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -20153,8 +20673,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `gem.gem`
-          - gem.gem* `python.python` - python.python* `file.file` - file.file* `ostree.ostree`
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file`
+          - file.file* `gem.gem` - gem.gem* `python.python` - python.python* `ostree.ostree`
           - ostree.ostree
         explode: true
         in: query
@@ -20171,8 +20691,8 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
-          `rpm.uln` - rpm.uln* `gem.gem` - gem.gem* `python.python` - python.python*
-          `file.file` - file.file* `ostree.ostree` - ostree.ostree
+          `rpm.uln` - rpm.uln* `file.file` - file.file* `gem.gem` - gem.gem* `python.python`
+          - python.python* `ostree.ostree` - ostree.ostree
         explode: false
         in: query
         name: pulp_type__in
@@ -20411,6 +20931,16 @@ paths:
             - total_timeout
             - url
             - username
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -21153,6 +21683,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -21885,6 +22425,16 @@ paths:
             - total_timeout
             - url
             - username
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -22623,6 +23173,16 @@ paths:
             - total_timeout
             - url
             - username
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -23403,6 +23963,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -24138,6 +24708,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -24736,7 +25316,7 @@ paths:
       description: Endpoint to list all repositories.
       operationId: repositories_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -24877,6 +25457,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -24914,8 +25504,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `python.python`
-          - python.python* `file.file` - file.file* `ostree.ostree` - ostree.ostree
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `gem.gem`
+          - gem.gem* `python.python` - python.python* `ostree.ostree` - ostree.ostree
         explode: true
         in: query
         name: pulp_type
@@ -24930,7 +25520,7 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
-          `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file*
+          `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python*
           `ostree.ostree` - ostree.ostree
         explode: false
         in: query
@@ -25034,7 +25624,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -25081,7 +25671,7 @@ paths:
         \ can be synced, added,or removed."
       operationId: repositories_file_file_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -25222,6 +25812,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -25346,7 +25946,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -25884,7 +26484,7 @@ paths:
       description: FileRepositoryVersion represents a single file repository version.
       operationId: repositories_file_file_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -25892,13 +26492,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - explode: false
         in: path
@@ -26000,6 +26602,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -26223,7 +26835,7 @@ paths:
       description: A ViewSet for GemRepository.
       operationId: repositories_gem_gem_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -26364,6 +26976,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -26488,7 +27110,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -27025,7 +27647,7 @@ paths:
         version.
       operationId: repositories_gem_gem_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -27033,13 +27655,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - explode: false
         in: path
@@ -27141,6 +27765,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -27365,7 +27999,7 @@ paths:
       description: A ViewSet class for OSTree repositories.
       operationId: repositories_ostree_ostree_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -27506,6 +28140,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -27630,7 +28274,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -28241,7 +28885,7 @@ paths:
       description: A ViewSet class that represents a single OSTree repository version.
       operationId: repositories_ostree_ostree_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -28249,13 +28893,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -28360,6 +29006,16 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where pulp_created matches value
         explode: true
         in: query
@@ -28581,7 +29237,7 @@ paths:
         \ content can besynced, added, or removed."
       operationId: repositories_python_python_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -28722,6 +29378,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -28846,7 +29512,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -29386,7 +30052,7 @@ paths:
       description: PythonRepositoryVersion represents a single Python repository version.
       operationId: repositories_python_python_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -29394,13 +30060,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -29495,6 +30163,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -29762,7 +30440,7 @@ paths:
       description: A ViewSet for RpmRepository.
       operationId: repositories_rpm_rpm_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: latest_with_content
@@ -29903,6 +30581,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -30027,7 +30715,7 @@ paths:
             type: integer
           type: array
         style: form
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: with_content
@@ -30563,7 +31251,7 @@ paths:
       description: RpmRepositoryVersion represents a single rpm repository version.
       operationId: repositories_rpm_rpm_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -30571,13 +31259,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -30672,6 +31362,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -30902,7 +31602,7 @@ paths:
       description: A mixin to hold the shared get_queryset logic used by RepositoryVersionViewSets.
       operationId: repository_versions_list
       parameters:
-      - description: Content Unit referenced by HREF
+      - description: Content Unit referenced by HREF/PRN
         explode: true
         in: query
         name: content
@@ -30910,13 +31610,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Content Unit referenced by HREF
-        explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: content__in
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - description: Number of results to return per page.
         explode: true
@@ -31011,6 +31713,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -31313,6 +32025,16 @@ paths:
             - pulp_created
             - pulp_id
             - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -31735,6 +32457,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -32066,6 +32798,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - task_name
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -32605,6 +33347,16 @@ paths:
         schema:
           format: uuid
           type: string
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: false
         in: path
@@ -33272,6 +34024,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -33729,6 +34491,140 @@ paths:
         provided as a tech preview.
       operationId: upstream_pulps_list
       parameters:
+      - description: Filter results where base_url matches value
+        explode: true
+        in: query
+        name: base_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url contains value
+        explode: true
+        in: query
+        name: base_url__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url contains value
+        explode: true
+        in: query
+        name: base_url__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url matches value
+        explode: true
+        in: query
+        name: base_url__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_url__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where base_url matches regex value
+        explode: true
+        in: query
+        name: base_url__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url starts with value
+        explode: true
+        in: query
+        name: base_url__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url matches regex value
+        explode: true
+        in: query
+        name: base_url__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_url starts with value
+        explode: true
+        in: query
+        name: base_url__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where last_replication matches value
+        explode: true
+        in: query
+        name: last_replication
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where last_replication is greater than value
+        explode: true
+        in: query
+        name: last_replication__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where last_replication is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: last_replication__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where last_replication is less than value
+        explode: true
+        in: query
+        name: last_replication__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where last_replication is less than or equal to
+          value
+        explode: true
+        in: query
+        name: last_replication__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where last_replication is between two comma separated
+          values
+        explode: false
+        in: query
+        name: last_replication__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -33736,6 +34632,80 @@ paths:
         required: false
         schema:
           type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
         style: form
       - description: The initial index from which to return the results.
         explode: true
@@ -33745,6 +34715,76 @@ paths:
         schema:
           type: integer
         style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `name` - Name* `-name` - Name (descending)* `base_url`
+          - Base url* `-base_url` - Base url (descending)* `api_root` - Api root*
+          `-api_root` - Api root (descending)* `domain` - Domain* `-domain` - Domain
+          (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)* `client_cert`
+          - Client cert* `-client_cert` - Client cert (descending)* `client_key` -
+          Client key* `-client_key` - Client key (descending)* `tls_validation` -
+          Tls validation* `-tls_validation` - Tls validation (descending)* `username`
+          - Username* `-username` - Username (descending)* `password` - Password*
+          `-password` - Password (descending)* `pulp_label_select` - Pulp label select*
+          `-pulp_label_select` - Pulp label select (descending)* `q_select` - Q select*
+          `-q_select` - Q select (descending)* `last_replication` - Last replication*
+          `-last_replication` - Last replication (descending)* `pk` - Pk* `-pk` -
+          Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -api_root
+            - -base_url
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -domain
+            - -last_replication
+            - -name
+            - -password
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_label_select
+            - -pulp_last_updated
+            - -q_select
+            - -tls_validation
+            - -username
+            - api_root
+            - base_url
+            - ca_cert
+            - client_cert
+            - client_key
+            - domain
+            - last_replication
+            - name
+            - password
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_label_select
+            - pulp_last_updated
+            - q_select
+            - tls_validation
+            - username
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -33753,6 +34793,36 @@ paths:
           type: string
         style: simple
         x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A list of fields to include in the response.
         explode: true
         in: query
@@ -34364,6 +35434,16 @@ paths:
             type: string
           type: array
         style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: false
         in: path
         name: pulp_domain
@@ -34716,6 +35796,16 @@ paths:
             - pk
             - pulp_created
             - role
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -35131,6 +36221,16 @@ paths:
             - pulp_id
             - pulp_last_updated
             - versions
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
             type: string
           type: array
         style: form
@@ -35940,12 +37040,17 @@ components:
         - "{}"
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         queryset_scoping: "{}"
+        prn: prn
         creation_hooks:
         - "{}"
         - "{}"
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36102,20 +37207,35 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
-        hidden: false
         pulp_labels:
           key: pulp_labels
-        no_content_change_since: no_content_change_since
-        base_url: base_url
+        hidden: false
+        pulp_href: https://openapi-generator.tech
         name: name
+        base_url: base_url
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_href:
-          format: uri
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         no_content_change_since:
@@ -36124,38 +37244,28 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
         pulp_created:
           description: Timestamp of creation.
@@ -36183,10 +37293,15 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         sha224: sha224
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         md5: md5
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36307,12 +37422,17 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         guards:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36413,9 +37533,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36466,9 +37591,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36581,10 +37711,15 @@ components:
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36717,10 +37852,15 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         storage_settings: "{}"
+        prn: prn
         hide_guarded_distributions: false
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36837,9 +37977,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         params: ""
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36904,9 +38049,14 @@ components:
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -36993,6 +38143,7 @@ components:
         pulp_href: https://openapi-generator.tech
         name: name
         id: 0
+        prn: prn
       properties:
         name:
           description: Name
@@ -37000,6 +38151,9 @@ components:
           type: string
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
           readOnly: true
           type: string
         id:
@@ -37048,9 +38202,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -37108,6 +38267,7 @@ components:
       description: Serializer for Users that belong to a Group.
       example:
         pulp_href: https://openapi-generator.tech
+        prn: prn
         username: username
       properties:
         username:
@@ -37117,6 +38277,9 @@ components:
           type: string
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
           readOnly: true
           type: string
       required:
@@ -37171,9 +38334,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         header_name: header_name
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -37247,9 +38415,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         params: ""
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -37297,10 +38470,15 @@ components:
         state: state
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         worker: https://openapi-generator.tech
+        prn: prn
         unblocked_at: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -37358,10 +38536,15 @@ components:
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         artifacts: "{}"
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -37663,6 +38846,7 @@ components:
           - "{}"
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           queryset_scoping: "{}"
+          prn: prn
           creation_hooks:
           - "{}"
           - "{}"
@@ -37678,6 +38862,7 @@ components:
           - "{}"
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           queryset_scoping: "{}"
+          prn: prn
           creation_hooks:
           - "{}"
           - "{}"
@@ -37709,27 +38894,29 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          hidden: false
+          pulp_href: https://openapi-generator.tech
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          hidden: false
+          pulp_href: https://openapi-generator.tech
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           content_guard: https://openapi-generator.tech
       properties:
         count:
@@ -37769,6 +38956,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           md5: md5
         - sha1: sha1
           sha384: sha384
@@ -37780,6 +38968,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           md5: md5
       properties:
         count:
@@ -37814,6 +39003,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           guards:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -37822,6 +39012,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           guards:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -37858,11 +39049,13 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -37896,11 +39089,13 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -37940,6 +39135,7 @@ components:
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
         - pulp_href: https://openapi-generator.tech
           hidden: false
@@ -37952,6 +39148,7 @@ components:
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
       properties:
         count:
@@ -37989,6 +39186,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           storage_settings: "{}"
+          prn: prn
           hide_guarded_distributions: false
         - storage_class: ""
           pulp_href: https://openapi-generator.tech
@@ -37998,6 +39196,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           storage_settings: "{}"
+          prn: prn
           hide_guarded_distributions: false
       properties:
         count:
@@ -38035,6 +39234,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
         - task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           exported_resources:
@@ -38043,6 +39243,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
       properties:
         count:
           example: 123
@@ -38077,12 +39278,14 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - path: path
           pulp_href: https://openapi-generator.tech
           method: ""
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -38114,9 +39317,11 @@ components:
         - pulp_href: https://openapi-generator.tech
           name: name
           id: 0
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           name: name
           id: 0
+          prn: prn
       properties:
         count:
           example: 123
@@ -38155,6 +39360,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - content_object: content_object
           role: role
           pulp_href: https://openapi-generator.tech
@@ -38165,6 +39371,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -38194,8 +39401,10 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
+          prn: prn
           username: username
         - pulp_href: https://openapi-generator.tech
+          prn: prn
           username: username
       properties:
         count:
@@ -38233,6 +39442,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           header_name: header_name
+          prn: prn
         - jq_filter: jq_filter
           pulp_href: https://openapi-generator.tech
           header_value: header_value
@@ -38241,6 +39451,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           header_name: header_name
+          prn: prn
       properties:
         count:
           example: 123
@@ -38274,11 +39485,13 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
         - task: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
       properties:
         count:
           example: 123
@@ -38310,10 +39523,12 @@ components:
         - pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           artifacts: "{}"
         - pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           artifacts: "{}"
       properties:
         count:
@@ -38348,11 +39563,13 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -38391,6 +39608,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
         - output_file_info: ""
           toc_info: ""
           task: https://openapi-generator.tech
@@ -38401,6 +39619,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           params: ""
+          prn: prn
       properties:
         count:
           example: 123
@@ -38438,6 +39657,7 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - path: path
           last_export: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
@@ -38447,6 +39667,7 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -38479,12 +39700,14 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           repo_mapping:
             key: repo_mapping
         - pulp_href: https://openapi-generator.tech
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           repo_mapping:
             key: repo_mapping
       properties:
@@ -38522,15 +39745,20 @@ components:
           - pulp_href: https://openapi-generator.tech
             name: name
             id: 0
+            prn: prn
           - pulp_href: https://openapi-generator.tech
             name: name
             id: 0
+            prn: prn
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           users:
           - pulp_href: https://openapi-generator.tech
+            prn: prn
             username: username
           - pulp_href: https://openapi-generator.tech
+            prn: prn
             username: username
         - pulp_href: https://openapi-generator.tech
           name: name
@@ -38539,15 +39767,20 @@ components:
           - pulp_href: https://openapi-generator.tech
             name: name
             id: 0
+            prn: prn
           - pulp_href: https://openapi-generator.tech
             name: name
             id: 0
+            prn: prn
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           users:
           - pulp_href: https://openapi-generator.tech
+            prn: prn
             username: username
           - pulp_href: https://openapi-generator.tech
+            prn: prn
             username: username
       properties:
         count:
@@ -38588,6 +39821,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -38615,6 +39849,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -38670,6 +39905,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
         - latest_version_href: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
@@ -38681,6 +39917,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -38716,6 +39953,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
         - number: 0
           base_version: https://openapi-generator.tech
           content_summary: ""
@@ -38723,6 +39961,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -38760,6 +39999,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           locked: true
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           permissions:
           - permissions
@@ -38769,6 +40009,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           locked: true
+          prn: prn
       properties:
         count:
           example: 123
@@ -38802,6 +40043,7 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           pubkey_fingerprint: pubkey_fingerprint
           script: script
         - public_key: public_key
@@ -38809,6 +40051,7 @@ components:
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           pubkey_fingerprint: pubkey_fingerprint
           script: script
       properties:
@@ -38839,12 +40082,17 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - running: 1
-          canceling: 7
-          canceled: 5
+        - canceling: 7
           pulp_href: https://openapi-generator.tech
           waiting: 0
           all_tasks_dispatched: true
+          description: description
+          completed: 5
+          failed: 2
+          prn: prn
+          skipped: 6
+          running: 1
+          canceled: 5
           group_progress_reports:
           - total: 9
             code: code
@@ -38856,9 +40104,6 @@ components:
             message: message
             suffix: suffix
             done: 3
-          description: description
-          completed: 5
-          failed: 2
           tasks:
           - pulp_href: https://openapi-generator.tech
             finished_at: 2000-01-23T04:56:07.000+00:00
@@ -38868,6 +40113,7 @@ components:
             state: state
             pulp_last_updated: 2000-01-23T04:56:07.000+00:00
             worker: https://openapi-generator.tech
+            prn: prn
             unblocked_at: 2000-01-23T04:56:07.000+00:00
           - pulp_href: https://openapi-generator.tech
             finished_at: 2000-01-23T04:56:07.000+00:00
@@ -38877,14 +40123,19 @@ components:
             state: state
             pulp_last_updated: 2000-01-23T04:56:07.000+00:00
             worker: https://openapi-generator.tech
+            prn: prn
             unblocked_at: 2000-01-23T04:56:07.000+00:00
-          skipped: 6
-        - running: 1
-          canceling: 7
-          canceled: 5
+        - canceling: 7
           pulp_href: https://openapi-generator.tech
           waiting: 0
           all_tasks_dispatched: true
+          description: description
+          completed: 5
+          failed: 2
+          prn: prn
+          skipped: 6
+          running: 1
+          canceled: 5
           group_progress_reports:
           - total: 9
             code: code
@@ -38896,9 +40147,6 @@ components:
             message: message
             suffix: suffix
             done: 3
-          description: description
-          completed: 5
-          failed: 2
           tasks:
           - pulp_href: https://openapi-generator.tech
             finished_at: 2000-01-23T04:56:07.000+00:00
@@ -38908,6 +40156,7 @@ components:
             state: state
             pulp_last_updated: 2000-01-23T04:56:07.000+00:00
             worker: https://openapi-generator.tech
+            prn: prn
             unblocked_at: 2000-01-23T04:56:07.000+00:00
           - pulp_href: https://openapi-generator.tech
             finished_at: 2000-01-23T04:56:07.000+00:00
@@ -38917,8 +40166,8 @@ components:
             state: state
             pulp_last_updated: 2000-01-23T04:56:07.000+00:00
             worker: https://openapi-generator.tech
+            prn: prn
             unblocked_at: 2000-01-23T04:56:07.000+00:00
-          skipped: 6
       properties:
         count:
           example: 123
@@ -38968,6 +40217,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           error:
             key: error
+          prn: prn
           created_by: created_by
           logging_cid: logging_cid
           unblocked_at: 2000-01-23T04:56:07.000+00:00
@@ -39005,6 +40255,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           error:
             key: error
+          prn: prn
           created_by: created_by
           logging_cid: logging_cid
           unblocked_at: 2000-01-23T04:56:07.000+00:00
@@ -39056,6 +40307,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           next_dispatch: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           last_task: https://openapi-generator.tech
         - task_name: task_name
           dispatch_interval: dispatch_interval
@@ -39064,6 +40316,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           next_dispatch: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           last_task: https://openapi-generator.tech
       properties:
         count:
@@ -39098,11 +40351,13 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           completed: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           size: 0
           pulp_created: 2000-01-23T04:56:07.000+00:00
           completed: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -39134,10 +40389,10 @@ components:
         - pulp_href: https://openapi-generator.tech
           tls_validation: true
           client_cert: client_cert
-          pulp_label_select: pulp_label_select
           last_replication: 2000-01-23T04:56:07.000+00:00
           base_url: base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           api_root: api_root
           domain: domain
           name: name
@@ -39148,13 +40403,14 @@ components:
           - is_set: true
             name: name
           ca_cert: ca_cert
+          q_select: q_select
         - pulp_href: https://openapi-generator.tech
           tls_validation: true
           client_cert: client_cert
-          pulp_label_select: pulp_label_select
           last_replication: 2000-01-23T04:56:07.000+00:00
           base_url: base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           api_root: api_root
           domain: domain
           name: name
@@ -39165,6 +40421,7 @@ components:
           - is_set: true
             name: name
           ca_cert: ca_cert
+          q_select: q_select
       properties:
         count:
           example: 123
@@ -39200,8 +40457,10 @@ components:
           groups:
           - pulp_href: https://openapi-generator.tech
             name: name
+            prn: prn
           - pulp_href: https://openapi-generator.tech
             name: name
+            prn: prn
           hidden_fields:
           - is_set: true
             name: name
@@ -39209,6 +40468,7 @@ components:
             name: name
           id: 0
           date_joined: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           first_name: first_name
           email: email
           username: username
@@ -39219,8 +40479,10 @@ components:
           groups:
           - pulp_href: https://openapi-generator.tech
             name: name
+            prn: prn
           - pulp_href: https://openapi-generator.tech
             name: name
+            prn: prn
           hidden_fields:
           - is_set: true
             name: name
@@ -39228,6 +40490,7 @@ components:
             name: name
           id: 0
           date_joined: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           first_name: first_name
           email: email
           username: username
@@ -39269,6 +40532,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - content_object: content_object
           role: role
           pulp_href: https://openapi-generator.tech
@@ -39279,6 +40543,7 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -39315,6 +40580,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           versions:
             key: versions
@@ -39323,6 +40589,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -39357,12 +40624,14 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - ca_certificate: ca_certificate
           pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -39397,12 +40666,14 @@ components:
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - ca_certificate: ca_certificate
           pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -39439,6 +40710,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           last_refreshed: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           paths:
@@ -39448,6 +40720,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           last_refreshed: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -39487,6 +40760,7 @@ components:
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
           md5: md5
         - artifact: https://openapi-generator.tech
           sha1: sha1
@@ -39498,6 +40772,7 @@ components:
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
           md5: md5
       properties:
         count:
@@ -39529,30 +40804,32 @@ components:
         results:
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
           base_url: base_url
           no_content_change_since: no_content_change_since
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
-          publication: https://openapi-generator.tech
           base_url: base_url
           no_content_change_since: no_content_change_since
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          publication: https://openapi-generator.tech
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -39587,6 +40864,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           distributions:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -39596,6 +40874,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           distributions:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -39638,6 +40917,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -39665,6 +40945,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -39709,32 +40990,34 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - latest_version_href: https://openapi-generator.tech
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          manifest: PULP_MANIFEST
+          description: description
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          prn: prn
+          latest_version_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
           autopublish: false
-          manifest: PULP_MANIFEST
           name: name
-          description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
+        - pulp_href: https://openapi-generator.tech
+          manifest: PULP_MANIFEST
+          description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
-        - latest_version_href: https://openapi-generator.tech
-          pulp_href: https://openapi-generator.tech
+          prn: prn
+          latest_version_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
           autopublish: false
-          manifest: PULP_MANIFEST
           name: name
-          description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
           retain_repo_versions: 1
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          remote: https://openapi-generator.tech
       properties:
         count:
           example: 123
@@ -39764,31 +41047,33 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
+          required_rubygems_version: required_rubygems_version
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          version: version
+          platform: platform
+          dependencies:
+            key: dependencies
           prerelease: true
           checksum: checksum
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           required_ruby_version: required_ruby_version
-          required_rubygems_version: required_rubygems_version
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          version: version
-          platform: platform
           artifacts: "{}"
-          dependencies:
-            key: dependencies
         - pulp_href: https://openapi-generator.tech
+          required_rubygems_version: required_rubygems_version
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          version: version
+          platform: platform
+          dependencies:
+            key: dependencies
           prerelease: true
           checksum: checksum
           name: name
           pulp_created: 2000-01-23T04:56:07.000+00:00
           required_ruby_version: required_ruby_version
-          required_rubygems_version: required_rubygems_version
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          version: version
-          platform: platform
           artifacts: "{}"
-          dependencies:
-            key: dependencies
       properties:
         count:
           example: 123
@@ -39825,6 +41110,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -39839,6 +41125,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -39878,11 +41165,13 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -39927,6 +41216,7 @@ components:
             key: includes
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -39959,6 +41249,7 @@ components:
             key: includes
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -40014,6 +41305,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
         - latest_version_href: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
@@ -40025,6 +41317,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -40059,6 +41352,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
           parent_commit: https://openapi-generator.tech
           objs:
           - https://openapi-generator.tech
@@ -40069,6 +41363,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
           parent_commit: https://openapi-generator.tech
           objs:
           - https://openapi-generator.tech
@@ -40106,11 +41401,13 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
         - artifact: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
       properties:
         count:
           example: 123
@@ -40145,12 +41442,14 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
         - artifact: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           digest: digest
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
       properties:
         count:
           example: 123
@@ -40181,30 +41480,32 @@ components:
         results:
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
           base_url: base_url
           no_content_change_since: no_content_change_since
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           hidden: false
-          pulp_labels:
-            key: pulp_labels
           base_url: base_url
           no_content_change_since: no_content_change_since
-          name: name
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -40240,6 +41541,7 @@ components:
           typ: 0
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
         - artifact: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           checksum: checksum
@@ -40247,6 +41549,7 @@ components:
           typ: 0
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
       properties:
         count:
           example: 123
@@ -40283,6 +41586,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
         - artifact: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           commit: https://openapi-generator.tech
@@ -40291,6 +41595,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
       properties:
         count:
           example: 123
@@ -40330,6 +41635,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           depth: 0
@@ -40364,6 +41670,7 @@ components:
           client_cert: client_cert
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           depth: 0
@@ -40427,6 +41734,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
         - latest_version_href: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
@@ -40439,6 +41747,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -40472,11 +41781,13 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
         - artifact: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           relative_path: relative_path
+          prn: prn
       properties:
         count:
           example: 123
@@ -40513,6 +41824,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -40528,6 +41840,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -40585,6 +41898,7 @@ components:
           author: author
           provides_dist: ""
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           version: version
           supported_platform: supported_platform
           license: license
@@ -40616,6 +41930,7 @@ components:
           author: author
           provides_dist: ""
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           version: version
           supported_platform: supported_platform
           license: license
@@ -40658,6 +41973,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           distributions:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -40666,6 +41982,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           distributions:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
@@ -40721,6 +42038,7 @@ components:
           - includes
           - includes
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -40762,6 +42080,7 @@ components:
           - includes
           - includes
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -40819,6 +42138,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
         - latest_version_href: https://openapi-generator.tech
           pulp_href: https://openapi-generator.tech
           versions_href: https://openapi-generator.tech
@@ -40831,6 +42151,7 @@ components:
           retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
       properties:
         count:
           example: 123
@@ -41015,12 +42336,14 @@ components:
           profiles: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           stream: stream
           module: module
           profiles: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -41049,29 +42372,31 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - obsoleted_by_module_stream: obsoleted_by_module_stream
-          obsoleted_by_module_name: obsoleted_by_module_name
-          module_stream: module_stream
+        - module_stream: module_stream
           pulp_href: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          message: message
+          prn: prn
+          obsoleted_by_module_stream: obsoleted_by_module_stream
+          obsoleted_by_module_name: obsoleted_by_module_name
           eol_date: eol_date
           module_context: module_context
           modified: modified
           pulp_created: 2000-01-23T04:56:07.000+00:00
           module_name: module_name
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          message: message
           override_previous: override_previous
-        - obsoleted_by_module_stream: obsoleted_by_module_stream
-          obsoleted_by_module_name: obsoleted_by_module_name
-          module_stream: module_stream
+        - module_stream: module_stream
           pulp_href: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          message: message
+          prn: prn
+          obsoleted_by_module_stream: obsoleted_by_module_stream
+          obsoleted_by_module_name: obsoleted_by_module_name
           eol_date: eol_date
           module_context: module_context
           modified: modified
           pulp_created: 2000-01-23T04:56:07.000+00:00
           module_name: module_name
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          message: message
           override_previous: override_previous
       properties:
         count:
@@ -41108,6 +42433,7 @@ components:
           packages:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
+          prn: prn
           version: version
           dependencies: ""
           static_context: true
@@ -41124,6 +42450,7 @@ components:
           packages:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
+          prn: prn
           version: version
           dependencies: ""
           static_context: true
@@ -41172,6 +42499,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           desc_by_lang: ""
           name: name
@@ -41183,6 +42511,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           id: id
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -41213,28 +42542,30 @@ components:
         results:
         - pulp_href: https://openapi-generator.tech
           desc_by_lang: ""
-          name: name
           display_order: 0
+          description: description
+          option_ids: ""
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          name: name
           group_ids: ""
           digest: digest
-          description: description
           name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          option_ids: ""
           id: id
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           desc_by_lang: ""
-          name: name
           display_order: 0
+          description: description
+          option_ids: ""
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          name: name
           group_ids: ""
           digest: digest
-          description: description
           name_by_lang: ""
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          option_ids: ""
           id: id
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -41270,6 +42601,7 @@ components:
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           packages: ""
+          prn: prn
           default: true
           name: name
           digest: digest
@@ -41284,6 +42616,7 @@ components:
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           packages: ""
+          prn: prn
           default: true
           name: name
           digest: digest
@@ -41323,11 +42656,13 @@ components:
           digest: digest
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           matches: ""
         - pulp_href: https://openapi-generator.tech
           digest: digest
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           matches: ""
       properties:
         count:
@@ -41385,6 +42720,7 @@ components:
           rpm_packager: rpm_packager
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           version: version
           obsoletes: ""
           rpm_license: rpm_license
@@ -41431,6 +42767,7 @@ components:
           rpm_packager: rpm_packager
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           version: version
           obsoletes: ""
           rpm_license: rpm_license
@@ -41483,6 +42820,7 @@ components:
           sha512: sha512
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           sha1: sha1
           artifact: https://openapi-generator.tech
           checksum_type: checksum_type
@@ -41497,6 +42835,7 @@ components:
           sha512: sha512
           sha224: sha224
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
           sha1: sha1
           artifact: https://openapi-generator.tech
           checksum_type: checksum_type
@@ -41541,6 +42880,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           last_refreshed: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           paths:
@@ -41550,6 +42890,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           last_refreshed: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -41586,6 +42927,7 @@ components:
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -41600,6 +42942,7 @@ components:
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           content_guard: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
@@ -41642,6 +42985,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           gpgcheck: 0
           checksum_type: ""
           metadata_checksum_type: ""
@@ -41655,6 +42999,7 @@ components:
           repository_version: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           repository: https://openapi-generator.tech
+          prn: prn
           gpgcheck: 0
           checksum_type: ""
           metadata_checksum_type: ""
@@ -41701,6 +43046,7 @@ components:
           sles_auth_token: sles_auth_token
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -41729,6 +43075,7 @@ components:
           sles_auth_token: sles_auth_token
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -41781,6 +43128,7 @@ components:
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           gpgcheck: 0
           latest_version_href: https://openapi-generator.tech
           checksum_type: ""
@@ -41805,6 +43153,7 @@ components:
           description: description
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           remote: https://openapi-generator.tech
+          prn: prn
           gpgcheck: 0
           latest_version_href: https://openapi-generator.tech
           checksum_type: ""
@@ -41861,6 +43210,7 @@ components:
           uln_server_base_url: uln_server_base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -41889,6 +43239,7 @@ components:
           uln_server_base_url: uln_server_base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           sock_read_timeout: 0.23021358869347652
+          prn: prn
           url: url
           download_concurrency: 1
           pulp_labels:
@@ -41957,6 +43308,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           title: title
           type: type
+          prn: prn
           version: version
           pushcount: pushcount
           issued_date: issued_date
@@ -41992,6 +43344,7 @@ components:
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           title: title
           type: type
+          prn: prn
           version: version
           pushcount: pushcount
           issued_date: issued_date
@@ -42324,11 +43677,11 @@ components:
         password: password
         tls_validation: true
         client_cert: client_cert
-        pulp_label_select: pulp_label_select
         domain: domain
         name: name
         base_url: base_url
         ca_cert: ca_cert
+        q_select: q_select
         api_root: api_root
         username: username
       properties:
@@ -42383,9 +43736,9 @@ components:
           nullable: true
           type: string
           writeOnly: true
-        pulp_label_select:
-          description: "One or more comma separated labels that will be used to filter\
-            \ distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\""
+        q_select:
+          description: Filter distributions on the upstream Pulp using complex filtering.
+            E.g. pulp_label_select="foo" OR pulp_label_select="key=val"
           nullable: true
           type: string
       type: object
@@ -43989,9 +45342,14 @@ components:
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44080,9 +45438,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         params: ""
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44165,9 +45528,14 @@ components:
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44300,11 +45668,16 @@ components:
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         repo_mapping:
           key: repo_mapping
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44420,19 +45793,28 @@ components:
         - pulp_href: https://openapi-generator.tech
           name: name
           id: 0
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           name: name
           id: 0
+          prn: prn
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         users:
         - pulp_href: https://openapi-generator.tech
+          prn: prn
           username: username
         - pulp_href: https://openapi-generator.tech
+          prn: prn
           username: username
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44516,6 +45898,7 @@ components:
         client_cert: client_cert
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -44535,6 +45918,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44718,9 +46105,14 @@ components:
         retain_repo_versions: 1
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44801,9 +46193,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -44877,9 +46274,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         locked: true
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45000,11 +46402,16 @@ components:
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         pubkey_fingerprint: pubkey_fingerprint
         script: script
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45078,6 +46485,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           versions:
             key: versions
@@ -45086,6 +46494,7 @@ components:
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           last_heartbeat: 2000-01-23T04:56:07.000+00:00
+          prn: prn
         online_content_apps:
         - versions:
             key: versions
@@ -45246,12 +46655,17 @@ components:
         \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
         \ namespaced properly."
       example:
-        running: 1
         canceling: 7
-        canceled: 5
         pulp_href: https://openapi-generator.tech
         waiting: 0
         all_tasks_dispatched: true
+        description: description
+        completed: 5
+        failed: 2
+        prn: prn
+        skipped: 6
+        running: 1
+        canceled: 5
         group_progress_reports:
         - total: 9
           code: code
@@ -45263,9 +46677,6 @@ components:
           message: message
           suffix: suffix
           done: 3
-        description: description
-        completed: 5
-        failed: 2
         tasks:
         - pulp_href: https://openapi-generator.tech
           finished_at: 2000-01-23T04:56:07.000+00:00
@@ -45275,6 +46686,7 @@ components:
           state: state
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           worker: https://openapi-generator.tech
+          prn: prn
           unblocked_at: 2000-01-23T04:56:07.000+00:00
         - pulp_href: https://openapi-generator.tech
           finished_at: 2000-01-23T04:56:07.000+00:00
@@ -45284,11 +46696,15 @@ components:
           state: state
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           worker: https://openapi-generator.tech
+          prn: prn
           unblocked_at: 2000-01-23T04:56:07.000+00:00
-        skipped: 6
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         description:
@@ -45374,6 +46790,7 @@ components:
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         error:
           key: error
+        prn: prn
         created_by: created_by
         logging_cid: logging_cid
         unblocked_at: 2000-01-23T04:56:07.000+00:00
@@ -45393,6 +46810,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45504,10 +46925,15 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         next_dispatch: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         last_task: https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45644,9 +47070,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         completed: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45686,9 +47117,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         completed: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45722,11 +47158,11 @@ components:
         password: password
         tls_validation: true
         client_cert: client_cert
-        pulp_label_select: pulp_label_select
         domain: domain
         name: name
         base_url: base_url
         ca_cert: ca_cert
+        q_select: q_select
         api_root: api_root
         username: username
       properties:
@@ -45781,9 +47217,9 @@ components:
           nullable: true
           type: string
           writeOnly: true
-        pulp_label_select:
-          description: "One or more comma separated labels that will be used to filter\
-            \ distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\""
+        q_select:
+          description: Filter distributions on the upstream Pulp using complex filtering.
+            E.g. pulp_label_select="foo" OR pulp_label_select="key=val"
           nullable: true
           type: string
       required:
@@ -45797,10 +47233,10 @@ components:
         pulp_href: https://openapi-generator.tech
         tls_validation: true
         client_cert: client_cert
-        pulp_label_select: pulp_label_select
         last_replication: 2000-01-23T04:56:07.000+00:00
         base_url: base_url
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         api_root: api_root
         domain: domain
         name: name
@@ -45811,9 +47247,14 @@ components:
         - is_set: true
           name: name
         ca_cert: ca_cert
+        q_select: q_select
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -45858,9 +47299,9 @@ components:
             $ref: '#/components/schemas/RemoteResponse_hidden_fields_inner'
           readOnly: true
           type: array
-        pulp_label_select:
-          description: "One or more comma separated labels that will be used to filter\
-            \ distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\""
+        q_select:
+          description: Filter distributions on the upstream Pulp using complex filtering.
+            E.g. pulp_label_select="foo" OR pulp_label_select="key=val"
           nullable: true
           type: string
         last_replication:
@@ -45936,6 +47377,7 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         name: name
+        prn: prn
       properties:
         name:
           description: Name.
@@ -45943,6 +47385,9 @@ components:
           type: string
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
           readOnly: true
           type: string
       required:
@@ -45958,8 +47403,10 @@ components:
         groups:
         - pulp_href: https://openapi-generator.tech
           name: name
+          prn: prn
         - pulp_href: https://openapi-generator.tech
           name: name
+          prn: prn
         hidden_fields:
         - is_set: true
           name: name
@@ -45967,12 +47414,16 @@ components:
           name: name
         id: 0
         date_joined: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         first_name: first_name
         email: email
         username: username
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
           readOnly: true
           type: string
         id:
@@ -46063,9 +47514,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46213,9 +47669,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         last_heartbeat: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46283,9 +47744,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46345,9 +47811,14 @@ components:
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46415,10 +47886,15 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
         last_refreshed: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46504,10 +47980,15 @@ components:
         sha224: sha224
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
         md5: md5
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46603,20 +48084,25 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         hidden: false
-        pulp_labels:
-          key: pulp_labels
-        publication: https://openapi-generator.tech
         base_url: base_url
         no_content_change_since: no_content_change_since
-        name: name
-        pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        publication: https://openapi-generator.tech
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46704,12 +48190,17 @@ components:
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         distributions:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -46898,6 +48389,7 @@ components:
         client_cert: client_cert
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -46917,6 +48409,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47081,22 +48577,27 @@ components:
     file.FileRepositoryResponse:
       description: Serializer for File Repositories.
       example:
-        latest_version_href: https://openapi-generator.tech
         pulp_href: https://openapi-generator.tech
+        manifest: PULP_MANIFEST
+        description: description
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+        prn: prn
+        latest_version_href: https://openapi-generator.tech
         versions_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
         autopublish: false
-        manifest: PULP_MANIFEST
         name: name
-        description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
         retain_repo_versions: 1
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        remote: https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47182,21 +48683,26 @@ components:
       description: A Serializer for GemContent.
       example:
         pulp_href: https://openapi-generator.tech
+        required_rubygems_version: required_rubygems_version
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        version: version
+        platform: platform
+        dependencies:
+          key: dependencies
         prerelease: true
         checksum: checksum
         name: name
         pulp_created: 2000-01-23T04:56:07.000+00:00
         required_ruby_version: required_ruby_version
-        required_rubygems_version: required_rubygems_version
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        version: version
-        platform: platform
         artifacts: "{}"
-        dependencies:
-          key: dependencies
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47311,6 +48817,7 @@ components:
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
         remote: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
@@ -47320,6 +48827,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47405,9 +48916,14 @@ components:
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47603,6 +49119,7 @@ components:
           key: includes
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -47622,6 +49139,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47800,9 +49321,14 @@ components:
         retain_repo_versions: 1
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47861,6 +49387,7 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
         parent_commit: https://openapi-generator.tech
         objs:
         - https://openapi-generator.tech
@@ -47868,6 +49395,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47915,9 +49446,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -47979,9 +49515,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48055,20 +49596,25 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         hidden: false
-        pulp_labels:
-          key: pulp_labels
         base_url: base_url
         no_content_change_since: no_content_change_since
-        name: name
-        pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48140,9 +49686,14 @@ components:
         typ: 0
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48189,9 +49740,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48403,6 +49959,7 @@ components:
         client_cert: client_cert
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         depth: 0
@@ -48429,6 +49986,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48616,9 +50177,14 @@ components:
         retain_repo_versions: 1
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48679,9 +50245,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         relative_path: relative_path
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48770,6 +50341,7 @@ components:
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
         remote: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
@@ -48780,6 +50352,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -48988,6 +50564,7 @@ components:
         author: author
         provides_dist: ""
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         version: version
         supported_platform: supported_platform
         license: license
@@ -49000,6 +50577,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -49137,12 +50718,17 @@ components:
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         distributions:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -49374,6 +50960,7 @@ components:
         - includes
         - includes
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -49394,6 +50981,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -49596,9 +51187,14 @@ components:
         retain_repo_versions: 1
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -49918,9 +51514,14 @@ components:
         profiles: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50018,21 +51619,26 @@ components:
     rpm.ModulemdObsoleteResponse:
       description: ModulemdObsolete serializer.
       example:
-        obsoleted_by_module_stream: obsoleted_by_module_stream
-        obsoleted_by_module_name: obsoleted_by_module_name
         module_stream: module_stream
         pulp_href: https://openapi-generator.tech
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        message: message
+        prn: prn
+        obsoleted_by_module_stream: obsoleted_by_module_stream
+        obsoleted_by_module_name: obsoleted_by_module_name
         eol_date: eol_date
         module_context: module_context
         modified: modified
         pulp_created: 2000-01-23T04:56:07.000+00:00
         module_name: module_name
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        message: message
         override_previous: override_previous
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50100,6 +51706,7 @@ components:
         packages:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
+        prn: prn
         version: version
         dependencies: ""
         static_context: true
@@ -50112,6 +51719,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50225,9 +51836,14 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         id: id
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50283,19 +51899,24 @@ components:
       example:
         pulp_href: https://openapi-generator.tech
         desc_by_lang: ""
-        name: name
         display_order: 0
+        description: description
+        option_ids: ""
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        name: name
         group_ids: ""
         digest: digest
-        description: description
         name_by_lang: ""
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        option_ids: ""
         id: id
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50360,6 +51981,7 @@ components:
         description: description
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         packages: ""
+        prn: prn
         default: true
         name: name
         digest: digest
@@ -50370,6 +51992,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50436,10 +52062,15 @@ components:
         digest: digest
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         matches: ""
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50498,6 +52129,7 @@ components:
         rpm_packager: rpm_packager
         sha224: sha224
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         version: version
         obsoletes: ""
         rpm_license: rpm_license
@@ -50519,6 +52151,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50726,6 +52362,7 @@ components:
         sha512: sha512
         sha224: sha224
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
         sha1: sha1
         artifact: https://openapi-generator.tech
         checksum_type: checksum_type
@@ -50737,6 +52374,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50835,10 +52476,15 @@ components:
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
         last_refreshed: 2000-01-23T04:56:07.000+00:00
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -50930,6 +52576,7 @@ components:
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         content_guard: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
@@ -50940,6 +52587,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -51066,6 +52717,7 @@ components:
         repository_version: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         repository: https://openapi-generator.tech
+        prn: prn
         gpgcheck: 0
         checksum_type: ""
         metadata_checksum_type: ""
@@ -51075,6 +52727,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -51303,6 +52959,7 @@ components:
         sles_auth_token: sles_auth_token
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -51322,6 +52979,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -51560,6 +53221,7 @@ components:
         description: description
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         remote: https://openapi-generator.tech
+        prn: prn
         gpgcheck: 0
         latest_version_href: https://openapi-generator.tech
         checksum_type: ""
@@ -51579,6 +53241,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -51869,6 +53535,7 @@ components:
         uln_server_base_url: uln_server_base_url
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         sock_read_timeout: 0.23021358869347652
+        prn: prn
         url: url
         download_concurrency: 1
         pulp_labels:
@@ -51888,6 +53555,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -52115,6 +53786,7 @@ components:
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         title: title
         type: type
+        prn: prn
         version: version
         pushcount: pushcount
         issued_date: issued_date
@@ -52129,6 +53801,10 @@ components:
       properties:
         pulp_href:
           format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:

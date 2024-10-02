@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 	"reflect"
 )
 
@@ -352,10 +353,129 @@ type UpstreamPulpsAPIUpstreamPulpsListRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	pulpDomain string
+	baseUrl *string
+	baseUrlContains *string
+	baseUrlIcontains *string
+	baseUrlIexact *string
+	baseUrlIn *[]string
+	baseUrlIregex *string
+	baseUrlIstartswith *string
+	baseUrlRegex *string
+	baseUrlStartswith *string
+	lastReplication *time.Time
+	lastReplicationGt *time.Time
+	lastReplicationGte *time.Time
+	lastReplicationLt *time.Time
+	lastReplicationLte *time.Time
+	lastReplicationRange *[]time.Time
 	limit *int32
+	name *string
+	nameContains *string
+	nameIcontains *string
+	nameIexact *string
+	nameIn *[]string
+	nameIregex *string
+	nameIstartswith *string
+	nameRegex *string
+	nameStartswith *string
 	offset *int32
+	ordering *[]string
+	prnIn *[]string
+	pulpHrefIn *[]string
+	pulpIdIn *[]string
+	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// Filter results where base_url matches value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrl(baseUrl string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrl = &baseUrl
+	return r
+}
+
+// Filter results where base_url contains value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlContains(baseUrlContains string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlContains = &baseUrlContains
+	return r
+}
+
+// Filter results where base_url contains value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlIcontains(baseUrlIcontains string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlIcontains = &baseUrlIcontains
+	return r
+}
+
+// Filter results where base_url matches value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlIexact(baseUrlIexact string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlIexact = &baseUrlIexact
+	return r
+}
+
+// Filter results where base_url is in a comma-separated list of values
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlIn(baseUrlIn []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlIn = &baseUrlIn
+	return r
+}
+
+// Filter results where base_url matches regex value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlIregex(baseUrlIregex string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlIregex = &baseUrlIregex
+	return r
+}
+
+// Filter results where base_url starts with value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlIstartswith(baseUrlIstartswith string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlIstartswith = &baseUrlIstartswith
+	return r
+}
+
+// Filter results where base_url matches regex value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlRegex(baseUrlRegex string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlRegex = &baseUrlRegex
+	return r
+}
+
+// Filter results where base_url starts with value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) BaseUrlStartswith(baseUrlStartswith string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.baseUrlStartswith = &baseUrlStartswith
+	return r
+}
+
+// Filter results where last_replication matches value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplication(lastReplication time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplication = &lastReplication
+	return r
+}
+
+// Filter results where last_replication is greater than value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationGt(lastReplicationGt time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationGt = &lastReplicationGt
+	return r
+}
+
+// Filter results where last_replication is greater than or equal to value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationGte(lastReplicationGte time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationGte = &lastReplicationGte
+	return r
+}
+
+// Filter results where last_replication is less than value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationLt(lastReplicationLt time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationLt = &lastReplicationLt
+	return r
+}
+
+// Filter results where last_replication is less than or equal to value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationLte(lastReplicationLte time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationLte = &lastReplicationLte
+	return r
+}
+
+// Filter results where last_replication is between two comma separated values
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationRange(lastReplicationRange []time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationRange = &lastReplicationRange
+	return r
 }
 
 // Number of results to return per page.
@@ -364,9 +484,93 @@ func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Limit(limit int32) UpstreamPul
 	return r
 }
 
+// Filter results where name matches value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Name(name string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.name = &name
+	return r
+}
+
+// Filter results where name contains value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameContains(nameContains string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameContains = &nameContains
+	return r
+}
+
+// Filter results where name contains value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameIcontains(nameIcontains string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameIcontains = &nameIcontains
+	return r
+}
+
+// Filter results where name matches value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameIexact(nameIexact string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameIexact = &nameIexact
+	return r
+}
+
+// Filter results where name is in a comma-separated list of values
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameIn(nameIn []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name matches regex value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameIregex(nameIregex string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameIregex = &nameIregex
+	return r
+}
+
+// Filter results where name starts with value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameIstartswith(nameIstartswith string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameIstartswith = &nameIstartswith
+	return r
+}
+
+// Filter results where name matches regex value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameRegex(nameRegex string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameRegex = &nameRegex
+	return r
+}
+
+// Filter results where name starts with value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) NameStartswith(nameStartswith string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.nameStartswith = &nameStartswith
+	return r
+}
+
 // The initial index from which to return the results.
 func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Offset(offset int32) UpstreamPulpsAPIUpstreamPulpsListRequest {
 	r.offset = &offset
+	return r
+}
+
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;pulp_label_select&#x60; - Pulp label select* &#x60;-pulp_label_select&#x60; - Pulp label select (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Ordering(ordering []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) PrnIn(prnIn []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) PulpHrefIn(pulpHrefIn []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.pulpHrefIn = &pulpHrefIn
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) PulpIdIn(pulpIdIn []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter results by using NOT, AND and OR operations on other filters
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Q(q string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.q = &q
 	return r
 }
 
@@ -426,11 +630,98 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListExecute(r UpstreamPulpsAPIUps
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.baseUrl != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url", r.baseUrl, "form", "")
+	}
+	if r.baseUrlContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__contains", r.baseUrlContains, "form", "")
+	}
+	if r.baseUrlIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__icontains", r.baseUrlIcontains, "form", "")
+	}
+	if r.baseUrlIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__iexact", r.baseUrlIexact, "form", "")
+	}
+	if r.baseUrlIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__in", r.baseUrlIn, "form", "csv")
+	}
+	if r.baseUrlIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__iregex", r.baseUrlIregex, "form", "")
+	}
+	if r.baseUrlIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__istartswith", r.baseUrlIstartswith, "form", "")
+	}
+	if r.baseUrlRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__regex", r.baseUrlRegex, "form", "")
+	}
+	if r.baseUrlStartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_url__startswith", r.baseUrlStartswith, "form", "")
+	}
+	if r.lastReplication != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication", r.lastReplication, "form", "")
+	}
+	if r.lastReplicationGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__gt", r.lastReplicationGt, "form", "")
+	}
+	if r.lastReplicationGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__gte", r.lastReplicationGte, "form", "")
+	}
+	if r.lastReplicationLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__lt", r.lastReplicationLt, "form", "")
+	}
+	if r.lastReplicationLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__lte", r.lastReplicationLte, "form", "")
+	}
+	if r.lastReplicationRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__range", r.lastReplicationRange, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.nameContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "form", "")
+	}
+	if r.nameIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "form", "")
+	}
+	if r.nameIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iexact", r.nameIexact, "form", "")
+	}
+	if r.nameIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
+	}
+	if r.nameIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__iregex", r.nameIregex, "form", "")
+	}
+	if r.nameIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__istartswith", r.nameIstartswith, "form", "")
+	}
+	if r.nameRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__regex", r.nameRegex, "form", "")
+	}
+	if r.nameStartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__startswith", r.nameStartswith, "form", "")
+	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.ordering != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
+	}
+	if r.pulpHrefIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
+	}
+	if r.pulpIdIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields

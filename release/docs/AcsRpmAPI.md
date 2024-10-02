@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmList
 
-> PaginatedrpmRpmAlternateContentSourceResponseList AcsRpmRpmList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmAlternateContentSourceResponseList AcsRpmRpmList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm alternate content sources
 
@@ -266,6 +266,7 @@ func main() {
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `last_refreshed` - Last refreshed* `-last_refreshed` - Last refreshed (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
@@ -274,7 +275,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -312,6 +313,7 @@ Name | Type | Description  | Notes
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;last_refreshed&#x60; - Last refreshed* &#x60;-last_refreshed&#x60; - Last refreshed (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 

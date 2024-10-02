@@ -42,6 +42,7 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
@@ -62,7 +63,7 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesAPIRepositoriesListRequest) LatestWithContent(latestWithContent string) RepositoriesAPIRepositoriesListRequest {
 	r.latestWithContent = &latestWithContent
 	return r
@@ -141,6 +142,12 @@ func (r RepositoriesAPIRepositoriesListRequest) Ordering(ordering []string) Repo
 }
 
 // Multiple values may be separated by commas.
+func (r RepositoriesAPIRepositoriesListRequest) PrnIn(prnIn []string) RepositoriesAPIRepositoriesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r RepositoriesAPIRepositoriesListRequest) PulpHrefIn(pulpHrefIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -158,13 +165,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -230,7 +237,7 @@ func (r RepositoriesAPIRepositoriesListRequest) RetainRepoVersionsRange(retainRe
 	return r
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesAPIRepositoriesListRequest) WithContent(withContent string) RepositoriesAPIRepositoriesListRequest {
 	r.withContent = &withContent
 	return r
@@ -330,6 +337,9 @@ func (a *RepositoriesAPIService) RepositoriesListExecute(r RepositoriesAPIReposi
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

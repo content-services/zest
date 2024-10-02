@@ -41,6 +41,7 @@ type ContentguardsAPIContentguardsListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpType *string
@@ -119,6 +120,12 @@ func (r ContentguardsAPIContentguardsListRequest) Offset(offset int32) Contentgu
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentguardsAPIContentguardsListRequest) Ordering(ordering []string) ContentguardsAPIContentguardsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r ContentguardsAPIContentguardsListRequest) PrnIn(prnIn []string) ContentguardsAPIContentguardsListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -243,6 +250,9 @@ func (a *ContentguardsAPIService) ContentguardsListExecute(r ContentguardsAPICon
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

@@ -40,8 +40,8 @@ type PatchedUpstreamPulp struct {
 	Username NullableString `json:"username,omitempty"`
 	// The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed.
 	Password NullableString `json:"password,omitempty"`
-	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
-	PulpLabelSelect NullableString `json:"pulp_label_select,omitempty"`
+	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
+	QSelect NullableString `json:"q_select,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -444,46 +444,46 @@ func (o *PatchedUpstreamPulp) UnsetPassword() {
 	o.Password.Unset()
 }
 
-// GetPulpLabelSelect returns the PulpLabelSelect field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedUpstreamPulp) GetPulpLabelSelect() string {
-	if o == nil || IsNil(o.PulpLabelSelect.Get()) {
+// GetQSelect returns the QSelect field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetQSelect() string {
+	if o == nil || IsNil(o.QSelect.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.PulpLabelSelect.Get()
+	return *o.QSelect.Get()
 }
 
-// GetPulpLabelSelectOk returns a tuple with the PulpLabelSelect field value if set, nil otherwise
+// GetQSelectOk returns a tuple with the QSelect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedUpstreamPulp) GetPulpLabelSelectOk() (*string, bool) {
+func (o *PatchedUpstreamPulp) GetQSelectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PulpLabelSelect.Get(), o.PulpLabelSelect.IsSet()
+	return o.QSelect.Get(), o.QSelect.IsSet()
 }
 
-// HasPulpLabelSelect returns a boolean if a field has been set.
-func (o *PatchedUpstreamPulp) HasPulpLabelSelect() bool {
-	if o != nil && o.PulpLabelSelect.IsSet() {
+// HasQSelect returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasQSelect() bool {
+	if o != nil && o.QSelect.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLabelSelect gets a reference to the given NullableString and assigns it to the PulpLabelSelect field.
-func (o *PatchedUpstreamPulp) SetPulpLabelSelect(v string) {
-	o.PulpLabelSelect.Set(&v)
+// SetQSelect gets a reference to the given NullableString and assigns it to the QSelect field.
+func (o *PatchedUpstreamPulp) SetQSelect(v string) {
+	o.QSelect.Set(&v)
 }
-// SetPulpLabelSelectNil sets the value for PulpLabelSelect to be an explicit nil
-func (o *PatchedUpstreamPulp) SetPulpLabelSelectNil() {
-	o.PulpLabelSelect.Set(nil)
+// SetQSelectNil sets the value for QSelect to be an explicit nil
+func (o *PatchedUpstreamPulp) SetQSelectNil() {
+	o.QSelect.Set(nil)
 }
 
-// UnsetPulpLabelSelect ensures that no value is present for PulpLabelSelect, not even an explicit nil
-func (o *PatchedUpstreamPulp) UnsetPulpLabelSelect() {
-	o.PulpLabelSelect.Unset()
+// UnsetQSelect ensures that no value is present for QSelect, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetQSelect() {
+	o.QSelect.Unset()
 }
 
 func (o PatchedUpstreamPulp) MarshalJSON() ([]byte, error) {
@@ -526,8 +526,8 @@ func (o PatchedUpstreamPulp) ToMap() (map[string]interface{}, error) {
 	if o.Password.IsSet() {
 		toSerialize["password"] = o.Password.Get()
 	}
-	if o.PulpLabelSelect.IsSet() {
-		toSerialize["pulp_label_select"] = o.PulpLabelSelect.Get()
+	if o.QSelect.IsSet() {
+		toSerialize["q_select"] = o.QSelect.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -561,7 +561,7 @@ func (o *PatchedUpstreamPulp) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tls_validation")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "pulp_label_select")
+		delete(additionalProperties, "q_select")
 		o.AdditionalProperties = additionalProperties
 	}
 

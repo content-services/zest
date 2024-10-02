@@ -260,6 +260,7 @@ type ExportersPulpAPIExportersCorePulpListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -336,6 +337,12 @@ func (r ExportersPulpAPIExportersCorePulpListRequest) Offset(offset int32) Expor
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;path&#x60; - Path* &#x60;-path&#x60; - Path (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ExportersPulpAPIExportersCorePulpListRequest) Ordering(ordering []string) ExportersPulpAPIExportersCorePulpListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r ExportersPulpAPIExportersCorePulpListRequest) PrnIn(prnIn []string) ExportersPulpAPIExportersCorePulpListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -448,6 +455,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpListExecute(r ExportersPulpAP
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

@@ -154,6 +154,7 @@ type ContentModulemdsAPIContentRpmModulemdsListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -230,6 +231,12 @@ func (r ContentModulemdsAPIContentRpmModulemdsListRequest) OrphanedFor(orphanedF
 }
 
 // Multiple values may be separated by commas.
+func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PrnIn(prnIn []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PulpHrefIn(pulpHrefIn []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -247,19 +254,19 @@ func (r ContentModulemdsAPIContentRpmModulemdsListRequest) Q(q string) ContentMo
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) RepositoryVersion(repositoryVersion string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -379,6 +386,9 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

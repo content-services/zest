@@ -362,6 +362,7 @@ type GroupsAPIGroupsListRequest struct {
 	nameIn *[]string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -426,6 +427,12 @@ func (r GroupsAPIGroupsListRequest) Offset(offset int32) GroupsAPIGroupsListRequ
 // Ordering* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r GroupsAPIGroupsListRequest) Ordering(ordering []string) GroupsAPIGroupsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r GroupsAPIGroupsListRequest) PrnIn(prnIn []string) GroupsAPIGroupsListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -532,6 +539,9 @@ func (a *GroupsAPIService) GroupsListExecute(r GroupsAPIGroupsListRequest) (*Pag
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

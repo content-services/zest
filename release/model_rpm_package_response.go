@@ -22,6 +22,8 @@ var _ MappedNullable = &RpmPackageResponse{}
 // RpmPackageResponse A Serializer for Package.Add serializers for the new fields defined in Package and add those fields to the Meta classkeeping fields from the parent class as well. Provide help_text.
 type RpmPackageResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
+	// The Pulp Resource Name (PRN).
+	Prn *string `json:"prn,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
@@ -164,6 +166,38 @@ func (o *RpmPackageResponse) HasPulpHref() bool {
 // SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
 func (o *RpmPackageResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
+}
+
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmPackageResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *RpmPackageResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *RpmPackageResponse) SetPrn(v string) {
+	o.Prn = &v
 }
 
 // GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
@@ -1629,6 +1663,9 @@ func (o RpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
+	}
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
@@ -1787,6 +1824,7 @@ func (o *RpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "md5")

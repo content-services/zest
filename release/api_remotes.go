@@ -42,6 +42,7 @@ type RemotesAPIRemotesListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
@@ -131,6 +132,12 @@ func (r RemotesAPIRemotesListRequest) Ordering(ordering []string) RemotesAPIRemo
 }
 
 // Multiple values may be separated by commas.
+func (r RemotesAPIRemotesListRequest) PrnIn(prnIn []string) RemotesAPIRemotesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r RemotesAPIRemotesListRequest) PulpHrefIn(pulpHrefIn []string) RemotesAPIRemotesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -184,13 +191,13 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -293,6 +300,9 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

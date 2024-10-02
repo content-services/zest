@@ -260,6 +260,7 @@ type ExportersFilesystemAPIExportersCoreFilesystemListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -336,6 +337,12 @@ func (r ExportersFilesystemAPIExportersCoreFilesystemListRequest) Offset(offset 
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;path&#x60; - Path* &#x60;-path&#x60; - Path (descending)* &#x60;method&#x60; - Method* &#x60;-method&#x60; - Method (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ExportersFilesystemAPIExportersCoreFilesystemListRequest) Ordering(ordering []string) ExportersFilesystemAPIExportersCoreFilesystemListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r ExportersFilesystemAPIExportersCoreFilesystemListRequest) PrnIn(prnIn []string) ExportersFilesystemAPIExportersCoreFilesystemListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -448,6 +455,9 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemListExecute(r Exp
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

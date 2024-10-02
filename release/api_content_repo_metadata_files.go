@@ -33,6 +33,7 @@ type ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -68,6 +69,12 @@ func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Orpha
 }
 
 // Multiple values may be separated by commas.
+func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) PrnIn(prnIn []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) PulpHrefIn(pulpHrefIn []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -85,19 +92,19 @@ func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Q(q s
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) RepositoryVersion(repositoryVersion string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -170,6 +177,9 @@ func (a *ContentRepoMetadataFilesAPIService) ContentRpmRepoMetadataFilesListExec
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

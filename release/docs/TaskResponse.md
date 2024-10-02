@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **State** | Pointer to **string** | The current state of the task. The possible values include: &#39;waiting&#39;, &#39;skipped&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;canceled&#39; and &#39;canceling&#39;. | [optional] [readonly] 
@@ -66,6 +67,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *TaskResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *TaskResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *TaskResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *TaskResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *TaskResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
 
 ### GetPulpCreated
 

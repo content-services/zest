@@ -354,10 +354,11 @@ type PublicationsFileAPIPublicationsFileFileListRequest struct {
 	ApiService *PublicationsFileAPIService
 	pulpDomain string
 	content *string
-	contentIn *string
+	contentIn *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
@@ -373,14 +374,14 @@ type PublicationsFileAPIPublicationsFileFileListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r PublicationsFileAPIPublicationsFileFileListRequest) Content(content string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.content = &content
 	return r
 }
 
-// Content Unit referenced by HREF
-func (r PublicationsFileAPIPublicationsFileFileListRequest) ContentIn(contentIn string) PublicationsFileAPIPublicationsFileFileListRequest {
+// Multiple values may be separated by commas.
+func (r PublicationsFileAPIPublicationsFileFileListRequest) ContentIn(contentIn []string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.contentIn = &contentIn
 	return r
 }
@@ -400,6 +401,12 @@ func (r PublicationsFileAPIPublicationsFileFileListRequest) Offset(offset int32)
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r PublicationsFileAPIPublicationsFileFileListRequest) Ordering(ordering []string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r PublicationsFileAPIPublicationsFileFileListRequest) PrnIn(prnIn []string) PublicationsFileAPIPublicationsFileFileListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -457,13 +464,13 @@ func (r PublicationsFileAPIPublicationsFileFileListRequest) Q(q string) Publicat
 	return r
 }
 
-// Repository referenced by HREF
+// Repository referenced by HREF/PRN
 func (r PublicationsFileAPIPublicationsFileFileListRequest) Repository(repository string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r PublicationsFileAPIPublicationsFileFileListRequest) RepositoryVersion(repositoryVersion string) PublicationsFileAPIPublicationsFileFileListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -529,7 +536,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileListExecute(r Publicati
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}
 	if r.contentIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "csv")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -539,6 +546,9 @@ func (a *PublicationsFileAPIService) PublicationsFileFileListExecute(r Publicati
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpCreated != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")

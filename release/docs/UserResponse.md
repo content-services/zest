@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** |  | [optional] [readonly] 
 **Id** | Pointer to **int64** |  | [optional] [readonly] 
 **Username** | **string** | Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. | 
 **FirstName** | Pointer to **string** | First name | [optional] 
@@ -59,6 +60,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *UserResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *UserResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *UserResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *UserResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *UserResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
 
 ### GetId
 

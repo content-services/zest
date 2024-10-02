@@ -364,6 +364,7 @@ type ContentguardsRbacAPIContentguardsCoreRbacListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -440,6 +441,12 @@ func (r ContentguardsRbacAPIContentguardsCoreRbacListRequest) Offset(offset int3
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentguardsRbacAPIContentguardsCoreRbacListRequest) Ordering(ordering []string) ContentguardsRbacAPIContentguardsCoreRbacListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r ContentguardsRbacAPIContentguardsCoreRbacListRequest) PrnIn(prnIn []string) ContentguardsRbacAPIContentguardsCoreRbacListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -552,6 +559,9 @@ func (a *ContentguardsRbacAPIService) ContentguardsCoreRbacListExecute(r Content
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

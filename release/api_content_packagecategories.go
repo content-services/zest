@@ -33,6 +33,7 @@ type ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -68,6 +69,12 @@ func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) Orpha
 }
 
 // Multiple values may be separated by commas.
+func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) PrnIn(prnIn []string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) PulpHrefIn(pulpHrefIn []string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -85,19 +92,19 @@ func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) Q(q s
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagecategoriesAPIContentRpmPackagecategoriesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -170,6 +177,9 @@ func (a *ContentPackagecategoriesAPIService) ContentRpmPackagecategoriesListExec
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

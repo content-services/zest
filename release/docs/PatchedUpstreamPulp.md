@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
 **Username** | Pointer to **NullableString** | The username to be used for authentication when syncing. | [optional] 
 **Password** | Pointer to **NullableString** | The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed. | [optional] 
-**PulpLabelSelect** | Pointer to **NullableString** | One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \&quot;foo&#x3D;bar,key&#x3D;val\&quot; or \&quot;foo,key\&quot; | [optional] 
+**QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
 
 ## Methods
 
@@ -345,41 +345,41 @@ HasPassword returns a boolean if a field has been set.
 `func (o *PatchedUpstreamPulp) UnsetPassword()`
 
 UnsetPassword ensures that no value is present for Password, not even an explicit nil
-### GetPulpLabelSelect
+### GetQSelect
 
-`func (o *PatchedUpstreamPulp) GetPulpLabelSelect() string`
+`func (o *PatchedUpstreamPulp) GetQSelect() string`
 
-GetPulpLabelSelect returns the PulpLabelSelect field if non-nil, zero value otherwise.
+GetQSelect returns the QSelect field if non-nil, zero value otherwise.
 
-### GetPulpLabelSelectOk
+### GetQSelectOk
 
-`func (o *PatchedUpstreamPulp) GetPulpLabelSelectOk() (*string, bool)`
+`func (o *PatchedUpstreamPulp) GetQSelectOk() (*string, bool)`
 
-GetPulpLabelSelectOk returns a tuple with the PulpLabelSelect field if it's non-nil, zero value otherwise
+GetQSelectOk returns a tuple with the QSelect field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPulpLabelSelect
+### SetQSelect
 
-`func (o *PatchedUpstreamPulp) SetPulpLabelSelect(v string)`
+`func (o *PatchedUpstreamPulp) SetQSelect(v string)`
 
-SetPulpLabelSelect sets PulpLabelSelect field to given value.
+SetQSelect sets QSelect field to given value.
 
-### HasPulpLabelSelect
+### HasQSelect
 
-`func (o *PatchedUpstreamPulp) HasPulpLabelSelect() bool`
+`func (o *PatchedUpstreamPulp) HasQSelect() bool`
 
-HasPulpLabelSelect returns a boolean if a field has been set.
+HasQSelect returns a boolean if a field has been set.
 
-### SetPulpLabelSelectNil
+### SetQSelectNil
 
-`func (o *PatchedUpstreamPulp) SetPulpLabelSelectNil(b bool)`
+`func (o *PatchedUpstreamPulp) SetQSelectNil(b bool)`
 
- SetPulpLabelSelectNil sets the value for PulpLabelSelect to be an explicit nil
+ SetQSelectNil sets the value for QSelect to be an explicit nil
 
-### UnsetPulpLabelSelect
-`func (o *PatchedUpstreamPulp) UnsetPulpLabelSelect()`
+### UnsetQSelect
+`func (o *PatchedUpstreamPulp) UnsetQSelect()`
 
-UnsetPulpLabelSelect ensures that no value is present for PulpLabelSelect, not even an explicit nil
+UnsetQSelect ensures that no value is present for QSelect, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

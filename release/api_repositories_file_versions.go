@@ -135,7 +135,7 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest struct {
 	ApiService *RepositoriesFileVersionsAPIService
 	fileFileRepositoryHref string
 	content *string
-	contentIn *string
+	contentIn *[]string
 	limit *int32
 	number *int32
 	numberGt *int32
@@ -145,6 +145,7 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest struct {
 	numberRange *[]int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
@@ -157,14 +158,14 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) Content(content string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
 	r.content = &content
 	return r
 }
 
-// Content Unit referenced by HREF
-func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) ContentIn(contentIn string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
+// Multiple values may be separated by commas.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) ContentIn(contentIn []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
 	r.contentIn = &contentIn
 	return r
 }
@@ -220,6 +221,12 @@ func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) Offs
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) Ordering(ordering []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) PrnIn(prnIn []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -331,7 +338,7 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsListExe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}
 	if r.contentIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "csv")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -359,6 +366,9 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsListExe
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpCreated != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")

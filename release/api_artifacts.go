@@ -329,6 +329,7 @@ type ArtifactsAPIArtifactsListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -373,6 +374,12 @@ func (r ArtifactsAPIArtifactsListRequest) OrphanedFor(orphanedFor float32) Artif
 }
 
 // Multiple values may be separated by commas.
+func (r ArtifactsAPIArtifactsListRequest) PrnIn(prnIn []string) ArtifactsAPIArtifactsListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ArtifactsAPIArtifactsListRequest) PulpHrefIn(pulpHrefIn []string) ArtifactsAPIArtifactsListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -390,7 +397,7 @@ func (r ArtifactsAPIArtifactsListRequest) Q(q string) ArtifactsAPIArtifactsListR
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ArtifactsAPIArtifactsListRequest) RepositoryVersion(repositoryVersion string) ArtifactsAPIArtifactsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -496,6 +503,9 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

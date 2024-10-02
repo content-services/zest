@@ -23,6 +23,8 @@ var _ MappedNullable = &DistributionResponse{}
 // DistributionResponse The Serializer for the Distribution model.The serializer deliberately omits the `publication` and `repository_version` field due toplugins typically requiring one or the other but not both.To include the ``publication`` field, it is recommended plugins define the field::  publication = DetailRelatedField(      required=False,      help_text=_(\"Publication to be served\"),      view_name_pattern=r\"publications(-.*_/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),      allow_null=True,  )To include the ``repository_version`` field, it is recommended plugins define the field::  repository_version = RepositoryVersionRelatedField(      required=False, help_text=_(\"RepositoryVersion to be served\"), allow_null=True  )Additionally, the serializer omits the ``remote`` field, which is used for pull-through cachingfeature and only by plugins which use publications. Plugins implementing a pull-through cachingshould define the field in their derived serializer class like this::  remote = DetailRelatedField(      required=False,      help_text=_('Remote that can be used to fetch content when using pull-through caching.'),      queryset=models.Remote.objects.all(),      allow_null=True  )
 type DistributionResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
+	// The Pulp Resource Name (PRN).
+	Prn *string `json:"prn,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
@@ -100,6 +102,38 @@ func (o *DistributionResponse) HasPulpHref() bool {
 // SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
 func (o *DistributionResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
+}
+
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *DistributionResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *DistributionResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *DistributionResponse) SetPrn(v string) {
+	o.Prn = &v
 }
 
 // GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
@@ -439,6 +473,9 @@ func (o DistributionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
+	}
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
@@ -510,6 +547,7 @@ func (o *DistributionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "base_path")

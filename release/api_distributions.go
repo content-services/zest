@@ -45,6 +45,7 @@ type DistributionsAPIDistributionsListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
@@ -155,6 +156,12 @@ func (r DistributionsAPIDistributionsListRequest) Ordering(ordering []string) Di
 }
 
 // Multiple values may be separated by commas.
+func (r DistributionsAPIDistributionsListRequest) PrnIn(prnIn []string) DistributionsAPIDistributionsListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r DistributionsAPIDistributionsListRequest) PulpHrefIn(pulpHrefIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -172,13 +179,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -311,6 +318,9 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

@@ -33,6 +33,7 @@ type ContentAPIContentListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpType *string
@@ -70,6 +71,12 @@ func (r ContentAPIContentListRequest) OrphanedFor(orphanedFor float32) ContentAP
 }
 
 // Multiple values may be separated by commas.
+func (r ContentAPIContentListRequest) PrnIn(prnIn []string) ContentAPIContentListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentAPIContentListRequest) PulpHrefIn(pulpHrefIn []string) ContentAPIContentListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -81,13 +88,13 @@ func (r ContentAPIContentListRequest) PulpIdIn(pulpIdIn []string) ContentAPICont
 	return r
 }
 
-// Pulp type* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
+// Pulp type* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
 func (r ContentAPIContentListRequest) PulpType(pulpType string) ContentAPIContentListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
+// Multiple values may be separated by commas.* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
 func (r ContentAPIContentListRequest) PulpTypeIn(pulpTypeIn []string) ContentAPIContentListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -99,19 +106,19 @@ func (r ContentAPIContentListRequest) Q(q string) ContentAPIContentListRequest {
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersion(repositoryVersion string) ContentAPIContentListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentAPIContentListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentAPIContentListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -184,6 +191,9 @@ func (a *ContentAPIService) ContentListExecute(r ContentAPIContentListRequest) (
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

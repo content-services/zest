@@ -23,6 +23,7 @@ var _ MappedNullable = &UserResponse{}
 // UserResponse Serializer for User.
 type UserResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
+	Prn *string `json:"prn,omitempty"`
 	Id *int64 `json:"id,omitempty"`
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	Username string `json:"username"`
@@ -102,6 +103,38 @@ func (o *UserResponse) HasPulpHref() bool {
 // SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
 func (o *UserResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
+}
+
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *UserResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *UserResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *UserResponse) SetPrn(v string) {
+	o.Prn = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -429,6 +462,9 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -501,6 +537,7 @@ func (o *UserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "first_name")

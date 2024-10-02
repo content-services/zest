@@ -23,6 +23,8 @@ var _ MappedNullable = &UpstreamPulpResponse{}
 // UpstreamPulpResponse Serializer for a Server.
 type UpstreamPulpResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
+	// The Pulp Resource Name (PRN).
+	Prn *string `json:"prn,omitempty"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the most recent update of the remote.
@@ -43,8 +45,8 @@ type UpstreamPulpResponse struct {
 	TlsValidation *bool `json:"tls_validation,omitempty"`
 	// List of hidden (write only) fields
 	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
-	// One or more comma separated labels that will be used to filter distributions on the upstream Pulp. E.g. \"foo=bar,key=val\" or \"foo,key\"
-	PulpLabelSelect NullableString `json:"pulp_label_select,omitempty"`
+	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
+	QSelect NullableString `json:"q_select,omitempty"`
 	// Timestamp of the last replication that occurred. Equals to 'null' if no replication task has been executed.
 	LastReplication *time.Time `json:"last_replication,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -102,6 +104,38 @@ func (o *UpstreamPulpResponse) HasPulpHref() bool {
 // SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
 func (o *UpstreamPulpResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
+}
+
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *UpstreamPulpResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
+		var ret string
+		return ret
+	}
+	return *o.Prn
+}
+
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpstreamPulpResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
+		return nil, false
+	}
+	return o.Prn, true
+}
+
+// HasPrn returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *UpstreamPulpResponse) SetPrn(v string) {
+	o.Prn = &v
 }
 
 // GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
@@ -430,46 +464,46 @@ func (o *UpstreamPulpResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInn
 	o.HiddenFields = v
 }
 
-// GetPulpLabelSelect returns the PulpLabelSelect field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpstreamPulpResponse) GetPulpLabelSelect() string {
-	if o == nil || IsNil(o.PulpLabelSelect.Get()) {
+// GetQSelect returns the QSelect field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpstreamPulpResponse) GetQSelect() string {
+	if o == nil || IsNil(o.QSelect.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.PulpLabelSelect.Get()
+	return *o.QSelect.Get()
 }
 
-// GetPulpLabelSelectOk returns a tuple with the PulpLabelSelect field value if set, nil otherwise
+// GetQSelectOk returns a tuple with the QSelect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpstreamPulpResponse) GetPulpLabelSelectOk() (*string, bool) {
+func (o *UpstreamPulpResponse) GetQSelectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PulpLabelSelect.Get(), o.PulpLabelSelect.IsSet()
+	return o.QSelect.Get(), o.QSelect.IsSet()
 }
 
-// HasPulpLabelSelect returns a boolean if a field has been set.
-func (o *UpstreamPulpResponse) HasPulpLabelSelect() bool {
-	if o != nil && o.PulpLabelSelect.IsSet() {
+// HasQSelect returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasQSelect() bool {
+	if o != nil && o.QSelect.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLabelSelect gets a reference to the given NullableString and assigns it to the PulpLabelSelect field.
-func (o *UpstreamPulpResponse) SetPulpLabelSelect(v string) {
-	o.PulpLabelSelect.Set(&v)
+// SetQSelect gets a reference to the given NullableString and assigns it to the QSelect field.
+func (o *UpstreamPulpResponse) SetQSelect(v string) {
+	o.QSelect.Set(&v)
 }
-// SetPulpLabelSelectNil sets the value for PulpLabelSelect to be an explicit nil
-func (o *UpstreamPulpResponse) SetPulpLabelSelectNil() {
-	o.PulpLabelSelect.Set(nil)
+// SetQSelectNil sets the value for QSelect to be an explicit nil
+func (o *UpstreamPulpResponse) SetQSelectNil() {
+	o.QSelect.Set(nil)
 }
 
-// UnsetPulpLabelSelect ensures that no value is present for PulpLabelSelect, not even an explicit nil
-func (o *UpstreamPulpResponse) UnsetPulpLabelSelect() {
-	o.PulpLabelSelect.Unset()
+// UnsetQSelect ensures that no value is present for QSelect, not even an explicit nil
+func (o *UpstreamPulpResponse) UnsetQSelect() {
+	o.QSelect.Unset()
 }
 
 // GetLastReplication returns the LastReplication field value if set, zero value otherwise.
@@ -517,6 +551,9 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
+	}
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
@@ -541,8 +578,8 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HiddenFields) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
-	if o.PulpLabelSelect.IsSet() {
-		toSerialize["pulp_label_select"] = o.PulpLabelSelect.Get()
+	if o.QSelect.IsSet() {
+		toSerialize["q_select"] = o.QSelect.Get()
 	}
 	if !IsNil(o.LastReplication) {
 		toSerialize["last_replication"] = o.LastReplication
@@ -593,6 +630,7 @@ func (o *UpstreamPulpResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "name")
@@ -603,7 +641,7 @@ func (o *UpstreamPulpResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "client_cert")
 		delete(additionalProperties, "tls_validation")
 		delete(additionalProperties, "hidden_fields")
-		delete(additionalProperties, "pulp_label_select")
+		delete(additionalProperties, "q_select")
 		delete(additionalProperties, "last_replication")
 		o.AdditionalProperties = additionalProperties
 	}

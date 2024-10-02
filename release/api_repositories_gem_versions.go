@@ -135,7 +135,7 @@ type RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest struct {
 	ApiService *RepositoriesGemVersionsAPIService
 	gemGemRepositoryHref string
 	content *string
-	contentIn *string
+	contentIn *[]string
 	limit *int32
 	number *int32
 	numberGt *int32
@@ -145,6 +145,7 @@ type RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest struct {
 	numberRange *[]int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
@@ -157,14 +158,14 @@ type RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) Content(content string) RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest {
 	r.content = &content
 	return r
 }
 
-// Content Unit referenced by HREF
-func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) ContentIn(contentIn string) RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest {
+// Multiple values may be separated by commas.
+func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) ContentIn(contentIn []string) RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest {
 	r.contentIn = &contentIn
 	return r
 }
@@ -220,6 +221,12 @@ func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) Offset(
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) Ordering(ordering []string) RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest) PrnIn(prnIn []string) RepositoriesGemVersionsAPIRepositoriesGemGemVersionsListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -331,7 +338,7 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsListExecut
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}
 	if r.contentIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "csv")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -359,6 +366,9 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsListExecut
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpCreated != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")

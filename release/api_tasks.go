@@ -383,6 +383,7 @@ type TasksAPITasksListRequest struct {
 	offset *int32
 	ordering *[]string
 	parentTask *string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -522,6 +523,12 @@ func (r TasksAPITasksListRequest) Ordering(ordering []string) TasksAPITasksListR
 // Filter results where parent_task matches value
 func (r TasksAPITasksListRequest) ParentTask(parentTask string) TasksAPITasksListRequest {
 	r.parentTask = &parentTask
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksListRequest) PrnIn(prnIn []string) TasksAPITasksListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -758,6 +765,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.parentTask != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_task", r.parentTask, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

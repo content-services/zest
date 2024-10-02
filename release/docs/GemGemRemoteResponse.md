@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the most recent update of the remote. | [optional] [readonly] 
 **Name** | **string** | A unique name for this remote. | 
@@ -71,6 +72,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *GemGemRemoteResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *GemGemRemoteResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *GemGemRemoteResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *GemGemRemoteResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *GemGemRemoteResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
 
 ### GetPulpCreated
 

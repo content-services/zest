@@ -148,6 +148,7 @@ type ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest struct {
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -183,6 +184,12 @@ func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) Orpha
 }
 
 // Multiple values may be separated by commas.
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PrnIn(prnIn []string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpHrefIn(pulpHrefIn []string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -200,19 +207,19 @@ func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) Q(q s
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) RepositoryVersion(repositoryVersion string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -285,6 +292,9 @@ func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesListExec
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

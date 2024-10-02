@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **File** | **string** | The stored file. | 
@@ -59,6 +60,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *ArtifactResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *ArtifactResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *ArtifactResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *ArtifactResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *ArtifactResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
 
 ### GetPulpCreated
 

@@ -447,6 +447,7 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	orphanedFor *float32
 	packagetype *string
 	packagetypeIn *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -558,6 +559,12 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) PackagetypeIn(packag
 }
 
 // Multiple values may be separated by commas.
+func (r ContentPackagesAPIContentPythonPackagesListRequest) PrnIn(prnIn []string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentPackagesAPIContentPythonPackagesListRequest) PulpHrefIn(pulpHrefIn []string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -575,19 +582,19 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) Q(q string) ContentP
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -753,6 +760,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	}
 	if r.packagetypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "packagetype__in", r.packagetypeIn, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
@@ -1223,6 +1233,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	orphanedFor *float32
 	pkgId *string
 	pkgIdIn *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -1380,6 +1391,12 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) PkgIdIn(pkgIdIn []strin
 }
 
 // Multiple values may be separated by commas.
+func (r ContentPackagesAPIContentRpmPackagesListRequest) PrnIn(prnIn []string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentPackagesAPIContentRpmPackagesListRequest) PulpHrefIn(pulpHrefIn []string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -1427,19 +1444,19 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) ReleaseStartswith(relea
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -1592,6 +1609,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	}
 	if r.pkgIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pkgId__in", r.pkgIdIn, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

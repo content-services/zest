@@ -242,6 +242,7 @@ type GroupsRolesAPIGroupsRolesListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -281,6 +282,12 @@ func (r GroupsRolesAPIGroupsRolesListRequest) Offset(offset int32) GroupsRolesAP
 // Ordering* &#x60;role&#x60; - Role* &#x60;-role&#x60; - Role (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r GroupsRolesAPIGroupsRolesListRequest) Ordering(ordering []string) GroupsRolesAPIGroupsRolesListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r GroupsRolesAPIGroupsRolesListRequest) PrnIn(prnIn []string) GroupsRolesAPIGroupsRolesListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -398,6 +405,9 @@ func (a *GroupsRolesAPIService) GroupsRolesListExecute(r GroupsRolesAPIGroupsRol
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

@@ -50,6 +50,7 @@ type WorkersAPIWorkersListRequest struct {
 	offset *int32
 	online *bool
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -172,6 +173,12 @@ func (r WorkersAPIWorkersListRequest) Online(online bool) WorkersAPIWorkersListR
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;last_heartbeat&#x60; - Last heartbeat* &#x60;-last_heartbeat&#x60; - Last heartbeat (descending)* &#x60;versions&#x60; - Versions* &#x60;-versions&#x60; - Versions (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r WorkersAPIWorkersListRequest) Ordering(ordering []string) WorkersAPIWorkersListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r WorkersAPIWorkersListRequest) PrnIn(prnIn []string) WorkersAPIWorkersListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -308,6 +315,9 @@ func (a *WorkersAPIService) WorkersListExecute(r WorkersAPIWorkersListRequest) (
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

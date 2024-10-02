@@ -33,6 +33,7 @@ type ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest struc
 	offset *int32
 	ordering *[]string
 	orphanedFor *float32
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -68,6 +69,12 @@ func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) O
 }
 
 // Multiple values may be separated by commas.
+func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) PrnIn(prnIn []string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) PulpHrefIn(pulpHrefIn []string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
 	r.pulpHrefIn = &pulpHrefIn
 	return r
@@ -85,19 +92,19 @@ func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) Q
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) RepositoryVersion(repositoryVersion string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackageenvironmentsAPIContentRpmPackageenvironmentsListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -170,6 +177,9 @@ func (a *ContentPackageenvironmentsAPIService) ContentRpmPackageenvironmentsList
 	}
 	if r.orphanedFor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "orphaned_for", r.orphanedFor, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

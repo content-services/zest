@@ -33,6 +33,7 @@ type AccessPoliciesAPIAccessPoliciesListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -70,6 +71,12 @@ func (r AccessPoliciesAPIAccessPoliciesListRequest) Offset(offset int32) AccessP
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;creation_hooks&#x60; - Creation hooks* &#x60;-creation_hooks&#x60; - Creation hooks (descending)* &#x60;statements&#x60; - Statements* &#x60;-statements&#x60; - Statements (descending)* &#x60;viewset_name&#x60; - Viewset name* &#x60;-viewset_name&#x60; - Viewset name (descending)* &#x60;customized&#x60; - Customized* &#x60;-customized&#x60; - Customized (descending)* &#x60;queryset_scoping&#x60; - Queryset scoping* &#x60;-queryset_scoping&#x60; - Queryset scoping (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r AccessPoliciesAPIAccessPoliciesListRequest) Ordering(ordering []string) AccessPoliciesAPIAccessPoliciesListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r AccessPoliciesAPIAccessPoliciesListRequest) PrnIn(prnIn []string) AccessPoliciesAPIAccessPoliciesListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -212,6 +219,9 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

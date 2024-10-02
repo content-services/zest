@@ -354,10 +354,11 @@ type PublicationsPypiAPIPublicationsPythonPypiListRequest struct {
 	ApiService *PublicationsPypiAPIService
 	pulpDomain string
 	content *string
-	contentIn *string
+	contentIn *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
@@ -373,14 +374,14 @@ type PublicationsPypiAPIPublicationsPythonPypiListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Content(content string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.content = &content
 	return r
 }
 
-// Content Unit referenced by HREF
-func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) ContentIn(contentIn string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
+// Multiple values may be separated by commas.
+func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) ContentIn(contentIn []string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.contentIn = &contentIn
 	return r
 }
@@ -400,6 +401,12 @@ func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Offset(offset int3
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Ordering(ordering []string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) PrnIn(prnIn []string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -457,13 +464,13 @@ func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Q(q string) Public
 	return r
 }
 
-// Repository referenced by HREF
+// Repository referenced by HREF/PRN
 func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Repository(repository string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Repository Version referenced by HREF
+// Repository Version referenced by HREF/PRN
 func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) RepositoryVersion(repositoryVersion string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -529,7 +536,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListExecute(r Publica
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}
 	if r.contentIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "content__in", r.contentIn, "form", "csv")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -539,6 +546,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListExecute(r Publica
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpCreated != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")

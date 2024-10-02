@@ -257,6 +257,7 @@ type UsersAPIUsersListRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -386,6 +387,12 @@ func (r UsersAPIUsersListRequest) Offset(offset int32) UsersAPIUsersListRequest 
 // Ordering* &#x60;id&#x60; - Id* &#x60;-id&#x60; - Id (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;last_login&#x60; - Last login* &#x60;-last_login&#x60; - Last login (descending)* &#x60;is_superuser&#x60; - Is superuser* &#x60;-is_superuser&#x60; - Is superuser (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;first_name&#x60; - First name* &#x60;-first_name&#x60; - First name (descending)* &#x60;last_name&#x60; - Last name* &#x60;-last_name&#x60; - Last name (descending)* &#x60;email&#x60; - Email* &#x60;-email&#x60; - Email (descending)* &#x60;is_staff&#x60; - Is staff* &#x60;-is_staff&#x60; - Is staff (descending)* &#x60;is_active&#x60; - Is active* &#x60;-is_active&#x60; - Is active (descending)* &#x60;date_joined&#x60; - Date joined* &#x60;-date_joined&#x60; - Date joined (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r UsersAPIUsersListRequest) Ordering(ordering []string) UsersAPIUsersListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r UsersAPIUsersListRequest) PrnIn(prnIn []string) UsersAPIUsersListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -552,6 +559,9 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")

@@ -376,6 +376,7 @@ type RepositoriesGemAPIRepositoriesGemGemListRequest struct {
 	nameStartswith *string
 	offset *int32
 	ordering *[]string
+	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	pulpLabelSelect *string
@@ -394,7 +395,7 @@ type RepositoriesGemAPIRepositoriesGemGemListRequest struct {
 	excludeFields *[]string
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesGemAPIRepositoriesGemGemListRequest) LatestWithContent(latestWithContent string) RepositoriesGemAPIRepositoriesGemGemListRequest {
 	r.latestWithContent = &latestWithContent
 	return r
@@ -469,6 +470,12 @@ func (r RepositoriesGemAPIRepositoriesGemGemListRequest) Offset(offset int32) Re
 // Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesGemAPIRepositoriesGemGemListRequest) Ordering(ordering []string) RepositoriesGemAPIRepositoriesGemGemListRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r RepositoriesGemAPIRepositoriesGemGemListRequest) PrnIn(prnIn []string) RepositoriesGemAPIRepositoriesGemGemListRequest {
+	r.prnIn = &prnIn
 	return r
 }
 
@@ -550,7 +557,7 @@ func (r RepositoriesGemAPIRepositoriesGemGemListRequest) RetainRepoVersionsRange
 	return r
 }
 
-// Content Unit referenced by HREF
+// Content Unit referenced by HREF/PRN
 func (r RepositoriesGemAPIRepositoriesGemGemListRequest) WithContent(withContent string) RepositoriesGemAPIRepositoriesGemGemListRequest {
 	r.withContent = &withContent
 	return r
@@ -650,6 +657,9 @@ func (a *RepositoriesGemAPIService) RepositoriesGemGemListExecute(r Repositories
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
