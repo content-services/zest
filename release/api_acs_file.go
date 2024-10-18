@@ -159,7 +159,7 @@ func (r AcsFileAPIAcsFileFileCreateRequest) Execute() (*FileFileAlternateContent
 /*
 AcsFileFileCreate Create a file alternate content source
 
-Alternate Content Source ViewSet for FileACS support is provided as a tech preview in pulp_file.
+Alternate Content Source ViewSet for File
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -498,7 +498,7 @@ func (r AcsFileAPIAcsFileFileListRequest) Execute() (*PaginatedfileFileAlternate
 /*
 AcsFileFileList List file alternate content sources
 
-Alternate Content Source ViewSet for FileACS support is provided as a tech preview in pulp_file.
+Alternate Content Source ViewSet for File
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -1081,7 +1081,7 @@ func (r AcsFileAPIAcsFileFileReadRequest) Execute() (*FileFileAlternateContentSo
 /*
 AcsFileFileRead Inspect a file alternate content source
 
-Alternate Content Source ViewSet for FileACS support is provided as a tech preview in pulp_file.
+Alternate Content Source ViewSet for File
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFileAlternateContentSourceHref

@@ -82,6 +82,16 @@ type APIClient struct {
 
 	ContentObjectsAPI *ContentObjectsAPIService
 
+	ContentOpenpgpPublickeyAPI *ContentOpenpgpPublickeyAPIService
+
+	ContentOpenpgpPublicsubkeyAPI *ContentOpenpgpPublicsubkeyAPIService
+
+	ContentOpenpgpSignatureAPI *ContentOpenpgpSignatureAPIService
+
+	ContentOpenpgpUserattributeAPI *ContentOpenpgpUserattributeAPIService
+
+	ContentOpenpgpUseridAPI *ContentOpenpgpUseridAPIService
+
 	ContentPackagecategoriesAPI *ContentPackagecategoriesAPIService
 
 	ContentPackageenvironmentsAPI *ContentPackageenvironmentsAPIService
@@ -119,6 +129,8 @@ type APIClient struct {
 	DistributionsFileAPI *DistributionsFileAPIService
 
 	DistributionsGemAPI *DistributionsGemAPIService
+
+	DistributionsOpenpgpAPI *DistributionsOpenpgpAPIService
 
 	DistributionsOstreeAPI *DistributionsOstreeAPIService
 
@@ -202,6 +214,8 @@ type APIClient struct {
 
 	RepositoriesGemVersionsAPI *RepositoriesGemVersionsAPIService
 
+	RepositoriesOpenpgpKeyringAPI *RepositoriesOpenpgpKeyringAPIService
+
 	RepositoriesOstreeAPI *RepositoriesOstreeAPIService
 
 	RepositoriesOstreeVersionsAPI *RepositoriesOstreeVersionsAPIService
@@ -279,6 +293,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentModulemdObsoletesAPI = (*ContentModulemdObsoletesAPIService)(&c.common)
 	c.ContentModulemdsAPI = (*ContentModulemdsAPIService)(&c.common)
 	c.ContentObjectsAPI = (*ContentObjectsAPIService)(&c.common)
+	c.ContentOpenpgpPublickeyAPI = (*ContentOpenpgpPublickeyAPIService)(&c.common)
+	c.ContentOpenpgpPublicsubkeyAPI = (*ContentOpenpgpPublicsubkeyAPIService)(&c.common)
+	c.ContentOpenpgpSignatureAPI = (*ContentOpenpgpSignatureAPIService)(&c.common)
+	c.ContentOpenpgpUserattributeAPI = (*ContentOpenpgpUserattributeAPIService)(&c.common)
+	c.ContentOpenpgpUseridAPI = (*ContentOpenpgpUseridAPIService)(&c.common)
 	c.ContentPackagecategoriesAPI = (*ContentPackagecategoriesAPIService)(&c.common)
 	c.ContentPackageenvironmentsAPI = (*ContentPackageenvironmentsAPIService)(&c.common)
 	c.ContentPackagegroupsAPI = (*ContentPackagegroupsAPIService)(&c.common)
@@ -298,6 +317,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DistributionsArtifactsAPI = (*DistributionsArtifactsAPIService)(&c.common)
 	c.DistributionsFileAPI = (*DistributionsFileAPIService)(&c.common)
 	c.DistributionsGemAPI = (*DistributionsGemAPIService)(&c.common)
+	c.DistributionsOpenpgpAPI = (*DistributionsOpenpgpAPIService)(&c.common)
 	c.DistributionsOstreeAPI = (*DistributionsOstreeAPIService)(&c.common)
 	c.DistributionsPypiAPI = (*DistributionsPypiAPIService)(&c.common)
 	c.DistributionsRpmAPI = (*DistributionsRpmAPIService)(&c.common)
@@ -339,6 +359,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RepositoriesFileVersionsAPI = (*RepositoriesFileVersionsAPIService)(&c.common)
 	c.RepositoriesGemAPI = (*RepositoriesGemAPIService)(&c.common)
 	c.RepositoriesGemVersionsAPI = (*RepositoriesGemVersionsAPIService)(&c.common)
+	c.RepositoriesOpenpgpKeyringAPI = (*RepositoriesOpenpgpKeyringAPIService)(&c.common)
 	c.RepositoriesOstreeAPI = (*RepositoriesOstreeAPIService)(&c.common)
 	c.RepositoriesOstreeVersionsAPI = (*RepositoriesOstreeVersionsAPIService)(&c.common)
 	c.RepositoriesPythonAPI = (*RepositoriesPythonAPIService)(&c.common)

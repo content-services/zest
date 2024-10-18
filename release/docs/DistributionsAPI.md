@@ -50,8 +50,8 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `core.artifact` - core.artifact* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.artifact` - core.artifact* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `core.artifact` - core.artifact* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.artifact` - core.artifact* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
 	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
@@ -107,8 +107,8 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **pulpType** | **string** | Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
+ **pulpType** | **string** | Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Filter results where repository matches value | 
  **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 

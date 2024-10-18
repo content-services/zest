@@ -13,10 +13,10 @@ info:
   x-logo:
     url: https://pulp.plan.io/attachments/download/517478/pulp_logo_word_rectangle.svg
   x-pulp-app-versions:
-    core: 3.65.0
-    certguard: 3.65.0
-    file: 3.65.0
+    core: 3.66.0
     rpm: 3.27.1
+    certguard: 3.66.0
+    file: 3.66.0
     service: 0.1.0
     ostree: 2.4.3
     python: 3.12.3
@@ -27,8 +27,7 @@ servers:
 paths:
   /api/pulp/{pulp_domain}/api/v3/access_policies/:
     get:
-      description: "ViewSet for AccessPolicy.NOTE: This API endpoint is in \"tech\
-        \ preview\" and subject to change"
+      description: ViewSet for AccessPolicy.
       operationId: access_policies_list
       parameters:
       - description: Filter results where customized matches value
@@ -250,8 +249,7 @@ paths:
       - Access_Policies
   '{access_policy_href}':
     get:
-      description: "ViewSet for AccessPolicy.NOTE: This API endpoint is in \"tech\
-        \ preview\" and subject to change"
+      description: ViewSet for AccessPolicy.
       operationId: access_policies_read
       parameters:
       - explode: false
@@ -295,8 +293,7 @@ paths:
       tags:
       - Access_Policies
     patch:
-      description: "ViewSet for AccessPolicy.NOTE: This API endpoint is in \"tech\
-        \ preview\" and subject to change"
+      description: ViewSet for AccessPolicy.
       operationId: access_policies_partial_update
       parameters:
       - explode: false
@@ -332,8 +329,7 @@ paths:
       tags:
       - Access_Policies
     put:
-      description: "ViewSet for AccessPolicy.NOTE: This API endpoint is in \"tech\
-        \ preview\" and subject to change"
+      description: ViewSet for AccessPolicy.
       operationId: access_policies_update
       parameters:
       - explode: false
@@ -394,8 +390,7 @@ paths:
       - Access_Policies
   /api/pulp/{pulp_domain}/api/v3/acs/file/file/:
     get:
-      description: Alternate Content Source ViewSet for FileACS support is provided
-        as a tech preview in pulp_file.
+      description: Alternate Content Source ViewSet for File
       operationId: acs_file_file_list
       parameters:
       - description: Number of results to return per page.
@@ -601,8 +596,7 @@ paths:
       tags:
       - "Acs: File"
     post:
-      description: Alternate Content Source ViewSet for FileACS support is provided
-        as a tech preview in pulp_file.
+      description: Alternate Content Source ViewSet for File
       operationId: acs_file_file_create
       parameters:
       - explode: false
@@ -664,8 +658,7 @@ paths:
       tags:
       - "Acs: File"
     get:
-      description: Alternate Content Source ViewSet for FileACS support is provided
-        as a tech preview in pulp_file.
+      description: Alternate Content Source ViewSet for File
       operationId: acs_file_file_read
       parameters:
       - explode: false
@@ -1983,22 +1976,30 @@ paths:
           type: array
         style: form
       - description: Pulp type* `core.publishedmetadata` - core.publishedmetadata*
-          `file.file` - file.file* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
+          `core.openpgp_publickey` - core.openpgp_publickey* `core.openpgp_publicsubkey`
+          - core.openpgp_publicsubkey* `core.openpgp_userid` - core.openpgp_userid*
+          `core.openpgp_userattribute` - core.openpgp_userattribute* `core.openpgp_signature`
+          - core.openpgp_signature* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
           - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
           - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
           `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
           - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
           `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `ostree.object` - ostree.object* `ostree.commit`
-          - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
-          `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `python.python`
-          - python.python* `gem.gem` - gem.gem
+          - rpm.modulemd_obsolete* `file.file` - file.file* `ostree.object` - ostree.object*
+          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
+          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
+          `python.python` - python.python* `gem.gem` - gem.gem
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - core.openpgp_publickey
+          - core.openpgp_publicsubkey
+          - core.openpgp_signature
+          - core.openpgp_userattribute
+          - core.openpgp_userid
           - core.publishedmetadata
           - file.file
           - gem.gem
@@ -2023,16 +2024,20 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.publishedmetadata`
-          - core.publishedmetadata* `file.file` - file.file* `rpm.advisory` - rpm.advisory*
+          - core.publishedmetadata* `core.openpgp_publickey` - core.openpgp_publickey*
+          `core.openpgp_publicsubkey` - core.openpgp_publicsubkey* `core.openpgp_userid`
+          - core.openpgp_userid* `core.openpgp_userattribute` - core.openpgp_userattribute*
+          `core.openpgp_signature` - core.openpgp_signature* `rpm.advisory` - rpm.advisory*
           `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory*
           `rpm.packageenvironment` - rpm.packageenvironment* `rpm.packagelangpacks`
           - rpm.packagelangpacks* `rpm.repo_metadata_file` - rpm.repo_metadata_file*
           `rpm.distribution_tree` - rpm.distribution_tree* `rpm.package` - rpm.package*
           `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults` - rpm.modulemd_defaults*
-          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete* `ostree.object` - ostree.object*
-          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
-          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
-          `python.python` - python.python* `gem.gem` - gem.gem
+          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete* `file.file` - file.file*
+          `ostree.object` - ostree.object* `ostree.commit` - ostree.commit* `ostree.refs`
+          - ostree.refs* `ostree.content` - ostree.content* `ostree.config` - ostree.config*
+          `ostree.summary` - ostree.summary* `python.python` - python.python* `gem.gem`
+          - gem.gem
         explode: false
         in: query
         name: pulp_type__in
@@ -2040,6 +2045,11 @@ paths:
         schema:
           items:
             enum:
+            - core.openpgp_publickey
+            - core.openpgp_publicsubkey
+            - core.openpgp_signature
+            - core.openpgp_userattribute
+            - core.openpgp_userid
             - core.publishedmetadata
             - file.file
             - gem.gem
@@ -2130,6 +2140,1254 @@ paths:
       summary: List content
       tags:
       - Content
+  /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_publickey/:
+    get:
+      description: A ViewSet for uploads that do not require to store an uploaded
+        content as an Artifact.
+      operationId: content_core_openpgp_publickey_list
+      parameters:
+      - description: Filter results where fingerprint matches value
+        explode: true
+        in: query
+        name: fingerprint
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `raw_data` - Raw data* `-raw_data`
+          - Raw data (descending)* `fingerprint` - Fingerprint* `-fingerprint` - Fingerprint
+          (descending)* `created` - Created* `-created` - Created (descending)* `pk`
+          - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -created
+            - -fingerprint
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -raw_data
+            - -timestamp_of_interest
+            - -upstream_id
+            - created
+            - fingerprint
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - raw_data
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPPublicKeyResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp public keys
+      tags:
+      - "Content: Openpgp_Publickey"
+    post:
+      description: "Trigger an asynchronous task to create content,optionally create\
+        \ new repository version."
+      operationId: content_core_openpgp_publickey_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OpenPGPPublicKey'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenPGPPublicKey'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an open pgp public key
+      tags:
+      - "Content: Openpgp_Publickey"
+  '{open_p_g_p_public_key_href}':
+    get:
+      description: A ViewSet for uploads that do not require to store an uploaded
+        content as an Artifact.
+      operationId: content_core_openpgp_publickey_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_public_key_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPPublicKeyResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp public key
+      tags:
+      - "Content: Openpgp_Publickey"
+  /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_publicsubkey/:
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_publicsubkey_list
+      parameters:
+      - description: Filter results where fingerprint matches value
+        explode: true
+        in: query
+        name: fingerprint
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `raw_data` - Raw data* `-raw_data`
+          - Raw data (descending)* `fingerprint` - Fingerprint* `-fingerprint` - Fingerprint
+          (descending)* `created` - Created* `-created` - Created (descending)* `pk`
+          - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -created
+            - -fingerprint
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -raw_data
+            - -timestamp_of_interest
+            - -upstream_id
+            - created
+            - fingerprint
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - raw_data
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPPublicSubkeyResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp public subkeys
+      tags:
+      - "Content: Openpgp_Publicsubkey"
+  '{open_p_g_p_public_subkey_href}':
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_publicsubkey_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_public_subkey_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPPublicSubkeyResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp public subkey
+      tags:
+      - "Content: Openpgp_Publicsubkey"
+  /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_signature/:
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_signature_list
+      parameters:
+      - description: Filter results where issuer matches value
+        explode: true
+        in: query
+        name: issuer
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `raw_data` - Raw data* `-raw_data`
+          - Raw data (descending)* `sha256` - Sha256* `-sha256` - Sha256 (descending)*
+          `signature_type` - Signature type* `-signature_type` - Signature type (descending)*
+          `created` - Created* `-created` - Created (descending)* `expiration_time`
+          - Expiration time* `-expiration_time` - Expiration time (descending)* `key_expiration_time`
+          - Key expiration time* `-key_expiration_time` - Key expiration time (descending)*
+          `issuer` - Issuer* `-issuer` - Issuer (descending)* `signers_user_id` -
+          Signers user id* `-signers_user_id` - Signers user id (descending)* `pk`
+          - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -created
+            - -expiration_time
+            - -issuer
+            - -key_expiration_time
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -raw_data
+            - -sha256
+            - -signature_type
+            - -signers_user_id
+            - -timestamp_of_interest
+            - -upstream_id
+            - created
+            - expiration_time
+            - issuer
+            - key_expiration_time
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - raw_data
+            - sha256
+            - signature_type
+            - signers_user_id
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPSignatureResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp signatures
+      tags:
+      - "Content: Openpgp_Signature"
+  '{open_p_g_p_signature_href}':
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_signature_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_signature_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPSignatureResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp signature
+      tags:
+      - "Content: Openpgp_Signature"
+  /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_userattribute/:
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_userattribute_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `raw_data` - Raw data* `-raw_data`
+          - Raw data (descending)* `sha256` - Sha256* `-sha256` - Sha256 (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -raw_data
+            - -sha256
+            - -timestamp_of_interest
+            - -upstream_id
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - raw_data
+            - sha256
+            - timestamp_of_interest
+            - upstream_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where sha256 matches value
+        explode: true
+        in: query
+        name: sha256
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPUserAttributeResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp user attributes
+      tags:
+      - "Content: Openpgp_Userattribute"
+  '{open_p_g_p_user_attribute_href}':
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_userattribute_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_user_attribute_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPUserAttributeResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp user attribute
+      tags:
+      - "Content: Openpgp_Userattribute"
+  /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_userid/:
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_userid_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `raw_data` - Raw data* `-raw_data`
+          - Raw data (descending)* `user_id` - User id* `-user_id` - User id (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - -raw_data
+            - -timestamp_of_interest
+            - -upstream_id
+            - -user_id
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            - raw_data
+            - timestamp_of_interest
+            - upstream_id
+            - user_id
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id matches value
+        explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id contains value
+        explode: true
+        in: query
+        name: user_id__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id contains value
+        explode: true
+        in: query
+        name: user_id__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id matches value
+        explode: true
+        in: query
+        name: user_id__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: user_id__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where user_id matches regex value
+        explode: true
+        in: query
+        name: user_id__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id starts with value
+        explode: true
+        in: query
+        name: user_id__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id matches regex value
+        explode: true
+        in: query
+        name: user_id__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where user_id starts with value
+        explode: true
+        in: query
+        name: user_id__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPUserIDResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp user ids
+      tags:
+      - "Content: Openpgp_Userid"
+  '{open_p_g_p_user_i_d_href}':
+    get:
+      description: Content viewset that supports only GET by default.
+      operationId: content_core_openpgp_userid_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_user_i_d_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPUserIDResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp user id
+      tags:
+      - "Content: Openpgp_Userid"
   /api/pulp/{pulp_domain}/api/v3/content/file/files/:
     get:
       description: "FileContent represents a single file and its metadata, which can\
@@ -11087,9 +12345,9 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `core.artifact` - core.artifact* `file.file` - file.file*
-          `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree* `python.python` -
-          python.python* `gem.gem` - gem.gem
+      - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
+          core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree`
+          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
         explode: true
         in: query
         name: pulp_type
@@ -11097,6 +12355,7 @@ paths:
         schema:
           enum:
           - core.artifact
+          - core.openpgp
           - file.file
           - gem.gem
           - ostree.ostree
@@ -11105,8 +12364,9 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree`
-          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
+          - core.artifact* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `file.file`
+          - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python*
+          `gem.gem` - gem.gem
         explode: false
         in: query
         name: pulp_type__in
@@ -11115,6 +12375,7 @@ paths:
           items:
             enum:
             - core.artifact
+            - core.openpgp
             - file.file
             - gem.gem
             - ostree.ostree
@@ -11523,6 +12784,425 @@ paths:
       summary: Inspect an artifact distribution
       tags:
       - "Distributions: Artifacts"
+  /api/pulp/{pulp_domain}/api/v3/distributions/core/openpgp/:
+    get:
+      description: Provides read and list methods and also provides asynchronous CUD
+        methods to dispatch taskswith reservation that lock all Distributions preventing
+        race conditions during base_pathchecking.
+      operationId: distributions_core_openpgp_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `base_path` -
+          Base path* `-base_path` - Base path (descending)* `hidden` - Hidden* `-hidden`
+          - Hidden (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository_version matches value
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp distributions
+      tags:
+      - "Distributions: Openpgp"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_core_openpgp_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an open pgp distribution
+      tags:
+      - "Distributions: Openpgp"
+  '{open_p_g_p_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_core_openpgp_delete
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an open pgp distribution
+      tags:
+      - "Distributions: Openpgp"
+    get:
+      description: Provides read and list methods and also provides asynchronous CUD
+        methods to dispatch taskswith reservation that lock all Distributions preventing
+        race conditions during base_pathchecking.
+      operationId: distributions_core_openpgp_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp distribution
+      tags:
+      - "Distributions: Openpgp"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_core_openpgp_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an open pgp distribution
+      tags:
+      - "Distributions: Openpgp"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_core_openpgp_update
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OpenPGPDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an open pgp distribution
+      tags:
+      - "Distributions: Openpgp"
+  '{open_p_g_p_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_core_openpgp_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Openpgp"
+  '{open_p_g_p_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_core_openpgp_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Openpgp"
   /api/pulp/{pulp_domain}/api/v3/distributions/file/file/:
     get:
       description: "FileDistributions host FilePublications which makes the metadata\
@@ -18304,7 +19984,7 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `python.python`
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python`
           - python.python* `gem.gem` - gem.gem
         explode: true
         in: query
@@ -18318,8 +19998,8 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `file.file` - file.file*
-          `rpm.rpm` - rpm.rpm* `python.python` - python.python* `gem.gem` - gem.gem
+      - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
+          `file.file` - file.file* `python.python` - python.python* `gem.gem` - gem.gem
         explode: false
         in: query
         name: pulp_type__in
@@ -20673,8 +22353,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln`
-          - rpm.uln* `ostree.ostree` - ostree.ostree* `python.python` - python.python*
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file`
+          - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python*
           `gem.gem` - gem.gem
         explode: true
         in: query
@@ -20690,8 +22370,8 @@ paths:
           - rpm.uln
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `file.file` - file.file*
-          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `ostree.ostree` - ostree.ostree*
+      - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
+          `rpm.uln` - rpm.uln* `file.file` - file.file* `ostree.ostree` - ostree.ostree*
           `python.python` - python.python* `gem.gem` - gem.gem
         explode: false
         in: query
@@ -25504,14 +27184,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree`
-          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
+      - description: Pulp type* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm*
+          `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python`
+          - python.python* `gem.gem` - gem.gem
         explode: true
         in: query
         name: pulp_type
         required: false
         schema:
           enum:
+          - core.openpgp
           - file.file
           - gem.gem
           - ostree.ostree
@@ -25519,9 +27201,9 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `file.file` - file.file*
-          `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree* `python.python` -
-          python.python* `gem.gem` - gem.gem
+      - description: Multiple values may be separated by commas.* `core.openpgp` -
+          core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree`
+          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
         explode: false
         in: query
         name: pulp_type__in
@@ -25529,6 +27211,7 @@ paths:
         schema:
           items:
             enum:
+            - core.openpgp
             - file.file
             - gem.gem
             - ostree.ostree
@@ -25665,6 +27348,780 @@ paths:
       summary: List repositories
       tags:
       - Repositories
+  /api/pulp/{pulp_domain}/api/v3/repositories/core/openpgp_keyring/:
+    get:
+      description: A ViewSet for an ordinary repository.
+      operationId: repositories_core_openpgp_keyring_list
+      parameters:
+      - description: Content Unit referenced by HREF/PRN
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description`
+          - Description* `-description` - Description (descending)* `next_version`
+          - Next version* `-next_version` - Next version (descending)* `retain_repo_versions`
+          - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)*
+          `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF/PRN
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOpenPGPKeyringResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List open pgp keyrings
+      tags:
+      - "Repositories: Openpgp_Keyring"
+    post:
+      description: A ViewSet for an ordinary repository.
+      operationId: repositories_core_openpgp_keyring_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPKeyringResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an open pgp keyring
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_core_openpgp_keyring_delete
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an open pgp keyring
+      tags:
+      - "Repositories: Openpgp_Keyring"
+    get:
+      description: A ViewSet for an ordinary repository.
+      operationId: repositories_core_openpgp_keyring_read
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenPGPKeyringResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an open pgp keyring
+      tags:
+      - "Repositories: Openpgp_Keyring"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_core_openpgp_keyring_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPKeyring'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPKeyring'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOpenPGPKeyring'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an open pgp keyring
+      tags:
+      - "Repositories: Openpgp_Keyring"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_core_openpgp_keyring_update
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OpenPGPKeyring'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an open pgp keyring
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: repositories_core_openpgp_keyring_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: repositories_core_openpgp_keyring_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}modify/':
+    post:
+      description: Trigger an asynchronous task to create a new repository version.
+      operationId: repositories_core_openpgp_keyring_modify
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddRemoveContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Modify Repository Content
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: repositories_core_openpgp_keyring_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: repositories_core_openpgp_keyring_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_core_openpgp_keyring_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Openpgp_Keyring"
+  '{open_p_g_p_keyring_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_core_openpgp_keyring_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: open_p_g_p_keyring_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: Openpgp_Keyring"
   /api/pulp/{pulp_domain}/api/v3/repositories/file/file/:
     get:
       description: "FileRepository represents a single file repository, to which content\
@@ -33298,7 +35755,8 @@ paths:
           `-enc_kwargs` - Enc kwargs (descending)* `reserved_resources_record` - Reserved
           resources record* `-reserved_resources_record` - Reserved resources record
           (descending)* `versions` - Versions* `-versions` - Versions (descending)*
-          `pk` - Pk* `-pk` - Pk (descending)
+          `immediate` - Immediate* `-immediate` - Immediate (descending)* `deferred`
+          - Deferred* `-deferred` - Deferred (descending)* `pk` - Pk* `-pk` - Pk (descending)
         explode: false
         in: query
         name: ordering
@@ -33306,10 +35764,12 @@ paths:
         schema:
           items:
             enum:
+            - -deferred
             - -enc_args
             - -enc_kwargs
             - -error
             - -finished_at
+            - -immediate
             - -logging_cid
             - -name
             - -pk
@@ -33321,10 +35781,12 @@ paths:
             - -state
             - -unblocked_at
             - -versions
+            - deferred
             - enc_args
             - enc_kwargs
             - error
             - finished_at
+            - immediate
             - logging_cid
             - name
             - pk
@@ -37209,23 +39671,17 @@ components:
       example:
         pulp_labels:
           key: pulp_labels
-        pulp_href: https://openapi-generator.tech
         hidden: false
-        no_content_change_since: no_content_change_since
-        base_url: base_url
+        pulp_href: https://openapi-generator.tech
         name: name
+        base_url: base_url
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
@@ -37233,43 +39689,49 @@ components:
           format: date-time
           readOnly: true
           type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
         base_url:
           description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
       required:
@@ -38579,6 +41041,231 @@ components:
       required:
       - permissions
       type: object
+    NestedOpenPGPPublicSubkey:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      properties:
+        fingerprint:
+          maxLength: 64
+          minLength: 1
+          type: string
+        created:
+          format: date-time
+          type: string
+      required:
+      - created
+      - fingerprint
+      type: object
+    NestedOpenPGPPublicSubkeyResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        created: 2000-01-23T04:56:07.000+00:00
+        fingerprint: fingerprint
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        fingerprint:
+          maxLength: 64
+          type: string
+        created:
+          format: date-time
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+      required:
+      - created
+      - fingerprint
+      type: object
+    NestedOpenPGPSignature:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      properties:
+        issuer:
+          maxLength: 16
+          minLength: 1
+          nullable: true
+          type: string
+        created:
+          format: date-time
+          type: string
+        expiration_time:
+          nullable: true
+          type: string
+        signers_user_id:
+          minLength: 1
+          nullable: true
+          type: string
+        key_expiration_time:
+          nullable: true
+          type: string
+        expired:
+          type: boolean
+      required:
+      - created
+      - expired
+      type: object
+    NestedOpenPGPSignatureResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        expired: true
+        signers_user_id: signers_user_id
+        created: 2000-01-23T04:56:07.000+00:00
+        expiration_time: expiration_time
+        key_expiration_time: key_expiration_time
+        key_expired: key_expired
+        issuer: issuer
+      properties:
+        issuer:
+          maxLength: 16
+          nullable: true
+          type: string
+        created:
+          format: date-time
+          type: string
+        expiration_time:
+          nullable: true
+          type: string
+        signers_user_id:
+          nullable: true
+          type: string
+        key_expiration_time:
+          nullable: true
+          type: string
+        expired:
+          type: boolean
+        key_expired:
+          readOnly: true
+          type: string
+      required:
+      - created
+      - expired
+      type: object
+    NestedOpenPGPUserAttribute:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      properties:
+        sha256:
+          maxLength: 128
+          minLength: 1
+          type: string
+      required:
+      - sha256
+      type: object
+    NestedOpenPGPUserAttributeResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        sha256: sha256
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        sha256:
+          maxLength: 128
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+      required:
+      - sha256
+      type: object
+    NestedOpenPGPUserID:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      properties:
+        user_id:
+          minLength: 1
+          type: string
+      required:
+      - user_id
+      type: object
+    NestedOpenPGPUserIDResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        user_id: user_id
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        user_id:
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+      required:
+      - user_id
+      type: object
     NestedRole:
       description: Serializer to add/remove object roles to/from users/groups.This
         is used in conjunction with ``pulpcore.app.viewsets.base.RolesMixin`` and
@@ -38666,6 +41353,733 @@ components:
           type: array
       required:
       - roles
+      type: object
+    OpenPGPDistribution:
+      description: "The Serializer for the Distribution model.The serializer deliberately\
+        \ omits the `publication` and `repository_version` field due toplugins typically\
+        \ requiring one or the other but not both.To include the ``publication`` field,\
+        \ it is recommended plugins define the field::  publication = DetailRelatedField(\
+        \      required=False,      help_text=_(\"Publication to be served\"),   \
+        \   view_name_pattern=r\"publications(-.*/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),\
+        \      allow_null=True,  )To include the ``repository_version`` field, it\
+        \ is recommended plugins define the field::  repository_version = RepositoryVersionRelatedField(\
+        \      required=False, help_text=_(\"RepositoryVersion to be served\"), allow_null=True\
+        \  )Additionally, the serializer omits the ``remote`` field, which is used\
+        \ for pull-through cachingfeature and only by plugins which use publications.\
+        \ Plugins implementing a pull-through cachingshould define the field in their\
+        \ derived serializer class like this::  remote = DetailRelatedField(     \
+        \ required=False,      help_text=_('Remote that can be used to fetch content\
+        \ when using pull-through caching.'),      queryset=models.Remote.objects.all(),\
+        \      allow_null=True  )"
+      example:
+        hidden: false
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        base_path: base_path
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    OpenPGPDistributionResponse:
+      description: "The Serializer for the Distribution model.The serializer deliberately\
+        \ omits the `publication` and `repository_version` field due toplugins typically\
+        \ requiring one or the other but not both.To include the ``publication`` field,\
+        \ it is recommended plugins define the field::  publication = DetailRelatedField(\
+        \      required=False,      help_text=_(\"Publication to be served\"),   \
+        \   view_name_pattern=r\"publications(-.*/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),\
+        \      allow_null=True,  )To include the ``repository_version`` field, it\
+        \ is recommended plugins define the field::  repository_version = RepositoryVersionRelatedField(\
+        \      required=False, help_text=_(\"RepositoryVersion to be served\"), allow_null=True\
+        \  )Additionally, the serializer omits the ``remote`` field, which is used\
+        \ for pull-through cachingfeature and only by plugins which use publications.\
+        \ Plugins implementing a pull-through cachingshould define the field in their\
+        \ derived serializer class like this::  remote = DetailRelatedField(     \
+        \ required=False,      help_text=_('Remote that can be used to fetch content\
+        \ when using pull-through caching.'),      queryset=models.Remote.objects.all(),\
+        \      allow_null=True  )"
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        base_url: base_url
+        no_content_change_since: no_content_change_since
+        base_path: base_path
+        repository_version: https://openapi-generator.tech
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        prn: prn
+        content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    OpenPGPKeyring:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        description: description
+        retain_repo_versions: 1
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    OpenPGPKeyringResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+        prn: prn
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    OpenPGPPublicKey:
+      description: A serializer for content types with no Artifact.
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        file:
+          description: An uploaded file that may be turned into the content unit.
+          format: binary
+          type: string
+          writeOnly: true
+        upload:
+          description: An uncommitted upload that may be turned into the content unit.
+          format: uri
+          type: string
+          writeOnly: true
+        file_url:
+          description: A url that Pulp can download and turn into the content unit.
+          minLength: 1
+          type: string
+          writeOnly: true
+      type: object
+    OpenPGPPublicKeyResponse:
+      description: A serializer for content types with no Artifact.
+      example:
+        pulp_href: https://openapi-generator.tech
+        created: 2000-01-23T04:56:07.000+00:00
+        user_ids:
+        - user_id: user_id
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - user_id: user_id
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        fingerprint: fingerprint
+        user_attributes:
+        - sha256: sha256
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - sha256: sha256
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        public_subkeys:
+        - created: 2000-01-23T04:56:07.000+00:00
+          fingerprint: fingerprint
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - created: 2000-01-23T04:56:07.000+00:00
+          fingerprint: fingerprint
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        fingerprint:
+          maxLength: 64
+          readOnly: true
+          type: string
+        created:
+          format: date-time
+          readOnly: true
+          type: string
+        user_ids:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPUserIDResponse'
+          readOnly: true
+          type: array
+        user_attributes:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPUserAttributeResponse'
+          readOnly: true
+          type: array
+        public_subkeys:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPPublicSubkeyResponse'
+          readOnly: true
+          type: array
+      type: object
+    OpenPGPPublicSubkeyResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        public_key: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        created: 2000-01-23T04:56:07.000+00:00
+        fingerprint: fingerprint
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        fingerprint:
+          maxLength: 64
+          type: string
+        created:
+          format: date-time
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+        public_key:
+          format: uri
+          readOnly: true
+          type: string
+      required:
+      - created
+      - fingerprint
+      type: object
+    OpenPGPSignatureResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        expired: true
+        pulp_href: https://openapi-generator.tech
+        signers_user_id: signers_user_id
+        created: 2000-01-23T04:56:07.000+00:00
+        expiration_time: expiration_time
+        key_expiration_time: key_expiration_time
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        key_expired: key_expired
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        issuer: issuer
+        signed_content: https://openapi-generator.tech
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        issuer:
+          maxLength: 16
+          nullable: true
+          type: string
+        created:
+          format: date-time
+          type: string
+        expiration_time:
+          nullable: true
+          type: string
+        signers_user_id:
+          nullable: true
+          type: string
+        key_expiration_time:
+          nullable: true
+          type: string
+        expired:
+          type: boolean
+        key_expired:
+          readOnly: true
+          type: string
+        signed_content:
+          format: uri
+          readOnly: true
+          type: string
+      required:
+      - created
+      - expired
+      type: object
+    OpenPGPUserAttributeResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        public_key: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        sha256: sha256
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        sha256:
+          maxLength: 128
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+        public_key:
+          format: uri
+          readOnly: true
+          type: string
+      required:
+      - sha256
+      type: object
+    OpenPGPUserIDResponse:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        public_key: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        user_id: user_id
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        prn: prn
+        signatures:
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+        - expired: true
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          key_expired: key_expired
+          issuer: issuer
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        user_id:
+          type: string
+        signatures:
+          items:
+            $ref: '#/components/schemas/NestedOpenPGPSignatureResponse'
+          readOnly: true
+          type: array
+        public_key:
+          format: uri
+          readOnly: true
+          type: string
+      required:
+      - user_id
       type: object
     OrphansCleanup:
       example:
@@ -38896,11 +42310,11 @@ components:
         results:
         - pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           hidden: false
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          pulp_href: https://openapi-generator.tech
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -38908,11 +42322,11 @@ components:
           content_guard: https://openapi-generator.tech
         - pulp_labels:
             key: pulp_labels
-          pulp_href: https://openapi-generator.tech
           hidden: false
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          pulp_href: https://openapi-generator.tech
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -39547,6 +42961,620 @@ components:
         results:
           items:
             $ref: '#/components/schemas/MultipleArtifactContentResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          no_content_change_since: no_content_change_since
+          base_path: base_path
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          prn: prn
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          no_content_change_since: no_content_change_since
+          base_path: base_path
+          repository_version: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          prn: prn
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPDistributionResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPKeyringResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          prn: prn
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          prn: prn
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPKeyringResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPPublicKeyResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          created: 2000-01-23T04:56:07.000+00:00
+          user_ids:
+          - user_id: user_id
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - user_id: user_id
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          fingerprint: fingerprint
+          user_attributes:
+          - sha256: sha256
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - sha256: sha256
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          public_subkeys:
+          - created: 2000-01-23T04:56:07.000+00:00
+            fingerprint: fingerprint
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - created: 2000-01-23T04:56:07.000+00:00
+            fingerprint: fingerprint
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+        - pulp_href: https://openapi-generator.tech
+          created: 2000-01-23T04:56:07.000+00:00
+          user_ids:
+          - user_id: user_id
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - user_id: user_id
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          fingerprint: fingerprint
+          user_attributes:
+          - sha256: sha256
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - sha256: sha256
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          public_subkeys:
+          - created: 2000-01-23T04:56:07.000+00:00
+            fingerprint: fingerprint
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          - created: 2000-01-23T04:56:07.000+00:00
+            fingerprint: fingerprint
+            signatures:
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+            - expired: true
+              signers_user_id: signers_user_id
+              created: 2000-01-23T04:56:07.000+00:00
+              expiration_time: expiration_time
+              key_expiration_time: key_expiration_time
+              key_expired: key_expired
+              issuer: issuer
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPPublicKeyResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPPublicSubkeyResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          created: 2000-01-23T04:56:07.000+00:00
+          fingerprint: fingerprint
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          created: 2000-01-23T04:56:07.000+00:00
+          fingerprint: fingerprint
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPPublicSubkeyResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPSignatureResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - expired: true
+          pulp_href: https://openapi-generator.tech
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          key_expired: key_expired
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          issuer: issuer
+          signed_content: https://openapi-generator.tech
+        - expired: true
+          pulp_href: https://openapi-generator.tech
+          signers_user_id: signers_user_id
+          created: 2000-01-23T04:56:07.000+00:00
+          expiration_time: expiration_time
+          key_expiration_time: key_expiration_time
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          key_expired: key_expired
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          issuer: issuer
+          signed_content: https://openapi-generator.tech
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPSignatureResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPUserAttributeResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          sha256: sha256
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          sha256: sha256
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPUserAttributeResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedOpenPGPUserIDResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          user_id: user_id
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+        - public_key: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          user_id: user_id
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          prn: prn
+          signatures:
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+          - expired: true
+            signers_user_id: signers_user_id
+            created: 2000-01-23T04:56:07.000+00:00
+            expiration_time: expiration_time
+            key_expiration_time: key_expiration_time
+            key_expired: key_expired
+            issuer: issuer
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/OpenPGPUserIDResponse'
           type: array
       required:
       - count
@@ -43564,6 +47592,109 @@ components:
             \ the value willonly be Base64 decoded and checked as an explicit string\
             \ match."
           minLength: 1
+          nullable: true
+          type: string
+      type: object
+    PatchedOpenPGPDistribution:
+      description: "The Serializer for the Distribution model.The serializer deliberately\
+        \ omits the `publication` and `repository_version` field due toplugins typically\
+        \ requiring one or the other but not both.To include the ``publication`` field,\
+        \ it is recommended plugins define the field::  publication = DetailRelatedField(\
+        \      required=False,      help_text=_(\"Publication to be served\"),   \
+        \   view_name_pattern=r\"publications(-.*/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),\
+        \      allow_null=True,  )To include the ``repository_version`` field, it\
+        \ is recommended plugins define the field::  repository_version = RepositoryVersionRelatedField(\
+        \      required=False, help_text=_(\"RepositoryVersion to be served\"), allow_null=True\
+        \  )Additionally, the serializer omits the ``remote`` field, which is used\
+        \ for pull-through cachingfeature and only by plugins which use publications.\
+        \ Plugins implementing a pull-through cachingshould define the field in their\
+        \ derived serializer class like this::  remote = DetailRelatedField(     \
+        \ required=False,      help_text=_('Remote that can be used to fetch content\
+        \ when using pull-through caching.'),      queryset=models.Remote.objects.all(),\
+        \      allow_null=True  )"
+      example:
+        hidden: false
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        base_path: base_path
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
+        content_guard: https://openapi-generator.tech
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    PatchedOpenPGPKeyring:
+      description: "Base serializer for use with [pulpcore.app.models.Model][]This\
+        \ ensures that all Serializers provide values for the 'pulp_href` field.The\
+        \ class provides a default for the ``ref_name`` attribute in theModelSerializers's\
+        \ ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are\
+        \ namespaced properly."
+      example:
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        description: description
+        retain_repo_versions: 1
+        remote: https://openapi-generator.tech
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
           nullable: true
           type: string
       type: object

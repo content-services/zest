@@ -171,7 +171,7 @@ func (r AccessPoliciesAPIAccessPoliciesListRequest) Execute() (*PaginatedAccessP
 /*
 AccessPoliciesList List access policys
 
-ViewSet for AccessPolicy.NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for AccessPolicy.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -354,7 +354,7 @@ func (r AccessPoliciesAPIAccessPoliciesPartialUpdateRequest) Execute() (*AccessP
 /*
 AccessPoliciesPartialUpdate Update an access policy
 
-ViewSet for AccessPolicy.NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for AccessPolicy.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessPolicyHref
@@ -477,7 +477,7 @@ func (r AccessPoliciesAPIAccessPoliciesReadRequest) Execute() (*AccessPolicyResp
 /*
 AccessPoliciesRead Inspect an access policy
 
-ViewSet for AccessPolicy.NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for AccessPolicy.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessPolicyHref
@@ -713,7 +713,7 @@ func (r AccessPoliciesAPIAccessPoliciesUpdateRequest) Execute() (*AccessPolicyRe
 /*
 AccessPoliciesUpdate Update an access policy
 
-ViewSet for AccessPolicy.NOTE: This API endpoint is in "tech preview" and subject to change
+ViewSet for AccessPolicy.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accessPolicyHref
