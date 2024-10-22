@@ -39669,39 +39669,37 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         pulp_labels:
           key: pulp_labels
         name: name
-        no_content_change_since: no_content_change_since
         base_url: base_url
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
           type: string
         pulp_href:
           format: uri
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
           type: string
         no_content_change_since:
           description: "Timestamp since when the distributed content served by this\
@@ -39709,28 +39707,30 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
             \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
@@ -42308,25 +42308,25 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
           name: name
-          no_content_change_since: no_content_change_since
           base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
-        - hidden: false
-          pulp_href: https://openapi-generator.tech
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
           name: name
-          no_content_change_since: no_content_change_since
           base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
