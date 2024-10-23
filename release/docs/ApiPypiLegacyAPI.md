@@ -1,16 +1,16 @@
-# \PypiLegacyAPI
+# \ApiPypiLegacyAPI
 
 All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PypiLegacyCreate**](PypiLegacyAPI.md#PypiLegacyCreate) | **Post** /pypi/{pulp_domain}/{path}/legacy/ | Upload a package
+[**ApiPulpPypiLegacyCreate**](ApiPypiLegacyAPI.md#ApiPulpPypiLegacyCreate) | **Post** /api/pulp/pypi/{pulp_domain}/{path}/legacy/ | Upload a package
 
 
 
-## PypiLegacyCreate
+## ApiPulpPypiLegacyCreate
 
-> PackageUploadTaskResponse PypiLegacyCreate(ctx, path, pulpDomain).Content(content).Sha256Digest(sha256Digest).Action(action).Execute()
+> PackageUploadTaskResponse ApiPulpPypiLegacyCreate(ctx, path, pulpDomain).Content(content).Sha256Digest(sha256Digest).Action(action).Execute()
 
 Upload a package
 
@@ -37,13 +37,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PypiLegacyAPI.PypiLegacyCreate(context.Background(), path, pulpDomain).Content(content).Sha256Digest(sha256Digest).Action(action).Execute()
+	resp, r, err := apiClient.ApiPypiLegacyAPI.ApiPulpPypiLegacyCreate(context.Background(), path, pulpDomain).Content(content).Sha256Digest(sha256Digest).Action(action).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PypiLegacyAPI.PypiLegacyCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiPypiLegacyAPI.ApiPulpPypiLegacyCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PypiLegacyCreate`: PackageUploadTaskResponse
-	fmt.Fprintf(os.Stdout, "Response from `PypiLegacyAPI.PypiLegacyCreate`: %v\n", resp)
+	// response from `ApiPulpPypiLegacyCreate`: PackageUploadTaskResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiPypiLegacyAPI.ApiPulpPypiLegacyCreate`: %v\n", resp)
 }
 ```
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPypiLegacyCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiPulpPypiLegacyCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

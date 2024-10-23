@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PypiPypiRead**](PypiMetadataAPI.md#PypiPypiRead) | **Get** /pypi/{pulp_domain}/{path}/pypi/{meta}/ | Get package metadata
+[**ApiPulpPypiPypiRead**](PypiMetadataAPI.md#ApiPulpPypiPypiRead) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/pypi/{meta}/ | Get package metadata
 
 
 
-## PypiPypiRead
+## ApiPulpPypiPypiRead
 
-> PackageMetadataResponse PypiPypiRead(ctx, meta, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PackageMetadataResponse ApiPulpPypiPypiRead(ctx, meta, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Get package metadata
 
@@ -37,13 +37,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PypiMetadataAPI.PypiPypiRead(context.Background(), meta, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PypiMetadataAPI.ApiPulpPypiPypiRead(context.Background(), meta, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PypiMetadataAPI.PypiPypiRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PypiMetadataAPI.ApiPulpPypiPypiRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PypiPypiRead`: PackageMetadataResponse
-	fmt.Fprintf(os.Stdout, "Response from `PypiMetadataAPI.PypiPypiRead`: %v\n", resp)
+	// response from `ApiPulpPypiPypiRead`: PackageMetadataResponse
+	fmt.Fprintf(os.Stdout, "Response from `PypiMetadataAPI.ApiPulpPypiPypiRead`: %v\n", resp)
 }
 ```
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPypiPypiReadRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiPulpPypiPypiReadRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

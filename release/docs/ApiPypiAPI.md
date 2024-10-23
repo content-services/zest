@@ -1,16 +1,16 @@
-# \PypiAPI
+# \ApiPypiAPI
 
 All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PypiRead**](PypiAPI.md#PypiRead) | **Get** /pypi/{pulp_domain}/{path}/ | Get index summary
+[**ApiPulpPypiRead**](ApiPypiAPI.md#ApiPulpPypiRead) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/ | Get index summary
 
 
 
-## PypiRead
+## ApiPulpPypiRead
 
-> SummaryResponse PypiRead(ctx, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+> SummaryResponse ApiPulpPypiRead(ctx, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Get index summary
 
@@ -36,13 +36,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PypiAPI.PypiRead(context.Background(), path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ApiPypiAPI.ApiPulpPypiRead(context.Background(), path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PypiAPI.PypiRead``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiPypiAPI.ApiPulpPypiRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PypiRead`: SummaryResponse
-	fmt.Fprintf(os.Stdout, "Response from `PypiAPI.PypiRead`: %v\n", resp)
+	// response from `ApiPulpPypiRead`: SummaryResponse
+	fmt.Fprintf(os.Stdout, "Response from `ApiPypiAPI.ApiPulpPypiRead`: %v\n", resp)
 }
 ```
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPypiReadRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiPulpPypiReadRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -22,12 +22,12 @@ import (
 )
 
 
-// PypiAPIService PypiAPI service
-type PypiAPIService service
+// ApiPypiAPIService ApiPypiAPI service
+type ApiPypiAPIService service
 
-type PypiAPIPypiReadRequest struct {
+type ApiPypiAPIApiPulpPypiReadRequest struct {
 	ctx context.Context
-	ApiService *PypiAPIService
+	ApiService *ApiPypiAPIService
 	path string
 	pulpDomain string
 	fields *[]string
@@ -35,33 +35,33 @@ type PypiAPIPypiReadRequest struct {
 }
 
 // A list of fields to include in the response.
-func (r PypiAPIPypiReadRequest) Fields(fields []string) PypiAPIPypiReadRequest {
+func (r ApiPypiAPIApiPulpPypiReadRequest) Fields(fields []string) ApiPypiAPIApiPulpPypiReadRequest {
 	r.fields = &fields
 	return r
 }
 
 // A list of fields to exclude from the response.
-func (r PypiAPIPypiReadRequest) ExcludeFields(excludeFields []string) PypiAPIPypiReadRequest {
+func (r ApiPypiAPIApiPulpPypiReadRequest) ExcludeFields(excludeFields []string) ApiPypiAPIApiPulpPypiReadRequest {
 	r.excludeFields = &excludeFields
 	return r
 }
 
-func (r PypiAPIPypiReadRequest) Execute() (*SummaryResponse, *http.Response, error) {
-	return r.ApiService.PypiReadExecute(r)
+func (r ApiPypiAPIApiPulpPypiReadRequest) Execute() (*SummaryResponse, *http.Response, error) {
+	return r.ApiService.ApiPulpPypiReadExecute(r)
 }
 
 /*
-PypiRead Get index summary
+ApiPulpPypiRead Get index summary
 
 Gets package summary stats of index.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param path
  @param pulpDomain
- @return PypiAPIPypiReadRequest
+ @return ApiPypiAPIApiPulpPypiReadRequest
 */
-func (a *PypiAPIService) PypiRead(ctx context.Context, path string, pulpDomain string) PypiAPIPypiReadRequest {
-	return PypiAPIPypiReadRequest{
+func (a *ApiPypiAPIService) ApiPulpPypiRead(ctx context.Context, path string, pulpDomain string) ApiPypiAPIApiPulpPypiReadRequest {
+	return ApiPypiAPIApiPulpPypiReadRequest{
 		ApiService: a,
 		ctx: ctx,
 		path: path,
@@ -71,7 +71,7 @@ func (a *PypiAPIService) PypiRead(ctx context.Context, path string, pulpDomain s
 
 // Execute executes the request
 //  @return SummaryResponse
-func (a *PypiAPIService) PypiReadExecute(r PypiAPIPypiReadRequest) (*SummaryResponse, *http.Response, error) {
+func (a *ApiPypiAPIService) ApiPulpPypiReadExecute(r ApiPypiAPIApiPulpPypiReadRequest) (*SummaryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -79,12 +79,12 @@ func (a *PypiAPIService) PypiReadExecute(r PypiAPIPypiReadRequest) (*SummaryResp
 		localVarReturnValue  *SummaryResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PypiAPIService.PypiRead")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiPypiAPIService.ApiPulpPypiRead")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pypi/{pulp_domain}/{path}/"
+	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

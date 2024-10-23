@@ -22,12 +22,12 @@ import (
 )
 
 
-// PypiLegacyAPIService PypiLegacyAPI service
-type PypiLegacyAPIService service
+// ApiPypiLegacyAPIService ApiPypiLegacyAPI service
+type ApiPypiLegacyAPIService service
 
-type PypiLegacyAPIPypiLegacyCreateRequest struct {
+type ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest struct {
 	ctx context.Context
-	ApiService *PypiLegacyAPIService
+	ApiService *ApiPypiLegacyAPIService
 	path string
 	pulpDomain string
 	content *os.File
@@ -36,39 +36,39 @@ type PypiLegacyAPIPypiLegacyCreateRequest struct {
 }
 
 // A Python package release file to upload to the index.
-func (r PypiLegacyAPIPypiLegacyCreateRequest) Content(content *os.File) PypiLegacyAPIPypiLegacyCreateRequest {
+func (r ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest) Content(content *os.File) ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest {
 	r.content = content
 	return r
 }
 
 // SHA256 of package to validate upload integrity.
-func (r PypiLegacyAPIPypiLegacyCreateRequest) Sha256Digest(sha256Digest string) PypiLegacyAPIPypiLegacyCreateRequest {
+func (r ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest) Sha256Digest(sha256Digest string) ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest {
 	r.sha256Digest = &sha256Digest
 	return r
 }
 
 // Defaults to &#x60;file_upload&#x60;, don&#39;t change it or request will fail!
-func (r PypiLegacyAPIPypiLegacyCreateRequest) Action(action string) PypiLegacyAPIPypiLegacyCreateRequest {
+func (r ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest) Action(action string) ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest {
 	r.action = &action
 	return r
 }
 
-func (r PypiLegacyAPIPypiLegacyCreateRequest) Execute() (*PackageUploadTaskResponse, *http.Response, error) {
-	return r.ApiService.PypiLegacyCreateExecute(r)
+func (r ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest) Execute() (*PackageUploadTaskResponse, *http.Response, error) {
+	return r.ApiService.ApiPulpPypiLegacyCreateExecute(r)
 }
 
 /*
-PypiLegacyCreate Upload a package
+ApiPulpPypiLegacyCreate Upload a package
 
 Upload package to the index.This is the endpoint that tools like Twine and Poetry use for their upload commands.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param path
  @param pulpDomain
- @return PypiLegacyAPIPypiLegacyCreateRequest
+ @return ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest
 */
-func (a *PypiLegacyAPIService) PypiLegacyCreate(ctx context.Context, path string, pulpDomain string) PypiLegacyAPIPypiLegacyCreateRequest {
-	return PypiLegacyAPIPypiLegacyCreateRequest{
+func (a *ApiPypiLegacyAPIService) ApiPulpPypiLegacyCreate(ctx context.Context, path string, pulpDomain string) ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest {
+	return ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 		path: path,
@@ -78,7 +78,7 @@ func (a *PypiLegacyAPIService) PypiLegacyCreate(ctx context.Context, path string
 
 // Execute executes the request
 //  @return PackageUploadTaskResponse
-func (a *PypiLegacyAPIService) PypiLegacyCreateExecute(r PypiLegacyAPIPypiLegacyCreateRequest) (*PackageUploadTaskResponse, *http.Response, error) {
+func (a *ApiPypiLegacyAPIService) ApiPulpPypiLegacyCreateExecute(r ApiPypiLegacyAPIApiPulpPypiLegacyCreateRequest) (*PackageUploadTaskResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -86,12 +86,12 @@ func (a *PypiLegacyAPIService) PypiLegacyCreateExecute(r PypiLegacyAPIPypiLegacy
 		localVarReturnValue  *PackageUploadTaskResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PypiLegacyAPIService.PypiLegacyCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiPypiLegacyAPIService.ApiPulpPypiLegacyCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pypi/{pulp_domain}/{path}/legacy/"
+	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/legacy/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

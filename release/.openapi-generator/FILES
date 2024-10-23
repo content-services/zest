@@ -6,6 +6,9 @@ api/openapi.yaml
 api_access_policies.go
 api_acs_file.go
 api_acs_rpm.go
+api_api_pypi.go
+api_api_pypi_legacy.go
+api_api_pypi_simple.go
 api_artifacts.go
 api_content.go
 api_content_advisories.go
@@ -68,10 +71,7 @@ api_publications_file.go
 api_publications_gem.go
 api_publications_pypi.go
 api_publications_rpm.go
-api_pypi.go
-api_pypi_legacy.go
 api_pypi_metadata.go
-api_pypi_simple.go
 api_remotes.go
 api_remotes_file.go
 api_remotes_gem.go
@@ -117,6 +117,9 @@ docs/AcsFileAPI.md
 docs/AcsRpmAPI.md
 docs/AddonResponse.md
 docs/ApiAppStatusResponse.md
+docs/ApiPypiAPI.md
+docs/ApiPypiLegacyAPI.md
+docs/ApiPypiSimpleAPI.md
 docs/Artifact.md
 docs/ArtifactDistributionResponse.md
 docs/ArtifactResponse.md
@@ -426,10 +429,7 @@ docs/PulpImportCheckResponse.md
 docs/PulpImporter.md
 docs/PulpImporterResponse.md
 docs/Purge.md
-docs/PypiAPI.md
-docs/PypiLegacyAPI.md
 docs/PypiMetadataAPI.md
-docs/PypiSimpleAPI.md
 docs/PythonBanderRemote.md
 docs/PythonPythonDistribution.md
 docs/PythonPythonDistributionResponse.md
@@ -902,6 +902,9 @@ response.go
 test/api_access_policies_test.go
 test/api_acs_file_test.go
 test/api_acs_rpm_test.go
+test/api_api_pypi_legacy_test.go
+test/api_api_pypi_simple_test.go
+test/api_api_pypi_test.go
 test/api_artifacts_test.go
 test/api_content_advisories_test.go
 test/api_content_commits_test.go
@@ -964,10 +967,7 @@ test/api_publications_gem_test.go
 test/api_publications_pypi_test.go
 test/api_publications_rpm_test.go
 test/api_publications_test.go
-test/api_pypi_legacy_test.go
 test/api_pypi_metadata_test.go
-test/api_pypi_simple_test.go
-test/api_pypi_test.go
 test/api_remotes_file_test.go
 test/api_remotes_gem_test.go
 test/api_remotes_ostree_test.go

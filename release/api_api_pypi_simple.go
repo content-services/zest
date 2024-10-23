@@ -23,12 +23,12 @@ import (
 )
 
 
-// PypiSimpleAPIService PypiSimpleAPI service
-type PypiSimpleAPIService service
+// ApiPypiSimpleAPIService ApiPypiSimpleAPI service
+type ApiPypiSimpleAPIService service
 
-type PypiSimpleAPIPypiSimpleCreateRequest struct {
+type ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest struct {
 	ctx context.Context
-	ApiService *PypiSimpleAPIService
+	ApiService *ApiPypiSimpleAPIService
 	path string
 	pulpDomain string
 	content *os.File
@@ -37,39 +37,39 @@ type PypiSimpleAPIPypiSimpleCreateRequest struct {
 }
 
 // A Python package release file to upload to the index.
-func (r PypiSimpleAPIPypiSimpleCreateRequest) Content(content *os.File) PypiSimpleAPIPypiSimpleCreateRequest {
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest) Content(content *os.File) ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest {
 	r.content = content
 	return r
 }
 
 // SHA256 of package to validate upload integrity.
-func (r PypiSimpleAPIPypiSimpleCreateRequest) Sha256Digest(sha256Digest string) PypiSimpleAPIPypiSimpleCreateRequest {
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest) Sha256Digest(sha256Digest string) ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest {
 	r.sha256Digest = &sha256Digest
 	return r
 }
 
 // Defaults to &#x60;file_upload&#x60;, don&#39;t change it or request will fail!
-func (r PypiSimpleAPIPypiSimpleCreateRequest) Action(action string) PypiSimpleAPIPypiSimpleCreateRequest {
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest) Action(action string) ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest {
 	r.action = &action
 	return r
 }
 
-func (r PypiSimpleAPIPypiSimpleCreateRequest) Execute() (*PackageUploadTaskResponse, *http.Response, error) {
-	return r.ApiService.PypiSimpleCreateExecute(r)
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest) Execute() (*PackageUploadTaskResponse, *http.Response, error) {
+	return r.ApiService.ApiPulpPypiSimpleCreateExecute(r)
 }
 
 /*
-PypiSimpleCreate Upload a package
+ApiPulpPypiSimpleCreate Upload a package
 
 Upload package to the index.This endpoint has the same functionality as the upload endpoint at the `/legacy` url of theindex. This is provided for convenience for users who want a single index url for all theirPython tools. (pip, twine, poetry, pipenv, ...)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param path
  @param pulpDomain
- @return PypiSimpleAPIPypiSimpleCreateRequest
+ @return ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest
 */
-func (a *PypiSimpleAPIService) PypiSimpleCreate(ctx context.Context, path string, pulpDomain string) PypiSimpleAPIPypiSimpleCreateRequest {
-	return PypiSimpleAPIPypiSimpleCreateRequest{
+func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleCreate(ctx context.Context, path string, pulpDomain string) ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest {
+	return ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 		path: path,
@@ -79,7 +79,7 @@ func (a *PypiSimpleAPIService) PypiSimpleCreate(ctx context.Context, path string
 
 // Execute executes the request
 //  @return PackageUploadTaskResponse
-func (a *PypiSimpleAPIService) PypiSimpleCreateExecute(r PypiSimpleAPIPypiSimpleCreateRequest) (*PackageUploadTaskResponse, *http.Response, error) {
+func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleCreateExecute(r ApiPypiSimpleAPIApiPulpPypiSimpleCreateRequest) (*PackageUploadTaskResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -87,12 +87,12 @@ func (a *PypiSimpleAPIService) PypiSimpleCreateExecute(r PypiSimpleAPIPypiSimple
 		localVarReturnValue  *PackageUploadTaskResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PypiSimpleAPIService.PypiSimpleCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiPypiSimpleAPIService.ApiPulpPypiSimpleCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pypi/{pulp_domain}/{path}/simple/"
+	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -190,10 +190,9 @@ func (a *PypiSimpleAPIService) PypiSimpleCreateExecute(r PypiSimpleAPIPypiSimple
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type PypiSimpleAPIPypiSimplePackageReadRequest struct {
+type ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest struct {
 	ctx context.Context
-	ApiService *PypiSimpleAPIService
-	package_ string
+	ApiService *ApiPypiSimpleAPIService
 	path string
 	pulpDomain string
 	fields *[]string
@@ -201,59 +200,54 @@ type PypiSimpleAPIPypiSimplePackageReadRequest struct {
 }
 
 // A list of fields to include in the response.
-func (r PypiSimpleAPIPypiSimplePackageReadRequest) Fields(fields []string) PypiSimpleAPIPypiSimplePackageReadRequest {
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest) Fields(fields []string) ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest {
 	r.fields = &fields
 	return r
 }
 
 // A list of fields to exclude from the response.
-func (r PypiSimpleAPIPypiSimplePackageReadRequest) ExcludeFields(excludeFields []string) PypiSimpleAPIPypiSimplePackageReadRequest {
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest) ExcludeFields(excludeFields []string) ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest {
 	r.excludeFields = &excludeFields
 	return r
 }
 
-func (r PypiSimpleAPIPypiSimplePackageReadRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PypiSimplePackageReadExecute(r)
+func (r ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ApiPulpPypiSimpleReadExecute(r)
 }
 
 /*
-PypiSimplePackageRead Get package simple page
+ApiPulpPypiSimpleRead Get index simple page
 
-Retrieves the simple api html page for a package.
+Gets the simple api html page for the index.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param package_
  @param path
  @param pulpDomain
- @return PypiSimpleAPIPypiSimplePackageReadRequest
+ @return ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest
 */
-func (a *PypiSimpleAPIService) PypiSimplePackageRead(ctx context.Context, package_ string, path string, pulpDomain string) PypiSimpleAPIPypiSimplePackageReadRequest {
-	return PypiSimpleAPIPypiSimplePackageReadRequest{
+func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleRead(ctx context.Context, path string, pulpDomain string) ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest {
+	return ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest{
 		ApiService: a,
 		ctx: ctx,
-		package_: package_,
 		path: path,
 		pulpDomain: pulpDomain,
 	}
 }
 
 // Execute executes the request
-func (a *PypiSimpleAPIService) PypiSimplePackageReadExecute(r PypiSimpleAPIPypiSimplePackageReadRequest) (*http.Response, error) {
+func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleReadExecute(r ApiPypiSimpleAPIApiPulpPypiSimpleReadRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PypiSimpleAPIService.PypiSimplePackageRead")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiPypiSimpleAPIService.ApiPulpPypiSimpleRead")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pypi/{pulp_domain}/{path}/simple/{package}/"
-	localVarPath = strings.Replace(localVarPath, "{"+"package"+"}", url.PathEscape(parameterValueToString(r.package_, "package_")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
+	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
@@ -331,9 +325,10 @@ func (a *PypiSimpleAPIService) PypiSimplePackageReadExecute(r PypiSimpleAPIPypiS
 	return localVarHTTPResponse, nil
 }
 
-type PypiSimpleAPIPypiSimpleReadRequest struct {
+type ApiPypiSimpleAPIPypiSimplePackageReadRequest struct {
 	ctx context.Context
-	ApiService *PypiSimpleAPIService
+	ApiService *ApiPypiSimpleAPIService
+	package_ string
 	path string
 	pulpDomain string
 	fields *[]string
@@ -341,54 +336,59 @@ type PypiSimpleAPIPypiSimpleReadRequest struct {
 }
 
 // A list of fields to include in the response.
-func (r PypiSimpleAPIPypiSimpleReadRequest) Fields(fields []string) PypiSimpleAPIPypiSimpleReadRequest {
+func (r ApiPypiSimpleAPIPypiSimplePackageReadRequest) Fields(fields []string) ApiPypiSimpleAPIPypiSimplePackageReadRequest {
 	r.fields = &fields
 	return r
 }
 
 // A list of fields to exclude from the response.
-func (r PypiSimpleAPIPypiSimpleReadRequest) ExcludeFields(excludeFields []string) PypiSimpleAPIPypiSimpleReadRequest {
+func (r ApiPypiSimpleAPIPypiSimplePackageReadRequest) ExcludeFields(excludeFields []string) ApiPypiSimpleAPIPypiSimplePackageReadRequest {
 	r.excludeFields = &excludeFields
 	return r
 }
 
-func (r PypiSimpleAPIPypiSimpleReadRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PypiSimpleReadExecute(r)
+func (r ApiPypiSimpleAPIPypiSimplePackageReadRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PypiSimplePackageReadExecute(r)
 }
 
 /*
-PypiSimpleRead Get index simple page
+PypiSimplePackageRead Get package simple page
 
-Gets the simple api html page for the index.
+Retrieves the simple api html page for a package.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param package_
  @param path
  @param pulpDomain
- @return PypiSimpleAPIPypiSimpleReadRequest
+ @return ApiPypiSimpleAPIPypiSimplePackageReadRequest
 */
-func (a *PypiSimpleAPIService) PypiSimpleRead(ctx context.Context, path string, pulpDomain string) PypiSimpleAPIPypiSimpleReadRequest {
-	return PypiSimpleAPIPypiSimpleReadRequest{
+func (a *ApiPypiSimpleAPIService) PypiSimplePackageRead(ctx context.Context, package_ string, path string, pulpDomain string) ApiPypiSimpleAPIPypiSimplePackageReadRequest {
+	return ApiPypiSimpleAPIPypiSimplePackageReadRequest{
 		ApiService: a,
 		ctx: ctx,
+		package_: package_,
 		path: path,
 		pulpDomain: pulpDomain,
 	}
 }
 
 // Execute executes the request
-func (a *PypiSimpleAPIService) PypiSimpleReadExecute(r PypiSimpleAPIPypiSimpleReadRequest) (*http.Response, error) {
+func (a *ApiPypiSimpleAPIService) PypiSimplePackageReadExecute(r ApiPypiSimpleAPIPypiSimplePackageReadRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PypiSimpleAPIService.PypiSimpleRead")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiPypiSimpleAPIService.PypiSimplePackageRead")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pypi/{pulp_domain}/{path}/simple/"
+	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/{package}/"
+	localVarPath = strings.Replace(localVarPath, "{"+"package"+"}", url.PathEscape(parameterValueToString(r.package_, "package_")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 

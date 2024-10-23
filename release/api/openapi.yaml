@@ -39142,10 +39142,10 @@ paths:
       summary: Inspect status of Pulp
       tags:
       - Status
-  /pypi/{pulp_domain}/{path}/:
+  /api/pulp/pypi/{pulp_domain}/{path}/:
     get:
       description: Gets package summary stats of index.
-      operationId: pypi_read
+      operationId: api_pulp_pypi_read
       parameters:
       - explode: false
         in: path
@@ -39194,12 +39194,12 @@ paths:
       - cookieAuth: []
       summary: Get index summary
       tags:
-      - Pypi
-  /pypi/{pulp_domain}/{path}/legacy/:
+      - "Api: Pypi"
+  /api/pulp/pypi/{pulp_domain}/{path}/legacy/:
     post:
       description: Upload package to the index.This is the endpoint that tools like
         Twine and Poetry use for their upload commands.
-      operationId: pypi_legacy_create
+      operationId: api_pulp_pypi_legacy_create
       parameters:
       - explode: false
         in: path
@@ -39237,12 +39237,12 @@ paths:
       - cookieAuth: []
       summary: Upload a package
       tags:
-      - "Pypi: Legacy"
-  /pypi/{pulp_domain}/{path}/pypi/{meta}/:
+      - "Api: Pypi Legacy"
+  /api/pulp/pypi/{pulp_domain}/{path}/pypi/{meta}/:
     get:
       description: "Retrieves the package's core-metadata specified byhttps://packaging.python.org/specifications/core-metadata/.`meta`\
         \ must be a path in form of `{package}/json/` or `{package}/{version}/json/`"
-      operationId: pypi_pypi_read
+      operationId: api_pulp_pypi_pypi_read
       parameters:
       - explode: false
         in: path
@@ -39299,10 +39299,10 @@ paths:
       summary: Get package metadata
       tags:
       - "Pypi: Metadata"
-  /pypi/{pulp_domain}/{path}/simple/:
+  /api/pulp/pypi/{pulp_domain}/{path}/simple/:
     get:
       description: Gets the simple api html page for the index.
-      operationId: pypi_simple_read
+      operationId: api_pulp_pypi_simple_read
       parameters:
       - explode: false
         in: path
@@ -39347,13 +39347,13 @@ paths:
       - cookieAuth: []
       summary: Get index simple page
       tags:
-      - "Pypi: Simple"
+      - "Api: Pypi Simple"
     post:
       description: "Upload package to the index.This endpoint has the same functionality\
         \ as the upload endpoint at the `/legacy` url of theindex. This is provided\
         \ for convenience for users who want a single index url for all theirPython\
         \ tools. (pip, twine, poetry, pipenv, ...)"
-      operationId: pypi_simple_create
+      operationId: api_pulp_pypi_simple_create
       parameters:
       - explode: false
         in: path
@@ -39391,8 +39391,8 @@ paths:
       - cookieAuth: []
       summary: Upload a package
       tags:
-      - "Pypi: Simple"
-  /pypi/{pulp_domain}/{path}/simple/{package}/:
+      - "Api: Pypi Simple"
+  /api/pulp/pypi/{pulp_domain}/{path}/simple/{package}/:
     get:
       description: Retrieves the simple api html page for a package.
       operationId: pypi_simple_package_read
@@ -39447,7 +39447,7 @@ paths:
       - cookieAuth: []
       summary: Get package simple page
       tags:
-      - "Pypi: Simple"
+      - "Api: Pypi Simple"
 components:
   schemas:
     AccessPolicy:
@@ -39670,9 +39670,9 @@ components:
       description: A serializer for ArtifactDistribution.
       example:
         pulp_href: https://openapi-generator.tech
-        hidden: false
         pulp_labels:
           key: pulp_labels
+        hidden: false
         name: name
         base_url: base_url
         no_content_change_since: no_content_change_since
@@ -39682,46 +39682,8 @@ components:
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         pulp_href:
           format: uri
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
           readOnly: true
           type: string
         base_path:
@@ -39729,9 +39691,47 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
           readOnly: true
           type: string
       required:
@@ -42309,9 +42309,9 @@ components:
         count: 123
         results:
         - pulp_href: https://openapi-generator.tech
-          hidden: false
           pulp_labels:
             key: pulp_labels
+          hidden: false
           name: name
           base_url: base_url
           no_content_change_since: no_content_change_since
@@ -42321,9 +42321,9 @@ components:
           prn: prn
           content_guard: https://openapi-generator.tech
         - pulp_href: https://openapi-generator.tech
-          hidden: false
           pulp_labels:
             key: pulp_labels
+          hidden: false
           name: name
           base_url: base_url
           no_content_change_since: no_content_change_since

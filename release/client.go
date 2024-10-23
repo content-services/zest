@@ -56,6 +56,12 @@ type APIClient struct {
 
 	AcsRpmAPI *AcsRpmAPIService
 
+	ApiPypiAPI *ApiPypiAPIService
+
+	ApiPypiLegacyAPI *ApiPypiLegacyAPIService
+
+	ApiPypiSimpleAPI *ApiPypiSimpleAPIService
+
 	ArtifactsAPI *ArtifactsAPIService
 
 	ContentAPI *ContentAPIService
@@ -180,13 +186,7 @@ type APIClient struct {
 
 	PublicationsRpmAPI *PublicationsRpmAPIService
 
-	PypiAPI *PypiAPIService
-
-	PypiLegacyAPI *PypiLegacyAPIService
-
 	PypiMetadataAPI *PypiMetadataAPIService
-
-	PypiSimpleAPI *PypiSimpleAPIService
 
 	RemotesAPI *RemotesAPIService
 
@@ -280,6 +280,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AccessPoliciesAPI = (*AccessPoliciesAPIService)(&c.common)
 	c.AcsFileAPI = (*AcsFileAPIService)(&c.common)
 	c.AcsRpmAPI = (*AcsRpmAPIService)(&c.common)
+	c.ApiPypiAPI = (*ApiPypiAPIService)(&c.common)
+	c.ApiPypiLegacyAPI = (*ApiPypiLegacyAPIService)(&c.common)
+	c.ApiPypiSimpleAPI = (*ApiPypiSimpleAPIService)(&c.common)
 	c.ArtifactsAPI = (*ArtifactsAPIService)(&c.common)
 	c.ContentAPI = (*ContentAPIService)(&c.common)
 	c.ContentAdvisoriesAPI = (*ContentAdvisoriesAPIService)(&c.common)
@@ -342,10 +345,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PublicationsGemAPI = (*PublicationsGemAPIService)(&c.common)
 	c.PublicationsPypiAPI = (*PublicationsPypiAPIService)(&c.common)
 	c.PublicationsRpmAPI = (*PublicationsRpmAPIService)(&c.common)
-	c.PypiAPI = (*PypiAPIService)(&c.common)
-	c.PypiLegacyAPI = (*PypiLegacyAPIService)(&c.common)
 	c.PypiMetadataAPI = (*PypiMetadataAPIService)(&c.common)
-	c.PypiSimpleAPI = (*PypiSimpleAPIService)(&c.common)
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)
 	c.RemotesFileAPI = (*RemotesFileAPIService)(&c.common)
 	c.RemotesGemAPI = (*RemotesGemAPIService)(&c.common)

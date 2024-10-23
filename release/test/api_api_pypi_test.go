@@ -1,7 +1,7 @@
 /*
 Pulp 3 API
 
-Testing PypiLegacyAPIService
+Testing ApiPypiAPIService
 
 */
 
@@ -17,19 +17,19 @@ import (
 	openapiclient "github.com/content-services/zest/release/v2024"
 )
 
-func Test_zest_PypiLegacyAPIService(t *testing.T) {
+func Test_zest_ApiPypiAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test PypiLegacyAPIService PypiLegacyCreate", func(t *testing.T) {
+	t.Run("Test ApiPypiAPIService ApiPulpPypiRead", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var path string
 		var pulpDomain string
 
-		resp, httpRes, err := apiClient.PypiLegacyAPI.PypiLegacyCreate(context.Background(), path, pulpDomain).Execute()
+		resp, httpRes, err := apiClient.ApiPypiAPI.ApiPulpPypiRead(context.Background(), path, pulpDomain).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
