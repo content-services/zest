@@ -55,14 +55,14 @@ func main() {
 	license := "license_example" // string | Text indicating the license covering the distribution (optional)
 	requiresPython := "requiresPython_example" // string | The Python version(s) that the distribution is guaranteed to be compatible with. (optional)
 	projectUrl := "projectUrl_example" // string | A browsable URL for the project and a label for it, separated by a comma. (optional)
-	projectUrls := TODO // interface{} | A dictionary of labels and URLs for the project. (optional)
+	projectUrls := map[string]interface{}{ ... } // map[string]interface{} | A dictionary of labels and URLs for the project. (optional)
 	platform := "platform_example" // string | A comma-separated list of platform specifications, summarizing the operating systems supported by the package. (optional)
 	supportedPlatform := "supportedPlatform_example" // string | Field to specify the OS and CPU for which the binary package was compiled.  (optional)
-	requiresDist := TODO // interface{} | A JSON list containing names of some other distutils project required by this distribution. (optional)
-	providesDist := TODO // interface{} | A JSON list containing names of a Distutils project which is contained within this distribution. (optional)
-	obsoletesDist := TODO // interface{} | A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. (optional)
-	requiresExternal := TODO // interface{} | A JSON list containing some dependency in the system that the distribution is to be used. (optional)
-	classifiers := TODO // interface{} | A JSON list containing classification values for a Python package. (optional)
+	requiresDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of some other distutils project required by this distribution. (optional)
+	providesDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of a Distutils project which is contained within this distribution. (optional)
+	obsoletesDist := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. (optional)
+	requiresExternal := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing some dependency in the system that the distribution is to be used. (optional)
+	classifiers := map[string]interface{}{ ... } // map[string]interface{} | A JSON list containing classification values for a Python package. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -112,14 +112,14 @@ Name | Type | Description  | Notes
  **license** | **string** | Text indicating the license covering the distribution | 
  **requiresPython** | **string** | The Python version(s) that the distribution is guaranteed to be compatible with. | 
  **projectUrl** | **string** | A browsable URL for the project and a label for it, separated by a comma. | 
- **projectUrls** | [**interface{}**](interface{}.md) | A dictionary of labels and URLs for the project. | 
+ **projectUrls** | [**map[string]interface{}**](map[string]interface{}.md) | A dictionary of labels and URLs for the project. | 
  **platform** | **string** | A comma-separated list of platform specifications, summarizing the operating systems supported by the package. | 
  **supportedPlatform** | **string** | Field to specify the OS and CPU for which the binary package was compiled.  | 
- **requiresDist** | [**interface{}**](interface{}.md) | A JSON list containing names of some other distutils project required by this distribution. | 
- **providesDist** | [**interface{}**](interface{}.md) | A JSON list containing names of a Distutils project which is contained within this distribution. | 
- **obsoletesDist** | [**interface{}**](interface{}.md) | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | 
- **requiresExternal** | [**interface{}**](interface{}.md) | A JSON list containing some dependency in the system that the distribution is to be used. | 
- **classifiers** | [**interface{}**](interface{}.md) | A JSON list containing classification values for a Python package. | 
+ **requiresDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of some other distutils project required by this distribution. | 
+ **providesDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of a Distutils project which is contained within this distribution. | 
+ **obsoletesDist** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | 
+ **requiresExternal** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing some dependency in the system that the distribution is to be used. | 
+ **classifiers** | [**map[string]interface{}**](map[string]interface{}.md) | A JSON list containing classification values for a Python package. | 
 
 ### Return type
 

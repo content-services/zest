@@ -53,8 +53,8 @@ func main() {
 	pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
 	pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
 	pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `ostree.ostree` - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
@@ -109,8 +109,8 @@ Name | Type | Description  | Notes
  **pulpLastUpdatedLt** | **time.Time** | Filter results where pulp_last_updated is less than value | 
  **pulpLastUpdatedLte** | **time.Time** | Filter results where pulp_last_updated is less than or equal to value | 
  **pulpLastUpdatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_last_updated is between two comma separated values | 
- **pulpType** | **string** | Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;file.file&#x60; - file.file* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
+ **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
 **SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
-**RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
+**RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
 **CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
 
 ## Methods
@@ -360,20 +360,20 @@ HasSqliteMetadata returns a boolean if a field has been set.
 
 ### GetRepoConfig
 
-`func (o *RpmRpmPublicationResponse) GetRepoConfig() interface{}`
+`func (o *RpmRpmPublicationResponse) GetRepoConfig() map[string]interface{}`
 
 GetRepoConfig returns the RepoConfig field if non-nil, zero value otherwise.
 
 ### GetRepoConfigOk
 
-`func (o *RpmRpmPublicationResponse) GetRepoConfigOk() (*interface{}, bool)`
+`func (o *RpmRpmPublicationResponse) GetRepoConfigOk() (*map[string]interface{}, bool)`
 
 GetRepoConfigOk returns a tuple with the RepoConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepoConfig
 
-`func (o *RpmRpmPublicationResponse) SetRepoConfig(v interface{})`
+`func (o *RpmRpmPublicationResponse) SetRepoConfig(v map[string]interface{})`
 
 SetRepoConfig sets RepoConfig field to given value.
 
@@ -383,16 +383,6 @@ SetRepoConfig sets RepoConfig field to given value.
 
 HasRepoConfig returns a boolean if a field has been set.
 
-### SetRepoConfigNil
-
-`func (o *RpmRpmPublicationResponse) SetRepoConfigNil(b bool)`
-
- SetRepoConfigNil sets the value for RepoConfig to be an explicit nil
-
-### UnsetRepoConfig
-`func (o *RpmRpmPublicationResponse) UnsetRepoConfig()`
-
-UnsetRepoConfig ensures that no value is present for RepoConfig, not even an explicit nil
 ### GetCompressionType
 
 `func (o *RpmRpmPublicationResponse) GetCompressionType() CompressionTypeEnum`

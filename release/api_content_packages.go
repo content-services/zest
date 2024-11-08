@@ -50,14 +50,14 @@ type ContentPackagesAPIContentPythonPackagesCreateRequest struct {
 	license *string
 	requiresPython *string
 	projectUrl *string
-	projectUrls *interface{}
+	projectUrls *map[string]interface{}
 	platform *string
 	supportedPlatform *string
-	requiresDist *interface{}
-	providesDist *interface{}
-	obsoletesDist *interface{}
-	requiresExternal *interface{}
-	classifiers *interface{}
+	requiresDist *map[string]interface{}
+	providesDist *map[string]interface{}
+	obsoletesDist *map[string]interface{}
+	requiresExternal *map[string]interface{}
+	classifiers *map[string]interface{}
 }
 
 // Path where the artifact is located relative to distributions base_path
@@ -181,7 +181,7 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrl(project
 }
 
 // A dictionary of labels and URLs for the project.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrls(projectUrls interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrls(projectUrls map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.projectUrls = &projectUrls
 	return r
 }
@@ -199,31 +199,31 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) SupportedPlatform(
 }
 
 // A JSON list containing names of some other distutils project required by this distribution.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.requiresDist = &requiresDist
 	return r
 }
 
 // A JSON list containing names of a Distutils project which is contained within this distribution.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesDist(providesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesDist(providesDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.providesDist = &providesDist
 	return r
 }
 
 // A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.obsoletesDist = &obsoletesDist
 	return r
 }
 
 // A JSON list containing some dependency in the system that the distribution is to be used.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresExternal(requiresExternal interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresExternal(requiresExternal map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.requiresExternal = &requiresExternal
 	return r
 }
 
 // A JSON list containing classification values for a Python package.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers map[string]interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.classifiers = &classifiers
 	return r
 }

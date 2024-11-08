@@ -42,13 +42,13 @@ type RpmModulemdResponse struct {
 	// Modulemd architecture.
 	Arch string `json:"arch"`
 	// Modulemd artifacts.
-	Artifacts interface{} `json:"artifacts"`
+	Artifacts map[string]interface{} `json:"artifacts"`
 	// Modulemd dependencies.
-	Dependencies interface{} `json:"dependencies"`
+	Dependencies map[string]interface{} `json:"dependencies"`
 	// Modulemd artifacts' packages.
 	Packages []*string `json:"packages,omitempty"`
 	// Modulemd profiles.
-	Profiles interface{} `json:"profiles"`
+	Profiles map[string]interface{} `json:"profiles"`
 	// Description of module.
 	Description string `json:"description"`
 	AdditionalProperties map[string]interface{}
@@ -60,7 +60,7 @@ type _RpmModulemdResponse RpmModulemdResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts interface{}, dependencies interface{}, profiles interface{}, description string) *RpmModulemdResponse {
+func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts map[string]interface{}, dependencies map[string]interface{}, profiles map[string]interface{}, description string) *RpmModulemdResponse {
 	this := RpmModulemdResponse{}
 	this.Name = name
 	this.Stream = stream
@@ -363,10 +363,10 @@ func (o *RpmModulemdResponse) SetArch(v string) {
 }
 
 // GetArtifacts returns the Artifacts field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *RpmModulemdResponse) GetArtifacts() interface{} {
+// If the value is explicit nil, the zero value for map[string]interface{} will be returned
+func (o *RpmModulemdResponse) GetArtifacts() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -376,23 +376,23 @@ func (o *RpmModulemdResponse) GetArtifacts() interface{} {
 // GetArtifactsOk returns a tuple with the Artifacts field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetArtifactsOk() (*interface{}, bool) {
+func (o *RpmModulemdResponse) GetArtifactsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Artifacts) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Artifacts, true
+	return o.Artifacts, true
 }
 
 // SetArtifacts sets field value
-func (o *RpmModulemdResponse) SetArtifacts(v interface{}) {
+func (o *RpmModulemdResponse) SetArtifacts(v map[string]interface{}) {
 	o.Artifacts = v
 }
 
 // GetDependencies returns the Dependencies field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *RpmModulemdResponse) GetDependencies() interface{} {
+// If the value is explicit nil, the zero value for map[string]interface{} will be returned
+func (o *RpmModulemdResponse) GetDependencies() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -402,15 +402,15 @@ func (o *RpmModulemdResponse) GetDependencies() interface{} {
 // GetDependenciesOk returns a tuple with the Dependencies field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetDependenciesOk() (*interface{}, bool) {
+func (o *RpmModulemdResponse) GetDependenciesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Dependencies) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Dependencies, true
+	return o.Dependencies, true
 }
 
 // SetDependencies sets field value
-func (o *RpmModulemdResponse) SetDependencies(v interface{}) {
+func (o *RpmModulemdResponse) SetDependencies(v map[string]interface{}) {
 	o.Dependencies = v
 }
 
@@ -447,10 +447,10 @@ func (o *RpmModulemdResponse) SetPackages(v []*string) {
 }
 
 // GetProfiles returns the Profiles field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *RpmModulemdResponse) GetProfiles() interface{} {
+// If the value is explicit nil, the zero value for map[string]interface{} will be returned
+func (o *RpmModulemdResponse) GetProfiles() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -460,15 +460,15 @@ func (o *RpmModulemdResponse) GetProfiles() interface{} {
 // GetProfilesOk returns a tuple with the Profiles field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetProfilesOk() (*interface{}, bool) {
+func (o *RpmModulemdResponse) GetProfilesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Profiles) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Profiles, true
+	return o.Profiles, true
 }
 
 // SetProfiles sets field value
-func (o *RpmModulemdResponse) SetProfiles(v interface{}) {
+func (o *RpmModulemdResponse) SetProfiles(v map[string]interface{}) {
 	o.Profiles = v
 }
 

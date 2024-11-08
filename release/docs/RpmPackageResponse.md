@@ -25,16 +25,16 @@ Name | Type | Description | Notes
 **Summary** | Pointer to **string** | Short description of the packaged software | [optional] [readonly] 
 **Description** | Pointer to **string** | In-depth description of the packaged software | [optional] [readonly] 
 **Url** | Pointer to **string** | URL with more information about the packaged software | [optional] [readonly] 
-**Changelogs** | Pointer to **interface{}** | Changelogs that package contains | [optional] [readonly] [default to []]
-**Files** | Pointer to **interface{}** | Files that package contains | [optional] [readonly] [default to []]
-**Requires** | Pointer to **interface{}** | Capabilities the package requires | [optional] [readonly] [default to []]
-**Provides** | Pointer to **interface{}** | Capabilities the package provides | [optional] [readonly] [default to []]
-**Conflicts** | Pointer to **interface{}** | Capabilities the package conflicts | [optional] [readonly] [default to []]
-**Obsoletes** | Pointer to **interface{}** | Capabilities the package obsoletes | [optional] [readonly] [default to []]
-**Suggests** | Pointer to **interface{}** | Capabilities the package suggests | [optional] [readonly] [default to []]
-**Enhances** | Pointer to **interface{}** | Capabilities the package enhances | [optional] [readonly] [default to []]
-**Recommends** | Pointer to **interface{}** | Capabilities the package recommends | [optional] [readonly] [default to []]
-**Supplements** | Pointer to **interface{}** | Capabilities the package supplements | [optional] [readonly] [default to []]
+**Changelogs** | Pointer to **map[string]interface{}** | Changelogs that package contains | [optional] [readonly] 
+**Files** | Pointer to **map[string]interface{}** | Files that package contains | [optional] [readonly] 
+**Requires** | Pointer to **map[string]interface{}** | Capabilities the package requires | [optional] [readonly] 
+**Provides** | Pointer to **map[string]interface{}** | Capabilities the package provides | [optional] [readonly] 
+**Conflicts** | Pointer to **map[string]interface{}** | Capabilities the package conflicts | [optional] [readonly] 
+**Obsoletes** | Pointer to **map[string]interface{}** | Capabilities the package obsoletes | [optional] [readonly] 
+**Suggests** | Pointer to **map[string]interface{}** | Capabilities the package suggests | [optional] [readonly] 
+**Enhances** | Pointer to **map[string]interface{}** | Capabilities the package enhances | [optional] [readonly] 
+**Recommends** | Pointer to **map[string]interface{}** | Capabilities the package recommends | [optional] [readonly] 
+**Supplements** | Pointer to **map[string]interface{}** | Capabilities the package supplements | [optional] [readonly] 
 **LocationBase** | Pointer to **string** | Base location of this package | [optional] [readonly] 
 **LocationHref** | Pointer to **string** | Relative location of package to the repodata | [optional] [readonly] 
 **RpmBuildhost** | Pointer to **string** | Hostname of the system that built the package | [optional] [readonly] 
@@ -598,20 +598,20 @@ HasUrl returns a boolean if a field has been set.
 
 ### GetChangelogs
 
-`func (o *RpmPackageResponse) GetChangelogs() interface{}`
+`func (o *RpmPackageResponse) GetChangelogs() map[string]interface{}`
 
 GetChangelogs returns the Changelogs field if non-nil, zero value otherwise.
 
 ### GetChangelogsOk
 
-`func (o *RpmPackageResponse) GetChangelogsOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetChangelogsOk() (*map[string]interface{}, bool)`
 
 GetChangelogsOk returns a tuple with the Changelogs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChangelogs
 
-`func (o *RpmPackageResponse) SetChangelogs(v interface{})`
+`func (o *RpmPackageResponse) SetChangelogs(v map[string]interface{})`
 
 SetChangelogs sets Changelogs field to given value.
 
@@ -621,32 +621,22 @@ SetChangelogs sets Changelogs field to given value.
 
 HasChangelogs returns a boolean if a field has been set.
 
-### SetChangelogsNil
-
-`func (o *RpmPackageResponse) SetChangelogsNil(b bool)`
-
- SetChangelogsNil sets the value for Changelogs to be an explicit nil
-
-### UnsetChangelogs
-`func (o *RpmPackageResponse) UnsetChangelogs()`
-
-UnsetChangelogs ensures that no value is present for Changelogs, not even an explicit nil
 ### GetFiles
 
-`func (o *RpmPackageResponse) GetFiles() interface{}`
+`func (o *RpmPackageResponse) GetFiles() map[string]interface{}`
 
 GetFiles returns the Files field if non-nil, zero value otherwise.
 
 ### GetFilesOk
 
-`func (o *RpmPackageResponse) GetFilesOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetFilesOk() (*map[string]interface{}, bool)`
 
 GetFilesOk returns a tuple with the Files field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFiles
 
-`func (o *RpmPackageResponse) SetFiles(v interface{})`
+`func (o *RpmPackageResponse) SetFiles(v map[string]interface{})`
 
 SetFiles sets Files field to given value.
 
@@ -656,32 +646,22 @@ SetFiles sets Files field to given value.
 
 HasFiles returns a boolean if a field has been set.
 
-### SetFilesNil
-
-`func (o *RpmPackageResponse) SetFilesNil(b bool)`
-
- SetFilesNil sets the value for Files to be an explicit nil
-
-### UnsetFiles
-`func (o *RpmPackageResponse) UnsetFiles()`
-
-UnsetFiles ensures that no value is present for Files, not even an explicit nil
 ### GetRequires
 
-`func (o *RpmPackageResponse) GetRequires() interface{}`
+`func (o *RpmPackageResponse) GetRequires() map[string]interface{}`
 
 GetRequires returns the Requires field if non-nil, zero value otherwise.
 
 ### GetRequiresOk
 
-`func (o *RpmPackageResponse) GetRequiresOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetRequiresOk() (*map[string]interface{}, bool)`
 
 GetRequiresOk returns a tuple with the Requires field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequires
 
-`func (o *RpmPackageResponse) SetRequires(v interface{})`
+`func (o *RpmPackageResponse) SetRequires(v map[string]interface{})`
 
 SetRequires sets Requires field to given value.
 
@@ -691,32 +671,22 @@ SetRequires sets Requires field to given value.
 
 HasRequires returns a boolean if a field has been set.
 
-### SetRequiresNil
-
-`func (o *RpmPackageResponse) SetRequiresNil(b bool)`
-
- SetRequiresNil sets the value for Requires to be an explicit nil
-
-### UnsetRequires
-`func (o *RpmPackageResponse) UnsetRequires()`
-
-UnsetRequires ensures that no value is present for Requires, not even an explicit nil
 ### GetProvides
 
-`func (o *RpmPackageResponse) GetProvides() interface{}`
+`func (o *RpmPackageResponse) GetProvides() map[string]interface{}`
 
 GetProvides returns the Provides field if non-nil, zero value otherwise.
 
 ### GetProvidesOk
 
-`func (o *RpmPackageResponse) GetProvidesOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetProvidesOk() (*map[string]interface{}, bool)`
 
 GetProvidesOk returns a tuple with the Provides field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvides
 
-`func (o *RpmPackageResponse) SetProvides(v interface{})`
+`func (o *RpmPackageResponse) SetProvides(v map[string]interface{})`
 
 SetProvides sets Provides field to given value.
 
@@ -726,32 +696,22 @@ SetProvides sets Provides field to given value.
 
 HasProvides returns a boolean if a field has been set.
 
-### SetProvidesNil
-
-`func (o *RpmPackageResponse) SetProvidesNil(b bool)`
-
- SetProvidesNil sets the value for Provides to be an explicit nil
-
-### UnsetProvides
-`func (o *RpmPackageResponse) UnsetProvides()`
-
-UnsetProvides ensures that no value is present for Provides, not even an explicit nil
 ### GetConflicts
 
-`func (o *RpmPackageResponse) GetConflicts() interface{}`
+`func (o *RpmPackageResponse) GetConflicts() map[string]interface{}`
 
 GetConflicts returns the Conflicts field if non-nil, zero value otherwise.
 
 ### GetConflictsOk
 
-`func (o *RpmPackageResponse) GetConflictsOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetConflictsOk() (*map[string]interface{}, bool)`
 
 GetConflictsOk returns a tuple with the Conflicts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConflicts
 
-`func (o *RpmPackageResponse) SetConflicts(v interface{})`
+`func (o *RpmPackageResponse) SetConflicts(v map[string]interface{})`
 
 SetConflicts sets Conflicts field to given value.
 
@@ -761,32 +721,22 @@ SetConflicts sets Conflicts field to given value.
 
 HasConflicts returns a boolean if a field has been set.
 
-### SetConflictsNil
-
-`func (o *RpmPackageResponse) SetConflictsNil(b bool)`
-
- SetConflictsNil sets the value for Conflicts to be an explicit nil
-
-### UnsetConflicts
-`func (o *RpmPackageResponse) UnsetConflicts()`
-
-UnsetConflicts ensures that no value is present for Conflicts, not even an explicit nil
 ### GetObsoletes
 
-`func (o *RpmPackageResponse) GetObsoletes() interface{}`
+`func (o *RpmPackageResponse) GetObsoletes() map[string]interface{}`
 
 GetObsoletes returns the Obsoletes field if non-nil, zero value otherwise.
 
 ### GetObsoletesOk
 
-`func (o *RpmPackageResponse) GetObsoletesOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetObsoletesOk() (*map[string]interface{}, bool)`
 
 GetObsoletesOk returns a tuple with the Obsoletes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetObsoletes
 
-`func (o *RpmPackageResponse) SetObsoletes(v interface{})`
+`func (o *RpmPackageResponse) SetObsoletes(v map[string]interface{})`
 
 SetObsoletes sets Obsoletes field to given value.
 
@@ -796,32 +746,22 @@ SetObsoletes sets Obsoletes field to given value.
 
 HasObsoletes returns a boolean if a field has been set.
 
-### SetObsoletesNil
-
-`func (o *RpmPackageResponse) SetObsoletesNil(b bool)`
-
- SetObsoletesNil sets the value for Obsoletes to be an explicit nil
-
-### UnsetObsoletes
-`func (o *RpmPackageResponse) UnsetObsoletes()`
-
-UnsetObsoletes ensures that no value is present for Obsoletes, not even an explicit nil
 ### GetSuggests
 
-`func (o *RpmPackageResponse) GetSuggests() interface{}`
+`func (o *RpmPackageResponse) GetSuggests() map[string]interface{}`
 
 GetSuggests returns the Suggests field if non-nil, zero value otherwise.
 
 ### GetSuggestsOk
 
-`func (o *RpmPackageResponse) GetSuggestsOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetSuggestsOk() (*map[string]interface{}, bool)`
 
 GetSuggestsOk returns a tuple with the Suggests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSuggests
 
-`func (o *RpmPackageResponse) SetSuggests(v interface{})`
+`func (o *RpmPackageResponse) SetSuggests(v map[string]interface{})`
 
 SetSuggests sets Suggests field to given value.
 
@@ -831,32 +771,22 @@ SetSuggests sets Suggests field to given value.
 
 HasSuggests returns a boolean if a field has been set.
 
-### SetSuggestsNil
-
-`func (o *RpmPackageResponse) SetSuggestsNil(b bool)`
-
- SetSuggestsNil sets the value for Suggests to be an explicit nil
-
-### UnsetSuggests
-`func (o *RpmPackageResponse) UnsetSuggests()`
-
-UnsetSuggests ensures that no value is present for Suggests, not even an explicit nil
 ### GetEnhances
 
-`func (o *RpmPackageResponse) GetEnhances() interface{}`
+`func (o *RpmPackageResponse) GetEnhances() map[string]interface{}`
 
 GetEnhances returns the Enhances field if non-nil, zero value otherwise.
 
 ### GetEnhancesOk
 
-`func (o *RpmPackageResponse) GetEnhancesOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetEnhancesOk() (*map[string]interface{}, bool)`
 
 GetEnhancesOk returns a tuple with the Enhances field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEnhances
 
-`func (o *RpmPackageResponse) SetEnhances(v interface{})`
+`func (o *RpmPackageResponse) SetEnhances(v map[string]interface{})`
 
 SetEnhances sets Enhances field to given value.
 
@@ -866,32 +796,22 @@ SetEnhances sets Enhances field to given value.
 
 HasEnhances returns a boolean if a field has been set.
 
-### SetEnhancesNil
-
-`func (o *RpmPackageResponse) SetEnhancesNil(b bool)`
-
- SetEnhancesNil sets the value for Enhances to be an explicit nil
-
-### UnsetEnhances
-`func (o *RpmPackageResponse) UnsetEnhances()`
-
-UnsetEnhances ensures that no value is present for Enhances, not even an explicit nil
 ### GetRecommends
 
-`func (o *RpmPackageResponse) GetRecommends() interface{}`
+`func (o *RpmPackageResponse) GetRecommends() map[string]interface{}`
 
 GetRecommends returns the Recommends field if non-nil, zero value otherwise.
 
 ### GetRecommendsOk
 
-`func (o *RpmPackageResponse) GetRecommendsOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetRecommendsOk() (*map[string]interface{}, bool)`
 
 GetRecommendsOk returns a tuple with the Recommends field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRecommends
 
-`func (o *RpmPackageResponse) SetRecommends(v interface{})`
+`func (o *RpmPackageResponse) SetRecommends(v map[string]interface{})`
 
 SetRecommends sets Recommends field to given value.
 
@@ -901,32 +821,22 @@ SetRecommends sets Recommends field to given value.
 
 HasRecommends returns a boolean if a field has been set.
 
-### SetRecommendsNil
-
-`func (o *RpmPackageResponse) SetRecommendsNil(b bool)`
-
- SetRecommendsNil sets the value for Recommends to be an explicit nil
-
-### UnsetRecommends
-`func (o *RpmPackageResponse) UnsetRecommends()`
-
-UnsetRecommends ensures that no value is present for Recommends, not even an explicit nil
 ### GetSupplements
 
-`func (o *RpmPackageResponse) GetSupplements() interface{}`
+`func (o *RpmPackageResponse) GetSupplements() map[string]interface{}`
 
 GetSupplements returns the Supplements field if non-nil, zero value otherwise.
 
 ### GetSupplementsOk
 
-`func (o *RpmPackageResponse) GetSupplementsOk() (*interface{}, bool)`
+`func (o *RpmPackageResponse) GetSupplementsOk() (*map[string]interface{}, bool)`
 
 GetSupplementsOk returns a tuple with the Supplements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSupplements
 
-`func (o *RpmPackageResponse) SetSupplements(v interface{})`
+`func (o *RpmPackageResponse) SetSupplements(v map[string]interface{})`
 
 SetSupplements sets Supplements field to given value.
 
@@ -936,16 +846,6 @@ SetSupplements sets Supplements field to given value.
 
 HasSupplements returns a boolean if a field has been set.
 
-### SetSupplementsNil
-
-`func (o *RpmPackageResponse) SetSupplementsNil(b bool)`
-
- SetSupplementsNil sets the value for Supplements to be an explicit nil
-
-### UnsetSupplements
-`func (o *RpmPackageResponse) UnsetSupplements()`
-
-UnsetSupplements ensures that no value is present for Supplements, not even an explicit nil
 ### GetLocationBase
 
 `func (o *RpmPackageResponse) GetLocationBase() string`

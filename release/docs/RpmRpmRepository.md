@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **PackageChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: use CHECKSUM_TYPE instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
+**RepoConfig** | Pointer to **map[string]interface{}** | A JSON document describing config.repo file | [optional] 
 **CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
 
 ## Methods
@@ -513,20 +513,20 @@ HasRepoGpgcheck returns a boolean if a field has been set.
 UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
 ### GetRepoConfig
 
-`func (o *RpmRpmRepository) GetRepoConfig() interface{}`
+`func (o *RpmRpmRepository) GetRepoConfig() map[string]interface{}`
 
 GetRepoConfig returns the RepoConfig field if non-nil, zero value otherwise.
 
 ### GetRepoConfigOk
 
-`func (o *RpmRpmRepository) GetRepoConfigOk() (*interface{}, bool)`
+`func (o *RpmRpmRepository) GetRepoConfigOk() (*map[string]interface{}, bool)`
 
 GetRepoConfigOk returns a tuple with the RepoConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRepoConfig
 
-`func (o *RpmRpmRepository) SetRepoConfig(v interface{})`
+`func (o *RpmRpmRepository) SetRepoConfig(v map[string]interface{})`
 
 SetRepoConfig sets RepoConfig field to given value.
 
@@ -536,16 +536,6 @@ SetRepoConfig sets RepoConfig field to given value.
 
 HasRepoConfig returns a boolean if a field has been set.
 
-### SetRepoConfigNil
-
-`func (o *RpmRpmRepository) SetRepoConfigNil(b bool)`
-
- SetRepoConfigNil sets the value for RepoConfig to be an explicit nil
-
-### UnsetRepoConfig
-`func (o *RpmRpmRepository) UnsetRepoConfig()`
-
-UnsetRepoConfig ensures that no value is present for RepoConfig, not even an explicit nil
 ### GetCompressionType
 
 `func (o *RpmRpmRepository) GetCompressionType() CompressionTypeEnum`

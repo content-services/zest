@@ -33,7 +33,7 @@ type FilesystemExportResponse struct {
 	// Resources that were exported.
 	ExportedResources []string `json:"exported_resources,omitempty"`
 	// Any additional parameters that were used to create the export.
-	Params interface{} `json:"params,omitempty"`
+	Params map[string]interface{} `json:"params,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -258,10 +258,10 @@ func (o *FilesystemExportResponse) SetExportedResources(v []string) {
 	o.ExportedResources = v
 }
 
-// GetParams returns the Params field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FilesystemExportResponse) GetParams() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetParams returns the Params field value if set, zero value otherwise.
+func (o *FilesystemExportResponse) GetParams() map[string]interface{} {
+	if o == nil || IsNil(o.Params) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Params
@@ -269,12 +269,11 @@ func (o *FilesystemExportResponse) GetParams() interface{} {
 
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FilesystemExportResponse) GetParamsOk() (*interface{}, bool) {
+func (o *FilesystemExportResponse) GetParamsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Params) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Params, true
+	return o.Params, true
 }
 
 // HasParams returns a boolean if a field has been set.
@@ -286,8 +285,8 @@ func (o *FilesystemExportResponse) HasParams() bool {
 	return false
 }
 
-// SetParams gets a reference to the given interface{} and assigns it to the Params field.
-func (o *FilesystemExportResponse) SetParams(v interface{}) {
+// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
+func (o *FilesystemExportResponse) SetParams(v map[string]interface{}) {
 	o.Params = v
 }
 
@@ -319,7 +318,7 @@ func (o FilesystemExportResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExportedResources) {
 		toSerialize["exported_resources"] = o.ExportedResources
 	}
-	if o.Params != nil {
+	if !IsNil(o.Params) {
 		toSerialize["params"] = o.Params
 	}
 

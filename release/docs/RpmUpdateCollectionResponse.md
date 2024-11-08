@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **NullableString** | Collection name. | 
 **Shortname** | **NullableString** | Collection short name. | 
-**Module** | **interface{}** | Collection modular NSVCA. | 
+**Module** | **map[string]interface{}** | Collection modular NSVCA. | 
 **Packages** | Pointer to **[]map[string]interface{}** | List of packages | [optional] [readonly] 
 
 ## Methods
 
 ### NewRpmUpdateCollectionResponse
 
-`func NewRpmUpdateCollectionResponse(name NullableString, shortname NullableString, module interface{}, ) *RpmUpdateCollectionResponse`
+`func NewRpmUpdateCollectionResponse(name NullableString, shortname NullableString, module map[string]interface{}, ) *RpmUpdateCollectionResponse`
 
 NewRpmUpdateCollectionResponse instantiates a new RpmUpdateCollectionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -90,20 +90,20 @@ SetShortname sets Shortname field to given value.
 UnsetShortname ensures that no value is present for Shortname, not even an explicit nil
 ### GetModule
 
-`func (o *RpmUpdateCollectionResponse) GetModule() interface{}`
+`func (o *RpmUpdateCollectionResponse) GetModule() map[string]interface{}`
 
 GetModule returns the Module field if non-nil, zero value otherwise.
 
 ### GetModuleOk
 
-`func (o *RpmUpdateCollectionResponse) GetModuleOk() (*interface{}, bool)`
+`func (o *RpmUpdateCollectionResponse) GetModuleOk() (*map[string]interface{}, bool)`
 
 GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModule
 
-`func (o *RpmUpdateCollectionResponse) SetModule(v interface{})`
+`func (o *RpmUpdateCollectionResponse) SetModule(v map[string]interface{})`
 
 SetModule sets Module field to given value.
 

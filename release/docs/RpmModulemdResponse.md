@@ -14,17 +14,17 @@ Name | Type | Description | Notes
 **StaticContext** | Pointer to **bool** | Modulemd static-context flag. | [optional] 
 **Context** | **string** | Modulemd context. | 
 **Arch** | **string** | Modulemd architecture. | 
-**Artifacts** | **interface{}** | Modulemd artifacts. | 
-**Dependencies** | **interface{}** | Modulemd dependencies. | 
+**Artifacts** | **map[string]interface{}** | Modulemd artifacts. | 
+**Dependencies** | **map[string]interface{}** | Modulemd dependencies. | 
 **Packages** | Pointer to **[]string** | Modulemd artifacts&#39; packages. | [optional] 
-**Profiles** | **interface{}** | Modulemd profiles. | 
+**Profiles** | **map[string]interface{}** | Modulemd profiles. | 
 **Description** | **string** | Description of module. | 
 
 ## Methods
 
 ### NewRpmModulemdResponse
 
-`func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts interface{}, dependencies interface{}, profiles interface{}, description string, ) *RpmModulemdResponse`
+`func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts map[string]interface{}, dependencies map[string]interface{}, profiles map[string]interface{}, description string, ) *RpmModulemdResponse`
 
 NewRpmModulemdResponse instantiates a new RpmModulemdResponse object
 This constructor will assign default values to properties that have it defined,
@@ -266,20 +266,20 @@ SetArch sets Arch field to given value.
 
 ### GetArtifacts
 
-`func (o *RpmModulemdResponse) GetArtifacts() interface{}`
+`func (o *RpmModulemdResponse) GetArtifacts() map[string]interface{}`
 
 GetArtifacts returns the Artifacts field if non-nil, zero value otherwise.
 
 ### GetArtifactsOk
 
-`func (o *RpmModulemdResponse) GetArtifactsOk() (*interface{}, bool)`
+`func (o *RpmModulemdResponse) GetArtifactsOk() (*map[string]interface{}, bool)`
 
 GetArtifactsOk returns a tuple with the Artifacts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArtifacts
 
-`func (o *RpmModulemdResponse) SetArtifacts(v interface{})`
+`func (o *RpmModulemdResponse) SetArtifacts(v map[string]interface{})`
 
 SetArtifacts sets Artifacts field to given value.
 
@@ -296,20 +296,20 @@ SetArtifacts sets Artifacts field to given value.
 UnsetArtifacts ensures that no value is present for Artifacts, not even an explicit nil
 ### GetDependencies
 
-`func (o *RpmModulemdResponse) GetDependencies() interface{}`
+`func (o *RpmModulemdResponse) GetDependencies() map[string]interface{}`
 
 GetDependencies returns the Dependencies field if non-nil, zero value otherwise.
 
 ### GetDependenciesOk
 
-`func (o *RpmModulemdResponse) GetDependenciesOk() (*interface{}, bool)`
+`func (o *RpmModulemdResponse) GetDependenciesOk() (*map[string]interface{}, bool)`
 
 GetDependenciesOk returns a tuple with the Dependencies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDependencies
 
-`func (o *RpmModulemdResponse) SetDependencies(v interface{})`
+`func (o *RpmModulemdResponse) SetDependencies(v map[string]interface{})`
 
 SetDependencies sets Dependencies field to given value.
 
@@ -351,20 +351,20 @@ HasPackages returns a boolean if a field has been set.
 
 ### GetProfiles
 
-`func (o *RpmModulemdResponse) GetProfiles() interface{}`
+`func (o *RpmModulemdResponse) GetProfiles() map[string]interface{}`
 
 GetProfiles returns the Profiles field if non-nil, zero value otherwise.
 
 ### GetProfilesOk
 
-`func (o *RpmModulemdResponse) GetProfilesOk() (*interface{}, bool)`
+`func (o *RpmModulemdResponse) GetProfilesOk() (*map[string]interface{}, bool)`
 
 GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfiles
 
-`func (o *RpmModulemdResponse) SetProfiles(v interface{})`
+`func (o *RpmModulemdResponse) SetProfiles(v map[string]interface{})`
 
 SetProfiles sets Profiles field to given value.
 

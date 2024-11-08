@@ -63,25 +63,25 @@ type RpmPackageResponse struct {
 	// URL with more information about the packaged software
 	Url *string `json:"url,omitempty"`
 	// Changelogs that package contains
-	Changelogs interface{} `json:"changelogs,omitempty"`
+	Changelogs map[string]interface{} `json:"changelogs,omitempty"`
 	// Files that package contains
-	Files interface{} `json:"files,omitempty"`
+	Files map[string]interface{} `json:"files,omitempty"`
 	// Capabilities the package requires
-	Requires interface{} `json:"requires,omitempty"`
+	Requires map[string]interface{} `json:"requires,omitempty"`
 	// Capabilities the package provides
-	Provides interface{} `json:"provides,omitempty"`
+	Provides map[string]interface{} `json:"provides,omitempty"`
 	// Capabilities the package conflicts
-	Conflicts interface{} `json:"conflicts,omitempty"`
+	Conflicts map[string]interface{} `json:"conflicts,omitempty"`
 	// Capabilities the package obsoletes
-	Obsoletes interface{} `json:"obsoletes,omitempty"`
+	Obsoletes map[string]interface{} `json:"obsoletes,omitempty"`
 	// Capabilities the package suggests
-	Suggests interface{} `json:"suggests,omitempty"`
+	Suggests map[string]interface{} `json:"suggests,omitempty"`
 	// Capabilities the package enhances
-	Enhances interface{} `json:"enhances,omitempty"`
+	Enhances map[string]interface{} `json:"enhances,omitempty"`
 	// Capabilities the package recommends
-	Recommends interface{} `json:"recommends,omitempty"`
+	Recommends map[string]interface{} `json:"recommends,omitempty"`
 	// Capabilities the package supplements
-	Supplements interface{} `json:"supplements,omitempty"`
+	Supplements map[string]interface{} `json:"supplements,omitempty"`
 	// Base location of this package
 	LocationBase *string `json:"location_base,omitempty"`
 	// Relative location of package to the repodata
@@ -808,10 +808,10 @@ func (o *RpmPackageResponse) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetChangelogs returns the Changelogs field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetChangelogs() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetChangelogs returns the Changelogs field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetChangelogs() map[string]interface{} {
+	if o == nil || IsNil(o.Changelogs) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Changelogs
@@ -819,12 +819,11 @@ func (o *RpmPackageResponse) GetChangelogs() interface{} {
 
 // GetChangelogsOk returns a tuple with the Changelogs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetChangelogsOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetChangelogsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Changelogs) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Changelogs, true
+	return o.Changelogs, true
 }
 
 // HasChangelogs returns a boolean if a field has been set.
@@ -836,15 +835,15 @@ func (o *RpmPackageResponse) HasChangelogs() bool {
 	return false
 }
 
-// SetChangelogs gets a reference to the given interface{} and assigns it to the Changelogs field.
-func (o *RpmPackageResponse) SetChangelogs(v interface{}) {
+// SetChangelogs gets a reference to the given map[string]interface{} and assigns it to the Changelogs field.
+func (o *RpmPackageResponse) SetChangelogs(v map[string]interface{}) {
 	o.Changelogs = v
 }
 
-// GetFiles returns the Files field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetFiles() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetFiles returns the Files field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetFiles() map[string]interface{} {
+	if o == nil || IsNil(o.Files) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Files
@@ -852,12 +851,11 @@ func (o *RpmPackageResponse) GetFiles() interface{} {
 
 // GetFilesOk returns a tuple with the Files field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetFilesOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetFilesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Files) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Files, true
+	return o.Files, true
 }
 
 // HasFiles returns a boolean if a field has been set.
@@ -869,15 +867,15 @@ func (o *RpmPackageResponse) HasFiles() bool {
 	return false
 }
 
-// SetFiles gets a reference to the given interface{} and assigns it to the Files field.
-func (o *RpmPackageResponse) SetFiles(v interface{}) {
+// SetFiles gets a reference to the given map[string]interface{} and assigns it to the Files field.
+func (o *RpmPackageResponse) SetFiles(v map[string]interface{}) {
 	o.Files = v
 }
 
-// GetRequires returns the Requires field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetRequires() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetRequires returns the Requires field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetRequires() map[string]interface{} {
+	if o == nil || IsNil(o.Requires) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Requires
@@ -885,12 +883,11 @@ func (o *RpmPackageResponse) GetRequires() interface{} {
 
 // GetRequiresOk returns a tuple with the Requires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetRequiresOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetRequiresOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Requires) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Requires, true
+	return o.Requires, true
 }
 
 // HasRequires returns a boolean if a field has been set.
@@ -902,15 +899,15 @@ func (o *RpmPackageResponse) HasRequires() bool {
 	return false
 }
 
-// SetRequires gets a reference to the given interface{} and assigns it to the Requires field.
-func (o *RpmPackageResponse) SetRequires(v interface{}) {
+// SetRequires gets a reference to the given map[string]interface{} and assigns it to the Requires field.
+func (o *RpmPackageResponse) SetRequires(v map[string]interface{}) {
 	o.Requires = v
 }
 
-// GetProvides returns the Provides field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetProvides() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetProvides returns the Provides field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetProvides() map[string]interface{} {
+	if o == nil || IsNil(o.Provides) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Provides
@@ -918,12 +915,11 @@ func (o *RpmPackageResponse) GetProvides() interface{} {
 
 // GetProvidesOk returns a tuple with the Provides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetProvidesOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetProvidesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Provides) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Provides, true
+	return o.Provides, true
 }
 
 // HasProvides returns a boolean if a field has been set.
@@ -935,15 +931,15 @@ func (o *RpmPackageResponse) HasProvides() bool {
 	return false
 }
 
-// SetProvides gets a reference to the given interface{} and assigns it to the Provides field.
-func (o *RpmPackageResponse) SetProvides(v interface{}) {
+// SetProvides gets a reference to the given map[string]interface{} and assigns it to the Provides field.
+func (o *RpmPackageResponse) SetProvides(v map[string]interface{}) {
 	o.Provides = v
 }
 
-// GetConflicts returns the Conflicts field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetConflicts() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetConflicts returns the Conflicts field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetConflicts() map[string]interface{} {
+	if o == nil || IsNil(o.Conflicts) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Conflicts
@@ -951,12 +947,11 @@ func (o *RpmPackageResponse) GetConflicts() interface{} {
 
 // GetConflictsOk returns a tuple with the Conflicts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetConflictsOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetConflictsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Conflicts) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Conflicts, true
+	return o.Conflicts, true
 }
 
 // HasConflicts returns a boolean if a field has been set.
@@ -968,15 +963,15 @@ func (o *RpmPackageResponse) HasConflicts() bool {
 	return false
 }
 
-// SetConflicts gets a reference to the given interface{} and assigns it to the Conflicts field.
-func (o *RpmPackageResponse) SetConflicts(v interface{}) {
+// SetConflicts gets a reference to the given map[string]interface{} and assigns it to the Conflicts field.
+func (o *RpmPackageResponse) SetConflicts(v map[string]interface{}) {
 	o.Conflicts = v
 }
 
-// GetObsoletes returns the Obsoletes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetObsoletes() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetObsoletes returns the Obsoletes field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetObsoletes() map[string]interface{} {
+	if o == nil || IsNil(o.Obsoletes) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Obsoletes
@@ -984,12 +979,11 @@ func (o *RpmPackageResponse) GetObsoletes() interface{} {
 
 // GetObsoletesOk returns a tuple with the Obsoletes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetObsoletesOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetObsoletesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Obsoletes) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Obsoletes, true
+	return o.Obsoletes, true
 }
 
 // HasObsoletes returns a boolean if a field has been set.
@@ -1001,15 +995,15 @@ func (o *RpmPackageResponse) HasObsoletes() bool {
 	return false
 }
 
-// SetObsoletes gets a reference to the given interface{} and assigns it to the Obsoletes field.
-func (o *RpmPackageResponse) SetObsoletes(v interface{}) {
+// SetObsoletes gets a reference to the given map[string]interface{} and assigns it to the Obsoletes field.
+func (o *RpmPackageResponse) SetObsoletes(v map[string]interface{}) {
 	o.Obsoletes = v
 }
 
-// GetSuggests returns the Suggests field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetSuggests() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSuggests returns the Suggests field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetSuggests() map[string]interface{} {
+	if o == nil || IsNil(o.Suggests) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Suggests
@@ -1017,12 +1011,11 @@ func (o *RpmPackageResponse) GetSuggests() interface{} {
 
 // GetSuggestsOk returns a tuple with the Suggests field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetSuggestsOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetSuggestsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Suggests) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Suggests, true
+	return o.Suggests, true
 }
 
 // HasSuggests returns a boolean if a field has been set.
@@ -1034,15 +1027,15 @@ func (o *RpmPackageResponse) HasSuggests() bool {
 	return false
 }
 
-// SetSuggests gets a reference to the given interface{} and assigns it to the Suggests field.
-func (o *RpmPackageResponse) SetSuggests(v interface{}) {
+// SetSuggests gets a reference to the given map[string]interface{} and assigns it to the Suggests field.
+func (o *RpmPackageResponse) SetSuggests(v map[string]interface{}) {
 	o.Suggests = v
 }
 
-// GetEnhances returns the Enhances field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetEnhances() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetEnhances returns the Enhances field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetEnhances() map[string]interface{} {
+	if o == nil || IsNil(o.Enhances) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Enhances
@@ -1050,12 +1043,11 @@ func (o *RpmPackageResponse) GetEnhances() interface{} {
 
 // GetEnhancesOk returns a tuple with the Enhances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetEnhancesOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetEnhancesOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Enhances) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Enhances, true
+	return o.Enhances, true
 }
 
 // HasEnhances returns a boolean if a field has been set.
@@ -1067,15 +1059,15 @@ func (o *RpmPackageResponse) HasEnhances() bool {
 	return false
 }
 
-// SetEnhances gets a reference to the given interface{} and assigns it to the Enhances field.
-func (o *RpmPackageResponse) SetEnhances(v interface{}) {
+// SetEnhances gets a reference to the given map[string]interface{} and assigns it to the Enhances field.
+func (o *RpmPackageResponse) SetEnhances(v map[string]interface{}) {
 	o.Enhances = v
 }
 
-// GetRecommends returns the Recommends field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetRecommends() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetRecommends returns the Recommends field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetRecommends() map[string]interface{} {
+	if o == nil || IsNil(o.Recommends) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Recommends
@@ -1083,12 +1075,11 @@ func (o *RpmPackageResponse) GetRecommends() interface{} {
 
 // GetRecommendsOk returns a tuple with the Recommends field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetRecommendsOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetRecommendsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Recommends) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Recommends, true
+	return o.Recommends, true
 }
 
 // HasRecommends returns a boolean if a field has been set.
@@ -1100,15 +1091,15 @@ func (o *RpmPackageResponse) HasRecommends() bool {
 	return false
 }
 
-// SetRecommends gets a reference to the given interface{} and assigns it to the Recommends field.
-func (o *RpmPackageResponse) SetRecommends(v interface{}) {
+// SetRecommends gets a reference to the given map[string]interface{} and assigns it to the Recommends field.
+func (o *RpmPackageResponse) SetRecommends(v map[string]interface{}) {
 	o.Recommends = v
 }
 
-// GetSupplements returns the Supplements field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmPackageResponse) GetSupplements() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSupplements returns the Supplements field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetSupplements() map[string]interface{} {
+	if o == nil || IsNil(o.Supplements) {
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Supplements
@@ -1116,12 +1107,11 @@ func (o *RpmPackageResponse) GetSupplements() interface{} {
 
 // GetSupplementsOk returns a tuple with the Supplements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmPackageResponse) GetSupplementsOk() (*interface{}, bool) {
+func (o *RpmPackageResponse) GetSupplementsOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Supplements) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Supplements, true
+	return o.Supplements, true
 }
 
 // HasSupplements returns a boolean if a field has been set.
@@ -1133,8 +1123,8 @@ func (o *RpmPackageResponse) HasSupplements() bool {
 	return false
 }
 
-// SetSupplements gets a reference to the given interface{} and assigns it to the Supplements field.
-func (o *RpmPackageResponse) SetSupplements(v interface{}) {
+// SetSupplements gets a reference to the given map[string]interface{} and assigns it to the Supplements field.
+func (o *RpmPackageResponse) SetSupplements(v map[string]interface{}) {
 	o.Supplements = v
 }
 
@@ -1723,34 +1713,34 @@ func (o RpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
-	if o.Changelogs != nil {
+	if !IsNil(o.Changelogs) {
 		toSerialize["changelogs"] = o.Changelogs
 	}
-	if o.Files != nil {
+	if !IsNil(o.Files) {
 		toSerialize["files"] = o.Files
 	}
-	if o.Requires != nil {
+	if !IsNil(o.Requires) {
 		toSerialize["requires"] = o.Requires
 	}
-	if o.Provides != nil {
+	if !IsNil(o.Provides) {
 		toSerialize["provides"] = o.Provides
 	}
-	if o.Conflicts != nil {
+	if !IsNil(o.Conflicts) {
 		toSerialize["conflicts"] = o.Conflicts
 	}
-	if o.Obsoletes != nil {
+	if !IsNil(o.Obsoletes) {
 		toSerialize["obsoletes"] = o.Obsoletes
 	}
-	if o.Suggests != nil {
+	if !IsNil(o.Suggests) {
 		toSerialize["suggests"] = o.Suggests
 	}
-	if o.Enhances != nil {
+	if !IsNil(o.Enhances) {
 		toSerialize["enhances"] = o.Enhances
 	}
-	if o.Recommends != nil {
+	if !IsNil(o.Recommends) {
 		toSerialize["recommends"] = o.Recommends
 	}
-	if o.Supplements != nil {
+	if !IsNil(o.Supplements) {
 		toSerialize["supplements"] = o.Supplements
 	}
 	if !IsNil(o.LocationBase) {

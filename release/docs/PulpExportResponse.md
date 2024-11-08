@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Task** | Pointer to **NullableString** | A URI of the task that ran the Export. | [optional] 
 **ExportedResources** | Pointer to **[]string** | Resources that were exported. | [optional] [readonly] 
-**Params** | Pointer to **interface{}** | Any additional parameters that were used to create the export. | [optional] [readonly] 
-**OutputFileInfo** | Pointer to **interface{}** | Dictionary of filename: sha256hash entries for export-output-file(s) | [optional] [readonly] 
-**TocInfo** | Pointer to **interface{}** | Filename and sha256-checksum of table-of-contents for this export | [optional] [readonly] 
+**Params** | Pointer to **map[string]interface{}** | Any additional parameters that were used to create the export. | [optional] [readonly] 
+**OutputFileInfo** | Pointer to **map[string]interface{}** | Dictionary of filename: sha256hash entries for export-output-file(s) | [optional] [readonly] 
+**TocInfo** | Pointer to **map[string]interface{}** | Filename and sha256-checksum of table-of-contents for this export | [optional] [readonly] 
 
 ## Methods
 
@@ -195,20 +195,20 @@ HasExportedResources returns a boolean if a field has been set.
 
 ### GetParams
 
-`func (o *PulpExportResponse) GetParams() interface{}`
+`func (o *PulpExportResponse) GetParams() map[string]interface{}`
 
 GetParams returns the Params field if non-nil, zero value otherwise.
 
 ### GetParamsOk
 
-`func (o *PulpExportResponse) GetParamsOk() (*interface{}, bool)`
+`func (o *PulpExportResponse) GetParamsOk() (*map[string]interface{}, bool)`
 
 GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParams
 
-`func (o *PulpExportResponse) SetParams(v interface{})`
+`func (o *PulpExportResponse) SetParams(v map[string]interface{})`
 
 SetParams sets Params field to given value.
 
@@ -218,32 +218,22 @@ SetParams sets Params field to given value.
 
 HasParams returns a boolean if a field has been set.
 
-### SetParamsNil
-
-`func (o *PulpExportResponse) SetParamsNil(b bool)`
-
- SetParamsNil sets the value for Params to be an explicit nil
-
-### UnsetParams
-`func (o *PulpExportResponse) UnsetParams()`
-
-UnsetParams ensures that no value is present for Params, not even an explicit nil
 ### GetOutputFileInfo
 
-`func (o *PulpExportResponse) GetOutputFileInfo() interface{}`
+`func (o *PulpExportResponse) GetOutputFileInfo() map[string]interface{}`
 
 GetOutputFileInfo returns the OutputFileInfo field if non-nil, zero value otherwise.
 
 ### GetOutputFileInfoOk
 
-`func (o *PulpExportResponse) GetOutputFileInfoOk() (*interface{}, bool)`
+`func (o *PulpExportResponse) GetOutputFileInfoOk() (*map[string]interface{}, bool)`
 
 GetOutputFileInfoOk returns a tuple with the OutputFileInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputFileInfo
 
-`func (o *PulpExportResponse) SetOutputFileInfo(v interface{})`
+`func (o *PulpExportResponse) SetOutputFileInfo(v map[string]interface{})`
 
 SetOutputFileInfo sets OutputFileInfo field to given value.
 
@@ -253,32 +243,22 @@ SetOutputFileInfo sets OutputFileInfo field to given value.
 
 HasOutputFileInfo returns a boolean if a field has been set.
 
-### SetOutputFileInfoNil
-
-`func (o *PulpExportResponse) SetOutputFileInfoNil(b bool)`
-
- SetOutputFileInfoNil sets the value for OutputFileInfo to be an explicit nil
-
-### UnsetOutputFileInfo
-`func (o *PulpExportResponse) UnsetOutputFileInfo()`
-
-UnsetOutputFileInfo ensures that no value is present for OutputFileInfo, not even an explicit nil
 ### GetTocInfo
 
-`func (o *PulpExportResponse) GetTocInfo() interface{}`
+`func (o *PulpExportResponse) GetTocInfo() map[string]interface{}`
 
 GetTocInfo returns the TocInfo field if non-nil, zero value otherwise.
 
 ### GetTocInfoOk
 
-`func (o *PulpExportResponse) GetTocInfoOk() (*interface{}, bool)`
+`func (o *PulpExportResponse) GetTocInfoOk() (*map[string]interface{}, bool)`
 
 GetTocInfoOk returns a tuple with the TocInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTocInfo
 
-`func (o *PulpExportResponse) SetTocInfo(v interface{})`
+`func (o *PulpExportResponse) SetTocInfo(v map[string]interface{})`
 
 SetTocInfo sets TocInfo field to given value.
 
@@ -288,16 +268,6 @@ SetTocInfo sets TocInfo field to given value.
 
 HasTocInfo returns a boolean if a field has been set.
 
-### SetTocInfoNil
-
-`func (o *PulpExportResponse) SetTocInfoNil(b bool)`
-
- SetTocInfoNil sets the value for TocInfo to be an explicit nil
-
-### UnsetTocInfo
-`func (o *PulpExportResponse) UnsetTocInfo()`
-
-UnsetTocInfo ensures that no value is present for TocInfo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

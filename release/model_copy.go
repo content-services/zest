@@ -22,7 +22,7 @@ var _ MappedNullable = &Copy{}
 // Copy A serializer for Content Copy API.
 type Copy struct {
 	// A JSON document describing sources, destinations, and content to be copied
-	Config interface{} `json:"config"`
+	Config map[string]interface{} `json:"config"`
 	// Also copy dependencies of the content being copied.
 	DependencySolving *bool `json:"dependency_solving,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _Copy Copy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCopy(config interface{}) *Copy {
+func NewCopy(config map[string]interface{}) *Copy {
 	this := Copy{}
 	this.Config = config
 	var dependencySolving bool = true
@@ -53,10 +53,9 @@ func NewCopyWithDefaults() *Copy {
 }
 
 // GetConfig returns the Config field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *Copy) GetConfig() interface{} {
+func (o *Copy) GetConfig() map[string]interface{} {
 	if o == nil {
-		var ret interface{}
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -65,16 +64,15 @@ func (o *Copy) GetConfig() interface{} {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Copy) GetConfigOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Config) {
-		return nil, false
+func (o *Copy) GetConfigOk() (map[string]interface{}, bool) {
+	if o == nil {
+		return map[string]interface{}{}, false
 	}
-	return &o.Config, true
+	return o.Config, true
 }
 
 // SetConfig sets field value
-func (o *Copy) SetConfig(v interface{}) {
+func (o *Copy) SetConfig(v map[string]interface{}) {
 	o.Config = v
 }
 
@@ -120,9 +118,7 @@ func (o Copy) MarshalJSON() ([]byte, error) {
 
 func (o Copy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Config != nil {
-		toSerialize["config"] = o.Config
-	}
+	toSerialize["config"] = o.Config
 	if !IsNil(o.DependencySolving) {
 		toSerialize["dependency_solving"] = o.DependencySolving
 	}

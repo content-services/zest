@@ -28,14 +28,14 @@ Name | Type | Description | Notes
 **License** | Pointer to **string** | Text indicating the license covering the distribution | [optional] 
 **RequiresPython** | Pointer to **string** | The Python version(s) that the distribution is guaranteed to be compatible with. | [optional] 
 **ProjectUrl** | Pointer to **string** | A browsable URL for the project and a label for it, separated by a comma. | [optional] 
-**ProjectUrls** | Pointer to **interface{}** | A dictionary of labels and URLs for the project. | [optional] 
+**ProjectUrls** | Pointer to **map[string]interface{}** | A dictionary of labels and URLs for the project. | [optional] 
 **Platform** | Pointer to **string** | A comma-separated list of platform specifications, summarizing the operating systems supported by the package. | [optional] 
 **SupportedPlatform** | Pointer to **string** | Field to specify the OS and CPU for which the binary package was compiled.  | [optional] 
-**RequiresDist** | Pointer to **interface{}** | A JSON list containing names of some other distutils project required by this distribution. | [optional] 
-**ProvidesDist** | Pointer to **interface{}** | A JSON list containing names of a Distutils project which is contained within this distribution. | [optional] 
-**ObsoletesDist** | Pointer to **interface{}** | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | [optional] 
-**RequiresExternal** | Pointer to **interface{}** | A JSON list containing some dependency in the system that the distribution is to be used. | [optional] 
-**Classifiers** | Pointer to **interface{}** | A JSON list containing classification values for a Python package. | [optional] 
+**RequiresDist** | Pointer to **map[string]interface{}** | A JSON list containing names of some other distutils project required by this distribution. | [optional] 
+**ProvidesDist** | Pointer to **map[string]interface{}** | A JSON list containing names of a Distutils project which is contained within this distribution. | [optional] 
+**ObsoletesDist** | Pointer to **map[string]interface{}** | A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time. | [optional] 
+**RequiresExternal** | Pointer to **map[string]interface{}** | A JSON list containing some dependency in the system that the distribution is to be used. | [optional] 
+**Classifiers** | Pointer to **map[string]interface{}** | A JSON list containing classification values for a Python package. | [optional] 
 
 ## Methods
 
@@ -658,20 +658,20 @@ HasProjectUrl returns a boolean if a field has been set.
 
 ### GetProjectUrls
 
-`func (o *PythonPythonPackageContentResponse) GetProjectUrls() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetProjectUrls() map[string]interface{}`
 
 GetProjectUrls returns the ProjectUrls field if non-nil, zero value otherwise.
 
 ### GetProjectUrlsOk
 
-`func (o *PythonPythonPackageContentResponse) GetProjectUrlsOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetProjectUrlsOk() (*map[string]interface{}, bool)`
 
 GetProjectUrlsOk returns a tuple with the ProjectUrls field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProjectUrls
 
-`func (o *PythonPythonPackageContentResponse) SetProjectUrls(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetProjectUrls(v map[string]interface{})`
 
 SetProjectUrls sets ProjectUrls field to given value.
 
@@ -681,16 +681,6 @@ SetProjectUrls sets ProjectUrls field to given value.
 
 HasProjectUrls returns a boolean if a field has been set.
 
-### SetProjectUrlsNil
-
-`func (o *PythonPythonPackageContentResponse) SetProjectUrlsNil(b bool)`
-
- SetProjectUrlsNil sets the value for ProjectUrls to be an explicit nil
-
-### UnsetProjectUrls
-`func (o *PythonPythonPackageContentResponse) UnsetProjectUrls()`
-
-UnsetProjectUrls ensures that no value is present for ProjectUrls, not even an explicit nil
 ### GetPlatform
 
 `func (o *PythonPythonPackageContentResponse) GetPlatform() string`
@@ -743,20 +733,20 @@ HasSupportedPlatform returns a boolean if a field has been set.
 
 ### GetRequiresDist
 
-`func (o *PythonPythonPackageContentResponse) GetRequiresDist() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetRequiresDist() map[string]interface{}`
 
 GetRequiresDist returns the RequiresDist field if non-nil, zero value otherwise.
 
 ### GetRequiresDistOk
 
-`func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (*map[string]interface{}, bool)`
 
 GetRequiresDistOk returns a tuple with the RequiresDist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequiresDist
 
-`func (o *PythonPythonPackageContentResponse) SetRequiresDist(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetRequiresDist(v map[string]interface{})`
 
 SetRequiresDist sets RequiresDist field to given value.
 
@@ -766,32 +756,22 @@ SetRequiresDist sets RequiresDist field to given value.
 
 HasRequiresDist returns a boolean if a field has been set.
 
-### SetRequiresDistNil
-
-`func (o *PythonPythonPackageContentResponse) SetRequiresDistNil(b bool)`
-
- SetRequiresDistNil sets the value for RequiresDist to be an explicit nil
-
-### UnsetRequiresDist
-`func (o *PythonPythonPackageContentResponse) UnsetRequiresDist()`
-
-UnsetRequiresDist ensures that no value is present for RequiresDist, not even an explicit nil
 ### GetProvidesDist
 
-`func (o *PythonPythonPackageContentResponse) GetProvidesDist() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetProvidesDist() map[string]interface{}`
 
 GetProvidesDist returns the ProvidesDist field if non-nil, zero value otherwise.
 
 ### GetProvidesDistOk
 
-`func (o *PythonPythonPackageContentResponse) GetProvidesDistOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetProvidesDistOk() (*map[string]interface{}, bool)`
 
 GetProvidesDistOk returns a tuple with the ProvidesDist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvidesDist
 
-`func (o *PythonPythonPackageContentResponse) SetProvidesDist(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetProvidesDist(v map[string]interface{})`
 
 SetProvidesDist sets ProvidesDist field to given value.
 
@@ -801,32 +781,22 @@ SetProvidesDist sets ProvidesDist field to given value.
 
 HasProvidesDist returns a boolean if a field has been set.
 
-### SetProvidesDistNil
-
-`func (o *PythonPythonPackageContentResponse) SetProvidesDistNil(b bool)`
-
- SetProvidesDistNil sets the value for ProvidesDist to be an explicit nil
-
-### UnsetProvidesDist
-`func (o *PythonPythonPackageContentResponse) UnsetProvidesDist()`
-
-UnsetProvidesDist ensures that no value is present for ProvidesDist, not even an explicit nil
 ### GetObsoletesDist
 
-`func (o *PythonPythonPackageContentResponse) GetObsoletesDist() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetObsoletesDist() map[string]interface{}`
 
 GetObsoletesDist returns the ObsoletesDist field if non-nil, zero value otherwise.
 
 ### GetObsoletesDistOk
 
-`func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (*map[string]interface{}, bool)`
 
 GetObsoletesDistOk returns a tuple with the ObsoletesDist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetObsoletesDist
 
-`func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v map[string]interface{})`
 
 SetObsoletesDist sets ObsoletesDist field to given value.
 
@@ -836,32 +806,22 @@ SetObsoletesDist sets ObsoletesDist field to given value.
 
 HasObsoletesDist returns a boolean if a field has been set.
 
-### SetObsoletesDistNil
-
-`func (o *PythonPythonPackageContentResponse) SetObsoletesDistNil(b bool)`
-
- SetObsoletesDistNil sets the value for ObsoletesDist to be an explicit nil
-
-### UnsetObsoletesDist
-`func (o *PythonPythonPackageContentResponse) UnsetObsoletesDist()`
-
-UnsetObsoletesDist ensures that no value is present for ObsoletesDist, not even an explicit nil
 ### GetRequiresExternal
 
-`func (o *PythonPythonPackageContentResponse) GetRequiresExternal() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetRequiresExternal() map[string]interface{}`
 
 GetRequiresExternal returns the RequiresExternal field if non-nil, zero value otherwise.
 
 ### GetRequiresExternalOk
 
-`func (o *PythonPythonPackageContentResponse) GetRequiresExternalOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetRequiresExternalOk() (*map[string]interface{}, bool)`
 
 GetRequiresExternalOk returns a tuple with the RequiresExternal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequiresExternal
 
-`func (o *PythonPythonPackageContentResponse) SetRequiresExternal(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetRequiresExternal(v map[string]interface{})`
 
 SetRequiresExternal sets RequiresExternal field to given value.
 
@@ -871,32 +831,22 @@ SetRequiresExternal sets RequiresExternal field to given value.
 
 HasRequiresExternal returns a boolean if a field has been set.
 
-### SetRequiresExternalNil
-
-`func (o *PythonPythonPackageContentResponse) SetRequiresExternalNil(b bool)`
-
- SetRequiresExternalNil sets the value for RequiresExternal to be an explicit nil
-
-### UnsetRequiresExternal
-`func (o *PythonPythonPackageContentResponse) UnsetRequiresExternal()`
-
-UnsetRequiresExternal ensures that no value is present for RequiresExternal, not even an explicit nil
 ### GetClassifiers
 
-`func (o *PythonPythonPackageContentResponse) GetClassifiers() interface{}`
+`func (o *PythonPythonPackageContentResponse) GetClassifiers() map[string]interface{}`
 
 GetClassifiers returns the Classifiers field if non-nil, zero value otherwise.
 
 ### GetClassifiersOk
 
-`func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (*interface{}, bool)`
+`func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (*map[string]interface{}, bool)`
 
 GetClassifiersOk returns a tuple with the Classifiers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetClassifiers
 
-`func (o *PythonPythonPackageContentResponse) SetClassifiers(v interface{})`
+`func (o *PythonPythonPackageContentResponse) SetClassifiers(v map[string]interface{})`
 
 SetClassifiers sets Classifiers field to given value.
 
@@ -906,16 +856,6 @@ SetClassifiers sets Classifiers field to given value.
 
 HasClassifiers returns a boolean if a field has been set.
 
-### SetClassifiersNil
-
-`func (o *PythonPythonPackageContentResponse) SetClassifiersNil(b bool)`
-
- SetClassifiersNil sets the value for Classifiers to be an explicit nil
-
-### UnsetClassifiers
-`func (o *PythonPythonPackageContentResponse) UnsetClassifiers()`
-
-UnsetClassifiers ensures that no value is present for Classifiers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
