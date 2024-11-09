@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// StorageClassEnum * `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage
+// StorageClassEnum * `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage
 type StorageClassEnum string
 
 // List of StorageClassEnum
@@ -24,6 +24,7 @@ const (
 	STORAGECLASSENUM_PULPCORE_APP_MODELS_STORAGE_FILE_SYSTEM StorageClassEnum = "pulpcore.app.models.storage.FileSystem"
 	STORAGECLASSENUM_STORAGES_BACKENDS_S3BOTO3_S3_BOTO3_STORAGE StorageClassEnum = "storages.backends.s3boto3.S3Boto3Storage"
 	STORAGECLASSENUM_STORAGES_BACKENDS_AZURE_STORAGE_AZURE_STORAGE StorageClassEnum = "storages.backends.azure_storage.AzureStorage"
+	STORAGECLASSENUM_PULP_SERVICE_APP_STORAGE_OCI_STORAGE StorageClassEnum = "pulp_service.app.storage.OCIStorage"
 )
 
 // All allowed values of StorageClassEnum enum
@@ -31,6 +32,7 @@ var AllowedStorageClassEnumEnumValues = []StorageClassEnum{
 	"pulpcore.app.models.storage.FileSystem",
 	"storages.backends.s3boto3.S3Boto3Storage",
 	"storages.backends.azure_storage.AzureStorage",
+	"pulp_service.app.storage.OCIStorage",
 }
 
 func (v *StorageClassEnum) UnmarshalJSON(src []byte) error {

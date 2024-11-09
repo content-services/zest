@@ -9,6 +9,8 @@
 
 * `STORAGES_BACKENDS_AZURE_STORAGE_AZURE_STORAGE` (value: `"storages.backends.azure_storage.AzureStorage"`)
 
+* `PULP_SERVICE_APP_STORAGE_OCI_STORAGE` (value: `"pulp_service.app.storage.OCIStorage"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | A name for this domain. | 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
-**StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | Backend storage class for domain.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage | 
+**StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | Backend storage class for domain.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage* &#x60;pulp_service.app.storage.OCIStorage&#x60; - Use OCI as storage | 
 **StorageSettings** | **map[string]interface{}** | Settings for storage class. | 
 **RedirectToObjectStorage** | Pointer to **bool** | Boolean to have the content app redirect to object storage. | [optional] [default to true]
 **HideGuardedDistributions** | Pointer to **bool** | Boolean to hide distributions with a content guard in the content app. | [optional] [default to false]

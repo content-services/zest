@@ -39669,21 +39669,28 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
         hidden: false
+        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        base_url: base_url
         no_content_change_since: no_content_change_since
         name: name
-        base_url: base_url
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        pulp_href:
-          format: uri
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
           readOnly: true
           type: string
         prn:
@@ -39696,38 +39703,31 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
         content_guard:
           description: An optional content-guard.
           format: uri
           nullable: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
         pulp_created:
           description: Timestamp of creation.
@@ -40265,7 +40265,8 @@ components:
           description: Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem`
             - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage`
             - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage`
-            - Use Azure Blob as storage
+            - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use
+            OCI as storage
         storage_settings:
           description: Settings for storage class.
           type: object
@@ -40296,7 +40297,8 @@ components:
           description: The new backend storage class to migrate to.* `pulpcore.app.models.storage.FileSystem`
             - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage`
             - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage`
-            - Use Azure Blob as storage
+            - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use
+            OCI as storage
         storage_settings:
           description: The settings for the new storage class to migrate to.
           type: object
@@ -40353,7 +40355,8 @@ components:
           description: Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem`
             - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage`
             - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage`
-            - Use Azure Blob as storage
+            - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use
+            OCI as storage
         storage_settings:
           description: Settings for storage class.
           type: object
@@ -42314,25 +42317,25 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
+        - hidden: false
+          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
+          base_url: base_url
           no_content_change_since: no_content_change_since
           name: name
-          base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
+        - hidden: false
+          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
+          base_url: base_url
           no_content_change_since: no_content_change_since
           name: name
-          base_url: base_url
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -47520,7 +47523,8 @@ components:
           description: Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem`
             - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage`
             - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage`
-            - Use Azure Blob as storage
+            - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use
+            OCI as storage
         storage_settings:
           description: Settings for storage class.
           type: object
@@ -50713,11 +50717,12 @@ components:
       description: '* `pulpcore.app.models.storage.FileSystem` - Use local filesystem
         as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as
         storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as
-        storage'
+        storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage'
       enum:
       - pulpcore.app.models.storage.FileSystem
       - storages.backends.s3boto3.S3Boto3Storage
       - storages.backends.azure_storage.AzureStorage
+      - pulp_service.app.storage.OCIStorage
       type: string
     StorageResponse:
       description: Serializer for information about the storage system

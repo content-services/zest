@@ -21,7 +21,7 @@ var _ MappedNullable = &DomainBackendMigrator{}
 
 // DomainBackendMigrator Special serializer for performing a storage backend migration on a Domain.
 type DomainBackendMigrator struct {
-	// The new backend storage class to migrate to.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage
+	// The new backend storage class to migrate to.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage
 	StorageClass StorageClassEnum `json:"storage_class"`
 	// The settings for the new storage class to migrate to.
 	StorageSettings map[string]interface{} `json:"storage_settings"`

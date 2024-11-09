@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | The new backend storage class to migrate to.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage | 
+**StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | The new backend storage class to migrate to.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage* &#x60;pulp_service.app.storage.OCIStorage&#x60; - Use OCI as storage | 
 **StorageSettings** | **map[string]interface{}** | The settings for the new storage class to migrate to. | 
 
 ## Methods
