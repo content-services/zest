@@ -86,7 +86,7 @@ jobs:
       - uses: actions/setup-go@v2
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
         with:
-          go-version: "1.23"
+          go-version: "1.22"
 
       - name: Run Go Tests
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
