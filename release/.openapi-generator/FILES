@@ -6,6 +6,7 @@ api/openapi.yaml
 api_access_policies.go
 api_acs_file.go
 api_acs_rpm.go
+api_api_debug_auth_header.go
 api_api_pypi.go
 api_api_pypi_legacy.go
 api_api_pypi_simple.go
@@ -38,6 +39,7 @@ api_content_summaries.go
 api_contentguards.go
 api_contentguards_composite.go
 api_contentguards_content_redirect.go
+api_contentguards_feature.go
 api_contentguards_header.go
 api_contentguards_rbac.go
 api_contentguards_rhsm.go
@@ -117,6 +119,7 @@ docs/AcsFileAPI.md
 docs/AcsRpmAPI.md
 docs/AddonResponse.md
 docs/ApiAppStatusResponse.md
+docs/ApiDebugAuthHeaderAPI.md
 docs/ApiPypiAPI.md
 docs/ApiPypiLegacyAPI.md
 docs/ApiPypiSimpleAPI.md
@@ -168,6 +171,7 @@ docs/ContentSummaryResponse.md
 docs/ContentguardsAPI.md
 docs/ContentguardsCompositeAPI.md
 docs/ContentguardsContentRedirectAPI.md
+docs/ContentguardsFeatureAPI.md
 docs/ContentguardsHeaderAPI.md
 docs/ContentguardsRbacAPI.md
 docs/ContentguardsRhsmAPI.md
@@ -372,6 +376,7 @@ docs/PaginatedrpmRpmRemoteResponseList.md
 docs/PaginatedrpmRpmRepositoryResponseList.md
 docs/PaginatedrpmUlnRemoteResponseList.md
 docs/PaginatedrpmUpdateRecordResponseList.md
+docs/PaginatedserviceFeatureContentGuardResponseList.md
 docs/PatchedAccessPolicy.md
 docs/PatchedCompositeContentGuard.md
 docs/PatchedContentRedirectContentGuard.md
@@ -408,6 +413,7 @@ docs/PatchedrpmRpmDistribution.md
 docs/PatchedrpmRpmRemote.md
 docs/PatchedrpmRpmRepository.md
 docs/PatchedrpmUlnRemote.md
+docs/PatchedserviceFeatureContentGuard.md
 docs/Policy692Enum.md
 docs/PolicyBfeEnum.md
 docs/ProfileArtifactResponse.md
@@ -512,6 +518,8 @@ docs/RpmUpdateCollection.md
 docs/RpmUpdateCollectionResponse.md
 docs/RpmUpdateRecord.md
 docs/RpmUpdateRecordResponse.md
+docs/ServiceFeatureContentGuard.md
+docs/ServiceFeatureContentGuardResponse.md
 docs/SetLabel.md
 docs/SetLabelResponse.md
 docs/SigningServiceResponse.md
@@ -757,6 +765,7 @@ model_paginatedrpm_rpm_remote_response_list.go
 model_paginatedrpm_rpm_repository_response_list.go
 model_paginatedrpm_uln_remote_response_list.go
 model_paginatedrpm_update_record_response_list.go
+model_paginatedservice_feature_content_guard_response_list.go
 model_patched_access_policy.go
 model_patched_composite_content_guard.go
 model_patched_content_redirect_content_guard.go
@@ -793,6 +802,7 @@ model_patchedrpm_rpm_distribution.go
 model_patchedrpm_rpm_remote.go
 model_patchedrpm_rpm_repository.go
 model_patchedrpm_uln_remote.go
+model_patchedservice_feature_content_guard.go
 model_policy692_enum.go
 model_policy_bfe_enum.go
 model_profile_artifact_response.go
@@ -865,6 +875,8 @@ model_rpm_update_collection.go
 model_rpm_update_collection_response.go
 model_rpm_update_record.go
 model_rpm_update_record_response.go
+model_service_feature_content_guard.go
+model_service_feature_content_guard_response.go
 model_set_label.go
 model_set_label_response.go
 model_signing_service_response.go
@@ -902,6 +914,7 @@ response.go
 test/api_access_policies_test.go
 test/api_acs_file_test.go
 test/api_acs_rpm_test.go
+test/api_api_debug_auth_header_test.go
 test/api_api_pypi_legacy_test.go
 test/api_api_pypi_simple_test.go
 test/api_api_pypi_test.go
@@ -933,6 +946,7 @@ test/api_content_summaries_test.go
 test/api_content_test.go
 test/api_contentguards_composite_test.go
 test/api_contentguards_content_redirect_test.go
+test/api_contentguards_feature_test.go
 test/api_contentguards_header_test.go
 test/api_contentguards_rbac_test.go
 test/api_contentguards_rhsm_test.go

@@ -56,6 +56,8 @@ type APIClient struct {
 
 	AcsRpmAPI *AcsRpmAPIService
 
+	ApiDebugAuthHeaderAPI *ApiDebugAuthHeaderAPIService
+
 	ApiPypiAPI *ApiPypiAPIService
 
 	ApiPypiLegacyAPI *ApiPypiLegacyAPIService
@@ -119,6 +121,8 @@ type APIClient struct {
 	ContentguardsCompositeAPI *ContentguardsCompositeAPIService
 
 	ContentguardsContentRedirectAPI *ContentguardsContentRedirectAPIService
+
+	ContentguardsFeatureAPI *ContentguardsFeatureAPIService
 
 	ContentguardsHeaderAPI *ContentguardsHeaderAPIService
 
@@ -280,6 +284,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AccessPoliciesAPI = (*AccessPoliciesAPIService)(&c.common)
 	c.AcsFileAPI = (*AcsFileAPIService)(&c.common)
 	c.AcsRpmAPI = (*AcsRpmAPIService)(&c.common)
+	c.ApiDebugAuthHeaderAPI = (*ApiDebugAuthHeaderAPIService)(&c.common)
 	c.ApiPypiAPI = (*ApiPypiAPIService)(&c.common)
 	c.ApiPypiLegacyAPI = (*ApiPypiLegacyAPIService)(&c.common)
 	c.ApiPypiSimpleAPI = (*ApiPypiSimpleAPIService)(&c.common)
@@ -312,6 +317,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentguardsAPI = (*ContentguardsAPIService)(&c.common)
 	c.ContentguardsCompositeAPI = (*ContentguardsCompositeAPIService)(&c.common)
 	c.ContentguardsContentRedirectAPI = (*ContentguardsContentRedirectAPIService)(&c.common)
+	c.ContentguardsFeatureAPI = (*ContentguardsFeatureAPIService)(&c.common)
 	c.ContentguardsHeaderAPI = (*ContentguardsHeaderAPIService)(&c.common)
 	c.ContentguardsRbacAPI = (*ContentguardsRbacAPIService)(&c.common)
 	c.ContentguardsRhsmAPI = (*ContentguardsRhsmAPIService)(&c.common)

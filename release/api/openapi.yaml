@@ -12132,6 +12132,551 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Rbac"
+  /api/pulp/{pulp_domain}/api/v3/contentguards/service/feature/:
+    get:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `description`
+          - Description* `-description` - Description (descending)* `pk` - Pk* `-pk`
+          - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedservice.FeatureContentGuardResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List feature content guards
+      tags:
+      - "Contentguards: Feature"
+    post:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service.FeatureContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a feature content guard
+      tags:
+      - "Contentguards: Feature"
+  '{service_feature_content_guard_href}':
+    delete:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_delete
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a feature content guard
+      tags:
+      - "Contentguards: Feature"
+    get:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_read
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service.FeatureContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a feature content guard
+      tags:
+      - "Contentguards: Feature"
+    patch:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedservice.FeatureContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedservice.FeatureContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedservice.FeatureContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service.FeatureContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a feature content guard
+      tags:
+      - "Contentguards: Feature"
+    put:
+      description: Content guard to protect the content guarded by Subscription Features.
+      operationId: contentguards_service_feature_update
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/service.FeatureContentGuard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/service.FeatureContentGuardResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a feature content guard
+      tags:
+      - "Contentguards: Feature"
+  '{service_feature_content_guard_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: contentguards_service_feature_add_role
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Contentguards: Feature"
+  '{service_feature_content_guard_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: contentguards_service_feature_list_roles
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRolesResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Contentguards: Feature"
+  '{service_feature_content_guard_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: contentguards_service_feature_my_permissions
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyPermissionsResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Contentguards: Feature"
+  '{service_feature_content_guard_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: contentguards_service_feature_remove_role
+      parameters:
+      - explode: false
+        in: path
+        name: service_feature_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NestedRole'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NestedRoleResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Contentguards: Feature"
   /api/pulp/{pulp_domain}/api/v3/distributions/:
     get:
       description: Provides base viewset for Distributions.
@@ -39142,6 +39687,15 @@ paths:
       summary: Inspect status of Pulp
       tags:
       - Status
+  /api/pulp/debug_auth_header/:
+    get:
+      description: Returns the content of the authentication headers.
+      operationId: api_pulp_debug_auth_header_get
+      responses:
+        "200":
+          description: No response body
+      tags:
+      - "Api: Debug_Auth_Header"
   /api/pulp/pypi/{pulp_domain}/{path}/:
     get:
       description: Gets package summary stats of index.
@@ -39673,32 +40227,19 @@ components:
           key: pulp_labels
         hidden: false
         pulp_href: https://openapi-generator.tech
-        base_url: base_url
         no_content_change_since: no_content_change_since
         name: name
+        base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
         base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
           readOnly: true
           type: string
@@ -39707,31 +40248,44 @@ components:
             nullable: true
             type: string
           type: object
-        prn:
-          description: The Pulp Resource Name (PRN).
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
           readOnly: true
           type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           type: string
-        pulp_href:
+        content_guard:
+          description: An optional content-guard.
           format: uri
-          readOnly: true
+          nullable: true
           type: string
         name:
           description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
       required:
@@ -42321,9 +42875,9 @@ components:
             key: pulp_labels
           hidden: false
           pulp_href: https://openapi-generator.tech
-          base_url: base_url
           no_content_change_since: no_content_change_since
           name: name
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -42333,9 +42887,9 @@ components:
             key: pulp_labels
           hidden: false
           pulp_href: https://openapi-generator.tech
-          base_url: base_url
           no_content_change_since: no_content_change_since
           name: name
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
           base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -47415,6 +47969,56 @@ components:
       - count
       - results
       type: object
+    Paginatedservice.FeatureContentGuardResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - features:
+          - features
+          - features
+          jq_filter: jq_filter
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          header_name: header_name
+          prn: prn
+        - features:
+          - features
+          - features
+          jq_filter: jq_filter
+          pulp_href: https://openapi-generator.tech
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          header_name: header_name
+          prn: prn
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/service.FeatureContentGuardResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
     PatchedAccessPolicy:
       description: Serializer for AccessPolicy.
       example:
@@ -49363,6 +49967,32 @@ components:
           minLength: 1
           nullable: true
           type: string
+      type: object
+    Patchedservice.FeatureContentGuard:
+      description: A serializer for FeatureContentGuard.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          minLength: 1
+          type: string
+        jq_filter:
+          minLength: 1
+          nullable: true
+          type: string
+        features:
+          description: The list of features required to access the content.
+          items:
+            minLength: 1
+            type: string
+          type: array
       type: object
     Policy692Enum:
       description: "* `immediate` - When syncing, download all metadata and content\
@@ -58078,6 +58708,93 @@ components:
           description: Reboot suggested
           readOnly: true
           type: boolean
+      type: object
+    service.FeatureContentGuard:
+      description: A serializer for FeatureContentGuard.
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          minLength: 1
+          type: string
+        jq_filter:
+          minLength: 1
+          nullable: true
+          type: string
+        features:
+          description: The list of features required to access the content.
+          items:
+            minLength: 1
+            type: string
+          type: array
+      required:
+      - features
+      - header_name
+      - name
+      type: object
+    service.FeatureContentGuardResponse:
+      description: A serializer for FeatureContentGuard.
+      example:
+        features:
+        - features
+        - features
+        jq_filter: jq_filter
+        pulp_href: https://openapi-generator.tech
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        header_name: header_name
+        prn: prn
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        header_name:
+          type: string
+        jq_filter:
+          nullable: true
+          type: string
+        features:
+          description: The list of features required to access the content.
+          items:
+            type: string
+          type: array
+      required:
+      - features
+      - header_name
+      - name
       type: object
     RemoteResponse_hidden_fields_inner:
       example:
