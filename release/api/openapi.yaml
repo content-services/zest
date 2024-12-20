@@ -15,12 +15,12 @@ info:
   x-pulp-app-versions:
     core: 3.68.0
     rpm: 3.27.2
+    gem: 0.6.1
     certguard: 3.68.0
     file: 3.68.0
-    service: 0.1.0
-    ostree: 2.4.3
     python: 3.12.5
-    gem: 0.6.1
+    ostree: 2.4.3
+    service: 0.1.0
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -1985,10 +1985,10 @@ paths:
           `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
           - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
           `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `file.file` - file.file* `ostree.object` - ostree.object*
-          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
-          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
-          `python.python` - python.python* `gem.gem` - gem.gem
+          - rpm.modulemd_obsolete* `gem.gem` - gem.gem* `file.file` - file.file* `python.python`
+          - python.python* `ostree.object` - ostree.object* `ostree.commit` - ostree.commit*
+          `ostree.refs` - ostree.refs* `ostree.content` - ostree.content* `ostree.config`
+          - ostree.config* `ostree.summary` - ostree.summary
         explode: true
         in: query
         name: pulp_type
@@ -2033,11 +2033,10 @@ paths:
           - rpm.packagelangpacks* `rpm.repo_metadata_file` - rpm.repo_metadata_file*
           `rpm.distribution_tree` - rpm.distribution_tree* `rpm.package` - rpm.package*
           `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults` - rpm.modulemd_defaults*
-          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete* `file.file` - file.file*
-          `ostree.object` - ostree.object* `ostree.commit` - ostree.commit* `ostree.refs`
-          - ostree.refs* `ostree.content` - ostree.content* `ostree.config` - ostree.config*
-          `ostree.summary` - ostree.summary* `python.python` - python.python* `gem.gem`
-          - gem.gem
+          `rpm.modulemd_obsolete` - rpm.modulemd_obsolete* `gem.gem` - gem.gem* `file.file`
+          - file.file* `python.python` - python.python* `ostree.object` - ostree.object*
+          `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
+          - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary
         explode: false
         in: query
         name: pulp_type__in
@@ -12891,8 +12890,8 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
-          core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree`
-          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
+          core.openpgp* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `file.file` - file.file*
+          `python.python` - python.python* `ostree.ostree` - ostree.ostree
         explode: true
         in: query
         name: pulp_type
@@ -12909,9 +12908,9 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `file.file`
-          - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python*
-          `gem.gem` - gem.gem
+          - core.artifact* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `gem.gem`
+          - gem.gem* `file.file` - file.file* `python.python` - python.python* `ostree.ostree`
+          - ostree.ostree
         explode: false
         in: query
         name: pulp_type__in
@@ -20529,8 +20528,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python`
-          - python.python* `gem.gem` - gem.gem
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `file.file`
+          - file.file* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -20544,7 +20543,7 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
-          `file.file` - file.file* `python.python` - python.python* `gem.gem` - gem.gem
+          `gem.gem` - gem.gem* `file.file` - file.file* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -22898,9 +22897,9 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file`
-          - file.file* `ostree.ostree` - ostree.ostree* `python.python` - python.python*
-          `gem.gem` - gem.gem
+      - description: Pulp type* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `gem.gem`
+          - gem.gem* `file.file` - file.file* `python.python` - python.python* `ostree.ostree`
+          - ostree.ostree
         explode: true
         in: query
         name: pulp_type
@@ -22916,8 +22915,8 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `rpm.rpm` - rpm.rpm*
-          `rpm.uln` - rpm.uln* `file.file` - file.file* `ostree.ostree` - ostree.ostree*
-          `python.python` - python.python* `gem.gem` - gem.gem
+          `rpm.uln` - rpm.uln* `gem.gem` - gem.gem* `file.file` - file.file* `python.python`
+          - python.python* `ostree.ostree` - ostree.ostree
         explode: false
         in: query
         name: pulp_type__in
@@ -27730,8 +27729,8 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm*
-          `file.file` - file.file* `ostree.ostree` - ostree.ostree* `python.python`
-          - python.python* `gem.gem` - gem.gem
+          `gem.gem` - gem.gem* `file.file` - file.file* `python.python` - python.python*
+          `ostree.ostree` - ostree.ostree
         explode: true
         in: query
         name: pulp_type
@@ -27747,8 +27746,8 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.openpgp` -
-          core.openpgp* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `ostree.ostree`
-          - ostree.ostree* `python.python` - python.python* `gem.gem` - gem.gem
+          core.openpgp* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `file.file` - file.file*
+          `python.python` - python.python* `ostree.ostree` - ostree.ostree
         explode: false
         in: query
         name: pulp_type__in
@@ -40223,33 +40222,60 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
-        hidden: false
         pulp_labels:
           key: pulp_labels
-        no_content_change_since: no_content_change_since
-        base_url: base_url
+        pulp_href: https://openapi-generator.tech
+        hidden: false
         name: name
+        base_url: base_url
+        no_content_change_since: no_content_change_since
         base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
           readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         pulp_href:
           format: uri
           readOnly: true
           type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         content_guard:
           description: An optional content-guard.
@@ -40260,33 +40286,6 @@ components:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
       required:
       - base_path
@@ -42871,25 +42870,25 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          pulp_href: https://openapi-generator.tech
+          hidden: false
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
-          no_content_change_since: no_content_change_since
-          base_url: base_url
+          pulp_href: https://openapi-generator.tech
+          hidden: false
           name: name
+          base_url: base_url
+          no_content_change_since: no_content_change_since
           base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
@@ -48727,7 +48726,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -48735,7 +48734,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -48743,7 +48742,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -48751,7 +48750,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -48949,7 +48948,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -48957,7 +48956,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -48965,7 +48964,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -48973,7 +48972,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -49164,7 +49163,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -49172,7 +49171,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -49180,7 +49179,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -49188,7 +49187,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -49407,7 +49406,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -49415,7 +49414,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -49423,7 +49422,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -49431,7 +49430,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -49679,7 +49678,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -49687,7 +49686,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -49695,7 +49694,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -49703,7 +49702,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -49923,7 +49922,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -49931,7 +49930,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -49939,7 +49938,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -49947,7 +49946,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -50761,7 +50760,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -50769,7 +50768,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -50777,7 +50776,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -50785,7 +50784,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -53110,7 +53109,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -53118,7 +53117,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -53126,7 +53125,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -53134,7 +53133,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -53259,7 +53258,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -53267,7 +53266,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -53275,7 +53274,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -53283,7 +53282,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -53820,7 +53819,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -53828,7 +53827,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -53836,7 +53835,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -53844,7 +53843,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -53989,7 +53988,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -53997,7 +53996,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -54005,7 +54004,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -54013,7 +54012,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -54654,7 +54653,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -54662,7 +54661,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -54670,7 +54669,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -54678,7 +54677,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -54832,7 +54831,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -54840,7 +54839,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -54848,7 +54847,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -54856,7 +54855,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -55645,7 +55644,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -55653,7 +55652,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -55661,7 +55660,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -55669,7 +55668,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -55843,7 +55842,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -55851,7 +55850,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -55859,7 +55858,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -55867,7 +55866,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -57707,7 +57706,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -57715,7 +57714,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -57723,7 +57722,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -57731,7 +57730,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -57862,7 +57861,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -57870,7 +57869,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -57878,7 +57877,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -57886,7 +57885,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -58281,7 +58280,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -58289,7 +58288,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -58297,7 +58296,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -58305,7 +58304,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
@@ -58441,7 +58440,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         connect_timeout:
@@ -58449,7 +58448,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_connect_timeout:
@@ -58457,7 +58456,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         sock_read_timeout:
@@ -58465,7 +58464,7 @@ components:
             \ The default is null, which will cause the default from the aiohttp library\
             \ to be used."
           format: double
-          minimum: 0
+          minimum: 0.0
           nullable: true
           type: number
         headers:
