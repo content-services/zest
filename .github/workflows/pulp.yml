@@ -78,7 +78,7 @@ jobs:
           --global-property skipFormModel=false #for ansible plugin
 
       - name: Archive api json 
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pulp_api.json
           path: pulp_api.json 
