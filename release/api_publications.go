@@ -137,13 +137,13 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python
+// Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python
+// Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

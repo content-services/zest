@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/content-services/zest/release/v2024"
+	openapiclient "github.com/content-services/zest/release/v2025"
 )
 
 func main() {

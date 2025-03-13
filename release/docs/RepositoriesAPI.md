@@ -25,7 +25,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2024"
+	openapiclient "github.com/content-services/zest/release/v2025"
 )
 
 func main() {
@@ -47,8 +47,8 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `file.file` - file.file* `python.python` - python.python* `ostree.ostree` - ostree.ostree (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.openpgp` - core.openpgp* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `file.file` - file.file* `python.python` - python.python* `ostree.ostree` - ostree.ostree (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `core.openpgp` - core.openpgp* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.openpgp` - core.openpgp* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `ostree.ostree` - ostree.ostree (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
@@ -108,8 +108,8 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
- **pulpType** | **string** | Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree | 
+ **pulpType** | **string** | Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **remote** | **string** | Foreign Key referenced by HREF | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 

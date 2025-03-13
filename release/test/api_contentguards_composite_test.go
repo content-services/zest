@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/content-services/zest/release/v2024"
+	openapiclient "github.com/content-services/zest/release/v2025"
 )
 
 func Test_zest_ContentguardsCompositeAPIService(t *testing.T) {
