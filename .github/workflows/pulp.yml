@@ -23,8 +23,10 @@ jobs:
       - name: Get current pulp version
         id: pulpRelease
         run: |
-          latestImage="`curl https://quay.io/v1/repositories/redhat-services-prod/pulp-services-tenant/pulp/tags/latest  | jq -r`"
-          date="`curl https://quay.io/v2/redhat-services-prod/pulp-services-tenant/pulp/manifests/latest | jq -r '.history[].v1Compatibility' | jq -r '.created' | head -n 1`"
+          #repo=redhat-services-prod/pulp-services-tenant/pulp
+          repo=cloudservices/pulp-ubi
+          latestImage="`curl https://quay.io/v1/repositories/$repo/tags/latest  | jq -r`"
+          date="`curl https://quay.io/v2/$repo/manifests/latest | jq -r '.history[].v1Compatibility' | jq -r '.created' | head -n 1`"
           year=`date -d "$date" +%Y`
           month=`date -d "$date" +%-m`
           epoch=`date -d "$date" +"%s"`
