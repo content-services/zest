@@ -61,7 +61,7 @@ type RpmRpmRemoteResponse struct {
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Authentication token for SLES repositories.
 	SlesAuthToken NullableString `json:"sles_auth_token,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -817,9 +817,9 @@ func (o *RpmRpmRemoteResponse) UnsetRateLimit() {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *RpmRpmRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *RpmRpmRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -827,7 +827,7 @@ func (o *RpmRpmRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInn
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmRpmRemoteResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *RpmRpmRemoteResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -843,8 +843,8 @@ func (o *RpmRpmRemoteResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *RpmRpmRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *RpmRpmRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 

@@ -29,6 +29,8 @@ type RpmModulemdResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Modulemd name.
 	Name string `json:"name"`
 	// Stream name.
@@ -42,13 +44,13 @@ type RpmModulemdResponse struct {
 	// Modulemd architecture.
 	Arch string `json:"arch"`
 	// Modulemd artifacts.
-	Artifacts map[string]interface{} `json:"artifacts"`
+	Artifacts interface{} `json:"artifacts"`
 	// Modulemd dependencies.
-	Dependencies map[string]interface{} `json:"dependencies"`
+	Dependencies interface{} `json:"dependencies"`
 	// Modulemd artifacts' packages.
 	Packages []*string `json:"packages,omitempty"`
 	// Modulemd profiles.
-	Profiles map[string]interface{} `json:"profiles"`
+	Profiles interface{} `json:"profiles"`
 	// Description of module.
 	Description string `json:"description"`
 	AdditionalProperties map[string]interface{}
@@ -60,7 +62,7 @@ type _RpmModulemdResponse RpmModulemdResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts map[string]interface{}, dependencies map[string]interface{}, profiles map[string]interface{}, description string) *RpmModulemdResponse {
+func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts interface{}, dependencies interface{}, profiles interface{}, description string) *RpmModulemdResponse {
 	this := RpmModulemdResponse{}
 	this.Name = name
 	this.Stream = stream
@@ -208,6 +210,38 @@ func (o *RpmModulemdResponse) HasPulpLastUpdated() bool {
 // SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
 func (o *RpmModulemdResponse) SetPulpLastUpdated(v time.Time) {
 	o.PulpLastUpdated = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *RpmModulemdResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmModulemdResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *RpmModulemdResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *RpmModulemdResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetName returns the Name field value
@@ -363,10 +397,10 @@ func (o *RpmModulemdResponse) SetArch(v string) {
 }
 
 // GetArtifacts returns the Artifacts field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemdResponse) GetArtifacts() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemdResponse) GetArtifacts() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -376,23 +410,23 @@ func (o *RpmModulemdResponse) GetArtifacts() map[string]interface{} {
 // GetArtifactsOk returns a tuple with the Artifacts field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetArtifactsOk() (map[string]interface{}, bool) {
+func (o *RpmModulemdResponse) GetArtifactsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Artifacts) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Artifacts, true
+	return &o.Artifacts, true
 }
 
 // SetArtifacts sets field value
-func (o *RpmModulemdResponse) SetArtifacts(v map[string]interface{}) {
+func (o *RpmModulemdResponse) SetArtifacts(v interface{}) {
 	o.Artifacts = v
 }
 
 // GetDependencies returns the Dependencies field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemdResponse) GetDependencies() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemdResponse) GetDependencies() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -402,15 +436,15 @@ func (o *RpmModulemdResponse) GetDependencies() map[string]interface{} {
 // GetDependenciesOk returns a tuple with the Dependencies field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetDependenciesOk() (map[string]interface{}, bool) {
+func (o *RpmModulemdResponse) GetDependenciesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Dependencies) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Dependencies, true
+	return &o.Dependencies, true
 }
 
 // SetDependencies sets field value
-func (o *RpmModulemdResponse) SetDependencies(v map[string]interface{}) {
+func (o *RpmModulemdResponse) SetDependencies(v interface{}) {
 	o.Dependencies = v
 }
 
@@ -447,10 +481,10 @@ func (o *RpmModulemdResponse) SetPackages(v []*string) {
 }
 
 // GetProfiles returns the Profiles field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemdResponse) GetProfiles() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemdResponse) GetProfiles() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -460,15 +494,15 @@ func (o *RpmModulemdResponse) GetProfiles() map[string]interface{} {
 // GetProfilesOk returns a tuple with the Profiles field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemdResponse) GetProfilesOk() (map[string]interface{}, bool) {
+func (o *RpmModulemdResponse) GetProfilesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Profiles) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Profiles, true
+	return &o.Profiles, true
 }
 
 // SetProfiles sets field value
-func (o *RpmModulemdResponse) SetProfiles(v map[string]interface{}) {
+func (o *RpmModulemdResponse) SetProfiles(v interface{}) {
 	o.Profiles = v
 }
 
@@ -517,6 +551,9 @@ func (o RpmModulemdResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["stream"] = o.Stream
@@ -594,6 +631,7 @@ func (o *RpmModulemdResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "stream")
 		delete(additionalProperties, "version")

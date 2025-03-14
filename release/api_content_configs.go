@@ -36,6 +36,7 @@ type ContentConfigsAPIContentOstreeConfigsListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -83,6 +84,12 @@ func (r ContentConfigsAPIContentOstreeConfigsListRequest) PulpHrefIn(pulpHrefIn 
 // Multiple values may be separated by commas.
 func (r ContentConfigsAPIContentOstreeConfigsListRequest) PulpIdIn(pulpIdIn []string) ContentConfigsAPIContentOstreeConfigsListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentConfigsAPIContentOstreeConfigsListRequest) PulpLabelSelect(pulpLabelSelect string) ContentConfigsAPIContentOstreeConfigsListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -186,6 +193,9 @@ func (a *ContentConfigsAPIService) ContentOstreeConfigsListExecute(r ContentConf
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")

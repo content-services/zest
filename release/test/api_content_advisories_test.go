@@ -64,4 +64,32 @@ func Test_zest_ContentAdvisoriesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentAdvisoriesAPIService ContentRpmAdvisoriesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmUpdateRecordHref string
+
+		resp, httpRes, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesSetLabel(context.Background(), rpmUpdateRecordHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentAdvisoriesAPIService ContentRpmAdvisoriesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmUpdateRecordHref string
+
+		resp, httpRes, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesUnsetLabel(context.Background(), rpmUpdateRecordHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

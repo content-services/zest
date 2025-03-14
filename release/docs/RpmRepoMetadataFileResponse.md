@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Sha256** | Pointer to **string** | The SHA-256 checksum if available. | [optional] [readonly] 
 **Sha384** | Pointer to **string** | The SHA-384 checksum if available. | [optional] [readonly] 
 **Sha512** | Pointer to **string** | The SHA-512 checksum if available. | [optional] [readonly] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **RelativePath** | **string** | Relative path of the file. | 
 **DataType** | **string** | Metadata type. | 
@@ -288,6 +289,31 @@ SetSha512 sets Sha512 field to given value.
 `func (o *RpmRepoMetadataFileResponse) HasSha512() bool`
 
 HasSha512 returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *RpmRepoMetadataFileResponse) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *RpmRepoMetadataFileResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *RpmRepoMetadataFileResponse) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *RpmRepoMetadataFileResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetArtifact
 

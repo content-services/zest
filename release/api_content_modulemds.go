@@ -157,6 +157,7 @@ type ContentModulemdsAPIContentRpmModulemdsListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -218,7 +219,7 @@ func (r ContentModulemdsAPIContentRpmModulemdsListRequest) Offset(offset int32) 
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;stream&#x60; - Stream* &#x60;-stream&#x60; - Stream (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;context&#x60; - Context* &#x60;-context&#x60; - Context (descending)* &#x60;arch&#x60; - Arch* &#x60;-arch&#x60; - Arch (descending)* &#x60;static_context&#x60; - Static context* &#x60;-static_context&#x60; - Static context (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;artifacts&#x60; - Artifacts* &#x60;-artifacts&#x60; - Artifacts (descending)* &#x60;profiles&#x60; - Profiles* &#x60;-profiles&#x60; - Profiles (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;snippet&#x60; - Snippet* &#x60;-snippet&#x60; - Snippet (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;stream&#x60; - Stream* &#x60;-stream&#x60; - Stream (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;context&#x60; - Context* &#x60;-context&#x60; - Context (descending)* &#x60;arch&#x60; - Arch* &#x60;-arch&#x60; - Arch (descending)* &#x60;static_context&#x60; - Static context* &#x60;-static_context&#x60; - Static context (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;artifacts&#x60; - Artifacts* &#x60;-artifacts&#x60; - Artifacts (descending)* &#x60;profiles&#x60; - Profiles* &#x60;-profiles&#x60; - Profiles (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;snippet&#x60; - Snippet* &#x60;-snippet&#x60; - Snippet (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) Ordering(ordering []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.ordering = &ordering
 	return r
@@ -245,6 +246,12 @@ func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PulpHrefIn(pulpHrefIn
 // Multiple values may be separated by commas.
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PulpIdIn(pulpIdIn []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PulpLabelSelect(pulpLabelSelect string) ContentModulemdsAPIContentRpmModulemdsListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -395,6 +402,9 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
@@ -602,6 +612,236 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsReadExecute(r ContentMod
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentModulemdsAPIContentRpmModulemdsSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentModulemdsAPIService
+	rpmModulemdHref string
+	setLabel *SetLabel
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsSetLabelRequest) SetLabel(setLabel SetLabel) ContentModulemdsAPIContentRpmModulemdsSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmModulemdsSetLabelExecute(r)
+}
+
+/*
+ContentRpmModulemdsSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmModulemdHref
+ @return ContentModulemdsAPIContentRpmModulemdsSetLabelRequest
+*/
+func (a *ContentModulemdsAPIService) ContentRpmModulemdsSetLabel(ctx context.Context, rpmModulemdHref string) ContentModulemdsAPIContentRpmModulemdsSetLabelRequest {
+	return ContentModulemdsAPIContentRpmModulemdsSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmModulemdHref: rpmModulemdHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentModulemdsAPIService) ContentRpmModulemdsSetLabelExecute(r ContentModulemdsAPIContentRpmModulemdsSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentModulemdsAPIService.ContentRpmModulemdsSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_modulemd_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdHref, "rpmModulemdHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentModulemdsAPIService
+	rpmModulemdHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmModulemdsUnsetLabelExecute(r)
+}
+
+/*
+ContentRpmModulemdsUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmModulemdHref
+ @return ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest
+*/
+func (a *ContentModulemdsAPIService) ContentRpmModulemdsUnsetLabel(ctx context.Context, rpmModulemdHref string) ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest {
+	return ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmModulemdHref: rpmModulemdHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentModulemdsAPIService) ContentRpmModulemdsUnsetLabelExecute(r ContentModulemdsAPIContentRpmModulemdsUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentModulemdsAPIService.ContentRpmModulemdsUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_modulemd_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdHref, "rpmModulemdHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

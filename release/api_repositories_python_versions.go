@@ -149,6 +149,7 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest st
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
+	pulpCreatedIsnull *bool
 	pulpCreatedLt *time.Time
 	pulpCreatedLte *time.Time
 	pulpCreatedRange *[]time.Time
@@ -245,6 +246,12 @@ func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest
 // Filter results where pulp_created is greater than or equal to value
 func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest) PulpCreatedGte(pulpCreatedGte time.Time) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest {
 	r.pulpCreatedGte = &pulpCreatedGte
+	return r
+}
+
+// Filter results where pulp_created has a null value
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest) PulpCreatedIsnull(pulpCreatedIsnull bool) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest {
+	r.pulpCreatedIsnull = &pulpCreatedIsnull
 	return r
 }
 
@@ -378,6 +385,9 @@ func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsL
 	}
 	if r.pulpCreatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gte", r.pulpCreatedGte, "form", "")
+	}
+	if r.pulpCreatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__isnull", r.pulpCreatedIsnull, "form", "")
 	}
 	if r.pulpCreatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lt", r.pulpCreatedLt, "form", "")

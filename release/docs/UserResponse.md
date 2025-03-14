@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **IsActive** | Pointer to **bool** | Designates whether this user should be treated as active. | [optional] [default to true]
 **DateJoined** | Pointer to **time.Time** | Date joined | [optional] [readonly] 
 **Groups** | Pointer to [**[]UserGroupResponse**](UserGroupResponse.md) |  | [optional] [readonly] 
-**HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 
 ## Methods
 
@@ -308,20 +308,20 @@ HasGroups returns a boolean if a field has been set.
 
 ### GetHiddenFields
 
-`func (o *UserResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner`
+`func (o *UserResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
 
 GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
 
 ### GetHiddenFieldsOk
 
-`func (o *UserResponse) GetHiddenFieldsOk() (*[]RemoteResponseHiddenFieldsInner, bool)`
+`func (o *UserResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
 
 GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHiddenFields
 
-`func (o *UserResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner)`
+`func (o *UserResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
 
 SetHiddenFields sets HiddenFields field to given value.
 

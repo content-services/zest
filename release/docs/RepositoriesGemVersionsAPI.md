@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesGemGemVersionsList
 
-> PaginatedRepositoryVersionResponseList RepositoriesGemGemVersionsList(ctx, gemGemRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRepositoryVersionResponseList RepositoriesGemGemVersionsList(ctx, gemGemRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List repository versions
 
@@ -119,6 +119,7 @@ func main() {
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
 	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
+	pulpCreatedIsnull := true // bool | Filter results where pulp_created has a null value (optional)
 	pulpCreatedLt := time.Now() // time.Time | Filter results where pulp_created is less than value (optional)
 	pulpCreatedLte := time.Now() // time.Time | Filter results where pulp_created is less than or equal to value (optional)
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
@@ -129,7 +130,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesGemVersionsAPI.RepositoriesGemGemVersionsList(context.Background(), gemGemRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesGemVersionsAPI.RepositoriesGemGemVersionsList(context.Background(), gemGemRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesGemVersionsAPI.RepositoriesGemGemVersionsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -170,6 +171,7 @@ Name | Type | Description  | Notes
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
  **pulpCreatedGte** | **time.Time** | Filter results where pulp_created is greater than or equal to value | 
+ **pulpCreatedIsnull** | **bool** | Filter results where pulp_created has a null value | 
  **pulpCreatedLt** | **time.Time** | Filter results where pulp_created is less than value | 
  **pulpCreatedLte** | **time.Time** | Filter results where pulp_created is less than or equal to value | 
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Username** | Pointer to **NullableString** | The username to be used for authentication when syncing. | [optional] 
 **Password** | Pointer to **NullableString** | The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed. | [optional] 
 **QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
+**Policy** | Pointer to [**Policy357Enum**](Policy357Enum.md) | Policy for how replicate will manage the local objects within the domain.* &#x60;all&#x60; - Replicate manages ALL local objects within the domain.* &#x60;labeled&#x60; - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* &#x60;nodelete&#x60; - Replicate will not delete any local object whether they were created by replication or not. | [optional] 
 
 ## Methods
 
@@ -365,6 +366,31 @@ HasQSelect returns a boolean if a field has been set.
 `func (o *UpstreamPulp) UnsetQSelect()`
 
 UnsetQSelect ensures that no value is present for QSelect, not even an explicit nil
+### GetPolicy
+
+`func (o *UpstreamPulp) GetPolicy() Policy357Enum`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *UpstreamPulp) GetPolicyOk() (*Policy357Enum, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *UpstreamPulp) SetPolicy(v Policy357Enum)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *UpstreamPulp) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

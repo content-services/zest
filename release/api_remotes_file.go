@@ -383,6 +383,7 @@ type RemotesFileAPIRemotesFileFileListRequest struct {
 	pulpLastUpdated *time.Time
 	pulpLastUpdatedGt *time.Time
 	pulpLastUpdatedGte *time.Time
+	pulpLastUpdatedIsnull *bool
 	pulpLastUpdatedLt *time.Time
 	pulpLastUpdatedLte *time.Time
 	pulpLastUpdatedRange *[]time.Time
@@ -502,6 +503,12 @@ func (r RemotesFileAPIRemotesFileFileListRequest) PulpLastUpdatedGt(pulpLastUpda
 // Filter results where pulp_last_updated is greater than or equal to value
 func (r RemotesFileAPIRemotesFileFileListRequest) PulpLastUpdatedGte(pulpLastUpdatedGte time.Time) RemotesFileAPIRemotesFileFileListRequest {
 	r.pulpLastUpdatedGte = &pulpLastUpdatedGte
+	return r
+}
+
+// Filter results where pulp_last_updated has a null value
+func (r RemotesFileAPIRemotesFileFileListRequest) PulpLastUpdatedIsnull(pulpLastUpdatedIsnull bool) RemotesFileAPIRemotesFileFileListRequest {
+	r.pulpLastUpdatedIsnull = &pulpLastUpdatedIsnull
 	return r
 }
 
@@ -641,6 +648,9 @@ func (a *RemotesFileAPIService) RemotesFileFileListExecute(r RemotesFileAPIRemot
 	}
 	if r.pulpLastUpdatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__gte", r.pulpLastUpdatedGte, "form", "")
+	}
+	if r.pulpLastUpdatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__isnull", r.pulpLastUpdatedIsnull, "form", "")
 	}
 	if r.pulpLastUpdatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__lt", r.pulpLastUpdatedLt, "form", "")

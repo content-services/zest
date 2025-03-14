@@ -149,6 +149,7 @@ type RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest st
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
+	pulpCreatedIsnull *bool
 	pulpCreatedLt *time.Time
 	pulpCreatedLte *time.Time
 	pulpCreatedRange *[]time.Time
@@ -245,6 +246,12 @@ func (r RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest
 // Filter results where pulp_created is greater than or equal to value
 func (r RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest) PulpCreatedGte(pulpCreatedGte time.Time) RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest {
 	r.pulpCreatedGte = &pulpCreatedGte
+	return r
+}
+
+// Filter results where pulp_created has a null value
+func (r RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest) PulpCreatedIsnull(pulpCreatedIsnull bool) RepositoriesOstreeVersionsAPIRepositoriesOstreeOstreeVersionsListRequest {
+	r.pulpCreatedIsnull = &pulpCreatedIsnull
 	return r
 }
 
@@ -378,6 +385,9 @@ func (a *RepositoriesOstreeVersionsAPIService) RepositoriesOstreeOstreeVersionsL
 	}
 	if r.pulpCreatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gte", r.pulpCreatedGte, "form", "")
+	}
+	if r.pulpCreatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__isnull", r.pulpCreatedIsnull, "form", "")
 	}
 	if r.pulpCreatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lt", r.pulpCreatedLt, "form", "")

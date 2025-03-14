@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## WorkersList
 
-> PaginatedWorkerResponseList WorkersList(ctx, pulpDomain).LastHeartbeat(lastHeartbeat).LastHeartbeatGt(lastHeartbeatGt).LastHeartbeatGte(lastHeartbeatGte).LastHeartbeatLt(lastHeartbeatLt).LastHeartbeatLte(lastHeartbeatLte).LastHeartbeatRange(lastHeartbeatRange).Limit(limit).Missing(missing).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Online(online).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedWorkerResponseList WorkersList(ctx, pulpDomain).LastHeartbeat(lastHeartbeat).LastHeartbeatGt(lastHeartbeatGt).LastHeartbeatGte(lastHeartbeatGte).LastHeartbeatIsnull(lastHeartbeatIsnull).LastHeartbeatLt(lastHeartbeatLt).LastHeartbeatLte(lastHeartbeatLte).LastHeartbeatRange(lastHeartbeatRange).Limit(limit).Missing(missing).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Online(online).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List workers
 
@@ -35,6 +35,7 @@ func main() {
 	lastHeartbeat := time.Now() // time.Time | Filter results where last_heartbeat matches value (optional)
 	lastHeartbeatGt := time.Now() // time.Time | Filter results where last_heartbeat is greater than value (optional)
 	lastHeartbeatGte := time.Now() // time.Time | Filter results where last_heartbeat is greater than or equal to value (optional)
+	lastHeartbeatIsnull := true // bool | Filter results where last_heartbeat has a null value (optional)
 	lastHeartbeatLt := time.Now() // time.Time | Filter results where last_heartbeat is less than value (optional)
 	lastHeartbeatLte := time.Now() // time.Time | Filter results where last_heartbeat is less than or equal to value (optional)
 	lastHeartbeatRange := []time.Time{time.Now()} // []time.Time | Filter results where last_heartbeat is between two comma separated values (optional)
@@ -61,7 +62,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkersAPI.WorkersList(context.Background(), pulpDomain).LastHeartbeat(lastHeartbeat).LastHeartbeatGt(lastHeartbeatGt).LastHeartbeatGte(lastHeartbeatGte).LastHeartbeatLt(lastHeartbeatLt).LastHeartbeatLte(lastHeartbeatLte).LastHeartbeatRange(lastHeartbeatRange).Limit(limit).Missing(missing).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Online(online).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.WorkersAPI.WorkersList(context.Background(), pulpDomain).LastHeartbeat(lastHeartbeat).LastHeartbeatGt(lastHeartbeatGt).LastHeartbeatGte(lastHeartbeatGte).LastHeartbeatIsnull(lastHeartbeatIsnull).LastHeartbeatLt(lastHeartbeatLt).LastHeartbeatLte(lastHeartbeatLte).LastHeartbeatRange(lastHeartbeatRange).Limit(limit).Missing(missing).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Online(online).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkersAPI.WorkersList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -90,6 +91,7 @@ Name | Type | Description  | Notes
  **lastHeartbeat** | **time.Time** | Filter results where last_heartbeat matches value | 
  **lastHeartbeatGt** | **time.Time** | Filter results where last_heartbeat is greater than value | 
  **lastHeartbeatGte** | **time.Time** | Filter results where last_heartbeat is greater than or equal to value | 
+ **lastHeartbeatIsnull** | **bool** | Filter results where last_heartbeat has a null value | 
  **lastHeartbeatLt** | **time.Time** | Filter results where last_heartbeat is less than value | 
  **lastHeartbeatLte** | **time.Time** | Filter results where last_heartbeat is less than or equal to value | 
  **lastHeartbeatRange** | [**[]time.Time**](time.Time.md) | Filter results where last_heartbeat is between two comma separated values | 

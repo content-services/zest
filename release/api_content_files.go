@@ -32,6 +32,7 @@ type ContentFilesAPIContentFileFilesCreateRequest struct {
 	pulpDomain string
 	relativePath *string
 	repository *string
+	pulpLabels *map[string]string
 	artifact *string
 	file *os.File
 	upload *string
@@ -47,6 +48,12 @@ func (r ContentFilesAPIContentFileFilesCreateRequest) RelativePath(relativePath 
 // A URI of a repository the new content unit should be associated with.
 func (r ContentFilesAPIContentFileFilesCreateRequest) Repository(repository string) ContentFilesAPIContentFileFilesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentFilesAPIContentFileFilesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentFilesAPIContentFileFilesCreateRequest {
+	r.pulpLabels = &pulpLabels
 	return r
 }
 
@@ -144,6 +151,9 @@ func (a *ContentFilesAPIService) ContentFileFilesCreateExecute(r ContentFilesAPI
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
 	if r.artifact != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
 	}
@@ -219,6 +229,7 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	relativePath *string
 	repositoryVersion *string
@@ -241,7 +252,7 @@ func (r ContentFilesAPIContentFileFilesListRequest) Offset(offset int32) Content
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;relative_path&#x60; - Relative path* &#x60;-relative_path&#x60; - Relative path (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;relative_path&#x60; - Relative path* &#x60;-relative_path&#x60; - Relative path (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentFilesAPIContentFileFilesListRequest) Ordering(ordering []string) ContentFilesAPIContentFileFilesListRequest {
 	r.ordering = &ordering
 	return r
@@ -268,6 +279,12 @@ func (r ContentFilesAPIContentFileFilesListRequest) PulpHrefIn(pulpHrefIn []stri
 // Multiple values may be separated by commas.
 func (r ContentFilesAPIContentFileFilesListRequest) PulpIdIn(pulpIdIn []string) ContentFilesAPIContentFileFilesListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentFilesAPIContentFileFilesListRequest) PulpLabelSelect(pulpLabelSelect string) ContentFilesAPIContentFileFilesListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -382,6 +399,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
@@ -580,6 +600,236 @@ func (a *ContentFilesAPIService) ContentFileFilesReadExecute(r ContentFilesAPICo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentFilesAPIContentFileFilesSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentFilesAPIService
+	fileFileContentHref string
+	setLabel *SetLabel
+}
+
+func (r ContentFilesAPIContentFileFilesSetLabelRequest) SetLabel(setLabel SetLabel) ContentFilesAPIContentFileFilesSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentFilesAPIContentFileFilesSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentFileFilesSetLabelExecute(r)
+}
+
+/*
+ContentFileFilesSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fileFileContentHref
+ @return ContentFilesAPIContentFileFilesSetLabelRequest
+*/
+func (a *ContentFilesAPIService) ContentFileFilesSetLabel(ctx context.Context, fileFileContentHref string) ContentFilesAPIContentFileFilesSetLabelRequest {
+	return ContentFilesAPIContentFileFilesSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		fileFileContentHref: fileFileContentHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentFilesAPIService) ContentFileFilesSetLabelExecute(r ContentFilesAPIContentFileFilesSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentFilesAPIService.ContentFileFilesSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{file_file_content_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"file_file_content_href"+"}", url.PathEscape(parameterValueToString(r.fileFileContentHref, "fileFileContentHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentFilesAPIContentFileFilesUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentFilesAPIService
+	fileFileContentHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentFilesAPIContentFileFilesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentFilesAPIContentFileFilesUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentFilesAPIContentFileFilesUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentFileFilesUnsetLabelExecute(r)
+}
+
+/*
+ContentFileFilesUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fileFileContentHref
+ @return ContentFilesAPIContentFileFilesUnsetLabelRequest
+*/
+func (a *ContentFilesAPIService) ContentFileFilesUnsetLabel(ctx context.Context, fileFileContentHref string) ContentFilesAPIContentFileFilesUnsetLabelRequest {
+	return ContentFilesAPIContentFileFilesUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		fileFileContentHref: fileFileContentHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentFilesAPIService) ContentFileFilesUnsetLabelExecute(r ContentFilesAPIContentFileFilesUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentFilesAPIService.ContentFileFilesUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{file_file_content_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"file_file_content_href"+"}", url.PathEscape(parameterValueToString(r.fileFileContentHref, "fileFileContentHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

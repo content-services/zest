@@ -37,6 +37,7 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -63,7 +64,7 @@ func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) Offset
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;raw_data&#x60; - Raw data* &#x60;-raw_data&#x60; - Raw data (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;signature_type&#x60; - Signature type* &#x60;-signature_type&#x60; - Signature type (descending)* &#x60;created&#x60; - Created* &#x60;-created&#x60; - Created (descending)* &#x60;expiration_time&#x60; - Expiration time* &#x60;-expiration_time&#x60; - Expiration time (descending)* &#x60;key_expiration_time&#x60; - Key expiration time* &#x60;-key_expiration_time&#x60; - Key expiration time (descending)* &#x60;issuer&#x60; - Issuer* &#x60;-issuer&#x60; - Issuer (descending)* &#x60;signers_user_id&#x60; - Signers user id* &#x60;-signers_user_id&#x60; - Signers user id (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;raw_data&#x60; - Raw data* &#x60;-raw_data&#x60; - Raw data (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;signature_type&#x60; - Signature type* &#x60;-signature_type&#x60; - Signature type (descending)* &#x60;created&#x60; - Created* &#x60;-created&#x60; - Created (descending)* &#x60;expiration_time&#x60; - Expiration time* &#x60;-expiration_time&#x60; - Expiration time (descending)* &#x60;key_expiration_time&#x60; - Key expiration time* &#x60;-key_expiration_time&#x60; - Key expiration time (descending)* &#x60;issuer&#x60; - Issuer* &#x60;-issuer&#x60; - Issuer (descending)* &#x60;signers_user_id&#x60; - Signers user id* &#x60;-signers_user_id&#x60; - Signers user id (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) Ordering(ordering []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.ordering = &ordering
 	return r
@@ -90,6 +91,12 @@ func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) PulpHr
 // Multiple values may be separated by commas.
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) PulpIdIn(pulpIdIn []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) PulpLabelSelect(pulpLabelSelect string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -196,6 +203,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureListExecu
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")

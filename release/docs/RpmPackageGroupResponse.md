@@ -8,23 +8,24 @@ Name | Type | Description | Notes
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Id** | **string** | PackageGroup id. | 
 **Default** | Pointer to **bool** | PackageGroup default. | [optional] 
 **UserVisible** | Pointer to **bool** | PackageGroup user visibility. | [optional] 
 **DisplayOrder** | **NullableInt64** | PackageGroup display order. | 
 **Name** | **string** | PackageGroup name. | 
 **Description** | **string** | PackageGroup description. | 
-**Packages** | **map[string]interface{}** | PackageGroup package list. | 
+**Packages** | **interface{}** | PackageGroup package list. | 
 **BiarchOnly** | Pointer to **bool** | PackageGroup biarch only. | [optional] 
-**DescByLang** | **map[string]interface{}** | PackageGroup description by language. | 
-**NameByLang** | **map[string]interface{}** | PackageGroup name by language. | 
+**DescByLang** | **interface{}** | PackageGroup description by language. | 
+**NameByLang** | **interface{}** | PackageGroup name by language. | 
 **Digest** | **string** | PackageGroup digest. | 
 
 ## Methods
 
 ### NewRpmPackageGroupResponse
 
-`func NewRpmPackageGroupResponse(id string, displayOrder NullableInt64, name string, description string, packages map[string]interface{}, descByLang map[string]interface{}, nameByLang map[string]interface{}, digest string, ) *RpmPackageGroupResponse`
+`func NewRpmPackageGroupResponse(id string, displayOrder NullableInt64, name string, description string, packages interface{}, descByLang interface{}, nameByLang interface{}, digest string, ) *RpmPackageGroupResponse`
 
 NewRpmPackageGroupResponse instantiates a new RpmPackageGroupResponse object
 This constructor will assign default values to properties that have it defined,
@@ -138,6 +139,31 @@ SetPulpLastUpdated sets PulpLastUpdated field to given value.
 `func (o *RpmPackageGroupResponse) HasPulpLastUpdated() bool`
 
 HasPulpLastUpdated returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *RpmPackageGroupResponse) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *RpmPackageGroupResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *RpmPackageGroupResponse) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *RpmPackageGroupResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetId
 
@@ -281,20 +307,20 @@ SetDescription sets Description field to given value.
 
 ### GetPackages
 
-`func (o *RpmPackageGroupResponse) GetPackages() map[string]interface{}`
+`func (o *RpmPackageGroupResponse) GetPackages() interface{}`
 
 GetPackages returns the Packages field if non-nil, zero value otherwise.
 
 ### GetPackagesOk
 
-`func (o *RpmPackageGroupResponse) GetPackagesOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageGroupResponse) GetPackagesOk() (*interface{}, bool)`
 
 GetPackagesOk returns a tuple with the Packages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPackages
 
-`func (o *RpmPackageGroupResponse) SetPackages(v map[string]interface{})`
+`func (o *RpmPackageGroupResponse) SetPackages(v interface{})`
 
 SetPackages sets Packages field to given value.
 
@@ -336,20 +362,20 @@ HasBiarchOnly returns a boolean if a field has been set.
 
 ### GetDescByLang
 
-`func (o *RpmPackageGroupResponse) GetDescByLang() map[string]interface{}`
+`func (o *RpmPackageGroupResponse) GetDescByLang() interface{}`
 
 GetDescByLang returns the DescByLang field if non-nil, zero value otherwise.
 
 ### GetDescByLangOk
 
-`func (o *RpmPackageGroupResponse) GetDescByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageGroupResponse) GetDescByLangOk() (*interface{}, bool)`
 
 GetDescByLangOk returns a tuple with the DescByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescByLang
 
-`func (o *RpmPackageGroupResponse) SetDescByLang(v map[string]interface{})`
+`func (o *RpmPackageGroupResponse) SetDescByLang(v interface{})`
 
 SetDescByLang sets DescByLang field to given value.
 
@@ -366,20 +392,20 @@ SetDescByLang sets DescByLang field to given value.
 UnsetDescByLang ensures that no value is present for DescByLang, not even an explicit nil
 ### GetNameByLang
 
-`func (o *RpmPackageGroupResponse) GetNameByLang() map[string]interface{}`
+`func (o *RpmPackageGroupResponse) GetNameByLang() interface{}`
 
 GetNameByLang returns the NameByLang field if non-nil, zero value otherwise.
 
 ### GetNameByLangOk
 
-`func (o *RpmPackageGroupResponse) GetNameByLangOk() (*map[string]interface{}, bool)`
+`func (o *RpmPackageGroupResponse) GetNameByLangOk() (*interface{}, bool)`
 
 GetNameByLangOk returns a tuple with the NameByLang field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNameByLang
 
-`func (o *RpmPackageGroupResponse) SetNameByLang(v map[string]interface{})`
+`func (o *RpmPackageGroupResponse) SetNameByLang(v interface{})`
 
 SetNameByLang sets NameByLang field to given value.
 

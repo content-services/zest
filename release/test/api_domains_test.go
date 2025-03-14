@@ -106,6 +106,34 @@ func Test_zest_DomainsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DomainsAPIService DomainsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var domainHref string
+
+		resp, httpRes, err := apiClient.DomainsAPI.DomainsSetLabel(context.Background(), domainHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DomainsAPIService DomainsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var domainHref string
+
+		resp, httpRes, err := apiClient.DomainsAPI.DomainsUnsetLabel(context.Background(), domainHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DomainsAPIService DomainsUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

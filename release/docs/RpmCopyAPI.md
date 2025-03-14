@@ -30,7 +30,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	copy := *openapiclient.NewCopy(map[string]interface{}(123)) // Copy | 
+	copy := *openapiclient.NewCopy(interface{}(123)) // Copy | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

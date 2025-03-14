@@ -41,7 +41,7 @@ type UserResponse struct {
 	DateJoined *time.Time `json:"date_joined,omitempty"`
 	Groups []UserGroupResponse `json:"groups,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -418,9 +418,9 @@ func (o *UserResponse) SetGroups(v []UserGroupResponse) {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *UserResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *UserResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -428,7 +428,7 @@ func (o *UserResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *UserResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -444,8 +444,8 @@ func (o *UserResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *UserResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *UserResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 

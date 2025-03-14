@@ -61,7 +61,7 @@ type PythonPythonRemoteResponse struct {
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// A list containing project specifiers for Python packages to include.
 	Includes []string `json:"includes,omitempty"`
 	// A list containing project specifiers for Python packages to exclude.
@@ -831,9 +831,9 @@ func (o *PythonPythonRemoteResponse) UnsetRateLimit() {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *PythonPythonRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *PythonPythonRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -841,7 +841,7 @@ func (o *PythonPythonRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFie
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonRemoteResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *PythonPythonRemoteResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -857,8 +857,8 @@ func (o *PythonPythonRemoteResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *PythonPythonRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *PythonPythonRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 

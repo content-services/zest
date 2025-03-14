@@ -63,7 +63,7 @@ type RpmRpmRepositoryResponse struct {
 	// REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing config.repo file
-	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	RepoConfig interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -893,10 +893,10 @@ func (o *RpmRpmRepositoryResponse) SetSqliteMetadata(v bool) {
 	o.SqliteMetadata = &v
 }
 
-// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise.
-func (o *RpmRpmRepositoryResponse) GetRepoConfig() map[string]interface{} {
-	if o == nil || IsNil(o.RepoConfig) {
-		var ret map[string]interface{}
+// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetRepoConfig() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.RepoConfig
@@ -904,11 +904,12 @@ func (o *RpmRpmRepositoryResponse) GetRepoConfig() map[string]interface{} {
 
 // GetRepoConfigOk returns a tuple with the RepoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmRpmRepositoryResponse) GetRepoConfigOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetRepoConfigOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.RepoConfig) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.RepoConfig, true
+	return &o.RepoConfig, true
 }
 
 // HasRepoConfig returns a boolean if a field has been set.
@@ -920,8 +921,8 @@ func (o *RpmRpmRepositoryResponse) HasRepoConfig() bool {
 	return false
 }
 
-// SetRepoConfig gets a reference to the given map[string]interface{} and assigns it to the RepoConfig field.
-func (o *RpmRpmRepositoryResponse) SetRepoConfig(v map[string]interface{}) {
+// SetRepoConfig gets a reference to the given interface{} and assigns it to the RepoConfig field.
+func (o *RpmRpmRepositoryResponse) SetRepoConfig(v interface{}) {
 	o.RepoConfig = v
 }
 
@@ -1041,7 +1042,7 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SqliteMetadata) {
 		toSerialize["sqlite_metadata"] = o.SqliteMetadata
 	}
-	if !IsNil(o.RepoConfig) {
+	if o.RepoConfig != nil {
 		toSerialize["repo_config"] = o.RepoConfig
 	}
 	if o.CompressionType.IsSet() {

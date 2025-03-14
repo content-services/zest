@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContentOrigin** | **string** | The CONTENT_ORIGIN setting for this Pulp instance | 
+**ContentOrigin** | Pointer to **NullableString** | The CONTENT_ORIGIN setting for this Pulp instance | [optional] 
 **ContentPathPrefix** | **string** | The CONTENT_PATH_PREFIX setting for this Pulp instance | 
 
 ## Methods
 
 ### NewContentSettingsResponse
 
-`func NewContentSettingsResponse(contentOrigin string, contentPathPrefix string, ) *ContentSettingsResponse`
+`func NewContentSettingsResponse(contentPathPrefix string, ) *ContentSettingsResponse`
 
 NewContentSettingsResponse instantiates a new ContentSettingsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,7 +45,22 @@ and a boolean to check if the value has been set.
 
 SetContentOrigin sets ContentOrigin field to given value.
 
+### HasContentOrigin
 
+`func (o *ContentSettingsResponse) HasContentOrigin() bool`
+
+HasContentOrigin returns a boolean if a field has been set.
+
+### SetContentOriginNil
+
+`func (o *ContentSettingsResponse) SetContentOriginNil(b bool)`
+
+ SetContentOriginNil sets the value for ContentOrigin to be an explicit nil
+
+### UnsetContentOrigin
+`func (o *ContentSettingsResponse) UnsetContentOrigin()`
+
+UnsetContentOrigin ensures that no value is present for ContentOrigin, not even an explicit nil
 ### GetContentPathPrefix
 
 `func (o *ContentSettingsResponse) GetContentPathPrefix() string`

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **File** | Pointer to ***os.File** | An uploaded file that may be turned into the content unit. | [optional] 
 **Upload** | Pointer to **string** | An uncommitted upload that may be turned into the content unit. | [optional] 
 **FileUrl** | Pointer to **string** | A url that Pulp can download and turn into the content unit. | [optional] 
@@ -52,6 +53,31 @@ SetRepository sets Repository field to given value.
 `func (o *RpmUpdateRecord) HasRepository() bool`
 
 HasRepository returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *RpmUpdateRecord) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *RpmUpdateRecord) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *RpmUpdateRecord) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *RpmUpdateRecord) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetFile
 

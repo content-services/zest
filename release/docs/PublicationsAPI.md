@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## PublicationsList
 
-> PaginatedPublicationResponseList PublicationsList(ctx, pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedPublicationResponseList PublicationsList(ctx, pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List publications
 
@@ -40,13 +40,14 @@ func main() {
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
 	pulpCreatedGte := time.Now() // time.Time | Filter results where pulp_created is greater than or equal to value (optional)
+	pulpCreatedIsnull := true // bool | Filter results where pulp_created has a null value (optional)
 	pulpCreatedLt := time.Now() // time.Time | Filter results where pulp_created is less than value (optional)
 	pulpCreatedLte := time.Now() // time.Time | Filter results where pulp_created is less than or equal to value (optional)
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `python.python` - python.python (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `python.python` - python.python (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
 	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
@@ -55,7 +56,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsAPI.PublicationsList(context.Background(), pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsAPI.PublicationsList(context.Background(), pulpDomain).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsAPI.PublicationsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -90,13 +91,14 @@ Name | Type | Description  | Notes
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
  **pulpCreatedGte** | **time.Time** | Filter results where pulp_created is greater than or equal to value | 
+ **pulpCreatedIsnull** | **bool** | Filter results where pulp_created has a null value | 
  **pulpCreatedLt** | **time.Time** | Filter results where pulp_created is less than value | 
  **pulpCreatedLte** | **time.Time** | Filter results where pulp_created is less than or equal to value | 
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 

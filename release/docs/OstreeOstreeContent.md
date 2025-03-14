@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Artifact** | **string** | Artifact file representing the physical content | 
 **RelativePath** | **string** |  | 
 **Digest** | **string** |  | 
@@ -52,6 +53,31 @@ SetRepository sets Repository field to given value.
 `func (o *OstreeOstreeContent) HasRepository() bool`
 
 HasRepository returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *OstreeOstreeContent) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *OstreeOstreeContent) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *OstreeOstreeContent) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *OstreeOstreeContent) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetArtifact
 

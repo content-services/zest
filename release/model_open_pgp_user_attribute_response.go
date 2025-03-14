@@ -29,6 +29,8 @@ type OpenPGPUserAttributeResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	Sha256 string `json:"sha256"`
 	Signatures []NestedOpenPGPSignatureResponse `json:"signatures,omitempty"`
 	PublicKey *string `json:"public_key,omitempty"`
@@ -183,6 +185,38 @@ func (o *OpenPGPUserAttributeResponse) SetPulpLastUpdated(v time.Time) {
 	o.PulpLastUpdated = &v
 }
 
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *OpenPGPUserAttributeResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpenPGPUserAttributeResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *OpenPGPUserAttributeResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *OpenPGPUserAttributeResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
 // GetSha256 returns the Sha256 field value
 func (o *OpenPGPUserAttributeResponse) GetSha256() string {
 	if o == nil {
@@ -293,6 +327,9 @@ func (o OpenPGPUserAttributeResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	toSerialize["sha256"] = o.Sha256
 	if !IsNil(o.Signatures) {
 		toSerialize["signatures"] = o.Signatures
@@ -347,6 +384,7 @@ func (o *OpenPGPUserAttributeResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "sha256")
 		delete(additionalProperties, "signatures")
 		delete(additionalProperties, "public_key")

@@ -23,12 +23,14 @@ var _ MappedNullable = &RpmModulemdDefaults{}
 type RpmModulemdDefaults struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Modulemd name.
 	Module string `json:"module"`
 	// Modulemd default stream.
 	Stream string `json:"stream"`
 	// Default profiles for modulemd streams.
-	Profiles map[string]interface{} `json:"profiles"`
+	Profiles interface{} `json:"profiles"`
 	// Modulemd default snippet
 	Snippet string `json:"snippet"`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +42,7 @@ type _RpmModulemdDefaults RpmModulemdDefaults
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmModulemdDefaults(module string, stream string, profiles map[string]interface{}, snippet string) *RpmModulemdDefaults {
+func NewRpmModulemdDefaults(module string, stream string, profiles interface{}, snippet string) *RpmModulemdDefaults {
 	this := RpmModulemdDefaults{}
 	this.Module = module
 	this.Stream = stream
@@ -87,6 +89,38 @@ func (o *RpmModulemdDefaults) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *RpmModulemdDefaults) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *RpmModulemdDefaults) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmModulemdDefaults) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *RpmModulemdDefaults) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *RpmModulemdDefaults) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetModule returns the Module field value
@@ -138,9 +172,10 @@ func (o *RpmModulemdDefaults) SetStream(v string) {
 }
 
 // GetProfiles returns the Profiles field value
-func (o *RpmModulemdDefaults) GetProfiles() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemdDefaults) GetProfiles() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -149,15 +184,16 @@ func (o *RpmModulemdDefaults) GetProfiles() map[string]interface{} {
 
 // GetProfilesOk returns a tuple with the Profiles field value
 // and a boolean to check if the value has been set.
-func (o *RpmModulemdDefaults) GetProfilesOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmModulemdDefaults) GetProfilesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Profiles) {
+		return nil, false
 	}
-	return o.Profiles, true
+	return &o.Profiles, true
 }
 
 // SetProfiles sets field value
-func (o *RpmModulemdDefaults) SetProfiles(v map[string]interface{}) {
+func (o *RpmModulemdDefaults) SetProfiles(v interface{}) {
 	o.Profiles = v
 }
 
@@ -198,9 +234,14 @@ func (o RpmModulemdDefaults) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	toSerialize["module"] = o.Module
 	toSerialize["stream"] = o.Stream
-	toSerialize["profiles"] = o.Profiles
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
 	toSerialize["snippet"] = o.Snippet
 
 	for key, value := range o.AdditionalProperties {
@@ -249,6 +290,7 @@ func (o *RpmModulemdDefaults) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "stream")
 		delete(additionalProperties, "profiles")

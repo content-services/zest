@@ -21,8 +21,8 @@ var _ MappedNullable = &Copy{}
 
 // Copy A serializer for Content Copy API.
 type Copy struct {
-	// A JSON document describing sources, destinations, and content to be copied
-	Config map[string]interface{} `json:"config"`
+	// Content to be copied into the given destinations from the given sources.Its a list of dictionaries with the following available fields:```json[  {    \"source_repo_version\": <RepositoryVersion [pulp_href|prn]>,    \"dest_repo\": <RpmRepository [pulp_href|prn]>,    \"dest_base_version\": <int>,    \"content\": [<Content [pulp_href|prn]>, ...]  },  ...]```If domains are enabled, the refered pulp objects must be part of the current domain.For usage examples, refer to the advanced copy guide:<https://pulpproject.org/pulp_rpm/docs/user/guides/modify/#advanced-copy-workflow>
+	Config interface{} `json:"config"`
 	// Also copy dependencies of the content being copied.
 	DependencySolving *bool `json:"dependency_solving,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -34,7 +34,7 @@ type _Copy Copy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCopy(config map[string]interface{}) *Copy {
+func NewCopy(config interface{}) *Copy {
 	this := Copy{}
 	this.Config = config
 	var dependencySolving bool = true
@@ -53,9 +53,10 @@ func NewCopyWithDefaults() *Copy {
 }
 
 // GetConfig returns the Config field value
-func (o *Copy) GetConfig() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Copy) GetConfig() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -64,15 +65,16 @@ func (o *Copy) GetConfig() map[string]interface{} {
 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
-func (o *Copy) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Copy) GetConfigOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Config) {
+		return nil, false
 	}
-	return o.Config, true
+	return &o.Config, true
 }
 
 // SetConfig sets field value
-func (o *Copy) SetConfig(v map[string]interface{}) {
+func (o *Copy) SetConfig(v interface{}) {
 	o.Config = v
 }
 
@@ -118,7 +120,9 @@ func (o Copy) MarshalJSON() ([]byte, error) {
 
 func (o Copy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["config"] = o.Config
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
+	}
 	if !IsNil(o.DependencySolving) {
 		toSerialize["dependency_solving"] = o.DependencySolving
 	}

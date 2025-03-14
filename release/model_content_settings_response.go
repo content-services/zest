@@ -22,7 +22,7 @@ var _ MappedNullable = &ContentSettingsResponse{}
 // ContentSettingsResponse Serializer for information about content-app-settings for the pulp instance
 type ContentSettingsResponse struct {
 	// The CONTENT_ORIGIN setting for this Pulp instance
-	ContentOrigin string `json:"content_origin"`
+	ContentOrigin NullableString `json:"content_origin,omitempty"`
 	// The CONTENT_PATH_PREFIX setting for this Pulp instance
 	ContentPathPrefix string `json:"content_path_prefix"`
 	AdditionalProperties map[string]interface{}
@@ -34,9 +34,8 @@ type _ContentSettingsResponse ContentSettingsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContentSettingsResponse(contentOrigin string, contentPathPrefix string) *ContentSettingsResponse {
+func NewContentSettingsResponse(contentPathPrefix string) *ContentSettingsResponse {
 	this := ContentSettingsResponse{}
-	this.ContentOrigin = contentOrigin
 	this.ContentPathPrefix = contentPathPrefix
 	return &this
 }
@@ -49,28 +48,46 @@ func NewContentSettingsResponseWithDefaults() *ContentSettingsResponse {
 	return &this
 }
 
-// GetContentOrigin returns the ContentOrigin field value
+// GetContentOrigin returns the ContentOrigin field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContentSettingsResponse) GetContentOrigin() string {
-	if o == nil {
+	if o == nil || IsNil(o.ContentOrigin.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.ContentOrigin
+	return *o.ContentOrigin.Get()
 }
 
-// GetContentOriginOk returns a tuple with the ContentOrigin field value
+// GetContentOriginOk returns a tuple with the ContentOrigin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContentSettingsResponse) GetContentOriginOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ContentOrigin, true
+	return o.ContentOrigin.Get(), o.ContentOrigin.IsSet()
 }
 
-// SetContentOrigin sets field value
+// HasContentOrigin returns a boolean if a field has been set.
+func (o *ContentSettingsResponse) HasContentOrigin() bool {
+	if o != nil && o.ContentOrigin.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContentOrigin gets a reference to the given NullableString and assigns it to the ContentOrigin field.
 func (o *ContentSettingsResponse) SetContentOrigin(v string) {
-	o.ContentOrigin = v
+	o.ContentOrigin.Set(&v)
+}
+// SetContentOriginNil sets the value for ContentOrigin to be an explicit nil
+func (o *ContentSettingsResponse) SetContentOriginNil() {
+	o.ContentOrigin.Set(nil)
+}
+
+// UnsetContentOrigin ensures that no value is present for ContentOrigin, not even an explicit nil
+func (o *ContentSettingsResponse) UnsetContentOrigin() {
+	o.ContentOrigin.Unset()
 }
 
 // GetContentPathPrefix returns the ContentPathPrefix field value
@@ -107,7 +124,9 @@ func (o ContentSettingsResponse) MarshalJSON() ([]byte, error) {
 
 func (o ContentSettingsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["content_origin"] = o.ContentOrigin
+	if o.ContentOrigin.IsSet() {
+		toSerialize["content_origin"] = o.ContentOrigin.Get()
+	}
 	toSerialize["content_path_prefix"] = o.ContentPathPrefix
 
 	for key, value := range o.AdditionalProperties {
@@ -122,7 +141,6 @@ func (o *ContentSettingsResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"content_origin",
 		"content_path_prefix",
 	}
 

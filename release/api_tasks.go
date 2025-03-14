@@ -362,7 +362,6 @@ func (a *TasksAPIService) TasksDeleteExecute(r TasksAPITasksDeleteRequest) (*htt
 type TasksAPITasksListRequest struct {
 	ctx context.Context
 	ApiService *TasksAPIService
-	pulpDomain string
 	childTasks *string
 	createdResources *string
 	exclusiveResources *string
@@ -370,6 +369,7 @@ type TasksAPITasksListRequest struct {
 	finishedAt *time.Time
 	finishedAtGt *time.Time
 	finishedAtGte *time.Time
+	finishedAtIsnull *bool
 	finishedAtLt *time.Time
 	finishedAtLte *time.Time
 	finishedAtRange *[]time.Time
@@ -384,6 +384,13 @@ type TasksAPITasksListRequest struct {
 	ordering *[]string
 	parentTask *string
 	prnIn *[]string
+	pulpCreated *time.Time
+	pulpCreatedGt *time.Time
+	pulpCreatedGte *time.Time
+	pulpCreatedIsnull *bool
+	pulpCreatedLt *time.Time
+	pulpCreatedLte *time.Time
+	pulpCreatedRange *[]time.Time
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
 	q *string
@@ -394,6 +401,7 @@ type TasksAPITasksListRequest struct {
 	startedAt *time.Time
 	startedAtGt *time.Time
 	startedAtGte *time.Time
+	startedAtIsnull *bool
 	startedAtLt *time.Time
 	startedAtLte *time.Time
 	startedAtRange *[]time.Time
@@ -401,6 +409,13 @@ type TasksAPITasksListRequest struct {
 	stateIn *[]string
 	stateNe *string
 	taskGroup *string
+	unblockedAt *time.Time
+	unblockedAtGt *time.Time
+	unblockedAtGte *time.Time
+	unblockedAtIsnull *bool
+	unblockedAtLt *time.Time
+	unblockedAtLte *time.Time
+	unblockedAtRange *[]time.Time
 	worker *string
 	workerIn *[]string
 	workerIsnull *bool
@@ -445,6 +460,12 @@ func (r TasksAPITasksListRequest) FinishedAtGt(finishedAtGt time.Time) TasksAPIT
 // Filter results where finished_at is greater than or equal to value
 func (r TasksAPITasksListRequest) FinishedAtGte(finishedAtGte time.Time) TasksAPITasksListRequest {
 	r.finishedAtGte = &finishedAtGte
+	return r
+}
+
+// Filter results where finished_at has a null value
+func (r TasksAPITasksListRequest) FinishedAtIsnull(finishedAtIsnull bool) TasksAPITasksListRequest {
+	r.finishedAtIsnull = &finishedAtIsnull
 	return r
 }
 
@@ -532,6 +553,48 @@ func (r TasksAPITasksListRequest) PrnIn(prnIn []string) TasksAPITasksListRequest
 	return r
 }
 
+// Filter results where pulp_created matches value
+func (r TasksAPITasksListRequest) PulpCreated(pulpCreated time.Time) TasksAPITasksListRequest {
+	r.pulpCreated = &pulpCreated
+	return r
+}
+
+// Filter results where pulp_created is greater than value
+func (r TasksAPITasksListRequest) PulpCreatedGt(pulpCreatedGt time.Time) TasksAPITasksListRequest {
+	r.pulpCreatedGt = &pulpCreatedGt
+	return r
+}
+
+// Filter results where pulp_created is greater than or equal to value
+func (r TasksAPITasksListRequest) PulpCreatedGte(pulpCreatedGte time.Time) TasksAPITasksListRequest {
+	r.pulpCreatedGte = &pulpCreatedGte
+	return r
+}
+
+// Filter results where pulp_created has a null value
+func (r TasksAPITasksListRequest) PulpCreatedIsnull(pulpCreatedIsnull bool) TasksAPITasksListRequest {
+	r.pulpCreatedIsnull = &pulpCreatedIsnull
+	return r
+}
+
+// Filter results where pulp_created is less than value
+func (r TasksAPITasksListRequest) PulpCreatedLt(pulpCreatedLt time.Time) TasksAPITasksListRequest {
+	r.pulpCreatedLt = &pulpCreatedLt
+	return r
+}
+
+// Filter results where pulp_created is less than or equal to value
+func (r TasksAPITasksListRequest) PulpCreatedLte(pulpCreatedLte time.Time) TasksAPITasksListRequest {
+	r.pulpCreatedLte = &pulpCreatedLte
+	return r
+}
+
+// Filter results where pulp_created is between two comma separated values
+func (r TasksAPITasksListRequest) PulpCreatedRange(pulpCreatedRange []time.Time) TasksAPITasksListRequest {
+	r.pulpCreatedRange = &pulpCreatedRange
+	return r
+}
+
 // Multiple values may be separated by commas.
 func (r TasksAPITasksListRequest) PulpHrefIn(pulpHrefIn []string) TasksAPITasksListRequest {
 	r.pulpHrefIn = &pulpHrefIn
@@ -590,6 +653,12 @@ func (r TasksAPITasksListRequest) StartedAtGte(startedAtGte time.Time) TasksAPIT
 	return r
 }
 
+// Filter results where started_at has a null value
+func (r TasksAPITasksListRequest) StartedAtIsnull(startedAtIsnull bool) TasksAPITasksListRequest {
+	r.startedAtIsnull = &startedAtIsnull
+	return r
+}
+
 // Filter results where started_at is less than value
 func (r TasksAPITasksListRequest) StartedAtLt(startedAtLt time.Time) TasksAPITasksListRequest {
 	r.startedAtLt = &startedAtLt
@@ -629,6 +698,48 @@ func (r TasksAPITasksListRequest) StateNe(stateNe string) TasksAPITasksListReque
 // Filter results where task_group matches value
 func (r TasksAPITasksListRequest) TaskGroup(taskGroup string) TasksAPITasksListRequest {
 	r.taskGroup = &taskGroup
+	return r
+}
+
+// Filter results where unblocked_at matches value
+func (r TasksAPITasksListRequest) UnblockedAt(unblockedAt time.Time) TasksAPITasksListRequest {
+	r.unblockedAt = &unblockedAt
+	return r
+}
+
+// Filter results where unblocked_at is greater than value
+func (r TasksAPITasksListRequest) UnblockedAtGt(unblockedAtGt time.Time) TasksAPITasksListRequest {
+	r.unblockedAtGt = &unblockedAtGt
+	return r
+}
+
+// Filter results where unblocked_at is greater than or equal to value
+func (r TasksAPITasksListRequest) UnblockedAtGte(unblockedAtGte time.Time) TasksAPITasksListRequest {
+	r.unblockedAtGte = &unblockedAtGte
+	return r
+}
+
+// Filter results where unblocked_at has a null value
+func (r TasksAPITasksListRequest) UnblockedAtIsnull(unblockedAtIsnull bool) TasksAPITasksListRequest {
+	r.unblockedAtIsnull = &unblockedAtIsnull
+	return r
+}
+
+// Filter results where unblocked_at is less than value
+func (r TasksAPITasksListRequest) UnblockedAtLt(unblockedAtLt time.Time) TasksAPITasksListRequest {
+	r.unblockedAtLt = &unblockedAtLt
+	return r
+}
+
+// Filter results where unblocked_at is less than or equal to value
+func (r TasksAPITasksListRequest) UnblockedAtLte(unblockedAtLte time.Time) TasksAPITasksListRequest {
+	r.unblockedAtLte = &unblockedAtLte
+	return r
+}
+
+// Filter results where unblocked_at is between two comma separated values
+func (r TasksAPITasksListRequest) UnblockedAtRange(unblockedAtRange []time.Time) TasksAPITasksListRequest {
+	r.unblockedAtRange = &unblockedAtRange
 	return r
 }
 
@@ -672,14 +783,12 @@ TasksList List tasks
 A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pulpDomain
  @return TasksAPITasksListRequest
 */
-func (a *TasksAPIService) TasksList(ctx context.Context, pulpDomain string) TasksAPITasksListRequest {
+func (a *TasksAPIService) TasksList(ctx context.Context) TasksAPITasksListRequest {
 	return TasksAPITasksListRequest{
 		ApiService: a,
 		ctx: ctx,
-		pulpDomain: pulpDomain,
 	}
 }
 
@@ -698,10 +807,7 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/tasks/"
-	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
+	localVarPath := localBasePath + "/api/pulp/admin/tasks/"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
@@ -726,6 +832,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.finishedAtGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gte", r.finishedAtGte, "form", "")
+	}
+	if r.finishedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__isnull", r.finishedAtIsnull, "form", "")
 	}
 	if r.finishedAtLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lt", r.finishedAtLt, "form", "")
@@ -769,6 +878,27 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	if r.prnIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
 	}
+	if r.pulpCreated != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")
+	}
+	if r.pulpCreatedGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gt", r.pulpCreatedGt, "form", "")
+	}
+	if r.pulpCreatedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gte", r.pulpCreatedGte, "form", "")
+	}
+	if r.pulpCreatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__isnull", r.pulpCreatedIsnull, "form", "")
+	}
+	if r.pulpCreatedLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lt", r.pulpCreatedLt, "form", "")
+	}
+	if r.pulpCreatedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lte", r.pulpCreatedLte, "form", "")
+	}
+	if r.pulpCreatedRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__range", r.pulpCreatedRange, "form", "csv")
+	}
 	if r.pulpHrefIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
 	}
@@ -799,6 +929,9 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	if r.startedAtGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gte", r.startedAtGte, "form", "")
 	}
+	if r.startedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__isnull", r.startedAtIsnull, "form", "")
+	}
 	if r.startedAtLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lt", r.startedAtLt, "form", "")
 	}
@@ -819,6 +952,733 @@ func (a *TasksAPIService) TasksListExecute(r TasksAPITasksListRequest) (*Paginat
 	}
 	if r.taskGroup != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "task_group", r.taskGroup, "form", "")
+	}
+	if r.unblockedAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at", r.unblockedAt, "form", "")
+	}
+	if r.unblockedAtGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__gt", r.unblockedAtGt, "form", "")
+	}
+	if r.unblockedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__gte", r.unblockedAtGte, "form", "")
+	}
+	if r.unblockedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__isnull", r.unblockedAtIsnull, "form", "")
+	}
+	if r.unblockedAtLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__lt", r.unblockedAtLt, "form", "")
+	}
+	if r.unblockedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__lte", r.unblockedAtLte, "form", "")
+	}
+	if r.unblockedAtRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__range", r.unblockedAtRange, "form", "csv")
+	}
+	if r.worker != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker", r.worker, "form", "")
+	}
+	if r.workerIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__in", r.workerIn, "form", "csv")
+	}
+	if r.workerIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "worker__isnull", r.workerIsnull, "form", "")
+	}
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type TasksAPITasksList2Request struct {
+	ctx context.Context
+	ApiService *TasksAPIService
+	pulpDomain string
+	childTasks *string
+	createdResources *string
+	exclusiveResources *string
+	exclusiveResourcesIn *[]string
+	finishedAt *time.Time
+	finishedAtGt *time.Time
+	finishedAtGte *time.Time
+	finishedAtIsnull *bool
+	finishedAtLt *time.Time
+	finishedAtLte *time.Time
+	finishedAtRange *[]time.Time
+	limit *int32
+	loggingCid *string
+	loggingCidContains *string
+	name *string
+	nameContains *string
+	nameIn *[]string
+	nameNe *string
+	offset *int32
+	ordering *[]string
+	parentTask *string
+	prnIn *[]string
+	pulpCreated *time.Time
+	pulpCreatedGt *time.Time
+	pulpCreatedGte *time.Time
+	pulpCreatedIsnull *bool
+	pulpCreatedLt *time.Time
+	pulpCreatedLte *time.Time
+	pulpCreatedRange *[]time.Time
+	pulpHrefIn *[]string
+	pulpIdIn *[]string
+	q *string
+	reservedResources *string
+	reservedResourcesIn *[]string
+	sharedResources *string
+	sharedResourcesIn *[]string
+	startedAt *time.Time
+	startedAtGt *time.Time
+	startedAtGte *time.Time
+	startedAtIsnull *bool
+	startedAtLt *time.Time
+	startedAtLte *time.Time
+	startedAtRange *[]time.Time
+	state *string
+	stateIn *[]string
+	stateNe *string
+	taskGroup *string
+	unblockedAt *time.Time
+	unblockedAtGt *time.Time
+	unblockedAtGte *time.Time
+	unblockedAtIsnull *bool
+	unblockedAtLt *time.Time
+	unblockedAtLte *time.Time
+	unblockedAtRange *[]time.Time
+	worker *string
+	workerIn *[]string
+	workerIsnull *bool
+	fields *[]string
+	excludeFields *[]string
+}
+
+// Filter results where child_tasks matches value
+func (r TasksAPITasksList2Request) ChildTasks(childTasks string) TasksAPITasksList2Request {
+	r.childTasks = &childTasks
+	return r
+}
+
+func (r TasksAPITasksList2Request) CreatedResources(createdResources string) TasksAPITasksList2Request {
+	r.createdResources = &createdResources
+	return r
+}
+
+func (r TasksAPITasksList2Request) ExclusiveResources(exclusiveResources string) TasksAPITasksList2Request {
+	r.exclusiveResources = &exclusiveResources
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) ExclusiveResourcesIn(exclusiveResourcesIn []string) TasksAPITasksList2Request {
+	r.exclusiveResourcesIn = &exclusiveResourcesIn
+	return r
+}
+
+// Filter results where finished_at matches value
+func (r TasksAPITasksList2Request) FinishedAt(finishedAt time.Time) TasksAPITasksList2Request {
+	r.finishedAt = &finishedAt
+	return r
+}
+
+// Filter results where finished_at is greater than value
+func (r TasksAPITasksList2Request) FinishedAtGt(finishedAtGt time.Time) TasksAPITasksList2Request {
+	r.finishedAtGt = &finishedAtGt
+	return r
+}
+
+// Filter results where finished_at is greater than or equal to value
+func (r TasksAPITasksList2Request) FinishedAtGte(finishedAtGte time.Time) TasksAPITasksList2Request {
+	r.finishedAtGte = &finishedAtGte
+	return r
+}
+
+// Filter results where finished_at has a null value
+func (r TasksAPITasksList2Request) FinishedAtIsnull(finishedAtIsnull bool) TasksAPITasksList2Request {
+	r.finishedAtIsnull = &finishedAtIsnull
+	return r
+}
+
+// Filter results where finished_at is less than value
+func (r TasksAPITasksList2Request) FinishedAtLt(finishedAtLt time.Time) TasksAPITasksList2Request {
+	r.finishedAtLt = &finishedAtLt
+	return r
+}
+
+// Filter results where finished_at is less than or equal to value
+func (r TasksAPITasksList2Request) FinishedAtLte(finishedAtLte time.Time) TasksAPITasksList2Request {
+	r.finishedAtLte = &finishedAtLte
+	return r
+}
+
+// Filter results where finished_at is between two comma separated values
+func (r TasksAPITasksList2Request) FinishedAtRange(finishedAtRange []time.Time) TasksAPITasksList2Request {
+	r.finishedAtRange = &finishedAtRange
+	return r
+}
+
+// Number of results to return per page.
+func (r TasksAPITasksList2Request) Limit(limit int32) TasksAPITasksList2Request {
+	r.limit = &limit
+	return r
+}
+
+// Filter results where logging_cid matches value
+func (r TasksAPITasksList2Request) LoggingCid(loggingCid string) TasksAPITasksList2Request {
+	r.loggingCid = &loggingCid
+	return r
+}
+
+// Filter results where logging_cid contains value
+func (r TasksAPITasksList2Request) LoggingCidContains(loggingCidContains string) TasksAPITasksList2Request {
+	r.loggingCidContains = &loggingCidContains
+	return r
+}
+
+// Filter results where name matches value
+func (r TasksAPITasksList2Request) Name(name string) TasksAPITasksList2Request {
+	r.name = &name
+	return r
+}
+
+// Filter results where name contains value
+func (r TasksAPITasksList2Request) NameContains(nameContains string) TasksAPITasksList2Request {
+	r.nameContains = &nameContains
+	return r
+}
+
+// Filter results where name is in a comma-separated list of values
+func (r TasksAPITasksList2Request) NameIn(nameIn []string) TasksAPITasksList2Request {
+	r.nameIn = &nameIn
+	return r
+}
+
+// Filter results where name not equal to value
+func (r TasksAPITasksList2Request) NameNe(nameNe string) TasksAPITasksList2Request {
+	r.nameNe = &nameNe
+	return r
+}
+
+// The initial index from which to return the results.
+func (r TasksAPITasksList2Request) Offset(offset int32) TasksAPITasksList2Request {
+	r.offset = &offset
+	return r
+}
+
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;state&#x60; - State* &#x60;-state&#x60; - State (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;logging_cid&#x60; - Logging cid* &#x60;-logging_cid&#x60; - Logging cid (descending)* &#x60;unblocked_at&#x60; - Unblocked at* &#x60;-unblocked_at&#x60; - Unblocked at (descending)* &#x60;started_at&#x60; - Started at* &#x60;-started_at&#x60; - Started at (descending)* &#x60;finished_at&#x60; - Finished at* &#x60;-finished_at&#x60; - Finished at (descending)* &#x60;error&#x60; - Error* &#x60;-error&#x60; - Error (descending)* &#x60;enc_args&#x60; - Enc args* &#x60;-enc_args&#x60; - Enc args (descending)* &#x60;enc_kwargs&#x60; - Enc kwargs* &#x60;-enc_kwargs&#x60; - Enc kwargs (descending)* &#x60;reserved_resources_record&#x60; - Reserved resources record* &#x60;-reserved_resources_record&#x60; - Reserved resources record (descending)* &#x60;versions&#x60; - Versions* &#x60;-versions&#x60; - Versions (descending)* &#x60;immediate&#x60; - Immediate* &#x60;-immediate&#x60; - Immediate (descending)* &#x60;deferred&#x60; - Deferred* &#x60;-deferred&#x60; - Deferred (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+func (r TasksAPITasksList2Request) Ordering(ordering []string) TasksAPITasksList2Request {
+	r.ordering = &ordering
+	return r
+}
+
+// Filter results where parent_task matches value
+func (r TasksAPITasksList2Request) ParentTask(parentTask string) TasksAPITasksList2Request {
+	r.parentTask = &parentTask
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) PrnIn(prnIn []string) TasksAPITasksList2Request {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Filter results where pulp_created matches value
+func (r TasksAPITasksList2Request) PulpCreated(pulpCreated time.Time) TasksAPITasksList2Request {
+	r.pulpCreated = &pulpCreated
+	return r
+}
+
+// Filter results where pulp_created is greater than value
+func (r TasksAPITasksList2Request) PulpCreatedGt(pulpCreatedGt time.Time) TasksAPITasksList2Request {
+	r.pulpCreatedGt = &pulpCreatedGt
+	return r
+}
+
+// Filter results where pulp_created is greater than or equal to value
+func (r TasksAPITasksList2Request) PulpCreatedGte(pulpCreatedGte time.Time) TasksAPITasksList2Request {
+	r.pulpCreatedGte = &pulpCreatedGte
+	return r
+}
+
+// Filter results where pulp_created has a null value
+func (r TasksAPITasksList2Request) PulpCreatedIsnull(pulpCreatedIsnull bool) TasksAPITasksList2Request {
+	r.pulpCreatedIsnull = &pulpCreatedIsnull
+	return r
+}
+
+// Filter results where pulp_created is less than value
+func (r TasksAPITasksList2Request) PulpCreatedLt(pulpCreatedLt time.Time) TasksAPITasksList2Request {
+	r.pulpCreatedLt = &pulpCreatedLt
+	return r
+}
+
+// Filter results where pulp_created is less than or equal to value
+func (r TasksAPITasksList2Request) PulpCreatedLte(pulpCreatedLte time.Time) TasksAPITasksList2Request {
+	r.pulpCreatedLte = &pulpCreatedLte
+	return r
+}
+
+// Filter results where pulp_created is between two comma separated values
+func (r TasksAPITasksList2Request) PulpCreatedRange(pulpCreatedRange []time.Time) TasksAPITasksList2Request {
+	r.pulpCreatedRange = &pulpCreatedRange
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) PulpHrefIn(pulpHrefIn []string) TasksAPITasksList2Request {
+	r.pulpHrefIn = &pulpHrefIn
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) PulpIdIn(pulpIdIn []string) TasksAPITasksList2Request {
+	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter results by using NOT, AND and OR operations on other filters
+func (r TasksAPITasksList2Request) Q(q string) TasksAPITasksList2Request {
+	r.q = &q
+	return r
+}
+
+func (r TasksAPITasksList2Request) ReservedResources(reservedResources string) TasksAPITasksList2Request {
+	r.reservedResources = &reservedResources
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) ReservedResourcesIn(reservedResourcesIn []string) TasksAPITasksList2Request {
+	r.reservedResourcesIn = &reservedResourcesIn
+	return r
+}
+
+func (r TasksAPITasksList2Request) SharedResources(sharedResources string) TasksAPITasksList2Request {
+	r.sharedResources = &sharedResources
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r TasksAPITasksList2Request) SharedResourcesIn(sharedResourcesIn []string) TasksAPITasksList2Request {
+	r.sharedResourcesIn = &sharedResourcesIn
+	return r
+}
+
+// Filter results where started_at matches value
+func (r TasksAPITasksList2Request) StartedAt(startedAt time.Time) TasksAPITasksList2Request {
+	r.startedAt = &startedAt
+	return r
+}
+
+// Filter results where started_at is greater than value
+func (r TasksAPITasksList2Request) StartedAtGt(startedAtGt time.Time) TasksAPITasksList2Request {
+	r.startedAtGt = &startedAtGt
+	return r
+}
+
+// Filter results where started_at is greater than or equal to value
+func (r TasksAPITasksList2Request) StartedAtGte(startedAtGte time.Time) TasksAPITasksList2Request {
+	r.startedAtGte = &startedAtGte
+	return r
+}
+
+// Filter results where started_at has a null value
+func (r TasksAPITasksList2Request) StartedAtIsnull(startedAtIsnull bool) TasksAPITasksList2Request {
+	r.startedAtIsnull = &startedAtIsnull
+	return r
+}
+
+// Filter results where started_at is less than value
+func (r TasksAPITasksList2Request) StartedAtLt(startedAtLt time.Time) TasksAPITasksList2Request {
+	r.startedAtLt = &startedAtLt
+	return r
+}
+
+// Filter results where started_at is less than or equal to value
+func (r TasksAPITasksList2Request) StartedAtLte(startedAtLte time.Time) TasksAPITasksList2Request {
+	r.startedAtLte = &startedAtLte
+	return r
+}
+
+// Filter results where started_at is between two comma separated values
+func (r TasksAPITasksList2Request) StartedAtRange(startedAtRange []time.Time) TasksAPITasksList2Request {
+	r.startedAtRange = &startedAtRange
+	return r
+}
+
+// Filter results where state matches value* &#x60;waiting&#x60; - Waiting* &#x60;skipped&#x60; - Skipped* &#x60;running&#x60; - Running* &#x60;completed&#x60; - Completed* &#x60;failed&#x60; - Failed* &#x60;canceled&#x60; - Canceled* &#x60;canceling&#x60; - Canceling
+func (r TasksAPITasksList2Request) State(state string) TasksAPITasksList2Request {
+	r.state = &state
+	return r
+}
+
+// Filter results where state is in a comma-separated list of values
+func (r TasksAPITasksList2Request) StateIn(stateIn []string) TasksAPITasksList2Request {
+	r.stateIn = &stateIn
+	return r
+}
+
+// Filter results where state not equal to value
+func (r TasksAPITasksList2Request) StateNe(stateNe string) TasksAPITasksList2Request {
+	r.stateNe = &stateNe
+	return r
+}
+
+// Filter results where task_group matches value
+func (r TasksAPITasksList2Request) TaskGroup(taskGroup string) TasksAPITasksList2Request {
+	r.taskGroup = &taskGroup
+	return r
+}
+
+// Filter results where unblocked_at matches value
+func (r TasksAPITasksList2Request) UnblockedAt(unblockedAt time.Time) TasksAPITasksList2Request {
+	r.unblockedAt = &unblockedAt
+	return r
+}
+
+// Filter results where unblocked_at is greater than value
+func (r TasksAPITasksList2Request) UnblockedAtGt(unblockedAtGt time.Time) TasksAPITasksList2Request {
+	r.unblockedAtGt = &unblockedAtGt
+	return r
+}
+
+// Filter results where unblocked_at is greater than or equal to value
+func (r TasksAPITasksList2Request) UnblockedAtGte(unblockedAtGte time.Time) TasksAPITasksList2Request {
+	r.unblockedAtGte = &unblockedAtGte
+	return r
+}
+
+// Filter results where unblocked_at has a null value
+func (r TasksAPITasksList2Request) UnblockedAtIsnull(unblockedAtIsnull bool) TasksAPITasksList2Request {
+	r.unblockedAtIsnull = &unblockedAtIsnull
+	return r
+}
+
+// Filter results where unblocked_at is less than value
+func (r TasksAPITasksList2Request) UnblockedAtLt(unblockedAtLt time.Time) TasksAPITasksList2Request {
+	r.unblockedAtLt = &unblockedAtLt
+	return r
+}
+
+// Filter results where unblocked_at is less than or equal to value
+func (r TasksAPITasksList2Request) UnblockedAtLte(unblockedAtLte time.Time) TasksAPITasksList2Request {
+	r.unblockedAtLte = &unblockedAtLte
+	return r
+}
+
+// Filter results where unblocked_at is between two comma separated values
+func (r TasksAPITasksList2Request) UnblockedAtRange(unblockedAtRange []time.Time) TasksAPITasksList2Request {
+	r.unblockedAtRange = &unblockedAtRange
+	return r
+}
+
+// Filter results where worker matches value
+func (r TasksAPITasksList2Request) Worker(worker string) TasksAPITasksList2Request {
+	r.worker = &worker
+	return r
+}
+
+// Filter results where worker is in a comma-separated list of values
+func (r TasksAPITasksList2Request) WorkerIn(workerIn []string) TasksAPITasksList2Request {
+	r.workerIn = &workerIn
+	return r
+}
+
+// Filter results where worker has a null value
+func (r TasksAPITasksList2Request) WorkerIsnull(workerIsnull bool) TasksAPITasksList2Request {
+	r.workerIsnull = &workerIsnull
+	return r
+}
+
+// A list of fields to include in the response.
+func (r TasksAPITasksList2Request) Fields(fields []string) TasksAPITasksList2Request {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r TasksAPITasksList2Request) ExcludeFields(excludeFields []string) TasksAPITasksList2Request {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r TasksAPITasksList2Request) Execute() (*PaginatedTaskResponseList, *http.Response, error) {
+	return r.ApiService.TasksList2Execute(r)
+}
+
+/*
+TasksList2 List tasks
+
+A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return TasksAPITasksList2Request
+*/
+func (a *TasksAPIService) TasksList2(ctx context.Context, pulpDomain string) TasksAPITasksList2Request {
+	return TasksAPITasksList2Request{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedTaskResponseList
+func (a *TasksAPIService) TasksList2Execute(r TasksAPITasksList2Request) (*PaginatedTaskResponseList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedTaskResponseList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksList2")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/tasks/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.childTasks != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "child_tasks", r.childTasks, "form", "")
+	}
+	if r.createdResources != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_resources", r.createdResources, "form", "")
+	}
+	if r.exclusiveResources != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources", r.exclusiveResources, "form", "")
+	}
+	if r.exclusiveResourcesIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclusive_resources__in", r.exclusiveResourcesIn, "form", "csv")
+	}
+	if r.finishedAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at", r.finishedAt, "form", "")
+	}
+	if r.finishedAtGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gt", r.finishedAtGt, "form", "")
+	}
+	if r.finishedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__gte", r.finishedAtGte, "form", "")
+	}
+	if r.finishedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__isnull", r.finishedAtIsnull, "form", "")
+	}
+	if r.finishedAtLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lt", r.finishedAtLt, "form", "")
+	}
+	if r.finishedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__lte", r.finishedAtLte, "form", "")
+	}
+	if r.finishedAtRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "finished_at__range", r.finishedAtRange, "form", "csv")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.loggingCid != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid", r.loggingCid, "form", "")
+	}
+	if r.loggingCidContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "logging_cid__contains", r.loggingCidContains, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.nameContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "form", "")
+	}
+	if r.nameIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
+	}
+	if r.nameNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__ne", r.nameNe, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.ordering != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.parentTask != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_task", r.parentTask, "form", "")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
+	}
+	if r.pulpCreated != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created", r.pulpCreated, "form", "")
+	}
+	if r.pulpCreatedGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gt", r.pulpCreatedGt, "form", "")
+	}
+	if r.pulpCreatedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gte", r.pulpCreatedGte, "form", "")
+	}
+	if r.pulpCreatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__isnull", r.pulpCreatedIsnull, "form", "")
+	}
+	if r.pulpCreatedLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lt", r.pulpCreatedLt, "form", "")
+	}
+	if r.pulpCreatedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lte", r.pulpCreatedLte, "form", "")
+	}
+	if r.pulpCreatedRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__range", r.pulpCreatedRange, "form", "csv")
+	}
+	if r.pulpHrefIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
+	}
+	if r.pulpIdIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.reservedResources != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources", r.reservedResources, "form", "")
+	}
+	if r.reservedResourcesIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "reserved_resources__in", r.reservedResourcesIn, "form", "csv")
+	}
+	if r.sharedResources != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources", r.sharedResources, "form", "")
+	}
+	if r.sharedResourcesIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shared_resources__in", r.sharedResourcesIn, "form", "csv")
+	}
+	if r.startedAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at", r.startedAt, "form", "")
+	}
+	if r.startedAtGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gt", r.startedAtGt, "form", "")
+	}
+	if r.startedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__gte", r.startedAtGte, "form", "")
+	}
+	if r.startedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__isnull", r.startedAtIsnull, "form", "")
+	}
+	if r.startedAtLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lt", r.startedAtLt, "form", "")
+	}
+	if r.startedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__lte", r.startedAtLte, "form", "")
+	}
+	if r.startedAtRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "started_at__range", r.startedAtRange, "form", "csv")
+	}
+	if r.state != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "form", "")
+	}
+	if r.stateIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state__in", r.stateIn, "form", "csv")
+	}
+	if r.stateNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state__ne", r.stateNe, "form", "")
+	}
+	if r.taskGroup != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "task_group", r.taskGroup, "form", "")
+	}
+	if r.unblockedAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at", r.unblockedAt, "form", "")
+	}
+	if r.unblockedAtGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__gt", r.unblockedAtGt, "form", "")
+	}
+	if r.unblockedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__gte", r.unblockedAtGte, "form", "")
+	}
+	if r.unblockedAtIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__isnull", r.unblockedAtIsnull, "form", "")
+	}
+	if r.unblockedAtLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__lt", r.unblockedAtLt, "form", "")
+	}
+	if r.unblockedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__lte", r.unblockedAtLte, "form", "")
+	}
+	if r.unblockedAtRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "unblocked_at__range", r.unblockedAtRange, "form", "csv")
 	}
 	if r.worker != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "worker", r.worker, "form", "")

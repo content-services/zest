@@ -365,6 +365,7 @@ type UpstreamPulpsAPIUpstreamPulpsListRequest struct {
 	lastReplication *time.Time
 	lastReplicationGt *time.Time
 	lastReplicationGte *time.Time
+	lastReplicationIsnull *bool
 	lastReplicationLt *time.Time
 	lastReplicationLte *time.Time
 	lastReplicationRange *[]time.Time
@@ -460,6 +461,12 @@ func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationGte(lastReplica
 	return r
 }
 
+// Filter results where last_replication has a null value
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationIsnull(lastReplicationIsnull bool) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.lastReplicationIsnull = &lastReplicationIsnull
+	return r
+}
+
 // Filter results where last_replication is less than value
 func (r UpstreamPulpsAPIUpstreamPulpsListRequest) LastReplicationLt(lastReplicationLt time.Time) UpstreamPulpsAPIUpstreamPulpsListRequest {
 	r.lastReplicationLt = &lastReplicationLt
@@ -544,7 +551,7 @@ func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Offset(offset int32) UpstreamP
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;pulp_label_select&#x60; - Pulp label select* &#x60;-pulp_label_select&#x60; - Pulp label select (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;policy&#x60; - Policy* &#x60;-policy&#x60; - Policy (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Ordering(ordering []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
 	r.ordering = &ordering
 	return r
@@ -665,6 +672,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListExecute(r UpstreamPulpsAPIUps
 	}
 	if r.lastReplicationGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__gte", r.lastReplicationGte, "form", "")
+	}
+	if r.lastReplicationIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__isnull", r.lastReplicationIsnull, "form", "")
 	}
 	if r.lastReplicationLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_replication__lt", r.lastReplicationLt, "form", "")

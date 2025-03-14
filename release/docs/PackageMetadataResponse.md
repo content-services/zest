@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastSerial** | **int64** | Cache value from last PyPI sync | 
-**Info** | **map[string]interface{}** | Core metadata of the package | 
-**Releases** | **map[string]interface{}** | List of all the releases of the package | 
-**Urls** | **map[string]interface{}** |  | 
+**Info** | **interface{}** | Core metadata of the package | 
+**Releases** | **interface{}** | List of all the releases of the package | 
+**Urls** | **interface{}** |  | 
 
 ## Methods
 
 ### NewPackageMetadataResponse
 
-`func NewPackageMetadataResponse(lastSerial int64, info map[string]interface{}, releases map[string]interface{}, urls map[string]interface{}, ) *PackageMetadataResponse`
+`func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}, ) *PackageMetadataResponse`
 
 NewPackageMetadataResponse instantiates a new PackageMetadataResponse object
 This constructor will assign default values to properties that have it defined,
@@ -50,64 +50,94 @@ SetLastSerial sets LastSerial field to given value.
 
 ### GetInfo
 
-`func (o *PackageMetadataResponse) GetInfo() map[string]interface{}`
+`func (o *PackageMetadataResponse) GetInfo() interface{}`
 
 GetInfo returns the Info field if non-nil, zero value otherwise.
 
 ### GetInfoOk
 
-`func (o *PackageMetadataResponse) GetInfoOk() (*map[string]interface{}, bool)`
+`func (o *PackageMetadataResponse) GetInfoOk() (*interface{}, bool)`
 
 GetInfoOk returns a tuple with the Info field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInfo
 
-`func (o *PackageMetadataResponse) SetInfo(v map[string]interface{})`
+`func (o *PackageMetadataResponse) SetInfo(v interface{})`
 
 SetInfo sets Info field to given value.
 
 
+### SetInfoNil
+
+`func (o *PackageMetadataResponse) SetInfoNil(b bool)`
+
+ SetInfoNil sets the value for Info to be an explicit nil
+
+### UnsetInfo
+`func (o *PackageMetadataResponse) UnsetInfo()`
+
+UnsetInfo ensures that no value is present for Info, not even an explicit nil
 ### GetReleases
 
-`func (o *PackageMetadataResponse) GetReleases() map[string]interface{}`
+`func (o *PackageMetadataResponse) GetReleases() interface{}`
 
 GetReleases returns the Releases field if non-nil, zero value otherwise.
 
 ### GetReleasesOk
 
-`func (o *PackageMetadataResponse) GetReleasesOk() (*map[string]interface{}, bool)`
+`func (o *PackageMetadataResponse) GetReleasesOk() (*interface{}, bool)`
 
 GetReleasesOk returns a tuple with the Releases field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReleases
 
-`func (o *PackageMetadataResponse) SetReleases(v map[string]interface{})`
+`func (o *PackageMetadataResponse) SetReleases(v interface{})`
 
 SetReleases sets Releases field to given value.
 
 
+### SetReleasesNil
+
+`func (o *PackageMetadataResponse) SetReleasesNil(b bool)`
+
+ SetReleasesNil sets the value for Releases to be an explicit nil
+
+### UnsetReleases
+`func (o *PackageMetadataResponse) UnsetReleases()`
+
+UnsetReleases ensures that no value is present for Releases, not even an explicit nil
 ### GetUrls
 
-`func (o *PackageMetadataResponse) GetUrls() map[string]interface{}`
+`func (o *PackageMetadataResponse) GetUrls() interface{}`
 
 GetUrls returns the Urls field if non-nil, zero value otherwise.
 
 ### GetUrlsOk
 
-`func (o *PackageMetadataResponse) GetUrlsOk() (*map[string]interface{}, bool)`
+`func (o *PackageMetadataResponse) GetUrlsOk() (*interface{}, bool)`
 
 GetUrlsOk returns a tuple with the Urls field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUrls
 
-`func (o *PackageMetadataResponse) SetUrls(v map[string]interface{})`
+`func (o *PackageMetadataResponse) SetUrls(v interface{})`
 
 SetUrls sets Urls field to given value.
 
 
+### SetUrlsNil
+
+`func (o *PackageMetadataResponse) SetUrlsNil(b bool)`
+
+ SetUrlsNil sets the value for Urls to be an explicit nil
+
+### UnsetUrls
+`func (o *PackageMetadataResponse) UnsetUrls()`
+
+UnsetUrls ensures that no value is present for Urls, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ type RpmUpdateCollection struct {
 	// Collection short name.
 	Shortname NullableString `json:"shortname"`
 	// Collection modular NSVCA.
-	Module map[string]interface{} `json:"module"`
+	Module interface{} `json:"module"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,7 +36,7 @@ type _RpmUpdateCollection RpmUpdateCollection
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmUpdateCollection(name NullableString, shortname NullableString, module map[string]interface{}) *RpmUpdateCollection {
+func NewRpmUpdateCollection(name NullableString, shortname NullableString, module interface{}) *RpmUpdateCollection {
 	this := RpmUpdateCollection{}
 	this.Name = name
 	this.Shortname = shortname
@@ -105,10 +105,10 @@ func (o *RpmUpdateCollection) SetShortname(v string) {
 }
 
 // GetModule returns the Module field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmUpdateCollection) GetModule() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmUpdateCollection) GetModule() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -118,15 +118,15 @@ func (o *RpmUpdateCollection) GetModule() map[string]interface{} {
 // GetModuleOk returns a tuple with the Module field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmUpdateCollection) GetModuleOk() (map[string]interface{}, bool) {
+func (o *RpmUpdateCollection) GetModuleOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Module) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Module, true
+	return &o.Module, true
 }
 
 // SetModule sets field value
-func (o *RpmUpdateCollection) SetModule(v map[string]interface{}) {
+func (o *RpmUpdateCollection) SetModule(v interface{}) {
 	o.Module = v
 }
 

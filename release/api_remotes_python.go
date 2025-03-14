@@ -539,6 +539,7 @@ type RemotesPythonAPIRemotesPythonPythonListRequest struct {
 	pulpLastUpdated *time.Time
 	pulpLastUpdatedGt *time.Time
 	pulpLastUpdatedGte *time.Time
+	pulpLastUpdatedIsnull *bool
 	pulpLastUpdatedLt *time.Time
 	pulpLastUpdatedLte *time.Time
 	pulpLastUpdatedRange *[]time.Time
@@ -658,6 +659,12 @@ func (r RemotesPythonAPIRemotesPythonPythonListRequest) PulpLastUpdatedGt(pulpLa
 // Filter results where pulp_last_updated is greater than or equal to value
 func (r RemotesPythonAPIRemotesPythonPythonListRequest) PulpLastUpdatedGte(pulpLastUpdatedGte time.Time) RemotesPythonAPIRemotesPythonPythonListRequest {
 	r.pulpLastUpdatedGte = &pulpLastUpdatedGte
+	return r
+}
+
+// Filter results where pulp_last_updated has a null value
+func (r RemotesPythonAPIRemotesPythonPythonListRequest) PulpLastUpdatedIsnull(pulpLastUpdatedIsnull bool) RemotesPythonAPIRemotesPythonPythonListRequest {
+	r.pulpLastUpdatedIsnull = &pulpLastUpdatedIsnull
 	return r
 }
 
@@ -797,6 +804,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonListExecute(r RemotesPython
 	}
 	if r.pulpLastUpdatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__gte", r.pulpLastUpdatedGte, "form", "")
+	}
+	if r.pulpLastUpdatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__isnull", r.pulpLastUpdatedIsnull, "form", "")
 	}
 	if r.pulpLastUpdatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__lt", r.pulpLastUpdatedLt, "form", "")

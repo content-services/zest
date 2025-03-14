@@ -61,7 +61,7 @@ type RpmUlnRemoteResponse struct {
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Base URL of the ULN server. If the uln_server_base_url is not provided pulp_rpm willuse the contents of the DEFAULT_ULN_SERVER_BASE_URL setting instead.
 	UlnServerBaseUrl NullableString `json:"uln_server_base_url,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -817,9 +817,9 @@ func (o *RpmUlnRemoteResponse) UnsetRateLimit() {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *RpmUlnRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *RpmUlnRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -827,7 +827,7 @@ func (o *RpmUlnRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInn
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmUlnRemoteResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *RpmUlnRemoteResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -843,8 +843,8 @@ func (o *RpmUlnRemoteResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *RpmUlnRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *RpmUlnRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 

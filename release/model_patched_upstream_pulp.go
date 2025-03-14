@@ -42,6 +42,8 @@ type PatchedUpstreamPulp struct {
 	Password NullableString `json:"password,omitempty"`
 	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
 	QSelect NullableString `json:"q_select,omitempty"`
+	// Policy for how replicate will manage the local objects within the domain.* `all` - Replicate manages ALL local objects within the domain.* `labeled` - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* `nodelete` - Replicate will not delete any local object whether they were created by replication or not.
+	Policy *Policy357Enum `json:"policy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -486,6 +488,38 @@ func (o *PatchedUpstreamPulp) UnsetQSelect() {
 	o.QSelect.Unset()
 }
 
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *PatchedUpstreamPulp) GetPolicy() Policy357Enum {
+	if o == nil || IsNil(o.Policy) {
+		var ret Policy357Enum
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedUpstreamPulp) GetPolicyOk() (*Policy357Enum, bool) {
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasPolicy() bool {
+	if o != nil && !IsNil(o.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given Policy357Enum and assigns it to the Policy field.
+func (o *PatchedUpstreamPulp) SetPolicy(v Policy357Enum) {
+	o.Policy = &v
+}
+
 func (o PatchedUpstreamPulp) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -529,6 +563,9 @@ func (o PatchedUpstreamPulp) ToMap() (map[string]interface{}, error) {
 	if o.QSelect.IsSet() {
 		toSerialize["q_select"] = o.QSelect.Get()
 	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -562,6 +599,7 @@ func (o *PatchedUpstreamPulp) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
 		delete(additionalProperties, "q_select")
+		delete(additionalProperties, "policy")
 		o.AdditionalProperties = additionalProperties
 	}
 

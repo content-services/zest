@@ -151,6 +151,7 @@ type ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -198,6 +199,12 @@ func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpH
 // Multiple values may be separated by commas.
 func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpIdIn(pulpIdIn []string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest) PulpLabelSelect(pulpLabelSelect string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -301,6 +308,9 @@ func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesListExec
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
@@ -493,6 +503,236 @@ func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesReadExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentModulemdObsoletesAPIService
+	rpmModulemdObsoleteHref string
+	setLabel *SetLabel
+}
+
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest) SetLabel(setLabel SetLabel) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmModulemdObsoletesSetLabelExecute(r)
+}
+
+/*
+ContentRpmModulemdObsoletesSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmModulemdObsoleteHref
+ @return ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest
+*/
+func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesSetLabel(ctx context.Context, rpmModulemdObsoleteHref string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest {
+	return ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmModulemdObsoleteHref: rpmModulemdObsoleteHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesSetLabelExecute(r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentModulemdObsoletesAPIService.ContentRpmModulemdObsoletesSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_modulemd_obsolete_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_obsolete_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdObsoleteHref, "rpmModulemdObsoleteHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentModulemdObsoletesAPIService
+	rpmModulemdObsoleteHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmModulemdObsoletesUnsetLabelExecute(r)
+}
+
+/*
+ContentRpmModulemdObsoletesUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmModulemdObsoleteHref
+ @return ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest
+*/
+func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesUnsetLabel(ctx context.Context, rpmModulemdObsoleteHref string) ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest {
+	return ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmModulemdObsoleteHref: rpmModulemdObsoleteHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentModulemdObsoletesAPIService) ContentRpmModulemdObsoletesUnsetLabelExecute(r ContentModulemdObsoletesAPIContentRpmModulemdObsoletesUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentModulemdObsoletesAPIService.ContentRpmModulemdObsoletesUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_modulemd_obsolete_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_obsolete_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdObsoleteHref, "rpmModulemdObsoleteHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

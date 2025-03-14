@@ -33,6 +33,7 @@ type WorkersAPIWorkersListRequest struct {
 	lastHeartbeat *time.Time
 	lastHeartbeatGt *time.Time
 	lastHeartbeatGte *time.Time
+	lastHeartbeatIsnull *bool
 	lastHeartbeatLt *time.Time
 	lastHeartbeatLte *time.Time
 	lastHeartbeatRange *[]time.Time
@@ -73,6 +74,12 @@ func (r WorkersAPIWorkersListRequest) LastHeartbeatGt(lastHeartbeatGt time.Time)
 // Filter results where last_heartbeat is greater than or equal to value
 func (r WorkersAPIWorkersListRequest) LastHeartbeatGte(lastHeartbeatGte time.Time) WorkersAPIWorkersListRequest {
 	r.lastHeartbeatGte = &lastHeartbeatGte
+	return r
+}
+
+// Filter results where last_heartbeat has a null value
+func (r WorkersAPIWorkersListRequest) LastHeartbeatIsnull(lastHeartbeatIsnull bool) WorkersAPIWorkersListRequest {
+	r.lastHeartbeatIsnull = &lastHeartbeatIsnull
 	return r
 }
 
@@ -264,6 +271,9 @@ func (a *WorkersAPIService) WorkersListExecute(r WorkersAPIWorkersListRequest) (
 	}
 	if r.lastHeartbeatGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_heartbeat__gte", r.lastHeartbeatGte, "form", "")
+	}
+	if r.lastHeartbeatIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_heartbeat__isnull", r.lastHeartbeatIsnull, "form", "")
 	}
 	if r.lastHeartbeatLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_heartbeat__lt", r.lastHeartbeatLt, "form", "")

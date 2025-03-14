@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RemotesList
 
-> PaginatedRemoteResponseList RemotesList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedGenericRemoteResponseList RemotesList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List remotes
 
@@ -50,23 +50,24 @@ func main() {
 	pulpLastUpdated := time.Now() // time.Time | Filter results where pulp_last_updated matches value (optional)
 	pulpLastUpdatedGt := time.Now() // time.Time | Filter results where pulp_last_updated is greater than value (optional)
 	pulpLastUpdatedGte := time.Now() // time.Time | Filter results where pulp_last_updated is greater than or equal to value (optional)
+	pulpLastUpdatedIsnull := true // bool | Filter results where pulp_last_updated has a null value (optional)
 	pulpLastUpdatedLt := time.Now() // time.Time | Filter results where pulp_last_updated is less than value (optional)
 	pulpLastUpdatedLte := time.Now() // time.Time | Filter results where pulp_last_updated is less than or equal to value (optional)
 	pulpLastUpdatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_last_updated is between two comma separated values (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `ostree.ostree` - ostree.ostree (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `gem.gem` - gem.gem* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `ostree.ostree` - ostree.ostree (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `container.container` - container.container* `container.pull-through` - container.pull-through* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `python.python` - python.python (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `container.container` - container.container* `container.pull-through` - container.pull-through* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `python.python` - python.python (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesAPI.RemotesList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesAPI.RemotesList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesAPI.RemotesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesList`: PaginatedRemoteResponseList
+	// response from `RemotesList`: PaginatedGenericRemoteResponseList
 	fmt.Fprintf(os.Stdout, "Response from `RemotesAPI.RemotesList`: %v\n", resp)
 }
 ```
@@ -106,18 +107,19 @@ Name | Type | Description  | Notes
  **pulpLastUpdated** | **time.Time** | Filter results where pulp_last_updated matches value | 
  **pulpLastUpdatedGt** | **time.Time** | Filter results where pulp_last_updated is greater than value | 
  **pulpLastUpdatedGte** | **time.Time** | Filter results where pulp_last_updated is greater than or equal to value | 
+ **pulpLastUpdatedIsnull** | **bool** | Filter results where pulp_last_updated has a null value | 
  **pulpLastUpdatedLt** | **time.Time** | Filter results where pulp_last_updated is less than value | 
  **pulpLastUpdatedLte** | **time.Time** | Filter results where pulp_last_updated is less than or equal to value | 
  **pulpLastUpdatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_last_updated is between two comma separated values | 
- **pulpType** | **string** | Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree | 
+ **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
 ### Return type
 
-[**PaginatedRemoteResponseList**](PaginatedRemoteResponseList.md)
+[**PaginatedGenericRemoteResponseList**](PaginatedGenericRemoteResponseList.md)
 
 ### Authorization
 

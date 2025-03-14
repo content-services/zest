@@ -24,6 +24,7 @@ type PatchedDomain struct {
 	Name *string `json:"name,omitempty" validate:"regexp=^[-a-zA-Z0-9_]+$"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage
 	StorageClass *StorageClassEnum `json:"storage_class,omitempty"`
 	// Settings for storage class.
@@ -134,6 +135,38 @@ func (o *PatchedDomain) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *PatchedDomain) UnsetDescription() {
 	o.Description.Unset()
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedDomain) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedDomain) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedDomain) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *PatchedDomain) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetStorageClass returns the StorageClass field value if set, zero value otherwise.
@@ -280,6 +313,9 @@ func (o PatchedDomain) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	if !IsNil(o.StorageClass) {
 		toSerialize["storage_class"] = o.StorageClass
 	}
@@ -316,6 +352,7 @@ func (o *PatchedDomain) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "storage_class")
 		delete(additionalProperties, "storage_settings")
 		delete(additionalProperties, "redirect_to_object_storage")

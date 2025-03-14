@@ -29,6 +29,8 @@ type MultipleArtifactContentResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// A dict mapping relative paths inside the Content to the correspondingArtifact URLs. E.g.: {'relative/path': '/artifacts/1/'
 	Artifacts map[string]interface{} `json:"artifacts"`
 	AdditionalProperties map[string]interface{}
@@ -182,6 +184,38 @@ func (o *MultipleArtifactContentResponse) SetPulpLastUpdated(v time.Time) {
 	o.PulpLastUpdated = &v
 }
 
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *MultipleArtifactContentResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MultipleArtifactContentResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *MultipleArtifactContentResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *MultipleArtifactContentResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
 // GetArtifacts returns the Artifacts field value
 func (o *MultipleArtifactContentResponse) GetArtifacts() map[string]interface{} {
 	if o == nil {
@@ -227,6 +261,9 @@ func (o MultipleArtifactContentResponse) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 	toSerialize["artifacts"] = o.Artifacts
 
@@ -276,6 +313,7 @@ func (o *MultipleArtifactContentResponse) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifacts")
 		o.AdditionalProperties = additionalProperties
 	}

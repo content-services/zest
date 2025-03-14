@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
-**HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 
 ## Methods
 
@@ -637,20 +637,20 @@ HasRateLimit returns a boolean if a field has been set.
 UnsetRateLimit ensures that no value is present for RateLimit, not even an explicit nil
 ### GetHiddenFields
 
-`func (o *FileFileRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner`
+`func (o *FileFileRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
 
 GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
 
 ### GetHiddenFieldsOk
 
-`func (o *FileFileRemoteResponse) GetHiddenFieldsOk() (*[]RemoteResponseHiddenFieldsInner, bool)`
+`func (o *FileFileRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
 
 GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHiddenFields
 
-`func (o *FileFileRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner)`
+`func (o *FileFileRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
 
 SetHiddenFields sets HiddenFields field to given value.
 

@@ -64,4 +64,32 @@ func Test_zest_ContentGemAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentGemAPIService ContentGemGemSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var gemGemContentHref string
+
+		resp, httpRes, err := apiClient.ContentGemAPI.ContentGemGemSetLabel(context.Background(), gemGemContentHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentGemAPIService ContentGemGemUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var gemGemContentHref string
+
+		resp, httpRes, err := apiClient.ContentGemAPI.ContentGemGemUnsetLabel(context.Background(), gemGemContentHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

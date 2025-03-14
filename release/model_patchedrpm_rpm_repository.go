@@ -50,7 +50,7 @@ type PatchedrpmRpmRepository struct {
 	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
 	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
 	// A JSON document describing config.repo file
-	RepoConfig map[string]interface{} `json:"repo_config,omitempty"`
+	RepoConfig interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -663,10 +663,10 @@ func (o *PatchedrpmRpmRepository) UnsetRepoGpgcheck() {
 	o.RepoGpgcheck.Unset()
 }
 
-// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise.
-func (o *PatchedrpmRpmRepository) GetRepoConfig() map[string]interface{} {
-	if o == nil || IsNil(o.RepoConfig) {
-		var ret map[string]interface{}
+// GetRepoConfig returns the RepoConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedrpmRpmRepository) GetRepoConfig() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.RepoConfig
@@ -674,11 +674,12 @@ func (o *PatchedrpmRpmRepository) GetRepoConfig() map[string]interface{} {
 
 // GetRepoConfigOk returns a tuple with the RepoConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedrpmRpmRepository) GetRepoConfigOk() (map[string]interface{}, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedrpmRpmRepository) GetRepoConfigOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.RepoConfig) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.RepoConfig, true
+	return &o.RepoConfig, true
 }
 
 // HasRepoConfig returns a boolean if a field has been set.
@@ -690,8 +691,8 @@ func (o *PatchedrpmRpmRepository) HasRepoConfig() bool {
 	return false
 }
 
-// SetRepoConfig gets a reference to the given map[string]interface{} and assigns it to the RepoConfig field.
-func (o *PatchedrpmRpmRepository) SetRepoConfig(v map[string]interface{}) {
+// SetRepoConfig gets a reference to the given interface{} and assigns it to the RepoConfig field.
+func (o *PatchedrpmRpmRepository) SetRepoConfig(v interface{}) {
 	o.RepoConfig = v
 }
 
@@ -792,7 +793,7 @@ func (o PatchedrpmRpmRepository) ToMap() (map[string]interface{}, error) {
 	if o.RepoGpgcheck.IsSet() {
 		toSerialize["repo_gpgcheck"] = o.RepoGpgcheck.Get()
 	}
-	if !IsNil(o.RepoConfig) {
+	if o.RepoConfig != nil {
 		toSerialize["repo_config"] = o.RepoConfig
 	}
 	if o.CompressionType.IsSet() {

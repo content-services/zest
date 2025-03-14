@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | A name for this domain. | 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **StorageClass** | [**StorageClassEnum**](StorageClassEnum.md) | Backend storage class for domain.* &#x60;pulpcore.app.models.storage.FileSystem&#x60; - Use local filesystem as storage* &#x60;storages.backends.s3boto3.S3Boto3Storage&#x60; - Use Amazon S3 as storage* &#x60;storages.backends.azure_storage.AzureStorage&#x60; - Use Azure Blob as storage* &#x60;pulp_service.app.storage.OCIStorage&#x60; - Use OCI as storage | 
 **StorageSettings** | **map[string]interface{}** | Settings for storage class. | 
 **RedirectToObjectStorage** | Pointer to **bool** | Boolean to have the content app redirect to object storage. | [optional] [default to true]
@@ -85,6 +86,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *Domain) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetPulpLabels
+
+`func (o *Domain) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *Domain) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *Domain) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *Domain) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
+
 ### GetStorageClass
 
 `func (o *Domain) GetStorageClass() StorageClassEnum`

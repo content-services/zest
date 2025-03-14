@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
-**HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **Prereleases** | Pointer to **bool** |  | [optional] [default to false]
 **Includes** | Pointer to **map[string]string** |  | [optional] 
 **Excludes** | Pointer to **map[string]string** |  | [optional] 
@@ -640,20 +640,20 @@ HasRateLimit returns a boolean if a field has been set.
 UnsetRateLimit ensures that no value is present for RateLimit, not even an explicit nil
 ### GetHiddenFields
 
-`func (o *GemGemRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner`
+`func (o *GemGemRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
 
 GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
 
 ### GetHiddenFieldsOk
 
-`func (o *GemGemRemoteResponse) GetHiddenFieldsOk() (*[]RemoteResponseHiddenFieldsInner, bool)`
+`func (o *GemGemRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
 
 GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHiddenFields
 
-`func (o *GemGemRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner)`
+`func (o *GemGemRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
 
 SetHiddenFields sets HiddenFields field to given value.
 

@@ -64,4 +64,32 @@ func Test_zest_ContentFilesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentFilesAPIService ContentFileFilesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var fileFileContentHref string
+
+		resp, httpRes, err := apiClient.ContentFilesAPI.ContentFileFilesSetLabel(context.Background(), fileFileContentHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentFilesAPIService ContentFileFilesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var fileFileContentHref string
+
+		resp, httpRes, err := apiClient.ContentFilesAPI.ContentFileFilesUnsetLabel(context.Background(), fileFileContentHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

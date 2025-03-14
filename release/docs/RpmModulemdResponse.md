@@ -8,23 +8,24 @@ Name | Type | Description | Notes
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Name** | **string** | Modulemd name. | 
 **Stream** | **string** | Stream name. | 
 **Version** | **string** | Modulemd version. | 
 **StaticContext** | Pointer to **bool** | Modulemd static-context flag. | [optional] 
 **Context** | **string** | Modulemd context. | 
 **Arch** | **string** | Modulemd architecture. | 
-**Artifacts** | **map[string]interface{}** | Modulemd artifacts. | 
-**Dependencies** | **map[string]interface{}** | Modulemd dependencies. | 
+**Artifacts** | **interface{}** | Modulemd artifacts. | 
+**Dependencies** | **interface{}** | Modulemd dependencies. | 
 **Packages** | Pointer to **[]string** | Modulemd artifacts&#39; packages. | [optional] 
-**Profiles** | **map[string]interface{}** | Modulemd profiles. | 
+**Profiles** | **interface{}** | Modulemd profiles. | 
 **Description** | **string** | Description of module. | 
 
 ## Methods
 
 ### NewRpmModulemdResponse
 
-`func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts map[string]interface{}, dependencies map[string]interface{}, profiles map[string]interface{}, description string, ) *RpmModulemdResponse`
+`func NewRpmModulemdResponse(name string, stream string, version string, context string, arch string, artifacts interface{}, dependencies interface{}, profiles interface{}, description string, ) *RpmModulemdResponse`
 
 NewRpmModulemdResponse instantiates a new RpmModulemdResponse object
 This constructor will assign default values to properties that have it defined,
@@ -138,6 +139,31 @@ SetPulpLastUpdated sets PulpLastUpdated field to given value.
 `func (o *RpmModulemdResponse) HasPulpLastUpdated() bool`
 
 HasPulpLastUpdated returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *RpmModulemdResponse) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *RpmModulemdResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *RpmModulemdResponse) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *RpmModulemdResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetName
 
@@ -266,20 +292,20 @@ SetArch sets Arch field to given value.
 
 ### GetArtifacts
 
-`func (o *RpmModulemdResponse) GetArtifacts() map[string]interface{}`
+`func (o *RpmModulemdResponse) GetArtifacts() interface{}`
 
 GetArtifacts returns the Artifacts field if non-nil, zero value otherwise.
 
 ### GetArtifactsOk
 
-`func (o *RpmModulemdResponse) GetArtifactsOk() (*map[string]interface{}, bool)`
+`func (o *RpmModulemdResponse) GetArtifactsOk() (*interface{}, bool)`
 
 GetArtifactsOk returns a tuple with the Artifacts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArtifacts
 
-`func (o *RpmModulemdResponse) SetArtifacts(v map[string]interface{})`
+`func (o *RpmModulemdResponse) SetArtifacts(v interface{})`
 
 SetArtifacts sets Artifacts field to given value.
 
@@ -296,20 +322,20 @@ SetArtifacts sets Artifacts field to given value.
 UnsetArtifacts ensures that no value is present for Artifacts, not even an explicit nil
 ### GetDependencies
 
-`func (o *RpmModulemdResponse) GetDependencies() map[string]interface{}`
+`func (o *RpmModulemdResponse) GetDependencies() interface{}`
 
 GetDependencies returns the Dependencies field if non-nil, zero value otherwise.
 
 ### GetDependenciesOk
 
-`func (o *RpmModulemdResponse) GetDependenciesOk() (*map[string]interface{}, bool)`
+`func (o *RpmModulemdResponse) GetDependenciesOk() (*interface{}, bool)`
 
 GetDependenciesOk returns a tuple with the Dependencies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDependencies
 
-`func (o *RpmModulemdResponse) SetDependencies(v map[string]interface{})`
+`func (o *RpmModulemdResponse) SetDependencies(v interface{})`
 
 SetDependencies sets Dependencies field to given value.
 
@@ -351,20 +377,20 @@ HasPackages returns a boolean if a field has been set.
 
 ### GetProfiles
 
-`func (o *RpmModulemdResponse) GetProfiles() map[string]interface{}`
+`func (o *RpmModulemdResponse) GetProfiles() interface{}`
 
 GetProfiles returns the Profiles field if non-nil, zero value otherwise.
 
 ### GetProfilesOk
 
-`func (o *RpmModulemdResponse) GetProfilesOk() (*map[string]interface{}, bool)`
+`func (o *RpmModulemdResponse) GetProfilesOk() (*interface{}, bool)`
 
 GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfiles
 
-`func (o *RpmModulemdResponse) SetProfiles(v map[string]interface{})`
+`func (o *RpmModulemdResponse) SetProfiles(v interface{})`
 
 SetProfiles sets Profiles field to given value.
 

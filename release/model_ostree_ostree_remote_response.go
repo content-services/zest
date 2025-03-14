@@ -61,7 +61,7 @@ type OstreeOstreeRemoteResponse struct {
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// An option to specify how many commits to traverse.
 	Depth *int64 `json:"depth,omitempty"`
 	//             A list of refs to include during a sync.            The wildcards *, ? are recognized.            'include_refs' is evaluated before 'exclude_refs'.            
@@ -825,9 +825,9 @@ func (o *OstreeOstreeRemoteResponse) UnsetRateLimit() {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *OstreeOstreeRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *OstreeOstreeRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -835,7 +835,7 @@ func (o *OstreeOstreeRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFie
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OstreeOstreeRemoteResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *OstreeOstreeRemoteResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -851,8 +851,8 @@ func (o *OstreeOstreeRemoteResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *OstreeOstreeRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *OstreeOstreeRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 

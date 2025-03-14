@@ -31,6 +31,7 @@ type ContentGemAPIContentGemGemCreateRequest struct {
 	ApiService *ContentGemAPIService
 	pulpDomain string
 	repository *string
+	pulpLabels *map[string]string
 	artifact *string
 	file *os.File
 }
@@ -38,6 +39,12 @@ type ContentGemAPIContentGemGemCreateRequest struct {
 // A URI of a repository the new content unit should be associated with.
 func (r ContentGemAPIContentGemGemCreateRequest) Repository(repository string) ContentGemAPIContentGemGemCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentGemAPIContentGemGemCreateRequest) PulpLabels(pulpLabels map[string]string) ContentGemAPIContentGemGemCreateRequest {
+	r.pulpLabels = &pulpLabels
 	return r
 }
 
@@ -117,6 +124,9 @@ func (a *ContentGemAPIService) ContentGemGemCreateExecute(r ContentGemAPIContent
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
 	if r.artifact != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
 	}
@@ -188,6 +198,7 @@ type ContentGemAPIContentGemGemListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -221,7 +232,7 @@ func (r ContentGemAPIContentGemGemListRequest) Offset(offset int32) ContentGemAP
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;platform&#x60; - Platform* &#x60;-platform&#x60; - Platform (descending)* &#x60;checksum&#x60; - Checksum* &#x60;-checksum&#x60; - Checksum (descending)* &#x60;prerelease&#x60; - Prerelease* &#x60;-prerelease&#x60; - Prerelease (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;required_ruby_version&#x60; - Required ruby version* &#x60;-required_ruby_version&#x60; - Required ruby version (descending)* &#x60;required_rubygems_version&#x60; - Required rubygems version* &#x60;-required_rubygems_version&#x60; - Required rubygems version (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;platform&#x60; - Platform* &#x60;-platform&#x60; - Platform (descending)* &#x60;checksum&#x60; - Checksum* &#x60;-checksum&#x60; - Checksum (descending)* &#x60;prerelease&#x60; - Prerelease* &#x60;-prerelease&#x60; - Prerelease (descending)* &#x60;dependencies&#x60; - Dependencies* &#x60;-dependencies&#x60; - Dependencies (descending)* &#x60;required_ruby_version&#x60; - Required ruby version* &#x60;-required_ruby_version&#x60; - Required ruby version (descending)* &#x60;required_rubygems_version&#x60; - Required rubygems version* &#x60;-required_rubygems_version&#x60; - Required rubygems version (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentGemAPIContentGemGemListRequest) Ordering(ordering []string) ContentGemAPIContentGemGemListRequest {
 	r.ordering = &ordering
 	return r
@@ -254,6 +265,12 @@ func (r ContentGemAPIContentGemGemListRequest) PulpHrefIn(pulpHrefIn []string) C
 // Multiple values may be separated by commas.
 func (r ContentGemAPIContentGemGemListRequest) PulpIdIn(pulpIdIn []string) ContentGemAPIContentGemGemListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentGemAPIContentGemGemListRequest) PulpLabelSelect(pulpLabelSelect string) ContentGemAPIContentGemGemListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -372,6 +389,9 @@ func (a *ContentGemAPIService) ContentGemGemListExecute(r ContentGemAPIContentGe
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
@@ -567,6 +587,236 @@ func (a *ContentGemAPIService) ContentGemGemReadExecute(r ContentGemAPIContentGe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentGemAPIContentGemGemSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentGemAPIService
+	gemGemContentHref string
+	setLabel *SetLabel
+}
+
+func (r ContentGemAPIContentGemGemSetLabelRequest) SetLabel(setLabel SetLabel) ContentGemAPIContentGemGemSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentGemAPIContentGemGemSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentGemGemSetLabelExecute(r)
+}
+
+/*
+ContentGemGemSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param gemGemContentHref
+ @return ContentGemAPIContentGemGemSetLabelRequest
+*/
+func (a *ContentGemAPIService) ContentGemGemSetLabel(ctx context.Context, gemGemContentHref string) ContentGemAPIContentGemGemSetLabelRequest {
+	return ContentGemAPIContentGemGemSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		gemGemContentHref: gemGemContentHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentGemAPIService) ContentGemGemSetLabelExecute(r ContentGemAPIContentGemGemSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentGemAPIService.ContentGemGemSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{gem_gem_content_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_content_href"+"}", url.PathEscape(parameterValueToString(r.gemGemContentHref, "gemGemContentHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentGemAPIContentGemGemUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentGemAPIService
+	gemGemContentHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentGemAPIContentGemGemUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentGemAPIContentGemGemUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentGemAPIContentGemGemUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentGemGemUnsetLabelExecute(r)
+}
+
+/*
+ContentGemGemUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param gemGemContentHref
+ @return ContentGemAPIContentGemGemUnsetLabelRequest
+*/
+func (a *ContentGemAPIService) ContentGemGemUnsetLabel(ctx context.Context, gemGemContentHref string) ContentGemAPIContentGemGemUnsetLabelRequest {
+	return ContentGemAPIContentGemGemUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		gemGemContentHref: gemGemContentHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentGemAPIService) ContentGemGemUnsetLabelExecute(r ContentGemAPIContentGemGemUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentGemAPIService.ContentGemGemUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{gem_gem_content_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_content_href"+"}", url.PathEscape(parameterValueToString(r.gemGemContentHref, "gemGemContentHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

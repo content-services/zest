@@ -29,6 +29,8 @@ type FileFileContentResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Path where the artifact is located relative to distributions base_path
@@ -194,6 +196,38 @@ func (o *FileFileContentResponse) HasPulpLastUpdated() bool {
 // SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
 func (o *FileFileContentResponse) SetPulpLastUpdated(v time.Time) {
 	o.PulpLastUpdated = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *FileFileContentResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFileContentResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *FileFileContentResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *FileFileContentResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
@@ -466,6 +500,9 @@ func (o FileFileContentResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
 	}
@@ -535,6 +572,7 @@ func (o *FileFileContentResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "md5")

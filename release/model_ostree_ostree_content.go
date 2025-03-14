@@ -23,6 +23,8 @@ var _ MappedNullable = &OstreeOstreeContent{}
 type OstreeOstreeContent struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact string `json:"artifact"`
 	RelativePath string `json:"relative_path"`
@@ -82,6 +84,38 @@ func (o *OstreeOstreeContent) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *OstreeOstreeContent) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *OstreeOstreeContent) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OstreeOstreeContent) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *OstreeOstreeContent) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *OstreeOstreeContent) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetArtifact returns the Artifact field value
@@ -169,6 +203,9 @@ func (o OstreeOstreeContent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	toSerialize["artifact"] = o.Artifact
 	toSerialize["relative_path"] = o.RelativePath
 	toSerialize["digest"] = o.Digest
@@ -218,6 +255,7 @@ func (o *OstreeOstreeContent) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "digest")

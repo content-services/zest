@@ -23,6 +23,8 @@ var _ MappedNullable = &RpmModulemd{}
 type RpmModulemd struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Modulemd name.
 	Name string `json:"name"`
 	// Stream name.
@@ -36,15 +38,15 @@ type RpmModulemd struct {
 	// Modulemd architecture.
 	Arch string `json:"arch"`
 	// Modulemd artifacts.
-	Artifacts map[string]interface{} `json:"artifacts"`
+	Artifacts interface{} `json:"artifacts"`
 	// Modulemd dependencies.
-	Dependencies map[string]interface{} `json:"dependencies"`
+	Dependencies interface{} `json:"dependencies"`
 	// Modulemd artifacts' packages.
 	Packages []*string `json:"packages,omitempty"`
 	// Modulemd snippet
 	Snippet string `json:"snippet"`
 	// Modulemd profiles.
-	Profiles map[string]interface{} `json:"profiles"`
+	Profiles interface{} `json:"profiles"`
 	// Description of module.
 	Description string `json:"description"`
 	AdditionalProperties map[string]interface{}
@@ -56,7 +58,7 @@ type _RpmModulemd RpmModulemd
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRpmModulemd(name string, stream string, version string, context string, arch string, artifacts map[string]interface{}, dependencies map[string]interface{}, snippet string, profiles map[string]interface{}, description string) *RpmModulemd {
+func NewRpmModulemd(name string, stream string, version string, context string, arch string, artifacts interface{}, dependencies interface{}, snippet string, profiles interface{}, description string) *RpmModulemd {
 	this := RpmModulemd{}
 	this.Name = name
 	this.Stream = stream
@@ -109,6 +111,38 @@ func (o *RpmModulemd) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *RpmModulemd) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *RpmModulemd) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmModulemd) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *RpmModulemd) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *RpmModulemd) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 // GetName returns the Name field value
@@ -264,10 +298,10 @@ func (o *RpmModulemd) SetArch(v string) {
 }
 
 // GetArtifacts returns the Artifacts field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemd) GetArtifacts() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemd) GetArtifacts() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -277,23 +311,23 @@ func (o *RpmModulemd) GetArtifacts() map[string]interface{} {
 // GetArtifactsOk returns a tuple with the Artifacts field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemd) GetArtifactsOk() (map[string]interface{}, bool) {
+func (o *RpmModulemd) GetArtifactsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Artifacts) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Artifacts, true
+	return &o.Artifacts, true
 }
 
 // SetArtifacts sets field value
-func (o *RpmModulemd) SetArtifacts(v map[string]interface{}) {
+func (o *RpmModulemd) SetArtifacts(v interface{}) {
 	o.Artifacts = v
 }
 
 // GetDependencies returns the Dependencies field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemd) GetDependencies() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemd) GetDependencies() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -303,15 +337,15 @@ func (o *RpmModulemd) GetDependencies() map[string]interface{} {
 // GetDependenciesOk returns a tuple with the Dependencies field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemd) GetDependenciesOk() (map[string]interface{}, bool) {
+func (o *RpmModulemd) GetDependenciesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Dependencies) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Dependencies, true
+	return &o.Dependencies, true
 }
 
 // SetDependencies sets field value
-func (o *RpmModulemd) SetDependencies(v map[string]interface{}) {
+func (o *RpmModulemd) SetDependencies(v interface{}) {
 	o.Dependencies = v
 }
 
@@ -372,10 +406,10 @@ func (o *RpmModulemd) SetSnippet(v string) {
 }
 
 // GetProfiles returns the Profiles field value
-// If the value is explicit nil, the zero value for map[string]interface{} will be returned
-func (o *RpmModulemd) GetProfiles() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *RpmModulemd) GetProfiles() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -385,15 +419,15 @@ func (o *RpmModulemd) GetProfiles() map[string]interface{} {
 // GetProfilesOk returns a tuple with the Profiles field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmModulemd) GetProfilesOk() (map[string]interface{}, bool) {
+func (o *RpmModulemd) GetProfilesOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Profiles) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Profiles, true
+	return &o.Profiles, true
 }
 
 // SetProfiles sets field value
-func (o *RpmModulemd) SetProfiles(v map[string]interface{}) {
+func (o *RpmModulemd) SetProfiles(v interface{}) {
 	o.Profiles = v
 }
 
@@ -433,6 +467,9 @@ func (o RpmModulemd) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["stream"] = o.Stream
@@ -509,6 +546,7 @@ func (o *RpmModulemd) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "stream")
 		delete(additionalProperties, "version")

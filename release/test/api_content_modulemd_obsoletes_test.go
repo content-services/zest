@@ -64,4 +64,32 @@ func Test_zest_ContentModulemdObsoletesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentModulemdObsoletesAPIService ContentRpmModulemdObsoletesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmModulemdObsoleteHref string
+
+		resp, httpRes, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesSetLabel(context.Background(), rpmModulemdObsoleteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentModulemdObsoletesAPIService ContentRpmModulemdObsoletesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmModulemdObsoleteHref string
+
+		resp, httpRes, err := apiClient.ContentModulemdObsoletesAPI.ContentRpmModulemdObsoletesUnsetLabel(context.Background(), rpmModulemdObsoleteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

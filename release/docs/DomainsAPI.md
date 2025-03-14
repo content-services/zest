@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**DomainsMigrate**](DomainsAPI.md#DomainsMigrate) | **Post** /api/pulp/{pulp_domain}/api/v3/domains/migrate/ | Migrate storage backend
 [**DomainsPartialUpdate**](DomainsAPI.md#DomainsPartialUpdate) | **Patch** /{domain_href} | Update a domain
 [**DomainsRead**](DomainsAPI.md#DomainsRead) | **Get** /{domain_href} | Inspect a domain
+[**DomainsSetLabel**](DomainsAPI.md#DomainsSetLabel) | **Post** /{domain_href}set_label/ | Set a label
+[**DomainsUnsetLabel**](DomainsAPI.md#DomainsUnsetLabel) | **Post** /{domain_href}unset_label/ | Unset a label
 [**DomainsUpdate**](DomainsAPI.md#DomainsUpdate) | **Put** /{domain_href} | Update a domain
 
 
@@ -158,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## DomainsList
 
-> PaginatedDomainResponseList DomainsList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedDomainResponseList DomainsList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List domains
 
@@ -189,17 +191,18 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `description` - Description* `-description` - Description (descending)* `storage_class` - Storage class* `-storage_class` - Storage class (descending)* `storage_settings` - Storage settings* `-storage_settings` - Storage settings (descending)* `redirect_to_object_storage` - Redirect to object storage* `-redirect_to_object_storage` - Redirect to object storage (descending)* `hide_guarded_distributions` - Hide guarded distributions* `-hide_guarded_distributions` - Hide guarded distributions (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `storage_class` - Storage class* `-storage_class` - Storage class (descending)* `storage_settings` - Storage settings* `-storage_settings` - Storage settings (descending)* `redirect_to_object_storage` - Redirect to object storage* `-redirect_to_object_storage` - Redirect to object storage (descending)* `hide_guarded_distributions` - Hide guarded distributions* `-hide_guarded_distributions` - Hide guarded distributions (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -236,10 +239,11 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;storage_class&#x60; - Storage class* &#x60;-storage_class&#x60; - Storage class (descending)* &#x60;storage_settings&#x60; - Storage settings* &#x60;-storage_settings&#x60; - Storage settings (descending)* &#x60;redirect_to_object_storage&#x60; - Redirect to object storage* &#x60;-redirect_to_object_storage&#x60; - Redirect to object storage (descending)* &#x60;hide_guarded_distributions&#x60; - Hide guarded distributions* &#x60;-hide_guarded_distributions&#x60; - Hide guarded distributions (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;storage_class&#x60; - Storage class* &#x60;-storage_class&#x60; - Storage class (descending)* &#x60;storage_settings&#x60; - Storage settings* &#x60;-storage_settings&#x60; - Storage settings (descending)* &#x60;redirect_to_object_storage&#x60; - Redirect to object storage* &#x60;-redirect_to_object_storage&#x60; - Redirect to object storage (descending)* &#x60;hide_guarded_distributions&#x60; - Hide guarded distributions* &#x60;-hide_guarded_distributions&#x60; - Hide guarded distributions (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
+ **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -473,6 +477,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DomainsSetLabel
+
+> SetLabelResponse DomainsSetLabel(ctx, domainHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	domainHref := "domainHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DomainsAPI.DomainsSetLabel(context.Background(), domainHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DomainsSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `DomainsAPI.DomainsSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**domainHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDomainsSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DomainsUnsetLabel
+
+> UnsetLabelResponse DomainsUnsetLabel(ctx, domainHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	domainHref := "domainHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DomainsAPI.DomainsUnsetLabel(context.Background(), domainHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DomainsUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `DomainsAPI.DomainsUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**domainHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDomainsUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

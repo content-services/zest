@@ -44,11 +44,13 @@ type UpstreamPulpResponse struct {
 	// If True, TLS peer validation must be performed.
 	TlsValidation *bool `json:"tls_validation,omitempty"`
 	// List of hidden (write only) fields
-	HiddenFields []RemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
+	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
 	QSelect NullableString `json:"q_select,omitempty"`
 	// Timestamp of the last replication that occurred. Equals to 'null' if no replication task has been executed.
 	LastReplication *time.Time `json:"last_replication,omitempty"`
+	// Policy for how replicate will manage the local objects within the domain.* `all` - Replicate manages ALL local objects within the domain.* `labeled` - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* `nodelete` - Replicate will not delete any local object whether they were created by replication or not.
+	Policy *Policy357Enum `json:"policy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -433,9 +435,9 @@ func (o *UpstreamPulpResponse) SetTlsValidation(v bool) {
 }
 
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
-func (o *UpstreamPulpResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner {
+func (o *UpstreamPulpResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
-		var ret []RemoteResponseHiddenFieldsInner
+		var ret []GenericRemoteResponseHiddenFieldsInner
 		return ret
 	}
 	return o.HiddenFields
@@ -443,7 +445,7 @@ func (o *UpstreamPulpResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInn
 
 // GetHiddenFieldsOk returns a tuple with the HiddenFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpstreamPulpResponse) GetHiddenFieldsOk() ([]RemoteResponseHiddenFieldsInner, bool) {
+func (o *UpstreamPulpResponse) GetHiddenFieldsOk() ([]GenericRemoteResponseHiddenFieldsInner, bool) {
 	if o == nil || IsNil(o.HiddenFields) {
 		return nil, false
 	}
@@ -459,8 +461,8 @@ func (o *UpstreamPulpResponse) HasHiddenFields() bool {
 	return false
 }
 
-// SetHiddenFields gets a reference to the given []RemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
-func (o *UpstreamPulpResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner) {
+// SetHiddenFields gets a reference to the given []GenericRemoteResponseHiddenFieldsInner and assigns it to the HiddenFields field.
+func (o *UpstreamPulpResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner) {
 	o.HiddenFields = v
 }
 
@@ -538,6 +540,38 @@ func (o *UpstreamPulpResponse) SetLastReplication(v time.Time) {
 	o.LastReplication = &v
 }
 
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *UpstreamPulpResponse) GetPolicy() Policy357Enum {
+	if o == nil || IsNil(o.Policy) {
+		var ret Policy357Enum
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpstreamPulpResponse) GetPolicyOk() (*Policy357Enum, bool) {
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasPolicy() bool {
+	if o != nil && !IsNil(o.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given Policy357Enum and assigns it to the Policy field.
+func (o *UpstreamPulpResponse) SetPolicy(v Policy357Enum) {
+	o.Policy = &v
+}
+
 func (o UpstreamPulpResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -583,6 +617,9 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LastReplication) {
 		toSerialize["last_replication"] = o.LastReplication
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -643,6 +680,7 @@ func (o *UpstreamPulpResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "hidden_fields")
 		delete(additionalProperties, "q_select")
 		delete(additionalProperties, "last_replication")
+		delete(additionalProperties, "policy")
 		o.AdditionalProperties = additionalProperties
 	}
 

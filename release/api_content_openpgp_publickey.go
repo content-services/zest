@@ -31,6 +31,7 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest struct {
 	ApiService *ContentOpenpgpPublickeyAPIService
 	pulpDomain string
 	repository *string
+	pulpLabels *map[string]string
 	file *os.File
 	upload *string
 	fileUrl *string
@@ -39,6 +40,12 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest struct {
 // A URI of a repository the new content unit should be associated with.
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) Repository(repository string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) PulpLabels(pulpLabels map[string]string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
+	r.pulpLabels = &pulpLabels
 	return r
 }
 
@@ -124,6 +131,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyCreateExe
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
 	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -196,6 +206,7 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest struct {
 	prnIn *[]string
 	pulpHrefIn *[]string
 	pulpIdIn *[]string
+	pulpLabelSelect *string
 	q *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
@@ -222,7 +233,7 @@ func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) Offset
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;raw_data&#x60; - Raw data* &#x60;-raw_data&#x60; - Raw data (descending)* &#x60;fingerprint&#x60; - Fingerprint* &#x60;-fingerprint&#x60; - Fingerprint (descending)* &#x60;created&#x60; - Created* &#x60;-created&#x60; - Created (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;raw_data&#x60; - Raw data* &#x60;-raw_data&#x60; - Raw data (descending)* &#x60;fingerprint&#x60; - Fingerprint* &#x60;-fingerprint&#x60; - Fingerprint (descending)* &#x60;created&#x60; - Created* &#x60;-created&#x60; - Created (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) Ordering(ordering []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
 	r.ordering = &ordering
 	return r
@@ -249,6 +260,12 @@ func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) PulpHr
 // Multiple values may be separated by commas.
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) PulpIdIn(pulpIdIn []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
 	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter labels by search string
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) PulpLabelSelect(pulpLabelSelect string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
+	r.pulpLabelSelect = &pulpLabelSelect
 	return r
 }
 
@@ -355,6 +372,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyListExecu
 	}
 	if r.pulpIdIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.pulpLabelSelect != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_label_select", r.pulpLabelSelect, "form", "")
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
@@ -547,6 +567,236 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyReadExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentOpenpgpPublickeyAPIService
+	openPGPPublicKeyHref string
+	setLabel *SetLabel
+}
+
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest) SetLabel(setLabel SetLabel) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentCoreOpenpgpPublickeySetLabelExecute(r)
+}
+
+/*
+ContentCoreOpenpgpPublickeySetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param openPGPPublicKeyHref
+ @return ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest
+*/
+func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeySetLabel(ctx context.Context, openPGPPublicKeyHref string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest {
+	return ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		openPGPPublicKeyHref: openPGPPublicKeyHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeySetLabelExecute(r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentOpenpgpPublickeyAPIService.ContentCoreOpenpgpPublickeySetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{open_p_g_p_public_key_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_public_key_href"+"}", url.PathEscape(parameterValueToString(r.openPGPPublicKeyHref, "openPGPPublicKeyHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentOpenpgpPublickeyAPIService
+	openPGPPublicKeyHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentCoreOpenpgpPublickeyUnsetLabelExecute(r)
+}
+
+/*
+ContentCoreOpenpgpPublickeyUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param openPGPPublicKeyHref
+ @return ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest
+*/
+func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyUnsetLabel(ctx context.Context, openPGPPublicKeyHref string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest {
+	return ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		openPGPPublicKeyHref: openPGPPublicKeyHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyUnsetLabelExecute(r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentOpenpgpPublickeyAPIService.ContentCoreOpenpgpPublickeyUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{open_p_g_p_public_key_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_public_key_href"+"}", url.PathEscape(parameterValueToString(r.openPGPPublicKeyHref, "openPGPPublicKeyHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

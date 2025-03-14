@@ -15,9 +15,10 @@ Name | Type | Description | Notes
 **CaCert** | Pointer to **NullableString** | A PEM encoded CA certificate used to validate the server certificate presented by the remote server. | [optional] 
 **ClientCert** | Pointer to **NullableString** | A PEM encoded client certificate used for authentication. | [optional] 
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
-**HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
 **LastReplication** | Pointer to **time.Time** | Timestamp of the last replication that occurred. Equals to &#39;null&#39; if no replication task has been executed. | [optional] [readonly] 
+**Policy** | Pointer to [**Policy357Enum**](Policy357Enum.md) | Policy for how replicate will manage the local objects within the domain.* &#x60;all&#x60; - Replicate manages ALL local objects within the domain.* &#x60;labeled&#x60; - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* &#x60;nodelete&#x60; - Replicate will not delete any local object whether they were created by replication or not. | [optional] 
 
 ## Methods
 
@@ -330,20 +331,20 @@ HasTlsValidation returns a boolean if a field has been set.
 
 ### GetHiddenFields
 
-`func (o *UpstreamPulpResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner`
+`func (o *UpstreamPulpResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
 
 GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
 
 ### GetHiddenFieldsOk
 
-`func (o *UpstreamPulpResponse) GetHiddenFieldsOk() (*[]RemoteResponseHiddenFieldsInner, bool)`
+`func (o *UpstreamPulpResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
 
 GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHiddenFields
 
-`func (o *UpstreamPulpResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner)`
+`func (o *UpstreamPulpResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
 
 SetHiddenFields sets HiddenFields field to given value.
 
@@ -412,6 +413,31 @@ SetLastReplication sets LastReplication field to given value.
 `func (o *UpstreamPulpResponse) HasLastReplication() bool`
 
 HasLastReplication returns a boolean if a field has been set.
+
+### GetPolicy
+
+`func (o *UpstreamPulpResponse) GetPolicy() Policy357Enum`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *UpstreamPulpResponse) GetPolicyOk() (*Policy357Enum, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *UpstreamPulpResponse) SetPolicy(v Policy357Enum)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *UpstreamPulpResponse) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

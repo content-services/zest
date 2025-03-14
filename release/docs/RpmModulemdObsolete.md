@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Modified** | **string** | Obsolete modified time. | 
 **ModuleName** | **string** | Modulemd name. | 
 **ModuleStream** | **string** | Modulemd&#39;s stream. | 
@@ -59,6 +60,31 @@ SetRepository sets Repository field to given value.
 `func (o *RpmModulemdObsolete) HasRepository() bool`
 
 HasRepository returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *RpmModulemdObsolete) GetPulpLabels() map[string]string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *RpmModulemdObsolete) GetPulpLabelsOk() (*map[string]string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *RpmModulemdObsolete) SetPulpLabels(v map[string]string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *RpmModulemdObsolete) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetModified
 

@@ -39,6 +39,7 @@ type PublicationsAPIPublicationsListRequest struct {
 	pulpCreated *time.Time
 	pulpCreatedGt *time.Time
 	pulpCreatedGte *time.Time
+	pulpCreatedIsnull *bool
 	pulpCreatedLt *time.Time
 	pulpCreatedLte *time.Time
 	pulpCreatedRange *[]time.Time
@@ -107,6 +108,12 @@ func (r PublicationsAPIPublicationsListRequest) PulpCreatedGte(pulpCreatedGte ti
 	return r
 }
 
+// Filter results where pulp_created has a null value
+func (r PublicationsAPIPublicationsListRequest) PulpCreatedIsnull(pulpCreatedIsnull bool) PublicationsAPIPublicationsListRequest {
+	r.pulpCreatedIsnull = &pulpCreatedIsnull
+	return r
+}
+
 // Filter results where pulp_created is less than value
 func (r PublicationsAPIPublicationsListRequest) PulpCreatedLt(pulpCreatedLt time.Time) PublicationsAPIPublicationsListRequest {
 	r.pulpCreatedLt = &pulpCreatedLt
@@ -137,13 +144,13 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python
 func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -249,6 +256,9 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 	}
 	if r.pulpCreatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__gte", r.pulpCreatedGte, "form", "")
+	}
+	if r.pulpCreatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__isnull", r.pulpCreatedIsnull, "form", "")
 	}
 	if r.pulpCreatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_created__lt", r.pulpCreatedLt, "form", "")

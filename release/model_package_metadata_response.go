@@ -24,10 +24,10 @@ type PackageMetadataResponse struct {
 	// Cache value from last PyPI sync
 	LastSerial int64 `json:"last_serial"`
 	// Core metadata of the package
-	Info map[string]interface{} `json:"info"`
+	Info interface{} `json:"info"`
 	// List of all the releases of the package
-	Releases map[string]interface{} `json:"releases"`
-	Urls map[string]interface{} `json:"urls"`
+	Releases interface{} `json:"releases"`
+	Urls interface{} `json:"urls"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,7 +37,7 @@ type _PackageMetadataResponse PackageMetadataResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPackageMetadataResponse(lastSerial int64, info map[string]interface{}, releases map[string]interface{}, urls map[string]interface{}) *PackageMetadataResponse {
+func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}) *PackageMetadataResponse {
 	this := PackageMetadataResponse{}
 	this.LastSerial = lastSerial
 	this.Info = info
@@ -79,9 +79,10 @@ func (o *PackageMetadataResponse) SetLastSerial(v int64) {
 }
 
 // GetInfo returns the Info field value
-func (o *PackageMetadataResponse) GetInfo() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PackageMetadataResponse) GetInfo() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -90,22 +91,24 @@ func (o *PackageMetadataResponse) GetInfo() map[string]interface{} {
 
 // GetInfoOk returns a tuple with the Info field value
 // and a boolean to check if the value has been set.
-func (o *PackageMetadataResponse) GetInfoOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PackageMetadataResponse) GetInfoOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Info) {
+		return nil, false
 	}
-	return o.Info, true
+	return &o.Info, true
 }
 
 // SetInfo sets field value
-func (o *PackageMetadataResponse) SetInfo(v map[string]interface{}) {
+func (o *PackageMetadataResponse) SetInfo(v interface{}) {
 	o.Info = v
 }
 
 // GetReleases returns the Releases field value
-func (o *PackageMetadataResponse) GetReleases() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PackageMetadataResponse) GetReleases() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -114,22 +117,24 @@ func (o *PackageMetadataResponse) GetReleases() map[string]interface{} {
 
 // GetReleasesOk returns a tuple with the Releases field value
 // and a boolean to check if the value has been set.
-func (o *PackageMetadataResponse) GetReleasesOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PackageMetadataResponse) GetReleasesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Releases) {
+		return nil, false
 	}
-	return o.Releases, true
+	return &o.Releases, true
 }
 
 // SetReleases sets field value
-func (o *PackageMetadataResponse) SetReleases(v map[string]interface{}) {
+func (o *PackageMetadataResponse) SetReleases(v interface{}) {
 	o.Releases = v
 }
 
 // GetUrls returns the Urls field value
-func (o *PackageMetadataResponse) GetUrls() map[string]interface{} {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PackageMetadataResponse) GetUrls() interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 
@@ -138,15 +143,16 @@ func (o *PackageMetadataResponse) GetUrls() map[string]interface{} {
 
 // GetUrlsOk returns a tuple with the Urls field value
 // and a boolean to check if the value has been set.
-func (o *PackageMetadataResponse) GetUrlsOk() (map[string]interface{}, bool) {
-	if o == nil {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PackageMetadataResponse) GetUrlsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Urls) {
+		return nil, false
 	}
-	return o.Urls, true
+	return &o.Urls, true
 }
 
 // SetUrls sets field value
-func (o *PackageMetadataResponse) SetUrls(v map[string]interface{}) {
+func (o *PackageMetadataResponse) SetUrls(v interface{}) {
 	o.Urls = v
 }
 
@@ -161,9 +167,15 @@ func (o PackageMetadataResponse) MarshalJSON() ([]byte, error) {
 func (o PackageMetadataResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["last_serial"] = o.LastSerial
-	toSerialize["info"] = o.Info
-	toSerialize["releases"] = o.Releases
-	toSerialize["urls"] = o.Urls
+	if o.Info != nil {
+		toSerialize["info"] = o.Info
+	}
+	if o.Releases != nil {
+		toSerialize["releases"] = o.Releases
+	}
+	if o.Urls != nil {
+		toSerialize["urls"] = o.Urls
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value

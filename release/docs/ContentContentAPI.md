@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**ContentOstreeContentCreate**](ContentContentAPI.md#ContentOstreeContentCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/ostree/content/ | Create an ostree content
 [**ContentOstreeContentList**](ContentContentAPI.md#ContentOstreeContentList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/content/ | List ostree contents
 [**ContentOstreeContentRead**](ContentContentAPI.md#ContentOstreeContentRead) | **Get** /{ostree_ostree_content_href} | Inspect an ostree content
+[**ContentOstreeContentSetLabel**](ContentContentAPI.md#ContentOstreeContentSetLabel) | **Post** /{ostree_ostree_content_href}set_label/ | Set a label
+[**ContentOstreeContentUnsetLabel**](ContentContentAPI.md#ContentOstreeContentUnsetLabel) | **Post** /{ostree_ostree_content_href}unset_label/ | Unset a label
 
 
 
@@ -84,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## ContentOstreeContentList
 
-> PaginatedostreeOstreeContentResponseList ContentOstreeContentList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedostreeOstreeContentResponseList ContentOstreeContentList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List ostree contents
 
@@ -111,6 +113,7 @@ func main() {
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
@@ -120,7 +123,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentContentAPI.ContentOstreeContentList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentContentAPI.ContentOstreeContentList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentContentAPI.ContentOstreeContentList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -153,6 +156,7 @@ Name | Type | Description  | Notes
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
+ **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
  **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
@@ -245,6 +249,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentOstreeContentSetLabel
+
+> SetLabelResponse ContentOstreeContentSetLabel(ctx, ostreeOstreeContentHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	ostreeOstreeContentHref := "ostreeOstreeContentHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentContentAPI.ContentOstreeContentSetLabel(context.Background(), ostreeOstreeContentHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentContentAPI.ContentOstreeContentSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentOstreeContentSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentContentAPI.ContentOstreeContentSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**ostreeOstreeContentHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentOstreeContentSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentOstreeContentUnsetLabel
+
+> UnsetLabelResponse ContentOstreeContentUnsetLabel(ctx, ostreeOstreeContentHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	ostreeOstreeContentHref := "ostreeOstreeContentHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentContentAPI.ContentOstreeContentUnsetLabel(context.Background(), ostreeOstreeContentHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentContentAPI.ContentOstreeContentUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentOstreeContentUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentContentAPI.ContentOstreeContentUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**ostreeOstreeContentHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentOstreeContentUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

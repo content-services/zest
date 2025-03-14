@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
-**HiddenFields** | Pointer to [**[]RemoteResponseHiddenFieldsInner**](RemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **Depth** | Pointer to **int64** | An option to specify how many commits to traverse. | [optional] [default to 0]
 **IncludeRefs** | Pointer to **[]string** |             A list of refs to include during a sync.            The wildcards *, ? are recognized.            &#39;include_refs&#39; is evaluated before &#39;exclude_refs&#39;.             | [optional] 
 **ExcludeRefs** | Pointer to **[]string** |             A list of tags to exclude during a sync.            The wildcards *, ? are recognized.            &#39;exclude_refs&#39; is evaluated after &#39;include_refs&#39;.             | [optional] 
@@ -640,20 +640,20 @@ HasRateLimit returns a boolean if a field has been set.
 UnsetRateLimit ensures that no value is present for RateLimit, not even an explicit nil
 ### GetHiddenFields
 
-`func (o *OstreeOstreeRemoteResponse) GetHiddenFields() []RemoteResponseHiddenFieldsInner`
+`func (o *OstreeOstreeRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
 
 GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
 
 ### GetHiddenFieldsOk
 
-`func (o *OstreeOstreeRemoteResponse) GetHiddenFieldsOk() (*[]RemoteResponseHiddenFieldsInner, bool)`
+`func (o *OstreeOstreeRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
 
 GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHiddenFields
 
-`func (o *OstreeOstreeRemoteResponse) SetHiddenFields(v []RemoteResponseHiddenFieldsInner)`
+`func (o *OstreeOstreeRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
 
 SetHiddenFields sets HiddenFields field to given value.
 

@@ -49,6 +49,7 @@ type RemotesAPIRemotesListRequest struct {
 	pulpLastUpdated *time.Time
 	pulpLastUpdatedGt *time.Time
 	pulpLastUpdatedGte *time.Time
+	pulpLastUpdatedIsnull *bool
 	pulpLastUpdatedLt *time.Time
 	pulpLastUpdatedLte *time.Time
 	pulpLastUpdatedRange *[]time.Time
@@ -173,6 +174,12 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedGte(pulpLastUpdatedGte time
 	return r
 }
 
+// Filter results where pulp_last_updated has a null value
+func (r RemotesAPIRemotesListRequest) PulpLastUpdatedIsnull(pulpLastUpdatedIsnull bool) RemotesAPIRemotesListRequest {
+	r.pulpLastUpdatedIsnull = &pulpLastUpdatedIsnull
+	return r
+}
+
 // Filter results where pulp_last_updated is less than value
 func (r RemotesAPIRemotesListRequest) PulpLastUpdatedLt(pulpLastUpdatedLt time.Time) RemotesAPIRemotesListRequest {
 	r.pulpLastUpdatedLt = &pulpLastUpdatedLt
@@ -191,13 +198,13 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python
 func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -221,7 +228,7 @@ func (r RemotesAPIRemotesListRequest) ExcludeFields(excludeFields []string) Remo
 	return r
 }
 
-func (r RemotesAPIRemotesListRequest) Execute() (*PaginatedRemoteResponseList, *http.Response, error) {
+func (r RemotesAPIRemotesListRequest) Execute() (*PaginatedGenericRemoteResponseList, *http.Response, error) {
 	return r.ApiService.RemotesListExecute(r)
 }
 
@@ -243,13 +250,13 @@ func (a *RemotesAPIService) RemotesList(ctx context.Context, pulpDomain string) 
 }
 
 // Execute executes the request
-//  @return PaginatedRemoteResponseList
-func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (*PaginatedRemoteResponseList, *http.Response, error) {
+//  @return PaginatedGenericRemoteResponseList
+func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (*PaginatedGenericRemoteResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedRemoteResponseList
+		localVarReturnValue  *PaginatedGenericRemoteResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesAPIService.RemotesList")
@@ -321,6 +328,9 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 	}
 	if r.pulpLastUpdatedGte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__gte", r.pulpLastUpdatedGte, "form", "")
+	}
+	if r.pulpLastUpdatedIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__isnull", r.pulpLastUpdatedIsnull, "form", "")
 	}
 	if r.pulpLastUpdatedLt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_last_updated__lt", r.pulpLastUpdatedLt, "form", "")

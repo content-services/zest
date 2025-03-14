@@ -41,6 +41,8 @@ type RpmRepoMetadataFileResponse struct {
 	Sha384 *string `json:"sha384,omitempty"`
 	// The SHA-512 checksum if available.
 	Sha512 *string `json:"sha512,omitempty"`
+	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Relative path of the file.
@@ -397,6 +399,38 @@ func (o *RpmRepoMetadataFileResponse) SetSha512(v string) {
 	o.Sha512 = &v
 }
 
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *RpmRepoMetadataFileResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRepoMetadataFileResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *RpmRepoMetadataFileResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *RpmRepoMetadataFileResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
 func (o *RpmRepoMetadataFileResponse) GetArtifact() string {
 	if o == nil || IsNil(o.Artifact) {
@@ -565,6 +599,9 @@ func (o RpmRepoMetadataFileResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Sha512) {
 		toSerialize["sha512"] = o.Sha512
 	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
 	}
@@ -628,6 +665,7 @@ func (o *RpmRepoMetadataFileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sha256")
 		delete(additionalProperties, "sha384")
 		delete(additionalProperties, "sha512")
+		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "data_type")
