@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentContainerSignaturesList**](ContentSignaturesAPI.md#ContentContainerSignaturesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/container/signatures/ | List manifest signatures
 [**ContentContainerSignaturesRead**](ContentSignaturesAPI.md#ContentContainerSignaturesRead) | **Get** /{container_manifest_signature_href} | Inspect a manifest signature
+[**ContentContainerSignaturesSetLabel**](ContentSignaturesAPI.md#ContentContainerSignaturesSetLabel) | **Post** /{container_manifest_signature_href}set_label/ | Set a label
+[**ContentContainerSignaturesUnsetLabel**](ContentSignaturesAPI.md#ContentContainerSignaturesUnsetLabel) | **Post** /{container_manifest_signature_href}unset_label/ | Unset a label
 
 
 
@@ -202,6 +204,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentContainerSignaturesSetLabel
+
+> SetLabelResponse ContentContainerSignaturesSetLabel(ctx, containerManifestSignatureHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	containerManifestSignatureHref := "containerManifestSignatureHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentSignaturesAPI.ContentContainerSignaturesSetLabel(context.Background(), containerManifestSignatureHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentSignaturesAPI.ContentContainerSignaturesSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentContainerSignaturesSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentSignaturesAPI.ContentContainerSignaturesSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**containerManifestSignatureHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentContainerSignaturesSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentContainerSignaturesUnsetLabel
+
+> UnsetLabelResponse ContentContainerSignaturesUnsetLabel(ctx, containerManifestSignatureHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	containerManifestSignatureHref := "containerManifestSignatureHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentSignaturesAPI.ContentContainerSignaturesUnsetLabel(context.Background(), containerManifestSignatureHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentSignaturesAPI.ContentContainerSignaturesUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentContainerSignaturesUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentSignaturesAPI.ContentContainerSignaturesUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**containerManifestSignatureHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentContainerSignaturesUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

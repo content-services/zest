@@ -50,4 +50,32 @@ func Test_zest_ContentPackagecategoriesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentPackagecategoriesAPIService ContentRpmPackagecategoriesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageCategoryHref string
+
+		resp, httpRes, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesSetLabel(context.Background(), rpmPackageCategoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagecategoriesAPIService ContentRpmPackagecategoriesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageCategoryHref string
+
+		resp, httpRes, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesUnsetLabel(context.Background(), rpmPackageCategoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

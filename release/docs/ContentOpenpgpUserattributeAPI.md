@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentCoreOpenpgpUserattributeList**](ContentOpenpgpUserattributeAPI.md#ContentCoreOpenpgpUserattributeList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_userattribute/ | List open pgp user attributes
 [**ContentCoreOpenpgpUserattributeRead**](ContentOpenpgpUserattributeAPI.md#ContentCoreOpenpgpUserattributeRead) | **Get** /{open_p_g_p_user_attribute_href} | Inspect an open pgp user attribute
+[**ContentCoreOpenpgpUserattributeSetLabel**](ContentOpenpgpUserattributeAPI.md#ContentCoreOpenpgpUserattributeSetLabel) | **Post** /{open_p_g_p_user_attribute_href}set_label/ | Set a label
+[**ContentCoreOpenpgpUserattributeUnsetLabel**](ContentOpenpgpUserattributeAPI.md#ContentCoreOpenpgpUserattributeUnsetLabel) | **Post** /{open_p_g_p_user_attribute_href}unset_label/ | Unset a label
 
 
 
@@ -176,6 +178,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentCoreOpenpgpUserattributeSetLabel
+
+> SetLabelResponse ContentCoreOpenpgpUserattributeSetLabel(ctx, openPGPUserAttributeHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	openPGPUserAttributeHref := "openPGPUserAttributeHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeSetLabel(context.Background(), openPGPUserAttributeHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentCoreOpenpgpUserattributeSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**openPGPUserAttributeHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentCoreOpenpgpUserattributeSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentCoreOpenpgpUserattributeUnsetLabel
+
+> UnsetLabelResponse ContentCoreOpenpgpUserattributeUnsetLabel(ctx, openPGPUserAttributeHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	openPGPUserAttributeHref := "openPGPUserAttributeHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeUnsetLabel(context.Background(), openPGPUserAttributeHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentCoreOpenpgpUserattributeUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentOpenpgpUserattributeAPI.ContentCoreOpenpgpUserattributeUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**openPGPUserAttributeHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentCoreOpenpgpUserattributeUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

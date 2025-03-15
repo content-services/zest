@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentRpmRepoMetadataFilesList**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/ | List repo metadata files
 [**ContentRpmRepoMetadataFilesRead**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesRead) | **Get** /{rpm_repo_metadata_file_href} | Inspect a repo metadata file
+[**ContentRpmRepoMetadataFilesSetLabel**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesSetLabel) | **Post** /{rpm_repo_metadata_file_href}set_label/ | Set a label
+[**ContentRpmRepoMetadataFilesUnsetLabel**](ContentRepoMetadataFilesAPI.md#ContentRpmRepoMetadataFilesUnsetLabel) | **Post** /{rpm_repo_metadata_file_href}unset_label/ | Unset a label
 
 
 
@@ -174,6 +176,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmRepoMetadataFilesSetLabel
+
+> SetLabelResponse ContentRpmRepoMetadataFilesSetLabel(ctx, rpmRepoMetadataFileHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmRepoMetadataFileHref := "rpmRepoMetadataFileHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesSetLabel(context.Background(), rpmRepoMetadataFileHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmRepoMetadataFilesSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmRepoMetadataFileHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmRepoMetadataFilesSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmRepoMetadataFilesUnsetLabel
+
+> UnsetLabelResponse ContentRpmRepoMetadataFilesUnsetLabel(ctx, rpmRepoMetadataFileHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmRepoMetadataFileHref := "rpmRepoMetadataFileHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesUnsetLabel(context.Background(), rpmRepoMetadataFileHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmRepoMetadataFilesUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmRepoMetadataFileHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmRepoMetadataFilesUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

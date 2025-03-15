@@ -50,4 +50,32 @@ func Test_zest_ContentConfigsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentConfigsAPIService ContentOstreeConfigsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ostreeOstreeConfigHref string
+
+		resp, httpRes, err := apiClient.ContentConfigsAPI.ContentOstreeConfigsSetLabel(context.Background(), ostreeOstreeConfigHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentConfigsAPIService ContentOstreeConfigsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ostreeOstreeConfigHref string
+
+		resp, httpRes, err := apiClient.ContentConfigsAPI.ContentOstreeConfigsUnsetLabel(context.Background(), ostreeOstreeConfigHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

@@ -50,4 +50,32 @@ func Test_zest_ContentPackagelangpacksAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentPackagelangpacksAPIService ContentRpmPackagelangpacksSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageLangpacksHref string
+
+		resp, httpRes, err := apiClient.ContentPackagelangpacksAPI.ContentRpmPackagelangpacksSetLabel(context.Background(), rpmPackageLangpacksHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagelangpacksAPIService ContentRpmPackagelangpacksUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageLangpacksHref string
+
+		resp, httpRes, err := apiClient.ContentPackagelangpacksAPI.ContentRpmPackagelangpacksUnsetLabel(context.Background(), rpmPackageLangpacksHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

@@ -50,4 +50,32 @@ func Test_zest_ContentDistributionTreesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentDistributionTreesAPIService ContentRpmDistributionTreesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmDistributionTreeHref string
+
+		resp, httpRes, err := apiClient.ContentDistributionTreesAPI.ContentRpmDistributionTreesSetLabel(context.Background(), rpmDistributionTreeHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentDistributionTreesAPIService ContentRpmDistributionTreesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmDistributionTreeHref string
+
+		resp, httpRes, err := apiClient.ContentDistributionTreesAPI.ContentRpmDistributionTreesUnsetLabel(context.Background(), rpmDistributionTreeHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

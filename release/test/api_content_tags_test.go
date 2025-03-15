@@ -50,4 +50,32 @@ func Test_zest_ContentTagsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentTagsAPIService ContentContainerTagsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerTagHref string
+
+		resp, httpRes, err := apiClient.ContentTagsAPI.ContentContainerTagsSetLabel(context.Background(), containerTagHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentTagsAPIService ContentContainerTagsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerTagHref string
+
+		resp, httpRes, err := apiClient.ContentTagsAPI.ContentContainerTagsUnsetLabel(context.Background(), containerTagHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

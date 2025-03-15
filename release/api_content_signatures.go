@@ -564,3 +564,233 @@ func (a *ContentSignaturesAPIService) ContentContainerSignaturesReadExecute(r Co
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
+type ContentSignaturesAPIContentContainerSignaturesSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentSignaturesAPIService
+	containerManifestSignatureHref string
+	setLabel *SetLabel
+}
+
+func (r ContentSignaturesAPIContentContainerSignaturesSetLabelRequest) SetLabel(setLabel SetLabel) ContentSignaturesAPIContentContainerSignaturesSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentSignaturesAPIContentContainerSignaturesSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentContainerSignaturesSetLabelExecute(r)
+}
+
+/*
+ContentContainerSignaturesSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param containerManifestSignatureHref
+ @return ContentSignaturesAPIContentContainerSignaturesSetLabelRequest
+*/
+func (a *ContentSignaturesAPIService) ContentContainerSignaturesSetLabel(ctx context.Context, containerManifestSignatureHref string) ContentSignaturesAPIContentContainerSignaturesSetLabelRequest {
+	return ContentSignaturesAPIContentContainerSignaturesSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		containerManifestSignatureHref: containerManifestSignatureHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentSignaturesAPIService) ContentContainerSignaturesSetLabelExecute(r ContentSignaturesAPIContentContainerSignaturesSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentSignaturesAPIService.ContentContainerSignaturesSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{container_manifest_signature_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"container_manifest_signature_href"+"}", url.PathEscape(parameterValueToString(r.containerManifestSignatureHref, "containerManifestSignatureHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentSignaturesAPIService
+	containerManifestSignatureHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentContainerSignaturesUnsetLabelExecute(r)
+}
+
+/*
+ContentContainerSignaturesUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param containerManifestSignatureHref
+ @return ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest
+*/
+func (a *ContentSignaturesAPIService) ContentContainerSignaturesUnsetLabel(ctx context.Context, containerManifestSignatureHref string) ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest {
+	return ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		containerManifestSignatureHref: containerManifestSignatureHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentSignaturesAPIService) ContentContainerSignaturesUnsetLabelExecute(r ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentSignaturesAPIService.ContentContainerSignaturesUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{container_manifest_signature_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"container_manifest_signature_href"+"}", url.PathEscape(parameterValueToString(r.containerManifestSignatureHref, "containerManifestSignatureHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}

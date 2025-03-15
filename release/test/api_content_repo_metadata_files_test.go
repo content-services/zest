@@ -50,4 +50,32 @@ func Test_zest_ContentRepoMetadataFilesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentRepoMetadataFilesAPIService ContentRpmRepoMetadataFilesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRepoMetadataFileHref string
+
+		resp, httpRes, err := apiClient.ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesSetLabel(context.Background(), rpmRepoMetadataFileHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentRepoMetadataFilesAPIService ContentRpmRepoMetadataFilesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmRepoMetadataFileHref string
+
+		resp, httpRes, err := apiClient.ContentRepoMetadataFilesAPI.ContentRpmRepoMetadataFilesUnsetLabel(context.Background(), rpmRepoMetadataFileHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

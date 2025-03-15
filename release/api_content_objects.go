@@ -434,3 +434,233 @@ func (a *ContentObjectsAPIService) ContentOstreeObjectsReadExecute(r ContentObje
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
+type ContentObjectsAPIContentOstreeObjectsSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentObjectsAPIService
+	ostreeOstreeObjectHref string
+	setLabel *SetLabel
+}
+
+func (r ContentObjectsAPIContentOstreeObjectsSetLabelRequest) SetLabel(setLabel SetLabel) ContentObjectsAPIContentOstreeObjectsSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentObjectsAPIContentOstreeObjectsSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentOstreeObjectsSetLabelExecute(r)
+}
+
+/*
+ContentOstreeObjectsSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ostreeOstreeObjectHref
+ @return ContentObjectsAPIContentOstreeObjectsSetLabelRequest
+*/
+func (a *ContentObjectsAPIService) ContentOstreeObjectsSetLabel(ctx context.Context, ostreeOstreeObjectHref string) ContentObjectsAPIContentOstreeObjectsSetLabelRequest {
+	return ContentObjectsAPIContentOstreeObjectsSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		ostreeOstreeObjectHref: ostreeOstreeObjectHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentObjectsAPIService) ContentOstreeObjectsSetLabelExecute(r ContentObjectsAPIContentOstreeObjectsSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentObjectsAPIService.ContentOstreeObjectsSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{ostree_ostree_object_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_object_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeObjectHref, "ostreeOstreeObjectHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentObjectsAPIService
+	ostreeOstreeObjectHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentOstreeObjectsUnsetLabelExecute(r)
+}
+
+/*
+ContentOstreeObjectsUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param ostreeOstreeObjectHref
+ @return ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest
+*/
+func (a *ContentObjectsAPIService) ContentOstreeObjectsUnsetLabel(ctx context.Context, ostreeOstreeObjectHref string) ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest {
+	return ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		ostreeOstreeObjectHref: ostreeOstreeObjectHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentObjectsAPIService) ContentOstreeObjectsUnsetLabelExecute(r ContentObjectsAPIContentOstreeObjectsUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentObjectsAPIService.ContentOstreeObjectsUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{ostree_ostree_object_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_object_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeObjectHref, "ostreeOstreeObjectHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}

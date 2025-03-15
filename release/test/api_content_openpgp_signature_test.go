@@ -50,4 +50,32 @@ func Test_zest_ContentOpenpgpSignatureAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentOpenpgpSignatureAPIService ContentCoreOpenpgpSignatureSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var openPGPSignatureHref string
+
+		resp, httpRes, err := apiClient.ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureSetLabel(context.Background(), openPGPSignatureHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentOpenpgpSignatureAPIService ContentCoreOpenpgpSignatureUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var openPGPSignatureHref string
+
+		resp, httpRes, err := apiClient.ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureUnsetLabel(context.Background(), openPGPSignatureHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

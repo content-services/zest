@@ -424,3 +424,233 @@ func (a *ContentPackagegroupsAPIService) ContentRpmPackagegroupsReadExecute(r Co
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
+type ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagegroupsAPIService
+	rpmPackageGroupHref string
+	setLabel *SetLabel
+}
+
+func (r ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest) SetLabel(setLabel SetLabel) ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+func (r ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagegroupsSetLabelExecute(r)
+}
+
+/*
+ContentRpmPackagegroupsSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmPackageGroupHref
+ @return ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest
+*/
+func (a *ContentPackagegroupsAPIService) ContentRpmPackagegroupsSetLabel(ctx context.Context, rpmPackageGroupHref string) ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest {
+	return ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmPackageGroupHref: rpmPackageGroupHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentPackagegroupsAPIService) ContentRpmPackagegroupsSetLabelExecute(r ContentPackagegroupsAPIContentRpmPackagegroupsSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagegroupsAPIService.ContentRpmPackagegroupsSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_package_group_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_group_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageGroupHref, "rpmPackageGroupHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagegroupsAPIService
+	rpmPackageGroupHref string
+	unsetLabel *UnsetLabel
+}
+
+func (r ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+func (r ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagegroupsUnsetLabelExecute(r)
+}
+
+/*
+ContentRpmPackagegroupsUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmPackageGroupHref
+ @return ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest
+*/
+func (a *ContentPackagegroupsAPIService) ContentRpmPackagegroupsUnsetLabel(ctx context.Context, rpmPackageGroupHref string) ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest {
+	return ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmPackageGroupHref: rpmPackageGroupHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentPackagegroupsAPIService) ContentRpmPackagegroupsUnsetLabelExecute(r ContentPackagegroupsAPIContentRpmPackagegroupsUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagegroupsAPIService.ContentRpmPackagegroupsUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_package_group_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_group_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageGroupHref, "rpmPackageGroupHref")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}

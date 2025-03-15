@@ -50,4 +50,32 @@ func Test_zest_ContentBlobsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentBlobsAPIService ContentContainerBlobsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerBlobHref string
+
+		resp, httpRes, err := apiClient.ContentBlobsAPI.ContentContainerBlobsSetLabel(context.Background(), containerBlobHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentBlobsAPIService ContentContainerBlobsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerBlobHref string
+
+		resp, httpRes, err := apiClient.ContentBlobsAPI.ContentContainerBlobsUnsetLabel(context.Background(), containerBlobHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

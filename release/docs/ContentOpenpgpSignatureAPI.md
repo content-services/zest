@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentCoreOpenpgpSignatureList**](ContentOpenpgpSignatureAPI.md#ContentCoreOpenpgpSignatureList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_signature/ | List open pgp signatures
 [**ContentCoreOpenpgpSignatureRead**](ContentOpenpgpSignatureAPI.md#ContentCoreOpenpgpSignatureRead) | **Get** /{open_p_g_p_signature_href} | Inspect an open pgp signature
+[**ContentCoreOpenpgpSignatureSetLabel**](ContentOpenpgpSignatureAPI.md#ContentCoreOpenpgpSignatureSetLabel) | **Post** /{open_p_g_p_signature_href}set_label/ | Set a label
+[**ContentCoreOpenpgpSignatureUnsetLabel**](ContentOpenpgpSignatureAPI.md#ContentCoreOpenpgpSignatureUnsetLabel) | **Post** /{open_p_g_p_signature_href}unset_label/ | Unset a label
 
 
 
@@ -176,6 +178,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentCoreOpenpgpSignatureSetLabel
+
+> SetLabelResponse ContentCoreOpenpgpSignatureSetLabel(ctx, openPGPSignatureHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	openPGPSignatureHref := "openPGPSignatureHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureSetLabel(context.Background(), openPGPSignatureHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentCoreOpenpgpSignatureSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**openPGPSignatureHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentCoreOpenpgpSignatureSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentCoreOpenpgpSignatureUnsetLabel
+
+> UnsetLabelResponse ContentCoreOpenpgpSignatureUnsetLabel(ctx, openPGPSignatureHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	openPGPSignatureHref := "openPGPSignatureHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureUnsetLabel(context.Background(), openPGPSignatureHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentCoreOpenpgpSignatureUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentOpenpgpSignatureAPI.ContentCoreOpenpgpSignatureUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**openPGPSignatureHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentCoreOpenpgpSignatureUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

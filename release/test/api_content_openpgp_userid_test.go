@@ -50,4 +50,32 @@ func Test_zest_ContentOpenpgpUseridAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentOpenpgpUseridAPIService ContentCoreOpenpgpUseridSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var openPGPUserIDHref string
+
+		resp, httpRes, err := apiClient.ContentOpenpgpUseridAPI.ContentCoreOpenpgpUseridSetLabel(context.Background(), openPGPUserIDHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentOpenpgpUseridAPIService ContentCoreOpenpgpUseridUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var openPGPUserIDHref string
+
+		resp, httpRes, err := apiClient.ContentOpenpgpUseridAPI.ContentCoreOpenpgpUseridUnsetLabel(context.Background(), openPGPUserIDHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

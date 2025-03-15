@@ -50,4 +50,32 @@ func Test_zest_ContentManifestsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentManifestsAPIService ContentContainerManifestsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerManifestHref string
+
+		resp, httpRes, err := apiClient.ContentManifestsAPI.ContentContainerManifestsSetLabel(context.Background(), containerManifestHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentManifestsAPIService ContentContainerManifestsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerManifestHref string
+
+		resp, httpRes, err := apiClient.ContentManifestsAPI.ContentContainerManifestsUnsetLabel(context.Background(), containerManifestHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

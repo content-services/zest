@@ -50,4 +50,32 @@ func Test_zest_ContentCommitsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentCommitsAPIService ContentOstreeCommitsSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ostreeOstreeCommitHref string
+
+		resp, httpRes, err := apiClient.ContentCommitsAPI.ContentOstreeCommitsSetLabel(context.Background(), ostreeOstreeCommitHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentCommitsAPIService ContentOstreeCommitsUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var ostreeOstreeCommitHref string
+
+		resp, httpRes, err := apiClient.ContentCommitsAPI.ContentOstreeCommitsUnsetLabel(context.Background(), ostreeOstreeCommitHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

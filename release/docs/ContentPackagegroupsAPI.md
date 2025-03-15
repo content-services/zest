@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentRpmPackagegroupsList**](ContentPackagegroupsAPI.md#ContentRpmPackagegroupsList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packagegroups/ | List package groups
 [**ContentRpmPackagegroupsRead**](ContentPackagegroupsAPI.md#ContentRpmPackagegroupsRead) | **Get** /{rpm_package_group_href} | Inspect a package group
+[**ContentRpmPackagegroupsSetLabel**](ContentPackagegroupsAPI.md#ContentRpmPackagegroupsSetLabel) | **Post** /{rpm_package_group_href}set_label/ | Set a label
+[**ContentRpmPackagegroupsUnsetLabel**](ContentPackagegroupsAPI.md#ContentRpmPackagegroupsUnsetLabel) | **Post** /{rpm_package_group_href}unset_label/ | Unset a label
 
 
 
@@ -174,6 +176,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagegroupsSetLabel
+
+> SetLabelResponse ContentRpmPackagegroupsSetLabel(ctx, rpmPackageGroupHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageGroupHref := "rpmPackageGroupHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagegroupsAPI.ContentRpmPackagegroupsSetLabel(context.Background(), rpmPackageGroupHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagegroupsAPI.ContentRpmPackagegroupsSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagegroupsSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagegroupsAPI.ContentRpmPackagegroupsSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageGroupHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagegroupsSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagegroupsUnsetLabel
+
+> UnsetLabelResponse ContentRpmPackagegroupsUnsetLabel(ctx, rpmPackageGroupHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageGroupHref := "rpmPackageGroupHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagegroupsAPI.ContentRpmPackagegroupsUnsetLabel(context.Background(), rpmPackageGroupHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagegroupsAPI.ContentRpmPackagegroupsUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagegroupsUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagegroupsAPI.ContentRpmPackagegroupsUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageGroupHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagegroupsUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

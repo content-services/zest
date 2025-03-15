@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentRpmPackagelangpacksList**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packagelangpacks/ | List package langpackss
 [**ContentRpmPackagelangpacksRead**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksRead) | **Get** /{rpm_package_langpacks_href} | Inspect a package langpacks
+[**ContentRpmPackagelangpacksSetLabel**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksSetLabel) | **Post** /{rpm_package_langpacks_href}set_label/ | Set a label
+[**ContentRpmPackagelangpacksUnsetLabel**](ContentPackagelangpacksAPI.md#ContentRpmPackagelangpacksUnsetLabel) | **Post** /{rpm_package_langpacks_href}unset_label/ | Unset a label
 
 
 
@@ -174,6 +176,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagelangpacksSetLabel
+
+> SetLabelResponse ContentRpmPackagelangpacksSetLabel(ctx, rpmPackageLangpacksHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageLangpacksHref := "rpmPackageLangpacksHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagelangpacksAPI.ContentRpmPackagelangpacksSetLabel(context.Background(), rpmPackageLangpacksHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagelangpacksAPI.ContentRpmPackagelangpacksSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagelangpacksSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagelangpacksAPI.ContentRpmPackagelangpacksSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageLangpacksHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagelangpacksSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagelangpacksUnsetLabel
+
+> UnsetLabelResponse ContentRpmPackagelangpacksUnsetLabel(ctx, rpmPackageLangpacksHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageLangpacksHref := "rpmPackageLangpacksHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagelangpacksAPI.ContentRpmPackagelangpacksUnsetLabel(context.Background(), rpmPackageLangpacksHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagelangpacksAPI.ContentRpmPackagelangpacksUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagelangpacksUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagelangpacksAPI.ContentRpmPackagelangpacksUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageLangpacksHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagelangpacksUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

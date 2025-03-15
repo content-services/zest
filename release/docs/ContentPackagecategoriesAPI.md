@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ContentRpmPackagecategoriesList**](ContentPackagecategoriesAPI.md#ContentRpmPackagecategoriesList) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packagecategories/ | List package categorys
 [**ContentRpmPackagecategoriesRead**](ContentPackagecategoriesAPI.md#ContentRpmPackagecategoriesRead) | **Get** /{rpm_package_category_href} | Inspect a package category
+[**ContentRpmPackagecategoriesSetLabel**](ContentPackagecategoriesAPI.md#ContentRpmPackagecategoriesSetLabel) | **Post** /{rpm_package_category_href}set_label/ | Set a label
+[**ContentRpmPackagecategoriesUnsetLabel**](ContentPackagecategoriesAPI.md#ContentRpmPackagecategoriesUnsetLabel) | **Post** /{rpm_package_category_href}unset_label/ | Unset a label
 
 
 
@@ -174,6 +176,150 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagecategoriesSetLabel
+
+> SetLabelResponse ContentRpmPackagecategoriesSetLabel(ctx, rpmPackageCategoryHref).SetLabel(setLabel).Execute()
+
+Set a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageCategoryHref := "rpmPackageCategoryHref_example" // string | 
+	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesSetLabel(context.Background(), rpmPackageCategoryHref).SetLabel(setLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagecategoriesAPI.ContentRpmPackagecategoriesSetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagecategoriesSetLabel`: SetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagecategoriesAPI.ContentRpmPackagecategoriesSetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageCategoryHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagecategoriesSetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+
+### Return type
+
+[**SetLabelResponse**](SetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentRpmPackagecategoriesUnsetLabel
+
+> UnsetLabelResponse ContentRpmPackagecategoriesUnsetLabel(ctx, rpmPackageCategoryHref).UnsetLabel(unsetLabel).Execute()
+
+Unset a label
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	rpmPackageCategoryHref := "rpmPackageCategoryHref_example" // string | 
+	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentPackagecategoriesAPI.ContentRpmPackagecategoriesUnsetLabel(context.Background(), rpmPackageCategoryHref).UnsetLabel(unsetLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackagecategoriesAPI.ContentRpmPackagecategoriesUnsetLabel``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentRpmPackagecategoriesUnsetLabel`: UnsetLabelResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentPackagecategoriesAPI.ContentRpmPackagecategoriesUnsetLabel`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rpmPackageCategoryHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentRpmPackagecategoriesUnsetLabelRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+
+### Return type
+
+[**UnsetLabelResponse**](UnsetLabelResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

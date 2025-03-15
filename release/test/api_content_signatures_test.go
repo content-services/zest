@@ -50,4 +50,32 @@ func Test_zest_ContentSignaturesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentSignaturesAPIService ContentContainerSignaturesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerManifestSignatureHref string
+
+		resp, httpRes, err := apiClient.ContentSignaturesAPI.ContentContainerSignaturesSetLabel(context.Background(), containerManifestSignatureHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentSignaturesAPIService ContentContainerSignaturesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerManifestSignatureHref string
+
+		resp, httpRes, err := apiClient.ContentSignaturesAPI.ContentContainerSignaturesUnsetLabel(context.Background(), containerManifestSignatureHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }
