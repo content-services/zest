@@ -64,8 +64,6 @@ type APIClient struct {
 
 	ApiPypiSimpleAPI *ApiPypiSimpleAPIService
 
-	ApiVulnReportAPI *ApiVulnReportAPIService
-
 	ArtifactsAPI *ArtifactsAPIService
 
 	ContentAPI *ContentAPIService
@@ -302,6 +300,8 @@ type APIClient struct {
 
 	UsersRolesAPI *UsersRolesAPIService
 
+	VulnReportAPI *VulnReportAPIService
+
 	WorkersAPI *WorkersAPIService
 }
 
@@ -328,7 +328,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiPypiAPI = (*ApiPypiAPIService)(&c.common)
 	c.ApiPypiLegacyAPI = (*ApiPypiLegacyAPIService)(&c.common)
 	c.ApiPypiSimpleAPI = (*ApiPypiSimpleAPIService)(&c.common)
-	c.ApiVulnReportAPI = (*ApiVulnReportAPIService)(&c.common)
 	c.ArtifactsAPI = (*ArtifactsAPIService)(&c.common)
 	c.ContentAPI = (*ContentAPIService)(&c.common)
 	c.ContentAdvisoriesAPI = (*ContentAdvisoriesAPIService)(&c.common)
@@ -447,6 +446,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.UpstreamPulpsAPI = (*UpstreamPulpsAPIService)(&c.common)
 	c.UsersAPI = (*UsersAPIService)(&c.common)
 	c.UsersRolesAPI = (*UsersRolesAPIService)(&c.common)
+	c.VulnReportAPI = (*VulnReportAPIService)(&c.common)
 	c.WorkersAPI = (*WorkersAPIService)(&c.common)
 
 	return c

@@ -113,7 +113,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("BasePath_example", "Name_example") // ContainerContainerDistribution | 
+	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("Name_example", "BasePath_example") // ContainerContainerDistribution | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -889,7 +889,7 @@ import (
 
 func main() {
 	containerContainerDistributionHref := "containerContainerDistributionHref_example" // string | 
-	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("BasePath_example", "Name_example") // ContainerContainerDistribution | 
+	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("Name_example", "BasePath_example") // ContainerContainerDistribution | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

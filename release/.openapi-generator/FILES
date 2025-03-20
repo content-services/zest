@@ -10,7 +10,6 @@ api_api_debug_auth_header.go
 api_api_pypi.go
 api_api_pypi_legacy.go
 api_api_pypi_simple.go
-api_api_vuln_report.go
 api_artifacts.go
 api_content.go
 api_content_advisories.go
@@ -129,6 +128,7 @@ api_uploads.go
 api_upstream_pulps.go
 api_users.go
 api_users_roles.go
+api_vuln_report.go
 api_workers.go
 client.go
 configuration.go
@@ -143,7 +143,6 @@ docs/ApiDebugAuthHeaderAPI.md
 docs/ApiPypiAPI.md
 docs/ApiPypiLegacyAPI.md
 docs/ApiPypiSimpleAPI.md
-docs/ApiVulnReportAPI.md
 docs/Artifact.md
 docs/ArtifactDistributionResponse.md
 docs/ArtifactResponse.md
@@ -454,6 +453,7 @@ docs/PaginatedrpmRpmRepositoryResponseList.md
 docs/PaginatedrpmUlnRemoteResponseList.md
 docs/PaginatedrpmUpdateRecordResponseList.md
 docs/PaginatedserviceFeatureContentGuardResponseList.md
+docs/PaginatedserviceVulnerabilityReportResponseList.md
 docs/PatchedAccessPolicy.md
 docs/PatchedCompositeContentGuard.md
 docs/PatchedContentRedirectContentGuard.md
@@ -620,6 +620,8 @@ docs/RpmUpdateRecord.md
 docs/RpmUpdateRecordResponse.md
 docs/ServiceFeatureContentGuard.md
 docs/ServiceFeatureContentGuardResponse.md
+docs/ServiceVulnerabilityReport.md
+docs/ServiceVulnerabilityReportResponse.md
 docs/SetLabel.md
 docs/SetLabelResponse.md
 docs/SigningServiceResponse.md
@@ -665,6 +667,7 @@ docs/UsersAPI.md
 docs/UsersRolesAPI.md
 docs/VariantResponse.md
 docs/VersionResponse.md
+docs/VulnReportAPI.md
 docs/WorkerResponse.md
 docs/WorkersAPI.md
 git_push.sh
@@ -918,6 +921,7 @@ model_paginatedrpm_rpm_repository_response_list.go
 model_paginatedrpm_uln_remote_response_list.go
 model_paginatedrpm_update_record_response_list.go
 model_paginatedservice_feature_content_guard_response_list.go
+model_paginatedservice_vulnerability_report_response_list.go
 model_patched_access_policy.go
 model_patched_composite_content_guard.go
 model_patched_content_redirect_content_guard.go
@@ -1042,6 +1046,8 @@ model_rpm_update_record.go
 model_rpm_update_record_response.go
 model_service_feature_content_guard.go
 model_service_feature_content_guard_response.go
+model_service_vulnerability_report.go
+model_service_vulnerability_report_response.go
 model_set_label.go
 model_set_label_response.go
 model_signing_service_response.go
@@ -1086,7 +1092,6 @@ test/api_api_debug_auth_header_test.go
 test/api_api_pypi_legacy_test.go
 test/api_api_pypi_simple_test.go
 test/api_api_pypi_test.go
-test/api_api_vuln_report_test.go
 test/api_artifacts_test.go
 test/api_content_advisories_test.go
 test/api_content_blobs_test.go
@@ -1205,5 +1210,6 @@ test/api_uploads_test.go
 test/api_upstream_pulps_test.go
 test/api_users_roles_test.go
 test/api_users_test.go
+test/api_vuln_report_test.go
 test/api_workers_test.go
 utils.go
