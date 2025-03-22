@@ -35,6 +35,7 @@ type FileFilePublicationResponse struct {
 	Distributions []string `json:"distributions,omitempty"`
 	// Filename to use for manifest file containing metadata for all the files.
 	Manifest NullableString `json:"manifest,omitempty"`
+	Checkpoint *bool `json:"checkpoint,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -327,6 +328,38 @@ func (o *FileFilePublicationResponse) UnsetManifest() {
 	o.Manifest.Unset()
 }
 
+// GetCheckpoint returns the Checkpoint field value if set, zero value otherwise.
+func (o *FileFilePublicationResponse) GetCheckpoint() bool {
+	if o == nil || IsNil(o.Checkpoint) {
+		var ret bool
+		return ret
+	}
+	return *o.Checkpoint
+}
+
+// GetCheckpointOk returns a tuple with the Checkpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFilePublicationResponse) GetCheckpointOk() (*bool, bool) {
+	if o == nil || IsNil(o.Checkpoint) {
+		return nil, false
+	}
+	return o.Checkpoint, true
+}
+
+// HasCheckpoint returns a boolean if a field has been set.
+func (o *FileFilePublicationResponse) HasCheckpoint() bool {
+	if o != nil && !IsNil(o.Checkpoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckpoint gets a reference to the given bool and assigns it to the Checkpoint field.
+func (o *FileFilePublicationResponse) SetCheckpoint(v bool) {
+	o.Checkpoint = &v
+}
+
 func (o FileFilePublicationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -361,6 +394,9 @@ func (o FileFilePublicationResponse) ToMap() (map[string]interface{}, error) {
 	if o.Manifest.IsSet() {
 		toSerialize["manifest"] = o.Manifest.Get()
 	}
+	if !IsNil(o.Checkpoint) {
+		toSerialize["checkpoint"] = o.Checkpoint
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -391,6 +427,7 @@ func (o *FileFilePublicationResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "distributions")
 		delete(additionalProperties, "manifest")
+		delete(additionalProperties, "checkpoint")
 		o.AdditionalProperties = additionalProperties
 	}
 

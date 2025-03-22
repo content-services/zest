@@ -33,6 +33,7 @@ type PatchedfileFileDistribution struct {
 	Repository NullableString `json:"repository,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
+	Checkpoint *bool `json:"checkpoint,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -313,6 +314,38 @@ func (o *PatchedfileFileDistribution) UnsetPublication() {
 	o.Publication.Unset()
 }
 
+// GetCheckpoint returns the Checkpoint field value if set, zero value otherwise.
+func (o *PatchedfileFileDistribution) GetCheckpoint() bool {
+	if o == nil || IsNil(o.Checkpoint) {
+		var ret bool
+		return ret
+	}
+	return *o.Checkpoint
+}
+
+// GetCheckpointOk returns a tuple with the Checkpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedfileFileDistribution) GetCheckpointOk() (*bool, bool) {
+	if o == nil || IsNil(o.Checkpoint) {
+		return nil, false
+	}
+	return o.Checkpoint, true
+}
+
+// HasCheckpoint returns a boolean if a field has been set.
+func (o *PatchedfileFileDistribution) HasCheckpoint() bool {
+	if o != nil && !IsNil(o.Checkpoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckpoint gets a reference to the given bool and assigns it to the Checkpoint field.
+func (o *PatchedfileFileDistribution) SetCheckpoint(v bool) {
+	o.Checkpoint = &v
+}
+
 func (o PatchedfileFileDistribution) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -344,6 +377,9 @@ func (o PatchedfileFileDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
+	if !IsNil(o.Checkpoint) {
+		toSerialize["checkpoint"] = o.Checkpoint
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -373,6 +409,7 @@ func (o *PatchedfileFileDistribution) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "publication")
+		delete(additionalProperties, "checkpoint")
 		o.AdditionalProperties = additionalProperties
 	}
 

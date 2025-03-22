@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **string** | A URI of the repository to be published. | [optional] 
 **Distributions** | Pointer to **[]string** | This publication is currently hosted as defined by these distributions. | [optional] [readonly] 
 **Manifest** | Pointer to **NullableString** | Filename to use for manifest file containing metadata for all the files. | [optional] [default to "PULP_MANIFEST"]
+**Checkpoint** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -242,6 +243,31 @@ HasManifest returns a boolean if a field has been set.
 `func (o *FileFilePublicationResponse) UnsetManifest()`
 
 UnsetManifest ensures that no value is present for Manifest, not even an explicit nil
+### GetCheckpoint
+
+`func (o *FileFilePublicationResponse) GetCheckpoint() bool`
+
+GetCheckpoint returns the Checkpoint field if non-nil, zero value otherwise.
+
+### GetCheckpointOk
+
+`func (o *FileFilePublicationResponse) GetCheckpointOk() (*bool, bool)`
+
+GetCheckpointOk returns a tuple with the Checkpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckpoint
+
+`func (o *FileFilePublicationResponse) SetCheckpoint(v bool)`
+
+SetCheckpoint sets Checkpoint field to given value.
+
+### HasCheckpoint
+
+`func (o *FileFilePublicationResponse) HasCheckpoint() bool`
+
+HasCheckpoint returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

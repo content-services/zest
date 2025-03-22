@@ -353,6 +353,7 @@ type PublicationsRpmAPIPublicationsRpmRpmListRequest struct {
 	ctx context.Context
 	ApiService *PublicationsRpmAPIService
 	pulpDomain string
+	checkpoint *bool
 	content *string
 	contentIn *[]string
 	limit *int32
@@ -373,6 +374,12 @@ type PublicationsRpmAPIPublicationsRpmRpmListRequest struct {
 	repositoryVersion *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// Filter results where checkpoint matches value
+func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) Checkpoint(checkpoint bool) PublicationsRpmAPIPublicationsRpmRpmListRequest {
+	r.checkpoint = &checkpoint
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -399,7 +406,7 @@ func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) Offset(offset int32) Pu
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;pass_through&#x60; - Pass through* &#x60;-pass_through&#x60; - Pass through (descending)* &#x60;checkpoint&#x60; - Checkpoint* &#x60;-checkpoint&#x60; - Checkpoint (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r PublicationsRpmAPIPublicationsRpmRpmListRequest) Ordering(ordering []string) PublicationsRpmAPIPublicationsRpmRpmListRequest {
 	r.ordering = &ordering
 	return r
@@ -539,6 +546,9 @@ func (a *PublicationsRpmAPIService) PublicationsRpmRpmListExecute(r Publications
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.checkpoint != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checkpoint", r.checkpoint, "form", "")
+	}
 	if r.content != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "content", r.content, "form", "")
 	}

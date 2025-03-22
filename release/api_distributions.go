@@ -33,6 +33,7 @@ type DistributionsAPIDistributionsListRequest struct {
 	basePathContains *string
 	basePathIcontains *string
 	basePathIn *[]string
+	checkpoint *bool
 	limit *int32
 	name *string
 	nameContains *string
@@ -80,6 +81,12 @@ func (r DistributionsAPIDistributionsListRequest) BasePathIcontains(basePathIcon
 // Filter results where base_path is in a comma-separated list of values
 func (r DistributionsAPIDistributionsListRequest) BasePathIn(basePathIn []string) DistributionsAPIDistributionsListRequest {
 	r.basePathIn = &basePathIn
+	return r
+}
+
+// Filter results where checkpoint matches value
+func (r DistributionsAPIDistributionsListRequest) Checkpoint(checkpoint bool) DistributionsAPIDistributionsListRequest {
+	r.checkpoint = &checkpoint
 	return r
 }
 
@@ -149,7 +156,7 @@ func (r DistributionsAPIDistributionsListRequest) Offset(offset int32) Distribut
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;checkpoint&#x60; - Checkpoint* &#x60;-checkpoint&#x60; - Checkpoint (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r DistributionsAPIDistributionsListRequest) Ordering(ordering []string) DistributionsAPIDistributionsListRequest {
 	r.ordering = &ordering
 	return r
@@ -179,13 +186,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -282,6 +289,9 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 	}
 	if r.basePathIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "base_path__in", r.basePathIn, "form", "csv")
+	}
+	if r.checkpoint != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checkpoint", r.checkpoint, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")

@@ -19,7 +19,7 @@ import (
 // checks if the UnsetLabelResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UnsetLabelResponse{}
 
-// UnsetLabelResponse Serializer for synchronously setting a label.
+// UnsetLabelResponse Serializer for synchronously UNsetting a label.
 type UnsetLabelResponse struct {
 	Key string `json:"key" validate:"regexp=^[-a-zA-Z0-9_]+$"`
 	Value *string `json:"value,omitempty"`

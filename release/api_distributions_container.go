@@ -367,6 +367,7 @@ type DistributionsContainerAPIDistributionsContainerContainerListRequest struct 
 	basePathContains *string
 	basePathIcontains *string
 	basePathIn *[]string
+	checkpoint *bool
 	limit *int32
 	name *string
 	nameContains *string
@@ -413,6 +414,12 @@ func (r DistributionsContainerAPIDistributionsContainerContainerListRequest) Bas
 // Filter results where base_path is in a comma-separated list of values
 func (r DistributionsContainerAPIDistributionsContainerContainerListRequest) BasePathIn(basePathIn []string) DistributionsContainerAPIDistributionsContainerContainerListRequest {
 	r.basePathIn = &basePathIn
+	return r
+}
+
+// Filter results where checkpoint matches value
+func (r DistributionsContainerAPIDistributionsContainerContainerListRequest) Checkpoint(checkpoint bool) DistributionsContainerAPIDistributionsContainerContainerListRequest {
+	r.checkpoint = &checkpoint
 	return r
 }
 
@@ -487,7 +494,7 @@ func (r DistributionsContainerAPIDistributionsContainerContainerListRequest) Off
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;private&#x60; - Private* &#x60;-private&#x60; - Private (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;base_path&#x60; - Base path* &#x60;-base_path&#x60; - Base path (descending)* &#x60;hidden&#x60; - Hidden* &#x60;-hidden&#x60; - Hidden (descending)* &#x60;checkpoint&#x60; - Checkpoint* &#x60;-checkpoint&#x60; - Checkpoint (descending)* &#x60;private&#x60; - Private* &#x60;-private&#x60; - Private (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r DistributionsContainerAPIDistributionsContainerContainerListRequest) Ordering(ordering []string) DistributionsContainerAPIDistributionsContainerContainerListRequest {
 	r.ordering = &ordering
 	return r
@@ -608,6 +615,9 @@ func (a *DistributionsContainerAPIService) DistributionsContainerContainerListEx
 	}
 	if r.basePathIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "base_path__in", r.basePathIn, "form", "csv")
+	}
+	if r.checkpoint != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checkpoint", r.checkpoint, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
