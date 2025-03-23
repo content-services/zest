@@ -36,6 +36,19 @@ func Test_zest_VulnReportAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test VulnReportAPIService VulnReportDelete", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serviceVulnerabilityReportHref string
+
+		httpRes, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), serviceVulnerabilityReportHref).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VulnReportAPIService VulnReportList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

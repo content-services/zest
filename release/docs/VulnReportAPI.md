@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**VulnReportCreate**](VulnReportAPI.md#VulnReportCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | Create a vulnerability report
+[**VulnReportDelete**](VulnReportAPI.md#VulnReportDelete) | **Delete** /{service_vulnerability_report_href} | Delete a vulnerability report
 [**VulnReportList**](VulnReportAPI.md#VulnReportList) | **Get** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | List vulnerability reports
 [**VulnReportRead**](VulnReportAPI.md#VulnReportRead) | **Get** /{service_vulnerability_report_href} | Inspect a vulnerability report
 
@@ -76,6 +77,74 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## VulnReportDelete
+
+> VulnReportDelete(ctx, serviceVulnerabilityReportHref).Execute()
+
+Delete a vulnerability report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2025"
+)
+
+func main() {
+	serviceVulnerabilityReportHref := "serviceVulnerabilityReportHref_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), serviceVulnerabilityReportHref).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceVulnerabilityReportHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiVulnReportDeleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
