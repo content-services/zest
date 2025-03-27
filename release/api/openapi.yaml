@@ -17,6 +17,7 @@ info:
     container: 2.24.0
     ostree: 2.4.6
     rpm: 3.28.0
+    maven: 0.9.0
     service: 0.1.0
     gem: 0.6.2
     npm: 0.3.0
@@ -2000,8 +2001,9 @@ paths:
           - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
           `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
           - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `gem.gem` - gem.gem* `npm.package` - npm.package* `file.file` - file.file*
-          `python.python` - python.python
+          `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata* `gem.gem`
+          - gem.gem* `npm.package` - npm.package* `file.file` - file.file* `python.python`
+          - python.python
         explode: true
         in: query
         name: pulp_type
@@ -2020,6 +2022,8 @@ paths:
           - core.publishedmetadata
           - file.file
           - gem.gem
+          - maven.artifact
+          - maven.metadata
           - npm.package
           - ostree.commit
           - ostree.config
@@ -2056,8 +2060,9 @@ paths:
           - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
           `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
           - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `gem.gem` - gem.gem* `npm.package` - npm.package* `file.file` - file.file*
-          `python.python` - python.python
+          `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata* `gem.gem`
+          - gem.gem* `npm.package` - npm.package* `file.file` - file.file* `python.python`
+          - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -2077,6 +2082,8 @@ paths:
             - core.publishedmetadata
             - file.file
             - gem.gem
+            - maven.artifact
+            - maven.metadata
             - npm.package
             - ostree.commit
             - ostree.config
@@ -6057,6 +6064,382 @@ paths:
       summary: Unset a label
       tags:
       - "Content: Gem"
+  /api/pulp/{pulp_domain}/api/v3/content/maven/artifact/:
+    get:
+      description: A ViewSet for MavenArtifact.
+      operationId: content_maven_artifact_list
+      parameters:
+      - description: Filter results where artifact_id matches value
+        explode: true
+        in: query
+        name: artifact_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where filename matches value
+        explode: true
+        in: query
+        name: filename
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where group_id matches value
+        explode: true
+        in: query
+        name: group_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id
+          (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels
+          (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest`
+          - Timestamp of interest (descending)* `group_id` - Group id* `-group_id`
+          - Group id (descending)* `artifact_id` - Artifact id* `-artifact_id` - Artifact
+          id (descending)* `version` - Version* `-version` - Version (descending)*
+          `filename` - Filename* `-filename` - Filename (descending)* `pk` - Pk* `-pk`
+          - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -artifact_id
+            - -filename
+            - -group_id
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -timestamp_of_interest
+            - -upstream_id
+            - -version
+            - artifact_id
+            - filename
+            - group_id
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - timestamp_of_interest
+            - upstream_id
+            - version
+            type: string
+          type: array
+        style: form
+      - description: Minutes Content has been orphaned for. -1 uses ORPHAN_PROTECTION_TIME.
+        explode: true
+        in: query
+        name: orphaned_for
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_added
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Repository Version referenced by HREF/PRN
+        explode: true
+        in: query
+        name: repository_version_removed
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where version matches value
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedmaven.MavenArtifactResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List maven artifacts
+      tags:
+      - "Content: Artifact"
+    post:
+      description: A ViewSet for MavenArtifact.
+      operationId: content_maven_artifact_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenArtifact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenArtifact'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenArtifact'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenArtifactResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a maven artifact
+      tags:
+      - "Content: Artifact"
+  '{maven_maven_artifact_href}':
+    get:
+      description: A ViewSet for MavenArtifact.
+      operationId: content_maven_artifact_read
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_artifact_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenArtifactResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a maven artifact
+      tags:
+      - "Content: Artifact"
+  '{maven_maven_artifact_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: content_maven_artifact_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_artifact_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Content: Artifact"
+  '{maven_maven_artifact_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: content_maven_artifact_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_artifact_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Content: Artifact"
   /api/pulp/{pulp_domain}/api/v3/content/npm/packages/:
     get:
       description: "A ViewSet for Package.Define endpoint name which will appear in\
@@ -16863,8 +17246,8 @@ paths:
       - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
           core.openpgp* `container.pull-through` - container.pull-through* `container.container`
           - container.container* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm*
-          `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file` - file.file* `python.python`
-          - python.python
+          `maven.maven` - maven.maven* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file`
+          - file.file* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -16877,6 +17260,7 @@ paths:
           - core.openpgp
           - file.file
           - gem.gem
+          - maven.maven
           - npm.npm
           - ostree.ostree
           - python.python
@@ -16886,8 +17270,9 @@ paths:
       - description: Multiple values may be separated by commas.* `core.artifact`
           - core.artifact* `core.openpgp` - core.openpgp* `container.pull-through`
           - container.pull-through* `container.container` - container.container* `ostree.ostree`
-          - ostree.ostree* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem* `npm.npm` - npm.npm*
-          `file.file` - file.file* `python.python` - python.python
+          - ostree.ostree* `rpm.rpm` - rpm.rpm* `maven.maven` - maven.maven* `gem.gem`
+          - gem.gem* `npm.npm` - npm.npm* `file.file` - file.file* `python.python`
+          - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -16901,6 +17286,7 @@ paths:
             - core.openpgp
             - file.file
             - gem.gem
+            - maven.maven
             - npm.npm
             - ostree.ostree
             - python.python
@@ -20614,6 +21000,553 @@ paths:
       summary: Unset a label
       tags:
       - "Distributions: Gem"
+  /api/pulp/{pulp_domain}/api/v3/distributions/maven/maven/:
+    get:
+      description: ViewSet for Maven Distributions.
+      operationId: distributions_maven_maven_list
+      parameters:
+      - description: Filter results where base_path matches value
+        explode: true
+        in: query
+        name: base_path
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path contains value
+        explode: true
+        in: query
+        name: base_path__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where base_path is in a comma-separated list of
+          values
+        explode: false
+        in: query
+        name: base_path__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where checkpoint matches value
+        explode: true
+        in: query
+        name: checkpoint
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `base_path` -
+          Base path* `-base_path` - Base path (descending)* `hidden` - Hidden* `-hidden`
+          - Hidden (descending)* `checkpoint` - Checkpoint* `-checkpoint` - Checkpoint
+          (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -base_path
+            - -checkpoint
+            - -hidden
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - base_path
+            - checkpoint
+            - hidden
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where repository matches value
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where repository is in a comma-separated list
+          of values
+        explode: false
+        in: query
+        name: repository__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter distributions based on the content served by them
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedmaven.MavenDistributionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List maven distributions
+      tags:
+      - "Distributions: Maven"
+    post:
+      description: Trigger an asynchronous create task
+      operationId: distributions_maven_maven_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a maven distribution
+      tags:
+      - "Distributions: Maven"
+  '{maven_maven_distribution_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: distributions_maven_maven_delete
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a maven distribution
+      tags:
+      - "Distributions: Maven"
+    get:
+      description: ViewSet for Maven Distributions.
+      operationId: distributions_maven_maven_read
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenDistributionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a maven distribution
+      tags:
+      - "Distributions: Maven"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: distributions_maven_maven_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven distribution
+      tags:
+      - "Distributions: Maven"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: distributions_maven_maven_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenDistribution'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven distribution
+      tags:
+      - "Distributions: Maven"
+  '{maven_maven_distribution_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: distributions_maven_maven_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Distributions: Maven"
+  '{maven_maven_distribution_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: distributions_maven_maven_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_distribution_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Distributions: Maven"
   /api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/:
     get:
       description: ViewSet for NPM Distributions.
@@ -29685,8 +30618,8 @@ paths:
         style: form
       - description: Pulp type* `container.container` - container.container* `container.pull-through`
           - container.pull-through* `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm*
-          `rpm.uln` - rpm.uln* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file`
-          - file.file* `python.python` - python.python
+          `rpm.uln` - rpm.uln* `maven.maven` - maven.maven* `gem.gem` - gem.gem* `npm.npm`
+          - npm.npm* `file.file` - file.file* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -29697,6 +30630,7 @@ paths:
           - container.pull-through
           - file.file
           - gem.gem
+          - maven.maven
           - npm.npm
           - ostree.ostree
           - python.python
@@ -29707,8 +30641,8 @@ paths:
       - description: Multiple values may be separated by commas.* `container.container`
           - container.container* `container.pull-through` - container.pull-through*
           `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln*
-          `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file` - file.file* `python.python`
-          - python.python
+          `maven.maven` - maven.maven* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file`
+          - file.file* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -29720,6 +30654,7 @@ paths:
             - container.pull-through
             - file.file
             - gem.gem
+            - maven.maven
             - npm.npm
             - ostree.ostree
             - python.python
@@ -32800,6 +33735,595 @@ paths:
       summary: Unset a label
       tags:
       - "Remotes: Gem"
+  /api/pulp/{pulp_domain}/api/v3/remotes/maven/maven/:
+    get:
+      description: A ViewSet for MavenRemote.
+      operationId: remotes_maven_maven_list
+      parameters:
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `url` - Url* `-url`
+          - Url (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)*
+          `client_cert` - Client cert* `-client_cert` - Client cert (descending)*
+          `client_key` - Client key* `-client_key` - Client key (descending)* `tls_validation`
+          - Tls validation* `-tls_validation` - Tls validation (descending)* `username`
+          - Username* `-username` - Username (descending)* `password` - Password*
+          `-password` - Password (descending)* `proxy_url` - Proxy url* `-proxy_url`
+          - Proxy url (descending)* `proxy_username` - Proxy username* `-proxy_username`
+          - Proxy username (descending)* `proxy_password` - Proxy password* `-proxy_password`
+          - Proxy password (descending)* `download_concurrency` - Download concurrency*
+          `-download_concurrency` - Download concurrency (descending)* `max_retries`
+          - Max retries* `-max_retries` - Max retries (descending)* `policy` - Policy*
+          `-policy` - Policy (descending)* `total_timeout` - Total timeout* `-total_timeout`
+          - Total timeout (descending)* `connect_timeout` - Connect timeout* `-connect_timeout`
+          - Connect timeout (descending)* `sock_connect_timeout` - Sock connect timeout*
+          `-sock_connect_timeout` - Sock connect timeout (descending)* `sock_read_timeout`
+          - Sock read timeout* `-sock_read_timeout` - Sock read timeout (descending)*
+          `headers` - Headers* `-headers` - Headers (descending)* `rate_limit` - Rate
+          limit* `-rate_limit` - Rate limit (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -ca_cert
+            - -client_cert
+            - -client_key
+            - -connect_timeout
+            - -download_concurrency
+            - -headers
+            - -max_retries
+            - -name
+            - -password
+            - -pk
+            - -policy
+            - -proxy_password
+            - -proxy_url
+            - -proxy_username
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -rate_limit
+            - -sock_connect_timeout
+            - -sock_read_timeout
+            - -tls_validation
+            - -total_timeout
+            - -url
+            - -username
+            - ca_cert
+            - client_cert
+            - client_key
+            - connect_timeout
+            - download_concurrency
+            - headers
+            - max_retries
+            - name
+            - password
+            - pk
+            - policy
+            - proxy_password
+            - proxy_url
+            - proxy_username
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - rate_limit
+            - sock_connect_timeout
+            - sock_read_timeout
+            - tls_validation
+            - total_timeout
+            - url
+            - username
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated matches value
+        explode: true
+        in: query
+        name: pulp_last_updated
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than value
+        explode: true
+        in: query
+        name: pulp_last_updated__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is greater than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated has a null value
+        explode: true
+        in: query
+        name: pulp_last_updated__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where pulp_last_updated is less than value
+        explode: true
+        in: query
+        name: pulp_last_updated__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is less than or equal
+          to value
+        explode: true
+        in: query
+        name: pulp_last_updated__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_last_updated is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_last_updated__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedmaven.MavenRemoteResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List maven remotes
+      tags:
+      - "Remotes: Maven"
+    post:
+      description: A ViewSet for MavenRemote.
+      operationId: remotes_maven_maven_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a maven remote
+      tags:
+      - "Remotes: Maven"
+  '{maven_maven_remote_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: remotes_maven_maven_delete
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a maven remote
+      tags:
+      - "Remotes: Maven"
+    get:
+      description: A ViewSet for MavenRemote.
+      operationId: remotes_maven_maven_read
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenRemoteResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a maven remote
+      tags:
+      - "Remotes: Maven"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: remotes_maven_maven_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven remote
+      tags:
+      - "Remotes: Maven"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: remotes_maven_maven_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRemote'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven remote
+      tags:
+      - "Remotes: Maven"
+  '{maven_maven_remote_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: remotes_maven_maven_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Remotes: Maven"
+  '{maven_maven_remote_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: remotes_maven_maven_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_remote_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Remotes: Maven"
   /api/pulp/{pulp_domain}/api/v3/remotes/npm/npm/:
     get:
       description: "A ViewSet for NpmRemote.Similar to the PackageViewSet above, define\
@@ -36683,8 +38207,9 @@ paths:
         style: form
       - description: Pulp type* `core.openpgp` - core.openpgp* `container.container`
           - container.container* `container.container-push` - container.container-push*
-          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `gem.gem` - gem.gem*
-          `npm.npm` - npm.npm* `file.file` - file.file* `python.python` - python.python
+          `ostree.ostree` - ostree.ostree* `rpm.rpm` - rpm.rpm* `maven.maven` - maven.maven*
+          `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file` - file.file* `python.python`
+          - python.python
         explode: true
         in: query
         name: pulp_type
@@ -36696,6 +38221,7 @@ paths:
           - core.openpgp
           - file.file
           - gem.gem
+          - maven.maven
           - npm.npm
           - ostree.ostree
           - python.python
@@ -36705,8 +38231,8 @@ paths:
       - description: Multiple values may be separated by commas.* `core.openpgp` -
           core.openpgp* `container.container` - container.container* `container.container-push`
           - container.container-push* `ostree.ostree` - ostree.ostree* `rpm.rpm` -
-          rpm.rpm* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `file.file` - file.file*
-          `python.python` - python.python
+          rpm.rpm* `maven.maven` - maven.maven* `gem.gem` - gem.gem* `npm.npm` - npm.npm*
+          `file.file` - file.file* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -36719,6 +38245,7 @@ paths:
             - core.openpgp
             - file.file
             - gem.gem
+            - maven.maven
             - npm.npm
             - ostree.ostree
             - python.python
@@ -42563,6 +44090,975 @@ paths:
       - cookieAuth: []
       tags:
       - "Repositories: Gem Versions"
+  /api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/:
+    get:
+      description: A ViewSet for MavenRemote.
+      operationId: repositories_maven_maven_list
+      parameters:
+      - description: Content Unit referenced by HREF/PRN
+        explode: true
+        in: query
+        name: latest_with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels`
+          - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description`
+          - Description* `-description` - Description (descending)* `next_version`
+          - Next version* `-next_version` - Next version (descending)* `retain_repo_versions`
+          - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)*
+          `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)*
+          `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -next_version
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_labels
+            - -pulp_last_updated
+            - -pulp_type
+            - -retain_repo_versions
+            - -user_hidden
+            - description
+            - name
+            - next_version
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_labels
+            - pulp_last_updated
+            - pulp_type
+            - retain_repo_versions
+            - user_hidden
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: Filter labels by search string
+        explode: true
+        in: query
+        name: pulp_label_select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Foreign Key referenced by HREF
+        explode: true
+        in: query
+        name: remote
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - description: Filter results where retain_repo_versions matches value
+        explode: true
+        in: query
+        name: retain_repo_versions
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than value
+        explode: true
+        in: query
+        name: retain_repo_versions__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is greater than or
+          equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions has a null value
+        explode: true
+        in: query
+        name: retain_repo_versions__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where retain_repo_versions is less than value
+        explode: true
+        in: query
+        name: retain_repo_versions__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is less than or equal
+          to value
+        explode: true
+        in: query
+        name: retain_repo_versions__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions not equal to value
+        explode: true
+        in: query
+        name: retain_repo_versions__ne
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where retain_repo_versions is between two comma
+          separated values
+        explode: false
+        in: query
+        name: retain_repo_versions__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: Content Unit referenced by HREF/PRN
+        explode: true
+        in: query
+        name: with_content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedmaven.MavenRepositoryResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List maven repositorys
+      tags:
+      - "Repositories: Maven"
+    post:
+      description: A ViewSet for MavenRemote.
+      operationId: repositories_maven_maven_create
+      parameters:
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create a maven repository
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}':
+    delete:
+      description: Trigger an asynchronous delete task
+      operationId: repositories_maven_maven_delete
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a maven repository
+      tags:
+      - "Repositories: Maven"
+    get:
+      description: A ViewSet for MavenRemote.
+      operationId: repositories_maven_maven_read
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/maven.MavenRepositoryResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a maven repository
+      tags:
+      - "Repositories: Maven"
+    patch:
+      description: Trigger an asynchronous partial update task
+      operationId: repositories_maven_maven_partial_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedmaven.MavenRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven repository
+      tags:
+      - "Repositories: Maven"
+    put:
+      description: Trigger an asynchronous update task
+      operationId: repositories_maven_maven_update
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/maven.MavenRepository'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update a maven repository
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}add_cached_content/':
+    post:
+      description: Trigger an asynchronous task to add cached content to a repository.
+      operationId: repositories_maven_maven_add_cached_content
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddCachedContent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddCachedContent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepositoryAddCachedContent'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add cached content
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}set_label/':
+    post:
+      description: Set a single pulp_label on the object to a specific value or null.
+      operationId: repositories_maven_maven_set_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Set a label
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}unset_label/':
+    post:
+      description: Unset a single pulp_label on the object.
+      operationId: repositories_maven_maven_unset_label
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UnsetLabel'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsetLabelResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Unset a label
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}versions/':
+    get:
+      description: MavenRepositoryVersion represents a single Maven repository version.
+      operationId: repositories_maven_maven_versions_list
+      parameters:
+      - description: Content Unit referenced by HREF/PRN
+        explode: true
+        in: query
+        name: content
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: content__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results where number matches value
+        explode: true
+        in: query
+        name: number
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than value
+        explode: true
+        in: query
+        name: number__gt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is greater than or equal to value
+        explode: true
+        in: query
+        name: number__gte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than value
+        explode: true
+        in: query
+        name: number__lt
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is less than or equal to value
+        explode: true
+        in: query
+        name: number__lte
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where number is between two comma separated values
+        explode: false
+        in: query
+        name: number__range
+        required: false
+        schema:
+          items:
+            type: integer
+          type: array
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `number` - Number* `-number` - Number (descending)*
+          `complete` - Complete* `-complete` - Complete (descending)* `info` - Info*
+          `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -complete
+            - -info
+            - -number
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - complete
+            - info
+            - number
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where pulp_created matches value
+        explode: true
+        in: query
+        name: pulp_created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than value
+        explode: true
+        in: query
+        name: pulp_created__gt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is greater than or equal to
+          value
+        explode: true
+        in: query
+        name: pulp_created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created has a null value
+        explode: true
+        in: query
+        name: pulp_created__isnull
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter results where pulp_created is less than value
+        explode: true
+        in: query
+        name: pulp_created__lt
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is less than or equal to value
+        explode: true
+        in: query
+        name: pulp_created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter results where pulp_created is between two comma separated
+          values
+        explode: false
+        in: query
+        name: pulp_created__range
+        required: false
+        schema:
+          items:
+            format: date-time
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRepositoryVersionResponseList'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List repository versions
+      tags:
+      - "Repositories: Maven Versions"
+  '{maven_maven_repository_version_href}':
+    delete:
+      description: Trigger an asynchronous task to delete a repository version.
+      operationId: repositories_maven_maven_versions_delete
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete a repository version
+      tags:
+      - "Repositories: Maven Versions"
+    get:
+      description: MavenRepositoryVersion represents a single Maven repository version.
+      operationId: repositories_maven_maven_versions_read
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryVersionResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect a repository version
+      tags:
+      - "Repositories: Maven Versions"
+  '{maven_maven_repository_version_href}repair/':
+    post:
+      description: Trigger an asynchronous task to repair a repository version.
+      operationId: repositories_maven_maven_versions_repair
+      parameters:
+      - explode: false
+        in: path
+        name: maven_maven_repository_version_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Repair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Repair'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncOperationResponse'
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Maven Versions"
   /api/pulp/{pulp_domain}/api/v3/repositories/npm/npm/:
     get:
       description: "A ViewSet for NpmRepository.Similar to the PackageViewSet above,\
@@ -53630,6 +56126,77 @@ paths:
       summary: Get package simple page
       tags:
       - "Api: Pypi Simple"
+  /pulp/maven/{name}/{path}:
+    get:
+      description: Responds to GET requests about manifests by reference
+      operationId: pulp_maven_get
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          pattern: "^[\\w-]+$"
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^.*$
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: No response body
+      tags:
+      - "Pulp: Maven"
+    put:
+      description: ViewSet for interacting with maven deploy API
+      operationId: pulp_maven_put
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          pattern: "^[\\w-]+$"
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^.*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: No response body
+      tags:
+      - "Pulp: Maven"
   /token/:
     get:
       description: Handles GET requests for the /token/ endpoint.
@@ -53863,15 +56430,15 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        hidden: false
         pulp_labels:
           key: pulp_labels
         pulp_href: https://openapi-generator.tech
+        hidden: false
         no_content_change_since: no_content_change_since
-        base_url: base_url
         name: name
-        base_path: base_path
+        base_url: base_url
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
@@ -53882,43 +56449,14 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
         pulp_href:
           format: uri
           readOnly: true
@@ -53927,6 +56465,35 @@ components:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
       required:
       - base_path
@@ -56856,27 +59423,27 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
-          base_url: base_url
           name: name
-          base_path: base_path
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
-        - hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
-          base_url: base_url
           name: name
-          base_path: base_path
+          base_url: base_url
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
@@ -59353,14 +61920,14 @@ components:
         count: 123
         results:
         - private: true
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           prn: prn
           content_guard: https://openapi-generator.tech
@@ -59371,14 +61938,14 @@ components:
           namespace: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
         - private: true
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           prn: prn
           content_guard: https://openapi-generator.tech
@@ -59455,13 +62022,13 @@ components:
         count: 123
         results:
         - private: true
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
-          repository: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           prn: prn
           distributions:
@@ -59474,13 +62041,13 @@ components:
           namespace: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
         - private: true
-          hidden: false
           pulp_href: https://openapi-generator.tech
+          hidden: false
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
-          repository: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
           remote: https://openapi-generator.tech
           prn: prn
           distributions:
@@ -59618,26 +62185,26 @@ components:
         results:
         - manifest_signing_service: https://openapi-generator.tech
           latest_version_href: https://openapi-generator.tech
-          versions_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
           name: name
           description: description
-          retain_repo_versions: 1
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
         - manifest_signing_service: https://openapi-generator.tech
           latest_version_href: https://openapi-generator.tech
-          versions_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
           pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
           name: name
           description: description
-          retain_repo_versions: 1
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
       properties:
@@ -60641,6 +63208,248 @@ components:
         results:
           items:
             $ref: '#/components/schemas/gem.GemRepositoryResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedmaven.MavenArtifactResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - artifact: https://openapi-generator.tech
+          filename: filename
+          pulp_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          group_id: group_id
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          artifact_id: artifact_id
+          prn: prn
+          version: version
+        - artifact: https://openapi-generator.tech
+          filename: filename
+          pulp_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          group_id: group_id
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          artifact_id: artifact_id
+          prn: prn
+          version: version
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/maven.MavenArtifactResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedmaven.MavenDistributionResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          no_content_change_since: no_content_change_since
+          base_path: base_path
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          prn: prn
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+        - pulp_href: https://openapi-generator.tech
+          hidden: false
+          base_url: base_url
+          no_content_change_since: no_content_change_since
+          base_path: base_path
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          remote: https://openapi-generator.tech
+          prn: prn
+          content_guard: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/maven.MavenDistributionResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedmaven.MavenRemoteResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          prn: prn
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+        - headers:
+          - "{}"
+          - "{}"
+          rate_limit: 7
+          pulp_href: https://openapi-generator.tech
+          tls_validation: true
+          max_retries: 6
+          connect_timeout: 0.5962133916683182
+          client_cert: client_cert
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          sock_read_timeout: 0.23021358869347652
+          prn: prn
+          url: url
+          download_concurrency: 1
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          sock_connect_timeout: 0.5637376656633328
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          hidden_fields:
+          - is_set: true
+            name: name
+          - is_set: true
+            name: name
+          proxy_url: proxy_url
+          ca_cert: ca_cert
+          total_timeout: 0.14658129805029452
+          policy: ""
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/maven.MavenRemoteResponse'
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    Paginatedmaven.MavenRepositoryResponseList:
+      example:
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        count: 123
+        results:
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          prn: prn
+        - latest_version_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+          pulp_labels:
+            key: pulp_labels
+          name: name
+          description: description
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          remote: https://openapi-generator.tech
+          prn: prn
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/maven.MavenRepositoryResponse'
           type: array
       required:
       - count
@@ -63650,15 +66459,13 @@ components:
     Patchedcontainer.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           minLength: 1
           type: string
         content_guard:
@@ -63666,19 +66473,21 @@ components:
             \ one will be used."
           format: uri
           type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           minLength: 1
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         repository_version:
           description: RepositoryVersion to be served
           format: uri
@@ -63698,15 +66507,13 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           minLength: 1
           type: string
         content_guard:
@@ -63714,19 +66521,21 @@ components:
             \ one will be used."
           format: uri
           type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           minLength: 1
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         remote:
           description: Remote that can be used to fetch content when using pull-through
             caching.
@@ -63903,6 +66712,15 @@ components:
           minLength: 1
           nullable: true
           type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
         manifest_signing_service:
           description: A reference to an associated signing service.
           format: uri
@@ -63915,15 +66733,6 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        name:
-          description: A unique name for this repository.
-          minLength: 1
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
       type: object
     Patchedcontainer.ContainerRemote:
       description: A Serializer for ContainerRemote.
@@ -64567,6 +67376,208 @@ components:
       type: object
     Patchedgem.GemRepository:
       description: A Serializer for GemRepository.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedmaven.MavenDistribution:
+      description: Serializer for Maven Distributions.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      type: object
+    Patchedmaven.MavenRemote:
+      description: "A Serializer for MavenRemote.Add any new fields if defined on\
+        \ MavenRemote.Similar to the example above, in MavenArtifactSerializer.Additional\
+        \ validators can be added to the parent validators listFor example::class\
+        \ Meta:    validators = platform.RemoteSerializer.Meta.validators + [myValidator1,\
+        \ myValidator2]"
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/PolicyB5fEnum'
+          default: immediate
+          description: "The policy to use when downloading content.* `immediate` -\
+            \ When syncing, download all metadata and content now."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+      type: object
+    Patchedmaven.MavenRepository:
+      description: Serializer for Maven Repositories.
       properties:
         pulp_labels:
           additionalProperties:
@@ -65799,6 +68810,12 @@ components:
       enum:
       - on_demand
       type: string
+    PolicyB5fEnum:
+      description: "* `immediate` - When syncing, download all metadata and content\
+        \ now."
+      enum:
+      - immediate
+      type: string
     PolicyBfeEnum:
       description: '* `immediate` - immediate* `on_demand` - on_demand'
       enum:
@@ -66510,6 +69527,17 @@ components:
             saved in the database. Otherwise only the existence of the files will
             be checked. Enabled by default
           type: boolean
+      type: object
+    RepositoryAddCachedContent:
+      description: A mixin for validating unknown serializers' fields.
+      example:
+        remote: https://openapi-generator.tech
+      properties:
+        remote:
+          description: A remote to use to identify content that was cached. This will
+            override a remote set on repository.
+          format: uri
+          type: string
       type: object
     RepositoryAddRemoveContent:
       description: "Base serializer for use with [pulpcore.app.models.Model][]This\
@@ -68465,15 +71493,13 @@ components:
     container.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           minLength: 1
           type: string
         content_guard:
@@ -68481,19 +71507,21 @@ components:
             \ one will be used."
           format: uri
           type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           minLength: 1
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         repository_version:
           description: RepositoryVersion to be served
           format: uri
@@ -68516,14 +71544,14 @@ components:
       description: A serializer for ContainerDistribution.
       example:
         private: true
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         no_content_change_since: no_content_change_since
         description: description
         base_path: base_path
         repository_version: https://openapi-generator.tech
-        repository: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
         remote: https://openapi-generator.tech
         prn: prn
         content_guard: https://openapi-generator.tech
@@ -68540,44 +71568,14 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
         pulp_href:
           format: uri
           readOnly: true
@@ -68586,6 +71584,36 @@ components:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
+          type: string
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
         repository_version:
           description: RepositoryVersion to be served
@@ -68667,15 +71695,13 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
           minLength: 1
           type: string
         content_guard:
@@ -68683,19 +71709,21 @@ components:
             \ one will be used."
           format: uri
           type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         hidden:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           minLength: 1
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         remote:
           description: Remote that can be used to fetch content when using pull-through
             caching.
@@ -68726,13 +71754,13 @@ components:
         sub-distributions.
       example:
         private: true
-        hidden: false
         pulp_href: https://openapi-generator.tech
+        hidden: false
         no_content_change_since: no_content_change_since
         description: description
         base_path: base_path
-        repository: https://openapi-generator.tech
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
         remote: https://openapi-generator.tech
         prn: prn
         distributions:
@@ -68751,44 +71779,14 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         pulp_labels:
           additionalProperties:
             nullable: true
             type: string
           type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
         pulp_href:
           format: uri
           readOnly: true
@@ -68797,6 +71795,36 @@ components:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
+          type: string
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
           type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
@@ -69155,6 +72183,15 @@ components:
           minLength: 1
           nullable: true
           type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
         manifest_signing_service:
           description: A reference to an associated signing service.
           format: uri
@@ -69167,15 +72204,6 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        name:
-          description: A unique name for this repository.
-          minLength: 1
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
       required:
       - name
       type: object
@@ -69184,14 +72212,14 @@ components:
       example:
         manifest_signing_service: https://openapi-generator.tech
         latest_version_href: https://openapi-generator.tech
-        versions_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
         pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
         name: name
         description: description
-        retain_repo_versions: 1
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
       properties:
@@ -69199,10 +72227,42 @@ components:
           description: An optional description.
           nullable: true
           type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
         manifest_signing_service:
           description: A reference to an associated signing service.
           format: uri
           nullable: true
+          type: string
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
           type: string
         prn:
           description: The Pulp Resource Name (PRN).
@@ -69215,38 +72275,6 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        name:
-          description: A unique name for this repository.
-          type: string
-        versions_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        latest_version_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
       required:
       - name
       type: object
@@ -71480,6 +74508,619 @@ components:
       type: object
     gem.GemRepositoryResponse:
       description: A Serializer for GemRepository.
+      example:
+        latest_version_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        description: description
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        retain_repo_versions: 1
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        remote: https://openapi-generator.tech
+        prn: prn
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this repository.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    maven.MavenArtifact:
+      description: A Serializer for MavenArtifact.
+      properties:
+        repository:
+          description: A URI of a repository the new content unit should be associated
+            with.
+          format: uri
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: A dictionary of arbitrary key/value pairs used to describe
+            a specific Content instance.
+          type: object
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        relative_path:
+          description: Path where the artifact is located relative to distributions
+            base_path
+          minLength: 1
+          type: string
+          writeOnly: true
+      required:
+      - artifact
+      - relative_path
+      type: object
+    maven.MavenArtifactResponse:
+      description: A Serializer for MavenArtifact.
+      example:
+        artifact: https://openapi-generator.tech
+        filename: filename
+        pulp_href: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        group_id: group_id
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        artifact_id: artifact_id
+        prn: prn
+        version: version
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: A dictionary of arbitrary key/value pairs used to describe
+            a specific Content instance.
+          type: object
+        artifact:
+          description: Artifact file representing the physical content
+          format: uri
+          type: string
+        group_id:
+          description: Group Id of the artifact's package.
+          readOnly: true
+          type: string
+        artifact_id:
+          description: Artifact Id of the artifact's package.
+          readOnly: true
+          type: string
+        version:
+          description: Version of the artifact's package.
+          readOnly: true
+          type: string
+        filename:
+          description: Filename of the artifact.
+          readOnly: true
+          type: string
+      required:
+      - artifact
+      type: object
+    maven.MavenDistribution:
+      description: Serializer for Maven Distributions.
+      properties:
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          minLength: 1
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    maven.MavenDistributionResponse:
+      description: Serializer for Maven Distributions.
+      example:
+        pulp_href: https://openapi-generator.tech
+        hidden: false
+        base_url: base_url
+        no_content_change_since: no_content_change_since
+        base_path: base_path
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        remote: https://openapi-generator.tech
+        prn: prn
+        content_guard: https://openapi-generator.tech
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        remote:
+          description: Remote that can be used to fetch content when using pull-through
+            caching.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - base_path
+      - name
+      type: object
+    maven.MavenRemote:
+      description: "A Serializer for MavenRemote.Add any new fields if defined on\
+        \ MavenRemote.Similar to the example above, in MavenArtifactSerializer.Additional\
+        \ validators can be added to the parent validators listFor example::class\
+        \ Meta:    validators = platform.RemoteSerializer.Meta.validators + [myValidator1,\
+        \ myValidator2]"
+      properties:
+        name:
+          description: A unique name for this remote.
+          minLength: 1
+          type: string
+        url:
+          description: The URL of an external content source.
+          minLength: 1
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          minLength: 1
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+        client_key:
+          description: A PEM encoded private key used for authentication.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          minLength: 1
+          nullable: true
+          type: string
+        proxy_username:
+          description: The username to authenticte to the proxy.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        proxy_password:
+          description: The password to authenticate to the proxy. Extra leading and
+            trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        username:
+          description: The username to be used for authentication when syncing.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        password:
+          description: The password to be used for authentication when syncing. Extra
+            leading and trailing whitespace characters are not trimmed.
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/PolicyB5fEnum'
+          default: immediate
+          description: "The policy to use when downloading content.* `immediate` -\
+            \ When syncing, download all metadata and content now."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+      required:
+      - name
+      - url
+      type: object
+    maven.MavenRemoteResponse:
+      description: "A Serializer for MavenRemote.Add any new fields if defined on\
+        \ MavenRemote.Similar to the example above, in MavenArtifactSerializer.Additional\
+        \ validators can be added to the parent validators listFor example::class\
+        \ Meta:    validators = platform.RemoteSerializer.Meta.validators + [myValidator1,\
+        \ myValidator2]"
+      example:
+        headers:
+        - "{}"
+        - "{}"
+        rate_limit: 7
+        pulp_href: https://openapi-generator.tech
+        tls_validation: true
+        max_retries: 6
+        connect_timeout: 0.5962133916683182
+        client_cert: client_cert
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        sock_read_timeout: 0.23021358869347652
+        prn: prn
+        url: url
+        download_concurrency: 1
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        sock_connect_timeout: 0.5637376656633328
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        hidden_fields:
+        - is_set: true
+          name: name
+        - is_set: true
+          name: name
+        proxy_url: proxy_url
+        ca_cert: ca_cert
+        total_timeout: 0.14658129805029452
+        policy: ""
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: Timestamp of the most recent update of the remote.
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: A unique name for this remote.
+          type: string
+        url:
+          description: The URL of an external content source.
+          type: string
+        ca_cert:
+          description: A PEM encoded CA certificate used to validate the server certificate
+            presented by the remote server.
+          nullable: true
+          type: string
+        client_cert:
+          description: A PEM encoded client certificate used for authentication.
+          nullable: true
+          type: string
+        tls_validation:
+          description: "If True, TLS peer validation must be performed."
+          type: boolean
+        proxy_url:
+          description: "The proxy URL. Format: scheme://host:port"
+          nullable: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        download_concurrency:
+          description: Total number of simultaneous connections. If not set then the
+            default value will be used.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        max_retries:
+          description: Maximum number of retry attempts after a download failure.
+            If not set then the default value (3) will be used.
+          format: int64
+          nullable: true
+          type: integer
+        policy:
+          allOf:
+          - $ref: '#/components/schemas/PolicyB5fEnum'
+          default: immediate
+          description: "The policy to use when downloading content.* `immediate` -\
+            \ When syncing, download all metadata and content now."
+        total_timeout:
+          description: "aiohttp.ClientTimeout.total (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        connect_timeout:
+          description: "aiohttp.ClientTimeout.connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_connect_timeout:
+          description: "aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        sock_read_timeout:
+          description: "aiohttp.ClientTimeout.sock_read (q.v.) for download-connections.\
+            \ The default is null, which will cause the default from the aiohttp library\
+            \ to be used."
+          format: double
+          minimum: 0.0
+          nullable: true
+          type: number
+        headers:
+          description: Headers for aiohttp.Clientsession
+          items:
+            type: object
+          type: array
+        rate_limit:
+          description: Limits requests per second for each concurrent downloader
+          format: int64
+          nullable: true
+          type: integer
+        hidden_fields:
+          description: List of hidden (write only) fields
+          items:
+            $ref: '#/components/schemas/GenericRemoteResponse_hidden_fields_inner'
+          readOnly: true
+          type: array
+      required:
+      - name
+      - url
+      type: object
+    maven.MavenRepository:
+      description: Serializer for Maven Repositories.
+      properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        remote:
+          description: An optional remote to use by default when syncing.
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - name
+      type: object
+    maven.MavenRepositoryResponse:
+      description: Serializer for Maven Repositories.
       example:
         latest_version_href: https://openapi-generator.tech
         pulp_href: https://openapi-generator.tech

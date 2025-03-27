@@ -13,6 +13,7 @@ api_api_pypi_simple.go
 api_artifacts.go
 api_content.go
 api_content_advisories.go
+api_content_artifact.go
 api_content_blobs.go
 api_content_commits.go
 api_content_configs.go
@@ -53,6 +54,7 @@ api_distributions_artifacts.go
 api_distributions_container.go
 api_distributions_file.go
 api_distributions_gem.go
+api_distributions_maven.go
 api_distributions_npm.go
 api_distributions_openpgp.go
 api_distributions_ostree.go
@@ -82,11 +84,13 @@ api_publications_gem.go
 api_publications_pypi.go
 api_publications_rpm.go
 api_pulp_container_namespaces.go
+api_pulp_maven.go
 api_pypi_metadata.go
 api_remotes.go
 api_remotes_container.go
 api_remotes_file.go
 api_remotes_gem.go
+api_remotes_maven.go
 api_remotes_npm.go
 api_remotes_ostree.go
 api_remotes_pull_through.go
@@ -103,6 +107,8 @@ api_repositories_file.go
 api_repositories_file_versions.go
 api_repositories_gem.go
 api_repositories_gem_versions.go
+api_repositories_maven.go
+api_repositories_maven_versions.go
 api_repositories_npm.go
 api_repositories_npm_versions.go
 api_repositories_openpgp_keyring.go
@@ -179,6 +185,7 @@ docs/ContainerTagResponse.md
 docs/ContentAPI.md
 docs/ContentAdvisoriesAPI.md
 docs/ContentAppStatusResponse.md
+docs/ContentArtifactAPI.md
 docs/ContentBlobsAPI.md
 docs/ContentCommitsAPI.md
 docs/ContentConfigsAPI.md
@@ -227,6 +234,7 @@ docs/DistributionsArtifactsAPI.md
 docs/DistributionsContainerAPI.md
 docs/DistributionsFileAPI.md
 docs/DistributionsGemAPI.md
+docs/DistributionsMavenAPI.md
 docs/DistributionsNpmAPI.md
 docs/DistributionsOpenpgpAPI.md
 docs/DistributionsOstreeAPI.md
@@ -294,6 +302,14 @@ docs/LivezAPI.md
 docs/LoginAPI.md
 docs/LoginResponse.md
 docs/ManifestCopy.md
+docs/MavenMavenArtifact.md
+docs/MavenMavenArtifactResponse.md
+docs/MavenMavenDistribution.md
+docs/MavenMavenDistributionResponse.md
+docs/MavenMavenRemote.md
+docs/MavenMavenRemoteResponse.md
+docs/MavenMavenRepository.md
+docs/MavenMavenRepositoryResponse.md
 docs/MediaTypesEnum.md
 docs/MethodEnum.md
 docs/MinimalTaskResponse.md
@@ -417,6 +433,10 @@ docs/PaginatedgemGemDistributionResponseList.md
 docs/PaginatedgemGemPublicationResponseList.md
 docs/PaginatedgemGemRemoteResponseList.md
 docs/PaginatedgemGemRepositoryResponseList.md
+docs/PaginatedmavenMavenArtifactResponseList.md
+docs/PaginatedmavenMavenDistributionResponseList.md
+docs/PaginatedmavenMavenRemoteResponseList.md
+docs/PaginatedmavenMavenRepositoryResponseList.md
 docs/PaginatednpmNpmDistributionResponseList.md
 docs/PaginatednpmNpmRemoteResponseList.md
 docs/PaginatednpmNpmRepositoryResponseList.md
@@ -485,6 +505,9 @@ docs/PatchedfileFileRepository.md
 docs/PatchedgemGemDistribution.md
 docs/PatchedgemGemRemote.md
 docs/PatchedgemGemRepository.md
+docs/PatchedmavenMavenDistribution.md
+docs/PatchedmavenMavenRemote.md
+docs/PatchedmavenMavenRepository.md
 docs/PatchednpmNpmDistribution.md
 docs/PatchednpmNpmRemote.md
 docs/PatchednpmNpmRepository.md
@@ -503,6 +526,7 @@ docs/PatchedserviceFeatureContentGuard.md
 docs/Policy357Enum.md
 docs/Policy692Enum.md
 docs/Policy7e0Enum.md
+docs/PolicyB5fEnum.md
 docs/PolicyBfeEnum.md
 docs/ProfileArtifactResponse.md
 docs/ProgressReportResponse.md
@@ -523,6 +547,7 @@ docs/PulpImportCheck.md
 docs/PulpImportCheckResponse.md
 docs/PulpImporter.md
 docs/PulpImporterResponse.md
+docs/PulpMavenAPI.md
 docs/Purge.md
 docs/PypiMetadataAPI.md
 docs/PythonBanderRemote.md
@@ -545,6 +570,7 @@ docs/RemotesAPI.md
 docs/RemotesContainerAPI.md
 docs/RemotesFileAPI.md
 docs/RemotesGemAPI.md
+docs/RemotesMavenAPI.md
 docs/RemotesNpmAPI.md
 docs/RemotesOstreeAPI.md
 docs/RemotesPullThroughAPI.md
@@ -565,6 +591,8 @@ docs/RepositoriesFileAPI.md
 docs/RepositoriesFileVersionsAPI.md
 docs/RepositoriesGemAPI.md
 docs/RepositoriesGemVersionsAPI.md
+docs/RepositoriesMavenAPI.md
+docs/RepositoriesMavenVersionsAPI.md
 docs/RepositoriesNpmAPI.md
 docs/RepositoriesNpmVersionsAPI.md
 docs/RepositoriesOpenpgpKeyringAPI.md
@@ -575,6 +603,7 @@ docs/RepositoriesPythonVersionsAPI.md
 docs/RepositoriesReclaimSpaceAPI.md
 docs/RepositoriesRpmAPI.md
 docs/RepositoriesRpmVersionsAPI.md
+docs/RepositoryAddCachedContent.md
 docs/RepositoryAddRemoveContent.md
 docs/RepositoryResponse.md
 docs/RepositorySign.md
@@ -764,6 +793,14 @@ model_image_response.go
 model_import_response.go
 model_login_response.go
 model_manifest_copy.go
+model_maven_maven_artifact.go
+model_maven_maven_artifact_response.go
+model_maven_maven_distribution.go
+model_maven_maven_distribution_response.go
+model_maven_maven_remote.go
+model_maven_maven_remote_response.go
+model_maven_maven_repository.go
+model_maven_maven_repository_response.go
 model_media_types_enum.go
 model_method_enum.go
 model_minimal_task_response.go
@@ -885,6 +922,10 @@ model_paginatedgem_gem_distribution_response_list.go
 model_paginatedgem_gem_publication_response_list.go
 model_paginatedgem_gem_remote_response_list.go
 model_paginatedgem_gem_repository_response_list.go
+model_paginatedmaven_maven_artifact_response_list.go
+model_paginatedmaven_maven_distribution_response_list.go
+model_paginatedmaven_maven_remote_response_list.go
+model_paginatedmaven_maven_repository_response_list.go
 model_paginatednpm_npm_distribution_response_list.go
 model_paginatednpm_npm_remote_response_list.go
 model_paginatednpm_npm_repository_response_list.go
@@ -953,6 +994,9 @@ model_patchedfile_file_repository.go
 model_patchedgem_gem_distribution.go
 model_patchedgem_gem_remote.go
 model_patchedgem_gem_repository.go
+model_patchedmaven_maven_distribution.go
+model_patchedmaven_maven_remote.go
+model_patchedmaven_maven_repository.go
 model_patchednpm_npm_distribution.go
 model_patchednpm_npm_remote.go
 model_patchednpm_npm_repository.go
@@ -971,6 +1015,7 @@ model_patchedservice_feature_content_guard.go
 model_policy357_enum.go
 model_policy692_enum.go
 model_policy7e0_enum.go
+model_policy_b5f_enum.go
 model_policy_bfe_enum.go
 model_profile_artifact_response.go
 model_progress_report_response.go
@@ -1006,6 +1051,7 @@ model_remove_image.go
 model_remove_signatures.go
 model_remove_signatures_response.go
 model_repair.go
+model_repository_add_cached_content.go
 model_repository_add_remove_content.go
 model_repository_response.go
 model_repository_sign.go
@@ -1094,6 +1140,7 @@ test/api_api_pypi_simple_test.go
 test/api_api_pypi_test.go
 test/api_artifacts_test.go
 test/api_content_advisories_test.go
+test/api_content_artifact_test.go
 test/api_content_blobs_test.go
 test/api_content_commits_test.go
 test/api_content_configs_test.go
@@ -1134,6 +1181,7 @@ test/api_distributions_artifacts_test.go
 test/api_distributions_container_test.go
 test/api_distributions_file_test.go
 test/api_distributions_gem_test.go
+test/api_distributions_maven_test.go
 test/api_distributions_npm_test.go
 test/api_distributions_openpgp_test.go
 test/api_distributions_ostree_test.go
@@ -1164,10 +1212,12 @@ test/api_publications_pypi_test.go
 test/api_publications_rpm_test.go
 test/api_publications_test.go
 test/api_pulp_container_namespaces_test.go
+test/api_pulp_maven_test.go
 test/api_pypi_metadata_test.go
 test/api_remotes_container_test.go
 test/api_remotes_file_test.go
 test/api_remotes_gem_test.go
+test/api_remotes_maven_test.go
 test/api_remotes_npm_test.go
 test/api_remotes_ostree_test.go
 test/api_remotes_pull_through_test.go
@@ -1184,6 +1234,8 @@ test/api_repositories_file_test.go
 test/api_repositories_file_versions_test.go
 test/api_repositories_gem_test.go
 test/api_repositories_gem_versions_test.go
+test/api_repositories_maven_test.go
+test/api_repositories_maven_versions_test.go
 test/api_repositories_npm_test.go
 test/api_repositories_npm_versions_test.go
 test/api_repositories_openpgp_keyring_test.go
