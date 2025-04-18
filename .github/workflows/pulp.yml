@@ -68,6 +68,10 @@ jobs:
           echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' ./pulp_api.json )" > ./pulp_api.json
           cat pulp_api.json | sed 's/\\n//g' > pulp_api_new.json #remove \n characters that break generation
           mv pulp_api_new.json pulp_api.json
+          #https://github.com/OpenAPITools/openapi-generator/issues/18006
+          jq '(.components.schemas.ContentScan.properties[] | select(.format == "binary" and .nullable == true) | .nullable) = false' pulp_api.json > pulp_api_new.json
+          mv pulp_api_new.json pulp_api.json
+
           docker run --network=host --rm -v ${PWD}:/local openapitools/openapi-generator-cli:latest-release generate \
           -i /local/pulp_api.json \
           -t /local/templates/ \
