@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**VulnReportCreate**](VulnReportAPI.md#VulnReportCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | Create a vulnerability report
+[**VulnReportCreate**](VulnReportAPI.md#VulnReportCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | Generate vulnerability report
 [**VulnReportDelete**](VulnReportAPI.md#VulnReportDelete) | **Delete** /{service_vulnerability_report_href} | Delete a vulnerability report
 [**VulnReportList**](VulnReportAPI.md#VulnReportList) | **Get** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | List vulnerability reports
 [**VulnReportRead**](VulnReportAPI.md#VulnReportRead) | **Get** /{service_vulnerability_report_href} | Inspect a vulnerability report
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 ## VulnReportCreate
 
-> ServiceVulnerabilityReportResponse VulnReportCreate(ctx, pulpDomain).ServiceVulnerabilityReport(serviceVulnerabilityReport).Execute()
+> AsyncOperationResponse VulnReportCreate(ctx, pulpDomain).RepoVersion(repoVersion).PackageJson(packageJson).Execute()
 
-Create a vulnerability report
+Generate vulnerability report
 
 
 
@@ -33,16 +33,17 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	serviceVulnerabilityReport := *openapiclient.NewServiceVulnerabilityReport(interface{}(123)) // ServiceVulnerabilityReport | 
+	repoVersion := "repoVersion_example" // string | RepositoryVersion HREF with the packages to be checked. (optional)
+	packageJson := os.NewFile(1234, "some_file") // *os.File | package-lock.json file with the definition of dependencies to be checked. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VulnReportAPI.VulnReportCreate(context.Background(), pulpDomain).ServiceVulnerabilityReport(serviceVulnerabilityReport).Execute()
+	resp, r, err := apiClient.VulnReportAPI.VulnReportCreate(context.Background(), pulpDomain).RepoVersion(repoVersion).PackageJson(packageJson).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `VulnReportCreate`: ServiceVulnerabilityReportResponse
+	// response from `VulnReportCreate`: AsyncOperationResponse
 	fmt.Fprintf(os.Stdout, "Response from `VulnReportAPI.VulnReportCreate`: %v\n", resp)
 }
 ```
@@ -63,11 +64,12 @@ Other parameters are passed through a pointer to a apiVulnReportCreateRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **serviceVulnerabilityReport** | [**ServiceVulnerabilityReport**](ServiceVulnerabilityReport.md) |  | 
+ **repoVersion** | **string** | RepositoryVersion HREF with the packages to be checked. | 
+ **packageJson** | ***os.File** | package-lock.json file with the definition of dependencies to be checked. | 
 
 ### Return type
 
-[**ServiceVulnerabilityReportResponse**](ServiceVulnerabilityReportResponse.md)
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
 
 ### Authorization
 
@@ -75,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

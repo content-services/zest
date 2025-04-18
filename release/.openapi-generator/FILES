@@ -7,6 +7,7 @@ api_access_policies.go
 api_acs_file.go
 api_acs_rpm.go
 api_api_debug_auth_header.go
+api_api_maven.go
 api_api_pypi.go
 api_api_pypi_legacy.go
 api_api_pypi_simple.go
@@ -84,7 +85,6 @@ api_publications_gem.go
 api_publications_pypi.go
 api_publications_rpm.go
 api_pulp_container_namespaces.go
-api_pulp_maven.go
 api_pypi_metadata.go
 api_remotes.go
 api_remotes_container.go
@@ -146,6 +146,7 @@ docs/AcsRpmAPI.md
 docs/AddonResponse.md
 docs/ApiAppStatusResponse.md
 docs/ApiDebugAuthHeaderAPI.md
+docs/ApiMavenAPI.md
 docs/ApiPypiAPI.md
 docs/ApiPypiLegacyAPI.md
 docs/ApiPypiSimpleAPI.md
@@ -213,6 +214,7 @@ docs/ContentRedirectContentGuard.md
 docs/ContentRedirectContentGuardResponse.md
 docs/ContentRefsAPI.md
 docs/ContentRepoMetadataFilesAPI.md
+docs/ContentScan.md
 docs/ContentSettingsResponse.md
 docs/ContentSignaturesAPI.md
 docs/ContentSummariesAPI.md
@@ -298,6 +300,7 @@ docs/ImportResponse.md
 docs/ImportersPulpAPI.md
 docs/ImportersPulpImportCheckAPI.md
 docs/ImportersPulpImportsAPI.md
+docs/LayoutEnum.md
 docs/LivezAPI.md
 docs/LoginAPI.md
 docs/LoginResponse.md
@@ -547,7 +550,6 @@ docs/PulpImportCheck.md
 docs/PulpImportCheckResponse.md
 docs/PulpImporter.md
 docs/PulpImporterResponse.md
-docs/PulpMavenAPI.md
 docs/Purge.md
 docs/PypiMetadataAPI.md
 docs/PythonBanderRemote.md
@@ -649,7 +651,6 @@ docs/RpmUpdateRecord.md
 docs/RpmUpdateRecordResponse.md
 docs/ServiceFeatureContentGuard.md
 docs/ServiceFeatureContentGuardResponse.md
-docs/ServiceVulnerabilityReport.md
 docs/ServiceVulnerabilityReportResponse.md
 docs/SetLabel.md
 docs/SetLabelResponse.md
@@ -742,6 +743,7 @@ model_content_app_status_response.go
 model_content_guard_response.go
 model_content_redirect_content_guard.go
 model_content_redirect_content_guard_response.go
+model_content_scan.go
 model_content_settings_response.go
 model_content_summary_response.go
 model_copy.go
@@ -791,6 +793,7 @@ model_header_content_guard.go
 model_header_content_guard_response.go
 model_image_response.go
 model_import_response.go
+model_layout_enum.go
 model_login_response.go
 model_manifest_copy.go
 model_maven_maven_artifact.go
@@ -1092,7 +1095,6 @@ model_rpm_update_record.go
 model_rpm_update_record_response.go
 model_service_feature_content_guard.go
 model_service_feature_content_guard_response.go
-model_service_vulnerability_report.go
 model_service_vulnerability_report_response.go
 model_set_label.go
 model_set_label_response.go
@@ -1135,6 +1137,7 @@ test/api_access_policies_test.go
 test/api_acs_file_test.go
 test/api_acs_rpm_test.go
 test/api_api_debug_auth_header_test.go
+test/api_api_maven_test.go
 test/api_api_pypi_legacy_test.go
 test/api_api_pypi_simple_test.go
 test/api_api_pypi_test.go
@@ -1212,7 +1215,6 @@ test/api_publications_pypi_test.go
 test/api_publications_rpm_test.go
 test/api_publications_test.go
 test/api_pulp_container_namespaces_test.go
-test/api_pulp_maven_test.go
 test/api_pypi_metadata_test.go
 test/api_remotes_container_test.go
 test/api_remotes_file_test.go

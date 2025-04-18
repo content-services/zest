@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 	"reflect"
 )
 
@@ -29,22 +30,30 @@ type VulnReportAPIVulnReportCreateRequest struct {
 	ctx context.Context
 	ApiService *VulnReportAPIService
 	pulpDomain string
-	serviceVulnerabilityReport *ServiceVulnerabilityReport
+	repoVersion *string
+	packageJson *os.File
 }
 
-func (r VulnReportAPIVulnReportCreateRequest) ServiceVulnerabilityReport(serviceVulnerabilityReport ServiceVulnerabilityReport) VulnReportAPIVulnReportCreateRequest {
-	r.serviceVulnerabilityReport = &serviceVulnerabilityReport
+// RepositoryVersion HREF with the packages to be checked.
+func (r VulnReportAPIVulnReportCreateRequest) RepoVersion(repoVersion string) VulnReportAPIVulnReportCreateRequest {
+	r.repoVersion = &repoVersion
 	return r
 }
 
-func (r VulnReportAPIVulnReportCreateRequest) Execute() (*ServiceVulnerabilityReportResponse, *http.Response, error) {
+// package-lock.json file with the definition of dependencies to be checked.
+func (r VulnReportAPIVulnReportCreateRequest) PackageJson(packageJson *os.File) VulnReportAPIVulnReportCreateRequest {
+	r.packageJson = packageJson
+	return r
+}
+
+func (r VulnReportAPIVulnReportCreateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
 	return r.ApiService.VulnReportCreateExecute(r)
 }
 
 /*
-VulnReportCreate Create a vulnerability report
+VulnReportCreate Generate vulnerability report
 
-A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
+Trigger a task to generate the package vulnerability report
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -59,13 +68,13 @@ func (a *VulnReportAPIService) VulnReportCreate(ctx context.Context, pulpDomain 
 }
 
 // Execute executes the request
-//  @return ServiceVulnerabilityReportResponse
-func (a *VulnReportAPIService) VulnReportCreateExecute(r VulnReportAPIVulnReportCreateRequest) (*ServiceVulnerabilityReportResponse, *http.Response, error) {
+//  @return AsyncOperationResponse
+func (a *VulnReportAPIService) VulnReportCreateExecute(r VulnReportAPIVulnReportCreateRequest) (*AsyncOperationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServiceVulnerabilityReportResponse
+		localVarReturnValue  *AsyncOperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VulnReportAPIService.VulnReportCreate")
@@ -80,12 +89,9 @@ func (a *VulnReportAPIService) VulnReportCreateExecute(r VulnReportAPIVulnReport
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.serviceVulnerabilityReport == nil {
-		return localVarReturnValue, nil, reportError("serviceVulnerabilityReport is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -101,8 +107,26 @@ func (a *VulnReportAPIService) VulnReportCreateExecute(r VulnReportAPIVulnReport
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.serviceVulnerabilityReport
+	if r.repoVersion != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "repo_version", r.repoVersion, "", "")
+	}
+	var packageJsonLocalVarFormFileName string
+	var packageJsonLocalVarFileName     string
+	var packageJsonLocalVarFileBytes    []byte
+
+	packageJsonLocalVarFormFileName = "package_json"
+
+
+	packageJsonLocalVarFile := r.packageJson
+
+	if packageJsonLocalVarFile != nil {
+		fbs, _ := io.ReadAll(packageJsonLocalVarFile)
+
+		packageJsonLocalVarFileBytes = fbs
+		packageJsonLocalVarFileName = packageJsonLocalVarFile.Name()
+		packageJsonLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: packageJsonLocalVarFileBytes, fileName: packageJsonLocalVarFileName, formFileName: packageJsonLocalVarFormFileName})
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

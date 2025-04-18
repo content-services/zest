@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
 **RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
 **CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
+**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
 
 ## Methods
 
@@ -418,6 +419,41 @@ SetCompressionType sets CompressionType field to given value.
 
 HasCompressionType returns a boolean if a field has been set.
 
+### GetLayout
+
+`func (o *RpmRpmPublicationResponse) GetLayout() LayoutEnum`
+
+GetLayout returns the Layout field if non-nil, zero value otherwise.
+
+### GetLayoutOk
+
+`func (o *RpmRpmPublicationResponse) GetLayoutOk() (*LayoutEnum, bool)`
+
+GetLayoutOk returns a tuple with the Layout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLayout
+
+`func (o *RpmRpmPublicationResponse) SetLayout(v LayoutEnum)`
+
+SetLayout sets Layout field to given value.
+
+### HasLayout
+
+`func (o *RpmRpmPublicationResponse) HasLayout() bool`
+
+HasLayout returns a boolean if a field has been set.
+
+### SetLayoutNil
+
+`func (o *RpmRpmPublicationResponse) SetLayoutNil(b bool)`
+
+ SetLayoutNil sets the value for Layout to be an explicit nil
+
+### UnsetLayout
+`func (o *RpmRpmPublicationResponse) UnsetLayout()`
+
+UnsetLayout ensures that no value is present for Layout, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

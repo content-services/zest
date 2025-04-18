@@ -22,71 +22,77 @@ import (
 )
 
 
-// PulpMavenAPIService PulpMavenAPI service
-type PulpMavenAPIService service
+// ApiMavenAPIService ApiMavenAPI service
+type ApiMavenAPIService service
 
-type PulpMavenAPIPulpMavenGetRequest struct {
+type ApiMavenAPIApiPulpMavenGetRequest struct {
 	ctx context.Context
-	ApiService *PulpMavenAPIService
+	ApiService *ApiMavenAPIService
 	name string
 	path string
+	pulpDomain string
 	fields *[]string
 	excludeFields *[]string
 }
 
 // A list of fields to include in the response.
-func (r PulpMavenAPIPulpMavenGetRequest) Fields(fields []string) PulpMavenAPIPulpMavenGetRequest {
+func (r ApiMavenAPIApiPulpMavenGetRequest) Fields(fields []string) ApiMavenAPIApiPulpMavenGetRequest {
 	r.fields = &fields
 	return r
 }
 
 // A list of fields to exclude from the response.
-func (r PulpMavenAPIPulpMavenGetRequest) ExcludeFields(excludeFields []string) PulpMavenAPIPulpMavenGetRequest {
+func (r ApiMavenAPIApiPulpMavenGetRequest) ExcludeFields(excludeFields []string) ApiMavenAPIApiPulpMavenGetRequest {
 	r.excludeFields = &excludeFields
 	return r
 }
 
-func (r PulpMavenAPIPulpMavenGetRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PulpMavenGetExecute(r)
+func (r ApiMavenAPIApiPulpMavenGetRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ApiPulpMavenGetExecute(r)
 }
 
 /*
-PulpMavenGet Method for PulpMavenGet
+ApiPulpMavenGet Method for ApiPulpMavenGet
 
 Responds to GET requests about manifests by reference
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name
  @param path
- @return PulpMavenAPIPulpMavenGetRequest
+ @param pulpDomain
+ @return ApiMavenAPIApiPulpMavenGetRequest
 */
-func (a *PulpMavenAPIService) PulpMavenGet(ctx context.Context, name string, path string) PulpMavenAPIPulpMavenGetRequest {
-	return PulpMavenAPIPulpMavenGetRequest{
+func (a *ApiMavenAPIService) ApiPulpMavenGet(ctx context.Context, name string, path string, pulpDomain string) ApiMavenAPIApiPulpMavenGetRequest {
+	return ApiMavenAPIApiPulpMavenGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
 		path: path,
+		pulpDomain: pulpDomain,
 	}
 }
 
 // Execute executes the request
-func (a *PulpMavenAPIService) PulpMavenGetExecute(r PulpMavenAPIPulpMavenGetRequest) (*http.Response, error) {
+func (a *ApiMavenAPIService) ApiPulpMavenGetExecute(r ApiMavenAPIApiPulpMavenGetRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PulpMavenAPIService.PulpMavenGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiMavenAPIService.ApiPulpMavenGet")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/maven/{name}/{path}"
+	localVarPath := localBasePath + "/api/pulp/maven/{pulp_domain}/{name}/{path}"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -160,54 +166,60 @@ func (a *PulpMavenAPIService) PulpMavenGetExecute(r PulpMavenAPIPulpMavenGetRequ
 	return localVarHTTPResponse, nil
 }
 
-type PulpMavenAPIPulpMavenPutRequest struct {
+type ApiMavenAPIApiPulpMavenPutRequest struct {
 	ctx context.Context
-	ApiService *PulpMavenAPIService
+	ApiService *ApiMavenAPIService
 	name string
 	path string
+	pulpDomain string
 }
 
-func (r PulpMavenAPIPulpMavenPutRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PulpMavenPutExecute(r)
+func (r ApiMavenAPIApiPulpMavenPutRequest) Execute() (*http.Response, error) {
+	return r.ApiService.ApiPulpMavenPutExecute(r)
 }
 
 /*
-PulpMavenPut Method for PulpMavenPut
+ApiPulpMavenPut Method for ApiPulpMavenPut
 
 ViewSet for interacting with maven deploy API
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param name
  @param path
- @return PulpMavenAPIPulpMavenPutRequest
+ @param pulpDomain
+ @return ApiMavenAPIApiPulpMavenPutRequest
 */
-func (a *PulpMavenAPIService) PulpMavenPut(ctx context.Context, name string, path string) PulpMavenAPIPulpMavenPutRequest {
-	return PulpMavenAPIPulpMavenPutRequest{
+func (a *ApiMavenAPIService) ApiPulpMavenPut(ctx context.Context, name string, path string, pulpDomain string) ApiMavenAPIApiPulpMavenPutRequest {
+	return ApiMavenAPIApiPulpMavenPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		name: name,
 		path: path,
+		pulpDomain: pulpDomain,
 	}
 }
 
 // Execute executes the request
-func (a *PulpMavenAPIService) PulpMavenPutExecute(r PulpMavenAPIPulpMavenPutRequest) (*http.Response, error) {
+func (a *ApiMavenAPIService) ApiPulpMavenPutExecute(r ApiMavenAPIApiPulpMavenPutRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PulpMavenAPIService.PulpMavenPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApiMavenAPIService.ApiPulpMavenPut")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/pulp/maven/{name}/{path}"
+	localVarPath := localBasePath + "/api/pulp/maven/{pulp_domain}/{name}/{path}"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
+        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
         localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
 
 	localVarHeaderParams := make(map[string]string)

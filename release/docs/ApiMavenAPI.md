@@ -1,17 +1,17 @@
-# \PulpMavenAPI
+# \ApiMavenAPI
 
 All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PulpMavenGet**](PulpMavenAPI.md#PulpMavenGet) | **Get** /pulp/maven/{name}/{path} | 
-[**PulpMavenPut**](PulpMavenAPI.md#PulpMavenPut) | **Put** /pulp/maven/{name}/{path} | 
+[**ApiPulpMavenGet**](ApiMavenAPI.md#ApiPulpMavenGet) | **Get** /api/pulp/maven/{pulp_domain}/{name}/{path} | 
+[**ApiPulpMavenPut**](ApiMavenAPI.md#ApiPulpMavenPut) | **Put** /api/pulp/maven/{pulp_domain}/{name}/{path} | 
 
 
 
-## PulpMavenGet
+## ApiPulpMavenGet
 
-> PulpMavenGet(ctx, name, path).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ApiPulpMavenGet(ctx, name, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -32,14 +32,15 @@ import (
 func main() {
 	name := "name_example" // string | 
 	path := "path_example" // string | 
+	pulpDomain := "pulpDomain_example" // string | 
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PulpMavenAPI.PulpMavenGet(context.Background(), name, path).Fields(fields).ExcludeFields(excludeFields).Execute()
+	r, err := apiClient.ApiMavenAPI.ApiPulpMavenGet(context.Background(), name, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PulpMavenAPI.PulpMavenGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiMavenAPI.ApiPulpMavenGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -53,14 +54,16 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **name** | **string** |  | 
 **path** | **string** |  | 
+**pulpDomain** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPulpMavenGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiPulpMavenGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
  **fields** | **[]string** | A list of fields to include in the response. | 
@@ -72,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
 
 ### HTTP request headers
 
@@ -84,9 +87,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## PulpMavenPut
+## ApiPulpMavenPut
 
-> PulpMavenPut(ctx, name, path).Execute()
+> ApiPulpMavenPut(ctx, name, path, pulpDomain).Execute()
 
 
 
@@ -107,12 +110,13 @@ import (
 func main() {
 	name := "name_example" // string | 
 	path := "path_example" // string | 
+	pulpDomain := "pulpDomain_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PulpMavenAPI.PulpMavenPut(context.Background(), name, path).Execute()
+	r, err := apiClient.ApiMavenAPI.ApiPulpMavenPut(context.Background(), name, path, pulpDomain).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PulpMavenAPI.PulpMavenPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApiMavenAPI.ApiPulpMavenPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -126,14 +130,16 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **name** | **string** |  | 
 **path** | **string** |  | 
+**pulpDomain** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPulpMavenPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiApiPulpMavenPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 
@@ -143,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
 
 ### HTTP request headers
 

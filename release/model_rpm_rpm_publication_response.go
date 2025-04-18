@@ -47,6 +47,8 @@ type RpmRpmPublicationResponse struct {
 	RepoConfig interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
+	// How to layout the packages within the published repository.* `nested_alphabetically` - nested_alphabetically* `flat` - flat
+	Layout NullableLayoutEnum `json:"layout,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -538,6 +540,48 @@ func (o *RpmRpmPublicationResponse) SetCompressionType(v CompressionTypeEnum) {
 	o.CompressionType = &v
 }
 
+// GetLayout returns the Layout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmPublicationResponse) GetLayout() LayoutEnum {
+	if o == nil || IsNil(o.Layout.Get()) {
+		var ret LayoutEnum
+		return ret
+	}
+	return *o.Layout.Get()
+}
+
+// GetLayoutOk returns a tuple with the Layout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmPublicationResponse) GetLayoutOk() (*LayoutEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Layout.Get(), o.Layout.IsSet()
+}
+
+// HasLayout returns a boolean if a field has been set.
+func (o *RpmRpmPublicationResponse) HasLayout() bool {
+	if o != nil && o.Layout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLayout gets a reference to the given NullableLayoutEnum and assigns it to the Layout field.
+func (o *RpmRpmPublicationResponse) SetLayout(v LayoutEnum) {
+	o.Layout.Set(&v)
+}
+// SetLayoutNil sets the value for Layout to be an explicit nil
+func (o *RpmRpmPublicationResponse) SetLayoutNil() {
+	o.Layout.Set(nil)
+}
+
+// UnsetLayout ensures that no value is present for Layout, not even an explicit nil
+func (o *RpmRpmPublicationResponse) UnsetLayout() {
+	o.Layout.Unset()
+}
+
 func (o RpmRpmPublicationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -590,6 +634,9 @@ func (o RpmRpmPublicationResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CompressionType) {
 		toSerialize["compression_type"] = o.CompressionType
 	}
+	if o.Layout.IsSet() {
+		toSerialize["layout"] = o.Layout.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -626,6 +673,7 @@ func (o *RpmRpmPublicationResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sqlite_metadata")
 		delete(additionalProperties, "repo_config")
 		delete(additionalProperties, "compression_type")
+		delete(additionalProperties, "layout")
 		o.AdditionalProperties = additionalProperties
 	}
 

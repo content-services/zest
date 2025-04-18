@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
-**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
-**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
+**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
+**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
 **BasePath** | Pointer to **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | [optional] 
 **Remote** | Pointer to **string** | Remote that can be used to fetch content when using pull-through caching. | [optional] 
 **Distributions** | Pointer to **[]string** | Distributions created after pulling content through cache | [optional] 
@@ -34,30 +34,30 @@ NewPatchedcontainerContainerPullThroughDistributionWithDefaults instantiates a n
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetPulpLabels
+### GetHidden
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetPulpLabels() map[string]string`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetHidden() bool`
 
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
 
-### GetPulpLabelsOk
+### GetHiddenOk
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetHiddenOk() (*bool, bool)`
 
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPulpLabels
+### SetHidden
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetPulpLabels(v map[string]string)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetHidden(v bool)`
 
-SetPulpLabels sets PulpLabels field to given value.
+SetHidden sets Hidden field to given value.
 
-### HasPulpLabels
+### HasHidden
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) HasPulpLabels() bool`
+`func (o *PatchedcontainerContainerPullThroughDistribution) HasHidden() bool`
 
-HasPulpLabels returns a boolean if a field has been set.
+HasHidden returns a boolean if a field has been set.
 
 ### GetName
 
@@ -84,30 +84,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetContentGuard
+### GetPulpLabels
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuard() string`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetPulpLabels() map[string]string`
 
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
-### GetContentGuardOk
+### GetPulpLabelsOk
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuardOk() (*string, bool)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetPulpLabelsOk() (*map[string]string, bool)`
 
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContentGuard
+### SetPulpLabels
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetContentGuard(v string)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetPulpLabels(v map[string]string)`
 
-SetContentGuard sets ContentGuard field to given value.
+SetPulpLabels sets PulpLabels field to given value.
 
-### HasContentGuard
+### HasPulpLabels
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) HasContentGuard() bool`
+`func (o *PatchedcontainerContainerPullThroughDistribution) HasPulpLabels() bool`
 
-HasContentGuard returns a boolean if a field has been set.
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetRepository
 
@@ -144,30 +144,30 @@ HasRepository returns a boolean if a field has been set.
 `func (o *PatchedcontainerContainerPullThroughDistribution) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
-### GetHidden
+### GetContentGuard
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetHidden() bool`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuard() string`
 
-GetHidden returns the Hidden field if non-nil, zero value otherwise.
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
 
-### GetHiddenOk
+### GetContentGuardOk
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetHiddenOk() (*bool, bool)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuardOk() (*string, bool)`
 
-GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHidden
+### SetContentGuard
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetHidden(v bool)`
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetContentGuard(v string)`
 
-SetHidden sets Hidden field to given value.
+SetContentGuard sets ContentGuard field to given value.
 
-### HasHidden
+### HasContentGuard
 
-`func (o *PatchedcontainerContainerPullThroughDistribution) HasHidden() bool`
+`func (o *PatchedcontainerContainerPullThroughDistribution) HasContentGuard() bool`
 
-HasHidden returns a boolean if a field has been set.
+HasContentGuard returns a boolean if a field has been set.
 
 ### GetBasePath
 

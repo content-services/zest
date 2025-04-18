@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
 **RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
 **CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
+**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
 
 ## Methods
 
@@ -288,6 +289,41 @@ SetCompressionType sets CompressionType field to given value.
 
 HasCompressionType returns a boolean if a field has been set.
 
+### GetLayout
+
+`func (o *RpmRpmPublication) GetLayout() LayoutEnum`
+
+GetLayout returns the Layout field if non-nil, zero value otherwise.
+
+### GetLayoutOk
+
+`func (o *RpmRpmPublication) GetLayoutOk() (*LayoutEnum, bool)`
+
+GetLayoutOk returns a tuple with the Layout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLayout
+
+`func (o *RpmRpmPublication) SetLayout(v LayoutEnum)`
+
+SetLayout sets Layout field to given value.
+
+### HasLayout
+
+`func (o *RpmRpmPublication) HasLayout() bool`
+
+HasLayout returns a boolean if a field has been set.
+
+### SetLayoutNil
+
+`func (o *RpmRpmPublication) SetLayoutNil(b bool)`
+
+ SetLayoutNil sets the value for Layout to be an explicit nil
+
+### UnsetLayout
+`func (o *RpmRpmPublication) UnsetLayout()`
+
+UnsetLayout ensures that no value is present for Layout, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

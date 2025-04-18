@@ -58,6 +58,8 @@ type APIClient struct {
 
 	ApiDebugAuthHeaderAPI *ApiDebugAuthHeaderAPIService
 
+	ApiMavenAPI *ApiMavenAPIService
+
 	ApiPypiAPI *ApiPypiAPIService
 
 	ApiPypiLegacyAPI *ApiPypiLegacyAPIService
@@ -212,8 +214,6 @@ type APIClient struct {
 
 	PulpContainerNamespacesAPI *PulpContainerNamespacesAPIService
 
-	PulpMavenAPI *PulpMavenAPIService
-
 	PypiMetadataAPI *PypiMetadataAPIService
 
 	RemotesAPI *RemotesAPIService
@@ -337,6 +337,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AcsFileAPI = (*AcsFileAPIService)(&c.common)
 	c.AcsRpmAPI = (*AcsRpmAPIService)(&c.common)
 	c.ApiDebugAuthHeaderAPI = (*ApiDebugAuthHeaderAPIService)(&c.common)
+	c.ApiMavenAPI = (*ApiMavenAPIService)(&c.common)
 	c.ApiPypiAPI = (*ApiPypiAPIService)(&c.common)
 	c.ApiPypiLegacyAPI = (*ApiPypiLegacyAPIService)(&c.common)
 	c.ApiPypiSimpleAPI = (*ApiPypiSimpleAPIService)(&c.common)
@@ -414,7 +415,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PublicationsPypiAPI = (*PublicationsPypiAPIService)(&c.common)
 	c.PublicationsRpmAPI = (*PublicationsRpmAPIService)(&c.common)
 	c.PulpContainerNamespacesAPI = (*PulpContainerNamespacesAPIService)(&c.common)
-	c.PulpMavenAPI = (*PulpMavenAPIService)(&c.common)
 	c.PypiMetadataAPI = (*PypiMetadataAPIService)(&c.common)
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)
 	c.RemotesContainerAPI = (*RemotesContainerAPIService)(&c.common)
