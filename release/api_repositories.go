@@ -165,13 +165,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;maven.maven&#x60; - maven.maven* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file
+// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;maven.maven&#x60; - maven.maven
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;maven.maven&#x60; - maven.maven* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;file.file&#x60; - file.file
+// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;maven.maven&#x60; - maven.maven
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

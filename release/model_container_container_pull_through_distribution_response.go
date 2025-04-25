@@ -22,26 +22,26 @@ var _ MappedNullable = &ContainerContainerPullThroughDistributionResponse{}
 
 // ContainerContainerPullThroughDistributionResponse A serializer for a specialized pull-through distribution referencing sub-distributions.
 type ContainerContainerPullThroughDistributionResponse struct {
-	// The Pulp Resource Name (PRN).
-	Prn *string `json:"prn,omitempty"`
-	// An optional content-guard. If none is specified, a default one will be used.
-	ContentGuard *string `json:"content_guard,omitempty"`
-	// Timestamp of creation.
-	PulpCreated *time.Time `json:"pulp_created,omitempty"`
-	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
-	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
-	// The latest RepositoryVersion for this Repository will be served.
-	Repository NullableString `json:"repository,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
-	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
-	BasePath string `json:"base_path"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name string `json:"name"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// Timestamp of creation.
+	PulpCreated *time.Time `json:"pulp_created,omitempty"`
+	// The Pulp Resource Name (PRN).
+	Prn *string `json:"prn,omitempty"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
+	// The latest RepositoryVersion for this Repository will be served.
+	Repository NullableString `json:"repository,omitempty"`
 	PulpHref *string `json:"pulp_href,omitempty"`
+	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
+	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name string `json:"name"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
+	BasePath string `json:"base_path"`
+	// An optional content-guard. If none is specified, a default one will be used.
+	ContentGuard *string `json:"content_guard,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote string `json:"remote"`
 	// Distributions created after pulling content through cache
@@ -61,12 +61,12 @@ type _ContainerContainerPullThroughDistributionResponse ContainerContainerPullTh
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerContainerPullThroughDistributionResponse(basePath string, name string, remote string) *ContainerContainerPullThroughDistributionResponse {
+func NewContainerContainerPullThroughDistributionResponse(name string, basePath string, remote string) *ContainerContainerPullThroughDistributionResponse {
 	this := ContainerContainerPullThroughDistributionResponse{}
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.BasePath = basePath
 	this.Name = name
+	this.BasePath = basePath
 	this.Remote = remote
 	return &this
 }
@@ -81,68 +81,36 @@ func NewContainerContainerPullThroughDistributionResponseWithDefaults() *Contain
 	return &this
 }
 
-// GetPrn returns the Prn field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPrn() string {
-	if o == nil || IsNil(o.Prn) {
-		var ret string
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
 		return ret
 	}
-	return *o.Prn
+	return *o.PulpLastUpdated
 }
 
-// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPrnOk() (*string, bool) {
-	if o == nil || IsNil(o.Prn) {
+func (o *ContainerContainerPullThroughDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
 		return nil, false
 	}
-	return o.Prn, true
+	return o.PulpLastUpdated, true
 }
 
-// HasPrn returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasPrn() bool {
-	if o != nil && !IsNil(o.Prn) {
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
 		return true
 	}
 
 	return false
 }
 
-// SetPrn gets a reference to the given string and assigns it to the Prn field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetPrn(v string) {
-	o.Prn = &v
-}
-
-// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetContentGuard() string {
-	if o == nil || IsNil(o.ContentGuard) {
-		var ret string
-		return ret
-	}
-	return *o.ContentGuard
-}
-
-// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetContentGuardOk() (*string, bool) {
-	if o == nil || IsNil(o.ContentGuard) {
-		return nil, false
-	}
-	return o.ContentGuard, true
-}
-
-// HasContentGuard returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasContentGuard() bool {
-	if o != nil && !IsNil(o.ContentGuard) {
-		return true
-	}
-
-	return false
-}
-
-// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetContentGuard(v string) {
-	o.ContentGuard = &v
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
@@ -177,36 +145,68 @@ func (o *ContainerContainerPullThroughDistributionResponse) SetPulpCreated(v tim
 	o.PulpCreated = &v
 }
 
-// GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetNoContentChangeSince() string {
-	if o == nil || IsNil(o.NoContentChangeSince) {
+// GetPrn returns the Prn field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetPrn() string {
+	if o == nil || IsNil(o.Prn) {
 		var ret string
 		return ret
 	}
-	return *o.NoContentChangeSince
+	return *o.Prn
 }
 
-// GetNoContentChangeSinceOk returns a tuple with the NoContentChangeSince field value if set, nil otherwise
+// GetPrnOk returns a tuple with the Prn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetNoContentChangeSinceOk() (*string, bool) {
-	if o == nil || IsNil(o.NoContentChangeSince) {
+func (o *ContainerContainerPullThroughDistributionResponse) GetPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.Prn) {
 		return nil, false
 	}
-	return o.NoContentChangeSince, true
+	return o.Prn, true
 }
 
-// HasNoContentChangeSince returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasNoContentChangeSince() bool {
-	if o != nil && !IsNil(o.NoContentChangeSince) {
+// HasPrn returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasPrn() bool {
+	if o != nil && !IsNil(o.Prn) {
 		return true
 	}
 
 	return false
 }
 
-// SetNoContentChangeSince gets a reference to the given string and assigns it to the NoContentChangeSince field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetNoContentChangeSince(v string) {
-	o.NoContentChangeSince = &v
+// SetPrn gets a reference to the given string and assigns it to the Prn field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetPrn(v string) {
+	o.Prn = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetHidden(v bool) {
+	o.Hidden = &v
 }
 
 // GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -251,6 +251,94 @@ func (o *ContainerContainerPullThroughDistributionResponse) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetPulpHref returns the PulpHref field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetPulpHref() string {
+	if o == nil || IsNil(o.PulpHref) {
+		var ret string
+		return ret
+	}
+	return *o.PulpHref
+}
+
+// GetPulpHrefOk returns a tuple with the PulpHref field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) GetPulpHrefOk() (*string, bool) {
+	if o == nil || IsNil(o.PulpHref) {
+		return nil, false
+	}
+	return o.PulpHref, true
+}
+
+// HasPulpHref returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasPulpHref() bool {
+	if o != nil && !IsNil(o.PulpHref) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetPulpHref(v string) {
+	o.PulpHref = &v
+}
+
+// GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetNoContentChangeSince() string {
+	if o == nil || IsNil(o.NoContentChangeSince) {
+		var ret string
+		return ret
+	}
+	return *o.NoContentChangeSince
+}
+
+// GetNoContentChangeSinceOk returns a tuple with the NoContentChangeSince field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) GetNoContentChangeSinceOk() (*string, bool) {
+	if o == nil || IsNil(o.NoContentChangeSince) {
+		return nil, false
+	}
+	return o.NoContentChangeSince, true
+}
+
+// HasNoContentChangeSince returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasNoContentChangeSince() bool {
+	if o != nil && !IsNil(o.NoContentChangeSince) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoContentChangeSince gets a reference to the given string and assigns it to the NoContentChangeSince field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetNoContentChangeSince(v string) {
+	o.NoContentChangeSince = &v
+}
+
+// GetName returns the Name field value
+func (o *ContainerContainerPullThroughDistributionResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ContainerContainerPullThroughDistributionResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
 func (o *ContainerContainerPullThroughDistributionResponse) GetPulpLabels() map[string]string {
 	if o == nil || IsNil(o.PulpLabels) {
@@ -283,38 +371,6 @@ func (o *ContainerContainerPullThroughDistributionResponse) SetPulpLabels(v map[
 	o.PulpLabels = &v
 }
 
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
-		return ret
-	}
-	return *o.Hidden
-}
-
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
-		return nil, false
-	}
-	return o.Hidden, true
-}
-
-// HasHidden returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
-		return true
-	}
-
-	return false
-}
-
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetHidden(v bool) {
-	o.Hidden = &v
-}
-
 // GetBasePath returns the BasePath field value
 func (o *ContainerContainerPullThroughDistributionResponse) GetBasePath() string {
 	if o == nil {
@@ -339,92 +395,36 @@ func (o *ContainerContainerPullThroughDistributionResponse) SetBasePath(v string
 	o.BasePath = v
 }
 
-// GetName returns the Name field value
-func (o *ContainerContainerPullThroughDistributionResponse) GetName() string {
-	if o == nil {
+// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistributionResponse) GetContentGuard() string {
+	if o == nil || IsNil(o.ContentGuard) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.ContentGuard
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+func (o *ContainerContainerPullThroughDistributionResponse) GetContentGuardOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuard) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.ContentGuard, true
 }
 
-// SetName sets field value
-func (o *ContainerContainerPullThroughDistributionResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPulpLastUpdated() time.Time {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.PulpLastUpdated
-}
-
-// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		return nil, false
-	}
-	return o.PulpLastUpdated, true
-}
-
-// HasPulpLastUpdated returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasPulpLastUpdated() bool {
-	if o != nil && !IsNil(o.PulpLastUpdated) {
+// HasContentGuard returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistributionResponse) HasContentGuard() bool {
+	if o != nil && !IsNil(o.ContentGuard) {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetPulpLastUpdated(v time.Time) {
-	o.PulpLastUpdated = &v
-}
-
-// GetPulpHref returns the PulpHref field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPulpHref() string {
-	if o == nil || IsNil(o.PulpHref) {
-		var ret string
-		return ret
-	}
-	return *o.PulpHref
-}
-
-// GetPulpHrefOk returns a tuple with the PulpHref field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) GetPulpHrefOk() (*string, bool) {
-	if o == nil || IsNil(o.PulpHref) {
-		return nil, false
-	}
-	return o.PulpHref, true
-}
-
-// HasPulpHref returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistributionResponse) HasPulpHref() bool {
-	if o != nil && !IsNil(o.PulpHref) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpHref gets a reference to the given string and assigns it to the PulpHref field.
-func (o *ContainerContainerPullThroughDistributionResponse) SetPulpHref(v string) {
-	o.PulpHref = &v
+// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
+func (o *ContainerContainerPullThroughDistributionResponse) SetContentGuard(v string) {
+	o.ContentGuard = &v
 }
 
 // GetRemote returns the Remote field value
@@ -599,34 +599,34 @@ func (o ContainerContainerPullThroughDistributionResponse) MarshalJSON() ([]byte
 
 func (o ContainerContainerPullThroughDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Prn) {
-		toSerialize["prn"] = o.Prn
-	}
-	if !IsNil(o.ContentGuard) {
-		toSerialize["content_guard"] = o.ContentGuard
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
-	if !IsNil(o.NoContentChangeSince) {
-		toSerialize["no_content_change_since"] = o.NoContentChangeSince
-	}
-	if o.Repository.IsSet() {
-		toSerialize["repository"] = o.Repository.Get()
-	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
+	if !IsNil(o.Prn) {
+		toSerialize["prn"] = o.Prn
 	}
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
-	toSerialize["base_path"] = o.BasePath
-	toSerialize["name"] = o.Name
-	if !IsNil(o.PulpLastUpdated) {
-		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
+	if o.Repository.IsSet() {
+		toSerialize["repository"] = o.Repository.Get()
 	}
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
+	}
+	if !IsNil(o.NoContentChangeSince) {
+		toSerialize["no_content_change_since"] = o.NoContentChangeSince
+	}
+	toSerialize["name"] = o.Name
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
+	toSerialize["base_path"] = o.BasePath
+	if !IsNil(o.ContentGuard) {
+		toSerialize["content_guard"] = o.ContentGuard
 	}
 	toSerialize["remote"] = o.Remote
 	if !IsNil(o.Distributions) {
@@ -654,8 +654,8 @@ func (o *ContainerContainerPullThroughDistributionResponse) UnmarshalJSON(data [
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"base_path",
 		"name",
+		"base_path",
 		"remote",
 	}
 
@@ -686,17 +686,17 @@ func (o *ContainerContainerPullThroughDistributionResponse) UnmarshalJSON(data [
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "prn")
-		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "pulp_created")
-		delete(additionalProperties, "no_content_change_since")
-		delete(additionalProperties, "repository")
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "hidden")
-		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_created")
+		delete(additionalProperties, "prn")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "repository")
 		delete(additionalProperties, "pulp_href")
+		delete(additionalProperties, "no_content_change_since")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "distributions")
 		delete(additionalProperties, "namespace")
