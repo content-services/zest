@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
-**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
+**Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **Name** | **string** | A unique name for this repository. | 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 
 ## Methods
 
@@ -64,41 +64,41 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
-### GetManifestSigningService
+### GetDescription
 
-`func (o *ContainerContainerPushRepository) GetManifestSigningService() string`
+`func (o *ContainerContainerPushRepository) GetDescription() string`
 
-GetManifestSigningService returns the ManifestSigningService field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetManifestSigningServiceOk
+### GetDescriptionOk
 
-`func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool)`
+`func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool)`
 
-GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetManifestSigningService
+### SetDescription
 
-`func (o *ContainerContainerPushRepository) SetManifestSigningService(v string)`
+`func (o *ContainerContainerPushRepository) SetDescription(v string)`
 
-SetManifestSigningService sets ManifestSigningService field to given value.
+SetDescription sets Description field to given value.
 
-### HasManifestSigningService
+### HasDescription
 
-`func (o *ContainerContainerPushRepository) HasManifestSigningService() bool`
+`func (o *ContainerContainerPushRepository) HasDescription() bool`
 
-HasManifestSigningService returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetManifestSigningServiceNil
+### SetDescriptionNil
 
-`func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil(b bool)`
+`func (o *ContainerContainerPushRepository) SetDescriptionNil(b bool)`
 
- SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-### UnsetManifestSigningService
-`func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
+### UnsetDescription
+`func (o *ContainerContainerPushRepository) UnsetDescription()`
 
-UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetName
 
 `func (o *ContainerContainerPushRepository) GetName() string`
@@ -144,41 +144,41 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetDescription
+### GetManifestSigningService
 
-`func (o *ContainerContainerPushRepository) GetDescription() string`
+`func (o *ContainerContainerPushRepository) GetManifestSigningService() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetManifestSigningService returns the ManifestSigningService field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetManifestSigningServiceOk
 
-`func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool)`
+`func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetManifestSigningService
 
-`func (o *ContainerContainerPushRepository) SetDescription(v string)`
+`func (o *ContainerContainerPushRepository) SetManifestSigningService(v string)`
 
-SetDescription sets Description field to given value.
+SetManifestSigningService sets ManifestSigningService field to given value.
 
-### HasDescription
+### HasManifestSigningService
 
-`func (o *ContainerContainerPushRepository) HasDescription() bool`
+`func (o *ContainerContainerPushRepository) HasManifestSigningService() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasManifestSigningService returns a boolean if a field has been set.
 
-### SetDescriptionNil
+### SetManifestSigningServiceNil
 
-`func (o *ContainerContainerPushRepository) SetDescriptionNil(b bool)`
+`func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil(b bool)`
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+ SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
 
-### UnsetDescription
-`func (o *ContainerContainerPushRepository) UnsetDescription()`
+### UnsetManifestSigningService
+`func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
 
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

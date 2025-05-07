@@ -23,13 +23,13 @@ var _ MappedNullable = &ContainerContainerPushRepository{}
 type ContainerContainerPushRepository struct {
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
-	// A reference to an associated signing service.
-	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
+	// An optional description.
+	Description NullableString `json:"description,omitempty"`
 	// A unique name for this repository.
 	Name string `json:"name"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// An optional description.
-	Description NullableString `json:"description,omitempty"`
+	// A reference to an associated signing service.
+	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -95,46 +95,46 @@ func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
-// GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPushRepository) GetManifestSigningService() string {
-	if o == nil || IsNil(o.ManifestSigningService.Get()) {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPushRepository) GetDescription() string {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ManifestSigningService.Get()
+	return *o.Description.Get()
 }
 
-// GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool) {
+func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ManifestSigningService.Get(), o.ManifestSigningService.IsSet()
+	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasManifestSigningService returns a boolean if a field has been set.
-func (o *ContainerContainerPushRepository) HasManifestSigningService() bool {
-	if o != nil && o.ManifestSigningService.IsSet() {
+// HasDescription returns a boolean if a field has been set.
+func (o *ContainerContainerPushRepository) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetManifestSigningService gets a reference to the given NullableString and assigns it to the ManifestSigningService field.
-func (o *ContainerContainerPushRepository) SetManifestSigningService(v string) {
-	o.ManifestSigningService.Set(&v)
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *ContainerContainerPushRepository) SetDescription(v string) {
+	o.Description.Set(&v)
 }
-// SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
-func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil() {
-	o.ManifestSigningService.Set(nil)
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *ContainerContainerPushRepository) SetDescriptionNil() {
+	o.Description.Set(nil)
 }
 
-// UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
-func (o *ContainerContainerPushRepository) UnsetManifestSigningService() {
-	o.ManifestSigningService.Unset()
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *ContainerContainerPushRepository) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetName returns the Name field value
@@ -193,46 +193,46 @@ func (o *ContainerContainerPushRepository) SetPulpLabels(v map[string]string) {
 	o.PulpLabels = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPushRepository) GetDescription() string {
-	if o == nil || IsNil(o.Description.Get()) {
+// GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPushRepository) GetManifestSigningService() string {
+	if o == nil || IsNil(o.ManifestSigningService.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.ManifestSigningService.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
+func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.ManifestSigningService.Get(), o.ManifestSigningService.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *ContainerContainerPushRepository) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+// HasManifestSigningService returns a boolean if a field has been set.
+func (o *ContainerContainerPushRepository) HasManifestSigningService() bool {
+	if o != nil && o.ManifestSigningService.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *ContainerContainerPushRepository) SetDescription(v string) {
-	o.Description.Set(&v)
+// SetManifestSigningService gets a reference to the given NullableString and assigns it to the ManifestSigningService field.
+func (o *ContainerContainerPushRepository) SetManifestSigningService(v string) {
+	o.ManifestSigningService.Set(&v)
 }
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *ContainerContainerPushRepository) SetDescriptionNil() {
-	o.Description.Set(nil)
+// SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
+func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil() {
+	o.ManifestSigningService.Set(nil)
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *ContainerContainerPushRepository) UnsetDescription() {
-	o.Description.Unset()
+// UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
+func (o *ContainerContainerPushRepository) UnsetManifestSigningService() {
+	o.ManifestSigningService.Unset()
 }
 
 func (o ContainerContainerPushRepository) MarshalJSON() ([]byte, error) {
@@ -248,15 +248,15 @@ func (o ContainerContainerPushRepository) ToMap() (map[string]interface{}, error
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
-	if o.ManifestSigningService.IsSet() {
-		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if o.ManifestSigningService.IsSet() {
+		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -302,10 +302,10 @@ func (o *ContainerContainerPushRepository) UnmarshalJSON(data []byte) (err error
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "retain_repo_versions")
-		delete(additionalProperties, "manifest_signing_service")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "description")
+		delete(additionalProperties, "manifest_signing_service")
 		o.AdditionalProperties = additionalProperties
 	}
 
