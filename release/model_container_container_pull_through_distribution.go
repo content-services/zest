@@ -23,15 +23,15 @@ var _ MappedNullable = &ContainerContainerPullThroughDistribution{}
 type ContainerContainerPullThroughDistribution struct {
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
-	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
-	BasePath string `json:"base_path"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name string `json:"name"`
+	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
+	BasePath string `json:"base_path"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote string `json:"remote"`
 	// Distributions created after pulling content through cache
@@ -49,12 +49,12 @@ type _ContainerContainerPullThroughDistribution ContainerContainerPullThroughDis
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerContainerPullThroughDistribution(basePath string, name string, remote string) *ContainerContainerPullThroughDistribution {
+func NewContainerContainerPullThroughDistribution(name string, basePath string, remote string) *ContainerContainerPullThroughDistribution {
 	this := ContainerContainerPullThroughDistribution{}
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.BasePath = basePath
 	this.Name = name
+	this.BasePath = basePath
 	this.Remote = remote
 	return &this
 }
@@ -99,54 +99,6 @@ func (o *ContainerContainerPullThroughDistribution) HasHidden() bool {
 // SetHidden gets a reference to the given bool and assigns it to the Hidden field.
 func (o *ContainerContainerPullThroughDistribution) SetHidden(v bool) {
 	o.Hidden = &v
-}
-
-// GetBasePath returns the BasePath field value
-func (o *ContainerContainerPullThroughDistribution) GetBasePath() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BasePath
-}
-
-// GetBasePathOk returns a tuple with the BasePath field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BasePath, true
-}
-
-// SetBasePath sets field value
-func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string) {
-	o.BasePath = v
-}
-
-// GetName returns the Name field value
-func (o *ContainerContainerPullThroughDistribution) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerPullThroughDistribution) SetName(v string) {
-	o.Name = v
 }
 
 // GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -253,6 +205,54 @@ func (o *ContainerContainerPullThroughDistribution) HasContentGuard() bool {
 // SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
 func (o *ContainerContainerPullThroughDistribution) SetContentGuard(v string) {
 	o.ContentGuard = &v
+}
+
+// GetName returns the Name field value
+func (o *ContainerContainerPullThroughDistribution) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ContainerContainerPullThroughDistribution) SetName(v string) {
+	o.Name = v
+}
+
+// GetBasePath returns the BasePath field value
+func (o *ContainerContainerPullThroughDistribution) GetBasePath() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BasePath
+}
+
+// GetBasePathOk returns a tuple with the BasePath field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BasePath, true
+}
+
+// SetBasePath sets field value
+func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string) {
+	o.BasePath = v
 }
 
 // GetRemote returns the Remote field value
@@ -398,8 +398,6 @@ func (o ContainerContainerPullThroughDistribution) ToMap() (map[string]interface
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
-	toSerialize["base_path"] = o.BasePath
-	toSerialize["name"] = o.Name
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
@@ -409,6 +407,8 @@ func (o ContainerContainerPullThroughDistribution) ToMap() (map[string]interface
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
 	}
+	toSerialize["name"] = o.Name
+	toSerialize["base_path"] = o.BasePath
 	toSerialize["remote"] = o.Remote
 	if !IsNil(o.Distributions) {
 		toSerialize["distributions"] = o.Distributions
@@ -432,8 +432,8 @@ func (o *ContainerContainerPullThroughDistribution) UnmarshalJSON(data []byte) (
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"base_path",
 		"name",
+		"base_path",
 		"remote",
 	}
 
@@ -465,11 +465,11 @@ func (o *ContainerContainerPullThroughDistribution) UnmarshalJSON(data []byte) (
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "hidden")
-		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "distributions")
 		delete(additionalProperties, "private")
