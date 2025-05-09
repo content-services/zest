@@ -22,13 +22,13 @@ var _ MappedNullable = &PatchedcontainerContainerPushRepository{}
 type PatchedcontainerContainerPushRepository struct {
 	// A reference to an associated signing service.
 	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// Retain X versions of the repository. Default is null which retains all versions.
-	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
-	// A unique name for this repository.
-	Name *string `json:"name,omitempty"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	// A unique name for this repository.
+	Name *string `json:"name,omitempty"`
+	// Retain X versions of the repository. Default is null which retains all versions.
+	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -93,36 +93,78 @@ func (o *PatchedcontainerContainerPushRepository) UnsetManifestSigningService() 
 	o.ManifestSigningService.Unset()
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedcontainerContainerPushRepository) GetDescription() string {
+	if o == nil || IsNil(o.Description.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.PulpLabels
+	return *o.Description.Get()
 }
 
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedcontainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PulpLabels, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
+// HasDescription returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *PatchedcontainerContainerPushRepository) SetDescription(v string) {
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *PatchedcontainerContainerPushRepository) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *PatchedcontainerContainerPushRepository) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPushRepository) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPushRepository) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PatchedcontainerContainerPushRepository) SetName(v string) {
+	o.Name = &v
 }
 
 // GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -167,78 +209,36 @@ func (o *PatchedcontainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPushRepository) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
 		return ret
 	}
-	return *o.Name
+	return *o.PulpLabels
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPushRepository) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
-	return o.Name, true
+	return o.PulpLabels, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedcontainerContainerPushRepository) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedcontainerContainerPushRepository) GetDescription() string {
-	if o == nil || IsNil(o.Description.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedcontainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *PatchedcontainerContainerPushRepository) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *PatchedcontainerContainerPushRepository) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *PatchedcontainerContainerPushRepository) UnsetDescription() {
-	o.Description.Unset()
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
 }
 
 func (o PatchedcontainerContainerPushRepository) MarshalJSON() ([]byte, error) {
@@ -254,17 +254,17 @@ func (o PatchedcontainerContainerPushRepository) ToMap() (map[string]interface{}
 	if o.ManifestSigningService.IsSet() {
 		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if o.RetainRepoVersions.IsSet() {
-		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if o.RetainRepoVersions.IsSet() {
+		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -289,10 +289,10 @@ func (o *PatchedcontainerContainerPushRepository) UnmarshalJSON(data []byte) (er
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "manifest_signing_service")
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "retain_repo_versions")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}
 
