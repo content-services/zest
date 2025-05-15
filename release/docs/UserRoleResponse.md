@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Role** | **string** |  | 
-**ContentObject** | **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | 
+**ContentObject** | Pointer to **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | [optional] 
+**ContentObjectPrn** | Pointer to **NullableString** | prn of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | [optional] 
 **Description** | Pointer to **string** |  | [optional] [readonly] 
 **Permissions** | Pointer to **[]string** |  | [optional] [readonly] 
 **Domain** | Pointer to **NullableString** | Domain this role should be applied on, mutually exclusive with content_object. | [optional] 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewUserRoleResponse
 
-`func NewUserRoleResponse(role string, contentObject NullableString, ) *UserRoleResponse`
+`func NewUserRoleResponse(role string, ) *UserRoleResponse`
 
 NewUserRoleResponse instantiates a new UserRoleResponse object
 This constructor will assign default values to properties that have it defined,
@@ -172,6 +173,11 @@ and a boolean to check if the value has been set.
 
 SetContentObject sets ContentObject field to given value.
 
+### HasContentObject
+
+`func (o *UserRoleResponse) HasContentObject() bool`
+
+HasContentObject returns a boolean if a field has been set.
 
 ### SetContentObjectNil
 
@@ -183,6 +189,41 @@ SetContentObject sets ContentObject field to given value.
 `func (o *UserRoleResponse) UnsetContentObject()`
 
 UnsetContentObject ensures that no value is present for ContentObject, not even an explicit nil
+### GetContentObjectPrn
+
+`func (o *UserRoleResponse) GetContentObjectPrn() string`
+
+GetContentObjectPrn returns the ContentObjectPrn field if non-nil, zero value otherwise.
+
+### GetContentObjectPrnOk
+
+`func (o *UserRoleResponse) GetContentObjectPrnOk() (*string, bool)`
+
+GetContentObjectPrnOk returns a tuple with the ContentObjectPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentObjectPrn
+
+`func (o *UserRoleResponse) SetContentObjectPrn(v string)`
+
+SetContentObjectPrn sets ContentObjectPrn field to given value.
+
+### HasContentObjectPrn
+
+`func (o *UserRoleResponse) HasContentObjectPrn() bool`
+
+HasContentObjectPrn returns a boolean if a field has been set.
+
+### SetContentObjectPrnNil
+
+`func (o *UserRoleResponse) SetContentObjectPrnNil(b bool)`
+
+ SetContentObjectPrnNil sets the value for ContentObjectPrn to be an explicit nil
+
+### UnsetContentObjectPrn
+`func (o *UserRoleResponse) UnsetContentObjectPrn()`
+
+UnsetContentObjectPrn ensures that no value is present for ContentObjectPrn, not even an explicit nil
 ### GetDescription
 
 `func (o *UserRoleResponse) GetDescription() string`

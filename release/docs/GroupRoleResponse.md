@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Role** | **string** |  | 
-**ContentObject** | **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on the model-level. | 
+**ContentObject** | Pointer to **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on the model-level. | [optional] 
+**ContentObjectPrn** | Pointer to **NullableString** | prn of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | [optional] 
 **Description** | Pointer to **string** |  | [optional] [readonly] 
 **Permissions** | Pointer to **[]string** |  | [optional] [readonly] 
 **Domain** | Pointer to **NullableString** | Domain this role should be applied on, mutually exclusive with content_object. | [optional] 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewGroupRoleResponse
 
-`func NewGroupRoleResponse(role string, contentObject NullableString, ) *GroupRoleResponse`
+`func NewGroupRoleResponse(role string, ) *GroupRoleResponse`
 
 NewGroupRoleResponse instantiates a new GroupRoleResponse object
 This constructor will assign default values to properties that have it defined,
@@ -172,6 +173,11 @@ and a boolean to check if the value has been set.
 
 SetContentObject sets ContentObject field to given value.
 
+### HasContentObject
+
+`func (o *GroupRoleResponse) HasContentObject() bool`
+
+HasContentObject returns a boolean if a field has been set.
 
 ### SetContentObjectNil
 
@@ -183,6 +189,41 @@ SetContentObject sets ContentObject field to given value.
 `func (o *GroupRoleResponse) UnsetContentObject()`
 
 UnsetContentObject ensures that no value is present for ContentObject, not even an explicit nil
+### GetContentObjectPrn
+
+`func (o *GroupRoleResponse) GetContentObjectPrn() string`
+
+GetContentObjectPrn returns the ContentObjectPrn field if non-nil, zero value otherwise.
+
+### GetContentObjectPrnOk
+
+`func (o *GroupRoleResponse) GetContentObjectPrnOk() (*string, bool)`
+
+GetContentObjectPrnOk returns a tuple with the ContentObjectPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentObjectPrn
+
+`func (o *GroupRoleResponse) SetContentObjectPrn(v string)`
+
+SetContentObjectPrn sets ContentObjectPrn field to given value.
+
+### HasContentObjectPrn
+
+`func (o *GroupRoleResponse) HasContentObjectPrn() bool`
+
+HasContentObjectPrn returns a boolean if a field has been set.
+
+### SetContentObjectPrnNil
+
+`func (o *GroupRoleResponse) SetContentObjectPrnNil(b bool)`
+
+ SetContentObjectPrnNil sets the value for ContentObjectPrn to be an explicit nil
+
+### UnsetContentObjectPrn
+`func (o *GroupRoleResponse) UnsetContentObjectPrn()`
+
+UnsetContentObjectPrn ensures that no value is present for ContentObjectPrn, not even an explicit nil
 ### GetDescription
 
 `func (o *GroupRoleResponse) GetDescription() string`

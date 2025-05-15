@@ -5,14 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Role** | **string** |  | 
-**ContentObject** | **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | 
+**ContentObject** | Pointer to **NullableString** | pulp_href of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | [optional] 
+**ContentObjectPrn** | Pointer to **NullableString** | prn of the object for which role permissions should be asserted. If set to &#39;null&#39;, permissions will act on either domain or model-level. | [optional] 
 **Domain** | Pointer to **NullableString** | Domain this role should be applied on, mutually exclusive with content_object. | [optional] 
 
 ## Methods
 
 ### NewUserRole
 
-`func NewUserRole(role string, contentObject NullableString, ) *UserRole`
+`func NewUserRole(role string, ) *UserRole`
 
 NewUserRole instantiates a new UserRole object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +67,11 @@ and a boolean to check if the value has been set.
 
 SetContentObject sets ContentObject field to given value.
 
+### HasContentObject
+
+`func (o *UserRole) HasContentObject() bool`
+
+HasContentObject returns a boolean if a field has been set.
 
 ### SetContentObjectNil
 
@@ -77,6 +83,41 @@ SetContentObject sets ContentObject field to given value.
 `func (o *UserRole) UnsetContentObject()`
 
 UnsetContentObject ensures that no value is present for ContentObject, not even an explicit nil
+### GetContentObjectPrn
+
+`func (o *UserRole) GetContentObjectPrn() string`
+
+GetContentObjectPrn returns the ContentObjectPrn field if non-nil, zero value otherwise.
+
+### GetContentObjectPrnOk
+
+`func (o *UserRole) GetContentObjectPrnOk() (*string, bool)`
+
+GetContentObjectPrnOk returns a tuple with the ContentObjectPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentObjectPrn
+
+`func (o *UserRole) SetContentObjectPrn(v string)`
+
+SetContentObjectPrn sets ContentObjectPrn field to given value.
+
+### HasContentObjectPrn
+
+`func (o *UserRole) HasContentObjectPrn() bool`
+
+HasContentObjectPrn returns a boolean if a field has been set.
+
+### SetContentObjectPrnNil
+
+`func (o *UserRole) SetContentObjectPrnNil(b bool)`
+
+ SetContentObjectPrnNil sets the value for ContentObjectPrn to be an explicit nil
+
+### UnsetContentObjectPrn
+`func (o *UserRole) UnsetContentObjectPrn()`
+
+UnsetContentObjectPrn ensures that no value is present for ContentObjectPrn, not even an explicit nil
 ### GetDomain
 
 `func (o *UserRole) GetDomain() string`

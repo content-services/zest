@@ -33,7 +33,7 @@ import (
 
 func main() {
 	authUserHref := "authUserHref_example" // string | 
-	userRole := *openapiclient.NewUserRole("Role_example", "ContentObject_example") // UserRole | 
+	userRole := *openapiclient.NewUserRole("Role_example") // UserRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

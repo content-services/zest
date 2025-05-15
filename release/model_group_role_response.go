@@ -31,7 +31,9 @@ type GroupRoleResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	Role string `json:"role"`
 	// pulp_href of the object for which role permissions should be asserted. If set to 'null', permissions will act on the model-level.
-	ContentObject NullableString `json:"content_object"`
+	ContentObject NullableString `json:"content_object,omitempty"`
+	// prn of the object for which role permissions should be asserted. If set to 'null', permissions will act on either domain or model-level.
+	ContentObjectPrn NullableString `json:"content_object_prn,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Permissions []string `json:"permissions,omitempty"`
 	// Domain this role should be applied on, mutually exclusive with content_object.
@@ -45,10 +47,9 @@ type _GroupRoleResponse GroupRoleResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupRoleResponse(role string, contentObject NullableString) *GroupRoleResponse {
+func NewGroupRoleResponse(role string) *GroupRoleResponse {
 	this := GroupRoleResponse{}
 	this.Role = role
-	this.ContentObject = contentObject
 	return &this
 }
 
@@ -212,18 +213,16 @@ func (o *GroupRoleResponse) SetRole(v string) {
 	o.Role = v
 }
 
-// GetContentObject returns the ContentObject field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetContentObject returns the ContentObject field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GroupRoleResponse) GetContentObject() string {
-	if o == nil || o.ContentObject.Get() == nil {
+	if o == nil || IsNil(o.ContentObject.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.ContentObject.Get()
 }
 
-// GetContentObjectOk returns a tuple with the ContentObject field value
+// GetContentObjectOk returns a tuple with the ContentObject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GroupRoleResponse) GetContentObjectOk() (*string, bool) {
@@ -233,9 +232,69 @@ func (o *GroupRoleResponse) GetContentObjectOk() (*string, bool) {
 	return o.ContentObject.Get(), o.ContentObject.IsSet()
 }
 
-// SetContentObject sets field value
+// HasContentObject returns a boolean if a field has been set.
+func (o *GroupRoleResponse) HasContentObject() bool {
+	if o != nil && o.ContentObject.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContentObject gets a reference to the given NullableString and assigns it to the ContentObject field.
 func (o *GroupRoleResponse) SetContentObject(v string) {
 	o.ContentObject.Set(&v)
+}
+// SetContentObjectNil sets the value for ContentObject to be an explicit nil
+func (o *GroupRoleResponse) SetContentObjectNil() {
+	o.ContentObject.Set(nil)
+}
+
+// UnsetContentObject ensures that no value is present for ContentObject, not even an explicit nil
+func (o *GroupRoleResponse) UnsetContentObject() {
+	o.ContentObject.Unset()
+}
+
+// GetContentObjectPrn returns the ContentObjectPrn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GroupRoleResponse) GetContentObjectPrn() string {
+	if o == nil || IsNil(o.ContentObjectPrn.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ContentObjectPrn.Get()
+}
+
+// GetContentObjectPrnOk returns a tuple with the ContentObjectPrn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GroupRoleResponse) GetContentObjectPrnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContentObjectPrn.Get(), o.ContentObjectPrn.IsSet()
+}
+
+// HasContentObjectPrn returns a boolean if a field has been set.
+func (o *GroupRoleResponse) HasContentObjectPrn() bool {
+	if o != nil && o.ContentObjectPrn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContentObjectPrn gets a reference to the given NullableString and assigns it to the ContentObjectPrn field.
+func (o *GroupRoleResponse) SetContentObjectPrn(v string) {
+	o.ContentObjectPrn.Set(&v)
+}
+// SetContentObjectPrnNil sets the value for ContentObjectPrn to be an explicit nil
+func (o *GroupRoleResponse) SetContentObjectPrnNil() {
+	o.ContentObjectPrn.Set(nil)
+}
+
+// UnsetContentObjectPrn ensures that no value is present for ContentObjectPrn, not even an explicit nil
+func (o *GroupRoleResponse) UnsetContentObjectPrn() {
+	o.ContentObjectPrn.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -367,7 +426,12 @@ func (o GroupRoleResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["role"] = o.Role
-	toSerialize["content_object"] = o.ContentObject.Get()
+	if o.ContentObject.IsSet() {
+		toSerialize["content_object"] = o.ContentObject.Get()
+	}
+	if o.ContentObjectPrn.IsSet() {
+		toSerialize["content_object_prn"] = o.ContentObjectPrn.Get()
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -391,7 +455,6 @@ func (o *GroupRoleResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"role",
-		"content_object",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -427,6 +490,7 @@ func (o *GroupRoleResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "role")
 		delete(additionalProperties, "content_object")
+		delete(additionalProperties, "content_object_prn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "domain")

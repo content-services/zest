@@ -33,7 +33,7 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
-	groupRole := *openapiclient.NewGroupRole("Role_example", "ContentObject_example") // GroupRole | 
+	groupRole := *openapiclient.NewGroupRole("Role_example") // GroupRole | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
