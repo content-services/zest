@@ -186,13 +186,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;maven.maven&#x60; - maven.maven
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;maven.maven&#x60; - maven.maven* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;maven.maven&#x60; - maven.maven
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;maven.maven&#x60; - maven.maven* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;file.file&#x60; - file.file
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
