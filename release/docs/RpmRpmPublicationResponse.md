@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **RepositoryVersion** | Pointer to **string** |  | [optional] 
 **Repository** | Pointer to **string** | A URI of the repository to be published. | [optional] 
+**Checkpoint** | Pointer to **bool** |  | [optional] 
 **ChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | The preferred checksum type used during repo publishes.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**MetadataChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: The checksum type for metadata.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**PackageChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: The checksum type for packages.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
-**RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operation since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
-**RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
+**MetadataChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | REMOVED: The checksum type for metadata. Not operational since pulp_rpm 3.30.0 release. Use &#39;checksum_type&#39; instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] [readonly] 
+**PackageChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | REMOVED: The checksum type for packages. Not operational since pulp_rpm 3.30.0 release. Use &#39;checksum_type&#39; instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] [readonly] 
+**Gpgcheck** | Pointer to **int64** | REMOVED: An option specifying whether a client should perform a GPG signature check on packages. Not operational since pulp_rpm 3.30.0 release. Set these values using &#39;repo_config&#39; instead. | [optional] [readonly] 
+**RepoGpgcheck** | Pointer to **int64** | REMOVED: An option specifying whether a client should perform a GPG signature check on the repodata. Not operational since pulp_rpm 3.30.0 release. Set these values using &#39;repo_config&#39; instead. | [optional] [readonly] 
+**SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operational since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
+**RepoConfig** | Pointer to **interface{}** | A JSON document describing the config.repo file Pulp should generate for this repo | [optional] 
 **CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
 **Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
 
@@ -189,6 +190,31 @@ SetRepository sets Repository field to given value.
 
 HasRepository returns a boolean if a field has been set.
 
+### GetCheckpoint
+
+`func (o *RpmRpmPublicationResponse) GetCheckpoint() bool`
+
+GetCheckpoint returns the Checkpoint field if non-nil, zero value otherwise.
+
+### GetCheckpointOk
+
+`func (o *RpmRpmPublicationResponse) GetCheckpointOk() (*bool, bool)`
+
+GetCheckpointOk returns a tuple with the Checkpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckpoint
+
+`func (o *RpmRpmPublicationResponse) SetCheckpoint(v bool)`
+
+SetCheckpoint sets Checkpoint field to given value.
+
+### HasCheckpoint
+
+`func (o *RpmRpmPublicationResponse) HasCheckpoint() bool`
+
+HasCheckpoint returns a boolean if a field has been set.
+
 ### GetChecksumType
 
 `func (o *RpmRpmPublicationResponse) GetChecksumType() PackageChecksumTypeEnum`
@@ -289,16 +315,6 @@ SetGpgcheck sets Gpgcheck field to given value.
 
 HasGpgcheck returns a boolean if a field has been set.
 
-### SetGpgcheckNil
-
-`func (o *RpmRpmPublicationResponse) SetGpgcheckNil(b bool)`
-
- SetGpgcheckNil sets the value for Gpgcheck to be an explicit nil
-
-### UnsetGpgcheck
-`func (o *RpmRpmPublicationResponse) UnsetGpgcheck()`
-
-UnsetGpgcheck ensures that no value is present for Gpgcheck, not even an explicit nil
 ### GetRepoGpgcheck
 
 `func (o *RpmRpmPublicationResponse) GetRepoGpgcheck() int64`
@@ -324,16 +340,6 @@ SetRepoGpgcheck sets RepoGpgcheck field to given value.
 
 HasRepoGpgcheck returns a boolean if a field has been set.
 
-### SetRepoGpgcheckNil
-
-`func (o *RpmRpmPublicationResponse) SetRepoGpgcheckNil(b bool)`
-
- SetRepoGpgcheckNil sets the value for RepoGpgcheck to be an explicit nil
-
-### UnsetRepoGpgcheck
-`func (o *RpmRpmPublicationResponse) UnsetRepoGpgcheck()`
-
-UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
 ### GetSqliteMetadata
 
 `func (o *RpmRpmPublicationResponse) GetSqliteMetadata() bool`

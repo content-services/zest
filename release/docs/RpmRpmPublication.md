@@ -6,12 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RepositoryVersion** | Pointer to **string** |  | [optional] 
 **Repository** | Pointer to **string** | A URI of the repository to be published. | [optional] 
+**Checkpoint** | Pointer to **bool** |  | [optional] 
 **ChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | The preferred checksum type used during repo publishes.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**MetadataChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: The checksum type for metadata.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**PackageChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | DEPRECATED: The checksum type for packages.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
-**Gpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages. | [optional] 
-**RepoGpgcheck** | Pointer to **NullableInt64** | DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata. | [optional] 
-**RepoConfig** | Pointer to **interface{}** | A JSON document describing config.repo file | [optional] 
+**RepoConfig** | Pointer to **interface{}** | A JSON document describing the config.repo file Pulp should generate for this repo | [optional] 
 **CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
 **Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
 
@@ -84,6 +81,31 @@ SetRepository sets Repository field to given value.
 
 HasRepository returns a boolean if a field has been set.
 
+### GetCheckpoint
+
+`func (o *RpmRpmPublication) GetCheckpoint() bool`
+
+GetCheckpoint returns the Checkpoint field if non-nil, zero value otherwise.
+
+### GetCheckpointOk
+
+`func (o *RpmRpmPublication) GetCheckpointOk() (*bool, bool)`
+
+GetCheckpointOk returns a tuple with the Checkpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckpoint
+
+`func (o *RpmRpmPublication) SetCheckpoint(v bool)`
+
+SetCheckpoint sets Checkpoint field to given value.
+
+### HasCheckpoint
+
+`func (o *RpmRpmPublication) HasCheckpoint() bool`
+
+HasCheckpoint returns a boolean if a field has been set.
+
 ### GetChecksumType
 
 `func (o *RpmRpmPublication) GetChecksumType() PackageChecksumTypeEnum`
@@ -109,126 +131,6 @@ SetChecksumType sets ChecksumType field to given value.
 
 HasChecksumType returns a boolean if a field has been set.
 
-### GetMetadataChecksumType
-
-`func (o *RpmRpmPublication) GetMetadataChecksumType() PackageChecksumTypeEnum`
-
-GetMetadataChecksumType returns the MetadataChecksumType field if non-nil, zero value otherwise.
-
-### GetMetadataChecksumTypeOk
-
-`func (o *RpmRpmPublication) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
-
-GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetadataChecksumType
-
-`func (o *RpmRpmPublication) SetMetadataChecksumType(v PackageChecksumTypeEnum)`
-
-SetMetadataChecksumType sets MetadataChecksumType field to given value.
-
-### HasMetadataChecksumType
-
-`func (o *RpmRpmPublication) HasMetadataChecksumType() bool`
-
-HasMetadataChecksumType returns a boolean if a field has been set.
-
-### GetPackageChecksumType
-
-`func (o *RpmRpmPublication) GetPackageChecksumType() PackageChecksumTypeEnum`
-
-GetPackageChecksumType returns the PackageChecksumType field if non-nil, zero value otherwise.
-
-### GetPackageChecksumTypeOk
-
-`func (o *RpmRpmPublication) GetPackageChecksumTypeOk() (*PackageChecksumTypeEnum, bool)`
-
-GetPackageChecksumTypeOk returns a tuple with the PackageChecksumType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPackageChecksumType
-
-`func (o *RpmRpmPublication) SetPackageChecksumType(v PackageChecksumTypeEnum)`
-
-SetPackageChecksumType sets PackageChecksumType field to given value.
-
-### HasPackageChecksumType
-
-`func (o *RpmRpmPublication) HasPackageChecksumType() bool`
-
-HasPackageChecksumType returns a boolean if a field has been set.
-
-### GetGpgcheck
-
-`func (o *RpmRpmPublication) GetGpgcheck() int64`
-
-GetGpgcheck returns the Gpgcheck field if non-nil, zero value otherwise.
-
-### GetGpgcheckOk
-
-`func (o *RpmRpmPublication) GetGpgcheckOk() (*int64, bool)`
-
-GetGpgcheckOk returns a tuple with the Gpgcheck field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGpgcheck
-
-`func (o *RpmRpmPublication) SetGpgcheck(v int64)`
-
-SetGpgcheck sets Gpgcheck field to given value.
-
-### HasGpgcheck
-
-`func (o *RpmRpmPublication) HasGpgcheck() bool`
-
-HasGpgcheck returns a boolean if a field has been set.
-
-### SetGpgcheckNil
-
-`func (o *RpmRpmPublication) SetGpgcheckNil(b bool)`
-
- SetGpgcheckNil sets the value for Gpgcheck to be an explicit nil
-
-### UnsetGpgcheck
-`func (o *RpmRpmPublication) UnsetGpgcheck()`
-
-UnsetGpgcheck ensures that no value is present for Gpgcheck, not even an explicit nil
-### GetRepoGpgcheck
-
-`func (o *RpmRpmPublication) GetRepoGpgcheck() int64`
-
-GetRepoGpgcheck returns the RepoGpgcheck field if non-nil, zero value otherwise.
-
-### GetRepoGpgcheckOk
-
-`func (o *RpmRpmPublication) GetRepoGpgcheckOk() (*int64, bool)`
-
-GetRepoGpgcheckOk returns a tuple with the RepoGpgcheck field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRepoGpgcheck
-
-`func (o *RpmRpmPublication) SetRepoGpgcheck(v int64)`
-
-SetRepoGpgcheck sets RepoGpgcheck field to given value.
-
-### HasRepoGpgcheck
-
-`func (o *RpmRpmPublication) HasRepoGpgcheck() bool`
-
-HasRepoGpgcheck returns a boolean if a field has been set.
-
-### SetRepoGpgcheckNil
-
-`func (o *RpmRpmPublication) SetRepoGpgcheckNil(b bool)`
-
- SetRepoGpgcheckNil sets the value for RepoGpgcheck to be an explicit nil
-
-### UnsetRepoGpgcheck
-`func (o *RpmRpmPublication) UnsetRepoGpgcheck()`
-
-UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
 ### GetRepoConfig
 
 `func (o *RpmRpmPublication) GetRepoConfig() interface{}`

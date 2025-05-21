@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **Publication** | Pointer to **NullableString** | Publication to be served | [optional] 
 **GenerateRepoConfig** | Pointer to **bool** | An option specifying whether Pulp should generate *.repo files. | [optional] [default to false]
+**Checkpoint** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -407,6 +408,31 @@ SetGenerateRepoConfig sets GenerateRepoConfig field to given value.
 `func (o *RpmRpmDistributionResponse) HasGenerateRepoConfig() bool`
 
 HasGenerateRepoConfig returns a boolean if a field has been set.
+
+### GetCheckpoint
+
+`func (o *RpmRpmDistributionResponse) GetCheckpoint() bool`
+
+GetCheckpoint returns the Checkpoint field if non-nil, zero value otherwise.
+
+### GetCheckpointOk
+
+`func (o *RpmRpmDistributionResponse) GetCheckpointOk() (*bool, bool)`
+
+GetCheckpointOk returns a tuple with the Checkpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckpoint
+
+`func (o *RpmRpmDistributionResponse) SetCheckpoint(v bool)`
+
+SetCheckpoint sets Checkpoint field to given value.
+
+### HasCheckpoint
+
+`func (o *RpmRpmDistributionResponse) HasCheckpoint() bool`
+
+HasCheckpoint returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -36,6 +36,7 @@ type RpmRpmDistribution struct {
 	Publication NullableString `json:"publication,omitempty"`
 	// An option specifying whether Pulp should generate *.repo files.
 	GenerateRepoConfig *bool `json:"generate_repo_config,omitempty"`
+	Checkpoint *bool `json:"checkpoint,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -338,6 +339,38 @@ func (o *RpmRpmDistribution) SetGenerateRepoConfig(v bool) {
 	o.GenerateRepoConfig = &v
 }
 
+// GetCheckpoint returns the Checkpoint field value if set, zero value otherwise.
+func (o *RpmRpmDistribution) GetCheckpoint() bool {
+	if o == nil || IsNil(o.Checkpoint) {
+		var ret bool
+		return ret
+	}
+	return *o.Checkpoint
+}
+
+// GetCheckpointOk returns a tuple with the Checkpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmDistribution) GetCheckpointOk() (*bool, bool) {
+	if o == nil || IsNil(o.Checkpoint) {
+		return nil, false
+	}
+	return o.Checkpoint, true
+}
+
+// HasCheckpoint returns a boolean if a field has been set.
+func (o *RpmRpmDistribution) HasCheckpoint() bool {
+	if o != nil && !IsNil(o.Checkpoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckpoint gets a reference to the given bool and assigns it to the Checkpoint field.
+func (o *RpmRpmDistribution) SetCheckpoint(v bool) {
+	o.Checkpoint = &v
+}
+
 func (o RpmRpmDistribution) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -367,6 +400,9 @@ func (o RpmRpmDistribution) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.GenerateRepoConfig) {
 		toSerialize["generate_repo_config"] = o.GenerateRepoConfig
+	}
+	if !IsNil(o.Checkpoint) {
+		toSerialize["checkpoint"] = o.Checkpoint
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -420,6 +456,7 @@ func (o *RpmRpmDistribution) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "publication")
 		delete(additionalProperties, "generate_repo_config")
+		delete(additionalProperties, "checkpoint")
 		o.AdditionalProperties = additionalProperties
 	}
 

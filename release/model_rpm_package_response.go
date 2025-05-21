@@ -84,9 +84,11 @@ type RpmPackageResponse struct {
 	Recommends interface{} `json:"recommends,omitempty"`
 	// Capabilities the package supplements
 	Supplements interface{} `json:"supplements,omitempty"`
-	// Base location of this package
+	// DEPRECATED: Base location of this package. This field will be removed in a future release of pulp_rpm.
+	// Deprecated
 	LocationBase *string `json:"location_base,omitempty"`
-	// Relative location of package to the repodata
+	// DEPRECATED: Relative location of package to the repodata. This field will be removed in a future release of pulp_rpm.
+	// Deprecated
 	LocationHref *string `json:"location_href,omitempty"`
 	// Hostname of the system that built the package
 	RpmBuildhost *string `json:"rpm_buildhost,omitempty"`
@@ -1173,6 +1175,7 @@ func (o *RpmPackageResponse) SetSupplements(v interface{}) {
 }
 
 // GetLocationBase returns the LocationBase field value if set, zero value otherwise.
+// Deprecated
 func (o *RpmPackageResponse) GetLocationBase() string {
 	if o == nil || IsNil(o.LocationBase) {
 		var ret string
@@ -1183,6 +1186,7 @@ func (o *RpmPackageResponse) GetLocationBase() string {
 
 // GetLocationBaseOk returns a tuple with the LocationBase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *RpmPackageResponse) GetLocationBaseOk() (*string, bool) {
 	if o == nil || IsNil(o.LocationBase) {
 		return nil, false
@@ -1200,11 +1204,13 @@ func (o *RpmPackageResponse) HasLocationBase() bool {
 }
 
 // SetLocationBase gets a reference to the given string and assigns it to the LocationBase field.
+// Deprecated
 func (o *RpmPackageResponse) SetLocationBase(v string) {
 	o.LocationBase = &v
 }
 
 // GetLocationHref returns the LocationHref field value if set, zero value otherwise.
+// Deprecated
 func (o *RpmPackageResponse) GetLocationHref() string {
 	if o == nil || IsNil(o.LocationHref) {
 		var ret string
@@ -1215,6 +1221,7 @@ func (o *RpmPackageResponse) GetLocationHref() string {
 
 // GetLocationHrefOk returns a tuple with the LocationHref field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *RpmPackageResponse) GetLocationHrefOk() (*string, bool) {
 	if o == nil || IsNil(o.LocationHref) {
 		return nil, false
@@ -1232,6 +1239,7 @@ func (o *RpmPackageResponse) HasLocationHref() bool {
 }
 
 // SetLocationHref gets a reference to the given string and assigns it to the LocationHref field.
+// Deprecated
 func (o *RpmPackageResponse) SetLocationHref(v string) {
 	o.LocationHref = &v
 }

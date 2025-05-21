@@ -23,17 +23,10 @@ type RpmRpmPublication struct {
 	RepositoryVersion *string `json:"repository_version,omitempty"`
 	// A URI of the repository to be published.
 	Repository *string `json:"repository,omitempty"`
+	Checkpoint *bool `json:"checkpoint,omitempty"`
 	// The preferred checksum type used during repo publishes.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
 	ChecksumType *PackageChecksumTypeEnum `json:"checksum_type,omitempty"`
-	// DEPRECATED: The checksum type for metadata.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
-	MetadataChecksumType *PackageChecksumTypeEnum `json:"metadata_checksum_type,omitempty"`
-	// DEPRECATED: The checksum type for packages.* `unknown` - unknown* `md5` - md5* `sha1` - sha1* `sha224` - sha224* `sha256` - sha256* `sha384` - sha384* `sha512` - sha512
-	PackageChecksumType *PackageChecksumTypeEnum `json:"package_checksum_type,omitempty"`
-	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on packages.
-	Gpgcheck NullableInt64 `json:"gpgcheck,omitempty"`
-	// DEPRECATED: An option specifying whether a client should perform a GPG signature check on the repodata.
-	RepoGpgcheck NullableInt64 `json:"repo_gpgcheck,omitempty"`
-	// A JSON document describing config.repo file
+	// A JSON document describing the config.repo file Pulp should generate for this repo
 	RepoConfig interface{} `json:"repo_config,omitempty"`
 	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
@@ -125,6 +118,38 @@ func (o *RpmRpmPublication) SetRepository(v string) {
 	o.Repository = &v
 }
 
+// GetCheckpoint returns the Checkpoint field value if set, zero value otherwise.
+func (o *RpmRpmPublication) GetCheckpoint() bool {
+	if o == nil || IsNil(o.Checkpoint) {
+		var ret bool
+		return ret
+	}
+	return *o.Checkpoint
+}
+
+// GetCheckpointOk returns a tuple with the Checkpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRpmPublication) GetCheckpointOk() (*bool, bool) {
+	if o == nil || IsNil(o.Checkpoint) {
+		return nil, false
+	}
+	return o.Checkpoint, true
+}
+
+// HasCheckpoint returns a boolean if a field has been set.
+func (o *RpmRpmPublication) HasCheckpoint() bool {
+	if o != nil && !IsNil(o.Checkpoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckpoint gets a reference to the given bool and assigns it to the Checkpoint field.
+func (o *RpmRpmPublication) SetCheckpoint(v bool) {
+	o.Checkpoint = &v
+}
+
 // GetChecksumType returns the ChecksumType field value if set, zero value otherwise.
 func (o *RpmRpmPublication) GetChecksumType() PackageChecksumTypeEnum {
 	if o == nil || IsNil(o.ChecksumType) {
@@ -155,154 +180,6 @@ func (o *RpmRpmPublication) HasChecksumType() bool {
 // SetChecksumType gets a reference to the given PackageChecksumTypeEnum and assigns it to the ChecksumType field.
 func (o *RpmRpmPublication) SetChecksumType(v PackageChecksumTypeEnum) {
 	o.ChecksumType = &v
-}
-
-// GetMetadataChecksumType returns the MetadataChecksumType field value if set, zero value otherwise.
-func (o *RpmRpmPublication) GetMetadataChecksumType() PackageChecksumTypeEnum {
-	if o == nil || IsNil(o.MetadataChecksumType) {
-		var ret PackageChecksumTypeEnum
-		return ret
-	}
-	return *o.MetadataChecksumType
-}
-
-// GetMetadataChecksumTypeOk returns a tuple with the MetadataChecksumType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RpmRpmPublication) GetMetadataChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
-	if o == nil || IsNil(o.MetadataChecksumType) {
-		return nil, false
-	}
-	return o.MetadataChecksumType, true
-}
-
-// HasMetadataChecksumType returns a boolean if a field has been set.
-func (o *RpmRpmPublication) HasMetadataChecksumType() bool {
-	if o != nil && !IsNil(o.MetadataChecksumType) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadataChecksumType gets a reference to the given PackageChecksumTypeEnum and assigns it to the MetadataChecksumType field.
-func (o *RpmRpmPublication) SetMetadataChecksumType(v PackageChecksumTypeEnum) {
-	o.MetadataChecksumType = &v
-}
-
-// GetPackageChecksumType returns the PackageChecksumType field value if set, zero value otherwise.
-func (o *RpmRpmPublication) GetPackageChecksumType() PackageChecksumTypeEnum {
-	if o == nil || IsNil(o.PackageChecksumType) {
-		var ret PackageChecksumTypeEnum
-		return ret
-	}
-	return *o.PackageChecksumType
-}
-
-// GetPackageChecksumTypeOk returns a tuple with the PackageChecksumType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RpmRpmPublication) GetPackageChecksumTypeOk() (*PackageChecksumTypeEnum, bool) {
-	if o == nil || IsNil(o.PackageChecksumType) {
-		return nil, false
-	}
-	return o.PackageChecksumType, true
-}
-
-// HasPackageChecksumType returns a boolean if a field has been set.
-func (o *RpmRpmPublication) HasPackageChecksumType() bool {
-	if o != nil && !IsNil(o.PackageChecksumType) {
-		return true
-	}
-
-	return false
-}
-
-// SetPackageChecksumType gets a reference to the given PackageChecksumTypeEnum and assigns it to the PackageChecksumType field.
-func (o *RpmRpmPublication) SetPackageChecksumType(v PackageChecksumTypeEnum) {
-	o.PackageChecksumType = &v
-}
-
-// GetGpgcheck returns the Gpgcheck field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmRpmPublication) GetGpgcheck() int64 {
-	if o == nil || IsNil(o.Gpgcheck.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Gpgcheck.Get()
-}
-
-// GetGpgcheckOk returns a tuple with the Gpgcheck field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmRpmPublication) GetGpgcheckOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Gpgcheck.Get(), o.Gpgcheck.IsSet()
-}
-
-// HasGpgcheck returns a boolean if a field has been set.
-func (o *RpmRpmPublication) HasGpgcheck() bool {
-	if o != nil && o.Gpgcheck.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGpgcheck gets a reference to the given NullableInt64 and assigns it to the Gpgcheck field.
-func (o *RpmRpmPublication) SetGpgcheck(v int64) {
-	o.Gpgcheck.Set(&v)
-}
-// SetGpgcheckNil sets the value for Gpgcheck to be an explicit nil
-func (o *RpmRpmPublication) SetGpgcheckNil() {
-	o.Gpgcheck.Set(nil)
-}
-
-// UnsetGpgcheck ensures that no value is present for Gpgcheck, not even an explicit nil
-func (o *RpmRpmPublication) UnsetGpgcheck() {
-	o.Gpgcheck.Unset()
-}
-
-// GetRepoGpgcheck returns the RepoGpgcheck field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RpmRpmPublication) GetRepoGpgcheck() int64 {
-	if o == nil || IsNil(o.RepoGpgcheck.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.RepoGpgcheck.Get()
-}
-
-// GetRepoGpgcheckOk returns a tuple with the RepoGpgcheck field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RpmRpmPublication) GetRepoGpgcheckOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RepoGpgcheck.Get(), o.RepoGpgcheck.IsSet()
-}
-
-// HasRepoGpgcheck returns a boolean if a field has been set.
-func (o *RpmRpmPublication) HasRepoGpgcheck() bool {
-	if o != nil && o.RepoGpgcheck.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRepoGpgcheck gets a reference to the given NullableInt64 and assigns it to the RepoGpgcheck field.
-func (o *RpmRpmPublication) SetRepoGpgcheck(v int64) {
-	o.RepoGpgcheck.Set(&v)
-}
-// SetRepoGpgcheckNil sets the value for RepoGpgcheck to be an explicit nil
-func (o *RpmRpmPublication) SetRepoGpgcheckNil() {
-	o.RepoGpgcheck.Set(nil)
-}
-
-// UnsetRepoGpgcheck ensures that no value is present for RepoGpgcheck, not even an explicit nil
-func (o *RpmRpmPublication) UnsetRepoGpgcheck() {
-	o.RepoGpgcheck.Unset()
 }
 
 // GetRepoConfig returns the RepoConfig field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -428,20 +305,11 @@ func (o RpmRpmPublication) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.Checkpoint) {
+		toSerialize["checkpoint"] = o.Checkpoint
+	}
 	if !IsNil(o.ChecksumType) {
 		toSerialize["checksum_type"] = o.ChecksumType
-	}
-	if !IsNil(o.MetadataChecksumType) {
-		toSerialize["metadata_checksum_type"] = o.MetadataChecksumType
-	}
-	if !IsNil(o.PackageChecksumType) {
-		toSerialize["package_checksum_type"] = o.PackageChecksumType
-	}
-	if o.Gpgcheck.IsSet() {
-		toSerialize["gpgcheck"] = o.Gpgcheck.Get()
-	}
-	if o.RepoGpgcheck.IsSet() {
-		toSerialize["repo_gpgcheck"] = o.RepoGpgcheck.Get()
 	}
 	if o.RepoConfig != nil {
 		toSerialize["repo_config"] = o.RepoConfig
@@ -476,11 +344,8 @@ func (o *RpmRpmPublication) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "checkpoint")
 		delete(additionalProperties, "checksum_type")
-		delete(additionalProperties, "metadata_checksum_type")
-		delete(additionalProperties, "package_checksum_type")
-		delete(additionalProperties, "gpgcheck")
-		delete(additionalProperties, "repo_gpgcheck")
 		delete(additionalProperties, "repo_config")
 		delete(additionalProperties, "compression_type")
 		delete(additionalProperties, "layout")
