@@ -66,6 +66,8 @@ type APIClient struct {
 
 	ApiPypiSimpleAPI *ApiPypiSimpleAPIService
 
+	ApiTestTasksAPI *ApiTestTasksAPIService
+
 	ArtifactsAPI *ArtifactsAPIService
 
 	ContentAPI *ContentAPIService
@@ -341,6 +343,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiPypiAPI = (*ApiPypiAPIService)(&c.common)
 	c.ApiPypiLegacyAPI = (*ApiPypiLegacyAPIService)(&c.common)
 	c.ApiPypiSimpleAPI = (*ApiPypiSimpleAPIService)(&c.common)
+	c.ApiTestTasksAPI = (*ApiTestTasksAPIService)(&c.common)
 	c.ArtifactsAPI = (*ArtifactsAPIService)(&c.common)
 	c.ContentAPI = (*ContentAPIService)(&c.common)
 	c.ContentAdvisoriesAPI = (*ContentAdvisoriesAPIService)(&c.common)
