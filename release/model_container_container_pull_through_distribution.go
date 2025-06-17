@@ -21,17 +21,17 @@ var _ MappedNullable = &ContainerContainerPullThroughDistribution{}
 
 // ContainerContainerPullThroughDistribution A serializer for a specialized pull-through distribution referencing sub-distributions.
 type ContainerContainerPullThroughDistribution struct {
-	// The latest RepositoryVersion for this Repository will be served.
-	Repository NullableString `json:"repository,omitempty"`
+	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
+	BasePath string `json:"base_path"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name string `json:"name"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
-	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
-	BasePath string `json:"base_path"`
+	// The latest RepositoryVersion for this Repository will be served.
+	Repository NullableString `json:"repository,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote string `json:"remote"`
 	// Distributions created after pulling content through cache
@@ -49,12 +49,12 @@ type _ContainerContainerPullThroughDistribution ContainerContainerPullThroughDis
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerContainerPullThroughDistribution(name string, basePath string, remote string) *ContainerContainerPullThroughDistribution {
+func NewContainerContainerPullThroughDistribution(basePath string, name string, remote string) *ContainerContainerPullThroughDistribution {
 	this := ContainerContainerPullThroughDistribution{}
-	this.Name = name
+	this.BasePath = basePath
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.BasePath = basePath
+	this.Name = name
 	this.Remote = remote
 	return &this
 }
@@ -69,46 +69,60 @@ func NewContainerContainerPullThroughDistributionWithDefaults() *ContainerContai
 	return &this
 }
 
-// GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPullThroughDistribution) GetRepository() string {
-	if o == nil || IsNil(o.Repository.Get()) {
+// GetBasePath returns the BasePath field value
+func (o *ContainerContainerPullThroughDistribution) GetBasePath() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Repository.Get()
+
+	return o.BasePath
 }
 
-// GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
+// GetBasePathOk returns a tuple with the BasePath field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPullThroughDistribution) GetRepositoryOk() (*string, bool) {
+func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Repository.Get(), o.Repository.IsSet()
+	return &o.BasePath, true
 }
 
-// HasRepository returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistribution) HasRepository() bool {
-	if o != nil && o.Repository.IsSet() {
+// SetBasePath sets field value
+func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string) {
+	o.BasePath = v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ContainerContainerPullThroughDistribution) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistribution) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistribution) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
 		return true
 	}
 
 	return false
 }
 
-// SetRepository gets a reference to the given NullableString and assigns it to the Repository field.
-func (o *ContainerContainerPullThroughDistribution) SetRepository(v string) {
-	o.Repository.Set(&v)
-}
-// SetRepositoryNil sets the value for Repository to be an explicit nil
-func (o *ContainerContainerPullThroughDistribution) SetRepositoryNil() {
-	o.Repository.Set(nil)
-}
-
-// UnsetRepository ensures that no value is present for Repository, not even an explicit nil
-func (o *ContainerContainerPullThroughDistribution) UnsetRepository() {
-	o.Repository.Unset()
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ContainerContainerPullThroughDistribution) SetHidden(v bool) {
+	o.Hidden = &v
 }
 
 // GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
@@ -199,60 +213,46 @@ func (o *ContainerContainerPullThroughDistribution) SetName(v string) {
 	o.Name = v
 }
 
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ContainerContainerPullThroughDistribution) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
+// GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPullThroughDistribution) GetRepository() string {
+	if o == nil || IsNil(o.Repository.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.Hidden
+	return *o.Repository.Get()
 }
 
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistribution) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerContainerPullThroughDistribution) GetRepositoryOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Hidden, true
+	return o.Repository.Get(), o.Repository.IsSet()
 }
 
-// HasHidden returns a boolean if a field has been set.
-func (o *ContainerContainerPullThroughDistribution) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
+// HasRepository returns a boolean if a field has been set.
+func (o *ContainerContainerPullThroughDistribution) HasRepository() bool {
+	if o != nil && o.Repository.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ContainerContainerPullThroughDistribution) SetHidden(v bool) {
-	o.Hidden = &v
+// SetRepository gets a reference to the given NullableString and assigns it to the Repository field.
+func (o *ContainerContainerPullThroughDistribution) SetRepository(v string) {
+	o.Repository.Set(&v)
+}
+// SetRepositoryNil sets the value for Repository to be an explicit nil
+func (o *ContainerContainerPullThroughDistribution) SetRepositoryNil() {
+	o.Repository.Set(nil)
 }
 
-// GetBasePath returns the BasePath field value
-func (o *ContainerContainerPullThroughDistribution) GetBasePath() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BasePath
-}
-
-// GetBasePathOk returns a tuple with the BasePath field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BasePath, true
-}
-
-// SetBasePath sets field value
-func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string) {
-	o.BasePath = v
+// UnsetRepository ensures that no value is present for Repository, not even an explicit nil
+func (o *ContainerContainerPullThroughDistribution) UnsetRepository() {
+	o.Repository.Unset()
 }
 
 // GetRemote returns the Remote field value
@@ -395,8 +395,9 @@ func (o ContainerContainerPullThroughDistribution) MarshalJSON() ([]byte, error)
 
 func (o ContainerContainerPullThroughDistribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Repository.IsSet() {
-		toSerialize["repository"] = o.Repository.Get()
+	toSerialize["base_path"] = o.BasePath
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
 	}
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
@@ -405,10 +406,9 @@ func (o ContainerContainerPullThroughDistribution) ToMap() (map[string]interface
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
+	if o.Repository.IsSet() {
+		toSerialize["repository"] = o.Repository.Get()
 	}
-	toSerialize["base_path"] = o.BasePath
 	toSerialize["remote"] = o.Remote
 	if !IsNil(o.Distributions) {
 		toSerialize["distributions"] = o.Distributions
@@ -432,8 +432,8 @@ func (o *ContainerContainerPullThroughDistribution) UnmarshalJSON(data []byte) (
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"base_path",
+		"name",
 		"remote",
 	}
 
@@ -464,12 +464,12 @@ func (o *ContainerContainerPullThroughDistribution) UnmarshalJSON(data []byte) (
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "repository")
+		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "hidden")
-		delete(additionalProperties, "base_path")
+		delete(additionalProperties, "repository")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "distributions")
 		delete(additionalProperties, "private")
