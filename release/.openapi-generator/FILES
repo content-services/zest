@@ -40,6 +40,7 @@ api_content_packagelangpacks.go
 api_content_packages.go
 api_content_refs.go
 api_content_repo_metadata_files.go
+api_content_rpmpackages.go
 api_content_signatures.go
 api_content_summaries.go
 api_content_tags.go
@@ -216,6 +217,7 @@ docs/ContentRedirectContentGuard.md
 docs/ContentRedirectContentGuardResponse.md
 docs/ContentRefsAPI.md
 docs/ContentRepoMetadataFilesAPI.md
+docs/ContentRpmpackagesAPI.md
 docs/ContentScan.md
 docs/ContentSettingsResponse.md
 docs/ContentSignaturesAPI.md
@@ -1171,6 +1173,7 @@ test/api_content_packagelangpacks_test.go
 test/api_content_packages_test.go
 test/api_content_refs_test.go
 test/api_content_repo_metadata_files_test.go
+test/api_content_rpmpackages_test.go
 test/api_content_signatures_test.go
 test/api_content_summaries_test.go
 test/api_content_tags_test.go

@@ -124,6 +124,8 @@ type APIClient struct {
 
 	ContentRepoMetadataFilesAPI *ContentRepoMetadataFilesAPIService
 
+	ContentRpmpackagesAPI *ContentRpmpackagesAPIService
+
 	ContentSignaturesAPI *ContentSignaturesAPIService
 
 	ContentSummariesAPI *ContentSummariesAPIService
@@ -372,6 +374,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentPackagesAPI = (*ContentPackagesAPIService)(&c.common)
 	c.ContentRefsAPI = (*ContentRefsAPIService)(&c.common)
 	c.ContentRepoMetadataFilesAPI = (*ContentRepoMetadataFilesAPIService)(&c.common)
+	c.ContentRpmpackagesAPI = (*ContentRpmpackagesAPIService)(&c.common)
 	c.ContentSignaturesAPI = (*ContentSignaturesAPIService)(&c.common)
 	c.ContentSummariesAPI = (*ContentSummariesAPIService)(&c.common)
 	c.ContentTagsAPI = (*ContentTagsAPIService)(&c.common)

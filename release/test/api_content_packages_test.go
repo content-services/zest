@@ -190,46 +190,4 @@ func Test_zest_ContentPackagesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ContentPackagesAPIService ContentRpmPackagesRead", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var rpmPackageHref string
-
-		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesRead(context.Background(), rpmPackageHref).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ContentPackagesAPIService ContentRpmPackagesSetLabel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var rpmPackageHref string
-
-		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesSetLabel(context.Background(), rpmPackageHref).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ContentPackagesAPIService ContentRpmPackagesUnsetLabel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var rpmPackageHref string
-
-		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesUnsetLabel(context.Background(), rpmPackageHref).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 }
