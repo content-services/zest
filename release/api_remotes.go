@@ -198,13 +198,13 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;maven.maven&#x60; - maven.maven* &#x60;npm.npm&#x60; - npm.npm
+// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;python.python&#x60; - python.python* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
 func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;python.python&#x60; - python.python* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;maven.maven&#x60; - maven.maven* &#x60;npm.npm&#x60; - npm.npm
+// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;python.python&#x60; - python.python* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
