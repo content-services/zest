@@ -23,13 +23,13 @@ var _ MappedNullable = &ContainerContainerPushRepository{}
 type ContainerContainerPushRepository struct {
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
-	// A unique name for this repository.
-	Name string `json:"name"`
 	// A reference to an associated signing service.
 	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	// A unique name for this repository.
+	Name string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -93,30 +93,6 @@ func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil() {
 // UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
 func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
-}
-
-// GetName returns the Name field value
-func (o *ContainerContainerPushRepository) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerPushRepository) SetName(v string) {
-	o.Name = v
 }
 
 // GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -235,6 +211,30 @@ func (o *ContainerContainerPushRepository) UnsetDescription() {
 	o.Description.Unset()
 }
 
+// GetName returns the Name field value
+func (o *ContainerContainerPushRepository) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ContainerContainerPushRepository) SetName(v string) {
+	o.Name = v
+}
+
 func (o ContainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -248,7 +248,6 @@ func (o ContainerContainerPushRepository) ToMap() (map[string]interface{}, error
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
-	toSerialize["name"] = o.Name
 	if o.ManifestSigningService.IsSet() {
 		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
@@ -258,6 +257,7 @@ func (o ContainerContainerPushRepository) ToMap() (map[string]interface{}, error
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -302,10 +302,10 @@ func (o *ContainerContainerPushRepository) UnmarshalJSON(data []byte) (err error
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "retain_repo_versions")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "manifest_signing_service")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 
