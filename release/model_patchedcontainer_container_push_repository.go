@@ -26,9 +26,9 @@ type PatchedcontainerContainerPushRepository struct {
 	Name *string `json:"name,omitempty"`
 	// A reference to an associated signing service.
 	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -167,38 +167,6 @@ func (o *PatchedcontainerContainerPushRepository) UnsetManifestSigningService() 
 	o.ManifestSigningService.Unset()
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
-}
-
 // GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedcontainerContainerPushRepository) GetRetainRepoVersions() int64 {
 	if o == nil || IsNil(o.RetainRepoVersions.Get()) {
@@ -241,6 +209,38 @@ func (o *PatchedcontainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
 func (o PatchedcontainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -260,11 +260,11 @@ func (o PatchedcontainerContainerPushRepository) ToMap() (map[string]interface{}
 	if o.ManifestSigningService.IsSet() {
 		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -291,8 +291,8 @@ func (o *PatchedcontainerContainerPushRepository) UnmarshalJSON(data []byte) (er
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "manifest_signing_service")
-		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}
 
