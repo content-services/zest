@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
-**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
-**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
-**PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **NoContentChangeSince** | Pointer to **string** | Timestamp since when the distributed content served by this distribution has not changed. If equals to &#x60;null&#x60;, no guarantee is provided about content changes. | [optional] [readonly] 
+**PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **RegistryPath** | Pointer to **string** | The Registry hostname/name/ to use with docker pull command defined by this distribution. | [optional] [readonly] 
 **Remote** | Pointer to **string** | Remote that can be used to fetch content when using pull-through caching. | [optional] [readonly] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewContainerContainerDistributionResponse
 
-`func NewContainerContainerDistributionResponse(name string, basePath string, ) *ContainerContainerDistributionResponse`
+`func NewContainerContainerDistributionResponse(basePath string, name string, ) *ContainerContainerDistributionResponse`
 
 NewContainerContainerDistributionResponse instantiates a new ContainerContainerDistributionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -40,31 +40,6 @@ will change when the set of required properties is changed
 NewContainerContainerDistributionResponseWithDefaults instantiates a new ContainerContainerDistributionResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetPulpLastUpdated
-
-`func (o *ContainerContainerDistributionResponse) GetPulpLastUpdated() time.Time`
-
-GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
-
-### GetPulpLastUpdatedOk
-
-`func (o *ContainerContainerDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
-
-GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLastUpdated
-
-`func (o *ContainerContainerDistributionResponse) SetPulpLastUpdated(v time.Time)`
-
-SetPulpLastUpdated sets PulpLastUpdated field to given value.
-
-### HasPulpLastUpdated
-
-`func (o *ContainerContainerDistributionResponse) HasPulpLastUpdated() bool`
-
-HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetHidden
 
@@ -91,51 +66,6 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
-### GetContentGuard
-
-`func (o *ContainerContainerDistributionResponse) GetContentGuard() string`
-
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
-
-### GetContentGuardOk
-
-`func (o *ContainerContainerDistributionResponse) GetContentGuardOk() (*string, bool)`
-
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContentGuard
-
-`func (o *ContainerContainerDistributionResponse) SetContentGuard(v string)`
-
-SetContentGuard sets ContentGuard field to given value.
-
-### HasContentGuard
-
-`func (o *ContainerContainerDistributionResponse) HasContentGuard() bool`
-
-HasContentGuard returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *ContainerContainerDistributionResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerDistributionResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerDistributionResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPulpHref
 
 `func (o *ContainerContainerDistributionResponse) GetPulpHref() string`
@@ -160,6 +90,31 @@ SetPulpHref sets PulpHref field to given value.
 `func (o *ContainerContainerDistributionResponse) HasPulpHref() bool`
 
 HasPulpHref returns a boolean if a field has been set.
+
+### GetContentGuard
+
+`func (o *ContainerContainerDistributionResponse) GetContentGuard() string`
+
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+
+### GetContentGuardOk
+
+`func (o *ContainerContainerDistributionResponse) GetContentGuardOk() (*string, bool)`
+
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentGuard
+
+`func (o *ContainerContainerDistributionResponse) SetContentGuard(v string)`
+
+SetContentGuard sets ContentGuard field to given value.
+
+### HasContentGuard
+
+`func (o *ContainerContainerDistributionResponse) HasContentGuard() bool`
+
+HasContentGuard returns a boolean if a field has been set.
 
 ### GetBasePath
 
@@ -241,30 +196,30 @@ HasRepository returns a boolean if a field has been set.
 `func (o *ContainerContainerDistributionResponse) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
-### GetPulpCreated
+### GetPulpLastUpdated
 
-`func (o *ContainerContainerDistributionResponse) GetPulpCreated() time.Time`
+`func (o *ContainerContainerDistributionResponse) GetPulpLastUpdated() time.Time`
 
-GetPulpCreated returns the PulpCreated field if non-nil, zero value otherwise.
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
 
-### GetPulpCreatedOk
+### GetPulpLastUpdatedOk
 
-`func (o *ContainerContainerDistributionResponse) GetPulpCreatedOk() (*time.Time, bool)`
+`func (o *ContainerContainerDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
 
-GetPulpCreatedOk returns a tuple with the PulpCreated field if it's non-nil, zero value otherwise
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPulpCreated
+### SetPulpLastUpdated
 
-`func (o *ContainerContainerDistributionResponse) SetPulpCreated(v time.Time)`
+`func (o *ContainerContainerDistributionResponse) SetPulpLastUpdated(v time.Time)`
 
-SetPulpCreated sets PulpCreated field to given value.
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
 
-### HasPulpCreated
+### HasPulpLastUpdated
 
-`func (o *ContainerContainerDistributionResponse) HasPulpCreated() bool`
+`func (o *ContainerContainerDistributionResponse) HasPulpLastUpdated() bool`
 
-HasPulpCreated returns a boolean if a field has been set.
+HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetNoContentChangeSince
 
@@ -291,6 +246,31 @@ SetNoContentChangeSince sets NoContentChangeSince field to given value.
 
 HasNoContentChangeSince returns a boolean if a field has been set.
 
+### GetPulpCreated
+
+`func (o *ContainerContainerDistributionResponse) GetPulpCreated() time.Time`
+
+GetPulpCreated returns the PulpCreated field if non-nil, zero value otherwise.
+
+### GetPulpCreatedOk
+
+`func (o *ContainerContainerDistributionResponse) GetPulpCreatedOk() (*time.Time, bool)`
+
+GetPulpCreatedOk returns a tuple with the PulpCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpCreated
+
+`func (o *ContainerContainerDistributionResponse) SetPulpCreated(v time.Time)`
+
+SetPulpCreated sets PulpCreated field to given value.
+
+### HasPulpCreated
+
+`func (o *ContainerContainerDistributionResponse) HasPulpCreated() bool`
+
+HasPulpCreated returns a boolean if a field has been set.
+
 ### GetPulpLabels
 
 `func (o *ContainerContainerDistributionResponse) GetPulpLabels() map[string]string`
@@ -315,6 +295,26 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *ContainerContainerDistributionResponse) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ContainerContainerDistributionResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerDistributionResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerDistributionResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetRepositoryVersion
 

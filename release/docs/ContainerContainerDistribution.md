@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
-**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewContainerContainerDistribution
 
-`func NewContainerContainerDistribution(name string, basePath string, ) *ContainerContainerDistribution`
+`func NewContainerContainerDistribution(basePath string, name string, ) *ContainerContainerDistribution`
 
 NewContainerContainerDistribution instantiates a new ContainerContainerDistribution object
 This constructor will assign default values to properties that have it defined,
@@ -82,26 +82,6 @@ SetContentGuard sets ContentGuard field to given value.
 `func (o *ContainerContainerDistribution) HasContentGuard() bool`
 
 HasContentGuard returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *ContainerContainerDistribution) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerDistribution) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerDistribution) SetName(v string)`
-
-SetName sets Name field to given value.
-
 
 ### GetBasePath
 
@@ -182,6 +162,26 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *ContainerContainerDistribution) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ContainerContainerDistribution) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerDistribution) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerDistribution) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetRepositoryVersion
 

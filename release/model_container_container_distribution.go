@@ -25,13 +25,13 @@ type ContainerContainerDistribution struct {
 	Hidden *bool `json:"hidden,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name string `json:"name"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name string `json:"name"`
 	// RepositoryVersion to be served
 	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access.
@@ -47,12 +47,12 @@ type _ContainerContainerDistribution ContainerContainerDistribution
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerContainerDistribution(name string, basePath string) *ContainerContainerDistribution {
+func NewContainerContainerDistribution(basePath string, name string) *ContainerContainerDistribution {
 	this := ContainerContainerDistribution{}
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.Name = name
 	this.BasePath = basePath
+	this.Name = name
 	return &this
 }
 
@@ -128,30 +128,6 @@ func (o *ContainerContainerDistribution) HasContentGuard() bool {
 // SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
 func (o *ContainerContainerDistribution) SetContentGuard(v string) {
 	o.ContentGuard = &v
-}
-
-// GetName returns the Name field value
-func (o *ContainerContainerDistribution) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerDistribution) SetName(v string) {
-	o.Name = v
 }
 
 // GetBasePath returns the BasePath field value
@@ -250,6 +226,30 @@ func (o *ContainerContainerDistribution) HasPulpLabels() bool {
 // SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
 func (o *ContainerContainerDistribution) SetPulpLabels(v map[string]string) {
 	o.PulpLabels = &v
+}
+
+// GetName returns the Name field value
+func (o *ContainerContainerDistribution) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistribution) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ContainerContainerDistribution) SetName(v string) {
+	o.Name = v
 }
 
 // GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -384,7 +384,6 @@ func (o ContainerContainerDistribution) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
 	}
-	toSerialize["name"] = o.Name
 	toSerialize["base_path"] = o.BasePath
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
@@ -392,6 +391,7 @@ func (o ContainerContainerDistribution) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	toSerialize["name"] = o.Name
 	if o.RepositoryVersion.IsSet() {
 		toSerialize["repository_version"] = o.RepositoryVersion.Get()
 	}
@@ -414,8 +414,8 @@ func (o *ContainerContainerDistribution) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"base_path",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -447,10 +447,10 @@ func (o *ContainerContainerDistribution) UnmarshalJSON(data []byte) (err error) 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "private")
 		delete(additionalProperties, "description")
