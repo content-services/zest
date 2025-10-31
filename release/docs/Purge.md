@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FinishedBefore** | Pointer to **time.Time** | Purge tasks completed earlier than this timestamp. Format &#39;%Y-%m-%d[T%H:%M:%S]&#39; | [optional] 
-**States** | Pointer to [**[]StatesEnum**](StatesEnum.md) | List of task-states to be purged. Only &#39;final&#39; states are allowed. | [optional] [default to ["completed"]]
+**States** | Pointer to [**[]StatesEnum**](StatesEnum.md) | List of task-states to be purged. Only &#39;final&#39; states are allowed. | [optional] [default to {"completed"}]
 
 ## Methods
 

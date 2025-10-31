@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | Pointer to **[]string** |  | [optional] [default to []]
-**Groups** | Pointer to **[]string** |  | [optional] [default to []]
+**Users** | Pointer to **[]string** |  | [optional] [default to {}]
+**Groups** | Pointer to **[]string** |  | [optional] [default to {}]
 **Role** | **string** |  | 
 
 ## Methods

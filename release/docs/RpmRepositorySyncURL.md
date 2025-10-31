@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Remote** | Pointer to **string** | A remote to sync from. This will override a remote set on repository. | [optional] 
 **Mirror** | Pointer to **NullableBool** | DEPRECATED: If &#x60;&#x60;True&#x60;&#x60;, &#x60;&#x60;sync_policy&#x60;&#x60; will default to &#39;mirror_complete&#39; instead of &#39;additive&#39;. | [optional] 
 **SyncPolicy** | Pointer to [**NullableSyncPolicyEnum**](SyncPolicyEnum.md) | Options: &#39;additive&#39;, &#39;mirror_complete&#39;, &#39;mirror_content_only&#39;. Default: &#39;additive&#39;. Modifies how the sync is performed. &#39;mirror_complete&#39; will clone the original metadata and create an automatic publication from it, but comes with some limitations and does not work for certain repositories. &#39;mirror_content_only&#39; will change the repository contents to match the remote but the metadata will be regenerated and will not be bit-for-bit identical. &#39;additive&#39; will retain the existing contents of the repository and add the contents of the repository being synced.* &#x60;additive&#x60; - additive* &#x60;mirror_complete&#x60; - mirror_complete* &#x60;mirror_content_only&#x60; - mirror_content_only | [optional] 
-**SkipTypes** | Pointer to [**[]SkipTypesEnum**](SkipTypesEnum.md) | List of content types to skip during sync. | [optional] [default to []]
+**SkipTypes** | Pointer to [**[]SkipTypesEnum**](SkipTypesEnum.md) | List of content types to skip during sync. | [optional] [default to {}]
 **Optimize** | Pointer to **bool** | Whether or not to optimize sync. | [optional] [default to true]
 
 ## Methods
