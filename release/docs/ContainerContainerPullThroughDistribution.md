@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
-**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
+**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
@@ -54,6 +54,26 @@ and a boolean to check if the value has been set.
 SetBasePath sets BasePath field to given value.
 
 
+### GetName
+
+`func (o *ContainerContainerPullThroughDistribution) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerPullThroughDistribution) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetHidden
 
 `func (o *ContainerContainerPullThroughDistribution) GetHidden() bool`
@@ -78,26 +98,6 @@ SetHidden sets Hidden field to given value.
 `func (o *ContainerContainerPullThroughDistribution) HasHidden() bool`
 
 HasHidden returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *ContainerContainerPullThroughDistribution) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerPullThroughDistribution) SetName(v string)`
-
-SetName sets Name field to given value.
-
 
 ### GetContentGuard
 

@@ -23,10 +23,10 @@ var _ MappedNullable = &ContainerContainerPullThroughDistribution{}
 type ContainerContainerPullThroughDistribution struct {
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name string `json:"name"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
@@ -52,9 +52,9 @@ type _ContainerContainerPullThroughDistribution ContainerContainerPullThroughDis
 func NewContainerContainerPullThroughDistribution(basePath string, name string, remote string) *ContainerContainerPullThroughDistribution {
 	this := ContainerContainerPullThroughDistribution{}
 	this.BasePath = basePath
+	this.Name = name
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.Name = name
 	this.Remote = remote
 	return &this
 }
@@ -93,6 +93,30 @@ func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string) {
 	o.BasePath = v
 }
 
+// GetName returns the Name field value
+func (o *ContainerContainerPullThroughDistribution) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ContainerContainerPullThroughDistribution) SetName(v string) {
+	o.Name = v
+}
+
 // GetHidden returns the Hidden field value if set, zero value otherwise.
 func (o *ContainerContainerPullThroughDistribution) GetHidden() bool {
 	if o == nil || IsNil(o.Hidden) {
@@ -123,30 +147,6 @@ func (o *ContainerContainerPullThroughDistribution) HasHidden() bool {
 // SetHidden gets a reference to the given bool and assigns it to the Hidden field.
 func (o *ContainerContainerPullThroughDistribution) SetHidden(v bool) {
 	o.Hidden = &v
-}
-
-// GetName returns the Name field value
-func (o *ContainerContainerPullThroughDistribution) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerPullThroughDistribution) SetName(v string) {
-	o.Name = v
 }
 
 // GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
@@ -396,10 +396,10 @@ func (o ContainerContainerPullThroughDistribution) MarshalJSON() ([]byte, error)
 func (o ContainerContainerPullThroughDistribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["base_path"] = o.BasePath
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
-	toSerialize["name"] = o.Name
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
 	}
@@ -465,8 +465,8 @@ func (o *ContainerContainerPullThroughDistribution) UnmarshalJSON(data []byte) (
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "repository")

@@ -22,10 +22,10 @@ var _ MappedNullable = &PatchedcontainerContainerDistribution{}
 type PatchedcontainerContainerDistribution struct {
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath *string `json:"base_path,omitempty"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name *string `json:"name,omitempty"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
@@ -95,38 +95,6 @@ func (o *PatchedcontainerContainerDistribution) SetBasePath(v string) {
 	o.BasePath = &v
 }
 
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerDistribution) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
-		return ret
-	}
-	return *o.Hidden
-}
-
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
-		return nil, false
-	}
-	return o.Hidden, true
-}
-
-// HasHidden returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerDistribution) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
-		return true
-	}
-
-	return false
-}
-
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *PatchedcontainerContainerDistribution) SetHidden(v bool) {
-	o.Hidden = &v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchedcontainerContainerDistribution) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -157,6 +125,38 @@ func (o *PatchedcontainerContainerDistribution) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PatchedcontainerContainerDistribution) SetName(v string) {
 	o.Name = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerDistribution) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerDistribution) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *PatchedcontainerContainerDistribution) SetHidden(v bool) {
+	o.Hidden = &v
 }
 
 // GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
@@ -394,11 +394,11 @@ func (o PatchedcontainerContainerDistribution) ToMap() (map[string]interface{}, 
 	if !IsNil(o.BasePath) {
 		toSerialize["base_path"] = o.BasePath
 	}
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
-	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
 	}
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
@@ -441,8 +441,8 @@ func (o *PatchedcontainerContainerDistribution) UnmarshalJSON(data []byte) (err 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "repository")
