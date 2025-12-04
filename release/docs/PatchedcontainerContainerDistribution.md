@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
-**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
-**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
+**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
+**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
 **BasePath** | Pointer to **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | [optional] 
 **RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access. | [optional] 
@@ -33,55 +33,30 @@ NewPatchedcontainerContainerDistributionWithDefaults instantiates a new Patchedc
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHidden
+### GetContentGuard
 
-`func (o *PatchedcontainerContainerDistribution) GetHidden() bool`
+`func (o *PatchedcontainerContainerDistribution) GetContentGuard() string`
 
-GetHidden returns the Hidden field if non-nil, zero value otherwise.
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
 
-### GetHiddenOk
+### GetContentGuardOk
 
-`func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool)`
+`func (o *PatchedcontainerContainerDistribution) GetContentGuardOk() (*string, bool)`
 
-GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHidden
+### SetContentGuard
 
-`func (o *PatchedcontainerContainerDistribution) SetHidden(v bool)`
+`func (o *PatchedcontainerContainerDistribution) SetContentGuard(v string)`
 
-SetHidden sets Hidden field to given value.
+SetContentGuard sets ContentGuard field to given value.
 
-### HasHidden
+### HasContentGuard
 
-`func (o *PatchedcontainerContainerDistribution) HasHidden() bool`
+`func (o *PatchedcontainerContainerDistribution) HasContentGuard() bool`
 
-HasHidden returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *PatchedcontainerContainerDistribution) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *PatchedcontainerContainerDistribution) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *PatchedcontainerContainerDistribution) HasName() bool`
-
-HasName returns a boolean if a field has been set.
+HasContentGuard returns a boolean if a field has been set.
 
 ### GetRepository
 
@@ -118,6 +93,31 @@ HasRepository returns a boolean if a field has been set.
 `func (o *PatchedcontainerContainerDistribution) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
+### GetHidden
+
+`func (o *PatchedcontainerContainerDistribution) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *PatchedcontainerContainerDistribution) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *PatchedcontainerContainerDistribution) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
+
 ### GetPulpLabels
 
 `func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string`
@@ -143,30 +143,30 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetContentGuard
+### GetName
 
-`func (o *PatchedcontainerContainerDistribution) GetContentGuard() string`
+`func (o *PatchedcontainerContainerDistribution) GetName() string`
 
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetContentGuardOk
+### GetNameOk
 
-`func (o *PatchedcontainerContainerDistribution) GetContentGuardOk() (*string, bool)`
+`func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool)`
 
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContentGuard
+### SetName
 
-`func (o *PatchedcontainerContainerDistribution) SetContentGuard(v string)`
+`func (o *PatchedcontainerContainerDistribution) SetName(v string)`
 
-SetContentGuard sets ContentGuard field to given value.
+SetName sets Name field to given value.
 
-### HasContentGuard
+### HasName
 
-`func (o *PatchedcontainerContainerDistribution) HasContentGuard() bool`
+`func (o *PatchedcontainerContainerDistribution) HasName() bool`
 
-HasContentGuard returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetBasePath
 
