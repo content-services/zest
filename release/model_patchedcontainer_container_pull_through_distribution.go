@@ -22,15 +22,15 @@ var _ MappedNullable = &PatchedcontainerContainerPullThroughDistribution{}
 type PatchedcontainerContainerPullThroughDistribution struct {
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
+	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
+	BasePath *string `json:"base_path,omitempty"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name *string `json:"name,omitempty"`
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name *string `json:"name,omitempty"`
-	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
-	BasePath *string `json:"base_path,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote *string `json:"remote,omitempty"`
 	// Distributions created after pulling content through cache
@@ -97,6 +97,38 @@ func (o *PatchedcontainerContainerPullThroughDistribution) SetContentGuard(v str
 	o.ContentGuard = &v
 }
 
+// GetBasePath returns the BasePath field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPullThroughDistribution) GetBasePath() string {
+	if o == nil || IsNil(o.BasePath) {
+		var ret string
+		return ret
+	}
+	return *o.BasePath
+}
+
+// GetBasePathOk returns a tuple with the BasePath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
+	if o == nil || IsNil(o.BasePath) {
+		return nil, false
+	}
+	return o.BasePath, true
+}
+
+// HasBasePath returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPullThroughDistribution) HasBasePath() bool {
+	if o != nil && !IsNil(o.BasePath) {
+		return true
+	}
+
+	return false
+}
+
+// SetBasePath gets a reference to the given string and assigns it to the BasePath field.
+func (o *PatchedcontainerContainerPullThroughDistribution) SetBasePath(v string) {
+	o.BasePath = &v
+}
+
 // GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedcontainerContainerPullThroughDistribution) GetRepository() string {
 	if o == nil || IsNil(o.Repository.Get()) {
@@ -137,6 +169,38 @@ func (o *PatchedcontainerContainerPullThroughDistribution) SetRepositoryNil() {
 // UnsetRepository ensures that no value is present for Repository, not even an explicit nil
 func (o *PatchedcontainerContainerPullThroughDistribution) UnsetRepository() {
 	o.Repository.Unset()
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPullThroughDistribution) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPullThroughDistribution) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PatchedcontainerContainerPullThroughDistribution) SetName(v string) {
+	o.Name = &v
 }
 
 // GetHidden returns the Hidden field value if set, zero value otherwise.
@@ -201,70 +265,6 @@ func (o *PatchedcontainerContainerPullThroughDistribution) HasPulpLabels() bool 
 // SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
 func (o *PatchedcontainerContainerPullThroughDistribution) SetPulpLabels(v map[string]string) {
 	o.PulpLabels = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPullThroughDistribution) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPullThroughDistribution) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPullThroughDistribution) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedcontainerContainerPullThroughDistribution) SetName(v string) {
-	o.Name = &v
-}
-
-// GetBasePath returns the BasePath field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPullThroughDistribution) GetBasePath() string {
-	if o == nil || IsNil(o.BasePath) {
-		var ret string
-		return ret
-	}
-	return *o.BasePath
-}
-
-// GetBasePathOk returns a tuple with the BasePath field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool) {
-	if o == nil || IsNil(o.BasePath) {
-		return nil, false
-	}
-	return o.BasePath, true
-}
-
-// HasBasePath returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPullThroughDistribution) HasBasePath() bool {
-	if o != nil && !IsNil(o.BasePath) {
-		return true
-	}
-
-	return false
-}
-
-// SetBasePath gets a reference to the given string and assigns it to the BasePath field.
-func (o *PatchedcontainerContainerPullThroughDistribution) SetBasePath(v string) {
-	o.BasePath = &v
 }
 
 // GetRemote returns the Remote field value if set, zero value otherwise.
@@ -418,20 +418,20 @@ func (o PatchedcontainerContainerPullThroughDistribution) ToMap() (map[string]in
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
 	}
+	if !IsNil(o.BasePath) {
+		toSerialize["base_path"] = o.BasePath
+	}
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.BasePath) {
-		toSerialize["base_path"] = o.BasePath
 	}
 	if !IsNil(o.Remote) {
 		toSerialize["remote"] = o.Remote
@@ -468,11 +468,11 @@ func (o *PatchedcontainerContainerPullThroughDistribution) UnmarshalJSON(data []
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "distributions")
 		delete(additionalProperties, "private")

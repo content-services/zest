@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
+**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
+**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
-**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **Remote** | **string** | Remote that can be used to fetch content when using pull-through caching. | 
 **Distributions** | Pointer to **[]string** | Distributions created after pulling content through cache | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Related distributions inherit this value. Defaults to unrestricted pull access. | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewContainerContainerPullThroughDistribution
 
-`func NewContainerContainerPullThroughDistribution(name string, basePath string, remote string, ) *ContainerContainerPullThroughDistribution`
+`func NewContainerContainerPullThroughDistribution(basePath string, name string, remote string, ) *ContainerContainerPullThroughDistribution`
 
 NewContainerContainerPullThroughDistribution instantiates a new ContainerContainerPullThroughDistribution object
 This constructor will assign default values to properties that have it defined,
@@ -59,6 +59,26 @@ SetContentGuard sets ContentGuard field to given value.
 
 HasContentGuard returns a boolean if a field has been set.
 
+### GetBasePath
+
+`func (o *ContainerContainerPullThroughDistribution) GetBasePath() string`
+
+GetBasePath returns the BasePath field if non-nil, zero value otherwise.
+
+### GetBasePathOk
+
+`func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool)`
+
+GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasePath
+
+`func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string)`
+
+SetBasePath sets BasePath field to given value.
+
+
 ### GetRepository
 
 `func (o *ContainerContainerPullThroughDistribution) GetRepository() string`
@@ -94,6 +114,26 @@ HasRepository returns a boolean if a field has been set.
 `func (o *ContainerContainerPullThroughDistribution) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
+### GetName
+
+`func (o *ContainerContainerPullThroughDistribution) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerPullThroughDistribution) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetHidden
 
 `func (o *ContainerContainerPullThroughDistribution) GetHidden() bool`
@@ -143,46 +183,6 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *ContainerContainerPullThroughDistribution) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *ContainerContainerPullThroughDistribution) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerPullThroughDistribution) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerPullThroughDistribution) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetBasePath
-
-`func (o *ContainerContainerPullThroughDistribution) GetBasePath() string`
-
-GetBasePath returns the BasePath field if non-nil, zero value otherwise.
-
-### GetBasePathOk
-
-`func (o *ContainerContainerPullThroughDistribution) GetBasePathOk() (*string, bool)`
-
-GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBasePath
-
-`func (o *ContainerContainerPullThroughDistribution) SetBasePath(v string)`
-
-SetBasePath sets BasePath field to given value.
-
 
 ### GetRemote
 
