@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
-**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **BasePath** | Pointer to **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | [optional] 
+**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
+**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
@@ -32,6 +32,56 @@ will change when the set of required properties is changed
 NewPatchedcontainerContainerDistributionWithDefaults instantiates a new PatchedcontainerContainerDistribution object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetHidden
+
+`func (o *PatchedcontainerContainerDistribution) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *PatchedcontainerContainerDistribution) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *PatchedcontainerContainerDistribution) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
+
+### GetBasePath
+
+`func (o *PatchedcontainerContainerDistribution) GetBasePath() string`
+
+GetBasePath returns the BasePath field if non-nil, zero value otherwise.
+
+### GetBasePathOk
+
+`func (o *PatchedcontainerContainerDistribution) GetBasePathOk() (*string, bool)`
+
+GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasePath
+
+`func (o *PatchedcontainerContainerDistribution) SetBasePath(v string)`
+
+SetBasePath sets BasePath field to given value.
+
+### HasBasePath
+
+`func (o *PatchedcontainerContainerDistribution) HasBasePath() bool`
+
+HasBasePath returns a boolean if a field has been set.
 
 ### GetContentGuard
 
@@ -58,31 +108,6 @@ SetContentGuard sets ContentGuard field to given value.
 
 HasContentGuard returns a boolean if a field has been set.
 
-### GetPulpLabels
-
-`func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string`
-
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
-
-### GetPulpLabelsOk
-
-`func (o *PatchedcontainerContainerDistribution) GetPulpLabelsOk() (*map[string]string, bool)`
-
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLabels
-
-`func (o *PatchedcontainerContainerDistribution) SetPulpLabels(v map[string]string)`
-
-SetPulpLabels sets PulpLabels field to given value.
-
-### HasPulpLabels
-
-`func (o *PatchedcontainerContainerDistribution) HasPulpLabels() bool`
-
-HasPulpLabels returns a boolean if a field has been set.
-
 ### GetName
 
 `func (o *PatchedcontainerContainerDistribution) GetName() string`
@@ -108,30 +133,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetHidden
+### GetPulpLabels
 
-`func (o *PatchedcontainerContainerDistribution) GetHidden() bool`
+`func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string`
 
-GetHidden returns the Hidden field if non-nil, zero value otherwise.
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
-### GetHiddenOk
+### GetPulpLabelsOk
 
-`func (o *PatchedcontainerContainerDistribution) GetHiddenOk() (*bool, bool)`
+`func (o *PatchedcontainerContainerDistribution) GetPulpLabelsOk() (*map[string]string, bool)`
 
-GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHidden
+### SetPulpLabels
 
-`func (o *PatchedcontainerContainerDistribution) SetHidden(v bool)`
+`func (o *PatchedcontainerContainerDistribution) SetPulpLabels(v map[string]string)`
 
-SetHidden sets Hidden field to given value.
+SetPulpLabels sets PulpLabels field to given value.
 
-### HasHidden
+### HasPulpLabels
 
-`func (o *PatchedcontainerContainerDistribution) HasHidden() bool`
+`func (o *PatchedcontainerContainerDistribution) HasPulpLabels() bool`
 
-HasHidden returns a boolean if a field has been set.
+HasPulpLabels returns a boolean if a field has been set.
 
 ### GetRepository
 
@@ -168,31 +193,6 @@ HasRepository returns a boolean if a field has been set.
 `func (o *PatchedcontainerContainerDistribution) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
-### GetBasePath
-
-`func (o *PatchedcontainerContainerDistribution) GetBasePath() string`
-
-GetBasePath returns the BasePath field if non-nil, zero value otherwise.
-
-### GetBasePathOk
-
-`func (o *PatchedcontainerContainerDistribution) GetBasePathOk() (*string, bool)`
-
-GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBasePath
-
-`func (o *PatchedcontainerContainerDistribution) SetBasePath(v string)`
-
-SetBasePath sets BasePath field to given value.
-
-### HasBasePath
-
-`func (o *PatchedcontainerContainerDistribution) HasBasePath() bool`
-
-HasBasePath returns a boolean if a field has been set.
-
 ### GetRepositoryVersion
 
 `func (o *PatchedcontainerContainerDistribution) GetRepositoryVersion() string`
