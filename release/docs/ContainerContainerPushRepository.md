@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
-**Name** | **string** | A unique name for this repository. | 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**Name** | **string** | A unique name for this repository. | 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 
@@ -64,26 +64,6 @@ HasManifestSigningService returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
 
 UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
-### GetName
-
-`func (o *ContainerContainerPushRepository) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerPushRepository) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetDescription
 
 `func (o *ContainerContainerPushRepository) GetDescription() string`
@@ -119,6 +99,26 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetName
+
+`func (o *ContainerContainerPushRepository) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerPushRepository) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetRetainRepoVersions
 
 `func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64`
