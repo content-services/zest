@@ -36,7 +36,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -108,12 +108,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("BasePath_example", "Name_example") // ContainerContainerDistribution | 
+	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("Name_example", "BasePath_example") // ContainerContainerDistribution | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -180,7 +180,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -250,7 +250,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -376,7 +376,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -450,7 +450,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -524,7 +524,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -596,7 +596,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -670,7 +670,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -742,7 +742,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -814,7 +814,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -886,12 +886,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
 	containerContainerDistributionHref := "containerContainerDistributionHref_example" // string | 
-	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("BasePath_example", "Name_example") // ContainerContainerDistribution | 
+	containerContainerDistribution := *openapiclient.NewContainerContainerDistribution("Name_example", "BasePath_example") // ContainerContainerDistribution | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

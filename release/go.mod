@@ -1,4 +1,4 @@
-module github.com/content-services/zest/release/v2025
+module github.com/content-services/zest/release/v2026
 
 go 1.23
 

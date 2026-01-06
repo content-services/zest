@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -113,7 +113,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -215,7 +215,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -289,7 +289,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {
@@ -361,7 +361,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func main() {

@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/content-services/zest/release/v2025"
+	openapiclient "github.com/content-services/zest/release/v2026"
 )
 
 func Test_zest_GroupsUsersAPIService(t *testing.T) {
