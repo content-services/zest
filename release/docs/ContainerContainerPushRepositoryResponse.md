@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
-**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
-**RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
-**PulpHref** | Pointer to **string** |  | [optional] [readonly] 
-**Description** | Pointer to **NullableString** | An optional description. | [optional] 
-**Name** | **string** | A unique name for this repository. | 
-**LatestVersionHref** | Pointer to **string** |  | [optional] [readonly] 
 **VersionsHref** | Pointer to **string** |  | [optional] [readonly] 
+**PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**LatestVersionHref** | Pointer to **string** |  | [optional] [readonly] 
+**PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
+**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
+**Name** | **string** | A unique name for this repository. | 
+**Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
 
 ## Methods
 
@@ -34,31 +34,6 @@ will change when the set of required properties is changed
 NewContainerContainerPushRepositoryResponseWithDefaults instantiates a new ContainerContainerPushRepositoryResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetPulpCreated
-
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpCreated() time.Time`
-
-GetPulpCreated returns the PulpCreated field if non-nil, zero value otherwise.
-
-### GetPulpCreatedOk
-
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpCreatedOk() (*time.Time, bool)`
-
-GetPulpCreatedOk returns a tuple with the PulpCreated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpCreated
-
-`func (o *ContainerContainerPushRepositoryResponse) SetPulpCreated(v time.Time)`
-
-SetPulpCreated sets PulpCreated field to given value.
-
-### HasPulpCreated
-
-`func (o *ContainerContainerPushRepositoryResponse) HasPulpCreated() bool`
-
-HasPulpCreated returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
@@ -85,30 +60,105 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetPrn
+### GetVersionsHref
 
-`func (o *ContainerContainerPushRepositoryResponse) GetPrn() string`
+`func (o *ContainerContainerPushRepositoryResponse) GetVersionsHref() string`
 
-GetPrn returns the Prn field if non-nil, zero value otherwise.
+GetVersionsHref returns the VersionsHref field if non-nil, zero value otherwise.
 
-### GetPrnOk
+### GetVersionsHrefOk
 
-`func (o *ContainerContainerPushRepositoryResponse) GetPrnOk() (*string, bool)`
+`func (o *ContainerContainerPushRepositoryResponse) GetVersionsHrefOk() (*string, bool)`
 
-GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+GetVersionsHrefOk returns a tuple with the VersionsHref field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPrn
+### SetVersionsHref
 
-`func (o *ContainerContainerPushRepositoryResponse) SetPrn(v string)`
+`func (o *ContainerContainerPushRepositoryResponse) SetVersionsHref(v string)`
 
-SetPrn sets Prn field to given value.
+SetVersionsHref sets VersionsHref field to given value.
 
-### HasPrn
+### HasVersionsHref
 
-`func (o *ContainerContainerPushRepositoryResponse) HasPrn() bool`
+`func (o *ContainerContainerPushRepositoryResponse) HasVersionsHref() bool`
 
-HasPrn returns a boolean if a field has been set.
+HasVersionsHref returns a boolean if a field has been set.
+
+### GetPulpHref
+
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpHref() string`
+
+GetPulpHref returns the PulpHref field if non-nil, zero value otherwise.
+
+### GetPulpHrefOk
+
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpHrefOk() (*string, bool)`
+
+GetPulpHrefOk returns a tuple with the PulpHref field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpHref
+
+`func (o *ContainerContainerPushRepositoryResponse) SetPulpHref(v string)`
+
+SetPulpHref sets PulpHref field to given value.
+
+### HasPulpHref
+
+`func (o *ContainerContainerPushRepositoryResponse) HasPulpHref() bool`
+
+HasPulpHref returns a boolean if a field has been set.
+
+### GetLatestVersionHref
+
+`func (o *ContainerContainerPushRepositoryResponse) GetLatestVersionHref() string`
+
+GetLatestVersionHref returns the LatestVersionHref field if non-nil, zero value otherwise.
+
+### GetLatestVersionHrefOk
+
+`func (o *ContainerContainerPushRepositoryResponse) GetLatestVersionHrefOk() (*string, bool)`
+
+GetLatestVersionHrefOk returns a tuple with the LatestVersionHref field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestVersionHref
+
+`func (o *ContainerContainerPushRepositoryResponse) SetLatestVersionHref(v string)`
+
+SetLatestVersionHref sets LatestVersionHref field to given value.
+
+### HasLatestVersionHref
+
+`func (o *ContainerContainerPushRepositoryResponse) HasLatestVersionHref() bool`
+
+HasLatestVersionHref returns a boolean if a field has been set.
+
+### GetPulpCreated
+
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpCreated() time.Time`
+
+GetPulpCreated returns the PulpCreated field if non-nil, zero value otherwise.
+
+### GetPulpCreatedOk
+
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpCreatedOk() (*time.Time, bool)`
+
+GetPulpCreatedOk returns a tuple with the PulpCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpCreated
+
+`func (o *ContainerContainerPushRepositoryResponse) SetPulpCreated(v time.Time)`
+
+SetPulpCreated sets PulpCreated field to given value.
+
+### HasPulpCreated
+
+`func (o *ContainerContainerPushRepositoryResponse) HasPulpCreated() bool`
+
+HasPulpCreated returns a boolean if a field has been set.
 
 ### GetManifestSigningService
 
@@ -145,65 +195,75 @@ HasManifestSigningService returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepositoryResponse) UnsetManifestSigningService()`
 
 UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
-### GetRetainRepoVersions
+### GetPulpLastUpdated
 
-`func (o *ContainerContainerPushRepositoryResponse) GetRetainRepoVersions() int64`
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpLastUpdated() time.Time`
 
-GetRetainRepoVersions returns the RetainRepoVersions field if non-nil, zero value otherwise.
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
 
-### GetRetainRepoVersionsOk
+### GetPulpLastUpdatedOk
 
-`func (o *ContainerContainerPushRepositoryResponse) GetRetainRepoVersionsOk() (*int64, bool)`
+`func (o *ContainerContainerPushRepositoryResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
 
-GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field if it's non-nil, zero value otherwise
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRetainRepoVersions
+### SetPulpLastUpdated
 
-`func (o *ContainerContainerPushRepositoryResponse) SetRetainRepoVersions(v int64)`
+`func (o *ContainerContainerPushRepositoryResponse) SetPulpLastUpdated(v time.Time)`
 
-SetRetainRepoVersions sets RetainRepoVersions field to given value.
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
 
-### HasRetainRepoVersions
+### HasPulpLastUpdated
 
-`func (o *ContainerContainerPushRepositoryResponse) HasRetainRepoVersions() bool`
+`func (o *ContainerContainerPushRepositoryResponse) HasPulpLastUpdated() bool`
 
-HasRetainRepoVersions returns a boolean if a field has been set.
+HasPulpLastUpdated returns a boolean if a field has been set.
 
-### SetRetainRepoVersionsNil
+### GetPrn
 
-`func (o *ContainerContainerPushRepositoryResponse) SetRetainRepoVersionsNil(b bool)`
+`func (o *ContainerContainerPushRepositoryResponse) GetPrn() string`
 
- SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
+GetPrn returns the Prn field if non-nil, zero value otherwise.
 
-### UnsetRetainRepoVersions
-`func (o *ContainerContainerPushRepositoryResponse) UnsetRetainRepoVersions()`
+### GetPrnOk
 
-UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
-### GetPulpHref
+`func (o *ContainerContainerPushRepositoryResponse) GetPrnOk() (*string, bool)`
 
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpHref() string`
-
-GetPulpHref returns the PulpHref field if non-nil, zero value otherwise.
-
-### GetPulpHrefOk
-
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpHrefOk() (*string, bool)`
-
-GetPulpHrefOk returns a tuple with the PulpHref field if it's non-nil, zero value otherwise
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPulpHref
+### SetPrn
 
-`func (o *ContainerContainerPushRepositoryResponse) SetPulpHref(v string)`
+`func (o *ContainerContainerPushRepositoryResponse) SetPrn(v string)`
 
-SetPulpHref sets PulpHref field to given value.
+SetPrn sets Prn field to given value.
 
-### HasPulpHref
+### HasPrn
 
-`func (o *ContainerContainerPushRepositoryResponse) HasPulpHref() bool`
+`func (o *ContainerContainerPushRepositoryResponse) HasPrn() bool`
 
-HasPulpHref returns a boolean if a field has been set.
+HasPrn returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *ContainerContainerPushRepositoryResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerPushRepositoryResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerPushRepositoryResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetDescription
 
@@ -240,101 +300,41 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepositoryResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetName
+### GetRetainRepoVersions
 
-`func (o *ContainerContainerPushRepositoryResponse) GetName() string`
+`func (o *ContainerContainerPushRepositoryResponse) GetRetainRepoVersions() int64`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetRetainRepoVersions returns the RetainRepoVersions field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetRetainRepoVersionsOk
 
-`func (o *ContainerContainerPushRepositoryResponse) GetNameOk() (*string, bool)`
+`func (o *ContainerContainerPushRepositoryResponse) GetRetainRepoVersionsOk() (*int64, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRetainRepoVersions
 
-`func (o *ContainerContainerPushRepositoryResponse) SetName(v string)`
+`func (o *ContainerContainerPushRepositoryResponse) SetRetainRepoVersions(v int64)`
 
-SetName sets Name field to given value.
+SetRetainRepoVersions sets RetainRepoVersions field to given value.
 
+### HasRetainRepoVersions
 
-### GetLatestVersionHref
+`func (o *ContainerContainerPushRepositoryResponse) HasRetainRepoVersions() bool`
 
-`func (o *ContainerContainerPushRepositoryResponse) GetLatestVersionHref() string`
+HasRetainRepoVersions returns a boolean if a field has been set.
 
-GetLatestVersionHref returns the LatestVersionHref field if non-nil, zero value otherwise.
+### SetRetainRepoVersionsNil
 
-### GetLatestVersionHrefOk
+`func (o *ContainerContainerPushRepositoryResponse) SetRetainRepoVersionsNil(b bool)`
 
-`func (o *ContainerContainerPushRepositoryResponse) GetLatestVersionHrefOk() (*string, bool)`
+ SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
 
-GetLatestVersionHrefOk returns a tuple with the LatestVersionHref field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetRetainRepoVersions
+`func (o *ContainerContainerPushRepositoryResponse) UnsetRetainRepoVersions()`
 
-### SetLatestVersionHref
-
-`func (o *ContainerContainerPushRepositoryResponse) SetLatestVersionHref(v string)`
-
-SetLatestVersionHref sets LatestVersionHref field to given value.
-
-### HasLatestVersionHref
-
-`func (o *ContainerContainerPushRepositoryResponse) HasLatestVersionHref() bool`
-
-HasLatestVersionHref returns a boolean if a field has been set.
-
-### GetVersionsHref
-
-`func (o *ContainerContainerPushRepositoryResponse) GetVersionsHref() string`
-
-GetVersionsHref returns the VersionsHref field if non-nil, zero value otherwise.
-
-### GetVersionsHrefOk
-
-`func (o *ContainerContainerPushRepositoryResponse) GetVersionsHrefOk() (*string, bool)`
-
-GetVersionsHrefOk returns a tuple with the VersionsHref field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionsHref
-
-`func (o *ContainerContainerPushRepositoryResponse) SetVersionsHref(v string)`
-
-SetVersionsHref sets VersionsHref field to given value.
-
-### HasVersionsHref
-
-`func (o *ContainerContainerPushRepositoryResponse) HasVersionsHref() bool`
-
-HasVersionsHref returns a boolean if a field has been set.
-
-### GetPulpLastUpdated
-
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpLastUpdated() time.Time`
-
-GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
-
-### GetPulpLastUpdatedOk
-
-`func (o *ContainerContainerPushRepositoryResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
-
-GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLastUpdated
-
-`func (o *ContainerContainerPushRepositoryResponse) SetPulpLastUpdated(v time.Time)`
-
-SetPulpLastUpdated sets PulpLastUpdated field to given value.
-
-### HasPulpLastUpdated
-
-`func (o *ContainerContainerPushRepositoryResponse) HasPulpLastUpdated() bool`
-
-HasPulpLastUpdated returns a boolean if a field has been set.
-
+UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

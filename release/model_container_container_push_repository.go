@@ -24,12 +24,12 @@ type ContainerContainerPushRepository struct {
 	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// A reference to an associated signing service.
 	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
-	// Retain X versions of the repository. Default is null which retains all versions.
-	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
-	// An optional description.
-	Description NullableString `json:"description,omitempty"`
 	// A unique name for this repository.
 	Name string `json:"name"`
+	// An optional description.
+	Description NullableString `json:"description,omitempty"`
+	// Retain X versions of the repository. Default is null which retains all versions.
+	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -127,46 +127,28 @@ func (o *ContainerContainerPushRepository) UnsetManifestSigningService() {
 	o.ManifestSigningService.Unset()
 }
 
-// GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64 {
-	if o == nil || IsNil(o.RetainRepoVersions.Get()) {
-		var ret int64
+// GetName returns the Name field value
+func (o *ContainerContainerPushRepository) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.RetainRepoVersions.Get()
+
+	return o.Name
 }
 
-// GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool) {
+func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RetainRepoVersions.Get(), o.RetainRepoVersions.IsSet()
+	return &o.Name, true
 }
 
-// HasRetainRepoVersions returns a boolean if a field has been set.
-func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool {
-	if o != nil && o.RetainRepoVersions.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetainRepoVersions gets a reference to the given NullableInt64 and assigns it to the RetainRepoVersions field.
-func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64) {
-	o.RetainRepoVersions.Set(&v)
-}
-// SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
-func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil() {
-	o.RetainRepoVersions.Set(nil)
-}
-
-// UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
-func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
-	o.RetainRepoVersions.Unset()
+// SetName sets field value
+func (o *ContainerContainerPushRepository) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -211,28 +193,46 @@ func (o *ContainerContainerPushRepository) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetName returns the Name field value
-func (o *ContainerContainerPushRepository) GetName() string {
-	if o == nil {
-		var ret string
+// GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64 {
+	if o == nil || IsNil(o.RetainRepoVersions.Get()) {
+		var ret int64
 		return ret
 	}
-
-	return o.Name
+	return *o.RetainRepoVersions.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.RetainRepoVersions.Get(), o.RetainRepoVersions.IsSet()
 }
 
-// SetName sets field value
-func (o *ContainerContainerPushRepository) SetName(v string) {
-	o.Name = v
+// HasRetainRepoVersions returns a boolean if a field has been set.
+func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool {
+	if o != nil && o.RetainRepoVersions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainRepoVersions gets a reference to the given NullableInt64 and assigns it to the RetainRepoVersions field.
+func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64) {
+	o.RetainRepoVersions.Set(&v)
+}
+// SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
+func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil() {
+	o.RetainRepoVersions.Set(nil)
+}
+
+// UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
+	o.RetainRepoVersions.Unset()
 }
 
 func (o ContainerContainerPushRepository) MarshalJSON() ([]byte, error) {
@@ -251,13 +251,13 @@ func (o ContainerContainerPushRepository) ToMap() (map[string]interface{}, error
 	if o.ManifestSigningService.IsSet() {
 		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
-	if o.RetainRepoVersions.IsSet() {
-		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
-	}
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["name"] = o.Name
+	if o.RetainRepoVersions.IsSet() {
+		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -303,9 +303,9 @@ func (o *ContainerContainerPushRepository) UnmarshalJSON(data []byte) (err error
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "manifest_signing_service")
-		delete(additionalProperties, "retain_repo_versions")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
 		o.AdditionalProperties = additionalProperties
 	}
 
