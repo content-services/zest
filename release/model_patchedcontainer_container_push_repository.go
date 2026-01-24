@@ -22,13 +22,13 @@ var _ MappedNullable = &PatchedcontainerContainerPushRepository{}
 type PatchedcontainerContainerPushRepository struct {
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
-	// A reference to an associated signing service.
-	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.
 	Name *string `json:"name,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// A reference to an associated signing service.
+	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,80 +91,6 @@ func (o *PatchedcontainerContainerPushRepository) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *PatchedcontainerContainerPushRepository) UnsetDescription() {
 	o.Description.Unset()
-}
-
-// GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedcontainerContainerPushRepository) GetManifestSigningService() string {
-	if o == nil || IsNil(o.ManifestSigningService.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ManifestSigningService.Get()
-}
-
-// GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedcontainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ManifestSigningService.Get(), o.ManifestSigningService.IsSet()
-}
-
-// HasManifestSigningService returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasManifestSigningService() bool {
-	if o != nil && o.ManifestSigningService.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetManifestSigningService gets a reference to the given NullableString and assigns it to the ManifestSigningService field.
-func (o *PatchedcontainerContainerPushRepository) SetManifestSigningService(v string) {
-	o.ManifestSigningService.Set(&v)
-}
-// SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
-func (o *PatchedcontainerContainerPushRepository) SetManifestSigningServiceNil() {
-	o.ManifestSigningService.Set(nil)
-}
-
-// UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
-func (o *PatchedcontainerContainerPushRepository) UnsetManifestSigningService() {
-	o.ManifestSigningService.Unset()
-}
-
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -241,6 +167,80 @@ func (o *PatchedcontainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
+// GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedcontainerContainerPushRepository) GetManifestSigningService() string {
+	if o == nil || IsNil(o.ManifestSigningService.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ManifestSigningService.Get()
+}
+
+// GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedcontainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ManifestSigningService.Get(), o.ManifestSigningService.IsSet()
+}
+
+// HasManifestSigningService returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasManifestSigningService() bool {
+	if o != nil && o.ManifestSigningService.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetManifestSigningService gets a reference to the given NullableString and assigns it to the ManifestSigningService field.
+func (o *PatchedcontainerContainerPushRepository) SetManifestSigningService(v string) {
+	o.ManifestSigningService.Set(&v)
+}
+// SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
+func (o *PatchedcontainerContainerPushRepository) SetManifestSigningServiceNil() {
+	o.ManifestSigningService.Set(nil)
+}
+
+// UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
+func (o *PatchedcontainerContainerPushRepository) UnsetManifestSigningService() {
+	o.ManifestSigningService.Unset()
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPushRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *PatchedcontainerContainerPushRepository) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
 func (o PatchedcontainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -254,17 +254,17 @@ func (o PatchedcontainerContainerPushRepository) ToMap() (map[string]interface{}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if o.ManifestSigningService.IsSet() {
-		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
-	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
+	if o.ManifestSigningService.IsSet() {
+		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -289,10 +289,10 @@ func (o *PatchedcontainerContainerPushRepository) UnmarshalJSON(data []byte) (er
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "manifest_signing_service")
-		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "manifest_signing_service")
+		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}
 
