@@ -14,14 +14,14 @@ info:
     url: https://pulpproject.org/pulp-docs/docs/assets/pulp_logo_icon.svg
   x-pulp-app-versions:
     core: 3.80.0
+    python: 3.13.1
+    gem: 0.7.1
+    service: 0.1.0
+    npm: 0.3.3
+    ostree: 2.4.6
+    container: 2.25.0
     certguard: 3.80.0
     file: 3.80.0
-    npm: 0.3.3
-    gem: 0.7.1
-    ostree: 2.4.6
-    service: 0.1.0
-    container: 2.25.0
-    python: 3.13.1
     maven: 0.10.1
     rpm: 3.30.0
   x-pulp-domain-enabled: true
@@ -1990,13 +1990,13 @@ paths:
           `core.openpgp_publickey` - core.openpgp_publickey* `core.openpgp_publicsubkey`
           - core.openpgp_publicsubkey* `core.openpgp_userid` - core.openpgp_userid*
           `core.openpgp_userattribute` - core.openpgp_userattribute* `core.openpgp_signature`
-          - core.openpgp_signature* `file.file` - file.file* `npm.package` - npm.package*
-          `gem.gem` - gem.gem* `ostree.object` - ostree.object* `ostree.commit` -
-          ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
+          - core.openpgp_signature* `python.python` - python.python* `gem.gem` - gem.gem*
+          `npm.package` - npm.package* `ostree.object` - ostree.object* `ostree.commit`
+          - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content` - ostree.content*
           `ostree.config` - ostree.config* `ostree.summary` - ostree.summary* `container.blob`
           - container.blob* `container.manifest` - container.manifest* `container.tag`
-          - container.tag* `container.signature` - container.signature* `python.python`
-          - python.python* `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata*
+          - container.tag* `container.signature` - container.signature* `file.file`
+          - file.file* `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata*
           `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
           - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
           `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
@@ -2048,13 +2048,13 @@ paths:
           - core.publishedmetadata* `core.openpgp_publickey` - core.openpgp_publickey*
           `core.openpgp_publicsubkey` - core.openpgp_publicsubkey* `core.openpgp_userid`
           - core.openpgp_userid* `core.openpgp_userattribute` - core.openpgp_userattribute*
-          `core.openpgp_signature` - core.openpgp_signature* `file.file` - file.file*
-          `npm.package` - npm.package* `gem.gem` - gem.gem* `ostree.object` - ostree.object*
+          `core.openpgp_signature` - core.openpgp_signature* `python.python` - python.python*
+          `gem.gem` - gem.gem* `npm.package` - npm.package* `ostree.object` - ostree.object*
           `ostree.commit` - ostree.commit* `ostree.refs` - ostree.refs* `ostree.content`
           - ostree.content* `ostree.config` - ostree.config* `ostree.summary` - ostree.summary*
           `container.blob` - container.blob* `container.manifest` - container.manifest*
           `container.tag` - container.tag* `container.signature` - container.signature*
-          `python.python` - python.python* `maven.artifact` - maven.artifact* `maven.metadata`
+          `file.file` - file.file* `maven.artifact` - maven.artifact* `maven.metadata`
           - maven.metadata* `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup*
           `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment` -
           rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
@@ -17431,10 +17431,10 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
-          core.openpgp* `file.file` - file.file* `npm.npm` - npm.npm* `gem.gem` -
-          gem.gem* `ostree.ostree` - ostree.ostree* `container.pull-through` - container.pull-through*
-          `container.container` - container.container* `python.python` - python.python*
-          `maven.maven` - maven.maven* `rpm.rpm` - rpm.rpm
+          core.openpgp* `python.python` - python.python* `gem.gem` - gem.gem* `npm.npm`
+          - npm.npm* `ostree.ostree` - ostree.ostree* `container.pull-through` - container.pull-through*
+          `container.container` - container.container* `file.file` - file.file* `maven.maven`
+          - maven.maven* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -17455,11 +17455,11 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `core.openpgp` - core.openpgp* `file.file` - file.file*
-          `npm.npm` - npm.npm* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
+          - core.artifact* `core.openpgp` - core.openpgp* `python.python` - python.python*
+          `gem.gem` - gem.gem* `npm.npm` - npm.npm* `ostree.ostree` - ostree.ostree*
           `container.pull-through` - container.pull-through* `container.container`
-          - container.container* `python.python` - python.python* `maven.maven` -
-          maven.maven* `rpm.rpm` - rpm.rpm
+          - container.container* `file.file` - file.file* `maven.maven` - maven.maven*
+          `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -27879,8 +27879,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `file.file` - file.file* `gem.gem` - gem.gem* `python.python`
-          - python.python* `rpm.rpm` - rpm.rpm
+      - description: Pulp type* `python.python` - python.python* `gem.gem` - gem.gem*
+          `file.file` - file.file* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -27893,8 +27893,9 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `file.file` - file.file*
-          `gem.gem` - gem.gem* `python.python` - python.python* `rpm.rpm` - rpm.rpm
+      - description: Multiple values may be separated by commas.* `python.python`
+          - python.python* `gem.gem` - gem.gem* `file.file` - file.file* `rpm.rpm`
+          - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -30803,10 +30804,11 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `file.file` - file.file* `npm.npm` - npm.npm* `gem.gem`
-          - gem.gem* `ostree.ostree` - ostree.ostree* `container.container` - container.container*
-          `container.pull-through` - container.pull-through* `python.python` - python.python*
-          `maven.maven` - maven.maven* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln
+      - description: Pulp type* `python.python` - python.python* `gem.gem` - gem.gem*
+          `npm.npm` - npm.npm* `ostree.ostree` - ostree.ostree* `container.container`
+          - container.container* `container.pull-through` - container.pull-through*
+          `file.file` - file.file* `maven.maven` - maven.maven* `rpm.rpm` - rpm.rpm*
+          `rpm.uln` - rpm.uln
         explode: true
         in: query
         name: pulp_type
@@ -30825,11 +30827,11 @@ paths:
           - rpm.uln
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `file.file` - file.file*
-          `npm.npm` - npm.npm* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
-          `container.container` - container.container* `container.pull-through` -
-          container.pull-through* `python.python` - python.python* `maven.maven` -
-          maven.maven* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln
+      - description: Multiple values may be separated by commas.* `python.python`
+          - python.python* `gem.gem` - gem.gem* `npm.npm` - npm.npm* `ostree.ostree`
+          - ostree.ostree* `container.container` - container.container* `container.pull-through`
+          - container.pull-through* `file.file` - file.file* `maven.maven` - maven.maven*
+          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln
         explode: false
         in: query
         name: pulp_type__in
@@ -38392,11 +38394,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `core.openpgp` - core.openpgp* `file.file` - file.file*
-          `npm.npm` - npm.npm* `gem.gem` - gem.gem* `ostree.ostree` - ostree.ostree*
+      - description: Pulp type* `core.openpgp` - core.openpgp* `python.python` - python.python*
+          `gem.gem` - gem.gem* `npm.npm` - npm.npm* `ostree.ostree` - ostree.ostree*
           `container.container` - container.container* `container.container-push`
-          - container.container-push* `python.python` - python.python* `maven.maven`
-          - maven.maven* `rpm.rpm` - rpm.rpm
+          - container.container-push* `file.file` - file.file* `maven.maven` - maven.maven*
+          `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -38416,10 +38418,10 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.openpgp` -
-          core.openpgp* `file.file` - file.file* `npm.npm` - npm.npm* `gem.gem` -
-          gem.gem* `ostree.ostree` - ostree.ostree* `container.container` - container.container*
-          `container.container-push` - container.container-push* `python.python` -
-          python.python* `maven.maven` - maven.maven* `rpm.rpm` - rpm.rpm
+          core.openpgp* `python.python` - python.python* `gem.gem` - gem.gem* `npm.npm`
+          - npm.npm* `ostree.ostree` - ostree.ostree* `container.container` - container.container*
+          `container.container-push` - container.container-push* `file.file` - file.file*
+          `maven.maven` - maven.maven* `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -56631,57 +56633,37 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        pulp_href: https://openapi-generator.tech
-        hidden: false
         pulp_labels:
           key: pulp_labels
+        hidden: false
+        pulp_href: https://openapi-generator.tech
+        no_content_change_since: no_content_change_since
         base_url: base_url
         name: name
-        no_content_change_since: no_content_change_since
-        base_path: base_path
         pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_path: base_path
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
         content_guard: https://openapi-generator.tech
       properties:
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
           readOnly: true
-          type: string
-        content_guard:
-          description: An optional content-guard.
-          format: uri
-          nullable: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         prn:
           description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_created:
+          description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
@@ -56691,11 +56673,31 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        content_guard:
+          description: An optional content-guard.
+          format: uri
+          nullable: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
       required:
       - base_path
       - name
@@ -59656,27 +59658,27 @@ components:
         previous: http://api.example.org/accounts/?offset=200&limit=100
         count: 123
         results:
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          hidden: false
+          pulp_href: https://openapi-generator.tech
+          no_content_change_since: no_content_change_since
           base_url: base_url
           name: name
-          no_content_change_since: no_content_change_since
-          base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
-        - pulp_href: https://openapi-generator.tech
-          hidden: false
-          pulp_labels:
+        - pulp_labels:
             key: pulp_labels
+          hidden: false
+          pulp_href: https://openapi-generator.tech
+          no_content_change_since: no_content_change_since
           base_url: base_url
           name: name
-          no_content_change_since: no_content_change_since
-          base_path: base_path
           pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
           prn: prn
           content_guard: https://openapi-generator.tech
@@ -62157,8 +62159,8 @@ components:
         count: 123
         results:
         - private: true
-          pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_href: https://openapi-generator.tech
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
@@ -62175,8 +62177,8 @@ components:
           namespace: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
         - private: true
-          pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_href: https://openapi-generator.tech
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
@@ -62259,8 +62261,8 @@ components:
         count: 123
         results:
         - private: true
-          pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_href: https://openapi-generator.tech
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
@@ -62278,8 +62280,8 @@ components:
           namespace: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
         - private: true
-          pulp_href: https://openapi-generator.tech
           hidden: false
+          pulp_href: https://openapi-generator.tech
           no_content_change_since: no_content_change_since
           description: description
           base_path: base_path
@@ -62422,10 +62424,10 @@ components:
         results:
         - manifest_signing_service: https://openapi-generator.tech
           latest_version_href: https://openapi-generator.tech
-          versions_href: https://openapi-generator.tech
-          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
+          versions_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -62434,10 +62436,10 @@ components:
           prn: prn
         - manifest_signing_service: https://openapi-generator.tech
           latest_version_href: https://openapi-generator.tech
-          versions_href: https://openapi-generator.tech
-          pulp_href: https://openapi-generator.tech
           pulp_labels:
             key: pulp_labels
+          versions_href: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           name: name
           description: description
           pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -66704,6 +66706,16 @@ components:
     Patchedcontainer.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -66723,16 +66735,6 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         repository_version:
           description: RepositoryVersion to be served
           format: uri
@@ -66752,6 +66754,16 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -66771,16 +66783,6 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
             caching.
@@ -66952,6 +66954,23 @@ components:
     Patchedcontainer.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        manifest_signing_service:
+          description: A reference to an associated signing service.
+          format: uri
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
         description:
           description: An optional description.
           minLength: 1
@@ -66961,23 +66980,6 @@ components:
           description: A unique name for this repository.
           minLength: 1
           type: string
-        retain_repo_versions:
-          description: Retain X versions of the repository. Default is null which
-            retains all versions.
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-        manifest_signing_service:
-          description: A reference to an associated signing service.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
       type: object
     Patchedcontainer.ContainerRemote:
       description: A Serializer for ContainerRemote.
@@ -71728,6 +71730,16 @@ components:
     container.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -71747,16 +71759,6 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         repository_version:
           description: RepositoryVersion to be served
           format: uri
@@ -71779,8 +71781,8 @@ components:
       description: A serializer for ContainerDistribution.
       example:
         private: true
-        pulp_href: https://openapi-generator.tech
         hidden: false
+        pulp_href: https://openapi-generator.tech
         no_content_change_since: no_content_change_since
         description: description
         base_path: base_path
@@ -71797,40 +71799,24 @@ components:
         namespace: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
           readOnly: true
-          type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         prn:
           description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_created:
+          description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
@@ -71840,15 +71826,31 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         repository:
           description: The latest RepositoryVersion for this Repository will be served.
           format: uri
           nullable: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
         repository_version:
           description: RepositoryVersion to be served
@@ -71930,6 +71932,16 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -71949,16 +71961,6 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
             caching.
@@ -71989,8 +71991,8 @@ components:
         sub-distributions.
       example:
         private: true
-        pulp_href: https://openapi-generator.tech
         hidden: false
+        pulp_href: https://openapi-generator.tech
         no_content_change_since: no_content_change_since
         description: description
         base_path: base_path
@@ -72008,40 +72010,24 @@ components:
         namespace: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
       properties:
-        base_path:
-          description: The base (relative) path component of the published url. Avoid
-            paths that                     overlap with other distribution base paths
-            (e.g. "foo" and "foo/bar")
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
           readOnly: true
-          type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
           type: string
         prn:
           description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        pulp_created:
+          description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
@@ -72051,15 +72037,31 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
         repository:
           description: The latest RepositoryVersion for this Repository will be served.
           format: uri
           nullable: true
+          type: string
+        base_path:
+          description: The base (relative) path component of the published url. Avoid
+            paths that                     overlap with other distribution base paths
+            (e.g. "foo" and "foo/bar")
+          type: string
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
+        pulp_href:
+          format: uri
+          readOnly: true
           type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
@@ -72413,6 +72415,23 @@ components:
     container.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        manifest_signing_service:
+          description: A reference to an associated signing service.
+          format: uri
+          nullable: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
         description:
           description: An optional description.
           minLength: 1
@@ -72422,23 +72441,6 @@ components:
           description: A unique name for this repository.
           minLength: 1
           type: string
-        retain_repo_versions:
-          description: Retain X versions of the repository. Default is null which
-            retains all versions.
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-        manifest_signing_service:
-          description: A reference to an associated signing service.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
       required:
       - name
       type: object
@@ -72447,10 +72449,10 @@ components:
       example:
         manifest_signing_service: https://openapi-generator.tech
         latest_version_href: https://openapi-generator.tech
-        versions_href: https://openapi-generator.tech
-        pulp_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        versions_href: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
         name: name
         description: description
         pulp_created: 2000-01-23T04:56:07.000+00:00
@@ -72458,33 +72460,35 @@ components:
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         prn: prn
       properties:
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
         versions_href:
           format: uri
           readOnly: true
-          type: string
-        description:
-          description: An optional description.
-          nullable: true
           type: string
         pulp_created:
           description: Timestamp of creation.
           format: date-time
           readOnly: true
           type: string
-        name:
-          description: A unique name for this repository.
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
-        pulp_href:
+        manifest_signing_service:
+          description: A reference to an associated signing service.
           format: uri
-          readOnly: true
-          type: string
-        latest_version_href:
-          format: uri
-          readOnly: true
+          nullable: true
           type: string
         retain_repo_versions:
           description: Retain X versions of the repository. Default is null which
@@ -72493,23 +72497,21 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        manifest_signing_service:
-          description: A reference to an associated signing service.
-          format: uri
+        description:
+          description: An optional description.
           nullable: true
           type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
+        latest_version_href:
+          format: uri
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
+        name:
+          description: A unique name for this repository.
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
       required:
       - name
       type: object
