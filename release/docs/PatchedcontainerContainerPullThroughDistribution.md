@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **BasePath** | Pointer to **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | [optional] 
-**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
 **Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
+**ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
+**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **Remote** | Pointer to **string** | Remote that can be used to fetch content when using pull-through caching. | [optional] 
 **Distributions** | Pointer to **[]string** | Distributions created after pulling content through cache | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Related distributions inherit this value. Defaults to unrestricted pull access. | [optional] 
@@ -59,41 +59,6 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetRepository
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetRepository() string`
-
-GetRepository returns the Repository field if non-nil, zero value otherwise.
-
-### GetRepositoryOk
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetRepositoryOk() (*string, bool)`
-
-GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRepository
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetRepository(v string)`
-
-SetRepository sets Repository field to given value.
-
-### HasRepository
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) HasRepository() bool`
-
-HasRepository returns a boolean if a field has been set.
-
-### SetRepositoryNil
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetRepositoryNil(b bool)`
-
- SetRepositoryNil sets the value for Repository to be an explicit nil
-
-### UnsetRepository
-`func (o *PatchedcontainerContainerPullThroughDistribution) UnsetRepository()`
-
-UnsetRepository ensures that no value is present for Repository, not even an explicit nil
 ### GetBasePath
 
 `func (o *PatchedcontainerContainerPullThroughDistribution) GetBasePath() string`
@@ -118,31 +83,6 @@ SetBasePath sets BasePath field to given value.
 `func (o *PatchedcontainerContainerPullThroughDistribution) HasBasePath() bool`
 
 HasBasePath returns a boolean if a field has been set.
-
-### GetContentGuard
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuard() string`
-
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
-
-### GetContentGuardOk
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuardOk() (*string, bool)`
-
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContentGuard
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) SetContentGuard(v string)`
-
-SetContentGuard sets ContentGuard field to given value.
-
-### HasContentGuard
-
-`func (o *PatchedcontainerContainerPullThroughDistribution) HasContentGuard() bool`
-
-HasContentGuard returns a boolean if a field has been set.
 
 ### GetName
 
@@ -194,6 +134,66 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
+### GetContentGuard
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuard() string`
+
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+
+### GetContentGuardOk
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetContentGuardOk() (*string, bool)`
+
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentGuard
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetContentGuard(v string)`
+
+SetContentGuard sets ContentGuard field to given value.
+
+### HasContentGuard
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) HasContentGuard() bool`
+
+HasContentGuard returns a boolean if a field has been set.
+
+### GetRepository
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetRepository() string`
+
+GetRepository returns the Repository field if non-nil, zero value otherwise.
+
+### GetRepositoryOk
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) GetRepositoryOk() (*string, bool)`
+
+GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepository
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetRepository(v string)`
+
+SetRepository sets Repository field to given value.
+
+### HasRepository
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) HasRepository() bool`
+
+HasRepository returns a boolean if a field has been set.
+
+### SetRepositoryNil
+
+`func (o *PatchedcontainerContainerPullThroughDistribution) SetRepositoryNil(b bool)`
+
+ SetRepositoryNil sets the value for Repository to be an explicit nil
+
+### UnsetRepository
+`func (o *PatchedcontainerContainerPullThroughDistribution) UnsetRepository()`
+
+UnsetRepository ensures that no value is present for Repository, not even an explicit nil
 ### GetRemote
 
 `func (o *PatchedcontainerContainerPullThroughDistribution) GetRemote() string`
