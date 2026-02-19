@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
-**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **Name** | **string** | A unique name for this repository. | 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 
 ## Methods
 
@@ -89,41 +89,6 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetManifestSigningService
-
-`func (o *ContainerContainerPushRepository) GetManifestSigningService() string`
-
-GetManifestSigningService returns the ManifestSigningService field if non-nil, zero value otherwise.
-
-### GetManifestSigningServiceOk
-
-`func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool)`
-
-GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManifestSigningService
-
-`func (o *ContainerContainerPushRepository) SetManifestSigningService(v string)`
-
-SetManifestSigningService sets ManifestSigningService field to given value.
-
-### HasManifestSigningService
-
-`func (o *ContainerContainerPushRepository) HasManifestSigningService() bool`
-
-HasManifestSigningService returns a boolean if a field has been set.
-
-### SetManifestSigningServiceNil
-
-`func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil(b bool)`
-
- SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
-
-### UnsetManifestSigningService
-`func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
-
-UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
 ### GetName
 
 `func (o *ContainerContainerPushRepository) GetName() string`
@@ -179,6 +144,41 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetManifestSigningService
+
+`func (o *ContainerContainerPushRepository) GetManifestSigningService() string`
+
+GetManifestSigningService returns the ManifestSigningService field if non-nil, zero value otherwise.
+
+### GetManifestSigningServiceOk
+
+`func (o *ContainerContainerPushRepository) GetManifestSigningServiceOk() (*string, bool)`
+
+GetManifestSigningServiceOk returns a tuple with the ManifestSigningService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManifestSigningService
+
+`func (o *ContainerContainerPushRepository) SetManifestSigningService(v string)`
+
+SetManifestSigningService sets ManifestSigningService field to given value.
+
+### HasManifestSigningService
+
+`func (o *ContainerContainerPushRepository) HasManifestSigningService() bool`
+
+HasManifestSigningService returns a boolean if a field has been set.
+
+### SetManifestSigningServiceNil
+
+`func (o *ContainerContainerPushRepository) SetManifestSigningServiceNil(b bool)`
+
+ SetManifestSigningServiceNil sets the value for ManifestSigningService to be an explicit nil
+
+### UnsetManifestSigningService
+`func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
+
+UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
