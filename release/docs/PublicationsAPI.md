@@ -47,8 +47,8 @@ func main() {
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `python.python` - python.python* `gem.gem` - gem.gem* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `python.python` - python.python* `gem.gem` - gem.gem* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python* `rpm.rpm` - rpm.rpm (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `gem.gem` - gem.gem* `python.python` - python.python* `rpm.rpm` - rpm.rpm (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
 	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
@@ -99,8 +99,8 @@ Name | Type | Description  | Notes
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;python.python&#x60; - python.python* &#x60;rpm.rpm&#x60; - rpm.rpm | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
  **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
