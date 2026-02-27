@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
 **BasePath** | Pointer to **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | [optional] 
-**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **ContentGuard** | Pointer to **string** | An optional content-guard. If none is specified, a default one will be used. | [optional] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
-**Name** | Pointer to **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | [optional] 
+**Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
 **RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Private** | Pointer to **bool** | Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
@@ -32,6 +32,31 @@ will change when the set of required properties is changed
 NewPatchedcontainerContainerDistributionWithDefaults instantiates a new PatchedcontainerContainerDistribution object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *PatchedcontainerContainerDistribution) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *PatchedcontainerContainerDistribution) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *PatchedcontainerContainerDistribution) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetBasePath
 
@@ -58,41 +83,6 @@ SetBasePath sets BasePath field to given value.
 
 HasBasePath returns a boolean if a field has been set.
 
-### GetRepository
-
-`func (o *PatchedcontainerContainerDistribution) GetRepository() string`
-
-GetRepository returns the Repository field if non-nil, zero value otherwise.
-
-### GetRepositoryOk
-
-`func (o *PatchedcontainerContainerDistribution) GetRepositoryOk() (*string, bool)`
-
-GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRepository
-
-`func (o *PatchedcontainerContainerDistribution) SetRepository(v string)`
-
-SetRepository sets Repository field to given value.
-
-### HasRepository
-
-`func (o *PatchedcontainerContainerDistribution) HasRepository() bool`
-
-HasRepository returns a boolean if a field has been set.
-
-### SetRepositoryNil
-
-`func (o *PatchedcontainerContainerDistribution) SetRepositoryNil(b bool)`
-
- SetRepositoryNil sets the value for Repository to be an explicit nil
-
-### UnsetRepository
-`func (o *PatchedcontainerContainerDistribution) UnsetRepository()`
-
-UnsetRepository ensures that no value is present for Repository, not even an explicit nil
 ### GetPulpLabels
 
 `func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string`
@@ -168,31 +158,41 @@ SetHidden sets Hidden field to given value.
 
 HasHidden returns a boolean if a field has been set.
 
-### GetName
+### GetRepository
 
-`func (o *PatchedcontainerContainerDistribution) GetName() string`
+`func (o *PatchedcontainerContainerDistribution) GetRepository() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetRepository returns the Repository field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetRepositoryOk
 
-`func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool)`
+`func (o *PatchedcontainerContainerDistribution) GetRepositoryOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetRepositoryOk returns a tuple with the Repository field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRepository
 
-`func (o *PatchedcontainerContainerDistribution) SetName(v string)`
+`func (o *PatchedcontainerContainerDistribution) SetRepository(v string)`
 
-SetName sets Name field to given value.
+SetRepository sets Repository field to given value.
 
-### HasName
+### HasRepository
 
-`func (o *PatchedcontainerContainerDistribution) HasName() bool`
+`func (o *PatchedcontainerContainerDistribution) HasRepository() bool`
 
-HasName returns a boolean if a field has been set.
+HasRepository returns a boolean if a field has been set.
 
+### SetRepositoryNil
+
+`func (o *PatchedcontainerContainerDistribution) SetRepositoryNil(b bool)`
+
+ SetRepositoryNil sets the value for Repository to be an explicit nil
+
+### UnsetRepository
+`func (o *PatchedcontainerContainerDistribution) UnsetRepository()`
+
+UnsetRepository ensures that no value is present for Repository, not even an explicit nil
 ### GetRepositoryVersion
 
 `func (o *PatchedcontainerContainerDistribution) GetRepositoryVersion() string`
