@@ -1,8 +1,11 @@
 name: Update pulp binding if new release
 on:
-  push:
   schedule:
-    - cron: "0 7 * * *"
+    - cron: "0 3 * * 1"
+  push:
+
+permissions: write-all
+
 jobs:
   CheckLatestVersionAndRun:
     timeout-minutes: 10
@@ -11,11 +14,11 @@ jobs:
       - name: Checkout
         with:
           fetch-depth: 0 # Needed for github-action-get-previous-tag
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Get current build version
         id: repoRelease
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        uses: "WyriHaximus/github-action-get-previous-tag@v2"
         with:
           prefix: release/
           fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
@@ -44,7 +47,7 @@ jobs:
 
       - name: Setup docker compose
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
-        uses: isbang/compose-action@v2.0.1
+        uses: hoverkraft-tech/compose-action@v2.5.0
         with:
           compose-file: docker-compose.yml
           cwd: ./docker/
@@ -83,8 +86,13 @@ jobs:
           -p packageVersion=${{ steps.pulpRelease.outputs.PULP_TAG }} \
           --global-property skipFormModel=false #for ansible plugin
 
+      - name: Fix release directory permissions
+        if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
+        run: |
+          sudo chown -R "$USER": release/
+
       - name: Archive api json
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pulp_api.json
           path: pulp_api.json
@@ -98,27 +106,26 @@ jobs:
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
         run: |
           cd release
-          sudo chmod 777 go.mod go.sum
           go get github.com/stretchr/testify/assert
           go test ./...
 
-      - name: Commit new client
-        id: commit
+      - name: Record tag for release workflow
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
-        run: |
-          git config --global user.name ${{secrets.GIT_USER_NAME}}
-          git config --global user.email ${{secrets.GIT_USER_EMAIL}}
-          git add release/
-          git commit -am "Update pulp bindings to ${{ steps.pulpRelease.outputs.PULP_TAG }}"
-          git push
-          echo "NEW_SHA=`git rev-parse HEAD`" >> $GITHUB_OUTPUT
+        run: echo "${{ steps.pulpRelease.outputs.GIT_TAG }}" > .pulp-version
 
-      # This pushes an update and release after build <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      - name: Tag and Release version
+      - name: Create PR for new pulp client
         if: steps.pulpRelease.outputs.GIT_TAG != steps.repoRelease.outputs.tag
-        uses: avakar/tag-and-release@v1
+        uses: peter-evans/create-pull-request@v8
         with:
-          commit: ${{steps.commit.outputs.NEW_SHA}}
-          tag_name: ${{ steps.pulpRelease.outputs.GIT_TAG }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: update-pulp-bindings-${{ steps.pulpRelease.outputs.PULP_TAG }}
+          commit-message: "Update pulp bindings to ${{ steps.pulpRelease.outputs.PULP_TAG }}"
+          title: "Update pulp bindings to ${{ steps.pulpRelease.outputs.PULP_TAG }}"
+          body: |
+            New pulp version **${{ steps.pulpRelease.outputs.PULP_TAG }}** is available.
+            Current build version: ${{ steps.repoRelease.outputs.tag }}
+          labels: |
+            dependencies
+          add-paths: |
+            release/
+            .pulp-version

@@ -1,0 +1,37 @@
+# Tags and creates a GitHub release when a pulp bindings PR is merged to the default branch.
+name: Tag and release pulp bindings
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "release/**"
+      - ".pulp-version"
+
+permissions:
+  contents: write
+
+jobs:
+  tag-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read tag from version file
+        id: version
+        run: |
+          if [ ! -f .pulp-version ]; then
+            echo "::error::.pulp-version not found"
+            exit 1
+          fi
+          TAG_NAME=$(cat .pulp-version)
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Tag and Release version
+        uses: avakar/tag-and-release@v1
+        with:
+          commit: ${{ github.sha }}
+          tag_name: ${{ steps.version.outputs.tag_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
