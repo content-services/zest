@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **Name** | **string** | A unique name for this repository. | 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
 **ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
-**Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
 
 ## Methods
 
@@ -29,6 +29,41 @@ NewContainerContainerPushRepositoryWithDefaults instantiates a new ContainerCont
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetDescription
+
+`func (o *ContainerContainerPushRepository) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *ContainerContainerPushRepository) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *ContainerContainerPushRepository) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *ContainerContainerPushRepository) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *ContainerContainerPushRepository) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetName
 
 `func (o *ContainerContainerPushRepository) GetName() string`
@@ -74,41 +109,6 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetRetainRepoVersions
-
-`func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64`
-
-GetRetainRepoVersions returns the RetainRepoVersions field if non-nil, zero value otherwise.
-
-### GetRetainRepoVersionsOk
-
-`func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool)`
-
-GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetainRepoVersions
-
-`func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64)`
-
-SetRetainRepoVersions sets RetainRepoVersions field to given value.
-
-### HasRetainRepoVersions
-
-`func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool`
-
-HasRetainRepoVersions returns a boolean if a field has been set.
-
-### SetRetainRepoVersionsNil
-
-`func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil(b bool)`
-
- SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
-
-### UnsetRetainRepoVersions
-`func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions()`
-
-UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
 ### GetManifestSigningService
 
 `func (o *ContainerContainerPushRepository) GetManifestSigningService() string`
@@ -144,41 +144,41 @@ HasManifestSigningService returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetManifestSigningService()`
 
 UnsetManifestSigningService ensures that no value is present for ManifestSigningService, not even an explicit nil
-### GetDescription
+### GetRetainRepoVersions
 
-`func (o *ContainerContainerPushRepository) GetDescription() string`
+`func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetRetainRepoVersions returns the RetainRepoVersions field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetRetainRepoVersionsOk
 
-`func (o *ContainerContainerPushRepository) GetDescriptionOk() (*string, bool)`
+`func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetRetainRepoVersions
 
-`func (o *ContainerContainerPushRepository) SetDescription(v string)`
+`func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64)`
 
-SetDescription sets Description field to given value.
+SetRetainRepoVersions sets RetainRepoVersions field to given value.
 
-### HasDescription
+### HasRetainRepoVersions
 
-`func (o *ContainerContainerPushRepository) HasDescription() bool`
+`func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasRetainRepoVersions returns a boolean if a field has been set.
 
-### SetDescriptionNil
+### SetRetainRepoVersionsNil
 
-`func (o *ContainerContainerPushRepository) SetDescriptionNil(b bool)`
+`func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil(b bool)`
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+ SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
 
-### UnsetDescription
-`func (o *ContainerContainerPushRepository) UnsetDescription()`
+### UnsetRetainRepoVersions
+`func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions()`
 
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
