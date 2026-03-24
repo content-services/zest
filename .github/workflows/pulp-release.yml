@@ -1,6 +1,7 @@
 # Tags and creates a GitHub release when a pulp bindings PR is merged to the default branch.
 name: Tag and release pulp bindings
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
