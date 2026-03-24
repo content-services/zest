@@ -1,5 +1,6 @@
 name: Update pulp binding if new release
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 3 * * 1"
 
@@ -70,6 +71,8 @@ jobs:
         run: |
           curl http://localhost:8080/api/pulp/api/${{ steps.pulpRelease.outputs.PULP_MAJOR }}/docs/api.json > pulp_api.json
           echo "$( jq '.components.schemas.TaskResponse.properties.error.additionalProperties.type = "string"' ./pulp_api.json )" > ./pulp_api.json
+          # package_signing_fp should be nullable https://github.com/pulp/pulp_rpm/issues/4397
+          sed -i '/package_signing_fingerprint/{N;N;s/"default": ""/"nullable": true/}' pulp_api.json
           cat pulp_api.json | sed 's/\\n//g' > pulp_api_new.json #remove \n characters that break generation
           mv pulp_api_new.json pulp_api.json
           #https://github.com/OpenAPITools/openapi-generator/issues/18006
