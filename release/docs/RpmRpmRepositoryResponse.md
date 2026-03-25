@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **MetadataSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **PackageSigningService** | Pointer to **NullableString** | A reference to an associated package signing service. | [optional] 
-**PackageSigningFingerprint** | Pointer to **string** | The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository. | [optional] [default to ""]
+**PackageSigningFingerprint** | Pointer to **NullableString** | The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository. | [optional] 
 **RetainPackageVersions** | Pointer to **int64** | The number of versions of each package to keep in the repository; older versions will be purged. The default is &#39;0&#39;, which will disable this feature and keep all versions of each package. | [optional] 
 **ChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | The preferred checksum type during repo publish.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **MetadataChecksumType** | Pointer to [**PackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | REMOVED: The checksum type to use for metadata. Not operational since pulp_rpm 3.30.0 release. Use &#39;checksum_type&#39; instead.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] [readonly] 
@@ -469,6 +469,16 @@ SetPackageSigningFingerprint sets PackageSigningFingerprint field to given value
 
 HasPackageSigningFingerprint returns a boolean if a field has been set.
 
+### SetPackageSigningFingerprintNil
+
+`func (o *RpmRpmRepositoryResponse) SetPackageSigningFingerprintNil(b bool)`
+
+ SetPackageSigningFingerprintNil sets the value for PackageSigningFingerprint to be an explicit nil
+
+### UnsetPackageSigningFingerprint
+`func (o *RpmRpmRepositoryResponse) UnsetPackageSigningFingerprint()`
+
+UnsetPackageSigningFingerprint ensures that no value is present for PackageSigningFingerprint, not even an explicit nil
 ### GetRetainPackageVersions
 
 `func (o *RpmRpmRepositoryResponse) GetRetainPackageVersions() int64`
