@@ -61,6 +61,8 @@ func (a *TokenAPIService) TokenGetExecute(r TokenAPITokenGetRequest) (*http.Resp
 	}
 
 	localVarPath := localBasePath + "/token/"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

@@ -198,13 +198,13 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;file.file&#x60; - file.file* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
+// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;maven.maven&#x60; - maven.maven* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through
 func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;file.file&#x60; - file.file* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
+// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;maven.maven&#x60; - maven.maven* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -266,7 +266,7 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

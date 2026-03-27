@@ -75,7 +75,7 @@ func (a *UsersRolesAPIService) UsersRolesCreateExecute(r UsersRolesAPIUsersRoles
 
 	localVarPath := localBasePath + "/{auth_user_href}roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *UsersRolesAPIService) UsersRolesDeleteExecute(r UsersRolesAPIUsersRoles
 
 	localVarPath := localBasePath + "/{auth_users_user_role_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_users_user_role_href"+"}", url.PathEscape(parameterValueToString(r.authUsersUserRoleHref, "authUsersUserRoleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -385,7 +385,7 @@ func (a *UsersRolesAPIService) UsersRolesListExecute(r UsersRolesAPIUsersRolesLi
 
 	localVarPath := localBasePath + "/{auth_user_href}roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -567,7 +567,7 @@ func (a *UsersRolesAPIService) UsersRolesReadExecute(r UsersRolesAPIUsersRolesRe
 
 	localVarPath := localBasePath + "/{auth_users_user_role_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_users_user_role_href"+"}", url.PathEscape(parameterValueToString(r.authUsersUserRoleHref, "authUsersUserRoleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

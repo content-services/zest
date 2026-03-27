@@ -167,7 +167,7 @@ func (a *ContentPackageenvironmentsAPIService) ContentRpmPackageenvironmentsList
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/packageenvironments/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -343,7 +343,7 @@ func (a *ContentPackageenvironmentsAPIService) ContentRpmPackageenvironmentsRead
 
 	localVarPath := localBasePath + "/{rpm_package_environment_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_environment_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageEnvironmentHref, "rpmPackageEnvironmentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -475,7 +475,7 @@ func (a *ContentPackageenvironmentsAPIService) ContentRpmPackageenvironmentsSetL
 
 	localVarPath := localBasePath + "/{rpm_package_environment_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_environment_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageEnvironmentHref, "rpmPackageEnvironmentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -590,7 +590,7 @@ func (a *ContentPackageenvironmentsAPIService) ContentRpmPackageenvironmentsUnse
 
 	localVarPath := localBasePath + "/{rpm_package_environment_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_environment_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageEnvironmentHref, "rpmPackageEnvironmentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -75,7 +75,7 @@ func (a *GroupsUsersAPIService) GroupsUsersCreateExecute(r GroupsUsersAPIGroupsU
 
 	localVarPath := localBasePath + "/{group_href}users/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *GroupsUsersAPIService) GroupsUsersDeleteExecute(r GroupsUsersAPIGroupsU
 
 	localVarPath := localBasePath + "/{groups_user_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"groups_user_href"+"}", url.PathEscape(parameterValueToString(r.groupsUserHref, "groupsUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -305,7 +305,7 @@ func (a *GroupsUsersAPIService) GroupsUsersListExecute(r GroupsUsersAPIGroupsUse
 
 	localVarPath := localBasePath + "/{group_href}users/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

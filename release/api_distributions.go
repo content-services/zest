@@ -186,13 +186,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;file.file&#x60; - file.file* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;maven.maven&#x60; - maven.maven* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;npm.npm&#x60; - npm.npm* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;file.file&#x60; - file.file* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;maven.maven&#x60; - maven.maven* &#x60;gem.gem&#x60; - gem.gem* &#x60;ostree.ostree&#x60; - ostree.ostree* &#x60;npm.npm&#x60; - npm.npm* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -272,7 +272,7 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

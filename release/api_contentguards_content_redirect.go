@@ -75,7 +75,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -297,7 +297,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -518,7 +518,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/core/content_redirect/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -706,7 +706,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -846,7 +846,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -978,7 +978,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1101,7 +1101,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1233,7 +1233,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1348,7 +1348,7 @@ func (a *ContentguardsContentRedirectAPIService) ContentguardsCoreContentRedirec
 
 	localVarPath := localBasePath + "/{content_redirect_content_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"content_redirect_content_guard_href"+"}", url.PathEscape(parameterValueToString(r.contentRedirectContentGuardHref, "contentRedirectContentGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

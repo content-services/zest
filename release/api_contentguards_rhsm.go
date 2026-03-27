@@ -75,7 +75,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmCreateExecute(r 
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/certguard/rhsm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmDeleteExecute(r 
 
 	localVarPath := localBasePath + "/{certguard_r_h_s_m_cert_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"certguard_r_h_s_m_cert_guard_href"+"}", url.PathEscape(parameterValueToString(r.certguardRHSMCertGuardHref, "certguardRHSMCertGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -403,7 +403,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmListExecute(r Co
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/contentguards/certguard/rhsm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -583,7 +583,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmPartialUpdateExe
 
 	localVarPath := localBasePath + "/{certguard_r_h_s_m_cert_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"certguard_r_h_s_m_cert_guard_href"+"}", url.PathEscape(parameterValueToString(r.certguardRHSMCertGuardHref, "certguardRHSMCertGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -706,7 +706,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmReadExecute(r Co
 
 	localVarPath := localBasePath + "/{certguard_r_h_s_m_cert_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"certguard_r_h_s_m_cert_guard_href"+"}", url.PathEscape(parameterValueToString(r.certguardRHSMCertGuardHref, "certguardRHSMCertGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -838,7 +838,7 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmUpdateExecute(r 
 
 	localVarPath := localBasePath + "/{certguard_r_h_s_m_cert_guard_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"certguard_r_h_s_m_cert_guard_href"+"}", url.PathEscape(parameterValueToString(r.certguardRHSMCertGuardHref, "certguardRHSMCertGuardHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

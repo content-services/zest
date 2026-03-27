@@ -75,7 +75,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemCreateExecute(r E
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/exporters/core/filesystem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemDeleteExecute(r E
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -414,7 +414,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemListExecute(r Exp
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/exporters/core/filesystem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -594,7 +594,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemPartialUpdateExec
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -717,7 +717,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemReadExecute(r Exp
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -849,7 +849,7 @@ func (a *ExportersFilesystemAPIService) ExportersCoreFilesystemUpdateExecute(r E
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

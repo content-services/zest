@@ -75,7 +75,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonAddRoleExecute(r 
 
 	localVarPath := localBasePath + "/{python_python_repository_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonCreateExecute(r R
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/python/python/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonDeleteExecute(r R
 
 	localVarPath := localBasePath + "/{python_python_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -613,7 +613,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonListExecute(r Rep
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/python/python/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -837,7 +837,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonListRolesExecute(
 
 	localVarPath := localBasePath + "/{python_python_repository_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -969,7 +969,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonModifyExecute(r R
 
 	localVarPath := localBasePath + "/{python_python_repository_href}modify/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1092,7 +1092,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonMyPermissionsExec
 
 	localVarPath := localBasePath + "/{python_python_repository_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1224,7 +1224,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonPartialUpdateExec
 
 	localVarPath := localBasePath + "/{python_python_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1347,7 +1347,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonReadExecute(r Rep
 
 	localVarPath := localBasePath + "/{python_python_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1479,7 +1479,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonRemoveRoleExecute
 
 	localVarPath := localBasePath + "/{python_python_repository_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1594,7 +1594,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonSetLabelExecute(r
 
 	localVarPath := localBasePath + "/{python_python_repository_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1709,7 +1709,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonSyncExecute(r Rep
 
 	localVarPath := localBasePath + "/{python_python_repository_href}sync/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1824,7 +1824,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonUnsetLabelExecute
 
 	localVarPath := localBasePath + "/{python_python_repository_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1939,7 +1939,7 @@ func (a *RepositoriesPythonAPIService) RepositoriesPythonPythonUpdateExecute(r R
 
 	localVarPath := localBasePath + "/{python_python_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryHref, "pythonPythonRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

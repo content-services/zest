@@ -77,7 +77,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonAddRoleExecute(r RemotesPyt
 
 	localVarPath := localBasePath + "/{python_python_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -192,7 +192,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonCreateExecute(r RemotesPyth
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/python/python/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -301,7 +301,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonDeleteExecute(r RemotesPyth
 
 	localVarPath := localBasePath + "/{python_python_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -426,7 +426,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonFromBandersnatchExecute(r R
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/python/python/from_bandersnatch/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -742,7 +742,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonListExecute(r RemotesPython
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/python/python/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -954,7 +954,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonListRolesExecute(r RemotesP
 
 	localVarPath := localBasePath + "/{python_python_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1094,7 +1094,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonMyPermissionsExecute(r Remo
 
 	localVarPath := localBasePath + "/{python_python_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1226,7 +1226,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonPartialUpdateExecute(r Remo
 
 	localVarPath := localBasePath + "/{python_python_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1349,7 +1349,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonReadExecute(r RemotesPython
 
 	localVarPath := localBasePath + "/{python_python_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1481,7 +1481,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonRemoveRoleExecute(r Remotes
 
 	localVarPath := localBasePath + "/{python_python_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1596,7 +1596,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonSetLabelExecute(r RemotesPy
 
 	localVarPath := localBasePath + "/{python_python_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1711,7 +1711,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonUnsetLabelExecute(r Remotes
 
 	localVarPath := localBasePath + "/{python_python_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1826,7 +1826,7 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonUpdateExecute(r RemotesPyth
 
 	localVarPath := localBasePath + "/{python_python_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_remote_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRemoteHref, "pythonPythonRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

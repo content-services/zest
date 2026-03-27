@@ -76,7 +76,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileAddRoleExecute(r Public
 
 	localVarPath := localBasePath + "/{file_file_publication_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileCreateExecute(r Publica
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,7 +298,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileDeleteExecute(r Publica
 
 	localVarPath := localBasePath + "/{file_file_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -540,7 +540,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileListExecute(r Publicati
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -737,7 +737,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileListRolesExecute(r Publ
 
 	localVarPath := localBasePath + "/{file_file_publication_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -877,7 +877,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileMyPermissionsExecute(r 
 
 	localVarPath := localBasePath + "/{file_file_publication_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1017,7 +1017,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileReadExecute(r Publicati
 
 	localVarPath := localBasePath + "/{file_file_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1149,7 +1149,7 @@ func (a *PublicationsFileAPIService) PublicationsFileFileRemoveRoleExecute(r Pub
 
 	localVarPath := localBasePath + "/{file_file_publication_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_publication_href"+"}", url.PathEscape(parameterValueToString(r.fileFilePublicationHref, "fileFilePublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

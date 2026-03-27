@@ -76,7 +76,7 @@ func (a *RemotesFileAPIService) RemotesFileFileAddRoleExecute(r RemotesFileAPIRe
 
 	localVarPath := localBasePath + "/{file_file_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *RemotesFileAPIService) RemotesFileFileCreateExecute(r RemotesFileAPIRem
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -300,7 +300,7 @@ func (a *RemotesFileAPIService) RemotesFileFileDeleteExecute(r RemotesFileAPIRem
 
 	localVarPath := localBasePath + "/{file_file_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -586,7 +586,7 @@ func (a *RemotesFileAPIService) RemotesFileFileListExecute(r RemotesFileAPIRemot
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesFileAPIService) RemotesFileFileListRolesExecute(r RemotesFileAPI
 
 	localVarPath := localBasePath + "/{file_file_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +938,7 @@ func (a *RemotesFileAPIService) RemotesFileFileMyPermissionsExecute(r RemotesFil
 
 	localVarPath := localBasePath + "/{file_file_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1070,7 +1070,7 @@ func (a *RemotesFileAPIService) RemotesFileFilePartialUpdateExecute(r RemotesFil
 
 	localVarPath := localBasePath + "/{file_file_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1193,7 +1193,7 @@ func (a *RemotesFileAPIService) RemotesFileFileReadExecute(r RemotesFileAPIRemot
 
 	localVarPath := localBasePath + "/{file_file_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1325,7 +1325,7 @@ func (a *RemotesFileAPIService) RemotesFileFileRemoveRoleExecute(r RemotesFileAP
 
 	localVarPath := localBasePath + "/{file_file_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1440,7 +1440,7 @@ func (a *RemotesFileAPIService) RemotesFileFileSetLabelExecute(r RemotesFileAPIR
 
 	localVarPath := localBasePath + "/{file_file_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1555,7 +1555,7 @@ func (a *RemotesFileAPIService) RemotesFileFileUnsetLabelExecute(r RemotesFileAP
 
 	localVarPath := localBasePath + "/{file_file_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1670,7 +1670,7 @@ func (a *RemotesFileAPIService) RemotesFileFileUpdateExecute(r RemotesFileAPIRem
 
 	localVarPath := localBasePath + "/{file_file_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_remote_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRemoteHref, "fileFileRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

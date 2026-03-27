@@ -174,7 +174,7 @@ func (a *ContentObjectsAPIService) ContentOstreeObjectsListExecute(r ContentObje
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/ostree/objects/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -353,7 +353,7 @@ func (a *ContentObjectsAPIService) ContentOstreeObjectsReadExecute(r ContentObje
 
 	localVarPath := localBasePath + "/{ostree_ostree_object_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_object_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeObjectHref, "ostreeOstreeObjectHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -485,7 +485,7 @@ func (a *ContentObjectsAPIService) ContentOstreeObjectsSetLabelExecute(r Content
 
 	localVarPath := localBasePath + "/{ostree_ostree_object_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_object_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeObjectHref, "ostreeOstreeObjectHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -600,7 +600,7 @@ func (a *ContentObjectsAPIService) ContentOstreeObjectsUnsetLabelExecute(r Conte
 
 	localVarPath := localBasePath + "/{ostree_ostree_object_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_object_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeObjectHref, "ostreeOstreeObjectHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

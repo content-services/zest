@@ -75,7 +75,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesAddRoleExecut
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesCreateExecute
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/pulp_container/namespaces/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesDeleteExecute
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -529,7 +529,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesListExecute(r
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/pulp_container/namespaces/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -717,7 +717,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesListRolesExec
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -857,7 +857,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesMyPermissions
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -997,7 +997,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesReadExecute(r
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1129,7 +1129,7 @@ func (a *PulpContainerNamespacesAPIService) PulpContainerNamespacesRemoveRoleExe
 
 	localVarPath := localBasePath + "/{container_container_namespace_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_namespace_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerNamespaceHref, "containerContainerNamespaceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

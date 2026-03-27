@@ -84,6 +84,8 @@ func (a *DocsApiYamlAPIService) DocsApiYamlGetExecute(r DocsApiYamlAPIDocsApiYam
 	}
 
 	localVarPath := localBasePath + "/api/pulp/api/v3/docs/api.yaml"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

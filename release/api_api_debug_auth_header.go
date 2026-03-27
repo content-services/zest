@@ -61,6 +61,8 @@ func (a *ApiDebugAuthHeaderAPIService) ApiPulpDebugAuthHeaderGetExecute(r ApiDeb
 	}
 
 	localVarPath := localBasePath + "/api/pulp/debug_auth_header/"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

@@ -75,7 +75,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesAddRoleExecute(r TaskSchedulesAPI
 
 	localVarPath := localBasePath + "/{task_schedule_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_schedule_href"+"}", url.PathEscape(parameterValueToString(r.taskScheduleHref, "taskScheduleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -275,7 +275,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesListExecute(r TaskSchedulesAPITas
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/task-schedules/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -448,7 +448,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesListRolesExecute(r TaskSchedulesA
 
 	localVarPath := localBasePath + "/{task_schedule_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_schedule_href"+"}", url.PathEscape(parameterValueToString(r.taskScheduleHref, "taskScheduleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -588,7 +588,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesMyPermissionsExecute(r TaskSchedu
 
 	localVarPath := localBasePath + "/{task_schedule_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_schedule_href"+"}", url.PathEscape(parameterValueToString(r.taskScheduleHref, "taskScheduleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -728,7 +728,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesReadExecute(r TaskSchedulesAPITas
 
 	localVarPath := localBasePath + "/{task_schedule_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_schedule_href"+"}", url.PathEscape(parameterValueToString(r.taskScheduleHref, "taskScheduleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -860,7 +860,7 @@ func (a *TaskSchedulesAPIService) TaskSchedulesRemoveRoleExecute(r TaskSchedules
 
 	localVarPath := localBasePath + "/{task_schedule_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_schedule_href"+"}", url.PathEscape(parameterValueToString(r.taskScheduleHref, "taskScheduleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -59,6 +59,8 @@ func (a *ApiTestTasksAPIService) ApiPulpTestTasksGetExecute(r ApiTestTasksAPIApi
 	}
 
 	localVarPath := localBasePath + "/api/pulp/test/tasks/"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

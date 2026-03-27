@@ -75,7 +75,7 @@ func (a *GroupsRolesAPIService) GroupsRolesCreateExecute(r GroupsRolesAPIGroupsR
 
 	localVarPath := localBasePath + "/{group_href}roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *GroupsRolesAPIService) GroupsRolesDeleteExecute(r GroupsRolesAPIGroupsR
 
 	localVarPath := localBasePath + "/{groups_group_role_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"groups_group_role_href"+"}", url.PathEscape(parameterValueToString(r.groupsGroupRoleHref, "groupsGroupRoleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -385,7 +385,7 @@ func (a *GroupsRolesAPIService) GroupsRolesListExecute(r GroupsRolesAPIGroupsRol
 
 	localVarPath := localBasePath + "/{group_href}roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -567,7 +567,7 @@ func (a *GroupsRolesAPIService) GroupsRolesReadExecute(r GroupsRolesAPIGroupsRol
 
 	localVarPath := localBasePath + "/{groups_group_role_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"groups_group_role_href"+"}", url.PathEscape(parameterValueToString(r.groupsGroupRoleHref, "groupsGroupRoleHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -75,7 +75,7 @@ func (a *ContentContentAPIService) ContentOstreeContentCreateExecute(r ContentCo
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/ostree/content/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -282,7 +282,7 @@ func (a *ContentContentAPIService) ContentOstreeContentListExecute(r ContentCont
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/ostree/content/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -458,7 +458,7 @@ func (a *ContentContentAPIService) ContentOstreeContentReadExecute(r ContentCont
 
 	localVarPath := localBasePath + "/{ostree_ostree_content_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_content_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeContentHref, "ostreeOstreeContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -590,7 +590,7 @@ func (a *ContentContentAPIService) ContentOstreeContentSetLabelExecute(r Content
 
 	localVarPath := localBasePath + "/{ostree_ostree_content_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_content_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeContentHref, "ostreeOstreeContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -705,7 +705,7 @@ func (a *ContentContentAPIService) ContentOstreeContentUnsetLabelExecute(r Conte
 
 	localVarPath := localBasePath + "/{ostree_ostree_content_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_content_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeContentHref, "ostreeOstreeContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

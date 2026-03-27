@@ -167,7 +167,7 @@ func (a *ContentPackagecategoriesAPIService) ContentRpmPackagecategoriesListExec
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/packagecategories/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -343,7 +343,7 @@ func (a *ContentPackagecategoriesAPIService) ContentRpmPackagecategoriesReadExec
 
 	localVarPath := localBasePath + "/{rpm_package_category_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_category_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageCategoryHref, "rpmPackageCategoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -475,7 +475,7 @@ func (a *ContentPackagecategoriesAPIService) ContentRpmPackagecategoriesSetLabel
 
 	localVarPath := localBasePath + "/{rpm_package_category_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_category_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageCategoryHref, "rpmPackageCategoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -590,7 +590,7 @@ func (a *ContentPackagecategoriesAPIService) ContentRpmPackagecategoriesUnsetLab
 
 	localVarPath := localBasePath + "/{rpm_package_category_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_category_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageCategoryHref, "rpmPackageCategoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

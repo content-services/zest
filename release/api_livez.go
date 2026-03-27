@@ -61,6 +61,8 @@ func (a *LivezAPIService) LivezReadExecute(r LivezAPILivezReadRequest) (*http.Re
 	}
 
 	localVarPath := localBasePath + "/api/pulp/api/v3/livez/"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

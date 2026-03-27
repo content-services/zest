@@ -75,7 +75,7 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsCre
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}exports/"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsDel
 
 	localVarPath := localBasePath + "/{filesystem_filesystem_export_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_filesystem_export_href"+"}", url.PathEscape(parameterValueToString(r.filesystemFilesystemExportHref, "filesystemFilesystemExportHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -305,7 +305,7 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsLis
 
 	localVarPath := localBasePath + "/{filesystem_exporter_href}exports/"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_exporter_href"+"}", url.PathEscape(parameterValueToString(r.filesystemExporterHref, "filesystemExporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -451,7 +451,7 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsRea
 
 	localVarPath := localBasePath + "/{filesystem_filesystem_export_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"filesystem_filesystem_export_href"+"}", url.PathEscape(parameterValueToString(r.filesystemFilesystemExportHref, "filesystemFilesystemExportHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

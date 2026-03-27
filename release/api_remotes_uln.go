@@ -76,7 +76,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnAddRoleExecute(r RemotesUlnAPIRemote
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnCreateExecute(r RemotesUlnAPIRemotes
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -300,7 +300,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnDeleteExecute(r RemotesUlnAPIRemotes
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -586,7 +586,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnListExecute(r RemotesUlnAPIRemotesRp
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/rpm/uln/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnListRolesExecute(r RemotesUlnAPIRemo
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +938,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnMyPermissionsExecute(r RemotesUlnAPI
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1070,7 +1070,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnPartialUpdateExecute(r RemotesUlnAPI
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1193,7 +1193,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnReadExecute(r RemotesUlnAPIRemotesRp
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1325,7 +1325,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnRemoveRoleExecute(r RemotesUlnAPIRem
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1440,7 +1440,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnSetLabelExecute(r RemotesUlnAPIRemot
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1555,7 +1555,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnUnsetLabelExecute(r RemotesUlnAPIRem
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1670,7 +1670,7 @@ func (a *RemotesUlnAPIService) RemotesRpmUlnUpdateExecute(r RemotesUlnAPIRemotes
 
 	localVarPath := localBasePath + "/{rpm_uln_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_uln_remote_href"+"}", url.PathEscape(parameterValueToString(r.rpmUlnRemoteHref, "rpmUlnRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

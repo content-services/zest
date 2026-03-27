@@ -119,7 +119,7 @@ func (a *ContentFilesAPIService) ContentFileFilesCreateExecute(r ContentFilesAPI
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/file/files/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -373,7 +373,7 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/file/files/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -555,7 +555,7 @@ func (a *ContentFilesAPIService) ContentFileFilesReadExecute(r ContentFilesAPICo
 
 	localVarPath := localBasePath + "/{file_file_content_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_content_href"+"}", url.PathEscape(parameterValueToString(r.fileFileContentHref, "fileFileContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -687,7 +687,7 @@ func (a *ContentFilesAPIService) ContentFileFilesSetLabelExecute(r ContentFilesA
 
 	localVarPath := localBasePath + "/{file_file_content_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_content_href"+"}", url.PathEscape(parameterValueToString(r.fileFileContentHref, "fileFileContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -802,7 +802,7 @@ func (a *ContentFilesAPIService) ContentFileFilesUnsetLabelExecute(r ContentFile
 
 	localVarPath := localBasePath + "/{file_file_content_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_content_href"+"}", url.PathEscape(parameterValueToString(r.fileFileContentHref, "fileFileContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -151,13 +151,13 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem
 func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;gem.gem&#x60; - gem.gem* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;gem.gem&#x60; - gem.gem
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -231,7 +231,7 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

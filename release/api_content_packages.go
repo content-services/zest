@@ -130,7 +130,7 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPac
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/npm/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -399,7 +399,7 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesListExecute(r ContentPacka
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/npm/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -581,7 +581,7 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesReadExecute(r ContentPacka
 
 	localVarPath := localBasePath + "/{npm_package_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_package_href"+"}", url.PathEscape(parameterValueToString(r.npmPackageHref, "npmPackageHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -713,7 +713,7 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesSetLabelExecute(r ContentP
 
 	localVarPath := localBasePath + "/{npm_package_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_package_href"+"}", url.PathEscape(parameterValueToString(r.npmPackageHref, "npmPackageHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -828,7 +828,7 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesUnsetLabelExecute(r Conten
 
 	localVarPath := localBasePath + "/{npm_package_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_package_href"+"}", url.PathEscape(parameterValueToString(r.npmPackageHref, "npmPackageHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1140,7 +1140,7 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/python/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1594,7 +1594,7 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/python/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1833,7 +1833,7 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesReadExecute(r ContentPa
 
 	localVarPath := localBasePath + "/{python_python_package_content_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_package_content_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPackageContentHref, "pythonPythonPackageContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1965,7 +1965,7 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesSetLabelExecute(r Conte
 
 	localVarPath := localBasePath + "/{python_python_package_content_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_package_content_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPackageContentHref, "pythonPythonPackageContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2080,7 +2080,7 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesUnsetLabelExecute(r Con
 
 	localVarPath := localBasePath + "/{python_python_package_content_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_package_content_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPackageContentHref, "pythonPythonPackageContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2238,7 +2238,7 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2669,7 +2669,7 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -70,7 +70,7 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsDeleteExec
 
 	localVarPath := localBasePath + "/{gem_gem_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRepositoryVersionHref, "gemGemRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -335,7 +335,7 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsListExecut
 
 	localVarPath := localBasePath + "/{gem_gem_repository_href}versions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_repository_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRepositoryHref, "gemGemRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -538,7 +538,7 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsReadExecut
 
 	localVarPath := localBasePath + "/{gem_gem_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRepositoryVersionHref, "gemGemRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -670,7 +670,7 @@ func (a *RepositoriesGemVersionsAPIService) RepositoriesGemGemVersionsRepairExec
 
 	localVarPath := localBasePath + "/{gem_gem_repository_version_href}repair/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRepositoryVersionHref, "gemGemRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

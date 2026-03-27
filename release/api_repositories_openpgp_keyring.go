@@ -75,7 +75,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringAdd
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringCre
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/core/openpgp_keyring/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringDel
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -613,7 +613,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringLis
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/core/openpgp_keyring/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -837,7 +837,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringLis
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -969,7 +969,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringMod
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}modify/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1092,7 +1092,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringMyP
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1224,7 +1224,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringPar
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1347,7 +1347,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringRea
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1479,7 +1479,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringRem
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1594,7 +1594,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringSet
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1709,7 +1709,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUns
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1824,7 +1824,7 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUpd
 
 	localVarPath := localBasePath + "/{open_p_g_p_keyring_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_keyring_href"+"}", url.PathEscape(parameterValueToString(r.openPGPKeyringHref, "openPGPKeyringHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

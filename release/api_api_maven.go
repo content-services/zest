@@ -87,13 +87,9 @@ func (a *ApiMavenAPIService) ApiPulpMavenGetExecute(r ApiMavenAPIApiPulpMavenGet
 
 	localVarPath := localBasePath + "/api/pulp/maven/{pulp_domain}/{name}/{path}"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -214,13 +210,9 @@ func (a *ApiMavenAPIService) ApiPulpMavenPutExecute(r ApiMavenAPIApiPulpMavenPut
 
 	localVarPath := localBasePath + "/api/pulp/maven/{pulp_domain}/{name}/{path}"
 	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

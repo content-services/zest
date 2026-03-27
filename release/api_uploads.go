@@ -76,7 +76,7 @@ func (a *UploadsAPIService) UploadsAddRoleExecute(r UploadsAPIUploadsAddRoleRequ
 
 	localVarPath := localBasePath + "/{upload_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *UploadsAPIService) UploadsCommitExecute(r UploadsAPIUploadsCommitReques
 
 	localVarPath := localBasePath + "/{upload_href}commit/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -306,7 +306,7 @@ func (a *UploadsAPIService) UploadsCreateExecute(r UploadsAPIUploadsCreateReques
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/uploads/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -413,7 +413,7 @@ func (a *UploadsAPIService) UploadsDeleteExecute(r UploadsAPIUploadsDeleteReques
 
 	localVarPath := localBasePath + "/{upload_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -599,7 +599,7 @@ func (a *UploadsAPIService) UploadsListExecute(r UploadsAPIUploadsListRequest) (
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/uploads/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -772,7 +772,7 @@ func (a *UploadsAPIService) UploadsListRolesExecute(r UploadsAPIUploadsListRoles
 
 	localVarPath := localBasePath + "/{upload_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -912,7 +912,7 @@ func (a *UploadsAPIService) UploadsMyPermissionsExecute(r UploadsAPIUploadsMyPer
 
 	localVarPath := localBasePath + "/{upload_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1052,7 +1052,7 @@ func (a *UploadsAPIService) UploadsReadExecute(r UploadsAPIUploadsReadRequest) (
 
 	localVarPath := localBasePath + "/{upload_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1184,7 +1184,7 @@ func (a *UploadsAPIService) UploadsRemoveRoleExecute(r UploadsAPIUploadsRemoveRo
 
 	localVarPath := localBasePath + "/{upload_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1314,7 +1314,7 @@ func (a *UploadsAPIService) UploadsUpdateExecute(r UploadsAPIUploadsUpdateReques
 
 	localVarPath := localBasePath + "/{upload_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upload_href"+"}", url.PathEscape(parameterValueToString(r.uploadHref, "uploadHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

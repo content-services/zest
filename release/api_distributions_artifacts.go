@@ -258,7 +258,7 @@ func (a *DistributionsArtifactsAPIService) DistributionsCoreArtifactsListExecute
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/core/artifacts/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -473,7 +473,7 @@ func (a *DistributionsArtifactsAPIService) DistributionsCoreArtifactsReadExecute
 
 	localVarPath := localBasePath + "/{artifact_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"artifact_distribution_href"+"}", url.PathEscape(parameterValueToString(r.artifactDistributionHref, "artifactDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

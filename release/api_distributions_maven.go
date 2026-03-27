@@ -75,7 +75,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenCreateExecute(r Di
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenDeleteExecute(r Di
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -477,7 +477,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenListExecute(r Dist
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -684,7 +684,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenPartialUpdateExecu
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -807,7 +807,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenReadExecute(r Dist
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -939,7 +939,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenSetLabelExecute(r 
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1054,7 +1054,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenUnsetLabelExecute(
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1169,7 +1169,7 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenUpdateExecute(r Di
 
 	localVarPath := localBasePath + "/{maven_maven_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

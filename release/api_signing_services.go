@@ -139,7 +139,7 @@ func (a *SigningServicesAPIService) SigningServicesListExecute(r SigningServices
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/signing-services/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -303,7 +303,7 @@ func (a *SigningServicesAPIService) SigningServicesReadExecute(r SigningServices
 
 	localVarPath := localBasePath + "/{signing_service_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"signing_service_href"+"}", url.PathEscape(parameterValueToString(r.signingServiceHref, "signingServiceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

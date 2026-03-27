@@ -75,7 +75,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmAddRoleExecute(r Distrib
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmCreateExecute(r Distribu
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmDeleteExecute(r Distribu
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -592,7 +592,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmListExecute(r Distributi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/rpm/rpm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -807,7 +807,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmListRolesExecute(r Distr
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -947,7 +947,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmMyPermissionsExecute(r D
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1079,7 +1079,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmPartialUpdateExecute(r D
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1202,7 +1202,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmReadExecute(r Distributi
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1334,7 +1334,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmRemoveRoleExecute(r Dist
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1449,7 +1449,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmSetLabelExecute(r Distri
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1564,7 +1564,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmUnsetLabelExecute(r Dist
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1679,7 +1679,7 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmUpdateExecute(r Distribu
 
 	localVarPath := localBasePath + "/{rpm_rpm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmDistributionHref, "rpmRpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

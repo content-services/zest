@@ -76,7 +76,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemAddRoleExecute(r Publicati
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemCreateExecute(r Publicatio
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,7 +298,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemDeleteExecute(r Publicatio
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -540,7 +540,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemListExecute(r Publications
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -737,7 +737,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemListRolesExecute(r Publica
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -877,7 +877,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemMyPermissionsExecute(r Pub
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1017,7 +1017,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemReadExecute(r Publications
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1149,7 +1149,7 @@ func (a *PublicationsGemAPIService) PublicationsGemGemRemoveRoleExecute(r Public
 
 	localVarPath := localBasePath + "/{gem_gem_publication_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_publication_href"+"}", url.PathEscape(parameterValueToString(r.gemGemPublicationHref, "gemGemPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

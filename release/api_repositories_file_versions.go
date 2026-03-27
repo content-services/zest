@@ -70,7 +70,7 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsDeleteE
 
 	localVarPath := localBasePath + "/{file_file_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryVersionHref, "fileFileRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -335,7 +335,7 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsListExe
 
 	localVarPath := localBasePath + "/{file_file_repository_href}versions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -538,7 +538,7 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsReadExe
 
 	localVarPath := localBasePath + "/{file_file_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryVersionHref, "fileFileRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -670,7 +670,7 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsRepairE
 
 	localVarPath := localBasePath + "/{file_file_repository_version_href}repair/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryVersionHref, "fileFileRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

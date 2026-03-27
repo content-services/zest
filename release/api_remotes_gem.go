@@ -76,7 +76,7 @@ func (a *RemotesGemAPIService) RemotesGemGemAddRoleExecute(r RemotesGemAPIRemote
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *RemotesGemAPIService) RemotesGemGemCreateExecute(r RemotesGemAPIRemotes
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -300,7 +300,7 @@ func (a *RemotesGemAPIService) RemotesGemGemDeleteExecute(r RemotesGemAPIRemotes
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -586,7 +586,7 @@ func (a *RemotesGemAPIService) RemotesGemGemListExecute(r RemotesGemAPIRemotesGe
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesGemAPIService) RemotesGemGemListRolesExecute(r RemotesGemAPIRemo
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +938,7 @@ func (a *RemotesGemAPIService) RemotesGemGemMyPermissionsExecute(r RemotesGemAPI
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1070,7 +1070,7 @@ func (a *RemotesGemAPIService) RemotesGemGemPartialUpdateExecute(r RemotesGemAPI
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1193,7 +1193,7 @@ func (a *RemotesGemAPIService) RemotesGemGemReadExecute(r RemotesGemAPIRemotesGe
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1325,7 +1325,7 @@ func (a *RemotesGemAPIService) RemotesGemGemRemoveRoleExecute(r RemotesGemAPIRem
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1440,7 +1440,7 @@ func (a *RemotesGemAPIService) RemotesGemGemSetLabelExecute(r RemotesGemAPIRemot
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1555,7 +1555,7 @@ func (a *RemotesGemAPIService) RemotesGemGemUnsetLabelExecute(r RemotesGemAPIRem
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1670,7 +1670,7 @@ func (a *RemotesGemAPIService) RemotesGemGemUpdateExecute(r RemotesGemAPIRemotes
 
 	localVarPath := localBasePath + "/{gem_gem_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_remote_href"+"}", url.PathEscape(parameterValueToString(r.gemGemRemoteHref, "gemGemRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

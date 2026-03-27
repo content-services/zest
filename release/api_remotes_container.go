@@ -76,7 +76,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerAddRoleExecute(r R
 
 	localVarPath := localBasePath + "/{container_container_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerCreateExecute(r Re
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/container/container/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -300,7 +300,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerDeleteExecute(r Re
 
 	localVarPath := localBasePath + "/{container_container_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -586,7 +586,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerListExecute(r Remo
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/container/container/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerListRolesExecute(r
 
 	localVarPath := localBasePath + "/{container_container_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +938,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerMyPermissionsExecu
 
 	localVarPath := localBasePath + "/{container_container_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1070,7 +1070,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerPartialUpdateExecu
 
 	localVarPath := localBasePath + "/{container_container_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1193,7 +1193,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerReadExecute(r Remo
 
 	localVarPath := localBasePath + "/{container_container_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1325,7 +1325,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerRemoveRoleExecute(
 
 	localVarPath := localBasePath + "/{container_container_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1440,7 +1440,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerSetLabelExecute(r 
 
 	localVarPath := localBasePath + "/{container_container_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1555,7 +1555,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerUnsetLabelExecute(
 
 	localVarPath := localBasePath + "/{container_container_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1670,7 +1670,7 @@ func (a *RemotesContainerAPIService) RemotesContainerContainerUpdateExecute(r Re
 
 	localVarPath := localBasePath + "/{container_container_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerRemoteHref, "containerContainerRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

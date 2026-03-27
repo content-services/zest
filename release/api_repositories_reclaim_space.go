@@ -74,7 +74,7 @@ func (a *RepositoriesReclaimSpaceAPIService) RepositoriesReclaimSpaceReclaimExec
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/reclaim_space/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -75,7 +75,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmAddRoleExecute(r AcsRpmAPIAcsRpmRpmAddRoleRe
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmCreateExecute(r AcsRpmAPIAcsRpmRpmCreateRequ
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/acs/rpm/rpm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmDeleteExecute(r AcsRpmAPIAcsRpmRpmDeleteRequ
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -529,7 +529,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmListExecute(r AcsRpmAPIAcsRpmRpmListRequest)
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/acs/rpm/rpm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -717,7 +717,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmListRolesExecute(r AcsRpmAPIAcsRpmRpmListRol
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -857,7 +857,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmMyPermissionsExecute(r AcsRpmAPIAcsRpmRpmMyP
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -989,7 +989,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmPartialUpdateExecute(r AcsRpmAPIAcsRpmRpmPar
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1112,7 +1112,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmReadExecute(r AcsRpmAPIAcsRpmRpmReadRequest)
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1238,7 +1238,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmRefreshExecute(r AcsRpmAPIAcsRpmRpmRefreshRe
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}refresh/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1348,7 +1348,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmRemoveRoleExecute(r AcsRpmAPIAcsRpmRpmRemove
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1463,7 +1463,7 @@ func (a *AcsRpmAPIService) AcsRpmRpmUpdateExecute(r AcsRpmAPIAcsRpmRpmUpdateRequ
 
 	localVarPath := localBasePath + "/{rpm_rpm_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_rpm_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.rpmRpmAlternateContentSourceHref, "rpmRpmAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

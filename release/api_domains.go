@@ -75,7 +75,7 @@ func (a *DomainsAPIService) DomainsCreateExecute(r DomainsAPIDomainsCreateReques
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/domains/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *DomainsAPIService) DomainsDeleteExecute(r DomainsAPIDomainsDeleteReques
 
 	localVarPath := localBasePath + "/{domain_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -421,7 +421,7 @@ func (a *DomainsAPIService) DomainsListExecute(r DomainsAPIDomainsListRequest) (
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/domains/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -604,7 +604,7 @@ func (a *DomainsAPIService) DomainsMigrateExecute(r DomainsAPIDomainsMigrateRequ
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/domains/migrate/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -719,7 +719,7 @@ func (a *DomainsAPIService) DomainsPartialUpdateExecute(r DomainsAPIDomainsParti
 
 	localVarPath := localBasePath + "/{domain_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -842,7 +842,7 @@ func (a *DomainsAPIService) DomainsReadExecute(r DomainsAPIDomainsReadRequest) (
 
 	localVarPath := localBasePath + "/{domain_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -974,7 +974,7 @@ func (a *DomainsAPIService) DomainsSetLabelExecute(r DomainsAPIDomainsSetLabelRe
 
 	localVarPath := localBasePath + "/{domain_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1089,7 +1089,7 @@ func (a *DomainsAPIService) DomainsUnsetLabelExecute(r DomainsAPIDomainsUnsetLab
 
 	localVarPath := localBasePath + "/{domain_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1204,7 +1204,7 @@ func (a *DomainsAPIService) DomainsUpdateExecute(r DomainsAPIDomainsUpdateReques
 
 	localVarPath := localBasePath + "/{domain_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"domain_href"+"}", url.PathEscape(parameterValueToString(r.domainHref, "domainHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -76,7 +76,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsAddRoleExecute(r UpstreamPulpsAPI
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsCreateExecute(r UpstreamPulpsAPIU
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/upstream-pulps/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,7 +298,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsDeleteExecute(r UpstreamPulpsAPIU
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -631,7 +631,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListExecute(r UpstreamPulpsAPIUps
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/upstream-pulps/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -867,7 +867,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListRolesExecute(r UpstreamPulpsA
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1007,7 +1007,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsMyPermissionsExecute(r UpstreamPu
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1139,7 +1139,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsPartialUpdateExecute(r UpstreamPu
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1262,7 +1262,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReadExecute(r UpstreamPulpsAPIUps
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1394,7 +1394,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsRemoveRoleExecute(r UpstreamPulps
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1503,7 +1503,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicateExecute(r UpstreamPulpsA
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}replicate/"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1613,7 +1613,7 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsUpdateExecute(r UpstreamPulpsAPIU
 
 	localVarPath := localBasePath + "/{upstream_pulp_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"upstream_pulp_href"+"}", url.PathEscape(parameterValueToString(r.upstreamPulpHref, "upstreamPulpHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

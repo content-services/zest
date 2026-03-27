@@ -75,7 +75,7 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactCreateExecute(r ContentA
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/maven/artifact/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -310,7 +310,7 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactListExecute(r ContentArt
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/maven/artifact/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -498,7 +498,7 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactReadExecute(r ContentArt
 
 	localVarPath := localBasePath + "/{maven_maven_artifact_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_artifact_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenArtifactHref, "mavenMavenArtifactHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -630,7 +630,7 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactSetLabelExecute(r Conten
 
 	localVarPath := localBasePath + "/{maven_maven_artifact_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_artifact_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenArtifactHref, "mavenMavenArtifactHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -745,7 +745,7 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactUnsetLabelExecute(r Cont
 
 	localVarPath := localBasePath + "/{maven_maven_artifact_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_artifact_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenArtifactHref, "mavenMavenArtifactHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

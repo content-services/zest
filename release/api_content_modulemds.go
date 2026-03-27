@@ -75,7 +75,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsCreateExecute(r ContentM
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -358,7 +358,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/modulemds/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -567,7 +567,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsReadExecute(r ContentMod
 
 	localVarPath := localBasePath + "/{rpm_modulemd_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdHref, "rpmModulemdHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -699,7 +699,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsSetLabelExecute(r Conten
 
 	localVarPath := localBasePath + "/{rpm_modulemd_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdHref, "rpmModulemdHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -814,7 +814,7 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsUnsetLabelExecute(r Cont
 
 	localVarPath := localBasePath + "/{rpm_modulemd_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_modulemd_href"+"}", url.PathEscape(parameterValueToString(r.rpmModulemdHref, "rpmModulemdHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

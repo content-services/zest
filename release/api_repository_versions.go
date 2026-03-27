@@ -231,7 +231,7 @@ func (a *RepositoryVersionsAPIService) RepositoryVersionsListExecute(r Repositor
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repository_versions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

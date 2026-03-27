@@ -174,7 +174,7 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureListExecu
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/core/openpgp_signature/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -353,7 +353,7 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureReadExecu
 
 	localVarPath := localBasePath + "/{open_p_g_p_signature_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_signature_href"+"}", url.PathEscape(parameterValueToString(r.openPGPSignatureHref, "openPGPSignatureHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -485,7 +485,7 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureSetLabelE
 
 	localVarPath := localBasePath + "/{open_p_g_p_signature_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_signature_href"+"}", url.PathEscape(parameterValueToString(r.openPGPSignatureHref, "openPGPSignatureHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -600,7 +600,7 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureUnsetLabe
 
 	localVarPath := localBasePath + "/{open_p_g_p_signature_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_signature_href"+"}", url.PathEscape(parameterValueToString(r.openPGPSignatureHref, "openPGPSignatureHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
