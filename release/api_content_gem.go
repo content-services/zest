@@ -98,7 +98,7 @@ func (a *ContentGemAPIService) ContentGemGemCreateExecute(r ContentGemAPIContent
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -354,7 +354,7 @@ func (a *ContentGemAPIService) ContentGemGemListExecute(r ContentGemAPIContentGe
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -542,7 +542,7 @@ func (a *ContentGemAPIService) ContentGemGemReadExecute(r ContentGemAPIContentGe
 
 	localVarPath := localBasePath + "/{gem_gem_content_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_content_href"+"}", url.PathEscape(parameterValueToString(r.gemGemContentHref, "gemGemContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -674,7 +674,7 @@ func (a *ContentGemAPIService) ContentGemGemSetLabelExecute(r ContentGemAPIConte
 
 	localVarPath := localBasePath + "/{gem_gem_content_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_content_href"+"}", url.PathEscape(parameterValueToString(r.gemGemContentHref, "gemGemContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -789,7 +789,7 @@ func (a *ContentGemAPIService) ContentGemGemUnsetLabelExecute(r ContentGemAPICon
 
 	localVarPath := localBasePath + "/{gem_gem_content_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_content_href"+"}", url.PathEscape(parameterValueToString(r.gemGemContentHref, "gemGemContentHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

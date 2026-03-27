@@ -76,7 +76,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiAddRoleExecute(r Publ
 
 	localVarPath := localBasePath + "/{python_python_publication_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiCreateExecute(r Publi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/python/pypi/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -298,7 +298,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiDeleteExecute(r Publi
 
 	localVarPath := localBasePath + "/{python_python_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -540,7 +540,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListExecute(r Publica
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/publications/python/pypi/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -737,7 +737,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListRolesExecute(r Pu
 
 	localVarPath := localBasePath + "/{python_python_publication_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -877,7 +877,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiMyPermissionsExecute(
 
 	localVarPath := localBasePath + "/{python_python_publication_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1017,7 +1017,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiReadExecute(r Publica
 
 	localVarPath := localBasePath + "/{python_python_publication_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1149,7 +1149,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiRemoveRoleExecute(r P
 
 	localVarPath := localBasePath + "/{python_python_publication_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"python_python_publication_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonPublicationHref, "pythonPythonPublicationHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

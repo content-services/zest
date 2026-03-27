@@ -75,7 +75,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileAddRoleExecute(r Reposi
 
 	localVarPath := localBasePath + "/{file_file_repository_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileCreateExecute(r Reposit
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileDeleteExecute(r Reposit
 
 	localVarPath := localBasePath + "/{file_file_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -613,7 +613,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileListExecute(r Repositor
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -837,7 +837,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileListRolesExecute(r Repo
 
 	localVarPath := localBasePath + "/{file_file_repository_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -969,7 +969,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileModifyExecute(r Reposit
 
 	localVarPath := localBasePath + "/{file_file_repository_href}modify/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1092,7 +1092,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileMyPermissionsExecute(r 
 
 	localVarPath := localBasePath + "/{file_file_repository_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1224,7 +1224,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFilePartialUpdateExecute(r 
 
 	localVarPath := localBasePath + "/{file_file_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1347,7 +1347,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileReadExecute(r Repositor
 
 	localVarPath := localBasePath + "/{file_file_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1479,7 +1479,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileRemoveRoleExecute(r Rep
 
 	localVarPath := localBasePath + "/{file_file_repository_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1594,7 +1594,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileSetLabelExecute(r Repos
 
 	localVarPath := localBasePath + "/{file_file_repository_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1709,7 +1709,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileSyncExecute(r Repositor
 
 	localVarPath := localBasePath + "/{file_file_repository_href}sync/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1824,7 +1824,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileUnsetLabelExecute(r Rep
 
 	localVarPath := localBasePath + "/{file_file_repository_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1939,7 +1939,7 @@ func (a *RepositoriesFileAPIService) RepositoriesFileFileUpdateExecute(r Reposit
 
 	localVarPath := localBasePath + "/{file_file_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_repository_href"+"}", url.PathEscape(parameterValueToString(r.fileFileRepositoryHref, "fileFileRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

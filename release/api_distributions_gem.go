@@ -75,7 +75,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemAddRoleExecute(r Distrib
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemCreateExecute(r Distribu
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemDeleteExecute(r Distribu
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -592,7 +592,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemListExecute(r Distributi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -807,7 +807,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemListRolesExecute(r Distr
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -947,7 +947,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemMyPermissionsExecute(r D
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1079,7 +1079,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemPartialUpdateExecute(r D
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1202,7 +1202,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemReadExecute(r Distributi
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1334,7 +1334,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemRemoveRoleExecute(r Dist
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1449,7 +1449,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemSetLabelExecute(r Distri
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1564,7 +1564,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemUnsetLabelExecute(r Dist
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1679,7 +1679,7 @@ func (a *DistributionsGemAPIService) DistributionsGemGemUpdateExecute(r Distribu
 
 	localVarPath := localBasePath + "/{gem_gem_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"gem_gem_distribution_href"+"}", url.PathEscape(parameterValueToString(r.gemGemDistributionHref, "gemGemDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

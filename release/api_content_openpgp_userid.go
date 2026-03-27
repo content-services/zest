@@ -230,7 +230,7 @@ func (a *ContentOpenpgpUseridAPIService) ContentCoreOpenpgpUseridListExecute(r C
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/core/openpgp_userid/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -433,7 +433,7 @@ func (a *ContentOpenpgpUseridAPIService) ContentCoreOpenpgpUseridReadExecute(r C
 
 	localVarPath := localBasePath + "/{open_p_g_p_user_i_d_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_user_i_d_href"+"}", url.PathEscape(parameterValueToString(r.openPGPUserIDHref, "openPGPUserIDHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -565,7 +565,7 @@ func (a *ContentOpenpgpUseridAPIService) ContentCoreOpenpgpUseridSetLabelExecute
 
 	localVarPath := localBasePath + "/{open_p_g_p_user_i_d_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_user_i_d_href"+"}", url.PathEscape(parameterValueToString(r.openPGPUserIDHref, "openPGPUserIDHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -680,7 +680,7 @@ func (a *ContentOpenpgpUseridAPIService) ContentCoreOpenpgpUseridUnsetLabelExecu
 
 	localVarPath := localBasePath + "/{open_p_g_p_user_i_d_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_user_i_d_href"+"}", url.PathEscape(parameterValueToString(r.openPGPUserIDHref, "openPGPUserIDHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

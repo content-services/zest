@@ -195,7 +195,7 @@ func (a *ContentTagsAPIService) ContentContainerTagsListExecute(r ContentTagsAPI
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/container/tags/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -391,7 +391,7 @@ func (a *ContentTagsAPIService) ContentContainerTagsReadExecute(r ContentTagsAPI
 
 	localVarPath := localBasePath + "/{container_tag_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_tag_href"+"}", url.PathEscape(parameterValueToString(r.containerTagHref, "containerTagHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -523,7 +523,7 @@ func (a *ContentTagsAPIService) ContentContainerTagsSetLabelExecute(r ContentTag
 
 	localVarPath := localBasePath + "/{container_tag_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_tag_href"+"}", url.PathEscape(parameterValueToString(r.containerTagHref, "containerTagHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -638,7 +638,7 @@ func (a *ContentTagsAPIService) ContentContainerTagsUnsetLabelExecute(r ContentT
 
 	localVarPath := localBasePath + "/{container_tag_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_tag_href"+"}", url.PathEscape(parameterValueToString(r.containerTagHref, "containerTagHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

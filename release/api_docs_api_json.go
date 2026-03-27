@@ -84,6 +84,8 @@ func (a *DocsApiJsonAPIService) DocsApiJsonGetExecute(r DocsApiJsonAPIDocsApiJso
 	}
 
 	localVarPath := localBasePath + "/api/pulp/api/v3/docs/api.json"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

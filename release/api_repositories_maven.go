@@ -75,7 +75,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenAddCachedContentExec
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}add_cached_content/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenCreateExecute(r Repo
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenDeleteExecute(r Repo
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -613,7 +613,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenListExecute(r Reposi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -829,7 +829,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPartialUpdateExecute
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -952,7 +952,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenReadExecute(r Reposi
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1084,7 +1084,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenSetLabelExecute(r Re
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1199,7 +1199,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenUnsetLabelExecute(r 
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1314,7 +1314,7 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenUpdateExecute(r Repo
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

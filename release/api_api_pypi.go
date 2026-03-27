@@ -86,10 +86,8 @@ func (a *ApiPypiAPIService) ApiPulpPypiReadExecute(r ApiPypiAPIApiPulpPypiReadRe
 
 	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

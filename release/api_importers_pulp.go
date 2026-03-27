@@ -75,7 +75,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpCreateExecute(r ImportersPulp
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/importers/core/pulp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpDeleteExecute(r ImportersPulp
 
 	localVarPath := localBasePath + "/{pulp_importer_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_importer_href"+"}", url.PathEscape(parameterValueToString(r.pulpImporterHref, "pulpImporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -403,7 +403,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpListExecute(r ImportersPulpAP
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/importers/core/pulp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -583,7 +583,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpPartialUpdateExecute(r Import
 
 	localVarPath := localBasePath + "/{pulp_importer_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_importer_href"+"}", url.PathEscape(parameterValueToString(r.pulpImporterHref, "pulpImporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -706,7 +706,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpReadExecute(r ImportersPulpAP
 
 	localVarPath := localBasePath + "/{pulp_importer_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_importer_href"+"}", url.PathEscape(parameterValueToString(r.pulpImporterHref, "pulpImporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -838,7 +838,7 @@ func (a *ImportersPulpAPIService) ImportersCorePulpUpdateExecute(r ImportersPulp
 
 	localVarPath := localBasePath + "/{pulp_importer_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_importer_href"+"}", url.PathEscape(parameterValueToString(r.pulpImporterHref, "pulpImporterHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

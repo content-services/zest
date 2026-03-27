@@ -75,7 +75,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeAddRoleExecute(r 
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeCreateExecute(r R
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/ostree/ostree/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeDeleteExecute(r R
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -409,7 +409,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeImportAllExecute(
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}import_all/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -524,7 +524,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeImportCommitsExec
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}import_commits/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -843,7 +843,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeListExecute(r Rep
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/ostree/ostree/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1067,7 +1067,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeListRolesExecute(
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1199,7 +1199,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeModifyExecute(r R
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}modify/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1322,7 +1322,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeMyPermissionsExec
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1454,7 +1454,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreePartialUpdateExec
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1577,7 +1577,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeReadExecute(r Rep
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1709,7 +1709,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeRemoveRoleExecute
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1824,7 +1824,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeSetLabelExecute(r
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1939,7 +1939,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeSyncExecute(r Rep
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}sync/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2054,7 +2054,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeUnsetLabelExecute
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2169,7 +2169,7 @@ func (a *RepositoriesOstreeAPIService) RepositoriesOstreeOstreeUpdateExecute(r R
 
 	localVarPath := localBasePath + "/{ostree_ostree_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"ostree_ostree_repository_href"+"}", url.PathEscape(parameterValueToString(r.ostreeOstreeRepositoryHref, "ostreeOstreeRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

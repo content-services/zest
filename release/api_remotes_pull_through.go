@@ -76,7 +76,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughAddRoleExecute
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -191,7 +191,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughCreateExecute(
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/container/pull-through/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -300,7 +300,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughDeleteExecute(
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -586,7 +586,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughListExecute(r 
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/container/pull-through/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughListRolesExecu
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -938,7 +938,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughMyPermissionsE
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1070,7 +1070,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughPartialUpdateE
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1193,7 +1193,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughReadExecute(r 
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1325,7 +1325,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughRemoveRoleExec
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1440,7 +1440,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughSetLabelExecut
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1555,7 +1555,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUnsetLabelExec
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1670,7 +1670,7 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUpdateExecute(
 
 	localVarPath := localBasePath + "/{container_container_pull_through_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_remote_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughRemoteHref, "containerContainerPullThroughRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -257,7 +257,7 @@ func (a *WorkersAPIService) WorkersListExecute(r WorkersAPIWorkersListRequest) (
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/workers/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -472,7 +472,7 @@ func (a *WorkersAPIService) WorkersReadExecute(r WorkersAPIWorkersReadRequest) (
 
 	localVarPath := localBasePath + "/{worker_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"worker_href"+"}", url.PathEscape(parameterValueToString(r.workerHref, "workerHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

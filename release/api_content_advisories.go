@@ -105,7 +105,7 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesCreateExecute(r Conten
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -413,7 +413,7 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/advisories/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -622,7 +622,7 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesReadExecute(r ContentA
 
 	localVarPath := localBasePath + "/{rpm_update_record_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_update_record_href"+"}", url.PathEscape(parameterValueToString(r.rpmUpdateRecordHref, "rpmUpdateRecordHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -754,7 +754,7 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesSetLabelExecute(r Cont
 
 	localVarPath := localBasePath + "/{rpm_update_record_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_update_record_href"+"}", url.PathEscape(parameterValueToString(r.rpmUpdateRecordHref, "rpmUpdateRecordHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -869,7 +869,7 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesUnsetLabelExecute(r Co
 
 	localVarPath := localBasePath + "/{rpm_update_record_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"rpm_update_record_href"+"}", url.PathEscape(parameterValueToString(r.rpmUpdateRecordHref, "rpmUpdateRecordHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

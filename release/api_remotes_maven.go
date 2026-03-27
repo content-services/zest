@@ -76,7 +76,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenCreateExecute(r RemotesMavenAP
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -185,7 +185,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenDeleteExecute(r RemotesMavenAP
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -471,7 +471,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenListExecute(r RemotesMavenAPIR
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/remotes/maven/maven/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -675,7 +675,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenPartialUpdateExecute(r Remotes
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -798,7 +798,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenReadExecute(r RemotesMavenAPIR
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -930,7 +930,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenSetLabelExecute(r RemotesMaven
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1045,7 +1045,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenUnsetLabelExecute(r RemotesMav
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1160,7 +1160,7 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenUpdateExecute(r RemotesMavenAP
 
 	localVarPath := localBasePath + "/{maven_maven_remote_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

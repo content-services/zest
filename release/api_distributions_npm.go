@@ -75,7 +75,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmCreateExecute(r Distribu
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmDeleteExecute(r Distribu
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -477,7 +477,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmListExecute(r Distributi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -684,7 +684,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmPartialUpdateExecute(r D
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -807,7 +807,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmReadExecute(r Distributi
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -939,7 +939,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmSetLabelExecute(r Distri
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1054,7 +1054,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmUnsetLabelExecute(r Dist
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1169,7 +1169,7 @@ func (a *DistributionsNpmAPIService) DistributionsNpmNpmUpdateExecute(r Distribu
 
 	localVarPath := localBasePath + "/{npm_npm_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_distribution_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmDistributionHref, "npmNpmDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

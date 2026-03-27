@@ -75,7 +75,7 @@ func (a *GroupsAPIService) GroupsAddRoleExecute(r GroupsAPIGroupsAddRoleRequest)
 
 	localVarPath := localBasePath + "/{group_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *GroupsAPIService) GroupsCreateExecute(r GroupsAPIGroupsCreateRequest) (
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/groups/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -297,7 +297,7 @@ func (a *GroupsAPIService) GroupsDeleteExecute(r GroupsAPIGroupsDeleteRequest) (
 
 	localVarPath := localBasePath + "/{group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -504,7 +504,7 @@ func (a *GroupsAPIService) GroupsListExecute(r GroupsAPIGroupsListRequest) (*Pag
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/groups/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -686,7 +686,7 @@ func (a *GroupsAPIService) GroupsListRolesExecute(r GroupsAPIGroupsListRolesRequ
 
 	localVarPath := localBasePath + "/{group_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -826,7 +826,7 @@ func (a *GroupsAPIService) GroupsMyPermissionsExecute(r GroupsAPIGroupsMyPermiss
 
 	localVarPath := localBasePath + "/{group_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -958,7 +958,7 @@ func (a *GroupsAPIService) GroupsPartialUpdateExecute(r GroupsAPIGroupsPartialUp
 
 	localVarPath := localBasePath + "/{group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1081,7 +1081,7 @@ func (a *GroupsAPIService) GroupsReadExecute(r GroupsAPIGroupsReadRequest) (*Gro
 
 	localVarPath := localBasePath + "/{group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1213,7 +1213,7 @@ func (a *GroupsAPIService) GroupsRemoveRoleExecute(r GroupsAPIGroupsRemoveRoleRe
 
 	localVarPath := localBasePath + "/{group_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1328,7 +1328,7 @@ func (a *GroupsAPIService) GroupsUpdateExecute(r GroupsAPIGroupsUpdateRequest) (
 
 	localVarPath := localBasePath + "/{group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"group_href"+"}", url.PathEscape(parameterValueToString(r.groupHref, "groupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

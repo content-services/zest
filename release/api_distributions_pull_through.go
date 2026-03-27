@@ -75,7 +75,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughAd
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughCr
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/container/pull-through/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughDe
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -592,7 +592,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughLi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/container/pull-through/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -807,7 +807,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughLi
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -947,7 +947,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughMy
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1079,7 +1079,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughPa
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1202,7 +1202,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughRe
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1334,7 +1334,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughRe
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1449,7 +1449,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughSe
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1564,7 +1564,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUn
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1679,7 +1679,7 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUp
 
 	localVarPath := localBasePath + "/{container_container_pull_through_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_pull_through_distribution_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPullThroughDistributionHref, "containerContainerPullThroughDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

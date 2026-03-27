@@ -202,7 +202,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesListExecute(r AccessPoliciesAPI
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/access_policies/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -385,7 +385,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesPartialUpdateExecute(r AccessPo
 
 	localVarPath := localBasePath + "/{access_policy_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"access_policy_href"+"}", url.PathEscape(parameterValueToString(r.accessPolicyHref, "accessPolicyHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -508,7 +508,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesReadExecute(r AccessPoliciesAPI
 
 	localVarPath := localBasePath + "/{access_policy_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"access_policy_href"+"}", url.PathEscape(parameterValueToString(r.accessPolicyHref, "accessPolicyHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -634,7 +634,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesResetExecute(r AccessPoliciesAP
 
 	localVarPath := localBasePath + "/{access_policy_href}reset/"
 	localVarPath = strings.Replace(localVarPath, "{"+"access_policy_href"+"}", url.PathEscape(parameterValueToString(r.accessPolicyHref, "accessPolicyHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -744,7 +744,7 @@ func (a *AccessPoliciesAPIService) AccessPoliciesUpdateExecute(r AccessPoliciesA
 
 	localVarPath := localBasePath + "/{access_policy_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"access_policy_href"+"}", url.PathEscape(parameterValueToString(r.accessPolicyHref, "accessPolicyHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

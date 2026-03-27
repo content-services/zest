@@ -75,7 +75,7 @@ func (a *TaskGroupsAPIService) TaskGroupsCancelExecute(r TaskGroupsAPITaskGroups
 
 	localVarPath := localBasePath + "/{task_group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_group_href"+"}", url.PathEscape(parameterValueToString(r.taskGroupHref, "taskGroupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -220,7 +220,7 @@ func (a *TaskGroupsAPIService) TaskGroupsListExecute(r TaskGroupsAPITaskGroupsLi
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/task-groups/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -364,7 +364,7 @@ func (a *TaskGroupsAPIService) TaskGroupsReadExecute(r TaskGroupsAPITaskGroupsRe
 
 	localVarPath := localBasePath + "/{task_group_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"task_group_href"+"}", url.PathEscape(parameterValueToString(r.taskGroupHref, "taskGroupHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -75,7 +75,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpCreateExecute(r
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/core/openpgp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpDeleteExecute(r
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -372,7 +372,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpListExecute(r D
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/distributions/core/openpgp/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -534,7 +534,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpPartialUpdateEx
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -657,7 +657,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpReadExecute(r D
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -789,7 +789,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpSetLabelExecute
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -904,7 +904,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpUnsetLabelExecu
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1019,7 +1019,7 @@ func (a *DistributionsOpenpgpAPIService) DistributionsCoreOpenpgpUpdateExecute(r
 
 	localVarPath := localBasePath + "/{open_p_g_p_distribution_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"open_p_g_p_distribution_href"+"}", url.PathEscape(parameterValueToString(r.openPGPDistributionHref, "openPGPDistributionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

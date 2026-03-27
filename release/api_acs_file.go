@@ -75,7 +75,7 @@ func (a *AcsFileAPIService) AcsFileFileAddRoleExecute(r AcsFileAPIAcsFileFileAdd
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}add_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -190,7 +190,7 @@ func (a *AcsFileAPIService) AcsFileFileCreateExecute(r AcsFileAPIAcsFileFileCrea
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/acs/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -299,7 +299,7 @@ func (a *AcsFileAPIService) AcsFileFileDeleteExecute(r AcsFileAPIAcsFileFileDele
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -529,7 +529,7 @@ func (a *AcsFileAPIService) AcsFileFileListExecute(r AcsFileAPIAcsFileFileListRe
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/acs/file/file/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -717,7 +717,7 @@ func (a *AcsFileAPIService) AcsFileFileListRolesExecute(r AcsFileAPIAcsFileFileL
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}list_roles/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -857,7 +857,7 @@ func (a *AcsFileAPIService) AcsFileFileMyPermissionsExecute(r AcsFileAPIAcsFileF
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}my_permissions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -989,7 +989,7 @@ func (a *AcsFileAPIService) AcsFileFilePartialUpdateExecute(r AcsFileAPIAcsFileF
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1112,7 +1112,7 @@ func (a *AcsFileAPIService) AcsFileFileReadExecute(r AcsFileAPIAcsFileFileReadRe
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1238,7 +1238,7 @@ func (a *AcsFileAPIService) AcsFileFileRefreshExecute(r AcsFileAPIAcsFileFileRef
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}refresh/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1348,7 +1348,7 @@ func (a *AcsFileAPIService) AcsFileFileRemoveRoleExecute(r AcsFileAPIAcsFileFile
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}remove_role/"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1463,7 +1463,7 @@ func (a *AcsFileAPIService) AcsFileFileUpdateExecute(r AcsFileAPIAcsFileFileUpda
 
 	localVarPath := localBasePath + "/{file_file_alternate_content_source_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"file_file_alternate_content_source_href"+"}", url.PathEscape(parameterValueToString(r.fileFileAlternateContentSourceHref, "fileFileAlternateContentSourceHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

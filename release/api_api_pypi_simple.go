@@ -94,10 +94,8 @@ func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleCreateExecute(r ApiPypiSimple
 
 	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -249,10 +247,8 @@ func (a *ApiPypiSimpleAPIService) ApiPulpPypiSimpleReadExecute(r ApiPypiSimpleAP
 
 	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/"
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -387,13 +383,9 @@ func (a *ApiPypiSimpleAPIService) PypiSimplePackageReadExecute(r ApiPypiSimpleAP
 
 	localVarPath := localBasePath + "/api/pulp/pypi/{pulp_domain}/{path}/simple/{package}/"
 	localVarPath = strings.Replace(localVarPath, "{"+"package"+"}", url.PathEscape(parameterValueToString(r.package_, "package_")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"path"+"}", url.PathEscape(parameterValueToString(r.path, "path")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
-
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -70,7 +70,7 @@ func (a *RepositoriesContainerPushVersionsAPIService) RepositoriesContainerConta
 
 	localVarPath := localBasePath + "/{container_container_push_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_push_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPushRepositoryVersionHref, "containerContainerPushRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -335,7 +335,7 @@ func (a *RepositoriesContainerPushVersionsAPIService) RepositoriesContainerConta
 
 	localVarPath := localBasePath + "/{container_container_push_repository_href}versions/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_push_repository_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPushRepositoryHref, "containerContainerPushRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -538,7 +538,7 @@ func (a *RepositoriesContainerPushVersionsAPIService) RepositoriesContainerConta
 
 	localVarPath := localBasePath + "/{container_container_push_repository_version_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_push_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPushRepositoryVersionHref, "containerContainerPushRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -670,7 +670,7 @@ func (a *RepositoriesContainerPushVersionsAPIService) RepositoriesContainerConta
 
 	localVarPath := localBasePath + "/{container_container_push_repository_version_href}repair/"
 	localVarPath = strings.Replace(localVarPath, "{"+"container_container_push_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPushRepositoryVersionHref, "containerContainerPushRepositoryVersionHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

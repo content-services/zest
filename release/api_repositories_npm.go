@@ -75,7 +75,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmCreateExecute(r Repositori
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/npm/npm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -184,7 +184,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmDeleteExecute(r Repositori
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -498,7 +498,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmListExecute(r Repositories
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/repositories/npm/npm/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -714,7 +714,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmModifyExecute(r Repositori
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}modify/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -829,7 +829,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmPartialUpdateExecute(r Rep
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -952,7 +952,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmReadExecute(r Repositories
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1084,7 +1084,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmSetLabelExecute(r Reposito
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}set_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1199,7 +1199,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmSyncExecute(r Repositories
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}sync/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1314,7 +1314,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmUnsetLabelExecute(r Reposi
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}unset_label/"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1429,7 +1429,7 @@ func (a *RepositoriesNpmAPIService) RepositoriesNpmNpmUpdateExecute(r Repositori
 
 	localVarPath := localBasePath + "/{npm_npm_repository_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_repository_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRepositoryHref, "npmNpmRepositoryHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

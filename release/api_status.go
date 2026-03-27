@@ -63,6 +63,8 @@ func (a *StatusAPIService) StatusReadExecute(r StatusAPIStatusReadRequest) (*Sta
 	}
 
 	localVarPath := localBasePath + "/api/pulp/api/v3/status/"
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

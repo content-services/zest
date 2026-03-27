@@ -75,7 +75,7 @@ func (a *UsersAPIService) UsersCreateExecute(r UsersAPIUsersCreateRequest) (*Use
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/users/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -182,7 +182,7 @@ func (a *UsersAPIService) UsersDeleteExecute(r UsersAPIUsersDeleteRequest) (*htt
 
 	localVarPath := localBasePath + "/{auth_user_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -494,7 +494,7 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 
 	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/users/"
 	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -713,7 +713,7 @@ func (a *UsersAPIService) UsersPartialUpdateExecute(r UsersAPIUsersPartialUpdate
 
 	localVarPath := localBasePath + "/{auth_user_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -836,7 +836,7 @@ func (a *UsersAPIService) UsersReadExecute(r UsersAPIUsersReadRequest) (*UserRes
 
 	localVarPath := localBasePath + "/{auth_user_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -968,7 +968,7 @@ func (a *UsersAPIService) UsersUpdateExecute(r UsersAPIUsersUpdateRequest) (*Use
 
 	localVarPath := localBasePath + "/{auth_user_href}"
 	localVarPath = strings.Replace(localVarPath, "{"+"auth_user_href"+"}", url.PathEscape(parameterValueToString(r.authUserHref, "authUserHref")), -1)
-        localVarPath = strings.Replace(localVarPath, "/%2F", "/", -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
