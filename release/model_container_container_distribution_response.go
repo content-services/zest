@@ -22,26 +22,26 @@ var _ MappedNullable = &ContainerContainerDistributionResponse{}
 
 // ContainerContainerDistributionResponse A serializer for ContainerDistribution.
 type ContainerContainerDistributionResponse struct {
-	// An optional content-guard. If none is specified, a default one will be used.
-	ContentGuard *string `json:"content_guard,omitempty"`
-	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
-	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
 	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
 	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name string `json:"name"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
+	BasePath string `json:"base_path"`
 	// Timestamp of creation.
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// The Pulp Resource Name (PRN).
 	Prn *string `json:"prn,omitempty"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
+	// An optional content-guard. If none is specified, a default one will be used.
+	ContentGuard *string `json:"content_guard,omitempty"`
 	PulpHref *string `json:"pulp_href,omitempty"`
-	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
-	BasePath string `json:"base_path"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name string `json:"name"`
+	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
+	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// RepositoryVersion to be served
 	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// The Registry hostname/name/ to use with docker pull command defined by this distribution.
@@ -63,12 +63,12 @@ type _ContainerContainerDistributionResponse ContainerContainerDistributionRespo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerContainerDistributionResponse(basePath string, name string) *ContainerContainerDistributionResponse {
+func NewContainerContainerDistributionResponse(name string, basePath string) *ContainerContainerDistributionResponse {
 	this := ContainerContainerDistributionResponse{}
+	this.Name = name
+	this.BasePath = basePath
 	var hidden bool = false
 	this.Hidden = &hidden
-	this.BasePath = basePath
-	this.Name = name
 	return &this
 }
 
@@ -80,70 +80,6 @@ func NewContainerContainerDistributionResponseWithDefaults() *ContainerContainer
 	var hidden bool = false
 	this.Hidden = &hidden
 	return &this
-}
-
-// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
-func (o *ContainerContainerDistributionResponse) GetContentGuard() string {
-	if o == nil || IsNil(o.ContentGuard) {
-		var ret string
-		return ret
-	}
-	return *o.ContentGuard
-}
-
-// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetContentGuardOk() (*string, bool) {
-	if o == nil || IsNil(o.ContentGuard) {
-		return nil, false
-	}
-	return o.ContentGuard, true
-}
-
-// HasContentGuard returns a boolean if a field has been set.
-func (o *ContainerContainerDistributionResponse) HasContentGuard() bool {
-	if o != nil && !IsNil(o.ContentGuard) {
-		return true
-	}
-
-	return false
-}
-
-// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
-func (o *ContainerContainerDistributionResponse) SetContentGuard(v string) {
-	o.ContentGuard = &v
-}
-
-// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
-func (o *ContainerContainerDistributionResponse) GetPulpLastUpdated() time.Time {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		var ret time.Time
-		return ret
-	}
-	return *o.PulpLastUpdated
-}
-
-// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.PulpLastUpdated) {
-		return nil, false
-	}
-	return o.PulpLastUpdated, true
-}
-
-// HasPulpLastUpdated returns a boolean if a field has been set.
-func (o *ContainerContainerDistributionResponse) HasPulpLastUpdated() bool {
-	if o != nil && !IsNil(o.PulpLastUpdated) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
-func (o *ContainerContainerDistributionResponse) SetPulpLastUpdated(v time.Time) {
-	o.PulpLastUpdated = &v
 }
 
 // GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -220,36 +156,84 @@ func (o *ContainerContainerDistributionResponse) SetNoContentChangeSince(v strin
 	o.NoContentChangeSince = &v
 }
 
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ContainerContainerDistributionResponse) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
+// GetName returns the Name field value
+func (o *ContainerContainerDistributionResponse) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Hidden
+
+	return o.Name
 }
 
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
+func (o *ContainerContainerDistributionResponse) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Hidden, true
+	return &o.Name, true
 }
 
-// HasHidden returns a boolean if a field has been set.
-func (o *ContainerContainerDistributionResponse) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
+// SetName sets field value
+func (o *ContainerContainerDistributionResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *ContainerContainerDistributionResponse) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *ContainerContainerDistributionResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
 		return true
 	}
 
 	return false
 }
 
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ContainerContainerDistributionResponse) SetHidden(v bool) {
-	o.Hidden = &v
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *ContainerContainerDistributionResponse) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
+// GetBasePath returns the BasePath field value
+func (o *ContainerContainerDistributionResponse) GetBasePath() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BasePath
+}
+
+// GetBasePathOk returns a tuple with the BasePath field value
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistributionResponse) GetBasePathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BasePath, true
+}
+
+// SetBasePath sets field value
+func (o *ContainerContainerDistributionResponse) SetBasePath(v string) {
+	o.BasePath = v
 }
 
 // GetPulpCreated returns the PulpCreated field value if set, zero value otherwise.
@@ -316,6 +300,70 @@ func (o *ContainerContainerDistributionResponse) SetPrn(v string) {
 	o.Prn = &v
 }
 
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ContainerContainerDistributionResponse) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistributionResponse) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ContainerContainerDistributionResponse) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ContainerContainerDistributionResponse) SetHidden(v bool) {
+	o.Hidden = &v
+}
+
+// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
+func (o *ContainerContainerDistributionResponse) GetContentGuard() string {
+	if o == nil || IsNil(o.ContentGuard) {
+		var ret string
+		return ret
+	}
+	return *o.ContentGuard
+}
+
+// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistributionResponse) GetContentGuardOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuard) {
+		return nil, false
+	}
+	return o.ContentGuard, true
+}
+
+// HasContentGuard returns a boolean if a field has been set.
+func (o *ContainerContainerDistributionResponse) HasContentGuard() bool {
+	if o != nil && !IsNil(o.ContentGuard) {
+		return true
+	}
+
+	return false
+}
+
+// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
+func (o *ContainerContainerDistributionResponse) SetContentGuard(v string) {
+	o.ContentGuard = &v
+}
+
 // GetPulpHref returns the PulpHref field value if set, zero value otherwise.
 func (o *ContainerContainerDistributionResponse) GetPulpHref() string {
 	if o == nil || IsNil(o.PulpHref) {
@@ -348,84 +396,36 @@ func (o *ContainerContainerDistributionResponse) SetPulpHref(v string) {
 	o.PulpHref = &v
 }
 
-// GetBasePath returns the BasePath field value
-func (o *ContainerContainerDistributionResponse) GetBasePath() string {
-	if o == nil {
-		var ret string
+// GetPulpLastUpdated returns the PulpLastUpdated field value if set, zero value otherwise.
+func (o *ContainerContainerDistributionResponse) GetPulpLastUpdated() time.Time {
+	if o == nil || IsNil(o.PulpLastUpdated) {
+		var ret time.Time
 		return ret
 	}
-
-	return o.BasePath
+	return *o.PulpLastUpdated
 }
 
-// GetBasePathOk returns a tuple with the BasePath field value
+// GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetBasePathOk() (*string, bool) {
-	if o == nil {
+func (o *ContainerContainerDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool) {
+	if o == nil || IsNil(o.PulpLastUpdated) {
 		return nil, false
 	}
-	return &o.BasePath, true
+	return o.PulpLastUpdated, true
 }
 
-// SetBasePath sets field value
-func (o *ContainerContainerDistributionResponse) SetBasePath(v string) {
-	o.BasePath = v
-}
-
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *ContainerContainerDistributionResponse) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *ContainerContainerDistributionResponse) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
+// HasPulpLastUpdated returns a boolean if a field has been set.
+func (o *ContainerContainerDistributionResponse) HasPulpLastUpdated() bool {
+	if o != nil && !IsNil(o.PulpLastUpdated) {
 		return true
 	}
 
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *ContainerContainerDistributionResponse) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
-}
-
-// GetName returns the Name field value
-func (o *ContainerContainerDistributionResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistributionResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerDistributionResponse) SetName(v string) {
-	o.Name = v
+// SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
+func (o *ContainerContainerDistributionResponse) SetPulpLastUpdated(v time.Time) {
+	o.PulpLastUpdated = &v
 }
 
 // GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -650,35 +650,35 @@ func (o ContainerContainerDistributionResponse) MarshalJSON() ([]byte, error) {
 
 func (o ContainerContainerDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ContentGuard) {
-		toSerialize["content_guard"] = o.ContentGuard
-	}
-	if !IsNil(o.PulpLastUpdated) {
-		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
-	}
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
 	if !IsNil(o.NoContentChangeSince) {
 		toSerialize["no_content_change_since"] = o.NoContentChangeSince
 	}
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
+	toSerialize["name"] = o.Name
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	toSerialize["base_path"] = o.BasePath
 	if !IsNil(o.PulpCreated) {
 		toSerialize["pulp_created"] = o.PulpCreated
 	}
 	if !IsNil(o.Prn) {
 		toSerialize["prn"] = o.Prn
 	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.ContentGuard) {
+		toSerialize["content_guard"] = o.ContentGuard
+	}
 	if !IsNil(o.PulpHref) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
-	toSerialize["base_path"] = o.BasePath
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
+	if !IsNil(o.PulpLastUpdated) {
+		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
-	toSerialize["name"] = o.Name
 	if o.RepositoryVersion.IsSet() {
 		toSerialize["repository_version"] = o.RepositoryVersion.Get()
 	}
@@ -710,8 +710,8 @@ func (o *ContainerContainerDistributionResponse) UnmarshalJSON(data []byte) (err
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"base_path",
 		"name",
+		"base_path",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -741,17 +741,17 @@ func (o *ContainerContainerDistributionResponse) UnmarshalJSON(data []byte) (err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "no_content_change_since")
-		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "prn")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "pulp_href")
-		delete(additionalProperties, "base_path")
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "registry_path")
 		delete(additionalProperties, "remote")
