@@ -22,13 +22,13 @@ var _ MappedNullable = &PatchedcontainerContainerDistribution{}
 type PatchedcontainerContainerDistribution struct {
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name *string `json:"name,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath *string `json:"base_path,omitempty"`
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
+	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name *string `json:"name,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
 	// RepositoryVersion to be served
@@ -105,70 +105,6 @@ func (o *PatchedcontainerContainerDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerDistribution) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerDistribution) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedcontainerContainerDistribution) SetName(v string) {
-	o.Name = &v
-}
-
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerDistribution) GetPulpLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerDistribution) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchedcontainerContainerDistribution) SetPulpLabels(v map[string]string) {
-	o.PulpLabels = &v
-}
-
 // GetBasePath returns the BasePath field value if set, zero value otherwise.
 func (o *PatchedcontainerContainerDistribution) GetBasePath() string {
 	if o == nil || IsNil(o.BasePath) {
@@ -231,6 +167,70 @@ func (o *PatchedcontainerContainerDistribution) HasHidden() bool {
 // SetHidden gets a reference to the given bool and assigns it to the Hidden field.
 func (o *PatchedcontainerContainerDistribution) SetHidden(v bool) {
 	o.Hidden = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerDistribution) GetPulpLabels() map[string]string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerDistribution) GetPulpLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerDistribution) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
+func (o *PatchedcontainerContainerDistribution) SetPulpLabels(v map[string]string) {
+	o.PulpLabels = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerDistribution) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerDistribution) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerDistribution) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PatchedcontainerContainerDistribution) SetName(v string) {
+	o.Name = &v
 }
 
 // GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
@@ -394,17 +394,17 @@ func (o PatchedcontainerContainerDistribution) ToMap() (map[string]interface{}, 
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
 	if !IsNil(o.BasePath) {
 		toSerialize["base_path"] = o.BasePath
 	}
 	if !IsNil(o.Hidden) {
 		toSerialize["hidden"] = o.Hidden
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
@@ -441,10 +441,10 @@ func (o *PatchedcontainerContainerDistribution) UnmarshalJSON(data []byte) (err 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "content_guard")
 		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "private")
