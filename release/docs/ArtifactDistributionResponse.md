@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
-**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
-**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **NoContentChangeSince** | Pointer to **string** | Timestamp since when the distributed content served by this distribution has not changed. If equals to &#x60;null&#x60;, no guarantee is provided about content changes. | [optional] [readonly] 
+**ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
-**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
+**BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
+**Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 
 ## Methods
 
@@ -34,76 +34,6 @@ will change when the set of required properties is changed
 NewArtifactDistributionResponseWithDefaults instantiates a new ArtifactDistributionResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBaseUrl
-
-`func (o *ArtifactDistributionResponse) GetBaseUrl() string`
-
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
-
-### GetBaseUrlOk
-
-`func (o *ArtifactDistributionResponse) GetBaseUrlOk() (*string, bool)`
-
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseUrl
-
-`func (o *ArtifactDistributionResponse) SetBaseUrl(v string)`
-
-SetBaseUrl sets BaseUrl field to given value.
-
-### HasBaseUrl
-
-`func (o *ArtifactDistributionResponse) HasBaseUrl() bool`
-
-HasBaseUrl returns a boolean if a field has been set.
-
-### GetPulpLastUpdated
-
-`func (o *ArtifactDistributionResponse) GetPulpLastUpdated() time.Time`
-
-GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
-
-### GetPulpLastUpdatedOk
-
-`func (o *ArtifactDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
-
-GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLastUpdated
-
-`func (o *ArtifactDistributionResponse) SetPulpLastUpdated(v time.Time)`
-
-SetPulpLastUpdated sets PulpLastUpdated field to given value.
-
-### HasPulpLastUpdated
-
-`func (o *ArtifactDistributionResponse) HasPulpLastUpdated() bool`
-
-HasPulpLastUpdated returns a boolean if a field has been set.
-
-### GetBasePath
-
-`func (o *ArtifactDistributionResponse) GetBasePath() string`
-
-GetBasePath returns the BasePath field if non-nil, zero value otherwise.
-
-### GetBasePathOk
-
-`func (o *ArtifactDistributionResponse) GetBasePathOk() (*string, bool)`
-
-GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBasePath
-
-`func (o *ArtifactDistributionResponse) SetBasePath(v string)`
-
-SetBasePath sets BasePath field to given value.
-
 
 ### GetPulpHref
 
@@ -130,6 +60,26 @@ SetPulpHref sets PulpHref field to given value.
 
 HasPulpHref returns a boolean if a field has been set.
 
+### GetBasePath
+
+`func (o *ArtifactDistributionResponse) GetBasePath() string`
+
+GetBasePath returns the BasePath field if non-nil, zero value otherwise.
+
+### GetBasePathOk
+
+`func (o *ArtifactDistributionResponse) GetBasePathOk() (*string, bool)`
+
+GetBasePathOk returns a tuple with the BasePath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasePath
+
+`func (o *ArtifactDistributionResponse) SetBasePath(v string)`
+
+SetBasePath sets BasePath field to given value.
+
+
 ### GetNoContentChangeSince
 
 `func (o *ArtifactDistributionResponse) GetNoContentChangeSince() string`
@@ -155,6 +105,41 @@ SetNoContentChangeSince sets NoContentChangeSince field to given value.
 
 HasNoContentChangeSince returns a boolean if a field has been set.
 
+### GetContentGuard
+
+`func (o *ArtifactDistributionResponse) GetContentGuard() string`
+
+GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+
+### GetContentGuardOk
+
+`func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool)`
+
+GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentGuard
+
+`func (o *ArtifactDistributionResponse) SetContentGuard(v string)`
+
+SetContentGuard sets ContentGuard field to given value.
+
+### HasContentGuard
+
+`func (o *ArtifactDistributionResponse) HasContentGuard() bool`
+
+HasContentGuard returns a boolean if a field has been set.
+
+### SetContentGuardNil
+
+`func (o *ArtifactDistributionResponse) SetContentGuardNil(b bool)`
+
+ SetContentGuardNil sets the value for ContentGuard to be an explicit nil
+
+### UnsetContentGuard
+`func (o *ArtifactDistributionResponse) UnsetContentGuard()`
+
+UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
 ### GetName
 
 `func (o *ArtifactDistributionResponse) GetName() string`
@@ -175,30 +160,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetHidden
+### GetBaseUrl
 
-`func (o *ArtifactDistributionResponse) GetHidden() bool`
+`func (o *ArtifactDistributionResponse) GetBaseUrl() string`
 
-GetHidden returns the Hidden field if non-nil, zero value otherwise.
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
 
-### GetHiddenOk
+### GetBaseUrlOk
 
-`func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool)`
+`func (o *ArtifactDistributionResponse) GetBaseUrlOk() (*string, bool)`
 
-GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHidden
+### SetBaseUrl
 
-`func (o *ArtifactDistributionResponse) SetHidden(v bool)`
+`func (o *ArtifactDistributionResponse) SetBaseUrl(v string)`
 
-SetHidden sets Hidden field to given value.
+SetBaseUrl sets BaseUrl field to given value.
 
-### HasHidden
+### HasBaseUrl
 
-`func (o *ArtifactDistributionResponse) HasHidden() bool`
+`func (o *ArtifactDistributionResponse) HasBaseUrl() bool`
 
-HasHidden returns a boolean if a field has been set.
+HasBaseUrl returns a boolean if a field has been set.
 
 ### GetPulpCreated
 
@@ -250,6 +235,31 @@ SetPrn sets Prn field to given value.
 
 HasPrn returns a boolean if a field has been set.
 
+### GetHidden
+
+`func (o *ArtifactDistributionResponse) GetHidden() bool`
+
+GetHidden returns the Hidden field if non-nil, zero value otherwise.
+
+### GetHiddenOk
+
+`func (o *ArtifactDistributionResponse) GetHiddenOk() (*bool, bool)`
+
+GetHiddenOk returns a tuple with the Hidden field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHidden
+
+`func (o *ArtifactDistributionResponse) SetHidden(v bool)`
+
+SetHidden sets Hidden field to given value.
+
+### HasHidden
+
+`func (o *ArtifactDistributionResponse) HasHidden() bool`
+
+HasHidden returns a boolean if a field has been set.
+
 ### GetPulpLabels
 
 `func (o *ArtifactDistributionResponse) GetPulpLabels() map[string]string`
@@ -275,41 +285,31 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
-### GetContentGuard
+### GetPulpLastUpdated
 
-`func (o *ArtifactDistributionResponse) GetContentGuard() string`
+`func (o *ArtifactDistributionResponse) GetPulpLastUpdated() time.Time`
 
-GetContentGuard returns the ContentGuard field if non-nil, zero value otherwise.
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
 
-### GetContentGuardOk
+### GetPulpLastUpdatedOk
 
-`func (o *ArtifactDistributionResponse) GetContentGuardOk() (*string, bool)`
+`func (o *ArtifactDistributionResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
 
-GetContentGuardOk returns a tuple with the ContentGuard field if it's non-nil, zero value otherwise
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContentGuard
+### SetPulpLastUpdated
 
-`func (o *ArtifactDistributionResponse) SetContentGuard(v string)`
+`func (o *ArtifactDistributionResponse) SetPulpLastUpdated(v time.Time)`
 
-SetContentGuard sets ContentGuard field to given value.
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
 
-### HasContentGuard
+### HasPulpLastUpdated
 
-`func (o *ArtifactDistributionResponse) HasContentGuard() bool`
+`func (o *ArtifactDistributionResponse) HasPulpLastUpdated() bool`
 
-HasContentGuard returns a boolean if a field has been set.
+HasPulpLastUpdated returns a boolean if a field has been set.
 
-### SetContentGuardNil
-
-`func (o *ArtifactDistributionResponse) SetContentGuardNil(b bool)`
-
- SetContentGuardNil sets the value for ContentGuard to be an explicit nil
-
-### UnsetContentGuard
-`func (o *ArtifactDistributionResponse) UnsetContentGuard()`
-
-UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
