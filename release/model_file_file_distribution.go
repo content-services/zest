@@ -27,7 +27,7 @@ type FileFileDistribution struct {
 	ContentGuard NullableString `json:"content_guard,omitempty"`
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
@@ -162,9 +162,9 @@ func (o *FileFileDistribution) SetHidden(v bool) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *FileFileDistribution) GetPulpLabels() map[string]string {
+func (o *FileFileDistribution) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -172,7 +172,7 @@ func (o *FileFileDistribution) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FileFileDistribution) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *FileFileDistribution) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -188,8 +188,8 @@ func (o *FileFileDistribution) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *FileFileDistribution) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *FileFileDistribution) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

@@ -35,7 +35,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
-	pulpLabels := map[string]string{"key": "Inner_example"} // map[string]string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
+	pulpLabels := map[string]*string{"key": "Inner_example"} // map[string]*string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
 	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that should be turned into the artifact of the content unit. (optional)
 

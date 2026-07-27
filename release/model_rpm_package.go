@@ -24,7 +24,7 @@ type RpmPackage struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Path where the artifact is located relative to distributions base_path
@@ -90,9 +90,9 @@ func (o *RpmPackage) SetRepository(v string) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *RpmPackage) GetPulpLabels() map[string]string {
+func (o *RpmPackage) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -100,7 +100,7 @@ func (o *RpmPackage) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmPackage) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *RpmPackage) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -116,8 +116,8 @@ func (o *RpmPackage) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *RpmPackage) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *RpmPackage) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

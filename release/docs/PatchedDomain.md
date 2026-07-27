@@ -93,20 +93,20 @@ HasDescription returns a boolean if a field has been set.
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetPulpLabels
 
-`func (o *PatchedDomain) GetPulpLabels() map[string]string`
+`func (o *PatchedDomain) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *PatchedDomain) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *PatchedDomain) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *PatchedDomain) SetPulpLabels(v map[string]string)`
+`func (o *PatchedDomain) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

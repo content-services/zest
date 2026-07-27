@@ -55,20 +55,20 @@ HasRepository returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
-`func (o *MavenMavenArtifact) GetPulpLabels() map[string]string`
+`func (o *MavenMavenArtifact) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *MavenMavenArtifact) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *MavenMavenArtifact) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *MavenMavenArtifact) SetPulpLabels(v map[string]string)`
+`func (o *MavenMavenArtifact) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

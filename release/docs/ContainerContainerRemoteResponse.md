@@ -321,20 +321,20 @@ HasProxyUrl returns a boolean if a field has been set.
 UnsetProxyUrl ensures that no value is present for ProxyUrl, not even an explicit nil
 ### GetPulpLabels
 
-`func (o *ContainerContainerRemoteResponse) GetPulpLabels() map[string]string`
+`func (o *ContainerContainerRemoteResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *ContainerContainerRemoteResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *ContainerContainerRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *ContainerContainerRemoteResponse) SetPulpLabels(v map[string]string)`
+`func (o *ContainerContainerRemoteResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

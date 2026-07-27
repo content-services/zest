@@ -31,7 +31,7 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest struct {
 	ApiService *ContentOpenpgpPublickeyAPIService
 	pulpDomain string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	file *os.File
 	upload *string
 	fileUrl *string
@@ -44,7 +44,7 @@ func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) Repo
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) PulpLabels(pulpLabels map[string]string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

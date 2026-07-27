@@ -20,7 +20,7 @@ var _ MappedNullable = &PatchednpmNpmRepository{}
 
 // PatchednpmNpmRepository A Serializer for NpmRepository.Add any new fields if defined on NpmRepository.Similar to the example above, in PackageSerializer.Additional validators can be added to the parent validators listFor example::class Meta:    validators = core_serializers.RepositorySerializer.Meta.validators + [myValidator1, ...]
 type PatchednpmNpmRepository struct {
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.
 	Name *string `json:"name,omitempty"`
 	// An optional description.
@@ -52,9 +52,9 @@ func NewPatchednpmNpmRepositoryWithDefaults() *PatchednpmNpmRepository {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchednpmNpmRepository) GetPulpLabels() map[string]string {
+func (o *PatchednpmNpmRepository) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -62,7 +62,7 @@ func (o *PatchednpmNpmRepository) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchednpmNpmRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *PatchednpmNpmRepository) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -78,8 +78,8 @@ func (o *PatchednpmNpmRepository) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchednpmNpmRepository) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *PatchednpmNpmRepository) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

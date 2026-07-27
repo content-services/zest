@@ -41,7 +41,7 @@ type RpmPackageResponse struct {
 	// The SHA-512 checksum if available.
 	Sha512 *string `json:"sha512,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Name of the package
@@ -461,9 +461,9 @@ func (o *RpmPackageResponse) SetSha512(v string) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *RpmPackageResponse) GetPulpLabels() map[string]string {
+func (o *RpmPackageResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -471,7 +471,7 @@ func (o *RpmPackageResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmPackageResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *RpmPackageResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -487,8 +487,8 @@ func (o *RpmPackageResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *RpmPackageResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *RpmPackageResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

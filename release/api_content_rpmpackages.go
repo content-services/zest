@@ -31,7 +31,7 @@ type ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest struct {
 	ApiService *ContentRpmpackagesAPIService
 	pulpDomain string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	relativePath *string
 	file *os.File
@@ -46,7 +46,7 @@ func (r ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest) Repository(repo
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest {
+func (r ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentRpmpackagesAPIContentRpmRpmpackagesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

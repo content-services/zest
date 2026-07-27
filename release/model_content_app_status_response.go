@@ -26,7 +26,7 @@ type ContentAppStatusResponse struct {
 	// Timestamp of the last time the worker talked to the service.
 	LastHeartbeat *time.Time `json:"last_heartbeat,omitempty"`
 	// Versions of the components installed.
-	Versions *map[string]string `json:"versions,omitempty"`
+	Versions *map[string]*string `json:"versions,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -114,9 +114,9 @@ func (o *ContentAppStatusResponse) SetLastHeartbeat(v time.Time) {
 }
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
-func (o *ContentAppStatusResponse) GetVersions() map[string]string {
+func (o *ContentAppStatusResponse) GetVersions() map[string]*string {
 	if o == nil || IsNil(o.Versions) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Versions
@@ -124,7 +124,7 @@ func (o *ContentAppStatusResponse) GetVersions() map[string]string {
 
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContentAppStatusResponse) GetVersionsOk() (*map[string]string, bool) {
+func (o *ContentAppStatusResponse) GetVersionsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Versions) {
 		return nil, false
 	}
@@ -140,8 +140,8 @@ func (o *ContentAppStatusResponse) HasVersions() bool {
 	return false
 }
 
-// SetVersions gets a reference to the given map[string]string and assigns it to the Versions field.
-func (o *ContentAppStatusResponse) SetVersions(v map[string]string) {
+// SetVersions gets a reference to the given map[string]*string and assigns it to the Versions field.
+func (o *ContentAppStatusResponse) SetVersions(v map[string]*string) {
 	o.Versions = &v
 }
 

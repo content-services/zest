@@ -142,20 +142,20 @@ HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
-`func (o *RpmModulemdResponse) GetPulpLabels() map[string]string`
+`func (o *RpmModulemdResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *RpmModulemdResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *RpmModulemdResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *RpmModulemdResponse) SetPulpLabels(v map[string]string)`
+`func (o *RpmModulemdResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

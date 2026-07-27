@@ -320,20 +320,20 @@ HasProxyUrl returns a boolean if a field has been set.
 UnsetProxyUrl ensures that no value is present for ProxyUrl, not even an explicit nil
 ### GetPulpLabels
 
-`func (o *GemGemRemoteResponse) GetPulpLabels() map[string]string`
+`func (o *GemGemRemoteResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *GemGemRemoteResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *GemGemRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *GemGemRemoteResponse) SetPulpLabels(v map[string]string)`
+`func (o *GemGemRemoteResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 
@@ -690,20 +690,20 @@ HasPrereleases returns a boolean if a field has been set.
 
 ### GetIncludes
 
-`func (o *GemGemRemoteResponse) GetIncludes() map[string]string`
+`func (o *GemGemRemoteResponse) GetIncludes() map[string]*string`
 
 GetIncludes returns the Includes field if non-nil, zero value otherwise.
 
 ### GetIncludesOk
 
-`func (o *GemGemRemoteResponse) GetIncludesOk() (*map[string]string, bool)`
+`func (o *GemGemRemoteResponse) GetIncludesOk() (*map[string]*string, bool)`
 
 GetIncludesOk returns a tuple with the Includes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIncludes
 
-`func (o *GemGemRemoteResponse) SetIncludes(v map[string]string)`
+`func (o *GemGemRemoteResponse) SetIncludes(v map[string]*string)`
 
 SetIncludes sets Includes field to given value.
 
@@ -725,20 +725,20 @@ HasIncludes returns a boolean if a field has been set.
 UnsetIncludes ensures that no value is present for Includes, not even an explicit nil
 ### GetExcludes
 
-`func (o *GemGemRemoteResponse) GetExcludes() map[string]string`
+`func (o *GemGemRemoteResponse) GetExcludes() map[string]*string`
 
 GetExcludes returns the Excludes field if non-nil, zero value otherwise.
 
 ### GetExcludesOk
 
-`func (o *GemGemRemoteResponse) GetExcludesOk() (*map[string]string, bool)`
+`func (o *GemGemRemoteResponse) GetExcludesOk() (*map[string]*string, bool)`
 
 GetExcludesOk returns a tuple with the Excludes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExcludes
 
-`func (o *GemGemRemoteResponse) SetExcludes(v map[string]string)`
+`func (o *GemGemRemoteResponse) SetExcludes(v map[string]*string)`
 
 SetExcludes sets Excludes field to given value.
 

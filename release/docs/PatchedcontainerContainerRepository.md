@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPulpLabels
 
-`func (o *PatchedcontainerContainerRepository) GetPulpLabels() map[string]string`
+`func (o *PatchedcontainerContainerRepository) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *PatchedcontainerContainerRepository) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *PatchedcontainerContainerRepository) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *PatchedcontainerContainerRepository) SetPulpLabels(v map[string]string)`
+`func (o *PatchedcontainerContainerRepository) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

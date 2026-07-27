@@ -41,7 +41,7 @@ type GemGemRemoteResponse struct {
 	TlsValidation *bool `json:"tls_validation,omitempty"`
 	// The proxy URL. Format: scheme://host:port
 	ProxyUrl NullableString `json:"proxy_url,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Total number of simultaneous connections. If not set then the default value will be used.
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
@@ -63,8 +63,8 @@ type GemGemRemoteResponse struct {
 	// List of hidden (write only) fields
 	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	Prereleases *bool `json:"prereleases,omitempty"`
-	Includes map[string]string `json:"includes,omitempty"`
-	Excludes map[string]string `json:"excludes,omitempty"`
+	Includes map[string]*string `json:"includes,omitempty"`
+	Excludes map[string]*string `json:"excludes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -432,9 +432,9 @@ func (o *GemGemRemoteResponse) UnsetProxyUrl() {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *GemGemRemoteResponse) GetPulpLabels() map[string]string {
+func (o *GemGemRemoteResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -442,7 +442,7 @@ func (o *GemGemRemoteResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GemGemRemoteResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *GemGemRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -458,8 +458,8 @@ func (o *GemGemRemoteResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *GemGemRemoteResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *GemGemRemoteResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
@@ -886,9 +886,9 @@ func (o *GemGemRemoteResponse) SetPrereleases(v bool) {
 }
 
 // GetIncludes returns the Includes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GemGemRemoteResponse) GetIncludes() map[string]string {
+func (o *GemGemRemoteResponse) GetIncludes() map[string]*string {
 	if o == nil {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return o.Includes
@@ -897,7 +897,7 @@ func (o *GemGemRemoteResponse) GetIncludes() map[string]string {
 // GetIncludesOk returns a tuple with the Includes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GemGemRemoteResponse) GetIncludesOk() (*map[string]string, bool) {
+func (o *GemGemRemoteResponse) GetIncludesOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Includes) {
 		return nil, false
 	}
@@ -913,15 +913,15 @@ func (o *GemGemRemoteResponse) HasIncludes() bool {
 	return false
 }
 
-// SetIncludes gets a reference to the given map[string]string and assigns it to the Includes field.
-func (o *GemGemRemoteResponse) SetIncludes(v map[string]string) {
+// SetIncludes gets a reference to the given map[string]*string and assigns it to the Includes field.
+func (o *GemGemRemoteResponse) SetIncludes(v map[string]*string) {
 	o.Includes = v
 }
 
 // GetExcludes returns the Excludes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GemGemRemoteResponse) GetExcludes() map[string]string {
+func (o *GemGemRemoteResponse) GetExcludes() map[string]*string {
 	if o == nil {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return o.Excludes
@@ -930,7 +930,7 @@ func (o *GemGemRemoteResponse) GetExcludes() map[string]string {
 // GetExcludesOk returns a tuple with the Excludes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GemGemRemoteResponse) GetExcludesOk() (*map[string]string, bool) {
+func (o *GemGemRemoteResponse) GetExcludesOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Excludes) {
 		return nil, false
 	}
@@ -946,8 +946,8 @@ func (o *GemGemRemoteResponse) HasExcludes() bool {
 	return false
 }
 
-// SetExcludes gets a reference to the given map[string]string and assigns it to the Excludes field.
-func (o *GemGemRemoteResponse) SetExcludes(v map[string]string) {
+// SetExcludes gets a reference to the given map[string]*string and assigns it to the Excludes field.
+func (o *GemGemRemoteResponse) SetExcludes(v map[string]*string) {
 	o.Excludes = v
 }
 

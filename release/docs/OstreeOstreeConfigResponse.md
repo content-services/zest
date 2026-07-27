@@ -133,20 +133,20 @@ HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
-`func (o *OstreeOstreeConfigResponse) GetPulpLabels() map[string]string`
+`func (o *OstreeOstreeConfigResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *OstreeOstreeConfigResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *OstreeOstreeConfigResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *OstreeOstreeConfigResponse) SetPulpLabels(v map[string]string)`
+`func (o *OstreeOstreeConfigResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

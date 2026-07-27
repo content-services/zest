@@ -31,7 +31,7 @@ type ContentGemAPIContentGemGemCreateRequest struct {
 	ApiService *ContentGemAPIService
 	pulpDomain string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 }
@@ -43,7 +43,7 @@ func (r ContentGemAPIContentGemGemCreateRequest) Repository(repository string) C
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentGemAPIContentGemGemCreateRequest) PulpLabels(pulpLabels map[string]string) ContentGemAPIContentGemGemCreateRequest {
+func (r ContentGemAPIContentGemGemCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentGemAPIContentGemGemCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

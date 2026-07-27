@@ -21,7 +21,7 @@ var _ MappedNullable = &NpmNpmRepository{}
 
 // NpmNpmRepository A Serializer for NpmRepository.Add any new fields if defined on NpmRepository.Similar to the example above, in PackageSerializer.Additional validators can be added to the parent validators listFor example::class Meta:    validators = core_serializers.RepositorySerializer.Meta.validators + [myValidator1, ...]
 type NpmNpmRepository struct {
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.
 	Name string `json:"name"`
 	// An optional description.
@@ -54,9 +54,9 @@ func NewNpmNpmRepositoryWithDefaults() *NpmNpmRepository {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *NpmNpmRepository) GetPulpLabels() map[string]string {
+func (o *NpmNpmRepository) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -64,7 +64,7 @@ func (o *NpmNpmRepository) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NpmNpmRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *NpmNpmRepository) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -80,8 +80,8 @@ func (o *NpmNpmRepository) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *NpmNpmRepository) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *NpmNpmRepository) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

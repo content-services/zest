@@ -30,7 +30,7 @@ type OpenPGPSignatureResponse struct {
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	Issuer NullableString `json:"issuer,omitempty"`
 	Created time.Time `json:"created"`
 	ExpirationTime NullableString `json:"expiration_time,omitempty"`
@@ -192,9 +192,9 @@ func (o *OpenPGPSignatureResponse) SetPulpLastUpdated(v time.Time) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *OpenPGPSignatureResponse) GetPulpLabels() map[string]string {
+func (o *OpenPGPSignatureResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -202,7 +202,7 @@ func (o *OpenPGPSignatureResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpenPGPSignatureResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *OpenPGPSignatureResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -218,8 +218,8 @@ func (o *OpenPGPSignatureResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *OpenPGPSignatureResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *OpenPGPSignatureResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

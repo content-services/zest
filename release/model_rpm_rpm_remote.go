@@ -43,7 +43,7 @@ type RpmRpmRemote struct {
 	Username NullableString `json:"username,omitempty"`
 	// The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed.
 	Password NullableString `json:"password,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Total number of simultaneous connections. If not set then the default value will be used.
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
@@ -509,9 +509,9 @@ func (o *RpmRpmRemote) UnsetPassword() {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *RpmRpmRemote) GetPulpLabels() map[string]string {
+func (o *RpmRpmRemote) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -519,7 +519,7 @@ func (o *RpmRpmRemote) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmRpmRemote) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *RpmRpmRemote) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -535,8 +535,8 @@ func (o *RpmRpmRemote) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *RpmRpmRemote) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *RpmRpmRemote) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

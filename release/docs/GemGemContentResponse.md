@@ -140,20 +140,20 @@ HasPulpLastUpdated returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
-`func (o *GemGemContentResponse) GetPulpLabels() map[string]string`
+`func (o *GemGemContentResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *GemGemContentResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *GemGemContentResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *GemGemContentResponse) SetPulpLabels(v map[string]string)`
+`func (o *GemGemContentResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 
@@ -310,20 +310,20 @@ HasPrerelease returns a boolean if a field has been set.
 
 ### GetDependencies
 
-`func (o *GemGemContentResponse) GetDependencies() map[string]string`
+`func (o *GemGemContentResponse) GetDependencies() map[string]*string`
 
 GetDependencies returns the Dependencies field if non-nil, zero value otherwise.
 
 ### GetDependenciesOk
 
-`func (o *GemGemContentResponse) GetDependenciesOk() (*map[string]string, bool)`
+`func (o *GemGemContentResponse) GetDependenciesOk() (*map[string]*string, bool)`
 
 GetDependenciesOk returns a tuple with the Dependencies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDependencies
 
-`func (o *GemGemContentResponse) SetDependencies(v map[string]string)`
+`func (o *GemGemContentResponse) SetDependencies(v map[string]*string)`
 
 SetDependencies sets Dependencies field to given value.
 

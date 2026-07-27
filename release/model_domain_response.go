@@ -33,7 +33,7 @@ type DomainResponse struct {
 	Name string `json:"name" validate:"regexp=^[-a-zA-Z0-9_]+$"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage
 	StorageClass StorageClassEnum `json:"storage_class"`
 	// Settings for storage class.
@@ -270,9 +270,9 @@ func (o *DomainResponse) UnsetDescription() {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *DomainResponse) GetPulpLabels() map[string]string {
+func (o *DomainResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -280,7 +280,7 @@ func (o *DomainResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DomainResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *DomainResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -296,8 +296,8 @@ func (o *DomainResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *DomainResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *DomainResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

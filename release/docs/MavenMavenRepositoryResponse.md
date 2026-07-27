@@ -162,20 +162,20 @@ HasVersionsHref returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
-`func (o *MavenMavenRepositoryResponse) GetPulpLabels() map[string]string`
+`func (o *MavenMavenRepositoryResponse) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *MavenMavenRepositoryResponse) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *MavenMavenRepositoryResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *MavenMavenRepositoryResponse) SetPulpLabels(v map[string]string)`
+`func (o *MavenMavenRepositoryResponse) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

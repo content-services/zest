@@ -21,7 +21,7 @@ var _ MappedNullable = &OpenPGPKeyring{}
 
 // OpenPGPKeyring Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type OpenPGPKeyring struct {
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.
 	Name string `json:"name"`
 	// An optional description.
@@ -54,9 +54,9 @@ func NewOpenPGPKeyringWithDefaults() *OpenPGPKeyring {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *OpenPGPKeyring) GetPulpLabels() map[string]string {
+func (o *OpenPGPKeyring) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -64,7 +64,7 @@ func (o *OpenPGPKeyring) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OpenPGPKeyring) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *OpenPGPKeyring) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -80,8 +80,8 @@ func (o *OpenPGPKeyring) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *OpenPGPKeyring) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *OpenPGPKeyring) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

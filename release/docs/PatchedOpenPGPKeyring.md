@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPulpLabels
 
-`func (o *PatchedOpenPGPKeyring) GetPulpLabels() map[string]string`
+`func (o *PatchedOpenPGPKeyring) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *PatchedOpenPGPKeyring) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *PatchedOpenPGPKeyring) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *PatchedOpenPGPKeyring) SetPulpLabels(v map[string]string)`
+`func (o *PatchedOpenPGPKeyring) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

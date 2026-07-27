@@ -20,7 +20,7 @@ var _ MappedNullable = &PatchedrpmRpmRepository{}
 
 // PatchedrpmRpmRepository Serializer for Rpm Repositories.
 type PatchedrpmRpmRepository struct {
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.
 	Name *string `json:"name,omitempty"`
 	// An optional description.
@@ -74,9 +74,9 @@ func NewPatchedrpmRpmRepositoryWithDefaults() *PatchedrpmRpmRepository {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedrpmRpmRepository) GetPulpLabels() map[string]string {
+func (o *PatchedrpmRpmRepository) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -84,7 +84,7 @@ func (o *PatchedrpmRpmRepository) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedrpmRpmRepository) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *PatchedrpmRpmRepository) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *PatchedrpmRpmRepository) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *PatchedrpmRpmRepository) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *PatchedrpmRpmRepository) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

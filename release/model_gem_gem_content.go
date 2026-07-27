@@ -24,7 +24,7 @@ type GemGemContent struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// An uploaded file that should be turned into the artifact of the content unit.
@@ -84,9 +84,9 @@ func (o *GemGemContent) SetRepository(v string) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *GemGemContent) GetPulpLabels() map[string]string {
+func (o *GemGemContent) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -94,7 +94,7 @@ func (o *GemGemContent) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GemGemContent) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *GemGemContent) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -110,8 +110,8 @@ func (o *GemGemContent) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *GemGemContent) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *GemGemContent) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

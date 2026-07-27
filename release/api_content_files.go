@@ -32,7 +32,7 @@ type ContentFilesAPIContentFileFilesCreateRequest struct {
 	pulpDomain string
 	relativePath *string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 	upload *string
@@ -52,7 +52,7 @@ func (r ContentFilesAPIContentFileFilesCreateRequest) Repository(repository stri
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentFilesAPIContentFileFilesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentFilesAPIContentFileFilesCreateRequest {
+func (r ContentFilesAPIContentFileFilesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentFilesAPIContentFileFilesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

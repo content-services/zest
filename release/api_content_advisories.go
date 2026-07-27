@@ -31,7 +31,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest struct {
 	ApiService *ContentAdvisoriesAPIService
 	pulpDomain string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	file *os.File
 	upload *string
 	fileUrl *string
@@ -44,7 +44,7 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) Repository(reposi
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

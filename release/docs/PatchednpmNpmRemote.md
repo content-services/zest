@@ -402,20 +402,20 @@ HasPassword returns a boolean if a field has been set.
 UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetPulpLabels
 
-`func (o *PatchednpmNpmRemote) GetPulpLabels() map[string]string`
+`func (o *PatchednpmNpmRemote) GetPulpLabels() map[string]*string`
 
 GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
 
 ### GetPulpLabelsOk
 
-`func (o *PatchednpmNpmRemote) GetPulpLabelsOk() (*map[string]string, bool)`
+`func (o *PatchednpmNpmRemote) GetPulpLabelsOk() (*map[string]*string, bool)`
 
 GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPulpLabels
 
-`func (o *PatchednpmNpmRemote) SetPulpLabels(v map[string]string)`
+`func (o *PatchednpmNpmRemote) SetPulpLabels(v map[string]*string)`
 
 SetPulpLabels sets PulpLabels field to given value.
 

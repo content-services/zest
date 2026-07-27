@@ -24,7 +24,7 @@ type RpmUpdateRecord struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// An uploaded file that may be turned into the content unit.
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
@@ -86,9 +86,9 @@ func (o *RpmUpdateRecord) SetRepository(v string) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *RpmUpdateRecord) GetPulpLabels() map[string]string {
+func (o *RpmUpdateRecord) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -96,7 +96,7 @@ func (o *RpmUpdateRecord) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmUpdateRecord) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *RpmUpdateRecord) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -112,8 +112,8 @@ func (o *RpmUpdateRecord) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *RpmUpdateRecord) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *RpmUpdateRecord) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

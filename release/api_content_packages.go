@@ -34,7 +34,7 @@ type ContentPackagesAPIContentNpmPackagesCreateRequest struct {
 	name *string
 	version *string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 	upload *string
@@ -63,7 +63,7 @@ func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Repository(repository
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentPackagesAPIContentNpmPackagesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentPackagesAPIContentNpmPackagesCreateRequest {
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentNpmPackagesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }
@@ -899,7 +899,7 @@ type ContentPackagesAPIContentPythonPackagesCreateRequest struct {
 	pulpDomain string
 	relativePath *string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 	upload *string
@@ -941,7 +941,7 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Repository(reposit
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }
@@ -2150,7 +2150,7 @@ type ContentPackagesAPIContentRpmPackagesCreateRequest struct {
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
 	repository *string
-	pulpLabels *map[string]string
+	pulpLabels *map[string]*string
 	artifact *string
 	relativePath *string
 	file *os.File
@@ -2165,7 +2165,7 @@ func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Repository(repository
 }
 
 // A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-func (r ContentPackagesAPIContentRpmPackagesCreateRequest) PulpLabels(pulpLabels map[string]string) ContentPackagesAPIContentRpmPackagesCreateRequest {
+func (r ContentPackagesAPIContentRpmPackagesCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentRpmPackagesCreateRequest {
 	r.pulpLabels = &pulpLabels
 	return r
 }

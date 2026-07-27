@@ -33,7 +33,7 @@ type WorkerResponse struct {
 	// Timestamp of the last time the worker talked to the service.
 	LastHeartbeat *time.Time `json:"last_heartbeat,omitempty"`
 	// Versions of the components installed.
-	Versions *map[string]string `json:"versions,omitempty"`
+	Versions *map[string]*string `json:"versions,omitempty"`
 	// The task this worker is currently executing, or empty if the worker is not currently assigned to a task.
 	CurrentTask *string `json:"current_task,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -251,9 +251,9 @@ func (o *WorkerResponse) SetLastHeartbeat(v time.Time) {
 }
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
-func (o *WorkerResponse) GetVersions() map[string]string {
+func (o *WorkerResponse) GetVersions() map[string]*string {
 	if o == nil || IsNil(o.Versions) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.Versions
@@ -261,7 +261,7 @@ func (o *WorkerResponse) GetVersions() map[string]string {
 
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WorkerResponse) GetVersionsOk() (*map[string]string, bool) {
+func (o *WorkerResponse) GetVersionsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.Versions) {
 		return nil, false
 	}
@@ -277,8 +277,8 @@ func (o *WorkerResponse) HasVersions() bool {
 	return false
 }
 
-// SetVersions gets a reference to the given map[string]string and assigns it to the Versions field.
-func (o *WorkerResponse) SetVersions(v map[string]string) {
+// SetVersions gets a reference to the given map[string]*string and assigns it to the Versions field.
+func (o *WorkerResponse) SetVersions(v map[string]*string) {
 	o.Versions = &v
 }
 

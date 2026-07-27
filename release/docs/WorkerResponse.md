@@ -184,20 +184,20 @@ HasLastHeartbeat returns a boolean if a field has been set.
 
 ### GetVersions
 
-`func (o *WorkerResponse) GetVersions() map[string]string`
+`func (o *WorkerResponse) GetVersions() map[string]*string`
 
 GetVersions returns the Versions field if non-nil, zero value otherwise.
 
 ### GetVersionsOk
 
-`func (o *WorkerResponse) GetVersionsOk() (*map[string]string, bool)`
+`func (o *WorkerResponse) GetVersionsOk() (*map[string]*string, bool)`
 
 GetVersionsOk returns a tuple with the Versions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVersions
 
-`func (o *WorkerResponse) SetVersions(v map[string]string)`
+`func (o *WorkerResponse) SetVersions(v map[string]*string)`
 
 SetVersions sets Versions field to given value.
 

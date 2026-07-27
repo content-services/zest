@@ -41,7 +41,7 @@ type RpmUlnRemoteResponse struct {
 	TlsValidation *bool `json:"tls_validation,omitempty"`
 	// The proxy URL. Format: scheme://host:port
 	ProxyUrl NullableString `json:"proxy_url,omitempty"`
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Total number of simultaneous connections. If not set then the default value will be used.
 	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
@@ -427,9 +427,9 @@ func (o *RpmUlnRemoteResponse) UnsetProxyUrl() {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *RpmUlnRemoteResponse) GetPulpLabels() map[string]string {
+func (o *RpmUlnRemoteResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -437,7 +437,7 @@ func (o *RpmUlnRemoteResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RpmUlnRemoteResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *RpmUlnRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -453,8 +453,8 @@ func (o *RpmUlnRemoteResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *RpmUlnRemoteResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *RpmUlnRemoteResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 

@@ -30,7 +30,7 @@ type MultipleArtifactContentResponse struct {
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
-	PulpLabels *map[string]string `json:"pulp_labels,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A dict mapping relative paths inside the Content to the correspondingArtifact URLs. E.g.: {'relative/path': '/artifacts/1/'
 	Artifacts map[string]interface{} `json:"artifacts"`
 	AdditionalProperties map[string]interface{}
@@ -185,9 +185,9 @@ func (o *MultipleArtifactContentResponse) SetPulpLastUpdated(v time.Time) {
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *MultipleArtifactContentResponse) GetPulpLabels() map[string]string {
+func (o *MultipleArtifactContentResponse) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]string
+		var ret map[string]*string
 		return ret
 	}
 	return *o.PulpLabels
@@ -195,7 +195,7 @@ func (o *MultipleArtifactContentResponse) GetPulpLabels() map[string]string {
 
 // GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultipleArtifactContentResponse) GetPulpLabelsOk() (*map[string]string, bool) {
+func (o *MultipleArtifactContentResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
 	if o == nil || IsNil(o.PulpLabels) {
 		return nil, false
 	}
@@ -211,8 +211,8 @@ func (o *MultipleArtifactContentResponse) HasPulpLabels() bool {
 	return false
 }
 
-// SetPulpLabels gets a reference to the given map[string]string and assigns it to the PulpLabels field.
-func (o *MultipleArtifactContentResponse) SetPulpLabels(v map[string]string) {
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *MultipleArtifactContentResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
