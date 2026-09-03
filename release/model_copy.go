@@ -25,6 +25,8 @@ type Copy struct {
 	Config interface{} `json:"config"`
 	// Also copy dependencies of the content being copied.
 	DependencySolving *bool `json:"dependency_solving,omitempty"`
+	// Resolve dependencies to their latest compatible versions instead of preferring versions already in the destination.
+	DependencyUpgrade *bool `json:"dependency_upgrade,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,6 +41,8 @@ func NewCopy(config interface{}) *Copy {
 	this.Config = config
 	var dependencySolving bool = true
 	this.DependencySolving = &dependencySolving
+	var dependencyUpgrade bool = false
+	this.DependencyUpgrade = &dependencyUpgrade
 	return &this
 }
 
@@ -49,6 +53,8 @@ func NewCopyWithDefaults() *Copy {
 	this := Copy{}
 	var dependencySolving bool = true
 	this.DependencySolving = &dependencySolving
+	var dependencyUpgrade bool = false
+	this.DependencyUpgrade = &dependencyUpgrade
 	return &this
 }
 
@@ -110,6 +116,38 @@ func (o *Copy) SetDependencySolving(v bool) {
 	o.DependencySolving = &v
 }
 
+// GetDependencyUpgrade returns the DependencyUpgrade field value if set, zero value otherwise.
+func (o *Copy) GetDependencyUpgrade() bool {
+	if o == nil || IsNil(o.DependencyUpgrade) {
+		var ret bool
+		return ret
+	}
+	return *o.DependencyUpgrade
+}
+
+// GetDependencyUpgradeOk returns a tuple with the DependencyUpgrade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Copy) GetDependencyUpgradeOk() (*bool, bool) {
+	if o == nil || IsNil(o.DependencyUpgrade) {
+		return nil, false
+	}
+	return o.DependencyUpgrade, true
+}
+
+// HasDependencyUpgrade returns a boolean if a field has been set.
+func (o *Copy) HasDependencyUpgrade() bool {
+	if o != nil && !IsNil(o.DependencyUpgrade) {
+		return true
+	}
+
+	return false
+}
+
+// SetDependencyUpgrade gets a reference to the given bool and assigns it to the DependencyUpgrade field.
+func (o *Copy) SetDependencyUpgrade(v bool) {
+	o.DependencyUpgrade = &v
+}
+
 func (o Copy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -125,6 +163,9 @@ func (o Copy) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DependencySolving) {
 		toSerialize["dependency_solving"] = o.DependencySolving
+	}
+	if !IsNil(o.DependencyUpgrade) {
+		toSerialize["dependency_upgrade"] = o.DependencyUpgrade
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -171,6 +212,7 @@ func (o *Copy) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "config")
 		delete(additionalProperties, "dependency_solving")
+		delete(additionalProperties, "dependency_upgrade")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,12 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
+**Overwrite** | Pointer to **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **RelativePath** | Pointer to **string** | Path where the artifact is located relative to distributions base_path | [optional] 
 **File** | Pointer to ***os.File** | An uploaded file that may be turned into the content unit. | [optional] 
 **Upload** | Pointer to **string** | An uncommitted upload that may be turned into the content unit. | [optional] 
 **FileUrl** | Pointer to **string** | A url that Pulp can download and turn into the content unit. | [optional] 
+**DownloaderConfig** | Pointer to [**RemoteNetworkConfig**](RemoteNetworkConfig.md) | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url. | [optional] 
 
 ## Methods
 
@@ -55,6 +57,31 @@ SetRepository sets Repository field to given value.
 `func (o *RpmPackage) HasRepository() bool`
 
 HasRepository returns a boolean if a field has been set.
+
+### GetOverwrite
+
+`func (o *RpmPackage) GetOverwrite() bool`
+
+GetOverwrite returns the Overwrite field if non-nil, zero value otherwise.
+
+### GetOverwriteOk
+
+`func (o *RpmPackage) GetOverwriteOk() (*bool, bool)`
+
+GetOverwriteOk returns a tuple with the Overwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverwrite
+
+`func (o *RpmPackage) SetOverwrite(v bool)`
+
+SetOverwrite sets Overwrite field to given value.
+
+### HasOverwrite
+
+`func (o *RpmPackage) HasOverwrite() bool`
+
+HasOverwrite returns a boolean if a field has been set.
 
 ### GetPulpLabels
 
@@ -205,6 +232,31 @@ SetFileUrl sets FileUrl field to given value.
 `func (o *RpmPackage) HasFileUrl() bool`
 
 HasFileUrl returns a boolean if a field has been set.
+
+### GetDownloaderConfig
+
+`func (o *RpmPackage) GetDownloaderConfig() RemoteNetworkConfig`
+
+GetDownloaderConfig returns the DownloaderConfig field if non-nil, zero value otherwise.
+
+### GetDownloaderConfigOk
+
+`func (o *RpmPackage) GetDownloaderConfigOk() (*RemoteNetworkConfig, bool)`
+
+GetDownloaderConfigOk returns a tuple with the DownloaderConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloaderConfig
+
+`func (o *RpmPackage) SetDownloaderConfig(v RemoteNetworkConfig)`
+
+SetDownloaderConfig sets DownloaderConfig field to given value.
+
+### HasDownloaderConfig
+
+`func (o *RpmPackage) HasDownloaderConfig() bool`
+
+HasDownloaderConfig returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

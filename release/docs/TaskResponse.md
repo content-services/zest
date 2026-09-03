@@ -11,18 +11,21 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | The current state of the task. The possible values include: &#39;waiting&#39;, &#39;skipped&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;canceled&#39; and &#39;canceling&#39;. | [optional] [readonly] 
 **Name** | **string** | The name of task. | 
 **LoggingCid** | **string** | The logging correlation id associated with this task | 
-**CreatedBy** | Pointer to **string** | User who dispatched this task. | [optional] [readonly] 
+**CreatedBy** | Pointer to **NullableString** | User who dispatched this task. | [optional] [readonly] 
 **UnblockedAt** | Pointer to **time.Time** | Timestamp of when this task was identified ready for pickup. | [optional] [readonly] 
 **StartedAt** | Pointer to **time.Time** | Timestamp of when this task started execution. | [optional] [readonly] 
 **FinishedAt** | Pointer to **time.Time** | Timestamp of when this task stopped execution. | [optional] [readonly] 
 **Error** | Pointer to **map[string]string** | A JSON Object of a fatal error encountered during the execution of this task. | [optional] [readonly] 
-**Worker** | Pointer to **string** | The worker associated with this task. This field is empty if a worker is not yet assigned. | [optional] [readonly] 
+**Worker** | Pointer to **NullableString** | DEPRECATED - Always null | [optional] [readonly] 
 **ParentTask** | Pointer to **string** | The parent task that spawned this task. | [optional] [readonly] 
 **ChildTasks** | Pointer to **[]string** | Any tasks spawned by this task. | [optional] [readonly] 
 **TaskGroup** | Pointer to **string** | The task group that this task is a member of. | [optional] [readonly] 
 **ProgressReports** | Pointer to [**[]ProgressReportResponse**](ProgressReportResponse.md) |  | [optional] [readonly] 
 **CreatedResources** | Pointer to **[]string** | Resources created by this task. | [optional] [readonly] 
+**CreatedResourcePrns** | Pointer to **[]string** | Resources created by this task as PRNs. | [optional] [readonly] 
 **ReservedResourcesRecord** | Pointer to **[]string** | A list of resources required by that task. | [optional] [readonly] 
+**Result** | Pointer to **interface{}** | The result of this task. | [optional] [readonly] 
+**PulpApiVersion** | Pointer to **string** | The API-version that was invoked when creating the task. | [optional] [default to "v3"]
 
 ## Methods
 
@@ -233,6 +236,16 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
+### SetCreatedByNil
+
+`func (o *TaskResponse) SetCreatedByNil(b bool)`
+
+ SetCreatedByNil sets the value for CreatedBy to be an explicit nil
+
+### UnsetCreatedBy
+`func (o *TaskResponse) UnsetCreatedBy()`
+
+UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
 ### GetUnblockedAt
 
 `func (o *TaskResponse) GetUnblockedAt() time.Time`
@@ -358,6 +371,16 @@ SetWorker sets Worker field to given value.
 
 HasWorker returns a boolean if a field has been set.
 
+### SetWorkerNil
+
+`func (o *TaskResponse) SetWorkerNil(b bool)`
+
+ SetWorkerNil sets the value for Worker to be an explicit nil
+
+### UnsetWorker
+`func (o *TaskResponse) UnsetWorker()`
+
+UnsetWorker ensures that no value is present for Worker, not even an explicit nil
 ### GetParentTask
 
 `func (o *TaskResponse) GetParentTask() string`
@@ -483,6 +506,31 @@ SetCreatedResources sets CreatedResources field to given value.
 
 HasCreatedResources returns a boolean if a field has been set.
 
+### GetCreatedResourcePrns
+
+`func (o *TaskResponse) GetCreatedResourcePrns() []string`
+
+GetCreatedResourcePrns returns the CreatedResourcePrns field if non-nil, zero value otherwise.
+
+### GetCreatedResourcePrnsOk
+
+`func (o *TaskResponse) GetCreatedResourcePrnsOk() (*[]string, bool)`
+
+GetCreatedResourcePrnsOk returns a tuple with the CreatedResourcePrns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedResourcePrns
+
+`func (o *TaskResponse) SetCreatedResourcePrns(v []string)`
+
+SetCreatedResourcePrns sets CreatedResourcePrns field to given value.
+
+### HasCreatedResourcePrns
+
+`func (o *TaskResponse) HasCreatedResourcePrns() bool`
+
+HasCreatedResourcePrns returns a boolean if a field has been set.
+
 ### GetReservedResourcesRecord
 
 `func (o *TaskResponse) GetReservedResourcesRecord() []string`
@@ -507,6 +555,66 @@ SetReservedResourcesRecord sets ReservedResourcesRecord field to given value.
 `func (o *TaskResponse) HasReservedResourcesRecord() bool`
 
 HasReservedResourcesRecord returns a boolean if a field has been set.
+
+### GetResult
+
+`func (o *TaskResponse) GetResult() interface{}`
+
+GetResult returns the Result field if non-nil, zero value otherwise.
+
+### GetResultOk
+
+`func (o *TaskResponse) GetResultOk() (*interface{}, bool)`
+
+GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResult
+
+`func (o *TaskResponse) SetResult(v interface{})`
+
+SetResult sets Result field to given value.
+
+### HasResult
+
+`func (o *TaskResponse) HasResult() bool`
+
+HasResult returns a boolean if a field has been set.
+
+### SetResultNil
+
+`func (o *TaskResponse) SetResultNil(b bool)`
+
+ SetResultNil sets the value for Result to be an explicit nil
+
+### UnsetResult
+`func (o *TaskResponse) UnsetResult()`
+
+UnsetResult ensures that no value is present for Result, not even an explicit nil
+### GetPulpApiVersion
+
+`func (o *TaskResponse) GetPulpApiVersion() string`
+
+GetPulpApiVersion returns the PulpApiVersion field if non-nil, zero value otherwise.
+
+### GetPulpApiVersionOk
+
+`func (o *TaskResponse) GetPulpApiVersionOk() (*string, bool)`
+
+GetPulpApiVersionOk returns a tuple with the PulpApiVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpApiVersion
+
+`func (o *TaskResponse) SetPulpApiVersion(v string)`
+
+SetPulpApiVersion sets PulpApiVersion field to given value.
+
+### HasPulpApiVersion
+
+`func (o *TaskResponse) HasPulpApiVersion() bool`
+
+HasPulpApiVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

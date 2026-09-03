@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## OrphansCleanupCleanup
 
-> AsyncOperationResponse OrphansCleanupCleanup(ctx, pulpDomain).OrphansCleanup(orphansCleanup).Execute()
+> AsyncOperationResponse OrphansCleanupCleanup(ctx, pulpDomain).OrphansCleanup(orphansCleanup).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -31,10 +31,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	orphansCleanup := *openapiclient.NewOrphansCleanup() // OrphansCleanup | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrphansCleanupAPI.OrphansCleanupCleanup(context.Background(), pulpDomain).OrphansCleanup(orphansCleanup).Execute()
+	resp, r, err := apiClient.OrphansCleanupAPI.OrphansCleanupCleanup(context.Background(), pulpDomain).OrphansCleanup(orphansCleanup).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrphansCleanupAPI.OrphansCleanupCleanup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **orphansCleanup** | [**OrphansCleanup**](OrphansCleanup.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

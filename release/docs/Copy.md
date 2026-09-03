@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Config** | **interface{}** | Content to be copied into the given destinations from the given sources.Its a list of dictionaries with the following available fields:&#x60;&#x60;&#x60;json[  {    \&quot;source_repo_version\&quot;: &lt;RepositoryVersion [pulp_href|prn]&gt;,    \&quot;dest_repo\&quot;: &lt;RpmRepository [pulp_href|prn]&gt;,    \&quot;dest_base_version\&quot;: &lt;int&gt;,    \&quot;content\&quot;: [&lt;Content [pulp_href|prn]&gt;, ...]  },  ...]&#x60;&#x60;&#x60;If domains are enabled, the refered pulp objects must be part of the current domain.For usage examples, refer to the advanced copy guide:&lt;https://pulpproject.org/pulp_rpm/docs/user/guides/modify/#advanced-copy-workflow&gt; | 
 **DependencySolving** | Pointer to **bool** | Also copy dependencies of the content being copied. | [optional] [default to true]
+**DependencyUpgrade** | Pointer to **bool** | Resolve dependencies to their latest compatible versions instead of preferring versions already in the destination. | [optional] [default to false]
 
 ## Methods
 
@@ -80,6 +81,31 @@ SetDependencySolving sets DependencySolving field to given value.
 `func (o *Copy) HasDependencySolving() bool`
 
 HasDependencySolving returns a boolean if a field has been set.
+
+### GetDependencyUpgrade
+
+`func (o *Copy) GetDependencyUpgrade() bool`
+
+GetDependencyUpgrade returns the DependencyUpgrade field if non-nil, zero value otherwise.
+
+### GetDependencyUpgradeOk
+
+`func (o *Copy) GetDependencyUpgradeOk() (*bool, bool)`
+
+GetDependencyUpgradeOk returns a tuple with the DependencyUpgrade field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDependencyUpgrade
+
+`func (o *Copy) SetDependencyUpgrade(v bool)`
+
+SetDependencyUpgrade sets DependencyUpgrade field to given value.
+
+### HasDependencyUpgrade
+
+`func (o *Copy) HasDependencyUpgrade() bool`
+
+HasDependencyUpgrade returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

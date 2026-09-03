@@ -31,6 +31,7 @@ type OpenPGPUserIDResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	UserId string `json:"user_id"`
 	Signatures []NestedOpenPGPSignatureResponse `json:"signatures,omitempty"`
 	PublicKey *string `json:"public_key,omitempty"`
@@ -217,6 +218,38 @@ func (o *OpenPGPUserIDResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *OpenPGPUserIDResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpenPGPUserIDResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *OpenPGPUserIDResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *OpenPGPUserIDResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetUserId returns the UserId field value
 func (o *OpenPGPUserIDResponse) GetUserId() string {
 	if o == nil {
@@ -330,6 +363,9 @@ func (o OpenPGPUserIDResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	toSerialize["user_id"] = o.UserId
 	if !IsNil(o.Signatures) {
 		toSerialize["signatures"] = o.Signatures
@@ -385,6 +421,7 @@ func (o *OpenPGPUserIDResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "user_id")
 		delete(additionalProperties, "signatures")
 		delete(additionalProperties, "public_key")

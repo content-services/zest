@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## PublicationsList
 
-> PaginatedPublicationResponseList PublicationsList(ctx, pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedPublicationResponseList PublicationsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List publications
 
@@ -31,6 +31,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	checkpoint := true // bool | Filter results where checkpoint matches value (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -47,17 +48,17 @@ func main() {
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `python.python` - python.python* `file.file` - file.file* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `python.python` - python.python* `file.file` - file.file* `gem.gem` - gem.gem* `rpm.rpm` - rpm.rpm (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `python.python` - python.python* `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `python.python` - python.python* `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
-	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsAPI.PublicationsList(context.Background(), pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsAPI.PublicationsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpType(pulpType).PulpTypeIn(pulpTypeIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsAPI.PublicationsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -83,6 +84,7 @@ Other parameters are passed through a pointer to a apiPublicationsListRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **checkpoint** | **bool** | Filter results where checkpoint matches value | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -99,11 +101,11 @@ Name | Type | Description  | Notes
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

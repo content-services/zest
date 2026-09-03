@@ -162,6 +162,20 @@ func Test_zest_RepositoriesPythonAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesPythonAPIService RepositoriesPythonPythonRepairMetadata", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pythonPythonRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesPythonAPI.RepositoriesPythonPythonRepairMetadata(context.Background(), pythonPythonRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesPythonAPIService RepositoriesPythonPythonSetLabel", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

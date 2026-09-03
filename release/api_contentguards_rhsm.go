@@ -30,10 +30,17 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmCreateRequest struct {
 	ApiService *ContentguardsRhsmAPIService
 	pulpDomain string
 	certguardRHSMCertGuard *CertguardRHSMCertGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsRhsmAPIContentguardsCertguardRhsmCreateRequest) CertguardRHSMCertGuard(certguardRHSMCertGuard CertguardRHSMCertGuard) ContentguardsRhsmAPIContentguardsCertguardRhsmCreateRequest {
 	r.certguardRHSMCertGuard = &certguardRHSMCertGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmCreateExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.certguardRHSMCertGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmDeleteRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsRhsmAPIService
 	certguardRHSMCertGuardHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ContentguardsRhsmAPIContentguardsCertguardRhsmDeleteRequest) Execute() (*http.Response, error) {
@@ -205,6 +222,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmDeleteExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -237,6 +257,7 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmListRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsRhsmAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -255,6 +276,12 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -496,6 +523,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmListExecute(r Co
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -538,10 +568,17 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmPartialUpdateRequest struct {
 	ApiService *ContentguardsRhsmAPIService
 	certguardRHSMCertGuardHref string
 	patchedcertguardRHSMCertGuard *PatchedcertguardRHSMCertGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsRhsmAPIContentguardsCertguardRhsmPartialUpdateRequest) PatchedcertguardRHSMCertGuard(patchedcertguardRHSMCertGuard PatchedcertguardRHSMCertGuard) ContentguardsRhsmAPIContentguardsCertguardRhsmPartialUpdateRequest {
 	r.patchedcertguardRHSMCertGuard = &patchedcertguardRHSMCertGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -609,6 +646,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmPartialUpdateExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedcertguardRHSMCertGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -652,8 +692,15 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmReadRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsRhsmAPIService
 	certguardRHSMCertGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -751,6 +798,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmReadExecute(r Co
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -793,10 +843,17 @@ type ContentguardsRhsmAPIContentguardsCertguardRhsmUpdateRequest struct {
 	ApiService *ContentguardsRhsmAPIService
 	certguardRHSMCertGuardHref string
 	certguardRHSMCertGuard *CertguardRHSMCertGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsRhsmAPIContentguardsCertguardRhsmUpdateRequest) CertguardRHSMCertGuard(certguardRHSMCertGuard CertguardRHSMCertGuard) ContentguardsRhsmAPIContentguardsCertguardRhsmUpdateRequest {
 	r.certguardRHSMCertGuard = &certguardRHSMCertGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsRhsmAPIContentguardsCertguardRhsmUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsRhsmAPIContentguardsCertguardRhsmUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -863,6 +920,9 @@ func (a *ContentguardsRhsmAPIService) ContentguardsCertguardRhsmUpdateExecute(r 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.certguardRHSMCertGuard

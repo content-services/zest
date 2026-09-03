@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 
@@ -26,6 +27,27 @@ type TokenAPIService service
 type TokenAPITokenGetRequest struct {
 	ctx context.Context
 	ApiService *TokenAPIService
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TokenAPITokenGetRequest) XTaskDiagnostics(xTaskDiagnostics []string) TokenAPITokenGetRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r TokenAPITokenGetRequest) Fields(fields []string) TokenAPITokenGetRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r TokenAPITokenGetRequest) ExcludeFields(excludeFields []string) TokenAPITokenGetRequest {
+	r.excludeFields = &excludeFields
+	return r
 }
 
 func (r TokenAPITokenGetRequest) Execute() (*http.Response, error) {
@@ -67,6 +89,28 @@ func (a *TokenAPIService) TokenGetExecute(r TokenAPITokenGetRequest) (*http.Resp
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -83,6 +127,9 @@ func (a *TokenAPIService) TokenGetExecute(r TokenAPITokenGetRequest) (*http.Resp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

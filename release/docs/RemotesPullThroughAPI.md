@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## RemotesContainerPullThroughAddRole
 
-> NestedRoleResponse RemotesContainerPullThroughAddRole(ctx, containerContainerPullThroughRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesContainerPullThroughAddRole(ctx, containerContainerPullThroughRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughAddRole(context.Background(), containerContainerPullThroughRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughAddRole(context.Background(), containerContainerPullThroughRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughCreate
 
-> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughCreate(ctx, pulpDomain).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).Execute()
+> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughCreate(ctx, pulpDomain).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a container pull through remote
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	containerContainerPullThroughRemote := *openapiclient.NewContainerContainerPullThroughRemote("Name_example", "Url_example") // ContainerContainerPullThroughRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughCreate(context.Background(), pulpDomain).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughCreate(context.Background(), pulpDomain).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerPullThroughRemote** | [**ContainerContainerPullThroughRemote**](ContainerContainerPullThroughRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughDelete
 
-> AsyncOperationResponse RemotesContainerPullThroughDelete(ctx, containerContainerPullThroughRemoteHref).Execute()
+> AsyncOperationResponse RemotesContainerPullThroughDelete(ctx, containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a container pull through remote
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughDelete(context.Background(), containerContainerPullThroughRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughDelete(context.Background(), containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerPullThroug
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughList
 
-> PaginatedcontainerContainerPullThroughRemoteResponseList RemotesContainerPullThroughList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcontainerContainerPullThroughRemoteResponseList RemotesContainerPullThroughList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List container pull through remotes
 
@@ -256,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -285,7 +292,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerPullThroug
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -358,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughListRoles
 
-> ObjectRolesResponse RemotesContainerPullThroughListRoles(ctx, containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RemotesContainerPullThroughListRoles(ctx, containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -378,12 +386,13 @@ import (
 
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughListRoles(context.Background(), containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughListRoles(context.Background(), containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,6 +418,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerPullThroug
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -432,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughMyPermissions
 
-> MyPermissionsResponse RemotesContainerPullThroughMyPermissions(ctx, containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RemotesContainerPullThroughMyPermissions(ctx, containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -452,12 +462,13 @@ import (
 
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughMyPermissions(context.Background(), containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughMyPermissions(context.Background(), containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,6 +494,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerPullThroug
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -506,7 +518,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughPartialUpdate
 
-> AsyncOperationResponse RemotesContainerPullThroughPartialUpdate(ctx, containerContainerPullThroughRemoteHref).PatchedcontainerContainerPullThroughRemote(patchedcontainerContainerPullThroughRemote).Execute()
+> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughPartialUpdate(ctx, containerContainerPullThroughRemoteHref).PatchedcontainerContainerPullThroughRemote(patchedcontainerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container pull through remote
 
@@ -527,15 +539,16 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	patchedcontainerContainerPullThroughRemote := *openapiclient.NewPatchedcontainerContainerPullThroughRemote() // PatchedcontainerContainerPullThroughRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughPartialUpdate(context.Background(), containerContainerPullThroughRemoteHref).PatchedcontainerContainerPullThroughRemote(patchedcontainerContainerPullThroughRemote).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughPartialUpdate(context.Background(), containerContainerPullThroughRemoteHref).PatchedcontainerContainerPullThroughRemote(patchedcontainerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesContainerPullThroughPartialUpdate`: AsyncOperationResponse
+	// response from `RemotesContainerPullThroughPartialUpdate`: ContainerContainerPullThroughRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesPullThroughAPI.RemotesContainerPullThroughPartialUpdate`: %v\n", resp)
 }
 ```
@@ -557,10 +570,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedcontainerContainerPullThroughRemote** | [**PatchedcontainerContainerPullThroughRemote**](PatchedcontainerContainerPullThroughRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerPullThroughRemoteResponse**](ContainerContainerPullThroughRemoteResponse.md)
 
 ### Authorization
 
@@ -578,7 +592,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughRead
 
-> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughRead(ctx, containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughRead(ctx, containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a container pull through remote
 
@@ -598,12 +612,13 @@ import (
 
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughRead(context.Background(), containerContainerPullThroughRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughRead(context.Background(), containerContainerPullThroughRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -629,6 +644,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerPullThroug
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -652,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughRemoveRole
 
-> NestedRoleResponse RemotesContainerPullThroughRemoveRole(ctx, containerContainerPullThroughRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesContainerPullThroughRemoveRole(ctx, containerContainerPullThroughRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -673,10 +689,11 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughRemoveRole(context.Background(), containerContainerPullThroughRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughRemoveRole(context.Background(), containerContainerPullThroughRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +720,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -724,7 +742,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughSetLabel
 
-> SetLabelResponse RemotesContainerPullThroughSetLabel(ctx, containerContainerPullThroughRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesContainerPullThroughSetLabel(ctx, containerContainerPullThroughRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -745,10 +763,11 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughSetLabel(context.Background(), containerContainerPullThroughRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughSetLabel(context.Background(), containerContainerPullThroughRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -775,6 +794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -796,7 +816,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughUnsetLabel
 
-> UnsetLabelResponse RemotesContainerPullThroughUnsetLabel(ctx, containerContainerPullThroughRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesContainerPullThroughUnsetLabel(ctx, containerContainerPullThroughRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -817,10 +837,11 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughUnsetLabel(context.Background(), containerContainerPullThroughRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughUnsetLabel(context.Background(), containerContainerPullThroughRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,6 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -868,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerPullThroughUpdate
 
-> AsyncOperationResponse RemotesContainerPullThroughUpdate(ctx, containerContainerPullThroughRemoteHref).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).Execute()
+> ContainerContainerPullThroughRemoteResponse RemotesContainerPullThroughUpdate(ctx, containerContainerPullThroughRemoteHref).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container pull through remote
 
@@ -889,15 +911,16 @@ import (
 func main() {
 	containerContainerPullThroughRemoteHref := "containerContainerPullThroughRemoteHref_example" // string | 
 	containerContainerPullThroughRemote := *openapiclient.NewContainerContainerPullThroughRemote("Name_example", "Url_example") // ContainerContainerPullThroughRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughUpdate(context.Background(), containerContainerPullThroughRemoteHref).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).Execute()
+	resp, r, err := apiClient.RemotesPullThroughAPI.RemotesContainerPullThroughUpdate(context.Background(), containerContainerPullThroughRemoteHref).ContainerContainerPullThroughRemote(containerContainerPullThroughRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPullThroughAPI.RemotesContainerPullThroughUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesContainerPullThroughUpdate`: AsyncOperationResponse
+	// response from `RemotesContainerPullThroughUpdate`: ContainerContainerPullThroughRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesPullThroughAPI.RemotesContainerPullThroughUpdate`: %v\n", resp)
 }
 ```
@@ -919,10 +942,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerPullThroughRemote** | [**ContainerContainerPullThroughRemote**](ContainerContainerPullThroughRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerPullThroughRemoteResponse**](ContainerContainerPullThroughRemoteResponse.md)
 
 ### Authorization
 

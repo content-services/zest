@@ -29,6 +29,7 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	latestWithContent *string
 	limit *int32
 	name *string
@@ -50,6 +51,14 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	pulpTypeIn *[]string
 	q *string
 	remote *string
+	retainCheckpoints *int32
+	retainCheckpointsGt *int32
+	retainCheckpointsGte *int32
+	retainCheckpointsIsnull *bool
+	retainCheckpointsLt *int32
+	retainCheckpointsLte *int32
+	retainCheckpointsNe *int32
+	retainCheckpointsRange *[]int32
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
 	retainRepoVersionsGte *int32
@@ -61,6 +70,12 @@ type RepositoriesAPIRepositoriesListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesAPIRepositoriesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesAPIRepositoriesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -135,7 +150,7 @@ func (r RepositoriesAPIRepositoriesListRequest) Offset(offset int32) Repositorie
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesAPIRepositoriesListRequest) Ordering(ordering []string) RepositoriesAPIRepositoriesListRequest {
 	r.ordering = &ordering
 	return r
@@ -165,13 +180,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -183,9 +198,56 @@ func (r RepositoriesAPIRepositoriesListRequest) Q(q string) RepositoriesAPIRepos
 	return r
 }
 
-// Foreign Key referenced by HREF
 func (r RepositoriesAPIRepositoriesListRequest) Remote(remote string) RepositoriesAPIRepositoriesListRequest {
 	r.remote = &remote
+	return r
+}
+
+// Filter results where retain_checkpoints matches value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpoints(retainCheckpoints int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpoints = &retainCheckpoints
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsGt(retainCheckpointsGt int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsGt = &retainCheckpointsGt
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than or equal to value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsGte(retainCheckpointsGte int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsGte = &retainCheckpointsGte
+	return r
+}
+
+// Filter results where retain_checkpoints has a null value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsIsnull(retainCheckpointsIsnull bool) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsIsnull = &retainCheckpointsIsnull
+	return r
+}
+
+// Filter results where retain_checkpoints is less than value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsLt(retainCheckpointsLt int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsLt = &retainCheckpointsLt
+	return r
+}
+
+// Filter results where retain_checkpoints is less than or equal to value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsLte(retainCheckpointsLte int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsLte = &retainCheckpointsLte
+	return r
+}
+
+// Filter results where retain_checkpoints not equal to value
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsNe(retainCheckpointsNe int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsNe = &retainCheckpointsNe
+	return r
+}
+
+// Filter results where retain_checkpoints is between two comma separated values
+func (r RepositoriesAPIRepositoriesListRequest) RetainCheckpointsRange(retainCheckpointsRange []int32) RepositoriesAPIRepositoriesListRequest {
+	r.retainCheckpointsRange = &retainCheckpointsRange
 	return r
 }
 
@@ -362,6 +424,30 @@ func (a *RepositoriesAPIService) RepositoriesListExecute(r RepositoriesAPIReposi
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "form", "")
 	}
+	if r.retainCheckpoints != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints", r.retainCheckpoints, "form", "")
+	}
+	if r.retainCheckpointsGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gt", r.retainCheckpointsGt, "form", "")
+	}
+	if r.retainCheckpointsGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gte", r.retainCheckpointsGte, "form", "")
+	}
+	if r.retainCheckpointsIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__isnull", r.retainCheckpointsIsnull, "form", "")
+	}
+	if r.retainCheckpointsLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lt", r.retainCheckpointsLt, "form", "")
+	}
+	if r.retainCheckpointsLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lte", r.retainCheckpointsLte, "form", "")
+	}
+	if r.retainCheckpointsNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__ne", r.retainCheckpointsNe, "form", "")
+	}
+	if r.retainCheckpointsRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__range", r.retainCheckpointsRange, "form", "csv")
+	}
 	if r.retainRepoVersions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_repo_versions", r.retainRepoVersions, "form", "")
 	}
@@ -427,6 +513,9 @@ func (a *RepositoriesAPIService) RepositoriesListExecute(r RepositoriesAPIReposi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

@@ -30,10 +30,17 @@ type UsersAPIUsersCreateRequest struct {
 	ApiService *UsersAPIService
 	pulpDomain string
 	user *User
+	xTaskDiagnostics *[]string
 }
 
 func (r UsersAPIUsersCreateRequest) User(user User) UsersAPIUsersCreateRequest {
 	r.user = &user
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *UsersAPIService) UsersCreateExecute(r UsersAPIUsersCreateRequest) (*Use
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.user
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type UsersAPIUsersDeleteRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	authUserHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r UsersAPIUsersDeleteRequest) Execute() (*http.Response, error) {
@@ -205,6 +222,9 @@ func (a *UsersAPIService) UsersDeleteExecute(r UsersAPIUsersDeleteRequest) (*htt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -237,6 +257,7 @@ type UsersAPIUsersListRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	email *string
 	emailContains *string
 	emailIcontains *string
@@ -268,6 +289,12 @@ type UsersAPIUsersListRequest struct {
 	usernameIn *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersListRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where email matches value
@@ -626,6 +653,9 @@ func (a *UsersAPIService) UsersListExecute(r UsersAPIUsersListRequest) (*Paginat
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -668,10 +698,17 @@ type UsersAPIUsersPartialUpdateRequest struct {
 	ApiService *UsersAPIService
 	authUserHref string
 	patchedUser *PatchedUser
+	xTaskDiagnostics *[]string
 }
 
 func (r UsersAPIUsersPartialUpdateRequest) PatchedUser(patchedUser PatchedUser) UsersAPIUsersPartialUpdateRequest {
 	r.patchedUser = &patchedUser
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -739,6 +776,9 @@ func (a *UsersAPIService) UsersPartialUpdateExecute(r UsersAPIUsersPartialUpdate
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedUser
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -782,8 +822,15 @@ type UsersAPIUsersReadRequest struct {
 	ctx context.Context
 	ApiService *UsersAPIService
 	authUserHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -881,6 +928,9 @@ func (a *UsersAPIService) UsersReadExecute(r UsersAPIUsersReadRequest) (*UserRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -923,10 +973,17 @@ type UsersAPIUsersUpdateRequest struct {
 	ApiService *UsersAPIService
 	authUserHref string
 	user *User
+	xTaskDiagnostics *[]string
 }
 
 func (r UsersAPIUsersUpdateRequest) User(user User) UsersAPIUsersUpdateRequest {
 	r.user = &user
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UsersAPIUsersUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UsersAPIUsersUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -993,6 +1050,9 @@ func (a *UsersAPIService) UsersUpdateExecute(r UsersAPIUsersUpdateRequest) (*Use
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.user

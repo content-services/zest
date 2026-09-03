@@ -30,10 +30,17 @@ type DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest) NestedRole(nestedRole NestedRole) DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmAddRoleExecute(r Distrib
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type DistributionsRpmAPIDistributionsRpmRpmCreateRequest struct {
 	ApiService *DistributionsRpmAPIService
 	pulpDomain string
 	rpmRpmDistribution *RpmRpmDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmCreateRequest) RpmRpmDistribution(rpmRpmDistribution RpmRpmDistribution) DistributionsRpmAPIDistributionsRpmRpmCreateRequest {
 	r.rpmRpmDistribution = &rpmRpmDistribution
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmCreateExecute(r Distribu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.rpmRpmDistribution
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type DistributionsRpmAPIDistributionsRpmRpmDeleteRequest struct {
 	ctx context.Context
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmDeleteExecute(r Distribu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type DistributionsRpmAPIDistributionsRpmRpmListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsRpmAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -390,6 +421,12 @@ type DistributionsRpmAPIDistributionsRpmRpmListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -524,13 +561,11 @@ func (r DistributionsRpmAPIDistributionsRpmRpmListRequest) Q(q string) Distribut
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsRpmAPIDistributionsRpmRpmListRequest) Repository(repository string) DistributionsRpmAPIDistributionsRpmRpmListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsRpmAPIDistributionsRpmRpmListRequest) RepositoryIn(repositoryIn []string) DistributionsRpmAPIDistributionsRpmRpmListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -712,6 +747,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmListExecute(r Distributi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -753,8 +791,15 @@ type DistributionsRpmAPIDistributionsRpmRpmListRolesRequest struct {
 	ctx context.Context
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -852,6 +897,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmListRolesExecute(r Distr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -893,8 +941,15 @@ type DistributionsRpmAPIDistributionsRpmRpmMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -992,6 +1047,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmMyPermissionsExecute(r D
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1034,6 +1092,7 @@ type DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	patchedrpmRpmDistribution *PatchedrpmRpmDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) PatchedrpmRpmDistribution(patchedrpmRpmDistribution PatchedrpmRpmDistribution) DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest {
@@ -1041,14 +1100,20 @@ func (r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) PatchedrpmRp
 	return r
 }
 
-func (r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) Execute() (*RpmRpmDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsRpmRpmPartialUpdateExecute(r)
 }
 
 /*
 DistributionsRpmRpmPartialUpdate Update a rpm distribution
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmDistributionHref
@@ -1063,13 +1128,13 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmPartialUpdate(ctx contex
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsRpmAPIService) DistributionsRpmRpmPartialUpdateExecute(r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmDistributionResponse
+func (a *DistributionsRpmAPIService) DistributionsRpmRpmPartialUpdateExecute(r DistributionsRpmAPIDistributionsRpmRpmPartialUpdateRequest) (*RpmRpmDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsRpmAPIService.DistributionsRpmRpmPartialUpdate")
@@ -1104,6 +1169,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmPartialUpdateExecute(r D
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedrpmRpmDistribution
@@ -1148,8 +1216,15 @@ type DistributionsRpmAPIDistributionsRpmRpmReadRequest struct {
 	ctx context.Context
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1247,6 +1322,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmReadExecute(r Distributi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1289,10 +1367,17 @@ type DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest) NestedRole(nestedRole NestedRole) DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1360,6 +1445,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmRemoveRoleExecute(r Dist
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1404,10 +1492,17 @@ type DistributionsRpmAPIDistributionsRpmRpmSetLabelRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmSetLabelRequest) SetLabel(setLabel SetLabel) DistributionsRpmAPIDistributionsRpmRpmSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1475,6 +1570,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmSetLabelExecute(r Distri
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1519,10 +1617,17 @@ type DistributionsRpmAPIDistributionsRpmRpmUnsetLabelRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) DistributionsRpmAPIDistributionsRpmRpmUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1590,6 +1695,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmUnsetLabelExecute(r Dist
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1634,6 +1742,7 @@ type DistributionsRpmAPIDistributionsRpmRpmUpdateRequest struct {
 	ApiService *DistributionsRpmAPIService
 	rpmRpmDistributionHref string
 	rpmRpmDistribution *RpmRpmDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) RpmRpmDistribution(rpmRpmDistribution RpmRpmDistribution) DistributionsRpmAPIDistributionsRpmRpmUpdateRequest {
@@ -1641,14 +1750,20 @@ func (r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) RpmRpmDistribution(
 	return r
 }
 
-func (r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsRpmAPIDistributionsRpmRpmUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) Execute() (*RpmRpmDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsRpmRpmUpdateExecute(r)
 }
 
 /*
 DistributionsRpmRpmUpdate Update a rpm distribution
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmDistributionHref
@@ -1663,13 +1778,13 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmUpdate(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsRpmAPIService) DistributionsRpmRpmUpdateExecute(r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmDistributionResponse
+func (a *DistributionsRpmAPIService) DistributionsRpmRpmUpdateExecute(r DistributionsRpmAPIDistributionsRpmRpmUpdateRequest) (*RpmRpmDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsRpmAPIService.DistributionsRpmRpmUpdate")
@@ -1704,6 +1819,9 @@ func (a *DistributionsRpmAPIService) DistributionsRpmRpmUpdateExecute(r Distribu
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.rpmRpmDistribution

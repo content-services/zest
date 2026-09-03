@@ -26,15 +26,147 @@ import (
 // RemotesMavenAPIService RemotesMavenAPI service
 type RemotesMavenAPIService service
 
+type RemotesMavenAPIRemotesMavenMavenAddRoleRequest struct {
+	ctx context.Context
+	ApiService *RemotesMavenAPIService
+	mavenMavenRemoteHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenAddRoleRequest) NestedRole(nestedRole NestedRole) RemotesMavenAPIRemotesMavenMavenAddRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenAddRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.RemotesMavenMavenAddRoleExecute(r)
+}
+
+/*
+RemotesMavenMavenAddRole Add a role
+
+Add a role for this object to users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRemoteHref
+ @return RemotesMavenAPIRemotesMavenMavenAddRoleRequest
+*/
+func (a *RemotesMavenAPIService) RemotesMavenMavenAddRole(ctx context.Context, mavenMavenRemoteHref string) RemotesMavenAPIRemotesMavenMavenAddRoleRequest {
+	return RemotesMavenAPIRemotesMavenMavenAddRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRemoteHref: mavenMavenRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenAddRoleExecute(r RemotesMavenAPIRemotesMavenMavenAddRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenAddRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_remote_href}add_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RemotesMavenAPIRemotesMavenMavenCreateRequest struct {
 	ctx context.Context
 	ApiService *RemotesMavenAPIService
 	pulpDomain string
 	mavenMavenRemote *MavenMavenRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenCreateRequest) MavenMavenRemote(mavenMavenRemote MavenMavenRemote) RemotesMavenAPIRemotesMavenMavenCreateRequest {
 	r.mavenMavenRemote = &mavenMavenRemote
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -102,6 +234,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenCreateExecute(r RemotesMavenAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.mavenMavenRemote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,6 +280,13 @@ type RemotesMavenAPIRemotesMavenMavenDeleteRequest struct {
 	ctx context.Context
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -208,6 +350,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenDeleteExecute(r RemotesMavenAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -249,6 +394,7 @@ type RemotesMavenAPIRemotesMavenMavenListRequest struct {
 	ctx context.Context
 	ApiService *RemotesMavenAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -275,6 +421,12 @@ type RemotesMavenAPIRemotesMavenMavenListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -588,6 +740,309 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenListExecute(r RemotesMavenAPIR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesMavenAPIRemotesMavenMavenListRolesRequest struct {
+	ctx context.Context
+	ApiService *RemotesMavenAPIService
+	mavenMavenRemoteHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RemotesMavenAPIRemotesMavenMavenListRolesRequest) Fields(fields []string) RemotesMavenAPIRemotesMavenMavenListRolesRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RemotesMavenAPIRemotesMavenMavenListRolesRequest) ExcludeFields(excludeFields []string) RemotesMavenAPIRemotesMavenMavenListRolesRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenListRolesRequest) Execute() (*ObjectRolesResponse, *http.Response, error) {
+	return r.ApiService.RemotesMavenMavenListRolesExecute(r)
+}
+
+/*
+RemotesMavenMavenListRoles List roles
+
+List roles assigned to this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRemoteHref
+ @return RemotesMavenAPIRemotesMavenMavenListRolesRequest
+*/
+func (a *RemotesMavenAPIService) RemotesMavenMavenListRoles(ctx context.Context, mavenMavenRemoteHref string) RemotesMavenAPIRemotesMavenMavenListRolesRequest {
+	return RemotesMavenAPIRemotesMavenMavenListRolesRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRemoteHref: mavenMavenRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return ObjectRolesResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenListRolesExecute(r RemotesMavenAPIRemotesMavenMavenListRolesRequest) (*ObjectRolesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ObjectRolesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenListRoles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_remote_href}list_roles/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest struct {
+	ctx context.Context
+	ApiService *RemotesMavenAPIService
+	mavenMavenRemoteHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest) Fields(fields []string) RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest) ExcludeFields(excludeFields []string) RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest) Execute() (*MyPermissionsResponse, *http.Response, error) {
+	return r.ApiService.RemotesMavenMavenMyPermissionsExecute(r)
+}
+
+/*
+RemotesMavenMavenMyPermissions List user permissions
+
+List permissions available to the current user on this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRemoteHref
+ @return RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest
+*/
+func (a *RemotesMavenAPIService) RemotesMavenMavenMyPermissions(ctx context.Context, mavenMavenRemoteHref string) RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest {
+	return RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRemoteHref: mavenMavenRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return MyPermissionsResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenMyPermissionsExecute(r RemotesMavenAPIRemotesMavenMavenMyPermissionsRequest) (*MyPermissionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MyPermissionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenMyPermissions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_remote_href}my_permissions/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -630,6 +1085,7 @@ type RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest struct {
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
 	patchedmavenMavenRemote *PatchedmavenMavenRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) PatchedmavenMavenRemote(patchedmavenMavenRemote PatchedmavenMavenRemote) RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest {
@@ -637,14 +1093,20 @@ func (r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) PatchedmavenMavenR
 	return r
 }
 
-func (r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) Execute() (*MavenMavenRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesMavenMavenPartialUpdateExecute(r)
 }
 
 /*
 RemotesMavenMavenPartialUpdate Update a maven remote
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenRemoteHref
@@ -659,13 +1121,13 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenPartialUpdate(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesMavenAPIService) RemotesMavenMavenPartialUpdateExecute(r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return MavenMavenRemoteResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenPartialUpdateExecute(r RemotesMavenAPIRemotesMavenMavenPartialUpdateRequest) (*MavenMavenRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *MavenMavenRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenPartialUpdate")
@@ -700,6 +1162,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenPartialUpdateExecute(r Remotes
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedmavenMavenRemote
@@ -744,8 +1209,15 @@ type RemotesMavenAPIRemotesMavenMavenReadRequest struct {
 	ctx context.Context
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -843,6 +1315,134 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenReadExecute(r RemotesMavenAPIR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest struct {
+	ctx context.Context
+	ApiService *RemotesMavenAPIService
+	mavenMavenRemoteHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest) NestedRole(nestedRole NestedRole) RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.RemotesMavenMavenRemoveRoleExecute(r)
+}
+
+/*
+RemotesMavenMavenRemoveRole Remove a role
+
+Remove a role for this object from users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRemoteHref
+ @return RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest
+*/
+func (a *RemotesMavenAPIService) RemotesMavenMavenRemoveRole(ctx context.Context, mavenMavenRemoteHref string) RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest {
+	return RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRemoteHref: mavenMavenRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenRemoveRoleExecute(r RemotesMavenAPIRemotesMavenMavenRemoveRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenRemoveRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_remote_href}remove_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_remote_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRemoteHref, "mavenMavenRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -885,10 +1485,17 @@ type RemotesMavenAPIRemotesMavenMavenSetLabelRequest struct {
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenSetLabelRequest) SetLabel(setLabel SetLabel) RemotesMavenAPIRemotesMavenMavenSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -956,6 +1563,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenSetLabelExecute(r RemotesMaven
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1000,10 +1610,17 @@ type RemotesMavenAPIRemotesMavenMavenUnsetLabelRequest struct {
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RemotesMavenAPIRemotesMavenMavenUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1071,6 +1688,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenUnsetLabelExecute(r RemotesMav
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1115,6 +1735,7 @@ type RemotesMavenAPIRemotesMavenMavenUpdateRequest struct {
 	ApiService *RemotesMavenAPIService
 	mavenMavenRemoteHref string
 	mavenMavenRemote *MavenMavenRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesMavenAPIRemotesMavenMavenUpdateRequest) MavenMavenRemote(mavenMavenRemote MavenMavenRemote) RemotesMavenAPIRemotesMavenMavenUpdateRequest {
@@ -1122,14 +1743,20 @@ func (r RemotesMavenAPIRemotesMavenMavenUpdateRequest) MavenMavenRemote(mavenMav
 	return r
 }
 
-func (r RemotesMavenAPIRemotesMavenMavenUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesMavenAPIRemotesMavenMavenUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesMavenAPIRemotesMavenMavenUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesMavenAPIRemotesMavenMavenUpdateRequest) Execute() (*MavenMavenRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesMavenMavenUpdateExecute(r)
 }
 
 /*
 RemotesMavenMavenUpdate Update a maven remote
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenRemoteHref
@@ -1144,13 +1771,13 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenUpdate(ctx context.Context, ma
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesMavenAPIService) RemotesMavenMavenUpdateExecute(r RemotesMavenAPIRemotesMavenMavenUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return MavenMavenRemoteResponse
+func (a *RemotesMavenAPIService) RemotesMavenMavenUpdateExecute(r RemotesMavenAPIRemotesMavenMavenUpdateRequest) (*MavenMavenRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *MavenMavenRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesMavenAPIService.RemotesMavenMavenUpdate")
@@ -1185,6 +1812,9 @@ func (a *RemotesMavenAPIService) RemotesMavenMavenUpdateExecute(r RemotesMavenAP
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.mavenMavenRemote

@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 
@@ -26,6 +27,27 @@ type ApiTestTasksAPIService service
 type ApiTestTasksAPIApiPulpTestTasksGetRequest struct {
 	ctx context.Context
 	ApiService *ApiTestTasksAPIService
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ApiTestTasksAPIApiPulpTestTasksGetRequest) XTaskDiagnostics(xTaskDiagnostics []string) ApiTestTasksAPIApiPulpTestTasksGetRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r ApiTestTasksAPIApiPulpTestTasksGetRequest) Fields(fields []string) ApiTestTasksAPIApiPulpTestTasksGetRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r ApiTestTasksAPIApiPulpTestTasksGetRequest) ExcludeFields(excludeFields []string) ApiTestTasksAPIApiPulpTestTasksGetRequest {
+	r.excludeFields = &excludeFields
+	return r
 }
 
 func (r ApiTestTasksAPIApiPulpTestTasksGetRequest) Execute() (*http.Response, error) {
@@ -65,6 +87,28 @@ func (a *ApiTestTasksAPIService) ApiPulpTestTasksGetExecute(r ApiTestTasksAPIApi
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -81,6 +125,9 @@ func (a *ApiTestTasksAPIService) ApiPulpTestTasksGetExecute(r ApiTestTasksAPIApi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

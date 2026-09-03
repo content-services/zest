@@ -30,6 +30,7 @@ type ContainerContainerNamespaceResponse struct {
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	Name string `json:"name"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -205,6 +206,38 @@ func (o *ContainerContainerNamespaceResponse) SetName(v string) {
 	o.Name = v
 }
 
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *ContainerContainerNamespaceResponse) GetPulpLabels() map[string]*string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerNamespaceResponse) GetPulpLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *ContainerContainerNamespaceResponse) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *ContainerContainerNamespaceResponse) SetPulpLabels(v map[string]*string) {
+	o.PulpLabels = &v
+}
+
 func (o ContainerContainerNamespaceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -228,6 +261,9 @@ func (o ContainerContainerNamespaceResponse) ToMap() (map[string]interface{}, er
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -276,6 +312,7 @@ func (o *ContainerContainerNamespaceResponse) UnmarshalJSON(data []byte) (err er
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}
 

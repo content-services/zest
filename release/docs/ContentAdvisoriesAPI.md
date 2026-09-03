@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## ContentRpmAdvisoriesCreate
 
-> AsyncOperationResponse ContentRpmAdvisoriesCreate(ctx, pulpDomain).Repository(repository).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).Execute()
+> AsyncOperationResponse ContentRpmAdvisoriesCreate(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 
 Create an update record
 
@@ -34,15 +34,18 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	overwrite := true // bool | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true. (optional)
 	pulpLabels := map[string]*string{"key": "Inner_example"} // map[string]*string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
 	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
+	downloaderConfig := *openapiclient.NewRemoteNetworkConfig() // RemoteNetworkConfig | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate(context.Background(), pulpDomain).Repository(repository).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,11 +71,14 @@ Other parameters are passed through a pointer to a apiContentRpmAdvisoriesCreate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
+ **overwrite** | **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | 
  **pulpLabels** | **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | 
  **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
  **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
  **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
+ **downloaderConfig** | [**RemoteNetworkConfig**](RemoteNetworkConfig.md) | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url. | 
 
 ### Return type
 
@@ -94,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmAdvisoriesList
 
-> PaginatedrpmUpdateRecordResponseList ContentRpmAdvisoriesList(ctx, pulpDomain).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmUpdateRecordResponseList ContentRpmAdvisoriesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List update records
 
@@ -114,6 +120,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	id := "id_example" // string | Filter results where id matches value (optional)
 	idIn := []string{"Inner_example"} // []string | Filter results where id is in a comma-separated list of values (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
@@ -125,9 +132,9 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	severity := "severity_example" // string | Filter results where severity matches value (optional)
 	severityIn := []string{"Inner_example"} // []string | Filter results where severity is in a comma-separated list of values (optional)
 	severityNe := "severityNe_example" // string | Filter results where severity not equal to value (optional)
@@ -142,7 +149,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesList(context.Background(), pulpDomain).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -168,6 +175,7 @@ Other parameters are passed through a pointer to a apiContentRpmAdvisoriesListRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **id** | **string** | Filter results where id matches value | 
  **idIn** | **[]string** | Filter results where id is in a comma-separated list of values | 
  **limit** | **int32** | Number of results to return per page. | 
@@ -179,9 +187,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **severity** | **string** | Filter results where severity matches value | 
  **severityIn** | **[]string** | Filter results where severity is in a comma-separated list of values | 
  **severityNe** | **string** | Filter results where severity not equal to value | 
@@ -214,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmAdvisoriesRead
 
-> RpmUpdateRecordResponse ContentRpmAdvisoriesRead(ctx, rpmUpdateRecordHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmUpdateRecordResponse ContentRpmAdvisoriesRead(ctx, rpmUpdateRecordHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an update record
 
@@ -234,12 +242,13 @@ import (
 
 func main() {
 	rpmUpdateRecordHref := "rpmUpdateRecordHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesRead(context.Background(), rpmUpdateRecordHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesRead(context.Background(), rpmUpdateRecordHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,6 +274,7 @@ Other parameters are passed through a pointer to a apiContentRpmAdvisoriesReadRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -288,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmAdvisoriesSetLabel
 
-> SetLabelResponse ContentRpmAdvisoriesSetLabel(ctx, rpmUpdateRecordHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentRpmAdvisoriesSetLabel(ctx, rpmUpdateRecordHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -309,10 +319,11 @@ import (
 func main() {
 	rpmUpdateRecordHref := "rpmUpdateRecordHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesSetLabel(context.Background(), rpmUpdateRecordHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesSetLabel(context.Background(), rpmUpdateRecordHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,6 +350,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -360,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmAdvisoriesUnsetLabel
 
-> UnsetLabelResponse ContentRpmAdvisoriesUnsetLabel(ctx, rpmUpdateRecordHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentRpmAdvisoriesUnsetLabel(ctx, rpmUpdateRecordHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -381,10 +393,11 @@ import (
 func main() {
 	rpmUpdateRecordHref := "rpmUpdateRecordHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesUnsetLabel(context.Background(), rpmUpdateRecordHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesUnsetLabel(context.Background(), rpmUpdateRecordHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -411,6 +424,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

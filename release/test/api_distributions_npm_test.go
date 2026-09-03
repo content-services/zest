@@ -22,6 +22,20 @@ func Test_zest_DistributionsNpmAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmAddRole(context.Background(), npmNpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +78,34 @@ func Test_zest_DistributionsNpmAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmListRoles(context.Background(), npmNpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmMyPermissions(context.Background(), npmNpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -85,6 +127,20 @@ func Test_zest_DistributionsNpmAPIService(t *testing.T) {
 		var npmNpmDistributionHref string
 
 		resp, httpRes, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmRead(context.Background(), npmNpmDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DistributionsNpmAPIService DistributionsNpmNpmRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmRemoveRole(context.Background(), npmNpmDistributionHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

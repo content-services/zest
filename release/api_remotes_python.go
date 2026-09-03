@@ -32,10 +32,17 @@ type RemotesPythonAPIRemotesPythonPythonAddRoleRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonAddRoleRequest) NestedRole(nestedRole NestedRole) RemotesPythonAPIRemotesPythonPythonAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -103,6 +110,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonAddRoleExecute(r RemotesPyt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -147,10 +157,17 @@ type RemotesPythonAPIRemotesPythonPythonCreateRequest struct {
 	ApiService *RemotesPythonAPIService
 	pulpDomain string
 	pythonPythonRemote *PythonPythonRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonCreateRequest) PythonPythonRemote(pythonPythonRemote PythonPythonRemote) RemotesPythonAPIRemotesPythonPythonCreateRequest {
 	r.pythonPythonRemote = &pythonPythonRemote
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -218,6 +235,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonCreateExecute(r RemotesPyth
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.pythonPythonRemote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -261,6 +281,13 @@ type RemotesPythonAPIRemotesPythonPythonDeleteRequest struct {
 	ctx context.Context
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -324,6 +351,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonDeleteExecute(r RemotesPyth
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -367,6 +397,7 @@ type RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest struct {
 	pulpDomain string
 	config *os.File
 	name *string
+	xTaskDiagnostics *[]string
 	policy *Policy692Enum
 }
 
@@ -379,6 +410,12 @@ func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) Config(confi
 // A unique name for this remote
 func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) Name(name string) RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest {
 	r.name = &name
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonFromBandersnatchRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -458,6 +495,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonFromBandersnatchExecute(r R
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	var configLocalVarFormFileName string
 	var configLocalVarFileName     string
 	var configLocalVarFileBytes    []byte
@@ -520,6 +560,7 @@ type RemotesPythonAPIRemotesPythonPythonListRequest struct {
 	ctx context.Context
 	ApiService *RemotesPythonAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -546,6 +587,12 @@ type RemotesPythonAPIRemotesPythonPythonListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -859,6 +906,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonListExecute(r RemotesPython
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -900,8 +950,15 @@ type RemotesPythonAPIRemotesPythonPythonListRolesRequest struct {
 	ctx context.Context
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -999,6 +1056,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonListRolesExecute(r RemotesP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1040,8 +1100,15 @@ type RemotesPythonAPIRemotesPythonPythonMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1139,6 +1206,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonMyPermissionsExecute(r Remo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1181,6 +1251,7 @@ type RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	patchedpythonPythonRemote *PatchedpythonPythonRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) PatchedpythonPythonRemote(patchedpythonPythonRemote PatchedpythonPythonRemote) RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest {
@@ -1188,14 +1259,20 @@ func (r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) PatchedpythonPy
 	return r
 }
 
-func (r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) Execute() (*PythonPythonRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesPythonPythonPartialUpdateExecute(r)
 }
 
 /*
 RemotesPythonPythonPartialUpdate Update a python remote
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonRemoteHref
@@ -1210,13 +1287,13 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonPartialUpdate(ctx context.C
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesPythonAPIService) RemotesPythonPythonPartialUpdateExecute(r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PythonPythonRemoteResponse
+func (a *RemotesPythonAPIService) RemotesPythonPythonPartialUpdateExecute(r RemotesPythonAPIRemotesPythonPythonPartialUpdateRequest) (*PythonPythonRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PythonPythonRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesPythonAPIService.RemotesPythonPythonPartialUpdate")
@@ -1251,6 +1328,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonPartialUpdateExecute(r Remo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedpythonPythonRemote
@@ -1295,8 +1375,15 @@ type RemotesPythonAPIRemotesPythonPythonReadRequest struct {
 	ctx context.Context
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1394,6 +1481,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonReadExecute(r RemotesPython
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1436,10 +1526,17 @@ type RemotesPythonAPIRemotesPythonPythonRemoveRoleRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonRemoveRoleRequest) NestedRole(nestedRole NestedRole) RemotesPythonAPIRemotesPythonPythonRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1507,6 +1604,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonRemoveRoleExecute(r Remotes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1551,10 +1651,17 @@ type RemotesPythonAPIRemotesPythonPythonSetLabelRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonSetLabelRequest) SetLabel(setLabel SetLabel) RemotesPythonAPIRemotesPythonPythonSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1622,6 +1729,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonSetLabelExecute(r RemotesPy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1666,10 +1776,17 @@ type RemotesPythonAPIRemotesPythonPythonUnsetLabelRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RemotesPythonAPIRemotesPythonPythonUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1737,6 +1854,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonUnsetLabelExecute(r Remotes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1781,6 +1901,7 @@ type RemotesPythonAPIRemotesPythonPythonUpdateRequest struct {
 	ApiService *RemotesPythonAPIService
 	pythonPythonRemoteHref string
 	pythonPythonRemote *PythonPythonRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPythonAPIRemotesPythonPythonUpdateRequest) PythonPythonRemote(pythonPythonRemote PythonPythonRemote) RemotesPythonAPIRemotesPythonPythonUpdateRequest {
@@ -1788,14 +1909,20 @@ func (r RemotesPythonAPIRemotesPythonPythonUpdateRequest) PythonPythonRemote(pyt
 	return r
 }
 
-func (r RemotesPythonAPIRemotesPythonPythonUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesPythonAPIRemotesPythonPythonUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPythonAPIRemotesPythonPythonUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesPythonAPIRemotesPythonPythonUpdateRequest) Execute() (*PythonPythonRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesPythonPythonUpdateExecute(r)
 }
 
 /*
 RemotesPythonPythonUpdate Update a python remote
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonRemoteHref
@@ -1810,13 +1937,13 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonUpdate(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesPythonAPIService) RemotesPythonPythonUpdateExecute(r RemotesPythonAPIRemotesPythonPythonUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PythonPythonRemoteResponse
+func (a *RemotesPythonAPIService) RemotesPythonPythonUpdateExecute(r RemotesPythonAPIRemotesPythonPythonUpdateRequest) (*PythonPythonRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PythonPythonRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesPythonAPIService.RemotesPythonPythonUpdate")
@@ -1851,6 +1978,9 @@ func (a *RemotesPythonAPIService) RemotesPythonPythonUpdateExecute(r RemotesPyth
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pythonPythonRemote

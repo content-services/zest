@@ -22,6 +22,20 @@ func Test_zest_RemotesMavenAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test RemotesMavenAPIService RemotesMavenMavenAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesMavenAPI.RemotesMavenMavenAddRole(context.Background(), mavenMavenRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RemotesMavenAPIService RemotesMavenMavenCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +78,34 @@ func Test_zest_RemotesMavenAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RemotesMavenAPIService RemotesMavenMavenListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesMavenAPI.RemotesMavenMavenListRoles(context.Background(), mavenMavenRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RemotesMavenAPIService RemotesMavenMavenMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesMavenAPI.RemotesMavenMavenMyPermissions(context.Background(), mavenMavenRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RemotesMavenAPIService RemotesMavenMavenPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -85,6 +127,20 @@ func Test_zest_RemotesMavenAPIService(t *testing.T) {
 		var mavenMavenRemoteHref string
 
 		resp, httpRes, err := apiClient.RemotesMavenAPI.RemotesMavenMavenRead(context.Background(), mavenMavenRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RemotesMavenAPIService RemotesMavenMavenRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesMavenAPI.RemotesMavenMavenRemoveRole(context.Background(), mavenMavenRemoteHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

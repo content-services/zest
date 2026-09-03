@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Sha384** | Pointer to **string** | The SHA-384 checksum if available. | [optional] [readonly] 
 **Sha512** | Pointer to **string** | The SHA-512 checksum if available. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **Name** | Pointer to **string** | Name of the package | [optional] [readonly] 
 **Epoch** | Pointer to **string** | The package&#39;s epoch | [optional] [readonly] 
@@ -52,6 +53,7 @@ Name | Type | Description | Notes
 **SizePackage** | Pointer to **int64** | Size, in bytes, of the package | [optional] [readonly] 
 **TimeBuild** | Pointer to **int64** | Time the package was built in seconds since the epoch | [optional] [readonly] 
 **TimeFile** | Pointer to **int64** | The &#39;file&#39; time attribute in the primary XML - file mtime in seconds since the epoch. | [optional] [readonly] 
+**SigningKeys** | Pointer to **[]string** | List of signing key fingerprints used to sign this package.  | [optional] [readonly] 
 
 ## Methods
 
@@ -346,6 +348,31 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *RpmPackageResponse) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetVulnReport
+
+`func (o *RpmPackageResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *RpmPackageResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *RpmPackageResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *RpmPackageResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
 
 ### GetArtifact
 
@@ -1372,6 +1399,41 @@ SetTimeFile sets TimeFile field to given value.
 
 HasTimeFile returns a boolean if a field has been set.
 
+### GetSigningKeys
+
+`func (o *RpmPackageResponse) GetSigningKeys() []string`
+
+GetSigningKeys returns the SigningKeys field if non-nil, zero value otherwise.
+
+### GetSigningKeysOk
+
+`func (o *RpmPackageResponse) GetSigningKeysOk() (*[]string, bool)`
+
+GetSigningKeysOk returns a tuple with the SigningKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningKeys
+
+`func (o *RpmPackageResponse) SetSigningKeys(v []string)`
+
+SetSigningKeys sets SigningKeys field to given value.
+
+### HasSigningKeys
+
+`func (o *RpmPackageResponse) HasSigningKeys() bool`
+
+HasSigningKeys returns a boolean if a field has been set.
+
+### SetSigningKeysNil
+
+`func (o *RpmPackageResponse) SetSigningKeysNil(b bool)`
+
+ SetSigningKeysNil sets the value for SigningKeys to be an explicit nil
+
+### UnsetSigningKeys
+`func (o *RpmPackageResponse) UnsetSigningKeys()`
+
+UnsetSigningKeys ensures that no value is present for SigningKeys, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -51,9 +51,9 @@ type RpmRpmPublicationResponse struct {
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing the config.repo file Pulp should generate for this repo
 	RepoConfig interface{} `json:"repo_config,omitempty"`
-	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
+	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz* `none` - none
 	CompressionType *CompressionTypeEnum `json:"compression_type,omitempty"`
-	// How to layout the packages within the published repository.* `nested_alphabetically` - nested_alphabetically* `flat` - flat
+	// How to layout the packages within the published repository.* `nested_alphabetically` - nested_alphabetically* `flat` - flat* `nested_by_digest` - nested_by_digest
 	Layout NullableLayoutEnum `json:"layout,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

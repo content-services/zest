@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"os"
 	"reflect"
 )
 
@@ -29,22 +30,86 @@ type ContentArtifactAPIContentMavenArtifactCreateRequest struct {
 	ctx context.Context
 	ApiService *ContentArtifactAPIService
 	pulpDomain string
-	mavenMavenArtifact *MavenMavenArtifact
+	relativePath *string
+	xTaskDiagnostics *[]string
+	repository *string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
 }
 
-func (r ContentArtifactAPIContentMavenArtifactCreateRequest) MavenMavenArtifact(mavenMavenArtifact MavenMavenArtifact) ContentArtifactAPIContentMavenArtifactCreateRequest {
-	r.mavenMavenArtifact = &mavenMavenArtifact
+// Path where the artifact is located relative to distributions base_path
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) RelativePath(relativePath string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.relativePath = &relativePath
 	return r
 }
 
-func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Execute() (*MavenMavenArtifactResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A URI of a repository the new content unit should be associated with.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Repository(repository string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Overwrite(overwrite bool) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) PulpLabels(pulpLabels map[string]*string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Artifact(artifact string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) File(file *os.File) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Upload(upload string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) FileUrl(fileUrl string) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentArtifactAPIContentMavenArtifactCreateRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+func (r ContentArtifactAPIContentMavenArtifactCreateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
 	return r.ApiService.ContentMavenArtifactCreateExecute(r)
 }
 
 /*
 ContentMavenArtifactCreate Create a maven artifact
 
-A ViewSet for MavenArtifact.
+Trigger an asynchronous task to create content,optionally create new repository version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -59,13 +124,13 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactCreate(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return MavenMavenArtifactResponse
-func (a *ContentArtifactAPIService) ContentMavenArtifactCreateExecute(r ContentArtifactAPIContentMavenArtifactCreateRequest) (*MavenMavenArtifactResponse, *http.Response, error) {
+//  @return AsyncOperationResponse
+func (a *ContentArtifactAPIService) ContentMavenArtifactCreateExecute(r ContentArtifactAPIContentMavenArtifactCreateRequest) (*AsyncOperationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MavenMavenArtifactResponse
+		localVarReturnValue  *AsyncOperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentArtifactAPIService.ContentMavenArtifactCreate")
@@ -80,12 +145,15 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactCreateExecute(r ContentA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.mavenMavenArtifact == nil {
-		return localVarReturnValue, nil, reportError("mavenMavenArtifact is required and must be specified")
+	if r.relativePath == nil {
+		return localVarReturnValue, nil, reportError("relativePath is required and must be specified")
+	}
+	if strlen(*r.relativePath) < 1 {
+		return localVarReturnValue, nil, reportError("relativePath must have at least 1 elements")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -101,8 +169,52 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactCreateExecute(r ContentA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.mavenMavenArtifact
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.repository != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -144,6 +256,7 @@ type ContentArtifactAPIContentMavenArtifactListRequest struct {
 	ctx context.Context
 	ApiService *ContentArtifactAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	artifactId *string
 	filename *string
 	groupId *string
@@ -162,6 +275,12 @@ type ContentArtifactAPIContentMavenArtifactListRequest struct {
 	version *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where artifact_id matches value
@@ -236,19 +355,16 @@ func (r ContentArtifactAPIContentMavenArtifactListRequest) Q(q string) ContentAr
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentArtifactAPIContentMavenArtifactListRequest) RepositoryVersion(repositoryVersion string) ContentArtifactAPIContentMavenArtifactListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentArtifactAPIContentMavenArtifactListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentArtifactAPIContentMavenArtifactListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentArtifactAPIContentMavenArtifactListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentArtifactAPIContentMavenArtifactListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -403,6 +519,9 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactListExecute(r ContentArt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -444,8 +563,15 @@ type ContentArtifactAPIContentMavenArtifactReadRequest struct {
 	ctx context.Context
 	ApiService *ContentArtifactAPIService
 	mavenMavenArtifactHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -543,6 +669,9 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactReadExecute(r ContentArt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -585,10 +714,17 @@ type ContentArtifactAPIContentMavenArtifactSetLabelRequest struct {
 	ApiService *ContentArtifactAPIService
 	mavenMavenArtifactHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentArtifactAPIContentMavenArtifactSetLabelRequest) SetLabel(setLabel SetLabel) ContentArtifactAPIContentMavenArtifactSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -656,6 +792,9 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactSetLabelExecute(r Conten
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -700,10 +839,17 @@ type ContentArtifactAPIContentMavenArtifactUnsetLabelRequest struct {
 	ApiService *ContentArtifactAPIService
 	mavenMavenArtifactHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentArtifactAPIContentMavenArtifactUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentArtifactAPIContentMavenArtifactUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -771,8 +917,237 @@ func (a *ContentArtifactAPIService) ContentMavenArtifactUnsetLabelExecute(r Cont
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentArtifactAPIContentMavenArtifactUploadRequest struct {
+	ctx context.Context
+	ApiService *ContentArtifactAPIService
+	pulpDomain string
+	relativePath *string
+	xTaskDiagnostics *[]string
+	repository *string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// Path where the artifact is located relative to distributions base_path
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) RelativePath(relativePath string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.relativePath = &relativePath
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A URI of a repository the new content unit should be associated with.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) Repository(repository string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) Overwrite(overwrite bool) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) PulpLabels(pulpLabels map[string]*string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) Artifact(artifact string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) File(file *os.File) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) Upload(upload string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) FileUrl(fileUrl string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+func (r ContentArtifactAPIContentMavenArtifactUploadRequest) Execute() (*MavenMavenArtifactResponse, *http.Response, error) {
+	return r.ApiService.ContentMavenArtifactUploadExecute(r)
+}
+
+/*
+ContentMavenArtifactUpload Upload a Maven artifact synchronously.
+
+Synchronously upload a Maven artifact.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return ContentArtifactAPIContentMavenArtifactUploadRequest
+*/
+func (a *ContentArtifactAPIService) ContentMavenArtifactUpload(ctx context.Context, pulpDomain string) ContentArtifactAPIContentMavenArtifactUploadRequest {
+	return ContentArtifactAPIContentMavenArtifactUploadRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return MavenMavenArtifactResponse
+func (a *ContentArtifactAPIService) ContentMavenArtifactUploadExecute(r ContentArtifactAPIContentMavenArtifactUploadRequest) (*MavenMavenArtifactResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MavenMavenArtifactResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentArtifactAPIService.ContentMavenArtifactUpload")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/maven/artifact/upload/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.relativePath == nil {
+		return localVarReturnValue, nil, reportError("relativePath is required and must be specified")
+	}
+	if strlen(*r.relativePath) < 1 {
+		return localVarReturnValue, nil, reportError("relativePath must have at least 1 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.repository != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

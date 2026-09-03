@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Unique name of the file system exporter. | [optional] 
+**Name** | Pointer to **string** | Unique name of the exporter. | [optional] 
 **Path** | Pointer to **string** | File system directory to store exported tar.gzs. | [optional] 
 **Repositories** | Pointer to **[]string** |  | [optional] 
 **LastExport** | Pointer to **NullableString** | Last attempted export for this PulpExporter | [optional] 

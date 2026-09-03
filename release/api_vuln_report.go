@@ -18,7 +18,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"os"
 	"reflect"
 )
 
@@ -26,148 +25,17 @@ import (
 // VulnReportAPIService VulnReportAPI service
 type VulnReportAPIService service
 
-type VulnReportAPIVulnReportCreateRequest struct {
-	ctx context.Context
-	ApiService *VulnReportAPIService
-	pulpDomain string
-	repoVersion *string
-	packageJson *os.File
-}
-
-// RepositoryVersion HREF with the packages to be checked.
-func (r VulnReportAPIVulnReportCreateRequest) RepoVersion(repoVersion string) VulnReportAPIVulnReportCreateRequest {
-	r.repoVersion = &repoVersion
-	return r
-}
-
-// package-lock.json file with the definition of dependencies to be checked.
-func (r VulnReportAPIVulnReportCreateRequest) PackageJson(packageJson *os.File) VulnReportAPIVulnReportCreateRequest {
-	r.packageJson = packageJson
-	return r
-}
-
-func (r VulnReportAPIVulnReportCreateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
-	return r.ApiService.VulnReportCreateExecute(r)
-}
-
-/*
-VulnReportCreate Generate vulnerability report
-
-Trigger a task to generate the package vulnerability report
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pulpDomain
- @return VulnReportAPIVulnReportCreateRequest
-*/
-func (a *VulnReportAPIService) VulnReportCreate(ctx context.Context, pulpDomain string) VulnReportAPIVulnReportCreateRequest {
-	return VulnReportAPIVulnReportCreateRequest{
-		ApiService: a,
-		ctx: ctx,
-		pulpDomain: pulpDomain,
-	}
-}
-
-// Execute executes the request
-//  @return AsyncOperationResponse
-func (a *VulnReportAPIService) VulnReportCreateExecute(r VulnReportAPIVulnReportCreateRequest) (*AsyncOperationResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VulnReportAPIService.VulnReportCreate")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/vuln_report/"
-	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
-	localVarPath, _ = url.PathUnescape(localVarPath)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.repoVersion != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "repo_version", r.repoVersion, "", "")
-	}
-	var packageJsonLocalVarFormFileName string
-	var packageJsonLocalVarFileName     string
-	var packageJsonLocalVarFileBytes    []byte
-
-	packageJsonLocalVarFormFileName = "package_json"
-
-
-	packageJsonLocalVarFile := r.packageJson
-
-	if packageJsonLocalVarFile != nil {
-		fbs, _ := io.ReadAll(packageJsonLocalVarFile)
-
-		packageJsonLocalVarFileBytes = fbs
-		packageJsonLocalVarFileName = packageJsonLocalVarFile.Name()
-		packageJsonLocalVarFile.Close()
-		formFiles = append(formFiles, formFile{fileBytes: packageJsonLocalVarFileBytes, fileName: packageJsonLocalVarFileName, formFileName: packageJsonLocalVarFormFileName})
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type VulnReportAPIVulnReportDeleteRequest struct {
 	ctx context.Context
 	ApiService *VulnReportAPIService
-	serviceVulnerabilityReportHref string
+	vulnerabilityReportHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r VulnReportAPIVulnReportDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) VulnReportAPIVulnReportDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r VulnReportAPIVulnReportDeleteRequest) Execute() (*http.Response, error) {
@@ -180,14 +48,14 @@ VulnReportDelete Delete a vulnerability report
 A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceVulnerabilityReportHref
+ @param vulnerabilityReportHref
  @return VulnReportAPIVulnReportDeleteRequest
 */
-func (a *VulnReportAPIService) VulnReportDelete(ctx context.Context, serviceVulnerabilityReportHref string) VulnReportAPIVulnReportDeleteRequest {
+func (a *VulnReportAPIService) VulnReportDelete(ctx context.Context, vulnerabilityReportHref string) VulnReportAPIVulnReportDeleteRequest {
 	return VulnReportAPIVulnReportDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
-		serviceVulnerabilityReportHref: serviceVulnerabilityReportHref,
+		vulnerabilityReportHref: vulnerabilityReportHref,
 	}
 }
 
@@ -204,8 +72,8 @@ func (a *VulnReportAPIService) VulnReportDeleteExecute(r VulnReportAPIVulnReport
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/{service_vulnerability_report_href}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_vulnerability_report_href"+"}", url.PathEscape(parameterValueToString(r.serviceVulnerabilityReportHref, "serviceVulnerabilityReportHref")), -1)
+	localVarPath := localBasePath + "/{vulnerability_report_href}"
+	localVarPath = strings.Replace(localVarPath, "{"+"vulnerability_report_href"+"}", url.PathEscape(parameterValueToString(r.vulnerabilityReportHref, "vulnerabilityReportHref")), -1)
 	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
@@ -228,6 +96,9 @@ func (a *VulnReportAPIService) VulnReportDeleteExecute(r VulnReportAPIVulnReport
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -261,10 +132,23 @@ type VulnReportAPIVulnReportListRequest struct {
 	ctx context.Context
 	ApiService *VulnReportAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
+	ordering *[]string
+	prnIn *[]string
+	pulpHrefIn *[]string
+	pulpIdIn *[]string
+	q *string
+	repoVersions *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r VulnReportAPIVulnReportListRequest) XTaskDiagnostics(xTaskDiagnostics []string) VulnReportAPIVulnReportListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -276,6 +160,41 @@ func (r VulnReportAPIVulnReportListRequest) Limit(limit int32) VulnReportAPIVuln
 // The initial index from which to return the results.
 func (r VulnReportAPIVulnReportListRequest) Offset(offset int32) VulnReportAPIVulnReportListRequest {
 	r.offset = &offset
+	return r
+}
+
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;vulns&#x60; - Vulns* &#x60;-vulns&#x60; - Vulns (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+func (r VulnReportAPIVulnReportListRequest) Ordering(ordering []string) VulnReportAPIVulnReportListRequest {
+	r.ordering = &ordering
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r VulnReportAPIVulnReportListRequest) PrnIn(prnIn []string) VulnReportAPIVulnReportListRequest {
+	r.prnIn = &prnIn
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r VulnReportAPIVulnReportListRequest) PulpHrefIn(pulpHrefIn []string) VulnReportAPIVulnReportListRequest {
+	r.pulpHrefIn = &pulpHrefIn
+	return r
+}
+
+// Multiple values may be separated by commas.
+func (r VulnReportAPIVulnReportListRequest) PulpIdIn(pulpIdIn []string) VulnReportAPIVulnReportListRequest {
+	r.pulpIdIn = &pulpIdIn
+	return r
+}
+
+// Filter results by using NOT, AND and OR operations on other filters
+func (r VulnReportAPIVulnReportListRequest) Q(q string) VulnReportAPIVulnReportListRequest {
+	r.q = &q
+	return r
+}
+
+func (r VulnReportAPIVulnReportListRequest) RepoVersions(repoVersions string) VulnReportAPIVulnReportListRequest {
+	r.repoVersions = &repoVersions
 	return r
 }
 
@@ -291,7 +210,7 @@ func (r VulnReportAPIVulnReportListRequest) ExcludeFields(excludeFields []string
 	return r
 }
 
-func (r VulnReportAPIVulnReportListRequest) Execute() (*PaginatedserviceVulnerabilityReportResponseList, *http.Response, error) {
+func (r VulnReportAPIVulnReportListRequest) Execute() (*PaginatedVulnerabilityReportResponseList, *http.Response, error) {
 	return r.ApiService.VulnReportListExecute(r)
 }
 
@@ -313,13 +232,13 @@ func (a *VulnReportAPIService) VulnReportList(ctx context.Context, pulpDomain st
 }
 
 // Execute executes the request
-//  @return PaginatedserviceVulnerabilityReportResponseList
-func (a *VulnReportAPIService) VulnReportListExecute(r VulnReportAPIVulnReportListRequest) (*PaginatedserviceVulnerabilityReportResponseList, *http.Response, error) {
+//  @return PaginatedVulnerabilityReportResponseList
+func (a *VulnReportAPIService) VulnReportListExecute(r VulnReportAPIVulnReportListRequest) (*PaginatedVulnerabilityReportResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedserviceVulnerabilityReportResponseList
+		localVarReturnValue  *PaginatedVulnerabilityReportResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VulnReportAPIService.VulnReportList")
@@ -340,6 +259,24 @@ func (a *VulnReportAPIService) VulnReportListExecute(r VulnReportAPIVulnReportLi
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.ordering != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "csv")
+	}
+	if r.prnIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prn__in", r.prnIn, "form", "csv")
+	}
+	if r.pulpHrefIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_href__in", r.pulpHrefIn, "form", "csv")
+	}
+	if r.pulpIdIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pulp_id__in", r.pulpIdIn, "form", "csv")
+	}
+	if r.q != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.repoVersions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repo_versions", r.repoVersions, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
@@ -379,6 +316,9 @@ func (a *VulnReportAPIService) VulnReportListExecute(r VulnReportAPIVulnReportLi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -420,9 +360,16 @@ func (a *VulnReportAPIService) VulnReportListExecute(r VulnReportAPIVulnReportLi
 type VulnReportAPIVulnReportReadRequest struct {
 	ctx context.Context
 	ApiService *VulnReportAPIService
-	serviceVulnerabilityReportHref string
+	vulnerabilityReportHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r VulnReportAPIVulnReportReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) VulnReportAPIVulnReportReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -437,7 +384,7 @@ func (r VulnReportAPIVulnReportReadRequest) ExcludeFields(excludeFields []string
 	return r
 }
 
-func (r VulnReportAPIVulnReportReadRequest) Execute() (*ServiceVulnerabilityReportResponse, *http.Response, error) {
+func (r VulnReportAPIVulnReportReadRequest) Execute() (*VulnerabilityReportResponse, *http.Response, error) {
 	return r.ApiService.VulnReportReadExecute(r)
 }
 
@@ -447,25 +394,25 @@ VulnReportRead Inspect a vulnerability report
 A customized named ModelViewSet that knows how to register itself with the Pulp API router.This viewset is discoverable by its name."Normal" Django Models and Master/Detail models are supported by the ``register_with`` method.Attributes:    lookup_field (str): The name of the field by which an object should be looked up, in        addition to any parent lookups if this ViewSet is nested. Defaults to 'pk'    endpoint_name (str): The name of the final path segment that should identify the ViewSet's        collection endpoint.    nest_prefix (str): Optional prefix under which this ViewSet should be nested. This must        correspond to the "parent_prefix" of a router with rest_framework_nested.NestedMixin.        None indicates this ViewSet should not be nested.    parent_lookup_kwargs (dict): Optional mapping of key names that would appear in self.kwargs        to django model filter expressions that can be used with the corresponding value from        self.kwargs, used only by a nested ViewSet to filter based on the parent object's        identity.    schema (DefaultSchema): The schema class to use by default in a viewset.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceVulnerabilityReportHref
+ @param vulnerabilityReportHref
  @return VulnReportAPIVulnReportReadRequest
 */
-func (a *VulnReportAPIService) VulnReportRead(ctx context.Context, serviceVulnerabilityReportHref string) VulnReportAPIVulnReportReadRequest {
+func (a *VulnReportAPIService) VulnReportRead(ctx context.Context, vulnerabilityReportHref string) VulnReportAPIVulnReportReadRequest {
 	return VulnReportAPIVulnReportReadRequest{
 		ApiService: a,
 		ctx: ctx,
-		serviceVulnerabilityReportHref: serviceVulnerabilityReportHref,
+		vulnerabilityReportHref: vulnerabilityReportHref,
 	}
 }
 
 // Execute executes the request
-//  @return ServiceVulnerabilityReportResponse
-func (a *VulnReportAPIService) VulnReportReadExecute(r VulnReportAPIVulnReportReadRequest) (*ServiceVulnerabilityReportResponse, *http.Response, error) {
+//  @return VulnerabilityReportResponse
+func (a *VulnReportAPIService) VulnReportReadExecute(r VulnReportAPIVulnReportReadRequest) (*VulnerabilityReportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ServiceVulnerabilityReportResponse
+		localVarReturnValue  *VulnerabilityReportResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VulnReportAPIService.VulnReportRead")
@@ -473,8 +420,8 @@ func (a *VulnReportAPIService) VulnReportReadExecute(r VulnReportAPIVulnReportRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/{service_vulnerability_report_href}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_vulnerability_report_href"+"}", url.PathEscape(parameterValueToString(r.serviceVulnerabilityReportHref, "serviceVulnerabilityReportHref")), -1)
+	localVarPath := localBasePath + "/{vulnerability_report_href}"
+	localVarPath = strings.Replace(localVarPath, "{"+"vulnerability_report_href"+"}", url.PathEscape(parameterValueToString(r.vulnerabilityReportHref, "vulnerabilityReportHref")), -1)
 	localVarPath, _ = url.PathUnescape(localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
@@ -519,6 +466,9 @@ func (a *VulnReportAPIService) VulnReportReadExecute(r VulnReportAPIVulnReportRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

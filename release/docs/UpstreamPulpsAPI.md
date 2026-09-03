@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## UpstreamPulpsAddRole
 
-> NestedRoleResponse UpstreamPulpsAddRole(ctx, upstreamPulpHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse UpstreamPulpsAddRole(ctx, upstreamPulpHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -41,10 +41,11 @@ import (
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsAddRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -92,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsCreate
 
-> UpstreamPulpResponse UpstreamPulpsCreate(ctx, pulpDomain).UpstreamPulp(upstreamPulp).Execute()
+> UpstreamPulpResponse UpstreamPulpsCreate(ctx, pulpDomain).UpstreamPulp(upstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an upstream pulp
 
@@ -113,10 +115,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsCreate(context.Background(), pulpDomain).UpstreamPulp(upstreamPulp).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsCreate(context.Background(), pulpDomain).UpstreamPulp(upstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -143,6 +146,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **upstreamPulp** | [**UpstreamPulp**](UpstreamPulp.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -164,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsDelete
 
-> UpstreamPulpsDelete(ctx, upstreamPulpHref).Execute()
+> UpstreamPulpsDelete(ctx, upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an upstream pulp
 
@@ -184,10 +188,11 @@ import (
 
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsDelete(context.Background(), upstreamPulpHref).Execute()
+	r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsDelete(context.Background(), upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,6 +216,7 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsDeleteRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -232,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsList
 
-> PaginatedUpstreamPulpResponseList UpstreamPulpsList(ctx, pulpDomain).BaseUrl(baseUrl).BaseUrlContains(baseUrlContains).BaseUrlIcontains(baseUrlIcontains).BaseUrlIexact(baseUrlIexact).BaseUrlIn(baseUrlIn).BaseUrlIregex(baseUrlIregex).BaseUrlIstartswith(baseUrlIstartswith).BaseUrlRegex(baseUrlRegex).BaseUrlStartswith(baseUrlStartswith).LastReplication(lastReplication).LastReplicationGt(lastReplicationGt).LastReplicationGte(lastReplicationGte).LastReplicationIsnull(lastReplicationIsnull).LastReplicationLt(lastReplicationLt).LastReplicationLte(lastReplicationLte).LastReplicationRange(lastReplicationRange).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedUpstreamPulpResponseList UpstreamPulpsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BaseUrl(baseUrl).BaseUrlContains(baseUrlContains).BaseUrlIcontains(baseUrlIcontains).BaseUrlIexact(baseUrlIexact).BaseUrlIn(baseUrlIn).BaseUrlIregex(baseUrlIregex).BaseUrlIstartswith(baseUrlIstartswith).BaseUrlRegex(baseUrlRegex).BaseUrlStartswith(baseUrlStartswith).LastReplication(lastReplication).LastReplicationGt(lastReplicationGt).LastReplicationGte(lastReplicationGte).LastReplicationIsnull(lastReplicationIsnull).LastReplicationLt(lastReplicationLt).LastReplicationLte(lastReplicationLte).LastReplicationRange(lastReplicationRange).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List upstream pulps
 
@@ -253,6 +259,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	baseUrl := "baseUrl_example" // string | Filter results where base_url matches value (optional)
 	baseUrlContains := "baseUrlContains_example" // string | Filter results where base_url contains value (optional)
 	baseUrlIcontains := "baseUrlIcontains_example" // string | Filter results where base_url contains value (optional)
@@ -280,7 +287,7 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `base_url` - Base url* `-base_url` - Base url (descending)* `api_root` - Api root* `-api_root` - Api root (descending)* `domain` - Domain* `-domain` - Domain (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)* `client_cert` - Client cert* `-client_cert` - Client cert (descending)* `client_key` - Client key* `-client_key` - Client key (descending)* `tls_validation` - Tls validation* `-tls_validation` - Tls validation (descending)* `username` - Username* `-username` - Username (descending)* `password` - Password* `-password` - Password (descending)* `q_select` - Q select* `-q_select` - Q select (descending)* `policy` - Policy* `-policy` - Policy (descending)* `last_replication` - Last replication* `-last_replication` - Last replication (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `base_url` - Base url* `-base_url` - Base url (descending)* `api_root` - Api root* `-api_root` - Api root (descending)* `domain` - Domain* `-domain` - Domain (descending)* `ca_cert` - Ca cert* `-ca_cert` - Ca cert (descending)* `client_cert` - Client cert* `-client_cert` - Client cert (descending)* `client_key` - Client key* `-client_key` - Client key (descending)* `tls_validation` - Tls validation* `-tls_validation` - Tls validation (descending)* `username` - Username* `-username` - Username (descending)* `password` - Password* `-password` - Password (descending)* `download_concurrency` - Download concurrency* `-download_concurrency` - Download concurrency (descending)* `max_retries` - Max retries* `-max_retries` - Max retries (descending)* `total_timeout` - Total timeout* `-total_timeout` - Total timeout (descending)* `connect_timeout` - Connect timeout* `-connect_timeout` - Connect timeout (descending)* `sock_connect_timeout` - Sock connect timeout* `-sock_connect_timeout` - Sock connect timeout (descending)* `sock_read_timeout` - Sock read timeout* `-sock_read_timeout` - Sock read timeout (descending)* `q_select` - Q select* `-q_select` - Q select (descending)* `policy` - Policy* `-policy` - Policy (descending)* `last_replication` - Last replication* `-last_replication` - Last replication (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -290,7 +297,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsList(context.Background(), pulpDomain).BaseUrl(baseUrl).BaseUrlContains(baseUrlContains).BaseUrlIcontains(baseUrlIcontains).BaseUrlIexact(baseUrlIexact).BaseUrlIn(baseUrlIn).BaseUrlIregex(baseUrlIregex).BaseUrlIstartswith(baseUrlIstartswith).BaseUrlRegex(baseUrlRegex).BaseUrlStartswith(baseUrlStartswith).LastReplication(lastReplication).LastReplicationGt(lastReplicationGt).LastReplicationGte(lastReplicationGte).LastReplicationIsnull(lastReplicationIsnull).LastReplicationLt(lastReplicationLt).LastReplicationLte(lastReplicationLte).LastReplicationRange(lastReplicationRange).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BaseUrl(baseUrl).BaseUrlContains(baseUrlContains).BaseUrlIcontains(baseUrlIcontains).BaseUrlIexact(baseUrlIexact).BaseUrlIn(baseUrlIn).BaseUrlIregex(baseUrlIregex).BaseUrlIstartswith(baseUrlIstartswith).BaseUrlRegex(baseUrlRegex).BaseUrlStartswith(baseUrlStartswith).LastReplication(lastReplication).LastReplicationGt(lastReplicationGt).LastReplicationGte(lastReplicationGte).LastReplicationIsnull(lastReplicationIsnull).LastReplicationLt(lastReplicationLt).LastReplicationLte(lastReplicationLte).LastReplicationRange(lastReplicationRange).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -316,6 +323,7 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **baseUrl** | **string** | Filter results where base_url matches value | 
  **baseUrlContains** | **string** | Filter results where base_url contains value | 
  **baseUrlIcontains** | **string** | Filter results where base_url contains value | 
@@ -343,7 +351,7 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;policy&#x60; - Policy* &#x60;-policy&#x60; - Policy (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;download_concurrency&#x60; - Download concurrency* &#x60;-download_concurrency&#x60; - Download concurrency (descending)* &#x60;max_retries&#x60; - Max retries* &#x60;-max_retries&#x60; - Max retries (descending)* &#x60;total_timeout&#x60; - Total timeout* &#x60;-total_timeout&#x60; - Total timeout (descending)* &#x60;connect_timeout&#x60; - Connect timeout* &#x60;-connect_timeout&#x60; - Connect timeout (descending)* &#x60;sock_connect_timeout&#x60; - Sock connect timeout* &#x60;-sock_connect_timeout&#x60; - Sock connect timeout (descending)* &#x60;sock_read_timeout&#x60; - Sock read timeout* &#x60;-sock_read_timeout&#x60; - Sock read timeout (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;policy&#x60; - Policy* &#x60;-policy&#x60; - Policy (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -371,7 +379,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsListRoles
 
-> ObjectRolesResponse UpstreamPulpsListRoles(ctx, upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse UpstreamPulpsListRoles(ctx, upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -391,12 +399,13 @@ import (
 
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsListRoles(context.Background(), upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,6 +431,7 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsListRolesRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -445,7 +455,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsMyPermissions
 
-> MyPermissionsResponse UpstreamPulpsMyPermissions(ctx, upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse UpstreamPulpsMyPermissions(ctx, upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -465,12 +475,13 @@ import (
 
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsMyPermissions(context.Background(), upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -496,6 +507,7 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsMyPermissions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -519,7 +531,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsPartialUpdate
 
-> UpstreamPulpResponse UpstreamPulpsPartialUpdate(ctx, upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).Execute()
+> UpstreamPulpResponse UpstreamPulpsPartialUpdate(ctx, upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an upstream pulp
 
@@ -540,10 +552,11 @@ import (
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 	patchedUpstreamPulp := *openapiclient.NewPatchedUpstreamPulp() // PatchedUpstreamPulp | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsPartialUpdate(context.Background(), upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsPartialUpdate(context.Background(), upstreamPulpHref).PatchedUpstreamPulp(patchedUpstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -570,6 +583,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedUpstreamPulp** | [**PatchedUpstreamPulp**](PatchedUpstreamPulp.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -591,7 +605,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsRead
 
-> UpstreamPulpResponse UpstreamPulpsRead(ctx, upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> UpstreamPulpResponse UpstreamPulpsRead(ctx, upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an upstream pulp
 
@@ -611,12 +625,13 @@ import (
 
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRead(context.Background(), upstreamPulpHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRead(context.Background(), upstreamPulpHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -642,6 +657,7 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsReadRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -665,7 +681,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsRemoveRole
 
-> NestedRoleResponse UpstreamPulpsRemoveRole(ctx, upstreamPulpHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse UpstreamPulpsRemoveRole(ctx, upstreamPulpHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -686,10 +702,11 @@ import (
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsRemoveRole(context.Background(), upstreamPulpHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -716,6 +733,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -737,7 +755,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsReplicate
 
-> TaskGroupOperationResponse UpstreamPulpsReplicate(ctx, upstreamPulpHref).Execute()
+> TaskGroupOperationResponse UpstreamPulpsReplicate(ctx, upstreamPulpHref).UpstreamPulpReplicate(upstreamPulpReplicate).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Replicate
 
@@ -757,10 +775,12 @@ import (
 
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
+	upstreamPulpReplicate := *openapiclient.NewUpstreamPulpReplicate() // UpstreamPulpReplicate | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsReplicate(context.Background(), upstreamPulpHref).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsReplicate(context.Background(), upstreamPulpHref).UpstreamPulpReplicate(upstreamPulpReplicate).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsReplicate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -786,6 +806,8 @@ Other parameters are passed through a pointer to a apiUpstreamPulpsReplicateRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **upstreamPulpReplicate** | [**UpstreamPulpReplicate**](UpstreamPulpReplicate.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -797,7 +819,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -807,7 +829,7 @@ Name | Type | Description  | Notes
 
 ## UpstreamPulpsUpdate
 
-> UpstreamPulpResponse UpstreamPulpsUpdate(ctx, upstreamPulpHref).UpstreamPulp(upstreamPulp).Execute()
+> UpstreamPulpResponse UpstreamPulpsUpdate(ctx, upstreamPulpHref).UpstreamPulp(upstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an upstream pulp
 
@@ -828,10 +850,11 @@ import (
 func main() {
 	upstreamPulpHref := "upstreamPulpHref_example" // string | 
 	upstreamPulp := *openapiclient.NewUpstreamPulp("Name_example", "BaseUrl_example", "ApiRoot_example") // UpstreamPulp | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsUpdate(context.Background(), upstreamPulpHref).UpstreamPulp(upstreamPulp).Execute()
+	resp, r, err := apiClient.UpstreamPulpsAPI.UpstreamPulpsUpdate(context.Background(), upstreamPulpHref).UpstreamPulp(upstreamPulp).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpstreamPulpsAPI.UpstreamPulpsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -858,6 +881,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **upstreamPulp** | [**UpstreamPulp**](UpstreamPulp.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## DistributionsRpmRpmAddRole
 
-> NestedRoleResponse DistributionsRpmRpmAddRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse DistributionsRpmRpmAddRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmAddRole(context.Background(), rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmAddRole(context.Background(), rpmRpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmCreate
 
-> AsyncOperationResponse DistributionsRpmRpmCreate(ctx, pulpDomain).RpmRpmDistribution(rpmRpmDistribution).Execute()
+> AsyncOperationResponse DistributionsRpmRpmCreate(ctx, pulpDomain).RpmRpmDistribution(rpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rpm distribution
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmRpmDistribution := *openapiclient.NewRpmRpmDistribution("BasePath_example", "Name_example") // RpmRpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmDistribution(rpmRpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmDistribution(rpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmDistribution** | [**RpmRpmDistribution**](RpmRpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmDelete
 
-> AsyncOperationResponse DistributionsRpmRpmDelete(ctx, rpmRpmDistributionHref).Execute()
+> AsyncOperationResponse DistributionsRpmRpmDelete(ctx, rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rpm distribution
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmDelete(context.Background(), rpmRpmDistributionHref).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmDelete(context.Background(), rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiDistributionsRpmRpmDeleteR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmList
 
-> PaginatedrpmRpmDistributionResponseList DistributionsRpmRpmList(ctx, pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmDistributionResponseList DistributionsRpmRpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm distributions
 
@@ -255,6 +261,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	basePath := "basePath_example" // string | Filter results where base_path matches value (optional)
 	basePathContains := "basePathContains_example" // string | Filter results where base_path contains value (optional)
 	basePathIcontains := "basePathIcontains_example" // string | Filter results where base_path contains value (optional)
@@ -277,15 +284,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
-	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
+	repository := "repository_example" // string |  (optional)
+	repositoryIn := []string{"Inner_example"} // []string |  (optional)
 	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiDistributionsRpmRpmListReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **basePath** | **string** | Filter results where base_path matches value | 
  **basePathContains** | **string** | Filter results where base_path contains value | 
  **basePathIcontains** | **string** | Filter results where base_path contains value | 
@@ -333,8 +341,8 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repository** | **string** | Filter results where repository matches value | 
- **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
+ **repository** | **string** |  | 
+ **repositoryIn** | **[]string** |  | 
  **withContent** | **string** | Filter distributions based on the content served by them | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -359,7 +367,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmListRoles
 
-> ObjectRolesResponse DistributionsRpmRpmListRoles(ctx, rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse DistributionsRpmRpmListRoles(ctx, rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -379,12 +387,13 @@ import (
 
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmListRoles(context.Background(), rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmListRoles(context.Background(), rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -410,6 +419,7 @@ Other parameters are passed through a pointer to a apiDistributionsRpmRpmListRol
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -433,7 +443,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmMyPermissions
 
-> MyPermissionsResponse DistributionsRpmRpmMyPermissions(ctx, rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse DistributionsRpmRpmMyPermissions(ctx, rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -453,12 +463,13 @@ import (
 
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmMyPermissions(context.Background(), rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmMyPermissions(context.Background(), rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -484,6 +495,7 @@ Other parameters are passed through a pointer to a apiDistributionsRpmRpmMyPermi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -507,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmPartialUpdate
 
-> AsyncOperationResponse DistributionsRpmRpmPartialUpdate(ctx, rpmRpmDistributionHref).PatchedrpmRpmDistribution(patchedrpmRpmDistribution).Execute()
+> RpmRpmDistributionResponse DistributionsRpmRpmPartialUpdate(ctx, rpmRpmDistributionHref).PatchedrpmRpmDistribution(patchedrpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm distribution
 
@@ -528,15 +540,16 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	patchedrpmRpmDistribution := *openapiclient.NewPatchedrpmRpmDistribution() // PatchedrpmRpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmPartialUpdate(context.Background(), rpmRpmDistributionHref).PatchedrpmRpmDistribution(patchedrpmRpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmPartialUpdate(context.Background(), rpmRpmDistributionHref).PatchedrpmRpmDistribution(patchedrpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsRpmRpmPartialUpdate`: AsyncOperationResponse
+	// response from `DistributionsRpmRpmPartialUpdate`: RpmRpmDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsRpmAPI.DistributionsRpmRpmPartialUpdate`: %v\n", resp)
 }
 ```
@@ -558,10 +571,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedrpmRpmDistribution** | [**PatchedrpmRpmDistribution**](PatchedrpmRpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmDistributionResponse**](RpmRpmDistributionResponse.md)
 
 ### Authorization
 
@@ -579,7 +593,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmRead
 
-> RpmRpmDistributionResponse DistributionsRpmRpmRead(ctx, rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmRpmDistributionResponse DistributionsRpmRpmRead(ctx, rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rpm distribution
 
@@ -599,12 +613,13 @@ import (
 
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmRead(context.Background(), rpmRpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmRead(context.Background(), rpmRpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -630,6 +645,7 @@ Other parameters are passed through a pointer to a apiDistributionsRpmRpmReadReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -653,7 +669,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmRemoveRole
 
-> NestedRoleResponse DistributionsRpmRpmRemoveRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse DistributionsRpmRpmRemoveRole(ctx, rpmRpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -674,10 +690,11 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmRemoveRole(context.Background(), rpmRpmDistributionHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmRemoveRole(context.Background(), rpmRpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -704,6 +721,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -725,7 +743,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmSetLabel
 
-> SetLabelResponse DistributionsRpmRpmSetLabel(ctx, rpmRpmDistributionHref).SetLabel(setLabel).Execute()
+> SetLabelResponse DistributionsRpmRpmSetLabel(ctx, rpmRpmDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -746,10 +764,11 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmSetLabel(context.Background(), rpmRpmDistributionHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmSetLabel(context.Background(), rpmRpmDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -776,6 +795,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -797,7 +817,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmUnsetLabel
 
-> UnsetLabelResponse DistributionsRpmRpmUnsetLabel(ctx, rpmRpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse DistributionsRpmRpmUnsetLabel(ctx, rpmRpmDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -818,10 +838,11 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel(context.Background(), rpmRpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel(context.Background(), rpmRpmDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -848,6 +869,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -869,7 +891,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsRpmRpmUpdate
 
-> AsyncOperationResponse DistributionsRpmRpmUpdate(ctx, rpmRpmDistributionHref).RpmRpmDistribution(rpmRpmDistribution).Execute()
+> RpmRpmDistributionResponse DistributionsRpmRpmUpdate(ctx, rpmRpmDistributionHref).RpmRpmDistribution(rpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm distribution
 
@@ -890,15 +912,16 @@ import (
 func main() {
 	rpmRpmDistributionHref := "rpmRpmDistributionHref_example" // string | 
 	rpmRpmDistribution := *openapiclient.NewRpmRpmDistribution("BasePath_example", "Name_example") // RpmRpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUpdate(context.Background(), rpmRpmDistributionHref).RpmRpmDistribution(rpmRpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsRpmAPI.DistributionsRpmRpmUpdate(context.Background(), rpmRpmDistributionHref).RpmRpmDistribution(rpmRpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsRpmAPI.DistributionsRpmRpmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsRpmRpmUpdate`: AsyncOperationResponse
+	// response from `DistributionsRpmRpmUpdate`: RpmRpmDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsRpmAPI.DistributionsRpmRpmUpdate`: %v\n", resp)
 }
 ```
@@ -920,10 +943,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmDistribution** | [**RpmRpmDistribution**](RpmRpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmDistributionResponse**](RpmRpmDistributionResponse.md)
 
 ### Authorization
 

@@ -26,15 +26,147 @@ import (
 // RemotesNpmAPIService RemotesNpmAPI service
 type RemotesNpmAPIService service
 
+type RemotesNpmAPIRemotesNpmNpmAddRoleRequest struct {
+	ctx context.Context
+	ApiService *RemotesNpmAPIService
+	npmNpmRemoteHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmAddRoleRequest) NestedRole(nestedRole NestedRole) RemotesNpmAPIRemotesNpmNpmAddRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmAddRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.RemotesNpmNpmAddRoleExecute(r)
+}
+
+/*
+RemotesNpmNpmAddRole Add a role
+
+Add a role for this object to users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param npmNpmRemoteHref
+ @return RemotesNpmAPIRemotesNpmNpmAddRoleRequest
+*/
+func (a *RemotesNpmAPIService) RemotesNpmNpmAddRole(ctx context.Context, npmNpmRemoteHref string) RemotesNpmAPIRemotesNpmNpmAddRoleRequest {
+	return RemotesNpmAPIRemotesNpmNpmAddRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		npmNpmRemoteHref: npmNpmRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmAddRoleExecute(r RemotesNpmAPIRemotesNpmNpmAddRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmAddRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{npm_npm_remote_href}add_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_remote_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRemoteHref, "npmNpmRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RemotesNpmAPIRemotesNpmNpmCreateRequest struct {
 	ctx context.Context
 	ApiService *RemotesNpmAPIService
 	pulpDomain string
 	npmNpmRemote *NpmNpmRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmCreateRequest) NpmNpmRemote(npmNpmRemote NpmNpmRemote) RemotesNpmAPIRemotesNpmNpmCreateRequest {
 	r.npmNpmRemote = &npmNpmRemote
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -45,7 +177,7 @@ func (r RemotesNpmAPIRemotesNpmNpmCreateRequest) Execute() (*NpmNpmRemoteRespons
 /*
 RemotesNpmNpmCreate Create a npm remote
 
-A ViewSet for NpmRemote.Similar to the PackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
+A ViewSet for NpmRemote.Similar to the NpmPackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -102,6 +234,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmCreateExecute(r RemotesNpmAPIRemotes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.npmNpmRemote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,6 +280,13 @@ type RemotesNpmAPIRemotesNpmNpmDeleteRequest struct {
 	ctx context.Context
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -208,6 +350,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmDeleteExecute(r RemotesNpmAPIRemotes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -249,6 +394,7 @@ type RemotesNpmAPIRemotesNpmNpmListRequest struct {
 	ctx context.Context
 	ApiService *RemotesNpmAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -275,6 +421,12 @@ type RemotesNpmAPIRemotesNpmNpmListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -440,7 +592,7 @@ func (r RemotesNpmAPIRemotesNpmNpmListRequest) Execute() (*PaginatednpmNpmRemote
 /*
 RemotesNpmNpmList List npm remotes
 
-A ViewSet for NpmRemote.Similar to the PackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
+A ViewSet for NpmRemote.Similar to the NpmPackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -588,6 +740,309 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmListExecute(r RemotesNpmAPIRemotesNp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesNpmAPIRemotesNpmNpmListRolesRequest struct {
+	ctx context.Context
+	ApiService *RemotesNpmAPIService
+	npmNpmRemoteHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RemotesNpmAPIRemotesNpmNpmListRolesRequest) Fields(fields []string) RemotesNpmAPIRemotesNpmNpmListRolesRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RemotesNpmAPIRemotesNpmNpmListRolesRequest) ExcludeFields(excludeFields []string) RemotesNpmAPIRemotesNpmNpmListRolesRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmListRolesRequest) Execute() (*ObjectRolesResponse, *http.Response, error) {
+	return r.ApiService.RemotesNpmNpmListRolesExecute(r)
+}
+
+/*
+RemotesNpmNpmListRoles List roles
+
+List roles assigned to this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param npmNpmRemoteHref
+ @return RemotesNpmAPIRemotesNpmNpmListRolesRequest
+*/
+func (a *RemotesNpmAPIService) RemotesNpmNpmListRoles(ctx context.Context, npmNpmRemoteHref string) RemotesNpmAPIRemotesNpmNpmListRolesRequest {
+	return RemotesNpmAPIRemotesNpmNpmListRolesRequest{
+		ApiService: a,
+		ctx: ctx,
+		npmNpmRemoteHref: npmNpmRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return ObjectRolesResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmListRolesExecute(r RemotesNpmAPIRemotesNpmNpmListRolesRequest) (*ObjectRolesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ObjectRolesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmListRoles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{npm_npm_remote_href}list_roles/"
+	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_remote_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRemoteHref, "npmNpmRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest struct {
+	ctx context.Context
+	ApiService *RemotesNpmAPIService
+	npmNpmRemoteHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest) Fields(fields []string) RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest) ExcludeFields(excludeFields []string) RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest) Execute() (*MyPermissionsResponse, *http.Response, error) {
+	return r.ApiService.RemotesNpmNpmMyPermissionsExecute(r)
+}
+
+/*
+RemotesNpmNpmMyPermissions List user permissions
+
+List permissions available to the current user on this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param npmNpmRemoteHref
+ @return RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest
+*/
+func (a *RemotesNpmAPIService) RemotesNpmNpmMyPermissions(ctx context.Context, npmNpmRemoteHref string) RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest {
+	return RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		npmNpmRemoteHref: npmNpmRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return MyPermissionsResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmMyPermissionsExecute(r RemotesNpmAPIRemotesNpmNpmMyPermissionsRequest) (*MyPermissionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MyPermissionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmMyPermissions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{npm_npm_remote_href}my_permissions/"
+	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_remote_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRemoteHref, "npmNpmRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -630,6 +1085,7 @@ type RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest struct {
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
 	patchednpmNpmRemote *PatchednpmNpmRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) PatchednpmNpmRemote(patchednpmNpmRemote PatchednpmNpmRemote) RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest {
@@ -637,14 +1093,20 @@ func (r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) PatchednpmNpmRemote(patc
 	return r
 }
 
-func (r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) Execute() (*NpmNpmRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesNpmNpmPartialUpdateExecute(r)
 }
 
 /*
 RemotesNpmNpmPartialUpdate Update a npm remote
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param npmNpmRemoteHref
@@ -659,13 +1121,13 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmPartialUpdate(ctx context.Context, n
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesNpmAPIService) RemotesNpmNpmPartialUpdateExecute(r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return NpmNpmRemoteResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmPartialUpdateExecute(r RemotesNpmAPIRemotesNpmNpmPartialUpdateRequest) (*NpmNpmRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *NpmNpmRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmPartialUpdate")
@@ -700,6 +1162,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmPartialUpdateExecute(r RemotesNpmAPI
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchednpmNpmRemote
@@ -744,8 +1209,15 @@ type RemotesNpmAPIRemotesNpmNpmReadRequest struct {
 	ctx context.Context
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -767,7 +1239,7 @@ func (r RemotesNpmAPIRemotesNpmNpmReadRequest) Execute() (*NpmNpmRemoteResponse,
 /*
 RemotesNpmNpmRead Inspect a npm remote
 
-A ViewSet for NpmRemote.Similar to the PackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
+A ViewSet for NpmRemote.Similar to the NpmPackageViewSet above, define endpoint_name,queryset and serializer, at a minimum.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param npmNpmRemoteHref
@@ -843,6 +1315,134 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmReadExecute(r RemotesNpmAPIRemotesNp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest struct {
+	ctx context.Context
+	ApiService *RemotesNpmAPIService
+	npmNpmRemoteHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest) NestedRole(nestedRole NestedRole) RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.RemotesNpmNpmRemoveRoleExecute(r)
+}
+
+/*
+RemotesNpmNpmRemoveRole Remove a role
+
+Remove a role for this object from users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param npmNpmRemoteHref
+ @return RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest
+*/
+func (a *RemotesNpmAPIService) RemotesNpmNpmRemoveRole(ctx context.Context, npmNpmRemoteHref string) RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest {
+	return RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		npmNpmRemoteHref: npmNpmRemoteHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmRemoveRoleExecute(r RemotesNpmAPIRemotesNpmNpmRemoveRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmRemoveRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{npm_npm_remote_href}remove_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"npm_npm_remote_href"+"}", url.PathEscape(parameterValueToString(r.npmNpmRemoteHref, "npmNpmRemoteHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -885,10 +1485,17 @@ type RemotesNpmAPIRemotesNpmNpmSetLabelRequest struct {
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmSetLabelRequest) SetLabel(setLabel SetLabel) RemotesNpmAPIRemotesNpmNpmSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -956,6 +1563,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmSetLabelExecute(r RemotesNpmAPIRemot
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1000,10 +1610,17 @@ type RemotesNpmAPIRemotesNpmNpmUnsetLabelRequest struct {
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RemotesNpmAPIRemotesNpmNpmUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1071,6 +1688,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmUnsetLabelExecute(r RemotesNpmAPIRem
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1115,6 +1735,7 @@ type RemotesNpmAPIRemotesNpmNpmUpdateRequest struct {
 	ApiService *RemotesNpmAPIService
 	npmNpmRemoteHref string
 	npmNpmRemote *NpmNpmRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesNpmAPIRemotesNpmNpmUpdateRequest) NpmNpmRemote(npmNpmRemote NpmNpmRemote) RemotesNpmAPIRemotesNpmNpmUpdateRequest {
@@ -1122,14 +1743,20 @@ func (r RemotesNpmAPIRemotesNpmNpmUpdateRequest) NpmNpmRemote(npmNpmRemote NpmNp
 	return r
 }
 
-func (r RemotesNpmAPIRemotesNpmNpmUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesNpmAPIRemotesNpmNpmUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesNpmAPIRemotesNpmNpmUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesNpmAPIRemotesNpmNpmUpdateRequest) Execute() (*NpmNpmRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesNpmNpmUpdateExecute(r)
 }
 
 /*
 RemotesNpmNpmUpdate Update a npm remote
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param npmNpmRemoteHref
@@ -1144,13 +1771,13 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmUpdate(ctx context.Context, npmNpmRe
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesNpmAPIService) RemotesNpmNpmUpdateExecute(r RemotesNpmAPIRemotesNpmNpmUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return NpmNpmRemoteResponse
+func (a *RemotesNpmAPIService) RemotesNpmNpmUpdateExecute(r RemotesNpmAPIRemotesNpmNpmUpdateRequest) (*NpmNpmRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *NpmNpmRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesNpmAPIService.RemotesNpmNpmUpdate")
@@ -1185,6 +1812,9 @@ func (a *RemotesNpmAPIService) RemotesNpmNpmUpdateExecute(r RemotesNpmAPIRemotes
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.npmNpmRemote

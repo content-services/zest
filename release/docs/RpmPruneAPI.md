@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RpmPrunePrunePackages
 
-> TaskGroupOperationResponse RpmPrunePrunePackages(ctx, pulpDomain).PrunePackages(prunePackages).Execute()
+> TaskGroupOperationResponse RpmPrunePrunePackages(ctx, pulpDomain).PrunePackages(prunePackages).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -31,10 +31,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	prunePackages := *openapiclient.NewPrunePackages([]string{"RepoHrefs_example"}) // PrunePackages | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RpmPruneAPI.RpmPrunePrunePackages(context.Background(), pulpDomain).PrunePackages(prunePackages).Execute()
+	resp, r, err := apiClient.RpmPruneAPI.RpmPrunePrunePackages(context.Background(), pulpDomain).PrunePackages(prunePackages).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RpmPruneAPI.RpmPrunePrunePackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **prunePackages** | [**PrunePackages**](PrunePackages.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

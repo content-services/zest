@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## PulpImportCheckPost
 
-> PulpImportCheckResponse PulpImportCheckPost(ctx, pulpDomain).PulpImportCheck(pulpImportCheck).Execute()
+> PulpImportCheckResponse PulpImportCheckPost(ctx, pulpDomain).PulpImportCheck(pulpImportCheck).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Validate the parameters to be used for a PulpImport call
 
@@ -31,10 +31,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	pulpImportCheck := *openapiclient.NewPulpImportCheck() // PulpImportCheck | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportersPulpImportCheckAPI.PulpImportCheckPost(context.Background(), pulpDomain).PulpImportCheck(pulpImportCheck).Execute()
+	resp, r, err := apiClient.ImportersPulpImportCheckAPI.PulpImportCheckPost(context.Background(), pulpDomain).PulpImportCheck(pulpImportCheck).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportCheckAPI.PulpImportCheckPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pulpImportCheck** | [**PulpImportCheck**](PulpImportCheck.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

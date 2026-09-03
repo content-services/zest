@@ -92,6 +92,20 @@ func Test_zest_ContentPackagesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentPackagesAPIService ContentNpmPackagesUpload", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentNpmPackagesUpload(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ContentPackagesAPIService ContentPythonPackagesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -162,6 +176,20 @@ func Test_zest_ContentPackagesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentPackagesAPIService ContentPythonPackagesUpload", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentPythonPackagesUpload(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ContentPackagesAPIService ContentRpmPackagesCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -183,6 +211,62 @@ func Test_zest_ContentPackagesAPIService(t *testing.T) {
 		var pulpDomain string
 
 		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesList(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentRpmPackagesRead", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageHref string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesRead(context.Background(), rpmPackageHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentRpmPackagesSetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageHref string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesSetLabel(context.Background(), rpmPackageHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentRpmPackagesUnsetLabel", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var rpmPackageHref string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesUnsetLabel(context.Background(), rpmPackageHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ContentPackagesAPIService ContentRpmPackagesUpload", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentPackagesAPI.ContentRpmPackagesUpload(context.Background(), pulpDomain).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

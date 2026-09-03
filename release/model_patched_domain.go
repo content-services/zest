@@ -25,7 +25,7 @@ type PatchedDomain struct {
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
-	// Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage* `pulp_service.app.storage.OCIStorage` - Use OCI as storage
+	// Backend storage class for domain.* `pulpcore.app.models.storage.FileSystem` - Use local filesystem as storage* `storages.backends.s3boto3.S3Boto3Storage` - Use Amazon S3 as storage [deprecated]* `storages.backends.s3.S3Storage` - Use Amazon S3 as storage* `storages.backends.azure_storage.AzureStorage` - Use Azure Blob as storage
 	StorageClass *StorageClassEnum `json:"storage_class,omitempty"`
 	// Settings for storage class.
 	StorageSettings map[string]interface{} `json:"storage_settings,omitempty"`

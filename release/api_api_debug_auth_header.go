@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 
@@ -26,6 +27,27 @@ type ApiDebugAuthHeaderAPIService service
 type ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest struct {
 	ctx context.Context
 	ApiService *ApiDebugAuthHeaderAPIService
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest) XTaskDiagnostics(xTaskDiagnostics []string) ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest) Fields(fields []string) ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest) ExcludeFields(excludeFields []string) ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest {
+	r.excludeFields = &excludeFields
+	return r
 }
 
 func (r ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest) Execute() (*http.Response, error) {
@@ -35,7 +57,7 @@ func (r ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest) Execute() (*http.
 /*
 ApiPulpDebugAuthHeaderGet Method for ApiPulpDebugAuthHeaderGet
 
-Returns the content of the authentication headers.
+Returns the content of the authentication headers and client IP information.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDebugAuthHeaderAPIApiPulpDebugAuthHeaderGetRequest
@@ -67,6 +89,28 @@ func (a *ApiDebugAuthHeaderAPIService) ApiPulpDebugAuthHeaderGetExecute(r ApiDeb
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -83,6 +127,9 @@ func (a *ApiDebugAuthHeaderAPIService) ApiPulpDebugAuthHeaderGetExecute(r ApiDeb
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

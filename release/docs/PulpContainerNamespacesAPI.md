@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## PulpContainerNamespacesAddRole
 
-> NestedRoleResponse PulpContainerNamespacesAddRole(ctx, containerContainerNamespaceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PulpContainerNamespacesAddRole(ctx, containerContainerNamespaceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -38,10 +38,11 @@ import (
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesAddRole(context.Background(), containerContainerNamespaceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesAddRole(context.Background(), containerContainerNamespaceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesCreate
 
-> ContainerContainerNamespaceResponse PulpContainerNamespacesCreate(ctx, pulpDomain).ContainerContainerNamespace(containerContainerNamespace).Execute()
+> ContainerContainerNamespaceResponse PulpContainerNamespacesCreate(ctx, pulpDomain).ContainerContainerNamespace(containerContainerNamespace).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a container namespace
 
@@ -110,10 +112,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	containerContainerNamespace := *openapiclient.NewContainerContainerNamespace("Name_example") // ContainerContainerNamespace | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesCreate(context.Background(), pulpDomain).ContainerContainerNamespace(containerContainerNamespace).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesCreate(context.Background(), pulpDomain).ContainerContainerNamespace(containerContainerNamespace).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerNamespace** | [**ContainerContainerNamespace**](ContainerContainerNamespace.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesDelete
 
-> AsyncOperationResponse PulpContainerNamespacesDelete(ctx, containerContainerNamespaceHref).Execute()
+> AsyncOperationResponse PulpContainerNamespacesDelete(ctx, containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a container namespace
 
@@ -181,10 +185,11 @@ import (
 
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesDelete(context.Background(), containerContainerNamespaceHref).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesDelete(context.Background(), containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiPulpContainerNamespacesDel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesList
 
-> PaginatedcontainerContainerNamespaceResponseList PulpContainerNamespacesList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcontainerContainerNamespaceResponseList PulpContainerNamespacesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List container namespaces
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -262,7 +269,7 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiPulpContainerNamespacesLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -309,7 +317,7 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesListRoles
 
-> ObjectRolesResponse PulpContainerNamespacesListRoles(ctx, containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse PulpContainerNamespacesListRoles(ctx, containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesListRoles(context.Background(), containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesListRoles(context.Background(), containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiPulpContainerNamespacesLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesMyPermissions
 
-> MyPermissionsResponse PulpContainerNamespacesMyPermissions(ctx, containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse PulpContainerNamespacesMyPermissions(ctx, containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesMyPermissions(context.Background(), containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesMyPermissions(context.Background(), containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiPulpContainerNamespacesMyP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesRead
 
-> ContainerContainerNamespaceResponse PulpContainerNamespacesRead(ctx, containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContainerContainerNamespaceResponse PulpContainerNamespacesRead(ctx, containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a container namespace
 
@@ -505,12 +517,13 @@ import (
 
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesRead(context.Background(), containerContainerNamespaceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesRead(context.Background(), containerContainerNamespaceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Other parameters are passed through a pointer to a apiPulpContainerNamespacesRea
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -559,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## PulpContainerNamespacesRemoveRole
 
-> NestedRoleResponse PulpContainerNamespacesRemoveRole(ctx, containerContainerNamespaceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PulpContainerNamespacesRemoveRole(ctx, containerContainerNamespaceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -580,10 +594,11 @@ import (
 func main() {
 	containerContainerNamespaceHref := "containerContainerNamespaceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesRemoveRole(context.Background(), containerContainerNamespaceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PulpContainerNamespacesAPI.PulpContainerNamespacesRemoveRole(context.Background(), containerContainerNamespaceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PulpContainerNamespacesAPI.PulpContainerNamespacesRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -610,6 +625,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

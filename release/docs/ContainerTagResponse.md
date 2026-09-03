@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | **string** | Tag name | 
 **TaggedManifest** | **string** | Manifest that is tagged | 
 
@@ -155,6 +156,31 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *ContainerTagResponse) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetVulnReport
+
+`func (o *ContainerTagResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *ContainerTagResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *ContainerTagResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *ContainerTagResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
 
 ### GetName
 

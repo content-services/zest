@@ -24,11 +24,11 @@ type StatusResponse struct {
 	// Version information of Pulp components
 	Versions []VersionResponse `json:"versions"`
 	// List of online workers known to the application. An online worker is actively heartbeating and can respond to new work.
-	OnlineWorkers []WorkerResponse `json:"online_workers"`
+	OnlineWorkers []AppStatusResponse `json:"online_workers"`
 	// List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients.
-	OnlineApiApps []ApiAppStatusResponse `json:"online_api_apps"`
+	OnlineApiApps []AppStatusResponse `json:"online_api_apps"`
 	// List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients.
-	OnlineContentApps []ContentAppStatusResponse `json:"online_content_apps"`
+	OnlineContentApps []AppStatusResponse `json:"online_content_apps"`
 	// Database connection information
 	DatabaseConnection DatabaseConnectionResponse `json:"database_connection"`
 	// Redis connection information
@@ -48,7 +48,7 @@ type _StatusResponse StatusResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineApiApps []ApiAppStatusResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool) *StatusResponse {
+func NewStatusResponse(versions []VersionResponse, onlineWorkers []AppStatusResponse, onlineApiApps []AppStatusResponse, onlineContentApps []AppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool) *StatusResponse {
 	this := StatusResponse{}
 	this.Versions = versions
 	this.OnlineWorkers = onlineWorkers
@@ -93,9 +93,9 @@ func (o *StatusResponse) SetVersions(v []VersionResponse) {
 }
 
 // GetOnlineWorkers returns the OnlineWorkers field value
-func (o *StatusResponse) GetOnlineWorkers() []WorkerResponse {
+func (o *StatusResponse) GetOnlineWorkers() []AppStatusResponse {
 	if o == nil {
-		var ret []WorkerResponse
+		var ret []AppStatusResponse
 		return ret
 	}
 
@@ -104,7 +104,7 @@ func (o *StatusResponse) GetOnlineWorkers() []WorkerResponse {
 
 // GetOnlineWorkersOk returns a tuple with the OnlineWorkers field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetOnlineWorkersOk() ([]WorkerResponse, bool) {
+func (o *StatusResponse) GetOnlineWorkersOk() ([]AppStatusResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,14 +112,14 @@ func (o *StatusResponse) GetOnlineWorkersOk() ([]WorkerResponse, bool) {
 }
 
 // SetOnlineWorkers sets field value
-func (o *StatusResponse) SetOnlineWorkers(v []WorkerResponse) {
+func (o *StatusResponse) SetOnlineWorkers(v []AppStatusResponse) {
 	o.OnlineWorkers = v
 }
 
 // GetOnlineApiApps returns the OnlineApiApps field value
-func (o *StatusResponse) GetOnlineApiApps() []ApiAppStatusResponse {
+func (o *StatusResponse) GetOnlineApiApps() []AppStatusResponse {
 	if o == nil {
-		var ret []ApiAppStatusResponse
+		var ret []AppStatusResponse
 		return ret
 	}
 
@@ -128,7 +128,7 @@ func (o *StatusResponse) GetOnlineApiApps() []ApiAppStatusResponse {
 
 // GetOnlineApiAppsOk returns a tuple with the OnlineApiApps field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetOnlineApiAppsOk() ([]ApiAppStatusResponse, bool) {
+func (o *StatusResponse) GetOnlineApiAppsOk() ([]AppStatusResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,14 +136,14 @@ func (o *StatusResponse) GetOnlineApiAppsOk() ([]ApiAppStatusResponse, bool) {
 }
 
 // SetOnlineApiApps sets field value
-func (o *StatusResponse) SetOnlineApiApps(v []ApiAppStatusResponse) {
+func (o *StatusResponse) SetOnlineApiApps(v []AppStatusResponse) {
 	o.OnlineApiApps = v
 }
 
 // GetOnlineContentApps returns the OnlineContentApps field value
-func (o *StatusResponse) GetOnlineContentApps() []ContentAppStatusResponse {
+func (o *StatusResponse) GetOnlineContentApps() []AppStatusResponse {
 	if o == nil {
-		var ret []ContentAppStatusResponse
+		var ret []AppStatusResponse
 		return ret
 	}
 
@@ -152,7 +152,7 @@ func (o *StatusResponse) GetOnlineContentApps() []ContentAppStatusResponse {
 
 // GetOnlineContentAppsOk returns a tuple with the OnlineContentApps field value
 // and a boolean to check if the value has been set.
-func (o *StatusResponse) GetOnlineContentAppsOk() ([]ContentAppStatusResponse, bool) {
+func (o *StatusResponse) GetOnlineContentAppsOk() ([]AppStatusResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *StatusResponse) GetOnlineContentAppsOk() ([]ContentAppStatusResponse, b
 }
 
 // SetOnlineContentApps sets field value
-func (o *StatusResponse) SetOnlineContentApps(v []ContentAppStatusResponse) {
+func (o *StatusResponse) SetOnlineContentApps(v []AppStatusResponse) {
 	o.OnlineContentApps = v
 }
 

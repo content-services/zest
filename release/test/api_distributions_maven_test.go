@@ -22,6 +22,20 @@ func Test_zest_DistributionsMavenAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsMavenAPI.DistributionsMavenMavenAddRole(context.Background(), mavenMavenDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +78,34 @@ func Test_zest_DistributionsMavenAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsMavenAPI.DistributionsMavenMavenListRoles(context.Background(), mavenMavenDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsMavenAPI.DistributionsMavenMavenMyPermissions(context.Background(), mavenMavenDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -85,6 +127,20 @@ func Test_zest_DistributionsMavenAPIService(t *testing.T) {
 		var mavenMavenDistributionHref string
 
 		resp, httpRes, err := apiClient.DistributionsMavenAPI.DistributionsMavenMavenRead(context.Background(), mavenMavenDistributionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DistributionsMavenAPIService DistributionsMavenMavenRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenDistributionHref string
+
+		resp, httpRes, err := apiClient.DistributionsMavenAPI.DistributionsMavenMavenRemoveRole(context.Background(), mavenMavenDistributionHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

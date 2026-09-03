@@ -29,6 +29,7 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagelangpacksAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -43,6 +44,12 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -99,19 +106,16 @@ func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Q(q str
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) RepositoryVersion(repositoryVersion string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -248,6 +252,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksListExecut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -289,8 +296,15 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksReadRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagelangpacksAPIService
 	rpmPackageLangpacksHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -388,6 +402,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksReadExecut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -430,10 +447,17 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksSetLabelRequest struct 
 	ApiService *ContentPackagelangpacksAPIService
 	rpmPackageLangpacksHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksSetLabelRequest) SetLabel(setLabel SetLabel) ContentPackagelangpacksAPIContentRpmPackagelangpacksSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -501,6 +525,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksSetLabelEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -545,10 +572,17 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksUnsetLabelRequest struc
 	ApiService *ContentPackagelangpacksAPIService
 	rpmPackageLangpacksHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentPackagelangpacksAPIContentRpmPackagelangpacksUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -615,6 +649,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksUnsetLabel
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

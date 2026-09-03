@@ -32,6 +32,8 @@ type NpmNpmDistribution struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
+	// RepositoryVersion to be served
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// Remote that can be used to fetch content when using pull-through caching.
 	Remote NullableString `json:"remote,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -258,6 +260,48 @@ func (o *NpmNpmDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NpmNpmDistribution) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryVersion.Get()
+}
+
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NpmNpmDistribution) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+}
+
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *NpmNpmDistribution) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *NpmNpmDistribution) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *NpmNpmDistribution) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
+}
+
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *NpmNpmDistribution) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
+}
+
 // GetRemote returns the Remote field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NpmNpmDistribution) GetRemote() string {
 	if o == nil || IsNil(o.Remote.Get()) {
@@ -324,6 +368,9 @@ func (o NpmNpmDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
+	}
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
@@ -377,6 +424,7 @@ func (o *NpmNpmDistribution) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "remote")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -27,10 +27,17 @@ type PatchedpythonPythonRepository struct {
 	Description NullableString `json:"description,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
-	// Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository.
+	// Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. [Deprecated]
+	// Deprecated
 	Autopublish *bool `json:"autopublish,omitempty"`
+	// Whether to allow package substitution (replacing existing packages with packages that have the same filename but a different checksum). When False, any new repository version that would cause such a substitution will be rejected. This applies to all repository version creation paths including uploads, modify, and sync. When True (the default), package substitution is allowed.
+	AllowPackageSubstitution *bool `json:"allow_package_substitution,omitempty"`
+	// Whether to fail the entire repository version when packages are rejected by the package substitution or blocklist policies. When True (the default), a ValidationError is raised and no packages from the request are added. When False, rejected packages are skipped and remaining packages are added; skipped packages are recorded in a task progress report.
+	ErrorOnReject *bool `json:"error_on_reject,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,6 +51,10 @@ func NewPatchedpythonPythonRepository() *PatchedpythonPythonRepository {
 	this := PatchedpythonPythonRepository{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var allowPackageSubstitution bool = true
+	this.AllowPackageSubstitution = &allowPackageSubstitution
+	var errorOnReject bool = true
+	this.ErrorOnReject = &errorOnReject
 	return &this
 }
 
@@ -54,6 +65,10 @@ func NewPatchedpythonPythonRepositoryWithDefaults() *PatchedpythonPythonReposito
 	this := PatchedpythonPythonRepository{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var allowPackageSubstitution bool = true
+	this.AllowPackageSubstitution = &allowPackageSubstitution
+	var errorOnReject bool = true
+	this.ErrorOnReject = &errorOnReject
 	return &this
 }
 
@@ -205,6 +220,48 @@ func (o *PatchedpythonPythonRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedpythonPythonRepository) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RetainCheckpoints.Get()
+}
+
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedpythonPythonRepository) GetRetainCheckpointsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+}
+
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRepository) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *PatchedpythonPythonRepository) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
+}
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *PatchedpythonPythonRepository) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
+}
+
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *PatchedpythonPythonRepository) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
+}
+
 // GetRemote returns the Remote field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedpythonPythonRepository) GetRemote() string {
 	if o == nil || IsNil(o.Remote.Get()) {
@@ -248,6 +305,7 @@ func (o *PatchedpythonPythonRepository) UnsetRemote() {
 }
 
 // GetAutopublish returns the Autopublish field value if set, zero value otherwise.
+// Deprecated
 func (o *PatchedpythonPythonRepository) GetAutopublish() bool {
 	if o == nil || IsNil(o.Autopublish) {
 		var ret bool
@@ -258,6 +316,7 @@ func (o *PatchedpythonPythonRepository) GetAutopublish() bool {
 
 // GetAutopublishOk returns a tuple with the Autopublish field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PatchedpythonPythonRepository) GetAutopublishOk() (*bool, bool) {
 	if o == nil || IsNil(o.Autopublish) {
 		return nil, false
@@ -275,8 +334,73 @@ func (o *PatchedpythonPythonRepository) HasAutopublish() bool {
 }
 
 // SetAutopublish gets a reference to the given bool and assigns it to the Autopublish field.
+// Deprecated
 func (o *PatchedpythonPythonRepository) SetAutopublish(v bool) {
 	o.Autopublish = &v
+}
+
+// GetAllowPackageSubstitution returns the AllowPackageSubstitution field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRepository) GetAllowPackageSubstitution() bool {
+	if o == nil || IsNil(o.AllowPackageSubstitution) {
+		var ret bool
+		return ret
+	}
+	return *o.AllowPackageSubstitution
+}
+
+// GetAllowPackageSubstitutionOk returns a tuple with the AllowPackageSubstitution field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRepository) GetAllowPackageSubstitutionOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowPackageSubstitution) {
+		return nil, false
+	}
+	return o.AllowPackageSubstitution, true
+}
+
+// HasAllowPackageSubstitution returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRepository) HasAllowPackageSubstitution() bool {
+	if o != nil && !IsNil(o.AllowPackageSubstitution) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowPackageSubstitution gets a reference to the given bool and assigns it to the AllowPackageSubstitution field.
+func (o *PatchedpythonPythonRepository) SetAllowPackageSubstitution(v bool) {
+	o.AllowPackageSubstitution = &v
+}
+
+// GetErrorOnReject returns the ErrorOnReject field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRepository) GetErrorOnReject() bool {
+	if o == nil || IsNil(o.ErrorOnReject) {
+		var ret bool
+		return ret
+	}
+	return *o.ErrorOnReject
+}
+
+// GetErrorOnRejectOk returns a tuple with the ErrorOnReject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRepository) GetErrorOnRejectOk() (*bool, bool) {
+	if o == nil || IsNil(o.ErrorOnReject) {
+		return nil, false
+	}
+	return o.ErrorOnReject, true
+}
+
+// HasErrorOnReject returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRepository) HasErrorOnReject() bool {
+	if o != nil && !IsNil(o.ErrorOnReject) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorOnReject gets a reference to the given bool and assigns it to the ErrorOnReject field.
+func (o *PatchedpythonPythonRepository) SetErrorOnReject(v bool) {
+	o.ErrorOnReject = &v
 }
 
 func (o PatchedpythonPythonRepository) MarshalJSON() ([]byte, error) {
@@ -301,11 +425,20 @@ func (o PatchedpythonPythonRepository) ToMap() (map[string]interface{}, error) {
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
+	}
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
 	if !IsNil(o.Autopublish) {
 		toSerialize["autopublish"] = o.Autopublish
+	}
+	if !IsNil(o.AllowPackageSubstitution) {
+		toSerialize["allow_package_substitution"] = o.AllowPackageSubstitution
+	}
+	if !IsNil(o.ErrorOnReject) {
+		toSerialize["error_on_reject"] = o.ErrorOnReject
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -333,8 +466,11 @@ func (o *PatchedpythonPythonRepository) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "allow_package_substitution")
+		delete(additionalProperties, "error_on_reject")
 		o.AdditionalProperties = additionalProperties
 	}
 

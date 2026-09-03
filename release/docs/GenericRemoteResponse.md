@@ -10,21 +10,21 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the most recent update of the remote. | [optional] [readonly] 
 **Name** | **string** | A unique name for this remote. | 
 **Url** | **string** | The URL of an external content source. | 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_IMMEDIATE]
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **CaCert** | Pointer to **NullableString** | A PEM encoded CA certificate used to validate the server certificate presented by the remote server. | [optional] 
 **ClientCert** | Pointer to **NullableString** | A PEM encoded client certificate used for authentication. | [optional] 
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
 **ProxyUrl** | Pointer to **NullableString** | The proxy URL. Format: scheme://host:port | [optional] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
-**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_IMMEDIATE]
 **TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
+**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
-**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 
 ## Methods
 
@@ -185,6 +185,81 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
+### GetPulpLabels
+
+`func (o *GenericRemoteResponse) GetPulpLabels() map[string]*string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *GenericRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *GenericRemoteResponse) SetPulpLabels(v map[string]*string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *GenericRemoteResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
+
+### GetPolicy
+
+`func (o *GenericRemoteResponse) GetPolicy() Policy692Enum`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *GenericRemoteResponse) GetPolicyOk() (*Policy692Enum, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *GenericRemoteResponse) SetPolicy(v Policy692Enum)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *GenericRemoteResponse) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
+### GetHiddenFields
+
+`func (o *GenericRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
+
+GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
+
+### GetHiddenFieldsOk
+
+`func (o *GenericRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
+
+GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHiddenFields
+
+`func (o *GenericRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
+
+SetHiddenFields sets HiddenFields field to given value.
+
+### HasHiddenFields
+
+`func (o *GenericRemoteResponse) HasHiddenFields() bool`
+
+HasHiddenFields returns a boolean if a field has been set.
+
 ### GetCaCert
 
 `func (o *GenericRemoteResponse) GetCaCert() string`
@@ -315,66 +390,6 @@ HasProxyUrl returns a boolean if a field has been set.
 `func (o *GenericRemoteResponse) UnsetProxyUrl()`
 
 UnsetProxyUrl ensures that no value is present for ProxyUrl, not even an explicit nil
-### GetPulpLabels
-
-`func (o *GenericRemoteResponse) GetPulpLabels() map[string]*string`
-
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
-
-### GetPulpLabelsOk
-
-`func (o *GenericRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
-
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLabels
-
-`func (o *GenericRemoteResponse) SetPulpLabels(v map[string]*string)`
-
-SetPulpLabels sets PulpLabels field to given value.
-
-### HasPulpLabels
-
-`func (o *GenericRemoteResponse) HasPulpLabels() bool`
-
-HasPulpLabels returns a boolean if a field has been set.
-
-### GetDownloadConcurrency
-
-`func (o *GenericRemoteResponse) GetDownloadConcurrency() int64`
-
-GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
-
-### GetDownloadConcurrencyOk
-
-`func (o *GenericRemoteResponse) GetDownloadConcurrencyOk() (*int64, bool)`
-
-GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDownloadConcurrency
-
-`func (o *GenericRemoteResponse) SetDownloadConcurrency(v int64)`
-
-SetDownloadConcurrency sets DownloadConcurrency field to given value.
-
-### HasDownloadConcurrency
-
-`func (o *GenericRemoteResponse) HasDownloadConcurrency() bool`
-
-HasDownloadConcurrency returns a boolean if a field has been set.
-
-### SetDownloadConcurrencyNil
-
-`func (o *GenericRemoteResponse) SetDownloadConcurrencyNil(b bool)`
-
- SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
-
-### UnsetDownloadConcurrency
-`func (o *GenericRemoteResponse) UnsetDownloadConcurrency()`
-
-UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetMaxRetries
 
 `func (o *GenericRemoteResponse) GetMaxRetries() int64`
@@ -410,31 +425,6 @@ HasMaxRetries returns a boolean if a field has been set.
 `func (o *GenericRemoteResponse) UnsetMaxRetries()`
 
 UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
-### GetPolicy
-
-`func (o *GenericRemoteResponse) GetPolicy() Policy692Enum`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *GenericRemoteResponse) GetPolicyOk() (*Policy692Enum, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPolicy
-
-`func (o *GenericRemoteResponse) SetPolicy(v Policy692Enum)`
-
-SetPolicy sets Policy field to given value.
-
-### HasPolicy
-
-`func (o *GenericRemoteResponse) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
 ### GetTotalTimeout
 
 `func (o *GenericRemoteResponse) GetTotalTimeout() float64`
@@ -600,6 +590,41 @@ SetHeaders sets Headers field to given value.
 
 HasHeaders returns a boolean if a field has been set.
 
+### GetDownloadConcurrency
+
+`func (o *GenericRemoteResponse) GetDownloadConcurrency() int64`
+
+GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
+
+### GetDownloadConcurrencyOk
+
+`func (o *GenericRemoteResponse) GetDownloadConcurrencyOk() (*int64, bool)`
+
+GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadConcurrency
+
+`func (o *GenericRemoteResponse) SetDownloadConcurrency(v int64)`
+
+SetDownloadConcurrency sets DownloadConcurrency field to given value.
+
+### HasDownloadConcurrency
+
+`func (o *GenericRemoteResponse) HasDownloadConcurrency() bool`
+
+HasDownloadConcurrency returns a boolean if a field has been set.
+
+### SetDownloadConcurrencyNil
+
+`func (o *GenericRemoteResponse) SetDownloadConcurrencyNil(b bool)`
+
+ SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+
+### UnsetDownloadConcurrency
+`func (o *GenericRemoteResponse) UnsetDownloadConcurrency()`
+
+UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetRateLimit
 
 `func (o *GenericRemoteResponse) GetRateLimit() int64`
@@ -635,31 +660,6 @@ HasRateLimit returns a boolean if a field has been set.
 `func (o *GenericRemoteResponse) UnsetRateLimit()`
 
 UnsetRateLimit ensures that no value is present for RateLimit, not even an explicit nil
-### GetHiddenFields
-
-`func (o *GenericRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
-
-GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
-
-### GetHiddenFieldsOk
-
-`func (o *GenericRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
-
-GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHiddenFields
-
-`func (o *GenericRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
-
-SetHiddenFields sets HiddenFields field to given value.
-
-### HasHiddenFields
-
-`func (o *GenericRemoteResponse) HasHiddenFields() bool`
-
-HasHiddenFields returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

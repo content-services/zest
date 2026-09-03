@@ -24,6 +24,9 @@ type PatchedpythonPythonRemote struct {
 	Name *string `json:"name,omitempty"`
 	// The URL of an external content source.
 	Url *string `json:"url,omitempty"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	// The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the default.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+	Policy *Policy692Enum `json:"policy,omitempty"`
 	// A PEM encoded CA certificate used to validate the server certificate presented by the remote server.
 	CaCert NullableString `json:"ca_cert,omitempty"`
 	// A PEM encoded client certificate used for authentication.
@@ -42,13 +45,8 @@ type PatchedpythonPythonRemote struct {
 	Username NullableString `json:"username,omitempty"`
 	// The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed.
 	Password NullableString `json:"password,omitempty"`
-	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
-	// Total number of simultaneous connections. If not set then the default value will be used.
-	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
-	// The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the default.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
-	Policy *Policy692Enum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
 	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
@@ -59,6 +57,8 @@ type PatchedpythonPythonRemote struct {
 	SockReadTimeout NullableFloat64 `json:"sock_read_timeout,omitempty"`
 	// Headers for aiohttp.Clientsession
 	Headers []map[string]interface{} `json:"headers,omitempty"`
+	// Total number of simultaneous connections. If not set then the default value will be used.
+	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	// A list containing project specifiers for Python packages to include.
@@ -73,6 +73,8 @@ type PatchedpythonPythonRemote struct {
 	KeepLatestPackages *int64 `json:"keep_latest_packages,omitempty"`
 	// List of platforms to exclude syncing Python packages for. Possible valuesinclude: windows, macos, freebsd, and linux.
 	ExcludePlatforms []ExcludePlatformsEnum `json:"exclude_platforms,omitempty"`
+	// Whether to sync available provenances for Python packages.
+	Provenance *bool `json:"provenance,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,6 +90,8 @@ func NewPatchedpythonPythonRemote() *PatchedpythonPythonRemote {
 	this.Policy = &policy
 	var keepLatestPackages int64 = 0
 	this.KeepLatestPackages = &keepLatestPackages
+	var provenance bool = false
+	this.Provenance = &provenance
 	return &this
 }
 
@@ -100,6 +104,8 @@ func NewPatchedpythonPythonRemoteWithDefaults() *PatchedpythonPythonRemote {
 	this.Policy = &policy
 	var keepLatestPackages int64 = 0
 	this.KeepLatestPackages = &keepLatestPackages
+	var provenance bool = false
+	this.Provenance = &provenance
 	return &this
 }
 
@@ -165,6 +171,70 @@ func (o *PatchedpythonPythonRemote) HasUrl() bool {
 // SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *PatchedpythonPythonRemote) SetUrl(v string) {
 	o.Url = &v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRemote) GetPulpLabels() map[string]*string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRemote) GetPulpLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRemote) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *PatchedpythonPythonRemote) SetPulpLabels(v map[string]*string) {
+	o.PulpLabels = &v
+}
+
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRemote) GetPolicy() Policy692Enum {
+	if o == nil || IsNil(o.Policy) {
+		var ret Policy692Enum
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRemote) GetPolicyOk() (*Policy692Enum, bool) {
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRemote) HasPolicy() bool {
+	if o != nil && !IsNil(o.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given Policy692Enum and assigns it to the Policy field.
+func (o *PatchedpythonPythonRemote) SetPolicy(v Policy692Enum) {
+	o.Policy = &v
 }
 
 // GetCaCert returns the CaCert field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -535,80 +605,6 @@ func (o *PatchedpythonPythonRemote) UnsetPassword() {
 	o.Password.Unset()
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *PatchedpythonPythonRemote) GetPulpLabels() map[string]*string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]*string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedpythonPythonRemote) GetPulpLabelsOk() (*map[string]*string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *PatchedpythonPythonRemote) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
-func (o *PatchedpythonPythonRemote) SetPulpLabels(v map[string]*string) {
-	o.PulpLabels = &v
-}
-
-// GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedpythonPythonRemote) GetDownloadConcurrency() int64 {
-	if o == nil || IsNil(o.DownloadConcurrency.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.DownloadConcurrency.Get()
-}
-
-// GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedpythonPythonRemote) GetDownloadConcurrencyOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DownloadConcurrency.Get(), o.DownloadConcurrency.IsSet()
-}
-
-// HasDownloadConcurrency returns a boolean if a field has been set.
-func (o *PatchedpythonPythonRemote) HasDownloadConcurrency() bool {
-	if o != nil && o.DownloadConcurrency.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDownloadConcurrency gets a reference to the given NullableInt64 and assigns it to the DownloadConcurrency field.
-func (o *PatchedpythonPythonRemote) SetDownloadConcurrency(v int64) {
-	o.DownloadConcurrency.Set(&v)
-}
-// SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
-func (o *PatchedpythonPythonRemote) SetDownloadConcurrencyNil() {
-	o.DownloadConcurrency.Set(nil)
-}
-
-// UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
-func (o *PatchedpythonPythonRemote) UnsetDownloadConcurrency() {
-	o.DownloadConcurrency.Unset()
-}
-
 // GetMaxRetries returns the MaxRetries field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedpythonPythonRemote) GetMaxRetries() int64 {
 	if o == nil || IsNil(o.MaxRetries.Get()) {
@@ -649,38 +645,6 @@ func (o *PatchedpythonPythonRemote) SetMaxRetriesNil() {
 // UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
 func (o *PatchedpythonPythonRemote) UnsetMaxRetries() {
 	o.MaxRetries.Unset()
-}
-
-// GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *PatchedpythonPythonRemote) GetPolicy() Policy692Enum {
-	if o == nil || IsNil(o.Policy) {
-		var ret Policy692Enum
-		return ret
-	}
-	return *o.Policy
-}
-
-// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedpythonPythonRemote) GetPolicyOk() (*Policy692Enum, bool) {
-	if o == nil || IsNil(o.Policy) {
-		return nil, false
-	}
-	return o.Policy, true
-}
-
-// HasPolicy returns a boolean if a field has been set.
-func (o *PatchedpythonPythonRemote) HasPolicy() bool {
-	if o != nil && !IsNil(o.Policy) {
-		return true
-	}
-
-	return false
-}
-
-// SetPolicy gets a reference to the given Policy692Enum and assigns it to the Policy field.
-func (o *PatchedpythonPythonRemote) SetPolicy(v Policy692Enum) {
-	o.Policy = &v
 }
 
 // GetTotalTimeout returns the TotalTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -881,6 +845,48 @@ func (o *PatchedpythonPythonRemote) HasHeaders() bool {
 // SetHeaders gets a reference to the given []map[string]interface{} and assigns it to the Headers field.
 func (o *PatchedpythonPythonRemote) SetHeaders(v []map[string]interface{}) {
 	o.Headers = v
+}
+
+// GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedpythonPythonRemote) GetDownloadConcurrency() int64 {
+	if o == nil || IsNil(o.DownloadConcurrency.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.DownloadConcurrency.Get()
+}
+
+// GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedpythonPythonRemote) GetDownloadConcurrencyOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DownloadConcurrency.Get(), o.DownloadConcurrency.IsSet()
+}
+
+// HasDownloadConcurrency returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRemote) HasDownloadConcurrency() bool {
+	if o != nil && o.DownloadConcurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadConcurrency gets a reference to the given NullableInt64 and assigns it to the DownloadConcurrency field.
+func (o *PatchedpythonPythonRemote) SetDownloadConcurrency(v int64) {
+	o.DownloadConcurrency.Set(&v)
+}
+// SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+func (o *PatchedpythonPythonRemote) SetDownloadConcurrencyNil() {
+	o.DownloadConcurrency.Set(nil)
+}
+
+// UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
+func (o *PatchedpythonPythonRemote) UnsetDownloadConcurrency() {
+	o.DownloadConcurrency.Unset()
 }
 
 // GetRateLimit returns the RateLimit field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1117,6 +1123,38 @@ func (o *PatchedpythonPythonRemote) SetExcludePlatforms(v []ExcludePlatformsEnum
 	o.ExcludePlatforms = v
 }
 
+// GetProvenance returns the Provenance field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRemote) GetProvenance() bool {
+	if o == nil || IsNil(o.Provenance) {
+		var ret bool
+		return ret
+	}
+	return *o.Provenance
+}
+
+// GetProvenanceOk returns a tuple with the Provenance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRemote) GetProvenanceOk() (*bool, bool) {
+	if o == nil || IsNil(o.Provenance) {
+		return nil, false
+	}
+	return o.Provenance, true
+}
+
+// HasProvenance returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRemote) HasProvenance() bool {
+	if o != nil && !IsNil(o.Provenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvenance gets a reference to the given bool and assigns it to the Provenance field.
+func (o *PatchedpythonPythonRemote) SetProvenance(v bool) {
+	o.Provenance = &v
+}
+
 func (o PatchedpythonPythonRemote) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1132,6 +1170,12 @@ func (o PatchedpythonPythonRemote) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
 	}
 	if o.CaCert.IsSet() {
 		toSerialize["ca_cert"] = o.CaCert.Get()
@@ -1160,17 +1204,8 @@ func (o PatchedpythonPythonRemote) ToMap() (map[string]interface{}, error) {
 	if o.Password.IsSet() {
 		toSerialize["password"] = o.Password.Get()
 	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if o.DownloadConcurrency.IsSet() {
-		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()
-	}
 	if o.MaxRetries.IsSet() {
 		toSerialize["max_retries"] = o.MaxRetries.Get()
-	}
-	if !IsNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
 	}
 	if o.TotalTimeout.IsSet() {
 		toSerialize["total_timeout"] = o.TotalTimeout.Get()
@@ -1186,6 +1221,9 @@ func (o PatchedpythonPythonRemote) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Headers) {
 		toSerialize["headers"] = o.Headers
+	}
+	if o.DownloadConcurrency.IsSet() {
+		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()
 	}
 	if o.RateLimit.IsSet() {
 		toSerialize["rate_limit"] = o.RateLimit.Get()
@@ -1207,6 +1245,9 @@ func (o PatchedpythonPythonRemote) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ExcludePlatforms) {
 		toSerialize["exclude_platforms"] = o.ExcludePlatforms
+	}
+	if !IsNil(o.Provenance) {
+		toSerialize["provenance"] = o.Provenance
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1232,6 +1273,8 @@ func (o *PatchedpythonPythonRemote) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "policy")
 		delete(additionalProperties, "ca_cert")
 		delete(additionalProperties, "client_cert")
 		delete(additionalProperties, "client_key")
@@ -1241,15 +1284,13 @@ func (o *PatchedpythonPythonRemote) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "proxy_password")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "download_concurrency")
 		delete(additionalProperties, "max_retries")
-		delete(additionalProperties, "policy")
 		delete(additionalProperties, "total_timeout")
 		delete(additionalProperties, "connect_timeout")
 		delete(additionalProperties, "sock_connect_timeout")
 		delete(additionalProperties, "sock_read_timeout")
 		delete(additionalProperties, "headers")
+		delete(additionalProperties, "download_concurrency")
 		delete(additionalProperties, "rate_limit")
 		delete(additionalProperties, "includes")
 		delete(additionalProperties, "excludes")
@@ -1257,6 +1298,7 @@ func (o *PatchedpythonPythonRemote) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "package_types")
 		delete(additionalProperties, "keep_latest_packages")
 		delete(additionalProperties, "exclude_platforms")
+		delete(additionalProperties, "provenance")
 		o.AdditionalProperties = additionalProperties
 	}
 

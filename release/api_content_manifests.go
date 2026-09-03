@@ -29,6 +29,7 @@ type ContentManifestsAPIContentContainerManifestsListRequest struct {
 	ctx context.Context
 	ApiService *ContentManifestsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	digest *string
 	digestIn *[]string
 	isBootable *bool
@@ -48,6 +49,12 @@ type ContentManifestsAPIContentContainerManifestsListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentManifestsAPIContentContainerManifestsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentManifestsAPIContentContainerManifestsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where digest matches value
@@ -134,19 +141,16 @@ func (r ContentManifestsAPIContentContainerManifestsListRequest) Q(q string) Con
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentManifestsAPIContentContainerManifestsListRequest) RepositoryVersion(repositoryVersion string) ContentManifestsAPIContentContainerManifestsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentManifestsAPIContentContainerManifestsListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentManifestsAPIContentContainerManifestsListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentManifestsAPIContentContainerManifestsListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentManifestsAPIContentContainerManifestsListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -306,6 +310,9 @@ func (a *ContentManifestsAPIService) ContentContainerManifestsListExecute(r Cont
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -347,8 +354,15 @@ type ContentManifestsAPIContentContainerManifestsReadRequest struct {
 	ctx context.Context
 	ApiService *ContentManifestsAPIService
 	containerManifestHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentManifestsAPIContentContainerManifestsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentManifestsAPIContentContainerManifestsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -446,6 +460,9 @@ func (a *ContentManifestsAPIService) ContentContainerManifestsReadExecute(r Cont
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -488,10 +505,17 @@ type ContentManifestsAPIContentContainerManifestsSetLabelRequest struct {
 	ApiService *ContentManifestsAPIService
 	containerManifestHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentManifestsAPIContentContainerManifestsSetLabelRequest) SetLabel(setLabel SetLabel) ContentManifestsAPIContentContainerManifestsSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentManifestsAPIContentContainerManifestsSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentManifestsAPIContentContainerManifestsSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -559,6 +583,9 @@ func (a *ContentManifestsAPIService) ContentContainerManifestsSetLabelExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -603,10 +630,17 @@ type ContentManifestsAPIContentContainerManifestsUnsetLabelRequest struct {
 	ApiService *ContentManifestsAPIService
 	containerManifestHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentManifestsAPIContentContainerManifestsUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentManifestsAPIContentContainerManifestsUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentManifestsAPIContentContainerManifestsUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentManifestsAPIContentContainerManifestsUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -673,6 +707,9 @@ func (a *ContentManifestsAPIService) ContentContainerManifestsUnsetLabelExecute(
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

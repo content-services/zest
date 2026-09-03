@@ -35,6 +35,8 @@ type FileFileDistributionResponse struct {
 	BaseUrl *string `json:"base_url,omitempty"`
 	// An optional content-guard.
 	ContentGuard NullableString `json:"content_guard,omitempty"`
+	// The Pulp Resource Name (PRN) of the associated optional content guard.
+	ContentGuardPrn *string `json:"content_guard_prn,omitempty"`
 	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
 	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
 	// Whether this distribution should be shown in the content app.
@@ -44,6 +46,8 @@ type FileFileDistributionResponse struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
+	// RepositoryVersion to be served
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
 	Checkpoint *bool `json:"checkpoint,omitempty"`
@@ -301,6 +305,38 @@ func (o *FileFileDistributionResponse) UnsetContentGuard() {
 	o.ContentGuard.Unset()
 }
 
+// GetContentGuardPrn returns the ContentGuardPrn field value if set, zero value otherwise.
+func (o *FileFileDistributionResponse) GetContentGuardPrn() string {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		var ret string
+		return ret
+	}
+	return *o.ContentGuardPrn
+}
+
+// GetContentGuardPrnOk returns a tuple with the ContentGuardPrn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFileDistributionResponse) GetContentGuardPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		return nil, false
+	}
+	return o.ContentGuardPrn, true
+}
+
+// HasContentGuardPrn returns a boolean if a field has been set.
+func (o *FileFileDistributionResponse) HasContentGuardPrn() bool {
+	if o != nil && !IsNil(o.ContentGuardPrn) {
+		return true
+	}
+
+	return false
+}
+
+// SetContentGuardPrn gets a reference to the given string and assigns it to the ContentGuardPrn field.
+func (o *FileFileDistributionResponse) SetContentGuardPrn(v string) {
+	o.ContentGuardPrn = &v
+}
+
 // GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
 func (o *FileFileDistributionResponse) GetNoContentChangeSince() string {
 	if o == nil || IsNil(o.NoContentChangeSince) {
@@ -463,6 +499,48 @@ func (o *FileFileDistributionResponse) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FileFileDistributionResponse) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryVersion.Get()
+}
+
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FileFileDistributionResponse) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+}
+
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *FileFileDistributionResponse) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *FileFileDistributionResponse) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *FileFileDistributionResponse) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
+}
+
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *FileFileDistributionResponse) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
+}
+
 // GetPublication returns the Publication field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FileFileDistributionResponse) GetPublication() string {
 	if o == nil || IsNil(o.Publication.Get()) {
@@ -566,6 +644,9 @@ func (o FileFileDistributionResponse) ToMap() (map[string]interface{}, error) {
 	if o.ContentGuard.IsSet() {
 		toSerialize["content_guard"] = o.ContentGuard.Get()
 	}
+	if !IsNil(o.ContentGuardPrn) {
+		toSerialize["content_guard_prn"] = o.ContentGuardPrn
+	}
 	if !IsNil(o.NoContentChangeSince) {
 		toSerialize["no_content_change_since"] = o.NoContentChangeSince
 	}
@@ -578,6 +659,9 @@ func (o FileFileDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
+	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
 	}
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
@@ -636,11 +720,13 @@ func (o *FileFileDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "base_url")
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "content_guard_prn")
 		delete(additionalProperties, "no_content_change_since")
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "publication")
 		delete(additionalProperties, "checkpoint")
 		o.AdditionalProperties = additionalProperties

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## DistributionsPythonPypiAddRole
 
-> NestedRoleResponse DistributionsPythonPypiAddRole(ctx, pythonPythonDistributionHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse DistributionsPythonPypiAddRole(ctx, pythonPythonDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiAddRole(context.Background(), pythonPythonDistributionHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiAddRole(context.Background(), pythonPythonDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiCreate
 
-> AsyncOperationResponse DistributionsPythonPypiCreate(ctx, pulpDomain).PythonPythonDistribution(pythonPythonDistribution).Execute()
+> AsyncOperationResponse DistributionsPythonPypiCreate(ctx, pulpDomain).PythonPythonDistribution(pythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a python distribution
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	pythonPythonDistribution := *openapiclient.NewPythonPythonDistribution("BasePath_example", "Name_example") // PythonPythonDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiCreate(context.Background(), pulpDomain).PythonPythonDistribution(pythonPythonDistribution).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiCreate(context.Background(), pulpDomain).PythonPythonDistribution(pythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pythonPythonDistribution** | [**PythonPythonDistribution**](PythonPythonDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiDelete
 
-> AsyncOperationResponse DistributionsPythonPypiDelete(ctx, pythonPythonDistributionHref).Execute()
+> AsyncOperationResponse DistributionsPythonPypiDelete(ctx, pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a python distribution
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiDelete(context.Background(), pythonPythonDistributionHref).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiDelete(context.Background(), pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiDistributionsPythonPypiDel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiList
 
-> PaginatedpythonPythonDistributionResponseList DistributionsPythonPypiList(ctx, pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedpythonPythonDistributionResponseList DistributionsPythonPypiList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List python distributions
 
@@ -255,6 +261,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	basePath := "basePath_example" // string | Filter results where base_path matches value (optional)
 	basePathContains := "basePathContains_example" // string | Filter results where base_path contains value (optional)
 	basePathIcontains := "basePathIcontains_example" // string | Filter results where base_path contains value (optional)
@@ -277,15 +284,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
-	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
+	repository := "repository_example" // string |  (optional)
+	repositoryIn := []string{"Inner_example"} // []string |  (optional)
 	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiDistributionsPythonPypiLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **basePath** | **string** | Filter results where base_path matches value | 
  **basePathContains** | **string** | Filter results where base_path contains value | 
  **basePathIcontains** | **string** | Filter results where base_path contains value | 
@@ -333,8 +341,8 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repository** | **string** | Filter results where repository matches value | 
- **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
+ **repository** | **string** |  | 
+ **repositoryIn** | **[]string** |  | 
  **withContent** | **string** | Filter distributions based on the content served by them | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -359,7 +367,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiListRoles
 
-> ObjectRolesResponse DistributionsPythonPypiListRoles(ctx, pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse DistributionsPythonPypiListRoles(ctx, pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -379,12 +387,13 @@ import (
 
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiListRoles(context.Background(), pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiListRoles(context.Background(), pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -410,6 +419,7 @@ Other parameters are passed through a pointer to a apiDistributionsPythonPypiLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -433,7 +443,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiMyPermissions
 
-> MyPermissionsResponse DistributionsPythonPypiMyPermissions(ctx, pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse DistributionsPythonPypiMyPermissions(ctx, pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -453,12 +463,13 @@ import (
 
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiMyPermissions(context.Background(), pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiMyPermissions(context.Background(), pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -484,6 +495,7 @@ Other parameters are passed through a pointer to a apiDistributionsPythonPypiMyP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -507,7 +519,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiPartialUpdate
 
-> AsyncOperationResponse DistributionsPythonPypiPartialUpdate(ctx, pythonPythonDistributionHref).PatchedpythonPythonDistribution(patchedpythonPythonDistribution).Execute()
+> PythonPythonDistributionResponse DistributionsPythonPypiPartialUpdate(ctx, pythonPythonDistributionHref).PatchedpythonPythonDistribution(patchedpythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a python distribution
 
@@ -528,15 +540,16 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	patchedpythonPythonDistribution := *openapiclient.NewPatchedpythonPythonDistribution() // PatchedpythonPythonDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiPartialUpdate(context.Background(), pythonPythonDistributionHref).PatchedpythonPythonDistribution(patchedpythonPythonDistribution).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiPartialUpdate(context.Background(), pythonPythonDistributionHref).PatchedpythonPythonDistribution(patchedpythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsPythonPypiPartialUpdate`: AsyncOperationResponse
+	// response from `DistributionsPythonPypiPartialUpdate`: PythonPythonDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsPypiAPI.DistributionsPythonPypiPartialUpdate`: %v\n", resp)
 }
 ```
@@ -558,10 +571,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedpythonPythonDistribution** | [**PatchedpythonPythonDistribution**](PatchedpythonPythonDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**PythonPythonDistributionResponse**](PythonPythonDistributionResponse.md)
 
 ### Authorization
 
@@ -579,7 +593,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiRead
 
-> PythonPythonDistributionResponse DistributionsPythonPypiRead(ctx, pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PythonPythonDistributionResponse DistributionsPythonPypiRead(ctx, pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a python distribution
 
@@ -599,12 +613,13 @@ import (
 
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiRead(context.Background(), pythonPythonDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiRead(context.Background(), pythonPythonDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -630,6 +645,7 @@ Other parameters are passed through a pointer to a apiDistributionsPythonPypiRea
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -653,7 +669,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiRemoveRole
 
-> NestedRoleResponse DistributionsPythonPypiRemoveRole(ctx, pythonPythonDistributionHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse DistributionsPythonPypiRemoveRole(ctx, pythonPythonDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -674,10 +690,11 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiRemoveRole(context.Background(), pythonPythonDistributionHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiRemoveRole(context.Background(), pythonPythonDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -704,6 +721,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -725,7 +743,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiSetLabel
 
-> SetLabelResponse DistributionsPythonPypiSetLabel(ctx, pythonPythonDistributionHref).SetLabel(setLabel).Execute()
+> SetLabelResponse DistributionsPythonPypiSetLabel(ctx, pythonPythonDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -746,10 +764,11 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiSetLabel(context.Background(), pythonPythonDistributionHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiSetLabel(context.Background(), pythonPythonDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -776,6 +795,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -797,7 +817,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiUnsetLabel
 
-> UnsetLabelResponse DistributionsPythonPypiUnsetLabel(ctx, pythonPythonDistributionHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse DistributionsPythonPypiUnsetLabel(ctx, pythonPythonDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -818,10 +838,11 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiUnsetLabel(context.Background(), pythonPythonDistributionHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiUnsetLabel(context.Background(), pythonPythonDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -848,6 +869,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -869,7 +891,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsPythonPypiUpdate
 
-> AsyncOperationResponse DistributionsPythonPypiUpdate(ctx, pythonPythonDistributionHref).PythonPythonDistribution(pythonPythonDistribution).Execute()
+> PythonPythonDistributionResponse DistributionsPythonPypiUpdate(ctx, pythonPythonDistributionHref).PythonPythonDistribution(pythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a python distribution
 
@@ -890,15 +912,16 @@ import (
 func main() {
 	pythonPythonDistributionHref := "pythonPythonDistributionHref_example" // string | 
 	pythonPythonDistribution := *openapiclient.NewPythonPythonDistribution("BasePath_example", "Name_example") // PythonPythonDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiUpdate(context.Background(), pythonPythonDistributionHref).PythonPythonDistribution(pythonPythonDistribution).Execute()
+	resp, r, err := apiClient.DistributionsPypiAPI.DistributionsPythonPypiUpdate(context.Background(), pythonPythonDistributionHref).PythonPythonDistribution(pythonPythonDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsPypiAPI.DistributionsPythonPypiUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsPythonPypiUpdate`: AsyncOperationResponse
+	// response from `DistributionsPythonPypiUpdate`: PythonPythonDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsPypiAPI.DistributionsPythonPypiUpdate`: %v\n", resp)
 }
 ```
@@ -920,10 +943,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pythonPythonDistribution** | [**PythonPythonDistribution**](PythonPythonDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**PythonPythonDistributionResponse**](PythonPythonDistributionResponse.md)
 
 ### Authorization
 

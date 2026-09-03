@@ -30,16 +30,31 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest struct {
 	ctx context.Context
 	ApiService *ContentOpenpgpPublickeyAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	file *os.File
 	upload *string
 	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A URI of a repository the new content unit should be associated with.
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) Repository(repository string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) Overwrite(overwrite bool) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -64,6 +79,12 @@ func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) Uplo
 // A url that Pulp can download and turn into the content unit.
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) FileUrl(fileUrl string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
 	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyCreateRequest {
+	r.downloaderConfig = &downloaderConfig
 	return r
 }
 
@@ -128,8 +149,14 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyCreateExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -156,6 +183,13 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyCreateExe
 	}
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -198,6 +232,7 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest struct {
 	ctx context.Context
 	ApiService *ContentOpenpgpPublickeyAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	fingerprint *string
 	limit *int32
 	offset *int32
@@ -213,6 +248,12 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where fingerprint matches value
@@ -275,19 +316,16 @@ func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) Q(q st
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) RepositoryVersion(repositoryVersion string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -427,6 +465,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyListExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -468,8 +509,15 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyReadRequest struct {
 	ctx context.Context
 	ApiService *ContentOpenpgpPublickeyAPIService
 	openPGPPublicKeyHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -567,6 +615,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyReadExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -609,10 +660,17 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest struct
 	ApiService *ContentOpenpgpPublickeyAPIService
 	openPGPPublicKeyHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest) SetLabel(setLabel SetLabel) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeySetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -680,6 +738,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeySetLabelE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -724,10 +785,17 @@ type ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest stru
 	ApiService *ContentOpenpgpPublickeyAPIService
 	openPGPPublicKeyHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublickeyAPIContentCoreOpenpgpPublickeyUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -794,6 +862,9 @@ func (a *ContentOpenpgpPublickeyAPIService) ContentCoreOpenpgpPublickeyUnsetLabe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

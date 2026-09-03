@@ -16,19 +16,21 @@ import (
 	"fmt"
 )
 
-// CompressionTypeEnum * `zstd` - zstd* `gz` - gz
+// CompressionTypeEnum * `zstd` - zstd* `gz` - gz* `none` - none
 type CompressionTypeEnum string
 
 // List of CompressionTypeEnum
 const (
 	COMPRESSIONTYPEENUM_ZSTD CompressionTypeEnum = "zstd"
 	COMPRESSIONTYPEENUM_GZ CompressionTypeEnum = "gz"
+	COMPRESSIONTYPEENUM_NONE CompressionTypeEnum = "none"
 )
 
 // All allowed values of CompressionTypeEnum enum
 var AllowedCompressionTypeEnumEnumValues = []CompressionTypeEnum{
 	"zstd",
 	"gz",
+	"none",
 }
 
 func (v *CompressionTypeEnum) UnmarshalJSON(src []byte) error {

@@ -36,7 +36,7 @@ type PulpExportResponse struct {
 	Params map[string]interface{} `json:"params,omitempty"`
 	// Dictionary of filename: sha256hash entries for export-output-file(s)
 	OutputFileInfo map[string]interface{} `json:"output_file_info,omitempty"`
-	// Filename and sha256-checksum of table-of-contents for this export
+	// Filename, sha256-checksum and meta of table-of-contents for this export
 	TocInfo map[string]interface{} `json:"toc_info,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

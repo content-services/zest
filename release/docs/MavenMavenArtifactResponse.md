@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
-**Artifact** | **string** | Artifact file representing the physical content | 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
+**Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **GroupId** | Pointer to **string** | Group Id of the artifact&#39;s package. | [optional] [readonly] 
 **ArtifactId** | Pointer to **string** | Artifact Id of the artifact&#39;s package. | [optional] [readonly] 
 **Version** | Pointer to **string** | Version of the artifact&#39;s package. | [optional] [readonly] 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewMavenMavenArtifactResponse
 
-`func NewMavenMavenArtifactResponse(artifact string, ) *MavenMavenArtifactResponse`
+`func NewMavenMavenArtifactResponse() *MavenMavenArtifactResponse`
 
 NewMavenMavenArtifactResponse instantiates a new MavenMavenArtifactResponse object
 This constructor will assign default values to properties that have it defined,
@@ -159,6 +160,31 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
+### GetVulnReport
+
+`func (o *MavenMavenArtifactResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *MavenMavenArtifactResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *MavenMavenArtifactResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *MavenMavenArtifactResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
+
 ### GetArtifact
 
 `func (o *MavenMavenArtifactResponse) GetArtifact() string`
@@ -178,6 +204,11 @@ and a boolean to check if the value has been set.
 
 SetArtifact sets Artifact field to given value.
 
+### HasArtifact
+
+`func (o *MavenMavenArtifactResponse) HasArtifact() bool`
+
+HasArtifact returns a boolean if a field has been set.
 
 ### GetGroupId
 

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## ContentguardsCoreCompositeAddRole
 
-> NestedRoleResponse ContentguardsCoreCompositeAddRole(ctx, compositeContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreCompositeAddRole(ctx, compositeContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeCreate
 
-> CompositeContentGuardResponse ContentguardsCoreCompositeCreate(ctx, pulpDomain).CompositeContentGuard(compositeContentGuard).Execute()
+> CompositeContentGuardResponse ContentguardsCoreCompositeCreate(ctx, pulpDomain).CompositeContentGuard(compositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a composite content guard
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate(context.Background(), pulpDomain).CompositeContentGuard(compositeContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate(context.Background(), pulpDomain).CompositeContentGuard(compositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **compositeContentGuard** | [**CompositeContentGuard**](CompositeContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeDelete
 
-> ContentguardsCoreCompositeDelete(ctx, compositeContentGuardHref).Execute()
+> ContentguardsCoreCompositeDelete(ctx, compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a composite content guard
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete(context.Background(), compositeContentGuardHref).Execute()
+	r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete(context.Background(), compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreComposite
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeList
 
-> PaginatedCompositeContentGuardResponseList ContentguardsCoreCompositeList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedCompositeContentGuardResponseList ContentguardsCoreCompositeList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List composite content guards
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreComposite
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeListRoles
 
-> ObjectRolesResponse ContentguardsCoreCompositeListRoles(ctx, compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse ContentguardsCoreCompositeListRoles(ctx, compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles(context.Background(), compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreComposite
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeMyPermissions
 
-> MyPermissionsResponse ContentguardsCoreCompositeMyPermissions(ctx, compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse ContentguardsCoreCompositeMyPermissions(ctx, compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions(context.Background(), compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreComposite
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositePartialUpdate
 
-> CompositeContentGuardResponse ContentguardsCoreCompositePartialUpdate(ctx, compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).Execute()
+> CompositeContentGuardResponse ContentguardsCoreCompositePartialUpdate(ctx, compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a composite content guard
 
@@ -506,10 +518,11 @@ import (
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
 	patchedCompositeContentGuard := *openapiclient.NewPatchedCompositeContentGuard() // PatchedCompositeContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate(context.Background(), compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate(context.Background(), compositeContentGuardHref).PatchedCompositeContentGuard(patchedCompositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositePartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedCompositeContentGuard** | [**PatchedCompositeContentGuard**](PatchedCompositeContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -557,7 +571,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeRead
 
-> CompositeContentGuardResponse ContentguardsCoreCompositeRead(ctx, compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> CompositeContentGuardResponse ContentguardsCoreCompositeRead(ctx, compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a composite content guard
 
@@ -577,12 +591,13 @@ import (
 
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRead(context.Background(), compositeContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRead(context.Background(), compositeContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -608,6 +623,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreComposite
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -631,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeRemoveRole
 
-> NestedRoleResponse ContentguardsCoreCompositeRemoveRole(ctx, compositeContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreCompositeRemoveRole(ctx, compositeContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -652,10 +668,11 @@ import (
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole(context.Background(), compositeContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,6 +699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -703,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreCompositeUpdate
 
-> CompositeContentGuardResponse ContentguardsCoreCompositeUpdate(ctx, compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).Execute()
+> CompositeContentGuardResponse ContentguardsCoreCompositeUpdate(ctx, compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a composite content guard
 
@@ -724,10 +742,11 @@ import (
 func main() {
 	compositeContentGuardHref := "compositeContentGuardHref_example" // string | 
 	compositeContentGuard := *openapiclient.NewCompositeContentGuard("Name_example") // CompositeContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate(context.Background(), compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate(context.Background(), compositeContentGuardHref).CompositeContentGuard(compositeContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsCompositeAPI.ContentguardsCoreCompositeUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **compositeContentGuard** | [**CompositeContentGuard**](CompositeContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

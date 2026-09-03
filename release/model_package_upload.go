@@ -28,6 +28,14 @@ type PackageUpload struct {
 	Action *string `json:"action,omitempty"`
 	// SHA256 of package to validate upload integrity.
 	Sha256Digest string `json:"sha256_digest"`
+	// Protocol version to use for the upload. Only version 1 is supported.* `1` - 1
+	ProtocolVersion *ProtocolVersionEnum `json:"protocol_version,omitempty"`
+	// Type of artifact to upload.* `bdist_wheel` - bdist_wheel* `sdist` - sdist
+	Filetype *FiletypeEnum `json:"filetype,omitempty"`
+	// Metadata version of the uploaded package.* `1.0` - 1.0* `1.1` - 1.1* `1.2` - 1.2* `2.0` - 2.0* `2.1` - 2.1* `2.2` - 2.2* `2.3` - 2.3* `2.4` - 2.4* `2.5` - 2.5
+	MetadataVersion *MetadataVersionEnum `json:"metadata_version,omitempty"`
+	// A JSON list containing attestations for the package.
+	Attestations interface{} `json:"attestations,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,6 +51,8 @@ func NewPackageUpload(content *os.File, sha256Digest string) *PackageUpload {
 	var action string = "file_upload"
 	this.Action = &action
 	this.Sha256Digest = sha256Digest
+	var protocolVersion ProtocolVersionEnum = PROTOCOLVERSIONENUM__1
+	this.ProtocolVersion = &protocolVersion
 	return &this
 }
 
@@ -53,6 +63,8 @@ func NewPackageUploadWithDefaults() *PackageUpload {
 	this := PackageUpload{}
 	var action string = "file_upload"
 	this.Action = &action
+	var protocolVersion ProtocolVersionEnum = PROTOCOLVERSIONENUM__1
+	this.ProtocolVersion = &protocolVersion
 	return &this
 }
 
@@ -136,6 +148,135 @@ func (o *PackageUpload) SetSha256Digest(v string) {
 	o.Sha256Digest = v
 }
 
+// GetProtocolVersion returns the ProtocolVersion field value if set, zero value otherwise.
+func (o *PackageUpload) GetProtocolVersion() ProtocolVersionEnum {
+	if o == nil || IsNil(o.ProtocolVersion) {
+		var ret ProtocolVersionEnum
+		return ret
+	}
+	return *o.ProtocolVersion
+}
+
+// GetProtocolVersionOk returns a tuple with the ProtocolVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PackageUpload) GetProtocolVersionOk() (*ProtocolVersionEnum, bool) {
+	if o == nil || IsNil(o.ProtocolVersion) {
+		return nil, false
+	}
+	return o.ProtocolVersion, true
+}
+
+// HasProtocolVersion returns a boolean if a field has been set.
+func (o *PackageUpload) HasProtocolVersion() bool {
+	if o != nil && !IsNil(o.ProtocolVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProtocolVersion gets a reference to the given ProtocolVersionEnum and assigns it to the ProtocolVersion field.
+func (o *PackageUpload) SetProtocolVersion(v ProtocolVersionEnum) {
+	o.ProtocolVersion = &v
+}
+
+// GetFiletype returns the Filetype field value if set, zero value otherwise.
+func (o *PackageUpload) GetFiletype() FiletypeEnum {
+	if o == nil || IsNil(o.Filetype) {
+		var ret FiletypeEnum
+		return ret
+	}
+	return *o.Filetype
+}
+
+// GetFiletypeOk returns a tuple with the Filetype field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PackageUpload) GetFiletypeOk() (*FiletypeEnum, bool) {
+	if o == nil || IsNil(o.Filetype) {
+		return nil, false
+	}
+	return o.Filetype, true
+}
+
+// HasFiletype returns a boolean if a field has been set.
+func (o *PackageUpload) HasFiletype() bool {
+	if o != nil && !IsNil(o.Filetype) {
+		return true
+	}
+
+	return false
+}
+
+// SetFiletype gets a reference to the given FiletypeEnum and assigns it to the Filetype field.
+func (o *PackageUpload) SetFiletype(v FiletypeEnum) {
+	o.Filetype = &v
+}
+
+// GetMetadataVersion returns the MetadataVersion field value if set, zero value otherwise.
+func (o *PackageUpload) GetMetadataVersion() MetadataVersionEnum {
+	if o == nil || IsNil(o.MetadataVersion) {
+		var ret MetadataVersionEnum
+		return ret
+	}
+	return *o.MetadataVersion
+}
+
+// GetMetadataVersionOk returns a tuple with the MetadataVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PackageUpload) GetMetadataVersionOk() (*MetadataVersionEnum, bool) {
+	if o == nil || IsNil(o.MetadataVersion) {
+		return nil, false
+	}
+	return o.MetadataVersion, true
+}
+
+// HasMetadataVersion returns a boolean if a field has been set.
+func (o *PackageUpload) HasMetadataVersion() bool {
+	if o != nil && !IsNil(o.MetadataVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataVersion gets a reference to the given MetadataVersionEnum and assigns it to the MetadataVersion field.
+func (o *PackageUpload) SetMetadataVersion(v MetadataVersionEnum) {
+	o.MetadataVersion = &v
+}
+
+// GetAttestations returns the Attestations field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PackageUpload) GetAttestations() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Attestations
+}
+
+// GetAttestationsOk returns a tuple with the Attestations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PackageUpload) GetAttestationsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Attestations) {
+		return nil, false
+	}
+	return &o.Attestations, true
+}
+
+// HasAttestations returns a boolean if a field has been set.
+func (o *PackageUpload) HasAttestations() bool {
+	if o != nil && !IsNil(o.Attestations) {
+		return true
+	}
+
+	return false
+}
+
+// SetAttestations gets a reference to the given interface{} and assigns it to the Attestations field.
+func (o *PackageUpload) SetAttestations(v interface{}) {
+	o.Attestations = v
+}
+
 func (o PackageUpload) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -151,6 +292,18 @@ func (o PackageUpload) ToMap() (map[string]interface{}, error) {
 		toSerialize["action"] = o.Action
 	}
 	toSerialize["sha256_digest"] = o.Sha256Digest
+	if !IsNil(o.ProtocolVersion) {
+		toSerialize["protocol_version"] = o.ProtocolVersion
+	}
+	if !IsNil(o.Filetype) {
+		toSerialize["filetype"] = o.Filetype
+	}
+	if !IsNil(o.MetadataVersion) {
+		toSerialize["metadata_version"] = o.MetadataVersion
+	}
+	if o.Attestations != nil {
+		toSerialize["attestations"] = o.Attestations
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -198,6 +351,10 @@ func (o *PackageUpload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "content")
 		delete(additionalProperties, "action")
 		delete(additionalProperties, "sha256_digest")
+		delete(additionalProperties, "protocol_version")
+		delete(additionalProperties, "filetype")
+		delete(additionalProperties, "metadata_version")
+		delete(additionalProperties, "attestations")
 		o.AdditionalProperties = additionalProperties
 	}
 

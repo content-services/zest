@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ArtifactsCreate
 
-> ArtifactResponse ArtifactsCreate(ctx, pulpDomain).File(file).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
+> ArtifactResponse ArtifactsCreate(ctx, pulpDomain).File(file).XTaskDiagnostics(xTaskDiagnostics).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
 
 Create an artifact
 
@@ -34,6 +34,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	file := os.NewFile(1234, "some_file") // *os.File | The stored file.
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	size := int64(789) // int64 | The size of the file in bytes. (optional)
 	md5 := "md5_example" // string | The MD5 checksum of the file if available. (optional)
 	sha1 := "sha1_example" // string | The SHA-1 checksum of the file if available. (optional)
@@ -44,7 +45,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ArtifactsAPI.ArtifactsCreate(context.Background(), pulpDomain).File(file).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsCreate(context.Background(), pulpDomain).File(file).XTaskDiagnostics(xTaskDiagnostics).Size(size).Md5(md5).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **file** | ***os.File** | The stored file. | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **size** | **int64** | The size of the file in bytes. | 
  **md5** | **string** | The MD5 checksum of the file if available. | 
  **sha1** | **string** | The SHA-1 checksum of the file if available. | 
@@ -99,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## ArtifactsDelete
 
-> ArtifactsDelete(ctx, artifactHref).Execute()
+> ArtifactsDelete(ctx, artifactHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an artifact
 
@@ -119,10 +121,11 @@ import (
 
 func main() {
 	artifactHref := "artifactHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ArtifactsAPI.ArtifactsDelete(context.Background(), artifactHref).Execute()
+	r, err := apiClient.ArtifactsAPI.ArtifactsDelete(context.Background(), artifactHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,6 +149,7 @@ Other parameters are passed through a pointer to a apiArtifactsDeleteRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -167,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## ArtifactsList
 
-> PaginatedArtifactResponseList ArtifactsList(ctx, pulpDomain).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedArtifactResponseList ArtifactsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List artifacts
 
@@ -187,6 +191,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	md5 := "md5_example" // string | Filter results where md5 matches value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
@@ -196,7 +201,7 @@ func main() {
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	sha1 := "sha1_example" // string | Filter results where sha1 matches value (optional)
 	sha224 := "sha224_example" // string | Filter results where sha224 matches value (optional)
 	sha256 := "sha256_example" // string | Filter results where sha256 matches value (optional)
@@ -207,7 +212,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ArtifactsAPI.ArtifactsList(context.Background(), pulpDomain).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Md5(md5).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepositoryVersion(repositoryVersion).Sha1(sha1).Sha224(sha224).Sha256(sha256).Sha384(sha384).Sha512(sha512).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -233,6 +238,7 @@ Other parameters are passed through a pointer to a apiArtifactsListRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **md5** | **string** | Filter results where md5 matches value | 
  **offset** | **int32** | The initial index from which to return the results. | 
@@ -242,7 +248,7 @@ Name | Type | Description  | Notes
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
  **sha1** | **string** | Filter results where sha1 matches value | 
  **sha224** | **string** | Filter results where sha224 matches value | 
  **sha256** | **string** | Filter results where sha256 matches value | 
@@ -271,7 +277,7 @@ Name | Type | Description  | Notes
 
 ## ArtifactsRead
 
-> ArtifactResponse ArtifactsRead(ctx, artifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ArtifactResponse ArtifactsRead(ctx, artifactHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an artifact
 
@@ -291,12 +297,13 @@ import (
 
 func main() {
 	artifactHref := "artifactHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ArtifactsAPI.ArtifactsRead(context.Background(), artifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ArtifactsAPI.ArtifactsRead(context.Background(), artifactHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ArtifactsAPI.ArtifactsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -322,6 +329,7 @@ Other parameters are passed through a pointer to a apiArtifactsReadRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

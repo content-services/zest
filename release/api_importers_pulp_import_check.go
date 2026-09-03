@@ -29,10 +29,17 @@ type ImportersPulpImportCheckAPIPulpImportCheckPostRequest struct {
 	ApiService *ImportersPulpImportCheckAPIService
 	pulpDomain string
 	pulpImportCheck *PulpImportCheck
+	xTaskDiagnostics *[]string
 }
 
 func (r ImportersPulpImportCheckAPIPulpImportCheckPostRequest) PulpImportCheck(pulpImportCheck PulpImportCheck) ImportersPulpImportCheckAPIPulpImportCheckPostRequest {
 	r.pulpImportCheck = &pulpImportCheck
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpImportCheckAPIPulpImportCheckPostRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpImportCheckAPIPulpImportCheckPostRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *ImportersPulpImportCheckAPIService) PulpImportCheckPostExecute(r Import
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pulpImportCheck

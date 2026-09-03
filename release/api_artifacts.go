@@ -31,6 +31,7 @@ type ArtifactsAPIArtifactsCreateRequest struct {
 	ApiService *ArtifactsAPIService
 	pulpDomain string
 	file *os.File
+	xTaskDiagnostics *[]string
 	size *int64
 	md5 *string
 	sha1 *string
@@ -43,6 +44,12 @@ type ArtifactsAPIArtifactsCreateRequest struct {
 // The stored file.
 func (r ArtifactsAPIArtifactsCreateRequest) File(file *os.File) ArtifactsAPIArtifactsCreateRequest {
 	r.file = file
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ArtifactsAPIArtifactsCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ArtifactsAPIArtifactsCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -152,6 +159,9 @@ func (a *ArtifactsAPIService) ArtifactsCreateExecute(r ArtifactsAPIArtifactsCrea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -231,6 +241,13 @@ type ArtifactsAPIArtifactsDeleteRequest struct {
 	ctx context.Context
 	ApiService *ArtifactsAPIService
 	artifactHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ArtifactsAPIArtifactsDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ArtifactsAPIArtifactsDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ArtifactsAPIArtifactsDeleteRequest) Execute() (*http.Response, error) {
@@ -292,6 +309,9 @@ func (a *ArtifactsAPIService) ArtifactsDeleteExecute(r ArtifactsAPIArtifactsDele
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -324,6 +344,7 @@ type ArtifactsAPIArtifactsListRequest struct {
 	ctx context.Context
 	ApiService *ArtifactsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	md5 *string
 	offset *int32
@@ -341,6 +362,12 @@ type ArtifactsAPIArtifactsListRequest struct {
 	sha512 *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ArtifactsAPIArtifactsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ArtifactsAPIArtifactsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -397,7 +424,6 @@ func (r ArtifactsAPIArtifactsListRequest) Q(q string) ArtifactsAPIArtifactsListR
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ArtifactsAPIArtifactsListRequest) RepositoryVersion(repositoryVersion string) ArtifactsAPIArtifactsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -573,6 +599,9 @@ func (a *ArtifactsAPIService) ArtifactsListExecute(r ArtifactsAPIArtifactsListRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -614,8 +643,15 @@ type ArtifactsAPIArtifactsReadRequest struct {
 	ctx context.Context
 	ApiService *ArtifactsAPIService
 	artifactHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ArtifactsAPIArtifactsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ArtifactsAPIArtifactsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -712,6 +748,9 @@ func (a *ArtifactsAPIService) ArtifactsReadExecute(r ArtifactsAPIArtifactsReadRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

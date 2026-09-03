@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | A unique name for this remote. | [optional] 
 **Url** | Pointer to **string** | The URL of an external content source. | [optional] 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_ON_DEMAND]
 **CaCert** | Pointer to **NullableString** | A PEM encoded CA certificate used to validate the server certificate presented by the remote server. | [optional] 
 **ClientCert** | Pointer to **NullableString** | A PEM encoded client certificate used for authentication. | [optional] 
 **ClientKey** | Pointer to **NullableString** | A PEM encoded private key used for authentication. | [optional] 
@@ -15,15 +17,13 @@ Name | Type | Description | Notes
 **ProxyPassword** | Pointer to **NullableString** | The password to authenticate to the proxy. Extra leading and trailing whitespace characters are not trimmed. | [optional] 
 **Username** | Pointer to **NullableString** | The username to be used for authentication when syncing. | [optional] 
 **Password** | Pointer to **NullableString** | The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed. | [optional] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
-**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_ON_DEMAND]
 **TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
+**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
 **Includes** | Pointer to **[]string** | A list containing project specifiers for Python packages to include. | [optional] 
 **Excludes** | Pointer to **[]string** | A list containing project specifiers for Python packages to exclude. | [optional] 
@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **PackageTypes** | Pointer to [**[]PackageTypesEnum**](PackageTypesEnum.md) | The package types to sync for Python content. Leave blank to get everypackage type. | [optional] 
 **KeepLatestPackages** | Pointer to **int64** | The amount of latest versions of a package to keep on sync, includespre-releases if synced. Default 0 keeps all versions. | [optional] [default to 0]
 **ExcludePlatforms** | Pointer to [**[]ExcludePlatformsEnum**](ExcludePlatformsEnum.md) | List of platforms to exclude syncing Python packages for. Possible valuesinclude: windows, macos, freebsd, and linux. | [optional] 
+**Provenance** | Pointer to **bool** | Whether to sync available provenances for Python packages. | [optional] [default to false]
 
 ## Methods
 
@@ -100,6 +101,56 @@ SetUrl sets Url field to given value.
 `func (o *PatchedpythonPythonRemote) HasUrl() bool`
 
 HasUrl returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *PatchedpythonPythonRemote) GetPulpLabels() map[string]*string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *PatchedpythonPythonRemote) GetPulpLabelsOk() (*map[string]*string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *PatchedpythonPythonRemote) SetPulpLabels(v map[string]*string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *PatchedpythonPythonRemote) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
+
+### GetPolicy
+
+`func (o *PatchedpythonPythonRemote) GetPolicy() Policy692Enum`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *PatchedpythonPythonRemote) GetPolicyOk() (*Policy692Enum, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *PatchedpythonPythonRemote) SetPolicy(v Policy692Enum)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *PatchedpythonPythonRemote) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
 
 ### GetCaCert
 
@@ -406,66 +457,6 @@ HasPassword returns a boolean if a field has been set.
 `func (o *PatchedpythonPythonRemote) UnsetPassword()`
 
 UnsetPassword ensures that no value is present for Password, not even an explicit nil
-### GetPulpLabels
-
-`func (o *PatchedpythonPythonRemote) GetPulpLabels() map[string]*string`
-
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
-
-### GetPulpLabelsOk
-
-`func (o *PatchedpythonPythonRemote) GetPulpLabelsOk() (*map[string]*string, bool)`
-
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLabels
-
-`func (o *PatchedpythonPythonRemote) SetPulpLabels(v map[string]*string)`
-
-SetPulpLabels sets PulpLabels field to given value.
-
-### HasPulpLabels
-
-`func (o *PatchedpythonPythonRemote) HasPulpLabels() bool`
-
-HasPulpLabels returns a boolean if a field has been set.
-
-### GetDownloadConcurrency
-
-`func (o *PatchedpythonPythonRemote) GetDownloadConcurrency() int64`
-
-GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
-
-### GetDownloadConcurrencyOk
-
-`func (o *PatchedpythonPythonRemote) GetDownloadConcurrencyOk() (*int64, bool)`
-
-GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDownloadConcurrency
-
-`func (o *PatchedpythonPythonRemote) SetDownloadConcurrency(v int64)`
-
-SetDownloadConcurrency sets DownloadConcurrency field to given value.
-
-### HasDownloadConcurrency
-
-`func (o *PatchedpythonPythonRemote) HasDownloadConcurrency() bool`
-
-HasDownloadConcurrency returns a boolean if a field has been set.
-
-### SetDownloadConcurrencyNil
-
-`func (o *PatchedpythonPythonRemote) SetDownloadConcurrencyNil(b bool)`
-
- SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
-
-### UnsetDownloadConcurrency
-`func (o *PatchedpythonPythonRemote) UnsetDownloadConcurrency()`
-
-UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetMaxRetries
 
 `func (o *PatchedpythonPythonRemote) GetMaxRetries() int64`
@@ -501,31 +492,6 @@ HasMaxRetries returns a boolean if a field has been set.
 `func (o *PatchedpythonPythonRemote) UnsetMaxRetries()`
 
 UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
-### GetPolicy
-
-`func (o *PatchedpythonPythonRemote) GetPolicy() Policy692Enum`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *PatchedpythonPythonRemote) GetPolicyOk() (*Policy692Enum, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPolicy
-
-`func (o *PatchedpythonPythonRemote) SetPolicy(v Policy692Enum)`
-
-SetPolicy sets Policy field to given value.
-
-### HasPolicy
-
-`func (o *PatchedpythonPythonRemote) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
 ### GetTotalTimeout
 
 `func (o *PatchedpythonPythonRemote) GetTotalTimeout() float64`
@@ -691,6 +657,41 @@ SetHeaders sets Headers field to given value.
 
 HasHeaders returns a boolean if a field has been set.
 
+### GetDownloadConcurrency
+
+`func (o *PatchedpythonPythonRemote) GetDownloadConcurrency() int64`
+
+GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
+
+### GetDownloadConcurrencyOk
+
+`func (o *PatchedpythonPythonRemote) GetDownloadConcurrencyOk() (*int64, bool)`
+
+GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadConcurrency
+
+`func (o *PatchedpythonPythonRemote) SetDownloadConcurrency(v int64)`
+
+SetDownloadConcurrency sets DownloadConcurrency field to given value.
+
+### HasDownloadConcurrency
+
+`func (o *PatchedpythonPythonRemote) HasDownloadConcurrency() bool`
+
+HasDownloadConcurrency returns a boolean if a field has been set.
+
+### SetDownloadConcurrencyNil
+
+`func (o *PatchedpythonPythonRemote) SetDownloadConcurrencyNil(b bool)`
+
+ SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+
+### UnsetDownloadConcurrency
+`func (o *PatchedpythonPythonRemote) UnsetDownloadConcurrency()`
+
+UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetRateLimit
 
 `func (o *PatchedpythonPythonRemote) GetRateLimit() int64`
@@ -875,6 +876,31 @@ SetExcludePlatforms sets ExcludePlatforms field to given value.
 `func (o *PatchedpythonPythonRemote) HasExcludePlatforms() bool`
 
 HasExcludePlatforms returns a boolean if a field has been set.
+
+### GetProvenance
+
+`func (o *PatchedpythonPythonRemote) GetProvenance() bool`
+
+GetProvenance returns the Provenance field if non-nil, zero value otherwise.
+
+### GetProvenanceOk
+
+`func (o *PatchedpythonPythonRemote) GetProvenanceOk() (*bool, bool)`
+
+GetProvenanceOk returns a tuple with the Provenance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvenance
+
+`func (o *PatchedpythonPythonRemote) SetProvenance(v bool)`
+
+SetProvenance sets Provenance field to given value.
+
+### HasProvenance
+
+`func (o *PatchedpythonPythonRemote) HasProvenance() bool`
+
+HasProvenance returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

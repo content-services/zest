@@ -30,10 +30,17 @@ type TaskGroupsAPITaskGroupsCancelRequest struct {
 	ApiService *TaskGroupsAPIService
 	taskGroupHref string
 	patchedTaskCancel *PatchedTaskCancel
+	xTaskDiagnostics *[]string
 }
 
 func (r TaskGroupsAPITaskGroupsCancelRequest) PatchedTaskCancel(patchedTaskCancel PatchedTaskCancel) TaskGroupsAPITaskGroupsCancelRequest {
 	r.patchedTaskCancel = &patchedTaskCancel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r TaskGroupsAPITaskGroupsCancelRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskGroupsAPITaskGroupsCancelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *TaskGroupsAPIService) TaskGroupsCancelExecute(r TaskGroupsAPITaskGroups
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedTaskCancel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -154,10 +164,17 @@ type TaskGroupsAPITaskGroupsListRequest struct {
 	ctx context.Context
 	ApiService *TaskGroupsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskGroupsAPITaskGroupsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskGroupsAPITaskGroupsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -271,6 +288,9 @@ func (a *TaskGroupsAPIService) TaskGroupsListExecute(r TaskGroupsAPITaskGroupsLi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -312,8 +332,15 @@ type TaskGroupsAPITaskGroupsReadRequest struct {
 	ctx context.Context
 	ApiService *TaskGroupsAPIService
 	taskGroupHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskGroupsAPITaskGroupsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskGroupsAPITaskGroupsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -408,6 +435,9 @@ func (a *TaskGroupsAPIService) TaskGroupsReadExecute(r TaskGroupsAPITaskGroupsRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

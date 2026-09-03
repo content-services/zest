@@ -31,12 +31,15 @@ type ContentFilesAPIContentFileFilesCreateRequest struct {
 	ApiService *ContentFilesAPIService
 	pulpDomain string
 	relativePath *string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 	upload *string
 	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
 }
 
 // Path where the artifact is located relative to distributions base_path
@@ -45,9 +48,21 @@ func (r ContentFilesAPIContentFileFilesCreateRequest) RelativePath(relativePath 
 	return r
 }
 
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
 // A URI of a repository the new content unit should be associated with.
 func (r ContentFilesAPIContentFileFilesCreateRequest) Repository(repository string) ContentFilesAPIContentFileFilesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentFilesAPIContentFileFilesCreateRequest) Overwrite(overwrite bool) ContentFilesAPIContentFileFilesCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -78,6 +93,12 @@ func (r ContentFilesAPIContentFileFilesCreateRequest) Upload(upload string) Cont
 // A url that Pulp can download and turn into the content unit.
 func (r ContentFilesAPIContentFileFilesCreateRequest) FileUrl(fileUrl string) ContentFilesAPIContentFileFilesCreateRequest {
 	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentFilesAPIContentFileFilesCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentFilesAPIContentFileFilesCreateRequest {
+	r.downloaderConfig = &downloaderConfig
 	return r
 }
 
@@ -148,8 +169,14 @@ func (a *ContentFilesAPIService) ContentFileFilesCreateExecute(r ContentFilesAPI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -180,6 +207,13 @@ func (a *ContentFilesAPIService) ContentFileFilesCreateExecute(r ContentFilesAPI
 	}
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -222,6 +256,8 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	ctx context.Context
 	ApiService *ContentFilesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
+	digest *string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -232,12 +268,32 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	pulpLabelSelect *string
 	q *string
 	relativePath *string
+	relativePathContains *string
+	relativePathIcontains *string
+	relativePathIexact *string
+	relativePathIn *[]string
+	relativePathIregex *string
+	relativePathIstartswith *string
+	relativePathRegex *string
+	relativePathStartswith *string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
 	sha256 *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// Filter results where digest matches value
+func (r ContentFilesAPIContentFileFilesListRequest) Digest(digest string) ContentFilesAPIContentFileFilesListRequest {
+	r.digest = &digest
+	return r
 }
 
 // Number of results to return per page.
@@ -300,19 +356,64 @@ func (r ContentFilesAPIContentFileFilesListRequest) RelativePath(relativePath st
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
+// Filter results where relative_path contains value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathContains(relativePathContains string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathContains = &relativePathContains
+	return r
+}
+
+// Filter results where relative_path contains value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathIcontains(relativePathIcontains string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathIcontains = &relativePathIcontains
+	return r
+}
+
+// Filter results where relative_path matches value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathIexact(relativePathIexact string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathIexact = &relativePathIexact
+	return r
+}
+
+// Filter results where relative_path is in a comma-separated list of values
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathIn(relativePathIn []string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathIn = &relativePathIn
+	return r
+}
+
+// Filter results where relative_path matches regex value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathIregex(relativePathIregex string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathIregex = &relativePathIregex
+	return r
+}
+
+// Filter results where relative_path starts with value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathIstartswith(relativePathIstartswith string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathIstartswith = &relativePathIstartswith
+	return r
+}
+
+// Filter results where relative_path matches regex value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathRegex(relativePathRegex string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathRegex = &relativePathRegex
+	return r
+}
+
+// Filter results where relative_path starts with value
+func (r ContentFilesAPIContentFileFilesListRequest) RelativePathStartswith(relativePathStartswith string) ContentFilesAPIContentFileFilesListRequest {
+	r.relativePathStartswith = &relativePathStartswith
+	return r
+}
+
 func (r ContentFilesAPIContentFileFilesListRequest) RepositoryVersion(repositoryVersion string) ContentFilesAPIContentFileFilesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentFilesAPIContentFileFilesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentFilesAPIContentFileFilesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentFilesAPIContentFileFilesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentFilesAPIContentFileFilesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -379,6 +480,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.digest != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "digest", r.digest, "form", "")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -408,6 +512,30 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	}
 	if r.relativePath != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path", r.relativePath, "form", "")
+	}
+	if r.relativePathContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__contains", r.relativePathContains, "form", "")
+	}
+	if r.relativePathIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__icontains", r.relativePathIcontains, "form", "")
+	}
+	if r.relativePathIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__iexact", r.relativePathIexact, "form", "")
+	}
+	if r.relativePathIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__in", r.relativePathIn, "form", "csv")
+	}
+	if r.relativePathIregex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__iregex", r.relativePathIregex, "form", "")
+	}
+	if r.relativePathIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__istartswith", r.relativePathIstartswith, "form", "")
+	}
+	if r.relativePathRegex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__regex", r.relativePathRegex, "form", "")
+	}
+	if r.relativePathStartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__startswith", r.relativePathStartswith, "form", "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
@@ -460,6 +588,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -501,8 +632,15 @@ type ContentFilesAPIContentFileFilesReadRequest struct {
 	ctx context.Context
 	ApiService *ContentFilesAPIService
 	fileFileContentHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -600,6 +738,9 @@ func (a *ContentFilesAPIService) ContentFileFilesReadExecute(r ContentFilesAPICo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -642,10 +783,17 @@ type ContentFilesAPIContentFileFilesSetLabelRequest struct {
 	ApiService *ContentFilesAPIService
 	fileFileContentHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentFilesAPIContentFileFilesSetLabelRequest) SetLabel(setLabel SetLabel) ContentFilesAPIContentFileFilesSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -713,6 +861,9 @@ func (a *ContentFilesAPIService) ContentFileFilesSetLabelExecute(r ContentFilesA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -757,10 +908,17 @@ type ContentFilesAPIContentFileFilesUnsetLabelRequest struct {
 	ApiService *ContentFilesAPIService
 	fileFileContentHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentFilesAPIContentFileFilesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentFilesAPIContentFileFilesUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -828,8 +986,227 @@ func (a *ContentFilesAPIService) ContentFileFilesUnsetLabelExecute(r ContentFile
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentFilesAPIContentFileFilesUploadRequest struct {
+	ctx context.Context
+	ApiService *ContentFilesAPIService
+	pulpDomain string
+	relativePath *string
+	xTaskDiagnostics *[]string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// Path where the artifact is located relative to distributions base_path
+func (r ContentFilesAPIContentFileFilesUploadRequest) RelativePath(relativePath string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.relativePath = &relativePath
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentFilesAPIContentFileFilesUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentFilesAPIContentFileFilesUploadRequest) Overwrite(overwrite bool) ContentFilesAPIContentFileFilesUploadRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentFilesAPIContentFileFilesUploadRequest) PulpLabels(pulpLabels map[string]*string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentFilesAPIContentFileFilesUploadRequest) Artifact(artifact string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentFilesAPIContentFileFilesUploadRequest) File(file *os.File) ContentFilesAPIContentFileFilesUploadRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentFilesAPIContentFileFilesUploadRequest) Upload(upload string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentFilesAPIContentFileFilesUploadRequest) FileUrl(fileUrl string) ContentFilesAPIContentFileFilesUploadRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentFilesAPIContentFileFilesUploadRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentFilesAPIContentFileFilesUploadRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+func (r ContentFilesAPIContentFileFilesUploadRequest) Execute() (*FileContentUploadResponse, *http.Response, error) {
+	return r.ApiService.ContentFileFilesUploadExecute(r)
+}
+
+/*
+ContentFileFilesUpload Upload a File synchronously.
+
+Synchronously upload a File.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return ContentFilesAPIContentFileFilesUploadRequest
+*/
+func (a *ContentFilesAPIService) ContentFileFilesUpload(ctx context.Context, pulpDomain string) ContentFilesAPIContentFileFilesUploadRequest {
+	return ContentFilesAPIContentFileFilesUploadRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return FileContentUploadResponse
+func (a *ContentFilesAPIService) ContentFileFilesUploadExecute(r ContentFilesAPIContentFileFilesUploadRequest) (*FileContentUploadResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileContentUploadResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentFilesAPIService.ContentFileFilesUpload")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/file/files/upload/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.relativePath == nil {
+		return localVarReturnValue, nil, reportError("relativePath is required and must be specified")
+	}
+	if strlen(*r.relativePath) < 1 {
+		return localVarReturnValue, nil, reportError("relativePath must have at least 1 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

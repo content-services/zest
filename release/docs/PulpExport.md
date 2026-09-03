@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Versions** | Pointer to **[]string** | List of explicit repo-version hrefs to export (replaces current_version). | [optional] 
 **ChunkSize** | Pointer to **string** | Chunk export-tarfile into pieces of chunk_size bytes. Recognizes units of B/KB/MB/GB/TB. A chunk has a maximum size of 1TB. | [optional] 
 **StartVersions** | Pointer to **[]string** | List of explicit last-exported-repo-version hrefs (replaces last_export). | [optional] 
+**Meta** | Pointer to **map[string]interface{}** | Dictionary of meta information about the export. Stored in the TOC JSON. | [optional] 
 
 ## Methods
 
@@ -189,6 +190,31 @@ SetStartVersions sets StartVersions field to given value.
 `func (o *PulpExport) HasStartVersions() bool`
 
 HasStartVersions returns a boolean if a field has been set.
+
+### GetMeta
+
+`func (o *PulpExport) GetMeta() map[string]interface{}`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *PulpExport) GetMetaOk() (*map[string]interface{}, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *PulpExport) SetMeta(v map[string]interface{})`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *PulpExport) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

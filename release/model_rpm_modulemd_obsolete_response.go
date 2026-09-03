@@ -31,6 +31,7 @@ type RpmModulemdObsoleteResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Obsolete modified time.
 	Modified string `json:"modified"`
 	// Modulemd name.
@@ -238,6 +239,38 @@ func (o *RpmModulemdObsoleteResponse) HasPulpLabels() bool {
 // SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
 func (o *RpmModulemdObsoleteResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
+}
+
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *RpmModulemdObsoleteResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmModulemdObsoleteResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *RpmModulemdObsoleteResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *RpmModulemdObsoleteResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
 }
 
 // GetModified returns the Modified field value
@@ -491,6 +524,9 @@ func (o RpmModulemdObsoleteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	toSerialize["modified"] = o.Modified
 	toSerialize["module_name"] = o.ModuleName
 	toSerialize["module_stream"] = o.ModuleStream
@@ -556,6 +592,7 @@ func (o *RpmModulemdObsoleteResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "modified")
 		delete(additionalProperties, "module_name")
 		delete(additionalProperties, "module_stream")

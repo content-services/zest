@@ -11,11 +11,13 @@ Name | Type | Description | Notes
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
 **ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
+**ContentGuardPrn** | Pointer to **string** | The Pulp Resource Name (PRN) of the associated optional content guard. | [optional] [readonly] 
 **NoContentChangeSince** | Pointer to **string** | Timestamp since when the distributed content served by this distribution has not changed. If equals to &#x60;null&#x60;, no guarantee is provided about content changes. | [optional] [readonly] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
+**RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Publication** | Pointer to **NullableString** | Publication to be served | [optional] 
 **Checkpoint** | Pointer to **bool** |  | [optional] 
 
@@ -218,6 +220,31 @@ HasContentGuard returns a boolean if a field has been set.
 `func (o *FileFileDistributionResponse) UnsetContentGuard()`
 
 UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
+### GetContentGuardPrn
+
+`func (o *FileFileDistributionResponse) GetContentGuardPrn() string`
+
+GetContentGuardPrn returns the ContentGuardPrn field if non-nil, zero value otherwise.
+
+### GetContentGuardPrnOk
+
+`func (o *FileFileDistributionResponse) GetContentGuardPrnOk() (*string, bool)`
+
+GetContentGuardPrnOk returns a tuple with the ContentGuardPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentGuardPrn
+
+`func (o *FileFileDistributionResponse) SetContentGuardPrn(v string)`
+
+SetContentGuardPrn sets ContentGuardPrn field to given value.
+
+### HasContentGuardPrn
+
+`func (o *FileFileDistributionResponse) HasContentGuardPrn() bool`
+
+HasContentGuardPrn returns a boolean if a field has been set.
+
 ### GetNoContentChangeSince
 
 `func (o *FileFileDistributionResponse) GetNoContentChangeSince() string`
@@ -348,6 +375,41 @@ HasRepository returns a boolean if a field has been set.
 `func (o *FileFileDistributionResponse) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
+### GetRepositoryVersion
+
+`func (o *FileFileDistributionResponse) GetRepositoryVersion() string`
+
+GetRepositoryVersion returns the RepositoryVersion field if non-nil, zero value otherwise.
+
+### GetRepositoryVersionOk
+
+`func (o *FileFileDistributionResponse) GetRepositoryVersionOk() (*string, bool)`
+
+GetRepositoryVersionOk returns a tuple with the RepositoryVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepositoryVersion
+
+`func (o *FileFileDistributionResponse) SetRepositoryVersion(v string)`
+
+SetRepositoryVersion sets RepositoryVersion field to given value.
+
+### HasRepositoryVersion
+
+`func (o *FileFileDistributionResponse) HasRepositoryVersion() bool`
+
+HasRepositoryVersion returns a boolean if a field has been set.
+
+### SetRepositoryVersionNil
+
+`func (o *FileFileDistributionResponse) SetRepositoryVersionNil(b bool)`
+
+ SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+
+### UnsetRepositoryVersion
+`func (o *FileFileDistributionResponse) UnsetRepositoryVersion()`
+
+UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
 ### GetPublication
 
 `func (o *FileFileDistributionResponse) GetPublication() string`

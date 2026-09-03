@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Name** | **string** | Signature name in the format of &#x60;digest_algo:manifest_digest@random_32_chars&#x60; | 
 **Digest** | **string** | sha256 digest of the signature blob | 
 **Type** | **string** | Container signature type, e.g. &#39;atomic&#39; | 
 **KeyId** | **string** | Signing key ID | 
+**Fingerprint** | **NullableString** | Signing key fingerprint | 
 **Timestamp** | **int64** | Timestamp of a signature | 
 **Creator** | **string** | Signature creator | 
 **SignedManifest** | **string** | Manifest that is signed | 
@@ -21,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewContainerManifestSignatureResponse
 
-`func NewContainerManifestSignatureResponse(name string, digest string, type_ string, keyId string, timestamp int64, creator string, signedManifest string, ) *ContainerManifestSignatureResponse`
+`func NewContainerManifestSignatureResponse(name string, digest string, type_ string, keyId string, fingerprint NullableString, timestamp int64, creator string, signedManifest string, ) *ContainerManifestSignatureResponse`
 
 NewContainerManifestSignatureResponse instantiates a new ContainerManifestSignatureResponse object
 This constructor will assign default values to properties that have it defined,
@@ -161,6 +163,31 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
+### GetVulnReport
+
+`func (o *ContainerManifestSignatureResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *ContainerManifestSignatureResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *ContainerManifestSignatureResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *ContainerManifestSignatureResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *ContainerManifestSignatureResponse) GetName() string`
@@ -241,6 +268,36 @@ and a boolean to check if the value has been set.
 SetKeyId sets KeyId field to given value.
 
 
+### GetFingerprint
+
+`func (o *ContainerManifestSignatureResponse) GetFingerprint() string`
+
+GetFingerprint returns the Fingerprint field if non-nil, zero value otherwise.
+
+### GetFingerprintOk
+
+`func (o *ContainerManifestSignatureResponse) GetFingerprintOk() (*string, bool)`
+
+GetFingerprintOk returns a tuple with the Fingerprint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFingerprint
+
+`func (o *ContainerManifestSignatureResponse) SetFingerprint(v string)`
+
+SetFingerprint sets Fingerprint field to given value.
+
+
+### SetFingerprintNil
+
+`func (o *ContainerManifestSignatureResponse) SetFingerprintNil(b bool)`
+
+ SetFingerprintNil sets the value for Fingerprint to be an explicit nil
+
+### UnsetFingerprint
+`func (o *ContainerManifestSignatureResponse) UnsetFingerprint()`
+
+UnsetFingerprint ensures that no value is present for Fingerprint, not even an explicit nil
 ### GetTimestamp
 
 `func (o *ContainerManifestSignatureResponse) GetTimestamp() int64`

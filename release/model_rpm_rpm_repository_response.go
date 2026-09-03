@@ -38,6 +38,8 @@ type RpmRpmRepositoryResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
 	// Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository.
@@ -46,7 +48,7 @@ type RpmRpmRepositoryResponse struct {
 	MetadataSigningService NullableString `json:"metadata_signing_service,omitempty"`
 	// A reference to an associated package signing service.
 	PackageSigningService NullableString `json:"package_signing_service,omitempty"`
-	// The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository.
+	// The pubkey fingerprint to be passed to the package signing service. Format: 'v<N>:<hex-fingerprint>' or 'keyid:<16-hex-char>'. Example: 'v4:ABCDEF1234567890ABCDEF1234567890ABCDEF12'.
 	PackageSigningFingerprint NullableString `json:"package_signing_fingerprint,omitempty"`
 	// The number of versions of each package to keep in the repository; older versions will be purged. The default is '0', which will disable this feature and keep all versions of each package.
 	RetainPackageVersions *int64 `json:"retain_package_versions,omitempty"`
@@ -69,10 +71,12 @@ type RpmRpmRepositoryResponse struct {
 	SqliteMetadata *bool `json:"sqlite_metadata,omitempty"`
 	// A JSON document describing the config.repo file Pulp should generate for this repo
 	RepoConfig interface{} `json:"repo_config,omitempty"`
-	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz
+	// The compression type to use for metadata files.* `zstd` - zstd* `gz` - gz* `none` - none
 	CompressionType NullableCompressionTypeEnum `json:"compression_type,omitempty"`
-	// How to layout the packages within the published repository.* `nested_alphabetically` - nested_alphabetically* `flat` - flat
+	// How to layout the packages within the published repository.* `nested_alphabetically` - nested_alphabetically* `flat` - flat* `nested_by_digest` - nested_by_digest
 	Layout NullableLayoutEnum `json:"layout,omitempty"`
+	// OSV vulnerability scanning configuration. A JSON list of ecosystem entries, each with a 'name' and required 'releases' field. See [vulnerability-report](https://pulpproject.org/pulp_rpm/docs/user/guides/vulnerability-report) for supported ecosystems and release formats.
+	OsvConfig []PatchedrpmRpmRepositoryOsvConfigInner `json:"osv_config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -430,6 +434,48 @@ func (o *RpmRpmRepositoryResponse) SetRetainRepoVersionsNil() {
 // UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
 func (o *RpmRpmRepositoryResponse) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
+}
+
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RetainCheckpoints.Get()
+}
+
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetRetainCheckpointsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+}
+
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *RpmRpmRepositoryResponse) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
+}
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *RpmRpmRepositoryResponse) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
+}
+
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *RpmRpmRepositoryResponse) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
 }
 
 // GetRemote returns the Remote field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1008,6 +1054,39 @@ func (o *RpmRpmRepositoryResponse) UnsetLayout() {
 	o.Layout.Unset()
 }
 
+// GetOsvConfig returns the OsvConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmRepositoryResponse) GetOsvConfig() []PatchedrpmRpmRepositoryOsvConfigInner {
+	if o == nil {
+		var ret []PatchedrpmRpmRepositoryOsvConfigInner
+		return ret
+	}
+	return o.OsvConfig
+}
+
+// GetOsvConfigOk returns a tuple with the OsvConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmRepositoryResponse) GetOsvConfigOk() ([]PatchedrpmRpmRepositoryOsvConfigInner, bool) {
+	if o == nil || IsNil(o.OsvConfig) {
+		return nil, false
+	}
+	return o.OsvConfig, true
+}
+
+// HasOsvConfig returns a boolean if a field has been set.
+func (o *RpmRpmRepositoryResponse) HasOsvConfig() bool {
+	if o != nil && !IsNil(o.OsvConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsvConfig gets a reference to the given []PatchedrpmRpmRepositoryOsvConfigInner and assigns it to the OsvConfig field.
+func (o *RpmRpmRepositoryResponse) SetOsvConfig(v []PatchedrpmRpmRepositoryOsvConfigInner) {
+	o.OsvConfig = v
+}
+
 func (o RpmRpmRepositoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1045,6 +1124,9 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
 	}
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
@@ -1090,6 +1172,9 @@ func (o RpmRpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Layout.IsSet() {
 		toSerialize["layout"] = o.Layout.Get()
+	}
+	if o.OsvConfig != nil {
+		toSerialize["osv_config"] = o.OsvConfig
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1144,6 +1229,7 @@ func (o *RpmRpmRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "autopublish")
 		delete(additionalProperties, "metadata_signing_service")
@@ -1159,6 +1245,7 @@ func (o *RpmRpmRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "repo_config")
 		delete(additionalProperties, "compression_type")
 		delete(additionalProperties, "layout")
+		delete(additionalProperties, "osv_config")
 		o.AdditionalProperties = additionalProperties
 	}
 

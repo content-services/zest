@@ -10,24 +10,24 @@ Name | Type | Description | Notes
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the most recent update of the remote. | [optional] [readonly] 
 **Name** | **string** | A unique name for this remote. | 
 **Url** | **string** | The URL of an external content source. | 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) |         immediate - All manifests and blobs are downloaded and saved during a sync.        on_demand - Only tags and manifests are downloaded. Blobs are not                    downloaded until they are requested for the first time by a client.        streamed - Blobs are streamed to the client with every request and never saved.        * &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_IMMEDIATE]
+**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **CaCert** | Pointer to **NullableString** | A PEM encoded CA certificate used to validate the server certificate presented by the remote server. | [optional] 
 **ClientCert** | Pointer to **NullableString** | A PEM encoded client certificate used for authentication. | [optional] 
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
 **ProxyUrl** | Pointer to **NullableString** | The proxy URL. Format: scheme://host:port | [optional] 
-**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
-**Policy** | Pointer to [**Policy692Enum**](Policy692Enum.md) |         immediate - All manifests and blobs are downloaded and saved during a sync.        on_demand - Only tags and manifests are downloaded. Blobs are not                    downloaded until they are requested for the first time by a client.        streamed - Blobs are streamed to the client with every request and never saved.        * &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] [default to POLICY692ENUM_IMMEDIATE]
 **TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **Headers** | Pointer to **[]map[string]interface{}** | Headers for aiohttp.Clientsession | [optional] 
+**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
 **RateLimit** | Pointer to **NullableInt64** | Limits requests per second for each concurrent downloader | [optional] 
-**HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **UpstreamName** | **string** | Name of the upstream repository | 
-**IncludeTags** | Pointer to **[]string** |             A list of tags to include during sync.            Wildcards *, ? are recognized.            &#39;include_tags&#39; is evaluated before &#39;exclude_tags&#39;.             | [optional] 
-**ExcludeTags** | Pointer to **[]string** |             A list of tags to exclude during sync.            Wildcards *, ? are recognized.            &#39;exclude_tags&#39; is evaluated after &#39;include_tags&#39;.             | [optional] 
+**Includes** | Pointer to **[]string** | A list of tags (wildcards *, ? are recognized) and/or digests (format: &#39;sha256:&lt;hex&gt;&#39;) to include during sync. &#39;includes&#39; is evaluated before &#39;excludes&#39;. | [optional] 
+**Excludes** | Pointer to **[]string** | A list of tag patterns to exclude during sync. Wildcards *, ? are recognized. &#39;excludes&#39; is evaluated after &#39;includes&#39;. | [optional] 
 **Sigstore** | Pointer to **string** | A URL to a sigstore to download image signatures from | [optional] 
 
 ## Methods
@@ -189,6 +189,81 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
+### GetPulpLabels
+
+`func (o *ContainerContainerRemoteResponse) GetPulpLabels() map[string]*string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *ContainerContainerRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *ContainerContainerRemoteResponse) SetPulpLabels(v map[string]*string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *ContainerContainerRemoteResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
+
+### GetPolicy
+
+`func (o *ContainerContainerRemoteResponse) GetPolicy() Policy692Enum`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *ContainerContainerRemoteResponse) GetPolicyOk() (*Policy692Enum, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *ContainerContainerRemoteResponse) SetPolicy(v Policy692Enum)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *ContainerContainerRemoteResponse) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
+### GetHiddenFields
+
+`func (o *ContainerContainerRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
+
+GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
+
+### GetHiddenFieldsOk
+
+`func (o *ContainerContainerRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
+
+GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHiddenFields
+
+`func (o *ContainerContainerRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
+
+SetHiddenFields sets HiddenFields field to given value.
+
+### HasHiddenFields
+
+`func (o *ContainerContainerRemoteResponse) HasHiddenFields() bool`
+
+HasHiddenFields returns a boolean if a field has been set.
+
 ### GetCaCert
 
 `func (o *ContainerContainerRemoteResponse) GetCaCert() string`
@@ -319,66 +394,6 @@ HasProxyUrl returns a boolean if a field has been set.
 `func (o *ContainerContainerRemoteResponse) UnsetProxyUrl()`
 
 UnsetProxyUrl ensures that no value is present for ProxyUrl, not even an explicit nil
-### GetPulpLabels
-
-`func (o *ContainerContainerRemoteResponse) GetPulpLabels() map[string]*string`
-
-GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
-
-### GetPulpLabelsOk
-
-`func (o *ContainerContainerRemoteResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
-
-GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPulpLabels
-
-`func (o *ContainerContainerRemoteResponse) SetPulpLabels(v map[string]*string)`
-
-SetPulpLabels sets PulpLabels field to given value.
-
-### HasPulpLabels
-
-`func (o *ContainerContainerRemoteResponse) HasPulpLabels() bool`
-
-HasPulpLabels returns a boolean if a field has been set.
-
-### GetDownloadConcurrency
-
-`func (o *ContainerContainerRemoteResponse) GetDownloadConcurrency() int64`
-
-GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
-
-### GetDownloadConcurrencyOk
-
-`func (o *ContainerContainerRemoteResponse) GetDownloadConcurrencyOk() (*int64, bool)`
-
-GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDownloadConcurrency
-
-`func (o *ContainerContainerRemoteResponse) SetDownloadConcurrency(v int64)`
-
-SetDownloadConcurrency sets DownloadConcurrency field to given value.
-
-### HasDownloadConcurrency
-
-`func (o *ContainerContainerRemoteResponse) HasDownloadConcurrency() bool`
-
-HasDownloadConcurrency returns a boolean if a field has been set.
-
-### SetDownloadConcurrencyNil
-
-`func (o *ContainerContainerRemoteResponse) SetDownloadConcurrencyNil(b bool)`
-
- SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
-
-### UnsetDownloadConcurrency
-`func (o *ContainerContainerRemoteResponse) UnsetDownloadConcurrency()`
-
-UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetMaxRetries
 
 `func (o *ContainerContainerRemoteResponse) GetMaxRetries() int64`
@@ -414,31 +429,6 @@ HasMaxRetries returns a boolean if a field has been set.
 `func (o *ContainerContainerRemoteResponse) UnsetMaxRetries()`
 
 UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
-### GetPolicy
-
-`func (o *ContainerContainerRemoteResponse) GetPolicy() Policy692Enum`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *ContainerContainerRemoteResponse) GetPolicyOk() (*Policy692Enum, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPolicy
-
-`func (o *ContainerContainerRemoteResponse) SetPolicy(v Policy692Enum)`
-
-SetPolicy sets Policy field to given value.
-
-### HasPolicy
-
-`func (o *ContainerContainerRemoteResponse) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
 ### GetTotalTimeout
 
 `func (o *ContainerContainerRemoteResponse) GetTotalTimeout() float64`
@@ -604,6 +594,41 @@ SetHeaders sets Headers field to given value.
 
 HasHeaders returns a boolean if a field has been set.
 
+### GetDownloadConcurrency
+
+`func (o *ContainerContainerRemoteResponse) GetDownloadConcurrency() int64`
+
+GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
+
+### GetDownloadConcurrencyOk
+
+`func (o *ContainerContainerRemoteResponse) GetDownloadConcurrencyOk() (*int64, bool)`
+
+GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadConcurrency
+
+`func (o *ContainerContainerRemoteResponse) SetDownloadConcurrency(v int64)`
+
+SetDownloadConcurrency sets DownloadConcurrency field to given value.
+
+### HasDownloadConcurrency
+
+`func (o *ContainerContainerRemoteResponse) HasDownloadConcurrency() bool`
+
+HasDownloadConcurrency returns a boolean if a field has been set.
+
+### SetDownloadConcurrencyNil
+
+`func (o *ContainerContainerRemoteResponse) SetDownloadConcurrencyNil(b bool)`
+
+ SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+
+### UnsetDownloadConcurrency
+`func (o *ContainerContainerRemoteResponse) UnsetDownloadConcurrency()`
+
+UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
 ### GetRateLimit
 
 `func (o *ContainerContainerRemoteResponse) GetRateLimit() int64`
@@ -639,31 +664,6 @@ HasRateLimit returns a boolean if a field has been set.
 `func (o *ContainerContainerRemoteResponse) UnsetRateLimit()`
 
 UnsetRateLimit ensures that no value is present for RateLimit, not even an explicit nil
-### GetHiddenFields
-
-`func (o *ContainerContainerRemoteResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`
-
-GetHiddenFields returns the HiddenFields field if non-nil, zero value otherwise.
-
-### GetHiddenFieldsOk
-
-`func (o *ContainerContainerRemoteResponse) GetHiddenFieldsOk() (*[]GenericRemoteResponseHiddenFieldsInner, bool)`
-
-GetHiddenFieldsOk returns a tuple with the HiddenFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHiddenFields
-
-`func (o *ContainerContainerRemoteResponse) SetHiddenFields(v []GenericRemoteResponseHiddenFieldsInner)`
-
-SetHiddenFields sets HiddenFields field to given value.
-
-### HasHiddenFields
-
-`func (o *ContainerContainerRemoteResponse) HasHiddenFields() bool`
-
-HasHiddenFields returns a boolean if a field has been set.
-
 ### GetUpstreamName
 
 `func (o *ContainerContainerRemoteResponse) GetUpstreamName() string`
@@ -684,76 +684,76 @@ and a boolean to check if the value has been set.
 SetUpstreamName sets UpstreamName field to given value.
 
 
-### GetIncludeTags
+### GetIncludes
 
-`func (o *ContainerContainerRemoteResponse) GetIncludeTags() []string`
+`func (o *ContainerContainerRemoteResponse) GetIncludes() []string`
 
-GetIncludeTags returns the IncludeTags field if non-nil, zero value otherwise.
+GetIncludes returns the Includes field if non-nil, zero value otherwise.
 
-### GetIncludeTagsOk
+### GetIncludesOk
 
-`func (o *ContainerContainerRemoteResponse) GetIncludeTagsOk() (*[]string, bool)`
+`func (o *ContainerContainerRemoteResponse) GetIncludesOk() (*[]string, bool)`
 
-GetIncludeTagsOk returns a tuple with the IncludeTags field if it's non-nil, zero value otherwise
+GetIncludesOk returns a tuple with the Includes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIncludeTags
+### SetIncludes
 
-`func (o *ContainerContainerRemoteResponse) SetIncludeTags(v []string)`
+`func (o *ContainerContainerRemoteResponse) SetIncludes(v []string)`
 
-SetIncludeTags sets IncludeTags field to given value.
+SetIncludes sets Includes field to given value.
 
-### HasIncludeTags
+### HasIncludes
 
-`func (o *ContainerContainerRemoteResponse) HasIncludeTags() bool`
+`func (o *ContainerContainerRemoteResponse) HasIncludes() bool`
 
-HasIncludeTags returns a boolean if a field has been set.
+HasIncludes returns a boolean if a field has been set.
 
-### SetIncludeTagsNil
+### SetIncludesNil
 
-`func (o *ContainerContainerRemoteResponse) SetIncludeTagsNil(b bool)`
+`func (o *ContainerContainerRemoteResponse) SetIncludesNil(b bool)`
 
- SetIncludeTagsNil sets the value for IncludeTags to be an explicit nil
+ SetIncludesNil sets the value for Includes to be an explicit nil
 
-### UnsetIncludeTags
-`func (o *ContainerContainerRemoteResponse) UnsetIncludeTags()`
+### UnsetIncludes
+`func (o *ContainerContainerRemoteResponse) UnsetIncludes()`
 
-UnsetIncludeTags ensures that no value is present for IncludeTags, not even an explicit nil
-### GetExcludeTags
+UnsetIncludes ensures that no value is present for Includes, not even an explicit nil
+### GetExcludes
 
-`func (o *ContainerContainerRemoteResponse) GetExcludeTags() []string`
+`func (o *ContainerContainerRemoteResponse) GetExcludes() []string`
 
-GetExcludeTags returns the ExcludeTags field if non-nil, zero value otherwise.
+GetExcludes returns the Excludes field if non-nil, zero value otherwise.
 
-### GetExcludeTagsOk
+### GetExcludesOk
 
-`func (o *ContainerContainerRemoteResponse) GetExcludeTagsOk() (*[]string, bool)`
+`func (o *ContainerContainerRemoteResponse) GetExcludesOk() (*[]string, bool)`
 
-GetExcludeTagsOk returns a tuple with the ExcludeTags field if it's non-nil, zero value otherwise
+GetExcludesOk returns a tuple with the Excludes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExcludeTags
+### SetExcludes
 
-`func (o *ContainerContainerRemoteResponse) SetExcludeTags(v []string)`
+`func (o *ContainerContainerRemoteResponse) SetExcludes(v []string)`
 
-SetExcludeTags sets ExcludeTags field to given value.
+SetExcludes sets Excludes field to given value.
 
-### HasExcludeTags
+### HasExcludes
 
-`func (o *ContainerContainerRemoteResponse) HasExcludeTags() bool`
+`func (o *ContainerContainerRemoteResponse) HasExcludes() bool`
 
-HasExcludeTags returns a boolean if a field has been set.
+HasExcludes returns a boolean if a field has been set.
 
-### SetExcludeTagsNil
+### SetExcludesNil
 
-`func (o *ContainerContainerRemoteResponse) SetExcludeTagsNil(b bool)`
+`func (o *ContainerContainerRemoteResponse) SetExcludesNil(b bool)`
 
- SetExcludeTagsNil sets the value for ExcludeTags to be an explicit nil
+ SetExcludesNil sets the value for Excludes to be an explicit nil
 
-### UnsetExcludeTags
-`func (o *ContainerContainerRemoteResponse) UnsetExcludeTags()`
+### UnsetExcludes
+`func (o *ContainerContainerRemoteResponse) UnsetExcludes()`
 
-UnsetExcludeTags ensures that no value is present for ExcludeTags, not even an explicit nil
+UnsetExcludes ensures that no value is present for Excludes, not even an explicit nil
 ### GetSigstore
 
 `func (o *ContainerContainerRemoteResponse) GetSigstore() string`

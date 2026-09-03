@@ -4,90 +4,15 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**VulnReportCreate**](VulnReportAPI.md#VulnReportCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | Generate vulnerability report
-[**VulnReportDelete**](VulnReportAPI.md#VulnReportDelete) | **Delete** /{service_vulnerability_report_href} | Delete a vulnerability report
+[**VulnReportDelete**](VulnReportAPI.md#VulnReportDelete) | **Delete** /{vulnerability_report_href} | Delete a vulnerability report
 [**VulnReportList**](VulnReportAPI.md#VulnReportList) | **Get** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | List vulnerability reports
-[**VulnReportRead**](VulnReportAPI.md#VulnReportRead) | **Get** /{service_vulnerability_report_href} | Inspect a vulnerability report
+[**VulnReportRead**](VulnReportAPI.md#VulnReportRead) | **Get** /{vulnerability_report_href} | Inspect a vulnerability report
 
-
-
-## VulnReportCreate
-
-> AsyncOperationResponse VulnReportCreate(ctx, pulpDomain).RepoVersion(repoVersion).PackageJson(packageJson).Execute()
-
-Generate vulnerability report
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/content-services/zest/release/v2026"
-)
-
-func main() {
-	pulpDomain := "pulpDomain_example" // string | 
-	repoVersion := "repoVersion_example" // string | RepositoryVersion HREF with the packages to be checked. (optional)
-	packageJson := os.NewFile(1234, "some_file") // *os.File | package-lock.json file with the definition of dependencies to be checked. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VulnReportAPI.VulnReportCreate(context.Background(), pulpDomain).RepoVersion(repoVersion).PackageJson(packageJson).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportCreate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `VulnReportCreate`: AsyncOperationResponse
-	fmt.Fprintf(os.Stdout, "Response from `VulnReportAPI.VulnReportCreate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pulpDomain** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiVulnReportCreateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **repoVersion** | **string** | RepositoryVersion HREF with the packages to be checked. | 
- **packageJson** | ***os.File** | package-lock.json file with the definition of dependencies to be checked. | 
-
-### Return type
-
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## VulnReportDelete
 
-> VulnReportDelete(ctx, serviceVulnerabilityReportHref).Execute()
+> VulnReportDelete(ctx, vulnerabilityReportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a vulnerability report
 
@@ -106,11 +31,12 @@ import (
 )
 
 func main() {
-	serviceVulnerabilityReportHref := "serviceVulnerabilityReportHref_example" // string | 
+	vulnerabilityReportHref := "vulnerabilityReportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), serviceVulnerabilityReportHref).Execute()
+	r, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), vulnerabilityReportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceVulnerabilityReportHref** | **string** |  | 
+**vulnerabilityReportHref** | **string** |  | 
 
 ### Other Parameters
 
@@ -134,6 +60,7 @@ Other parameters are passed through a pointer to a apiVulnReportDeleteRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -155,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## VulnReportList
 
-> PaginatedserviceVulnerabilityReportResponseList VulnReportList(ctx, pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedVulnerabilityReportResponseList VulnReportList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepoVersions(repoVersions).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List vulnerability reports
 
@@ -175,19 +102,26 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `vulns` - Vulns* `-vulns` - Vulns (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
+	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	repoVersions := "repoVersions_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VulnReportAPI.VulnReportList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.VulnReportAPI.VulnReportList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).RepoVersions(repoVersions).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `VulnReportList`: PaginatedserviceVulnerabilityReportResponseList
+	// response from `VulnReportList`: PaginatedVulnerabilityReportResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VulnReportAPI.VulnReportList`: %v\n", resp)
 }
 ```
@@ -208,14 +142,21 @@ Other parameters are passed through a pointer to a apiVulnReportListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;vulns&#x60; - Vulns* &#x60;-vulns&#x60; - Vulns (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **prnIn** | **[]string** | Multiple values may be separated by commas. | 
+ **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
+ **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
+ **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **repoVersions** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
 ### Return type
 
-[**PaginatedserviceVulnerabilityReportResponseList**](PaginatedserviceVulnerabilityReportResponseList.md)
+[**PaginatedVulnerabilityReportResponseList**](PaginatedVulnerabilityReportResponseList.md)
 
 ### Authorization
 
@@ -233,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## VulnReportRead
 
-> ServiceVulnerabilityReportResponse VulnReportRead(ctx, serviceVulnerabilityReportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> VulnerabilityReportResponse VulnReportRead(ctx, vulnerabilityReportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a vulnerability report
 
@@ -252,18 +193,19 @@ import (
 )
 
 func main() {
-	serviceVulnerabilityReportHref := "serviceVulnerabilityReportHref_example" // string | 
+	vulnerabilityReportHref := "vulnerabilityReportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VulnReportAPI.VulnReportRead(context.Background(), serviceVulnerabilityReportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.VulnReportAPI.VulnReportRead(context.Background(), vulnerabilityReportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VulnReportAPI.VulnReportRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `VulnReportRead`: ServiceVulnerabilityReportResponse
+	// response from `VulnReportRead`: VulnerabilityReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `VulnReportAPI.VulnReportRead`: %v\n", resp)
 }
 ```
@@ -274,7 +216,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceVulnerabilityReportHref** | **string** |  | 
+**vulnerabilityReportHref** | **string** |  | 
 
 ### Other Parameters
 
@@ -284,12 +226,13 @@ Other parameters are passed through a pointer to a apiVulnReportReadRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
 ### Return type
 
-[**ServiceVulnerabilityReportResponse**](ServiceVulnerabilityReportResponse.md)
+[**VulnerabilityReportResponse**](VulnerabilityReportResponse.md)
 
 ### Authorization
 

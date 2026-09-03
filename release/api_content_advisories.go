@@ -30,16 +30,31 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest struct {
 	ctx context.Context
 	ApiService *ContentAdvisoriesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	file *os.File
 	upload *string
 	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// List of profilers to use on tasks.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A URI of a repository the new content unit should be associated with.
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) Repository(repository string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) Overwrite(overwrite bool) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -64,6 +79,12 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) Upload(upload str
 // A url that Pulp can download and turn into the content unit.
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) FileUrl(fileUrl string) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
 	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentAdvisoriesAPIContentRpmAdvisoriesCreateRequest {
+	r.downloaderConfig = &downloaderConfig
 	return r
 }
 
@@ -128,8 +149,14 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesCreateExecute(r Conten
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -156,6 +183,13 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesCreateExecute(r Conten
 	}
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -198,6 +232,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	ctx context.Context
 	ApiService *ContentAdvisoriesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	id *string
 	idIn *[]string
 	limit *int32
@@ -223,6 +258,12 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	typeNe *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where id matches value
@@ -291,19 +332,16 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Q(q string) Content
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) RepositoryVersion(repositoryVersion string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -527,6 +565,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -568,8 +609,15 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesReadRequest struct {
 	ctx context.Context
 	ApiService *ContentAdvisoriesAPIService
 	rpmUpdateRecordHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -667,6 +715,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesReadExecute(r ContentA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -709,10 +760,17 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesSetLabelRequest struct {
 	ApiService *ContentAdvisoriesAPIService
 	rpmUpdateRecordHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesSetLabelRequest) SetLabel(setLabel SetLabel) ContentAdvisoriesAPIContentRpmAdvisoriesSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -780,6 +838,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesSetLabelExecute(r Cont
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -824,10 +885,17 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesUnsetLabelRequest struct {
 	ApiService *ContentAdvisoriesAPIService
 	rpmUpdateRecordHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentAdvisoriesAPIContentRpmAdvisoriesUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -894,6 +962,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesUnsetLabelExecute(r Co
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

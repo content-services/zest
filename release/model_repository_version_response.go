@@ -34,6 +34,7 @@ type RepositoryVersionResponse struct {
 	BaseVersion *string `json:"base_version,omitempty"`
 	// Various count summaries of the content in the version and the HREF to view them.
 	ContentSummary *ContentSummaryResponse `json:"content_summary,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -312,6 +313,38 @@ func (o *RepositoryVersionResponse) SetContentSummary(v ContentSummaryResponse) 
 	o.ContentSummary = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *RepositoryVersionResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RepositoryVersionResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *RepositoryVersionResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *RepositoryVersionResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 func (o RepositoryVersionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -346,6 +379,9 @@ func (o RepositoryVersionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ContentSummary) {
 		toSerialize["content_summary"] = o.ContentSummary
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -376,6 +412,7 @@ func (o *RepositoryVersionResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "repository")
 		delete(additionalProperties, "base_version")
 		delete(additionalProperties, "content_summary")
+		delete(additionalProperties, "vuln_report")
 		o.AdditionalProperties = additionalProperties
 	}
 

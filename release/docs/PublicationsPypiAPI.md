@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## PublicationsPythonPypiAddRole
 
-> NestedRoleResponse PublicationsPythonPypiAddRole(ctx, pythonPythonPublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsPythonPypiAddRole(ctx, pythonPythonPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -38,10 +38,11 @@ import (
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiAddRole(context.Background(), pythonPythonPublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiAddRole(context.Background(), pythonPythonPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiCreate
 
-> AsyncOperationResponse PublicationsPythonPypiCreate(ctx, pulpDomain).PythonPythonPublication(pythonPythonPublication).Execute()
+> AsyncOperationResponse PublicationsPythonPypiCreate(ctx, pulpDomain).PythonPythonPublication(pythonPythonPublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a python publication
 
@@ -110,10 +112,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	pythonPythonPublication := *openapiclient.NewPythonPythonPublication() // PythonPythonPublication | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiCreate(context.Background(), pulpDomain).PythonPythonPublication(pythonPythonPublication).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiCreate(context.Background(), pulpDomain).PythonPythonPublication(pythonPythonPublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pythonPythonPublication** | [**PythonPythonPublication**](PythonPythonPublication.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiDelete
 
-> PublicationsPythonPypiDelete(ctx, pythonPythonPublicationHref).Execute()
+> PublicationsPythonPypiDelete(ctx, pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a python publication
 
@@ -181,10 +185,11 @@ import (
 
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiDelete(context.Background(), pythonPythonPublicationHref).Execute()
+	r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiDelete(context.Background(), pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,6 +213,7 @@ Other parameters are passed through a pointer to a apiPublicationsPythonPypiDele
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -229,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiList
 
-> PaginatedpythonPythonPublicationResponseList PublicationsPythonPypiList(ctx, pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedpythonPythonPublicationResponseList PublicationsPythonPypiList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List python publications
 
@@ -250,6 +256,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	checkpoint := true // bool | Filter results where checkpoint matches value (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -268,13 +275,13 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
-	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiList(context.Background(), pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,6 +307,7 @@ Other parameters are passed through a pointer to a apiPublicationsPythonPypiList
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **checkpoint** | **bool** | Filter results where checkpoint matches value | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -318,7 +326,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -342,7 +350,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiListRoles
 
-> ObjectRolesResponse PublicationsPythonPypiListRoles(ctx, pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse PublicationsPythonPypiListRoles(ctx, pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -362,12 +370,13 @@ import (
 
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiListRoles(context.Background(), pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiListRoles(context.Background(), pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -393,6 +402,7 @@ Other parameters are passed through a pointer to a apiPublicationsPythonPypiList
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -416,7 +426,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiMyPermissions
 
-> MyPermissionsResponse PublicationsPythonPypiMyPermissions(ctx, pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse PublicationsPythonPypiMyPermissions(ctx, pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -436,12 +446,13 @@ import (
 
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiMyPermissions(context.Background(), pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiMyPermissions(context.Background(), pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,6 +478,7 @@ Other parameters are passed through a pointer to a apiPublicationsPythonPypiMyPe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -490,7 +502,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiRead
 
-> PythonPythonPublicationResponse PublicationsPythonPypiRead(ctx, pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PythonPythonPublicationResponse PublicationsPythonPypiRead(ctx, pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a python publication
 
@@ -510,12 +522,13 @@ import (
 
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiRead(context.Background(), pythonPythonPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiRead(context.Background(), pythonPythonPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -541,6 +554,7 @@ Other parameters are passed through a pointer to a apiPublicationsPythonPypiRead
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -564,7 +578,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsPythonPypiRemoveRole
 
-> NestedRoleResponse PublicationsPythonPypiRemoveRole(ctx, pythonPythonPublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsPythonPypiRemoveRole(ctx, pythonPythonPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -585,10 +599,11 @@ import (
 func main() {
 	pythonPythonPublicationHref := "pythonPythonPublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiRemoveRole(context.Background(), pythonPythonPublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsPypiAPI.PublicationsPythonPypiRemoveRole(context.Background(), pythonPythonPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsPypiAPI.PublicationsPythonPypiRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +630,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

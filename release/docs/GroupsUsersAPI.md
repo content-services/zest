@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GroupsUsersCreate
 
-> GroupUserResponse GroupsUsersCreate(ctx, groupHref).GroupUser(groupUser).Execute()
+> GroupUserResponse GroupsUsersCreate(ctx, groupHref).GroupUser(groupUser).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an user
 
@@ -33,10 +33,11 @@ import (
 func main() {
 	groupHref := "groupHref_example" // string | 
 	groupUser := *openapiclient.NewGroupUser("Username_example") // GroupUser | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersCreate(context.Background(), groupHref).GroupUser(groupUser).Execute()
+	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersCreate(context.Background(), groupHref).GroupUser(groupUser).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **groupUser** | [**GroupUser**](GroupUser.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -84,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## GroupsUsersDelete
 
-> GroupsUsersDelete(ctx, groupsUserHref).Execute()
+> GroupsUsersDelete(ctx, groupsUserHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an user
 
@@ -104,10 +106,11 @@ import (
 
 func main() {
 	groupsUserHref := "groupsUserHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.GroupsUsersAPI.GroupsUsersDelete(context.Background(), groupsUserHref).Execute()
+	r, err := apiClient.GroupsUsersAPI.GroupsUsersDelete(context.Background(), groupsUserHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,6 +134,7 @@ Other parameters are passed through a pointer to a apiGroupsUsersDeleteRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -152,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## GroupsUsersList
 
-> PaginatedGroupUserResponseList GroupsUsersList(ctx, groupHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedGroupUserResponseList GroupsUsersList(ctx, groupHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List users
 
@@ -172,6 +176,7 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -179,7 +184,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersList(context.Background(), groupHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsUsersAPI.GroupsUsersList(context.Background(), groupHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsUsersAPI.GroupsUsersList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,6 +210,7 @@ Other parameters are passed through a pointer to a apiGroupsUsersListRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **fields** | **[]string** | A list of fields to include in the response. | 

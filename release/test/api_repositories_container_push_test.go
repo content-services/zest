@@ -64,6 +64,20 @@ func Test_zest_RepositoriesContainerPushAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesContainerPushAPIService RepositoriesContainerContainerPushMigrate", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var containerContainerPushRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesContainerPushAPI.RepositoriesContainerContainerPushMigrate(context.Background(), containerContainerPushRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesContainerPushAPIService RepositoriesContainerContainerPushMyPermissions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## RepositoriesCoreOpenpgpKeyringAddRole
 
-> NestedRoleResponse RepositoriesCoreOpenpgpKeyringAddRole(ctx, openPGPKeyringHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesCoreOpenpgpKeyringAddRole(ctx, openPGPKeyringHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -43,10 +43,11 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringAddRole(context.Background(), openPGPKeyringHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringAddRole(context.Background(), openPGPKeyringHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -73,6 +74,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -94,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringCreate
 
-> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringCreate(ctx, pulpDomain).OpenPGPKeyring(openPGPKeyring).Execute()
+> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringCreate(ctx, pulpDomain).OpenPGPKeyring(openPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an open pgp keyring
 
@@ -115,10 +117,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	openPGPKeyring := *openapiclient.NewOpenPGPKeyring("Name_example") // OpenPGPKeyring | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringCreate(context.Background(), pulpDomain).OpenPGPKeyring(openPGPKeyring).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringCreate(context.Background(), pulpDomain).OpenPGPKeyring(openPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,6 +148,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **openPGPKeyring** | [**OpenPGPKeyring**](OpenPGPKeyring.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -166,7 +170,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringDelete
 
-> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringDelete(ctx, openPGPKeyringHref).Execute()
+> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringDelete(ctx, openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an open pgp keyring
 
@@ -186,10 +190,11 @@ import (
 
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringDelete(context.Background(), openPGPKeyringHref).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringDelete(context.Background(), openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -215,6 +220,7 @@ Other parameters are passed through a pointer to a apiRepositoriesCoreOpenpgpKey
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -236,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringList
 
-> PaginatedOpenPGPKeyringResponseList RepositoriesCoreOpenpgpKeyringList(ctx, pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedOpenPGPKeyringResponseList RepositoriesCoreOpenpgpKeyringList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List open pgp keyrings
 
@@ -256,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	latestWithContent := "latestWithContent_example" // string | Content Unit referenced by HREF/PRN (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
@@ -268,13 +275,21 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `retain_checkpoints` - Retain checkpoints* `-retain_checkpoints` - Retain checkpoints (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
+	remote := "remote_example" // string |  (optional)
+	retainCheckpoints := int32(56) // int32 | Filter results where retain_checkpoints matches value (optional)
+	retainCheckpointsGt := int32(56) // int32 | Filter results where retain_checkpoints is greater than value (optional)
+	retainCheckpointsGte := int32(56) // int32 | Filter results where retain_checkpoints is greater than or equal to value (optional)
+	retainCheckpointsIsnull := true // bool | Filter results where retain_checkpoints has a null value (optional)
+	retainCheckpointsLt := int32(56) // int32 | Filter results where retain_checkpoints is less than value (optional)
+	retainCheckpointsLte := int32(56) // int32 | Filter results where retain_checkpoints is less than or equal to value (optional)
+	retainCheckpointsNe := int32(56) // int32 | Filter results where retain_checkpoints not equal to value (optional)
+	retainCheckpointsRange := []int32{int32(123)} // []int32 | Filter results where retain_checkpoints is between two comma separated values (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
 	retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
 	retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)
@@ -289,7 +304,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringList(context.Background(), pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -315,6 +330,7 @@ Other parameters are passed through a pointer to a apiRepositoriesCoreOpenpgpKey
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **latestWithContent** | **string** | Content Unit referenced by HREF/PRN | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
@@ -327,13 +343,21 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **remote** | **string** | Foreign Key referenced by HREF | 
+ **remote** | **string** |  | 
+ **retainCheckpoints** | **int32** | Filter results where retain_checkpoints matches value | 
+ **retainCheckpointsGt** | **int32** | Filter results where retain_checkpoints is greater than value | 
+ **retainCheckpointsGte** | **int32** | Filter results where retain_checkpoints is greater than or equal to value | 
+ **retainCheckpointsIsnull** | **bool** | Filter results where retain_checkpoints has a null value | 
+ **retainCheckpointsLt** | **int32** | Filter results where retain_checkpoints is less than value | 
+ **retainCheckpointsLte** | **int32** | Filter results where retain_checkpoints is less than or equal to value | 
+ **retainCheckpointsNe** | **int32** | Filter results where retain_checkpoints not equal to value | 
+ **retainCheckpointsRange** | **[]int32** | Filter results where retain_checkpoints is between two comma separated values | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 
  **retainRepoVersionsGt** | **int32** | Filter results where retain_repo_versions is greater than value | 
  **retainRepoVersionsGte** | **int32** | Filter results where retain_repo_versions is greater than or equal to value | 
@@ -366,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringListRoles
 
-> ObjectRolesResponse RepositoriesCoreOpenpgpKeyringListRoles(ctx, openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RepositoriesCoreOpenpgpKeyringListRoles(ctx, openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -386,12 +410,13 @@ import (
 
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringListRoles(context.Background(), openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringListRoles(context.Background(), openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -417,6 +442,7 @@ Other parameters are passed through a pointer to a apiRepositoriesCoreOpenpgpKey
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -440,7 +466,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringModify
 
-> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringModify(ctx, openPGPKeyringHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
+> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringModify(ctx, openPGPKeyringHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Modify Repository Content
 
@@ -461,10 +487,11 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	repositoryAddRemoveContent := *openapiclient.NewRepositoryAddRemoveContent() // RepositoryAddRemoveContent | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringModify(context.Background(), openPGPKeyringHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringModify(context.Background(), openPGPKeyringHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringModify``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -491,6 +518,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repositoryAddRemoveContent** | [**RepositoryAddRemoveContent**](RepositoryAddRemoveContent.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -512,7 +540,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringMyPermissions
 
-> MyPermissionsResponse RepositoriesCoreOpenpgpKeyringMyPermissions(ctx, openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RepositoriesCoreOpenpgpKeyringMyPermissions(ctx, openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -532,12 +560,13 @@ import (
 
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringMyPermissions(context.Background(), openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringMyPermissions(context.Background(), openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -563,6 +592,7 @@ Other parameters are passed through a pointer to a apiRepositoriesCoreOpenpgpKey
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -586,7 +616,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringPartialUpdate
 
-> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringPartialUpdate(ctx, openPGPKeyringHref).PatchedOpenPGPKeyring(patchedOpenPGPKeyring).Execute()
+> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringPartialUpdate(ctx, openPGPKeyringHref).PatchedOpenPGPKeyring(patchedOpenPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an open pgp keyring
 
@@ -607,15 +637,16 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	patchedOpenPGPKeyring := *openapiclient.NewPatchedOpenPGPKeyring() // PatchedOpenPGPKeyring | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringPartialUpdate(context.Background(), openPGPKeyringHref).PatchedOpenPGPKeyring(patchedOpenPGPKeyring).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringPartialUpdate(context.Background(), openPGPKeyringHref).PatchedOpenPGPKeyring(patchedOpenPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesCoreOpenpgpKeyringPartialUpdate`: AsyncOperationResponse
+	// response from `RepositoriesCoreOpenpgpKeyringPartialUpdate`: OpenPGPKeyringResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringPartialUpdate`: %v\n", resp)
 }
 ```
@@ -637,10 +668,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedOpenPGPKeyring** | [**PatchedOpenPGPKeyring**](PatchedOpenPGPKeyring.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**OpenPGPKeyringResponse**](OpenPGPKeyringResponse.md)
 
 ### Authorization
 
@@ -658,7 +690,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringRead
 
-> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringRead(ctx, openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringRead(ctx, openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an open pgp keyring
 
@@ -678,12 +710,13 @@ import (
 
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRead(context.Background(), openPGPKeyringHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRead(context.Background(), openPGPKeyringHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -709,6 +742,7 @@ Other parameters are passed through a pointer to a apiRepositoriesCoreOpenpgpKey
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -732,7 +766,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringRemoveRole
 
-> NestedRoleResponse RepositoriesCoreOpenpgpKeyringRemoveRole(ctx, openPGPKeyringHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesCoreOpenpgpKeyringRemoveRole(ctx, openPGPKeyringHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -753,10 +787,11 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRemoveRole(context.Background(), openPGPKeyringHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRemoveRole(context.Background(), openPGPKeyringHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -783,6 +818,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -804,7 +840,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringSetLabel
 
-> SetLabelResponse RepositoriesCoreOpenpgpKeyringSetLabel(ctx, openPGPKeyringHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RepositoriesCoreOpenpgpKeyringSetLabel(ctx, openPGPKeyringHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -825,10 +861,11 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringSetLabel(context.Background(), openPGPKeyringHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringSetLabel(context.Background(), openPGPKeyringHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -855,6 +892,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -876,7 +914,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringUnsetLabel
 
-> UnsetLabelResponse RepositoriesCoreOpenpgpKeyringUnsetLabel(ctx, openPGPKeyringHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RepositoriesCoreOpenpgpKeyringUnsetLabel(ctx, openPGPKeyringHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -897,10 +935,11 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUnsetLabel(context.Background(), openPGPKeyringHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUnsetLabel(context.Background(), openPGPKeyringHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -927,6 +966,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -948,7 +988,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesCoreOpenpgpKeyringUpdate
 
-> AsyncOperationResponse RepositoriesCoreOpenpgpKeyringUpdate(ctx, openPGPKeyringHref).OpenPGPKeyring(openPGPKeyring).Execute()
+> OpenPGPKeyringResponse RepositoriesCoreOpenpgpKeyringUpdate(ctx, openPGPKeyringHref).OpenPGPKeyring(openPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an open pgp keyring
 
@@ -969,15 +1009,16 @@ import (
 func main() {
 	openPGPKeyringHref := "openPGPKeyringHref_example" // string | 
 	openPGPKeyring := *openapiclient.NewOpenPGPKeyring("Name_example") // OpenPGPKeyring | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUpdate(context.Background(), openPGPKeyringHref).OpenPGPKeyring(openPGPKeyring).Execute()
+	resp, r, err := apiClient.RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUpdate(context.Background(), openPGPKeyringHref).OpenPGPKeyring(openPGPKeyring).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesCoreOpenpgpKeyringUpdate`: AsyncOperationResponse
+	// response from `RepositoriesCoreOpenpgpKeyringUpdate`: OpenPGPKeyringResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesOpenpgpKeyringAPI.RepositoriesCoreOpenpgpKeyringUpdate`: %v\n", resp)
 }
 ```
@@ -999,10 +1040,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **openPGPKeyring** | [**OpenPGPKeyring**](OpenPGPKeyring.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**OpenPGPKeyringResponse**](OpenPGPKeyringResponse.md)
 
 ### Authorization
 

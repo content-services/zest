@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ApiPulpMavenGet
 
-> ApiPulpMavenGet(ctx, name, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ApiPulpMavenGet(ctx, name, path, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -33,12 +33,13 @@ func main() {
 	name := "name_example" // string | 
 	path := "path_example" // string | 
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApiMavenAPI.ApiPulpMavenGet(context.Background(), name, path, pulpDomain).Fields(fields).ExcludeFields(excludeFields).Execute()
+	r, err := apiClient.ApiMavenAPI.ApiPulpMavenGet(context.Background(), name, path, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiMavenAPI.ApiPulpMavenGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 
 
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## ApiPulpMavenPut
 
-> ApiPulpMavenPut(ctx, name, path, pulpDomain).Execute()
+> ApiPulpMavenPut(ctx, name, path, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -111,10 +113,11 @@ func main() {
 	name := "name_example" // string | 
 	path := "path_example" // string | 
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApiMavenAPI.ApiPulpMavenPut(context.Background(), name, path, pulpDomain).Execute()
+	r, err := apiClient.ApiMavenAPI.ApiPulpMavenPut(context.Background(), name, path, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiMavenAPI.ApiPulpMavenPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 
 
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

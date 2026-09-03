@@ -27,6 +27,7 @@ type TaskGroupResponse struct {
 	// A description of the task group.
 	Description string `json:"description"`
 	// Whether all tasks have been spawned for this task group.
+	// Deprecated
 	AllTasksDispatched bool `json:"all_tasks_dispatched"`
 	// Number of tasks in the 'waiting' state
 	Waiting *int64 `json:"waiting,omitempty"`
@@ -157,6 +158,7 @@ func (o *TaskGroupResponse) SetDescription(v string) {
 }
 
 // GetAllTasksDispatched returns the AllTasksDispatched field value
+// Deprecated
 func (o *TaskGroupResponse) GetAllTasksDispatched() bool {
 	if o == nil {
 		var ret bool
@@ -168,6 +170,7 @@ func (o *TaskGroupResponse) GetAllTasksDispatched() bool {
 
 // GetAllTasksDispatchedOk returns a tuple with the AllTasksDispatched field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TaskGroupResponse) GetAllTasksDispatchedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
@@ -176,6 +179,7 @@ func (o *TaskGroupResponse) GetAllTasksDispatchedOk() (*bool, bool) {
 }
 
 // SetAllTasksDispatched sets field value
+// Deprecated
 func (o *TaskGroupResponse) SetAllTasksDispatched(v bool) {
 	o.AllTasksDispatched = v
 }

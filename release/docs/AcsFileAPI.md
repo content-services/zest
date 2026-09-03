@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## AcsFileFileAddRole
 
-> NestedRoleResponse AcsFileFileAddRole(ctx, fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse AcsFileFileAddRole(ctx, fileFileAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -41,10 +41,11 @@ import (
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileAddRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileAddRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -92,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileCreate
 
-> FileFileAlternateContentSourceResponse AcsFileFileCreate(ctx, pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+> FileFileAlternateContentSourceResponse AcsFileFileCreate(ctx, pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a file alternate content source
 
@@ -113,10 +115,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileCreate(context.Background(), pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileCreate(context.Background(), pulpDomain).FileFileAlternateContentSource(fileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -143,6 +146,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fileFileAlternateContentSource** | [**FileFileAlternateContentSource**](FileFileAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -164,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileDelete
 
-> AsyncOperationResponse AcsFileFileDelete(ctx, fileFileAlternateContentSourceHref).Execute()
+> AsyncOperationResponse AcsFileFileDelete(ctx, fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a file alternate content source
 
@@ -184,10 +188,11 @@ import (
 
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileDelete(context.Background(), fileFileAlternateContentSourceHref).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileDelete(context.Background(), fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,6 +218,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileDeleteRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -234,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileList
 
-> PaginatedfileFileAlternateContentSourceResponseList AcsFileFileList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedfileFileAlternateContentSourceResponseList AcsFileFileList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List file alternate content sources
 
@@ -254,6 +260,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -275,7 +282,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -301,6 +308,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileListRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -340,7 +348,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileListRoles
 
-> ObjectRolesResponse AcsFileFileListRoles(ctx, fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse AcsFileFileListRoles(ctx, fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -360,12 +368,13 @@ import (
 
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileListRoles(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileListRoles(context.Background(), fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -391,6 +400,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileListRolesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -414,7 +424,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileMyPermissions
 
-> MyPermissionsResponse AcsFileFileMyPermissions(ctx, fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse AcsFileFileMyPermissions(ctx, fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -434,12 +444,13 @@ import (
 
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileMyPermissions(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileMyPermissions(context.Background(), fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -465,6 +476,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileMyPermissionsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -488,7 +500,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFilePartialUpdate
 
-> AsyncOperationResponse AcsFileFilePartialUpdate(ctx, fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).Execute()
+> FileFileAlternateContentSourceResponse AcsFileFilePartialUpdate(ctx, fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a file alternate content source
 
@@ -509,15 +521,16 @@ import (
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 	patchedfileFileAlternateContentSource := *openapiclient.NewPatchedfileFileAlternateContentSource() // PatchedfileFileAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFilePartialUpdate(context.Background(), fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFilePartialUpdate(context.Background(), fileFileAlternateContentSourceHref).PatchedfileFileAlternateContentSource(patchedfileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFilePartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcsFileFilePartialUpdate`: AsyncOperationResponse
+	// response from `AcsFileFilePartialUpdate`: FileFileAlternateContentSourceResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFilePartialUpdate`: %v\n", resp)
 }
 ```
@@ -539,10 +552,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedfileFileAlternateContentSource** | [**PatchedfileFileAlternateContentSource**](PatchedfileFileAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**FileFileAlternateContentSourceResponse**](FileFileAlternateContentSourceResponse.md)
 
 ### Authorization
 
@@ -560,7 +574,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileRead
 
-> FileFileAlternateContentSourceResponse AcsFileFileRead(ctx, fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> FileFileAlternateContentSourceResponse AcsFileFileRead(ctx, fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a file alternate content source
 
@@ -580,12 +594,13 @@ import (
 
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRead(context.Background(), fileFileAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRead(context.Background(), fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -611,6 +626,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileReadRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -634,7 +650,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileRefresh
 
-> TaskGroupOperationResponse AcsFileFileRefresh(ctx, fileFileAlternateContentSourceHref).Execute()
+> TaskGroupOperationResponse AcsFileFileRefresh(ctx, fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Refresh metadata
 
@@ -654,10 +670,11 @@ import (
 
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRefresh(context.Background(), fileFileAlternateContentSourceHref).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRefresh(context.Background(), fileFileAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRefresh``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -683,6 +700,7 @@ Other parameters are passed through a pointer to a apiAcsFileFileRefreshRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -704,7 +722,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileRemoveRole
 
-> NestedRoleResponse AcsFileFileRemoveRole(ctx, fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse AcsFileFileRemoveRole(ctx, fileFileAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -725,10 +743,11 @@ import (
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRemoveRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileRemoveRole(context.Background(), fileFileAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -755,6 +774,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -776,7 +796,7 @@ Name | Type | Description  | Notes
 
 ## AcsFileFileUpdate
 
-> AsyncOperationResponse AcsFileFileUpdate(ctx, fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+> FileFileAlternateContentSourceResponse AcsFileFileUpdate(ctx, fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a file alternate content source
 
@@ -797,15 +817,16 @@ import (
 func main() {
 	fileFileAlternateContentSourceHref := "fileFileAlternateContentSourceHref_example" // string | 
 	fileFileAlternateContentSource := *openapiclient.NewFileFileAlternateContentSource("Name_example", "Remote_example") // FileFileAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsFileAPI.AcsFileFileUpdate(context.Background(), fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsFileAPI.AcsFileFileUpdate(context.Background(), fileFileAlternateContentSourceHref).FileFileAlternateContentSource(fileFileAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsFileAPI.AcsFileFileUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcsFileFileUpdate`: AsyncOperationResponse
+	// response from `AcsFileFileUpdate`: FileFileAlternateContentSourceResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcsFileAPI.AcsFileFileUpdate`: %v\n", resp)
 }
 ```
@@ -827,10 +848,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fileFileAlternateContentSource** | [**FileFileAlternateContentSource**](FileFileAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**FileFileAlternateContentSourceResponse**](FileFileAlternateContentSourceResponse.md)
 
 ### Authorization
 

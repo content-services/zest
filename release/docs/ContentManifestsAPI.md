@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ContentContainerManifestsList
 
-> PaginatedcontainerManifestResponseList ContentContainerManifestsList(ctx, pulpDomain).Digest(digest).DigestIn(digestIn).IsBootable(isBootable).IsFlatpak(isFlatpak).Limit(limit).MediaType(mediaType).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcontainerManifestResponseList ContentContainerManifestsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Digest(digest).DigestIn(digestIn).IsBootable(isBootable).IsFlatpak(isFlatpak).Limit(limit).MediaType(mediaType).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List manifests
 
@@ -33,6 +33,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	digest := "digest_example" // string | Filter results where digest matches value (optional)
 	digestIn := []string{"Inner_example"} // []string | Filter results where digest is in a comma-separated list of values (optional)
 	isBootable := true // bool | Filter results where is_bootable matches value (optional)
@@ -47,15 +48,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsList(context.Background(), pulpDomain).Digest(digest).DigestIn(digestIn).IsBootable(isBootable).IsFlatpak(isFlatpak).Limit(limit).MediaType(mediaType).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Digest(digest).DigestIn(digestIn).IsBootable(isBootable).IsFlatpak(isFlatpak).Limit(limit).MediaType(mediaType).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentManifestsAPI.ContentContainerManifestsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -81,6 +82,7 @@ Other parameters are passed through a pointer to a apiContentContainerManifestsL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **digest** | **string** | Filter results where digest matches value | 
  **digestIn** | **[]string** | Filter results where digest is in a comma-separated list of values | 
  **isBootable** | **bool** | Filter results where is_bootable matches value | 
@@ -95,9 +97,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -121,7 +123,7 @@ Name | Type | Description  | Notes
 
 ## ContentContainerManifestsRead
 
-> ContainerManifestResponse ContentContainerManifestsRead(ctx, containerManifestHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContainerManifestResponse ContentContainerManifestsRead(ctx, containerManifestHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a manifest
 
@@ -141,12 +143,13 @@ import (
 
 func main() {
 	containerManifestHref := "containerManifestHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsRead(context.Background(), containerManifestHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsRead(context.Background(), containerManifestHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentManifestsAPI.ContentContainerManifestsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -172,6 +175,7 @@ Other parameters are passed through a pointer to a apiContentContainerManifestsR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -195,7 +199,7 @@ Name | Type | Description  | Notes
 
 ## ContentContainerManifestsSetLabel
 
-> SetLabelResponse ContentContainerManifestsSetLabel(ctx, containerManifestHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentContainerManifestsSetLabel(ctx, containerManifestHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -216,10 +220,11 @@ import (
 func main() {
 	containerManifestHref := "containerManifestHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsSetLabel(context.Background(), containerManifestHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsSetLabel(context.Background(), containerManifestHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentManifestsAPI.ContentContainerManifestsSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -246,6 +251,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -267,7 +273,7 @@ Name | Type | Description  | Notes
 
 ## ContentContainerManifestsUnsetLabel
 
-> UnsetLabelResponse ContentContainerManifestsUnsetLabel(ctx, containerManifestHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentContainerManifestsUnsetLabel(ctx, containerManifestHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -288,10 +294,11 @@ import (
 func main() {
 	containerManifestHref := "containerManifestHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsUnsetLabel(context.Background(), containerManifestHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentManifestsAPI.ContentContainerManifestsUnsetLabel(context.Background(), containerManifestHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentManifestsAPI.ContentContainerManifestsUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -318,6 +325,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## PublicationsRpmRpmAddRole
 
-> NestedRoleResponse PublicationsRpmRpmAddRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsRpmRpmAddRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -38,10 +38,11 @@ import (
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmAddRole(context.Background(), rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmAddRole(context.Background(), rpmRpmPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmCreate
 
-> AsyncOperationResponse PublicationsRpmRpmCreate(ctx, pulpDomain).RpmRpmPublication(rpmRpmPublication).Execute()
+> AsyncOperationResponse PublicationsRpmRpmCreate(ctx, pulpDomain).RpmRpmPublication(rpmRpmPublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rpm publication
 
@@ -110,10 +112,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmRpmPublication := *openapiclient.NewRpmRpmPublication() // RpmRpmPublication | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmPublication(rpmRpmPublication).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmPublication(rpmRpmPublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmPublication** | [**RpmRpmPublication**](RpmRpmPublication.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmDelete
 
-> PublicationsRpmRpmDelete(ctx, rpmRpmPublicationHref).Execute()
+> PublicationsRpmRpmDelete(ctx, rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rpm publication
 
@@ -181,10 +185,11 @@ import (
 
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmDelete(context.Background(), rpmRpmPublicationHref).Execute()
+	r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmDelete(context.Background(), rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,6 +213,7 @@ Other parameters are passed through a pointer to a apiPublicationsRpmRpmDeleteRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -229,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmList
 
-> PaginatedrpmRpmPublicationResponseList PublicationsRpmRpmList(ctx, pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmPublicationResponseList PublicationsRpmRpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm publications
 
@@ -250,6 +256,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	checkpoint := true // bool | Filter results where checkpoint matches value (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -268,13 +275,13 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
-	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmList(context.Background(), pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,6 +307,7 @@ Other parameters are passed through a pointer to a apiPublicationsRpmRpmListRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **checkpoint** | **bool** | Filter results where checkpoint matches value | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -318,7 +326,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -342,7 +350,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmListRoles
 
-> ObjectRolesResponse PublicationsRpmRpmListRoles(ctx, rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse PublicationsRpmRpmListRoles(ctx, rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -362,12 +370,13 @@ import (
 
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmListRoles(context.Background(), rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmListRoles(context.Background(), rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -393,6 +402,7 @@ Other parameters are passed through a pointer to a apiPublicationsRpmRpmListRole
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -416,7 +426,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmMyPermissions
 
-> MyPermissionsResponse PublicationsRpmRpmMyPermissions(ctx, rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse PublicationsRpmRpmMyPermissions(ctx, rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -436,12 +446,13 @@ import (
 
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmMyPermissions(context.Background(), rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmMyPermissions(context.Background(), rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,6 +478,7 @@ Other parameters are passed through a pointer to a apiPublicationsRpmRpmMyPermis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -490,7 +502,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmRead
 
-> RpmRpmPublicationResponse PublicationsRpmRpmRead(ctx, rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmRpmPublicationResponse PublicationsRpmRpmRead(ctx, rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rpm publication
 
@@ -510,12 +522,13 @@ import (
 
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmRead(context.Background(), rpmRpmPublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmRead(context.Background(), rpmRpmPublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -541,6 +554,7 @@ Other parameters are passed through a pointer to a apiPublicationsRpmRpmReadRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -564,7 +578,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsRpmRpmRemoveRole
 
-> NestedRoleResponse PublicationsRpmRpmRemoveRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsRpmRpmRemoveRole(ctx, rpmRpmPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -585,10 +599,11 @@ import (
 func main() {
 	rpmRpmPublicationHref := "rpmRpmPublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmRemoveRole(context.Background(), rpmRpmPublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsRpmAPI.PublicationsRpmRpmRemoveRole(context.Background(), rpmRpmPublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsRpmAPI.PublicationsRpmRpmRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +630,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

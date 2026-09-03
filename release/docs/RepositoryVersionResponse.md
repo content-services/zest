@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Repository** | Pointer to **string** |  | [optional] [readonly] 
 **BaseVersion** | Pointer to **string** | A repository version whose content was used as the initial set of content for this repository version | [optional] 
 **ContentSummary** | Pointer to [**ContentSummaryResponse**](ContentSummaryResponse.md) | Various count summaries of the content in the version and the HREF to view them. | [optional] [readonly] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetContentSummary sets ContentSummary field to given value.
 `func (o *RepositoryVersionResponse) HasContentSummary() bool`
 
 HasContentSummary returns a boolean if a field has been set.
+
+### GetVulnReport
+
+`func (o *RepositoryVersionResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *RepositoryVersionResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *RepositoryVersionResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *RepositoryVersionResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

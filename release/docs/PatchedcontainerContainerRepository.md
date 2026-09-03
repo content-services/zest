@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A unique name for this repository. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
 **Remote** | Pointer to **NullableString** | An optional remote to use by default when syncing. | [optional] 
 **ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 
@@ -150,6 +151,41 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *PatchedcontainerContainerRepository) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetRetainCheckpoints
+
+`func (o *PatchedcontainerContainerRepository) GetRetainCheckpoints() int64`
+
+GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
+
+### GetRetainCheckpointsOk
+
+`func (o *PatchedcontainerContainerRepository) GetRetainCheckpointsOk() (*int64, bool)`
+
+GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainCheckpoints
+
+`func (o *PatchedcontainerContainerRepository) SetRetainCheckpoints(v int64)`
+
+SetRetainCheckpoints sets RetainCheckpoints field to given value.
+
+### HasRetainCheckpoints
+
+`func (o *PatchedcontainerContainerRepository) HasRetainCheckpoints() bool`
+
+HasRetainCheckpoints returns a boolean if a field has been set.
+
+### SetRetainCheckpointsNil
+
+`func (o *PatchedcontainerContainerRepository) SetRetainCheckpointsNil(b bool)`
+
+ SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+
+### UnsetRetainCheckpoints
+`func (o *PatchedcontainerContainerRepository) UnsetRetainCheckpoints()`
+
+UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
 ### GetRemote
 
 `func (o *PatchedcontainerContainerRepository) GetRemote() string`

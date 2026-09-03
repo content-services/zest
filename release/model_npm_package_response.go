@@ -14,13 +14,12 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the NpmPackageResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NpmPackageResponse{}
 
-// NpmPackageResponse A Serializer for Package.Add serializers for the new fields defined in Package andadd those fields to the Meta class keeping fields from the parent class as well.For example::field1 = serializers.TextField()field2 = serializers.IntegerField()field3 = serializers.CharField()class Meta:    fields = core_serializers.SingleArtifactContentSerializer.Meta.fields + (        'field1', 'field2', 'field3'    )    model = models.Package
+// NpmPackageResponse A Serializer for NpmPackage.
 type NpmPackageResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// The Pulp Resource Name (PRN).
@@ -31,11 +30,15 @@ type NpmPackageResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
-	RelativePath string `json:"relative_path"`
-	Name string `json:"name"`
-	Version string `json:"version"`
+	// Path where the artifact is located relative to distributions base_path. If not provided, it will be computed from name and version.
+	RelativePath *string `json:"relative_path,omitempty"`
+	// The name of the npm package.
+	Name *string `json:"name,omitempty"`
+	// The version of the npm package.
+	Version *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,11 +48,8 @@ type _NpmPackageResponse NpmPackageResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNpmPackageResponse(relativePath string, name string, version string) *NpmPackageResponse {
+func NewNpmPackageResponse() *NpmPackageResponse {
 	this := NpmPackageResponse{}
-	this.RelativePath = relativePath
-	this.Name = name
-	this.Version = version
 	return &this
 }
 
@@ -221,6 +221,38 @@ func (o *NpmPackageResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *NpmPackageResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NpmPackageResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *NpmPackageResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *NpmPackageResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
 func (o *NpmPackageResponse) GetArtifact() string {
 	if o == nil || IsNil(o.Artifact) {
@@ -253,76 +285,100 @@ func (o *NpmPackageResponse) SetArtifact(v string) {
 	o.Artifact = &v
 }
 
-// GetRelativePath returns the RelativePath field value
+// GetRelativePath returns the RelativePath field value if set, zero value otherwise.
 func (o *NpmPackageResponse) GetRelativePath() string {
-	if o == nil {
+	if o == nil || IsNil(o.RelativePath) {
 		var ret string
 		return ret
 	}
-
-	return o.RelativePath
+	return *o.RelativePath
 }
 
-// GetRelativePathOk returns a tuple with the RelativePath field value
+// GetRelativePathOk returns a tuple with the RelativePath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackageResponse) GetRelativePathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RelativePath) {
 		return nil, false
 	}
-	return &o.RelativePath, true
+	return o.RelativePath, true
 }
 
-// SetRelativePath sets field value
+// HasRelativePath returns a boolean if a field has been set.
+func (o *NpmPackageResponse) HasRelativePath() bool {
+	if o != nil && !IsNil(o.RelativePath) {
+		return true
+	}
+
+	return false
+}
+
+// SetRelativePath gets a reference to the given string and assigns it to the RelativePath field.
 func (o *NpmPackageResponse) SetRelativePath(v string) {
-	o.RelativePath = v
+	o.RelativePath = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *NpmPackageResponse) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackageResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *NpmPackageResponse) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *NpmPackageResponse) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *NpmPackageResponse) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackageResponse) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *NpmPackageResponse) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *NpmPackageResponse) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
 func (o NpmPackageResponse) MarshalJSON() ([]byte, error) {
@@ -350,12 +406,21 @@ func (o NpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
 	}
-	toSerialize["relative_path"] = o.RelativePath
-	toSerialize["name"] = o.Name
-	toSerialize["version"] = o.Version
+	if !IsNil(o.RelativePath) {
+		toSerialize["relative_path"] = o.RelativePath
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -365,29 +430,6 @@ func (o NpmPackageResponse) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *NpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"relative_path",
-		"name",
-		"version",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varNpmPackageResponse := _NpmPackageResponse{}
 
 	err = json.Unmarshal(data, &varNpmPackageResponse)
@@ -406,6 +448,7 @@ func (o *NpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "name")

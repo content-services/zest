@@ -29,10 +29,17 @@ type RepairAPIRepairPostRequest struct {
 	ApiService *RepairAPIService
 	pulpDomain string
 	repair *Repair
+	xTaskDiagnostics *[]string
 }
 
 func (r RepairAPIRepairPostRequest) Repair(repair Repair) RepairAPIRepairPostRequest {
 	r.repair = &repair
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepairAPIRepairPostRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepairAPIRepairPostRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *RepairAPIService) RepairPostExecute(r RepairAPIRepairPostRequest) (*Asy
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.repair

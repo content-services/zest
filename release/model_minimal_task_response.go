@@ -29,6 +29,8 @@ type MinimalTaskResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
+	// The API-version that was invoked when creating the task.
+	PulpApiVersion *string `json:"pulp_api_version,omitempty"`
 	// The name of task.
 	Name string `json:"name"`
 	// The current state of the task. The possible values include: 'waiting', 'skipped', 'running', 'completed', 'failed', 'canceled' and 'canceling'.
@@ -39,8 +41,8 @@ type MinimalTaskResponse struct {
 	StartedAt *time.Time `json:"started_at,omitempty"`
 	// Timestamp of when this task stopped execution.
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
-	// The worker associated with this task. This field is empty if a worker is not yet assigned.
-	Worker *string `json:"worker,omitempty"`
+	// DEPRECATED - Always null
+	Worker NullableString `json:"worker,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,6 +54,8 @@ type _MinimalTaskResponse MinimalTaskResponse
 // will change when the set of required properties is changed
 func NewMinimalTaskResponse(name string) *MinimalTaskResponse {
 	this := MinimalTaskResponse{}
+	var pulpApiVersion string = "v3"
+	this.PulpApiVersion = &pulpApiVersion
 	this.Name = name
 	return &this
 }
@@ -61,6 +65,8 @@ func NewMinimalTaskResponse(name string) *MinimalTaskResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewMinimalTaskResponseWithDefaults() *MinimalTaskResponse {
 	this := MinimalTaskResponse{}
+	var pulpApiVersion string = "v3"
+	this.PulpApiVersion = &pulpApiVersion
 	return &this
 }
 
@@ -190,6 +196,38 @@ func (o *MinimalTaskResponse) HasPulpLastUpdated() bool {
 // SetPulpLastUpdated gets a reference to the given time.Time and assigns it to the PulpLastUpdated field.
 func (o *MinimalTaskResponse) SetPulpLastUpdated(v time.Time) {
 	o.PulpLastUpdated = &v
+}
+
+// GetPulpApiVersion returns the PulpApiVersion field value if set, zero value otherwise.
+func (o *MinimalTaskResponse) GetPulpApiVersion() string {
+	if o == nil || IsNil(o.PulpApiVersion) {
+		var ret string
+		return ret
+	}
+	return *o.PulpApiVersion
+}
+
+// GetPulpApiVersionOk returns a tuple with the PulpApiVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MinimalTaskResponse) GetPulpApiVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.PulpApiVersion) {
+		return nil, false
+	}
+	return o.PulpApiVersion, true
+}
+
+// HasPulpApiVersion returns a boolean if a field has been set.
+func (o *MinimalTaskResponse) HasPulpApiVersion() bool {
+	if o != nil && !IsNil(o.PulpApiVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpApiVersion gets a reference to the given string and assigns it to the PulpApiVersion field.
+func (o *MinimalTaskResponse) SetPulpApiVersion(v string) {
+	o.PulpApiVersion = &v
 }
 
 // GetName returns the Name field value
@@ -344,36 +382,46 @@ func (o *MinimalTaskResponse) SetFinishedAt(v time.Time) {
 	o.FinishedAt = &v
 }
 
-// GetWorker returns the Worker field value if set, zero value otherwise.
+// GetWorker returns the Worker field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MinimalTaskResponse) GetWorker() string {
-	if o == nil || IsNil(o.Worker) {
+	if o == nil || IsNil(o.Worker.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Worker
+	return *o.Worker.Get()
 }
 
 // GetWorkerOk returns a tuple with the Worker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MinimalTaskResponse) GetWorkerOk() (*string, bool) {
-	if o == nil || IsNil(o.Worker) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Worker, true
+	return o.Worker.Get(), o.Worker.IsSet()
 }
 
 // HasWorker returns a boolean if a field has been set.
 func (o *MinimalTaskResponse) HasWorker() bool {
-	if o != nil && !IsNil(o.Worker) {
+	if o != nil && o.Worker.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWorker gets a reference to the given string and assigns it to the Worker field.
+// SetWorker gets a reference to the given NullableString and assigns it to the Worker field.
 func (o *MinimalTaskResponse) SetWorker(v string) {
-	o.Worker = &v
+	o.Worker.Set(&v)
+}
+// SetWorkerNil sets the value for Worker to be an explicit nil
+func (o *MinimalTaskResponse) SetWorkerNil() {
+	o.Worker.Set(nil)
+}
+
+// UnsetWorker ensures that no value is present for Worker, not even an explicit nil
+func (o *MinimalTaskResponse) UnsetWorker() {
+	o.Worker.Unset()
 }
 
 func (o MinimalTaskResponse) MarshalJSON() ([]byte, error) {
@@ -398,6 +446,9 @@ func (o MinimalTaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLastUpdated) {
 		toSerialize["pulp_last_updated"] = o.PulpLastUpdated
 	}
+	if !IsNil(o.PulpApiVersion) {
+		toSerialize["pulp_api_version"] = o.PulpApiVersion
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
@@ -411,8 +462,8 @@ func (o MinimalTaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FinishedAt) {
 		toSerialize["finished_at"] = o.FinishedAt
 	}
-	if !IsNil(o.Worker) {
-		toSerialize["worker"] = o.Worker
+	if o.Worker.IsSet() {
+		toSerialize["worker"] = o.Worker.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -461,6 +512,7 @@ func (o *MinimalTaskResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "prn")
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
+		delete(additionalProperties, "pulp_api_version")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "state")
 		delete(additionalProperties, "unblocked_at")

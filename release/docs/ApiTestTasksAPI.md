@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## ApiPulpTestTasksGet
 
-> ApiPulpTestTasksGet(ctx).Execute()
+> ApiPulpTestTasksGet(ctx).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -27,10 +27,13 @@ import (
 )
 
 func main() {
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApiTestTasksAPI.ApiPulpTestTasksGet(context.Background()).Execute()
+	r, err := apiClient.ApiTestTasksAPI.ApiPulpTestTasksGet(context.Background()).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApiTestTasksAPI.ApiPulpTestTasksGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -40,12 +43,18 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiApiPulpTestTasksGetRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
 ### Return type
 

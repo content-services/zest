@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## ContentguardsCertguardRhsmCreate
 
-> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmCreate(ctx, pulpDomain).CertguardRHSMCertGuard(certguardRHSMCertGuard).Execute()
+> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmCreate(ctx, pulpDomain).CertguardRHSMCertGuard(certguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rhsm cert guard
 
@@ -36,10 +36,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	certguardRHSMCertGuard := *openapiclient.NewCertguardRHSMCertGuard("Name_example", "CaCertificate_example") // CertguardRHSMCertGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmCreate(context.Background(), pulpDomain).CertguardRHSMCertGuard(certguardRHSMCertGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmCreate(context.Background(), pulpDomain).CertguardRHSMCertGuard(certguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **certguardRHSMCertGuard** | [**CertguardRHSMCertGuard**](CertguardRHSMCertGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -87,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCertguardRhsmDelete
 
-> ContentguardsCertguardRhsmDelete(ctx, certguardRHSMCertGuardHref).Execute()
+> ContentguardsCertguardRhsmDelete(ctx, certguardRHSMCertGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rhsm cert guard
 
@@ -107,10 +109,11 @@ import (
 
 func main() {
 	certguardRHSMCertGuardHref := "certguardRHSMCertGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmDelete(context.Background(), certguardRHSMCertGuardHref).Execute()
+	r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmDelete(context.Background(), certguardRHSMCertGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +137,7 @@ Other parameters are passed through a pointer to a apiContentguardsCertguardRhsm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -155,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCertguardRhsmList
 
-> PaginatedcertguardRHSMCertGuardResponseList ContentguardsCertguardRhsmList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcertguardRHSMCertGuardResponseList ContentguardsCertguardRhsmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rhsm cert guards
 
@@ -175,6 +179,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -196,7 +201,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -222,6 +227,7 @@ Other parameters are passed through a pointer to a apiContentguardsCertguardRhsm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -261,7 +267,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCertguardRhsmPartialUpdate
 
-> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmPartialUpdate(ctx, certguardRHSMCertGuardHref).PatchedcertguardRHSMCertGuard(patchedcertguardRHSMCertGuard).Execute()
+> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmPartialUpdate(ctx, certguardRHSMCertGuardHref).PatchedcertguardRHSMCertGuard(patchedcertguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rhsm cert guard
 
@@ -282,10 +288,11 @@ import (
 func main() {
 	certguardRHSMCertGuardHref := "certguardRHSMCertGuardHref_example" // string | 
 	patchedcertguardRHSMCertGuard := *openapiclient.NewPatchedcertguardRHSMCertGuard() // PatchedcertguardRHSMCertGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmPartialUpdate(context.Background(), certguardRHSMCertGuardHref).PatchedcertguardRHSMCertGuard(patchedcertguardRHSMCertGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmPartialUpdate(context.Background(), certguardRHSMCertGuardHref).PatchedcertguardRHSMCertGuard(patchedcertguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -312,6 +319,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedcertguardRHSMCertGuard** | [**PatchedcertguardRHSMCertGuard**](PatchedcertguardRHSMCertGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -333,7 +341,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCertguardRhsmRead
 
-> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmRead(ctx, certguardRHSMCertGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmRead(ctx, certguardRHSMCertGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rhsm cert guard
 
@@ -353,12 +361,13 @@ import (
 
 func main() {
 	certguardRHSMCertGuardHref := "certguardRHSMCertGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmRead(context.Background(), certguardRHSMCertGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmRead(context.Background(), certguardRHSMCertGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -384,6 +393,7 @@ Other parameters are passed through a pointer to a apiContentguardsCertguardRhsm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -407,7 +417,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCertguardRhsmUpdate
 
-> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmUpdate(ctx, certguardRHSMCertGuardHref).CertguardRHSMCertGuard(certguardRHSMCertGuard).Execute()
+> CertguardRHSMCertGuardResponse ContentguardsCertguardRhsmUpdate(ctx, certguardRHSMCertGuardHref).CertguardRHSMCertGuard(certguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rhsm cert guard
 
@@ -428,10 +438,11 @@ import (
 func main() {
 	certguardRHSMCertGuardHref := "certguardRHSMCertGuardHref_example" // string | 
 	certguardRHSMCertGuard := *openapiclient.NewCertguardRHSMCertGuard("Name_example", "CaCertificate_example") // CertguardRHSMCertGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmUpdate(context.Background(), certguardRHSMCertGuardHref).CertguardRHSMCertGuard(certguardRHSMCertGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRhsmAPI.ContentguardsCertguardRhsmUpdate(context.Background(), certguardRHSMCertGuardHref).CertguardRHSMCertGuard(certguardRHSMCertGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRhsmAPI.ContentguardsCertguardRhsmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -458,6 +469,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **certguardRHSMCertGuard** | [**CertguardRHSMCertGuard**](CertguardRHSMCertGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AddContentUnits** | Pointer to **[]string** | A list of content units to add to a new repository version. This content is added after remove_content_units are removed. | [optional] 
 **RemoveContentUnits** | Pointer to **[]string** | A list of content units to remove from the latest repository version. You may also specify &#39;*&#39; as an entry to remove all content. This content is removed before add_content_units are added. | [optional] 
 **BaseVersion** | Pointer to **string** | A repository version whose content will be used as the initial set of content for the new repository version | [optional] 
+**Overwrite** | Pointer to **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Defaults to true. | [optional] [default to true]
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetBaseVersion sets BaseVersion field to given value.
 `func (o *RepositoryAddRemoveContent) HasBaseVersion() bool`
 
 HasBaseVersion returns a boolean if a field has been set.
+
+### GetOverwrite
+
+`func (o *RepositoryAddRemoveContent) GetOverwrite() bool`
+
+GetOverwrite returns the Overwrite field if non-nil, zero value otherwise.
+
+### GetOverwriteOk
+
+`func (o *RepositoryAddRemoveContent) GetOverwriteOk() (*bool, bool)`
+
+GetOverwriteOk returns a tuple with the Overwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverwrite
+
+`func (o *RepositoryAddRemoveContent) SetOverwrite(v bool)`
+
+SetOverwrite sets Overwrite field to given value.
+
+### HasOverwrite
+
+`func (o *RepositoryAddRemoveContent) HasOverwrite() bool`
+
+HasOverwrite returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

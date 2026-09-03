@@ -34,6 +34,8 @@ type PythonPythonDistributionResponse struct {
 	BaseUrl *string `json:"base_url,omitempty"`
 	// An optional content-guard.
 	ContentGuard NullableString `json:"content_guard,omitempty"`
+	// The Pulp Resource Name (PRN) of the associated optional content guard.
+	ContentGuardPrn *string `json:"content_guard_prn,omitempty"`
 	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
 	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
 	// Whether this distribution should be shown in the content app.
@@ -43,7 +45,10 @@ type PythonPythonDistributionResponse struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
-	// Publication to be served
+	// RepositoryVersion to be served.
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
+	// Publication to be served. [Deprecated]
+	// Deprecated
 	Publication NullableString `json:"publication,omitempty"`
 	// Allow packages to be uploaded to this index.
 	AllowUploads *bool `json:"allow_uploads,omitempty"`
@@ -307,6 +312,38 @@ func (o *PythonPythonDistributionResponse) UnsetContentGuard() {
 	o.ContentGuard.Unset()
 }
 
+// GetContentGuardPrn returns the ContentGuardPrn field value if set, zero value otherwise.
+func (o *PythonPythonDistributionResponse) GetContentGuardPrn() string {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		var ret string
+		return ret
+	}
+	return *o.ContentGuardPrn
+}
+
+// GetContentGuardPrnOk returns a tuple with the ContentGuardPrn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonDistributionResponse) GetContentGuardPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		return nil, false
+	}
+	return o.ContentGuardPrn, true
+}
+
+// HasContentGuardPrn returns a boolean if a field has been set.
+func (o *PythonPythonDistributionResponse) HasContentGuardPrn() bool {
+	if o != nil && !IsNil(o.ContentGuardPrn) {
+		return true
+	}
+
+	return false
+}
+
+// SetContentGuardPrn gets a reference to the given string and assigns it to the ContentGuardPrn field.
+func (o *PythonPythonDistributionResponse) SetContentGuardPrn(v string) {
+	o.ContentGuardPrn = &v
+}
+
 // GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
 func (o *PythonPythonDistributionResponse) GetNoContentChangeSince() string {
 	if o == nil || IsNil(o.NoContentChangeSince) {
@@ -469,7 +506,50 @@ func (o *PythonPythonDistributionResponse) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonDistributionResponse) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryVersion.Get()
+}
+
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonDistributionResponse) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+}
+
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *PythonPythonDistributionResponse) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *PythonPythonDistributionResponse) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *PythonPythonDistributionResponse) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
+}
+
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *PythonPythonDistributionResponse) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
+}
+
 // GetPublication returns the Publication field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *PythonPythonDistributionResponse) GetPublication() string {
 	if o == nil || IsNil(o.Publication.Get()) {
 		var ret string
@@ -481,6 +561,7 @@ func (o *PythonPythonDistributionResponse) GetPublication() string {
 // GetPublicationOk returns a tuple with the Publication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *PythonPythonDistributionResponse) GetPublicationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -498,6 +579,7 @@ func (o *PythonPythonDistributionResponse) HasPublication() bool {
 }
 
 // SetPublication gets a reference to the given NullableString and assigns it to the Publication field.
+// Deprecated
 func (o *PythonPythonDistributionResponse) SetPublication(v string) {
 	o.Publication.Set(&v)
 }
@@ -614,6 +696,9 @@ func (o PythonPythonDistributionResponse) ToMap() (map[string]interface{}, error
 	if o.ContentGuard.IsSet() {
 		toSerialize["content_guard"] = o.ContentGuard.Get()
 	}
+	if !IsNil(o.ContentGuardPrn) {
+		toSerialize["content_guard_prn"] = o.ContentGuardPrn
+	}
 	if !IsNil(o.NoContentChangeSince) {
 		toSerialize["no_content_change_since"] = o.NoContentChangeSince
 	}
@@ -626,6 +711,9 @@ func (o PythonPythonDistributionResponse) ToMap() (map[string]interface{}, error
 	toSerialize["name"] = o.Name
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
+	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
 	}
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
@@ -687,11 +775,13 @@ func (o *PythonPythonDistributionResponse) UnmarshalJSON(data []byte) (err error
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "base_url")
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "content_guard_prn")
 		delete(additionalProperties, "no_content_change_since")
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "publication")
 		delete(additionalProperties, "allow_uploads")
 		delete(additionalProperties, "remote")

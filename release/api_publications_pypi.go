@@ -31,10 +31,17 @@ type PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest struct {
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest) NestedRole(nestedRole NestedRole) PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -50,6 +57,8 @@ Add a role for this object to users/groups.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiAddRole(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest{
@@ -61,6 +70,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiAddRole(ctx context.C
 
 // Execute executes the request
 //  @return NestedRoleResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiAddRoleExecute(r PublicationsPypiAPIPublicationsPythonPypiAddRoleRequest) (*NestedRoleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -101,6 +111,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiAddRoleExecute(r Publ
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.nestedRole
@@ -146,10 +159,17 @@ type PublicationsPypiAPIPublicationsPythonPypiCreateRequest struct {
 	ApiService *PublicationsPypiAPIService
 	pulpDomain string
 	pythonPythonPublication *PythonPythonPublication
+	xTaskDiagnostics *[]string
 }
 
 func (r PublicationsPypiAPIPublicationsPythonPypiCreateRequest) PythonPythonPublication(pythonPythonPublication PythonPythonPublication) PublicationsPypiAPIPublicationsPythonPypiCreateRequest {
 	r.pythonPythonPublication = &pythonPythonPublication
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -165,6 +185,8 @@ Dispatches a publish task, which generates metadata that will be used by pip.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
  @return PublicationsPypiAPIPublicationsPythonPypiCreateRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiCreate(ctx context.Context, pulpDomain string) PublicationsPypiAPIPublicationsPythonPypiCreateRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiCreateRequest{
@@ -176,6 +198,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiCreate(ctx context.Co
 
 // Execute executes the request
 //  @return AsyncOperationResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiCreateExecute(r PublicationsPypiAPIPublicationsPythonPypiCreateRequest) (*AsyncOperationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -216,6 +239,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiCreateExecute(r Publi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pythonPythonPublication
@@ -260,6 +286,13 @@ type PublicationsPypiAPIPublicationsPythonPypiDeleteRequest struct {
 	ctx context.Context
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r PublicationsPypiAPIPublicationsPythonPypiDeleteRequest) Execute() (*http.Response, error) {
@@ -269,11 +302,13 @@ func (r PublicationsPypiAPIPublicationsPythonPypiDeleteRequest) Execute() (*http
 /*
 PublicationsPythonPypiDelete Delete a python publication
 
-Python Publications refer to the Python Package content in a repository version, and includemetadata about that content.
+Python Publications refer to the Python Package content in a repository version, and includemetadata about that content. [Deprecated] Seehttps://pulpproject.org/pulp_python/docs/user/guides/host/#migrating-off-publications for moreinformation.Use a repository or repository-version to serve content instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiDeleteRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiDelete(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiDeleteRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiDeleteRequest{
@@ -284,6 +319,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiDelete(ctx context.Co
 }
 
 // Execute executes the request
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiDeleteExecute(r PublicationsPypiAPIPublicationsPythonPypiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
@@ -321,6 +357,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiDeleteExecute(r Publi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -353,6 +392,7 @@ type PublicationsPypiAPIPublicationsPythonPypiListRequest struct {
 	ctx context.Context
 	ApiService *PublicationsPypiAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	checkpoint *bool
 	content *string
 	contentIn *[]string
@@ -374,6 +414,12 @@ type PublicationsPypiAPIPublicationsPythonPypiListRequest struct {
 	repositoryVersion *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where checkpoint matches value
@@ -484,7 +530,6 @@ func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Repository(reposit
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) RepositoryVersion(repositoryVersion string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -509,11 +554,13 @@ func (r PublicationsPypiAPIPublicationsPythonPypiListRequest) Execute() (*Pagina
 /*
 PublicationsPythonPypiList List python publications
 
-Python Publications refer to the Python Package content in a repository version, and includemetadata about that content.
+Python Publications refer to the Python Package content in a repository version, and includemetadata about that content. [Deprecated] Seehttps://pulpproject.org/pulp_python/docs/user/guides/host/#migrating-off-publications for moreinformation.Use a repository or repository-version to serve content instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
  @return PublicationsPypiAPIPublicationsPythonPypiListRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiList(ctx context.Context, pulpDomain string) PublicationsPypiAPIPublicationsPythonPypiListRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiListRequest{
@@ -525,6 +572,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiList(ctx context.Cont
 
 // Execute executes the request
 //  @return PaginatedpythonPythonPublicationResponseList
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiListExecute(r PublicationsPypiAPIPublicationsPythonPypiListRequest) (*PaginatedpythonPythonPublicationResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -642,6 +690,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListExecute(r Publica
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -683,8 +734,15 @@ type PublicationsPypiAPIPublicationsPythonPypiListRolesRequest struct {
 	ctx context.Context
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -711,6 +769,8 @@ List roles assigned to this object.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiListRolesRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiListRoles(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiListRolesRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiListRolesRequest{
@@ -722,6 +782,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListRoles(ctx context
 
 // Execute executes the request
 //  @return ObjectRolesResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiListRolesExecute(r PublicationsPypiAPIPublicationsPythonPypiListRolesRequest) (*ObjectRolesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -782,6 +843,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiListRolesExecute(r Pu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -823,8 +887,15 @@ type PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -851,6 +922,8 @@ List permissions available to the current user on this object.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiMyPermissions(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest{
@@ -862,6 +935,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiMyPermissions(ctx con
 
 // Execute executes the request
 //  @return MyPermissionsResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiMyPermissionsExecute(r PublicationsPypiAPIPublicationsPythonPypiMyPermissionsRequest) (*MyPermissionsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -922,6 +996,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiMyPermissionsExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -963,8 +1040,15 @@ type PublicationsPypiAPIPublicationsPythonPypiReadRequest struct {
 	ctx context.Context
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -986,11 +1070,13 @@ func (r PublicationsPypiAPIPublicationsPythonPypiReadRequest) Execute() (*Python
 /*
 PublicationsPythonPypiRead Inspect a python publication
 
-Python Publications refer to the Python Package content in a repository version, and includemetadata about that content.
+Python Publications refer to the Python Package content in a repository version, and includemetadata about that content. [Deprecated] Seehttps://pulpproject.org/pulp_python/docs/user/guides/host/#migrating-off-publications for moreinformation.Use a repository or repository-version to serve content instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiReadRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiRead(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiReadRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiReadRequest{
@@ -1002,6 +1088,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiRead(ctx context.Cont
 
 // Execute executes the request
 //  @return PythonPythonPublicationResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiReadExecute(r PublicationsPypiAPIPublicationsPythonPypiReadRequest) (*PythonPythonPublicationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1062,6 +1149,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiReadExecute(r Publica
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1104,10 +1194,17 @@ type PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest struct {
 	ApiService *PublicationsPypiAPIService
 	pythonPythonPublicationHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest) NestedRole(nestedRole NestedRole) PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1123,6 +1220,8 @@ Remove a role for this object from users/groups.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonPublicationHref
  @return PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest
+
+Deprecated
 */
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiRemoveRole(ctx context.Context, pythonPythonPublicationHref string) PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest {
 	return PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest{
@@ -1134,6 +1233,7 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiRemoveRole(ctx contex
 
 // Execute executes the request
 //  @return NestedRoleResponse
+// Deprecated
 func (a *PublicationsPypiAPIService) PublicationsPythonPypiRemoveRoleExecute(r PublicationsPypiAPIPublicationsPythonPypiRemoveRoleRequest) (*NestedRoleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1174,6 +1274,9 @@ func (a *PublicationsPypiAPIService) PublicationsPythonPypiRemoveRoleExecute(r P
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.nestedRole

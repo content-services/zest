@@ -30,62 +30,79 @@ type PythonPythonPackageContentResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
-	// The name of the distribution package, usually of the format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.{packagetype}
-	Filename *string `json:"filename,omitempty"`
-	// The type of the distribution package (e.g. sdist, bdist_wheel, bdist_egg, etc)
-	Packagetype *string `json:"packagetype,omitempty"`
-	// The name of the python project.
-	Name *string `json:"name,omitempty"`
-	// The packages version number.
-	Version *string `json:"version,omitempty"`
-	// The SHA256 digest of this package.
-	Sha256 *string `json:"sha256,omitempty"`
-	// Version of the file format
-	MetadataVersion *string `json:"metadata_version,omitempty"`
-	// A one-line summary of what the package does.
-	Summary *string `json:"summary,omitempty"`
-	// A longer description of the package that can run to several paragraphs.
-	Description *string `json:"description,omitempty"`
-	// A string stating the markup syntax (if any) used in the distribution’s description, so that tools can intelligently render the description.
-	DescriptionContentType *string `json:"description_content_type,omitempty"`
-	// Additional keywords to be used to assist searching for the package in a larger catalog.
-	Keywords *string `json:"keywords,omitempty"`
-	// The URL for the package's home page.
-	HomePage *string `json:"home_page,omitempty"`
-	// Legacy field denoting the URL from which this package can be downloaded.
-	DownloadUrl *string `json:"download_url,omitempty"`
 	// Text containing the author's name. Contact information can also be added, separated with newlines.
 	Author *string `json:"author,omitempty"`
 	// The author's e-mail address. 
 	AuthorEmail *string `json:"author_email,omitempty"`
+	// A longer description of the package that can run to several paragraphs.
+	Description *string `json:"description,omitempty"`
+	// The URL for the package's home page.
+	HomePage *string `json:"home_page,omitempty"`
+	// Additional keywords to be used to assist searching for the package in a larger catalog.
+	Keywords *string `json:"keywords,omitempty"`
+	// Text indicating the license covering the distribution
+	License *string `json:"license,omitempty"`
+	// Version of the file format
+	MetadataVersion *string `json:"metadata_version,omitempty"`
+	// The name of the python project.
+	Name *string `json:"name,omitempty"`
+	// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
+	Platform *string `json:"platform,omitempty"`
+	// A one-line summary of what the package does.
+	Summary *string `json:"summary,omitempty"`
+	// The packages version number.
+	Version *string `json:"version,omitempty"`
+	// A JSON list containing classification values for a Python package.
+	Classifiers interface{} `json:"classifiers,omitempty"`
+	// Legacy field denoting the URL from which this package can be downloaded.
+	DownloadUrl *string `json:"download_url,omitempty"`
+	// Field to specify the OS and CPU for which the binary package was compiled. 
+	SupportedPlatform *string `json:"supported_platform,omitempty"`
 	// The maintainer's name at a minimum; additional contact information may be provided.
 	Maintainer *string `json:"maintainer,omitempty"`
 	// The maintainer's e-mail address.
 	MaintainerEmail *string `json:"maintainer_email,omitempty"`
-	// Text indicating the license covering the distribution
-	License *string `json:"license,omitempty"`
-	// The Python version(s) that the distribution is guaranteed to be compatible with.
-	RequiresPython *string `json:"requires_python,omitempty"`
+	// A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
+	ObsoletesDist interface{} `json:"obsoletes_dist,omitempty"`
 	// A browsable URL for the project and a label for it, separated by a comma.
 	ProjectUrl *string `json:"project_url,omitempty"`
 	// A dictionary of labels and URLs for the project.
 	ProjectUrls interface{} `json:"project_urls,omitempty"`
-	// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
-	Platform *string `json:"platform,omitempty"`
-	// Field to specify the OS and CPU for which the binary package was compiled. 
-	SupportedPlatform *string `json:"supported_platform,omitempty"`
-	// A JSON list containing names of some other distutils project required by this distribution.
-	RequiresDist interface{} `json:"requires_dist,omitempty"`
 	// A JSON list containing names of a Distutils project which is contained within this distribution.
 	ProvidesDist interface{} `json:"provides_dist,omitempty"`
-	// A JSON list containing names of a distutils project's distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
-	ObsoletesDist interface{} `json:"obsoletes_dist,omitempty"`
 	// A JSON list containing some dependency in the system that the distribution is to be used.
 	RequiresExternal interface{} `json:"requires_external,omitempty"`
-	// A JSON list containing classification values for a Python package.
-	Classifiers interface{} `json:"classifiers,omitempty"`
+	// A JSON list containing names of some other distutils project required by this distribution.
+	RequiresDist interface{} `json:"requires_dist,omitempty"`
+	// The Python version(s) that the distribution is guaranteed to be compatible with.
+	RequiresPython *string `json:"requires_python,omitempty"`
+	// A string stating the markup syntax (if any) used in the distribution's description, so that tools can intelligently render the description.
+	DescriptionContentType *string `json:"description_content_type,omitempty"`
+	// A JSON list containing names of optional features provided by the package.
+	ProvidesExtras interface{} `json:"provides_extras,omitempty"`
+	// A JSON list containing names of other core metadata fields which are permitted to vary between sdist and bdist packages. Fields NOT marked dynamic MUST be the same between bdist and sdist.
+	Dynamic interface{} `json:"dynamic,omitempty"`
+	// Text string that is a valid SPDX license expression.
+	LicenseExpression *string `json:"license_expression,omitempty"`
+	// A JSON list containing names of the paths to license-related files.
+	LicenseFile interface{} `json:"license_file,omitempty"`
+	// The name of the distribution package, usually of the format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.{packagetype}
+	Filename *string `json:"filename,omitempty"`
+	// The type of the distribution package (e.g. sdist, bdist_wheel, bdist_egg, etc)
+	Packagetype *string `json:"packagetype,omitempty"`
+	// The tag that indicates which Python implementation or version the package requires.
+	PythonVersion *string `json:"python_version,omitempty"`
+	// The size of the package in bytes.
+	Size *int64 `json:"size,omitempty"`
+	// The SHA256 digest of this package.
+	Sha256 *string `json:"sha256,omitempty"`
+	// The SHA256 digest of the package's METADATA file.
+	MetadataSha256 NullableString `json:"metadata_sha256,omitempty"`
+	// The created provenance object on upload.
+	Provenance *string `json:"provenance,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -272,6 +289,38 @@ func (o *PythonPythonPackageContentResponse) SetPulpLabels(v map[string]*string)
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *PythonPythonPackageContentResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
 func (o *PythonPythonPackageContentResponse) GetArtifact() string {
 	if o == nil || IsNil(o.Artifact) {
@@ -302,390 +351,6 @@ func (o *PythonPythonPackageContentResponse) HasArtifact() bool {
 // SetArtifact gets a reference to the given string and assigns it to the Artifact field.
 func (o *PythonPythonPackageContentResponse) SetArtifact(v string) {
 	o.Artifact = &v
-}
-
-// GetFilename returns the Filename field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetFilename() string {
-	if o == nil || IsNil(o.Filename) {
-		var ret string
-		return ret
-	}
-	return *o.Filename
-}
-
-// GetFilenameOk returns a tuple with the Filename field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetFilenameOk() (*string, bool) {
-	if o == nil || IsNil(o.Filename) {
-		return nil, false
-	}
-	return o.Filename, true
-}
-
-// HasFilename returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasFilename() bool {
-	if o != nil && !IsNil(o.Filename) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilename gets a reference to the given string and assigns it to the Filename field.
-func (o *PythonPythonPackageContentResponse) SetFilename(v string) {
-	o.Filename = &v
-}
-
-// GetPackagetype returns the Packagetype field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetPackagetype() string {
-	if o == nil || IsNil(o.Packagetype) {
-		var ret string
-		return ret
-	}
-	return *o.Packagetype
-}
-
-// GetPackagetypeOk returns a tuple with the Packagetype field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetPackagetypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Packagetype) {
-		return nil, false
-	}
-	return o.Packagetype, true
-}
-
-// HasPackagetype returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasPackagetype() bool {
-	if o != nil && !IsNil(o.Packagetype) {
-		return true
-	}
-
-	return false
-}
-
-// SetPackagetype gets a reference to the given string and assigns it to the Packagetype field.
-func (o *PythonPythonPackageContentResponse) SetPackagetype(v string) {
-	o.Packagetype = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PythonPythonPackageContentResponse) SetName(v string) {
-	o.Name = &v
-}
-
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetVersion() string {
-	if o == nil || IsNil(o.Version) {
-		var ret string
-		return ret
-	}
-	return *o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.Version) {
-		return nil, false
-	}
-	return o.Version, true
-}
-
-// HasVersion returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasVersion() bool {
-	if o != nil && !IsNil(o.Version) {
-		return true
-	}
-
-	return false
-}
-
-// SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *PythonPythonPackageContentResponse) SetVersion(v string) {
-	o.Version = &v
-}
-
-// GetSha256 returns the Sha256 field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetSha256() string {
-	if o == nil || IsNil(o.Sha256) {
-		var ret string
-		return ret
-	}
-	return *o.Sha256
-}
-
-// GetSha256Ok returns a tuple with the Sha256 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetSha256Ok() (*string, bool) {
-	if o == nil || IsNil(o.Sha256) {
-		return nil, false
-	}
-	return o.Sha256, true
-}
-
-// HasSha256 returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasSha256() bool {
-	if o != nil && !IsNil(o.Sha256) {
-		return true
-	}
-
-	return false
-}
-
-// SetSha256 gets a reference to the given string and assigns it to the Sha256 field.
-func (o *PythonPythonPackageContentResponse) SetSha256(v string) {
-	o.Sha256 = &v
-}
-
-// GetMetadataVersion returns the MetadataVersion field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetMetadataVersion() string {
-	if o == nil || IsNil(o.MetadataVersion) {
-		var ret string
-		return ret
-	}
-	return *o.MetadataVersion
-}
-
-// GetMetadataVersionOk returns a tuple with the MetadataVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetMetadataVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.MetadataVersion) {
-		return nil, false
-	}
-	return o.MetadataVersion, true
-}
-
-// HasMetadataVersion returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasMetadataVersion() bool {
-	if o != nil && !IsNil(o.MetadataVersion) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadataVersion gets a reference to the given string and assigns it to the MetadataVersion field.
-func (o *PythonPythonPackageContentResponse) SetMetadataVersion(v string) {
-	o.MetadataVersion = &v
-}
-
-// GetSummary returns the Summary field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetSummary() string {
-	if o == nil || IsNil(o.Summary) {
-		var ret string
-		return ret
-	}
-	return *o.Summary
-}
-
-// GetSummaryOk returns a tuple with the Summary field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetSummaryOk() (*string, bool) {
-	if o == nil || IsNil(o.Summary) {
-		return nil, false
-	}
-	return o.Summary, true
-}
-
-// HasSummary returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasSummary() bool {
-	if o != nil && !IsNil(o.Summary) {
-		return true
-	}
-
-	return false
-}
-
-// SetSummary gets a reference to the given string and assigns it to the Summary field.
-func (o *PythonPythonPackageContentResponse) SetSummary(v string) {
-	o.Summary = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PythonPythonPackageContentResponse) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetDescriptionContentType returns the DescriptionContentType field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetDescriptionContentType() string {
-	if o == nil || IsNil(o.DescriptionContentType) {
-		var ret string
-		return ret
-	}
-	return *o.DescriptionContentType
-}
-
-// GetDescriptionContentTypeOk returns a tuple with the DescriptionContentType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetDescriptionContentTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.DescriptionContentType) {
-		return nil, false
-	}
-	return o.DescriptionContentType, true
-}
-
-// HasDescriptionContentType returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasDescriptionContentType() bool {
-	if o != nil && !IsNil(o.DescriptionContentType) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescriptionContentType gets a reference to the given string and assigns it to the DescriptionContentType field.
-func (o *PythonPythonPackageContentResponse) SetDescriptionContentType(v string) {
-	o.DescriptionContentType = &v
-}
-
-// GetKeywords returns the Keywords field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetKeywords() string {
-	if o == nil || IsNil(o.Keywords) {
-		var ret string
-		return ret
-	}
-	return *o.Keywords
-}
-
-// GetKeywordsOk returns a tuple with the Keywords field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetKeywordsOk() (*string, bool) {
-	if o == nil || IsNil(o.Keywords) {
-		return nil, false
-	}
-	return o.Keywords, true
-}
-
-// HasKeywords returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasKeywords() bool {
-	if o != nil && !IsNil(o.Keywords) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeywords gets a reference to the given string and assigns it to the Keywords field.
-func (o *PythonPythonPackageContentResponse) SetKeywords(v string) {
-	o.Keywords = &v
-}
-
-// GetHomePage returns the HomePage field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetHomePage() string {
-	if o == nil || IsNil(o.HomePage) {
-		var ret string
-		return ret
-	}
-	return *o.HomePage
-}
-
-// GetHomePageOk returns a tuple with the HomePage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetHomePageOk() (*string, bool) {
-	if o == nil || IsNil(o.HomePage) {
-		return nil, false
-	}
-	return o.HomePage, true
-}
-
-// HasHomePage returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasHomePage() bool {
-	if o != nil && !IsNil(o.HomePage) {
-		return true
-	}
-
-	return false
-}
-
-// SetHomePage gets a reference to the given string and assigns it to the HomePage field.
-func (o *PythonPythonPackageContentResponse) SetHomePage(v string) {
-	o.HomePage = &v
-}
-
-// GetDownloadUrl returns the DownloadUrl field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetDownloadUrl() string {
-	if o == nil || IsNil(o.DownloadUrl) {
-		var ret string
-		return ret
-	}
-	return *o.DownloadUrl
-}
-
-// GetDownloadUrlOk returns a tuple with the DownloadUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetDownloadUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.DownloadUrl) {
-		return nil, false
-	}
-	return o.DownloadUrl, true
-}
-
-// HasDownloadUrl returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasDownloadUrl() bool {
-	if o != nil && !IsNil(o.DownloadUrl) {
-		return true
-	}
-
-	return false
-}
-
-// SetDownloadUrl gets a reference to the given string and assigns it to the DownloadUrl field.
-func (o *PythonPythonPackageContentResponse) SetDownloadUrl(v string) {
-	o.DownloadUrl = &v
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
@@ -752,6 +417,391 @@ func (o *PythonPythonPackageContentResponse) SetAuthorEmail(v string) {
 	o.AuthorEmail = &v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PythonPythonPackageContentResponse) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetHomePage returns the HomePage field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetHomePage() string {
+	if o == nil || IsNil(o.HomePage) {
+		var ret string
+		return ret
+	}
+	return *o.HomePage
+}
+
+// GetHomePageOk returns a tuple with the HomePage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetHomePageOk() (*string, bool) {
+	if o == nil || IsNil(o.HomePage) {
+		return nil, false
+	}
+	return o.HomePage, true
+}
+
+// HasHomePage returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasHomePage() bool {
+	if o != nil && !IsNil(o.HomePage) {
+		return true
+	}
+
+	return false
+}
+
+// SetHomePage gets a reference to the given string and assigns it to the HomePage field.
+func (o *PythonPythonPackageContentResponse) SetHomePage(v string) {
+	o.HomePage = &v
+}
+
+// GetKeywords returns the Keywords field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetKeywords() string {
+	if o == nil || IsNil(o.Keywords) {
+		var ret string
+		return ret
+	}
+	return *o.Keywords
+}
+
+// GetKeywordsOk returns a tuple with the Keywords field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetKeywordsOk() (*string, bool) {
+	if o == nil || IsNil(o.Keywords) {
+		return nil, false
+	}
+	return o.Keywords, true
+}
+
+// HasKeywords returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasKeywords() bool {
+	if o != nil && !IsNil(o.Keywords) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeywords gets a reference to the given string and assigns it to the Keywords field.
+func (o *PythonPythonPackageContentResponse) SetKeywords(v string) {
+	o.Keywords = &v
+}
+
+// GetLicense returns the License field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetLicense() string {
+	if o == nil || IsNil(o.License) {
+		var ret string
+		return ret
+	}
+	return *o.License
+}
+
+// GetLicenseOk returns a tuple with the License field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetLicenseOk() (*string, bool) {
+	if o == nil || IsNil(o.License) {
+		return nil, false
+	}
+	return o.License, true
+}
+
+// HasLicense returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasLicense() bool {
+	if o != nil && !IsNil(o.License) {
+		return true
+	}
+
+	return false
+}
+
+// SetLicense gets a reference to the given string and assigns it to the License field.
+func (o *PythonPythonPackageContentResponse) SetLicense(v string) {
+	o.License = &v
+}
+
+// GetMetadataVersion returns the MetadataVersion field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetMetadataVersion() string {
+	if o == nil || IsNil(o.MetadataVersion) {
+		var ret string
+		return ret
+	}
+	return *o.MetadataVersion
+}
+
+// GetMetadataVersionOk returns a tuple with the MetadataVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetMetadataVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.MetadataVersion) {
+		return nil, false
+	}
+	return o.MetadataVersion, true
+}
+
+// HasMetadataVersion returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasMetadataVersion() bool {
+	if o != nil && !IsNil(o.MetadataVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataVersion gets a reference to the given string and assigns it to the MetadataVersion field.
+func (o *PythonPythonPackageContentResponse) SetMetadataVersion(v string) {
+	o.MetadataVersion = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PythonPythonPackageContentResponse) SetName(v string) {
+	o.Name = &v
+}
+
+// GetPlatform returns the Platform field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetPlatform() string {
+	if o == nil || IsNil(o.Platform) {
+		var ret string
+		return ret
+	}
+	return *o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetPlatformOk() (*string, bool) {
+	if o == nil || IsNil(o.Platform) {
+		return nil, false
+	}
+	return o.Platform, true
+}
+
+// HasPlatform returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasPlatform() bool {
+	if o != nil && !IsNil(o.Platform) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatform gets a reference to the given string and assigns it to the Platform field.
+func (o *PythonPythonPackageContentResponse) SetPlatform(v string) {
+	o.Platform = &v
+}
+
+// GetSummary returns the Summary field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetSummary() string {
+	if o == nil || IsNil(o.Summary) {
+		var ret string
+		return ret
+	}
+	return *o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetSummaryOk() (*string, bool) {
+	if o == nil || IsNil(o.Summary) {
+		return nil, false
+	}
+	return o.Summary, true
+}
+
+// HasSummary returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasSummary() bool {
+	if o != nil && !IsNil(o.Summary) {
+		return true
+	}
+
+	return false
+}
+
+// SetSummary gets a reference to the given string and assigns it to the Summary field.
+func (o *PythonPythonPackageContentResponse) SetSummary(v string) {
+	o.Summary = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetVersion() string {
+	if o == nil || IsNil(o.Version) {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.Version) {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *PythonPythonPackageContentResponse) SetVersion(v string) {
+	o.Version = &v
+}
+
+// GetClassifiers returns the Classifiers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetClassifiers() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Classifiers
+}
+
+// GetClassifiersOk returns a tuple with the Classifiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Classifiers) {
+		return nil, false
+	}
+	return &o.Classifiers, true
+}
+
+// HasClassifiers returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasClassifiers() bool {
+	if o != nil && !IsNil(o.Classifiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetClassifiers gets a reference to the given interface{} and assigns it to the Classifiers field.
+func (o *PythonPythonPackageContentResponse) SetClassifiers(v interface{}) {
+	o.Classifiers = v
+}
+
+// GetDownloadUrl returns the DownloadUrl field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetDownloadUrl() string {
+	if o == nil || IsNil(o.DownloadUrl) {
+		var ret string
+		return ret
+	}
+	return *o.DownloadUrl
+}
+
+// GetDownloadUrlOk returns a tuple with the DownloadUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetDownloadUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.DownloadUrl) {
+		return nil, false
+	}
+	return o.DownloadUrl, true
+}
+
+// HasDownloadUrl returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasDownloadUrl() bool {
+	if o != nil && !IsNil(o.DownloadUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadUrl gets a reference to the given string and assigns it to the DownloadUrl field.
+func (o *PythonPythonPackageContentResponse) SetDownloadUrl(v string) {
+	o.DownloadUrl = &v
+}
+
+// GetSupportedPlatform returns the SupportedPlatform field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetSupportedPlatform() string {
+	if o == nil || IsNil(o.SupportedPlatform) {
+		var ret string
+		return ret
+	}
+	return *o.SupportedPlatform
+}
+
+// GetSupportedPlatformOk returns a tuple with the SupportedPlatform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetSupportedPlatformOk() (*string, bool) {
+	if o == nil || IsNil(o.SupportedPlatform) {
+		return nil, false
+	}
+	return o.SupportedPlatform, true
+}
+
+// HasSupportedPlatform returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasSupportedPlatform() bool {
+	if o != nil && !IsNil(o.SupportedPlatform) {
+		return true
+	}
+
+	return false
+}
+
+// SetSupportedPlatform gets a reference to the given string and assigns it to the SupportedPlatform field.
+func (o *PythonPythonPackageContentResponse) SetSupportedPlatform(v string) {
+	o.SupportedPlatform = &v
+}
+
 // GetMaintainer returns the Maintainer field value if set, zero value otherwise.
 func (o *PythonPythonPackageContentResponse) GetMaintainer() string {
 	if o == nil || IsNil(o.Maintainer) {
@@ -816,68 +866,37 @@ func (o *PythonPythonPackageContentResponse) SetMaintainerEmail(v string) {
 	o.MaintainerEmail = &v
 }
 
-// GetLicense returns the License field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetLicense() string {
-	if o == nil || IsNil(o.License) {
-		var ret string
+// GetObsoletesDist returns the ObsoletesDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetObsoletesDist() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.License
+	return o.ObsoletesDist
 }
 
-// GetLicenseOk returns a tuple with the License field value if set, nil otherwise
+// GetObsoletesDistOk returns a tuple with the ObsoletesDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetLicenseOk() (*string, bool) {
-	if o == nil || IsNil(o.License) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ObsoletesDist) {
 		return nil, false
 	}
-	return o.License, true
+	return &o.ObsoletesDist, true
 }
 
-// HasLicense returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasLicense() bool {
-	if o != nil && !IsNil(o.License) {
+// HasObsoletesDist returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasObsoletesDist() bool {
+	if o != nil && !IsNil(o.ObsoletesDist) {
 		return true
 	}
 
 	return false
 }
 
-// SetLicense gets a reference to the given string and assigns it to the License field.
-func (o *PythonPythonPackageContentResponse) SetLicense(v string) {
-	o.License = &v
-}
-
-// GetRequiresPython returns the RequiresPython field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetRequiresPython() string {
-	if o == nil || IsNil(o.RequiresPython) {
-		var ret string
-		return ret
-	}
-	return *o.RequiresPython
-}
-
-// GetRequiresPythonOk returns a tuple with the RequiresPython field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetRequiresPythonOk() (*string, bool) {
-	if o == nil || IsNil(o.RequiresPython) {
-		return nil, false
-	}
-	return o.RequiresPython, true
-}
-
-// HasRequiresPython returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasRequiresPython() bool {
-	if o != nil && !IsNil(o.RequiresPython) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequiresPython gets a reference to the given string and assigns it to the RequiresPython field.
-func (o *PythonPythonPackageContentResponse) SetRequiresPython(v string) {
-	o.RequiresPython = &v
+// SetObsoletesDist gets a reference to the given interface{} and assigns it to the ObsoletesDist field.
+func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v interface{}) {
+	o.ObsoletesDist = v
 }
 
 // GetProjectUrl returns the ProjectUrl field value if set, zero value otherwise.
@@ -945,103 +964,6 @@ func (o *PythonPythonPackageContentResponse) SetProjectUrls(v interface{}) {
 	o.ProjectUrls = v
 }
 
-// GetPlatform returns the Platform field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetPlatform() string {
-	if o == nil || IsNil(o.Platform) {
-		var ret string
-		return ret
-	}
-	return *o.Platform
-}
-
-// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetPlatformOk() (*string, bool) {
-	if o == nil || IsNil(o.Platform) {
-		return nil, false
-	}
-	return o.Platform, true
-}
-
-// HasPlatform returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasPlatform() bool {
-	if o != nil && !IsNil(o.Platform) {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatform gets a reference to the given string and assigns it to the Platform field.
-func (o *PythonPythonPackageContentResponse) SetPlatform(v string) {
-	o.Platform = &v
-}
-
-// GetSupportedPlatform returns the SupportedPlatform field value if set, zero value otherwise.
-func (o *PythonPythonPackageContentResponse) GetSupportedPlatform() string {
-	if o == nil || IsNil(o.SupportedPlatform) {
-		var ret string
-		return ret
-	}
-	return *o.SupportedPlatform
-}
-
-// GetSupportedPlatformOk returns a tuple with the SupportedPlatform field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PythonPythonPackageContentResponse) GetSupportedPlatformOk() (*string, bool) {
-	if o == nil || IsNil(o.SupportedPlatform) {
-		return nil, false
-	}
-	return o.SupportedPlatform, true
-}
-
-// HasSupportedPlatform returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasSupportedPlatform() bool {
-	if o != nil && !IsNil(o.SupportedPlatform) {
-		return true
-	}
-
-	return false
-}
-
-// SetSupportedPlatform gets a reference to the given string and assigns it to the SupportedPlatform field.
-func (o *PythonPythonPackageContentResponse) SetSupportedPlatform(v string) {
-	o.SupportedPlatform = &v
-}
-
-// GetRequiresDist returns the RequiresDist field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PythonPythonPackageContentResponse) GetRequiresDist() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-	return o.RequiresDist
-}
-
-// GetRequiresDistOk returns a tuple with the RequiresDist field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.RequiresDist) {
-		return nil, false
-	}
-	return &o.RequiresDist, true
-}
-
-// HasRequiresDist returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasRequiresDist() bool {
-	if o != nil && !IsNil(o.RequiresDist) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequiresDist gets a reference to the given interface{} and assigns it to the RequiresDist field.
-func (o *PythonPythonPackageContentResponse) SetRequiresDist(v interface{}) {
-	o.RequiresDist = v
-}
-
 // GetProvidesDist returns the ProvidesDist field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PythonPythonPackageContentResponse) GetProvidesDist() interface{} {
 	if o == nil {
@@ -1073,39 +995,6 @@ func (o *PythonPythonPackageContentResponse) HasProvidesDist() bool {
 // SetProvidesDist gets a reference to the given interface{} and assigns it to the ProvidesDist field.
 func (o *PythonPythonPackageContentResponse) SetProvidesDist(v interface{}) {
 	o.ProvidesDist = v
-}
-
-// GetObsoletesDist returns the ObsoletesDist field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PythonPythonPackageContentResponse) GetObsoletesDist() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-	return o.ObsoletesDist
-}
-
-// GetObsoletesDistOk returns a tuple with the ObsoletesDist field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PythonPythonPackageContentResponse) GetObsoletesDistOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.ObsoletesDist) {
-		return nil, false
-	}
-	return &o.ObsoletesDist, true
-}
-
-// HasObsoletesDist returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasObsoletesDist() bool {
-	if o != nil && !IsNil(o.ObsoletesDist) {
-		return true
-	}
-
-	return false
-}
-
-// SetObsoletesDist gets a reference to the given interface{} and assigns it to the ObsoletesDist field.
-func (o *PythonPythonPackageContentResponse) SetObsoletesDist(v interface{}) {
-	o.ObsoletesDist = v
 }
 
 // GetRequiresExternal returns the RequiresExternal field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1141,37 +1030,466 @@ func (o *PythonPythonPackageContentResponse) SetRequiresExternal(v interface{}) 
 	o.RequiresExternal = v
 }
 
-// GetClassifiers returns the Classifiers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PythonPythonPackageContentResponse) GetClassifiers() interface{} {
+// GetRequiresDist returns the RequiresDist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetRequiresDist() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-	return o.Classifiers
+	return o.RequiresDist
 }
 
-// GetClassifiersOk returns a tuple with the Classifiers field value if set, nil otherwise
+// GetRequiresDistOk returns a tuple with the RequiresDist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PythonPythonPackageContentResponse) GetClassifiersOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Classifiers) {
+func (o *PythonPythonPackageContentResponse) GetRequiresDistOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.RequiresDist) {
 		return nil, false
 	}
-	return &o.Classifiers, true
+	return &o.RequiresDist, true
 }
 
-// HasClassifiers returns a boolean if a field has been set.
-func (o *PythonPythonPackageContentResponse) HasClassifiers() bool {
-	if o != nil && !IsNil(o.Classifiers) {
+// HasRequiresDist returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasRequiresDist() bool {
+	if o != nil && !IsNil(o.RequiresDist) {
 		return true
 	}
 
 	return false
 }
 
-// SetClassifiers gets a reference to the given interface{} and assigns it to the Classifiers field.
-func (o *PythonPythonPackageContentResponse) SetClassifiers(v interface{}) {
-	o.Classifiers = v
+// SetRequiresDist gets a reference to the given interface{} and assigns it to the RequiresDist field.
+func (o *PythonPythonPackageContentResponse) SetRequiresDist(v interface{}) {
+	o.RequiresDist = v
+}
+
+// GetRequiresPython returns the RequiresPython field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetRequiresPython() string {
+	if o == nil || IsNil(o.RequiresPython) {
+		var ret string
+		return ret
+	}
+	return *o.RequiresPython
+}
+
+// GetRequiresPythonOk returns a tuple with the RequiresPython field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetRequiresPythonOk() (*string, bool) {
+	if o == nil || IsNil(o.RequiresPython) {
+		return nil, false
+	}
+	return o.RequiresPython, true
+}
+
+// HasRequiresPython returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasRequiresPython() bool {
+	if o != nil && !IsNil(o.RequiresPython) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequiresPython gets a reference to the given string and assigns it to the RequiresPython field.
+func (o *PythonPythonPackageContentResponse) SetRequiresPython(v string) {
+	o.RequiresPython = &v
+}
+
+// GetDescriptionContentType returns the DescriptionContentType field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetDescriptionContentType() string {
+	if o == nil || IsNil(o.DescriptionContentType) {
+		var ret string
+		return ret
+	}
+	return *o.DescriptionContentType
+}
+
+// GetDescriptionContentTypeOk returns a tuple with the DescriptionContentType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetDescriptionContentTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.DescriptionContentType) {
+		return nil, false
+	}
+	return o.DescriptionContentType, true
+}
+
+// HasDescriptionContentType returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasDescriptionContentType() bool {
+	if o != nil && !IsNil(o.DescriptionContentType) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescriptionContentType gets a reference to the given string and assigns it to the DescriptionContentType field.
+func (o *PythonPythonPackageContentResponse) SetDescriptionContentType(v string) {
+	o.DescriptionContentType = &v
+}
+
+// GetProvidesExtras returns the ProvidesExtras field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetProvidesExtras() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.ProvidesExtras
+}
+
+// GetProvidesExtrasOk returns a tuple with the ProvidesExtras field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetProvidesExtrasOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ProvidesExtras) {
+		return nil, false
+	}
+	return &o.ProvidesExtras, true
+}
+
+// HasProvidesExtras returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasProvidesExtras() bool {
+	if o != nil && !IsNil(o.ProvidesExtras) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvidesExtras gets a reference to the given interface{} and assigns it to the ProvidesExtras field.
+func (o *PythonPythonPackageContentResponse) SetProvidesExtras(v interface{}) {
+	o.ProvidesExtras = v
+}
+
+// GetDynamic returns the Dynamic field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetDynamic() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Dynamic
+}
+
+// GetDynamicOk returns a tuple with the Dynamic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetDynamicOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Dynamic) {
+		return nil, false
+	}
+	return &o.Dynamic, true
+}
+
+// HasDynamic returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasDynamic() bool {
+	if o != nil && !IsNil(o.Dynamic) {
+		return true
+	}
+
+	return false
+}
+
+// SetDynamic gets a reference to the given interface{} and assigns it to the Dynamic field.
+func (o *PythonPythonPackageContentResponse) SetDynamic(v interface{}) {
+	o.Dynamic = v
+}
+
+// GetLicenseExpression returns the LicenseExpression field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetLicenseExpression() string {
+	if o == nil || IsNil(o.LicenseExpression) {
+		var ret string
+		return ret
+	}
+	return *o.LicenseExpression
+}
+
+// GetLicenseExpressionOk returns a tuple with the LicenseExpression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetLicenseExpressionOk() (*string, bool) {
+	if o == nil || IsNil(o.LicenseExpression) {
+		return nil, false
+	}
+	return o.LicenseExpression, true
+}
+
+// HasLicenseExpression returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasLicenseExpression() bool {
+	if o != nil && !IsNil(o.LicenseExpression) {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseExpression gets a reference to the given string and assigns it to the LicenseExpression field.
+func (o *PythonPythonPackageContentResponse) SetLicenseExpression(v string) {
+	o.LicenseExpression = &v
+}
+
+// GetLicenseFile returns the LicenseFile field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetLicenseFile() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.LicenseFile
+}
+
+// GetLicenseFileOk returns a tuple with the LicenseFile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetLicenseFileOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.LicenseFile) {
+		return nil, false
+	}
+	return &o.LicenseFile, true
+}
+
+// HasLicenseFile returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasLicenseFile() bool {
+	if o != nil && !IsNil(o.LicenseFile) {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseFile gets a reference to the given interface{} and assigns it to the LicenseFile field.
+func (o *PythonPythonPackageContentResponse) SetLicenseFile(v interface{}) {
+	o.LicenseFile = v
+}
+
+// GetFilename returns the Filename field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetFilename() string {
+	if o == nil || IsNil(o.Filename) {
+		var ret string
+		return ret
+	}
+	return *o.Filename
+}
+
+// GetFilenameOk returns a tuple with the Filename field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetFilenameOk() (*string, bool) {
+	if o == nil || IsNil(o.Filename) {
+		return nil, false
+	}
+	return o.Filename, true
+}
+
+// HasFilename returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasFilename() bool {
+	if o != nil && !IsNil(o.Filename) {
+		return true
+	}
+
+	return false
+}
+
+// SetFilename gets a reference to the given string and assigns it to the Filename field.
+func (o *PythonPythonPackageContentResponse) SetFilename(v string) {
+	o.Filename = &v
+}
+
+// GetPackagetype returns the Packagetype field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetPackagetype() string {
+	if o == nil || IsNil(o.Packagetype) {
+		var ret string
+		return ret
+	}
+	return *o.Packagetype
+}
+
+// GetPackagetypeOk returns a tuple with the Packagetype field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetPackagetypeOk() (*string, bool) {
+	if o == nil || IsNil(o.Packagetype) {
+		return nil, false
+	}
+	return o.Packagetype, true
+}
+
+// HasPackagetype returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasPackagetype() bool {
+	if o != nil && !IsNil(o.Packagetype) {
+		return true
+	}
+
+	return false
+}
+
+// SetPackagetype gets a reference to the given string and assigns it to the Packagetype field.
+func (o *PythonPythonPackageContentResponse) SetPackagetype(v string) {
+	o.Packagetype = &v
+}
+
+// GetPythonVersion returns the PythonVersion field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetPythonVersion() string {
+	if o == nil || IsNil(o.PythonVersion) {
+		var ret string
+		return ret
+	}
+	return *o.PythonVersion
+}
+
+// GetPythonVersionOk returns a tuple with the PythonVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetPythonVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.PythonVersion) {
+		return nil, false
+	}
+	return o.PythonVersion, true
+}
+
+// HasPythonVersion returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasPythonVersion() bool {
+	if o != nil && !IsNil(o.PythonVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetPythonVersion gets a reference to the given string and assigns it to the PythonVersion field.
+func (o *PythonPythonPackageContentResponse) SetPythonVersion(v string) {
+	o.PythonVersion = &v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetSize() int64 {
+	if o == nil || IsNil(o.Size) {
+		var ret int64
+		return ret
+	}
+	return *o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Size) {
+		return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *PythonPythonPackageContentResponse) SetSize(v int64) {
+	o.Size = &v
+}
+
+// GetSha256 returns the Sha256 field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetSha256() string {
+	if o == nil || IsNil(o.Sha256) {
+		var ret string
+		return ret
+	}
+	return *o.Sha256
+}
+
+// GetSha256Ok returns a tuple with the Sha256 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetSha256Ok() (*string, bool) {
+	if o == nil || IsNil(o.Sha256) {
+		return nil, false
+	}
+	return o.Sha256, true
+}
+
+// HasSha256 returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasSha256() bool {
+	if o != nil && !IsNil(o.Sha256) {
+		return true
+	}
+
+	return false
+}
+
+// SetSha256 gets a reference to the given string and assigns it to the Sha256 field.
+func (o *PythonPythonPackageContentResponse) SetSha256(v string) {
+	o.Sha256 = &v
+}
+
+// GetMetadataSha256 returns the MetadataSha256 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonPackageContentResponse) GetMetadataSha256() string {
+	if o == nil || IsNil(o.MetadataSha256.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.MetadataSha256.Get()
+}
+
+// GetMetadataSha256Ok returns a tuple with the MetadataSha256 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonPackageContentResponse) GetMetadataSha256Ok() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MetadataSha256.Get(), o.MetadataSha256.IsSet()
+}
+
+// HasMetadataSha256 returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasMetadataSha256() bool {
+	if o != nil && o.MetadataSha256.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataSha256 gets a reference to the given NullableString and assigns it to the MetadataSha256 field.
+func (o *PythonPythonPackageContentResponse) SetMetadataSha256(v string) {
+	o.MetadataSha256.Set(&v)
+}
+// SetMetadataSha256Nil sets the value for MetadataSha256 to be an explicit nil
+func (o *PythonPythonPackageContentResponse) SetMetadataSha256Nil() {
+	o.MetadataSha256.Set(nil)
+}
+
+// UnsetMetadataSha256 ensures that no value is present for MetadataSha256, not even an explicit nil
+func (o *PythonPythonPackageContentResponse) UnsetMetadataSha256() {
+	o.MetadataSha256.Unset()
+}
+
+// GetProvenance returns the Provenance field value if set, zero value otherwise.
+func (o *PythonPythonPackageContentResponse) GetProvenance() string {
+	if o == nil || IsNil(o.Provenance) {
+		var ret string
+		return ret
+	}
+	return *o.Provenance
+}
+
+// GetProvenanceOk returns a tuple with the Provenance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonPackageContentResponse) GetProvenanceOk() (*string, bool) {
+	if o == nil || IsNil(o.Provenance) {
+		return nil, false
+	}
+	return o.Provenance, true
+}
+
+// HasProvenance returns a boolean if a field has been set.
+func (o *PythonPythonPackageContentResponse) HasProvenance() bool {
+	if o != nil && !IsNil(o.Provenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvenance gets a reference to the given string and assigns it to the Provenance field.
+func (o *PythonPythonPackageContentResponse) SetProvenance(v string) {
+	o.Provenance = &v
 }
 
 func (o PythonPythonPackageContentResponse) MarshalJSON() ([]byte, error) {
@@ -1199,44 +1517,11 @@ func (o PythonPythonPackageContentResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
-	}
-	if !IsNil(o.Filename) {
-		toSerialize["filename"] = o.Filename
-	}
-	if !IsNil(o.Packagetype) {
-		toSerialize["packagetype"] = o.Packagetype
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !IsNil(o.Sha256) {
-		toSerialize["sha256"] = o.Sha256
-	}
-	if !IsNil(o.MetadataVersion) {
-		toSerialize["metadata_version"] = o.MetadataVersion
-	}
-	if !IsNil(o.Summary) {
-		toSerialize["summary"] = o.Summary
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.DescriptionContentType) {
-		toSerialize["description_content_type"] = o.DescriptionContentType
-	}
-	if !IsNil(o.Keywords) {
-		toSerialize["keywords"] = o.Keywords
-	}
-	if !IsNil(o.HomePage) {
-		toSerialize["home_page"] = o.HomePage
-	}
-	if !IsNil(o.DownloadUrl) {
-		toSerialize["download_url"] = o.DownloadUrl
 	}
 	if !IsNil(o.Author) {
 		toSerialize["author"] = o.Author
@@ -1244,17 +1529,50 @@ func (o PythonPythonPackageContentResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.AuthorEmail) {
 		toSerialize["author_email"] = o.AuthorEmail
 	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.HomePage) {
+		toSerialize["home_page"] = o.HomePage
+	}
+	if !IsNil(o.Keywords) {
+		toSerialize["keywords"] = o.Keywords
+	}
+	if !IsNil(o.License) {
+		toSerialize["license"] = o.License
+	}
+	if !IsNil(o.MetadataVersion) {
+		toSerialize["metadata_version"] = o.MetadataVersion
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Platform) {
+		toSerialize["platform"] = o.Platform
+	}
+	if !IsNil(o.Summary) {
+		toSerialize["summary"] = o.Summary
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if o.Classifiers != nil {
+		toSerialize["classifiers"] = o.Classifiers
+	}
+	if !IsNil(o.DownloadUrl) {
+		toSerialize["download_url"] = o.DownloadUrl
+	}
+	if !IsNil(o.SupportedPlatform) {
+		toSerialize["supported_platform"] = o.SupportedPlatform
+	}
 	if !IsNil(o.Maintainer) {
 		toSerialize["maintainer"] = o.Maintainer
 	}
 	if !IsNil(o.MaintainerEmail) {
 		toSerialize["maintainer_email"] = o.MaintainerEmail
 	}
-	if !IsNil(o.License) {
-		toSerialize["license"] = o.License
-	}
-	if !IsNil(o.RequiresPython) {
-		toSerialize["requires_python"] = o.RequiresPython
+	if o.ObsoletesDist != nil {
+		toSerialize["obsoletes_dist"] = o.ObsoletesDist
 	}
 	if !IsNil(o.ProjectUrl) {
 		toSerialize["project_url"] = o.ProjectUrl
@@ -1262,26 +1580,53 @@ func (o PythonPythonPackageContentResponse) ToMap() (map[string]interface{}, err
 	if o.ProjectUrls != nil {
 		toSerialize["project_urls"] = o.ProjectUrls
 	}
-	if !IsNil(o.Platform) {
-		toSerialize["platform"] = o.Platform
-	}
-	if !IsNil(o.SupportedPlatform) {
-		toSerialize["supported_platform"] = o.SupportedPlatform
-	}
-	if o.RequiresDist != nil {
-		toSerialize["requires_dist"] = o.RequiresDist
-	}
 	if o.ProvidesDist != nil {
 		toSerialize["provides_dist"] = o.ProvidesDist
-	}
-	if o.ObsoletesDist != nil {
-		toSerialize["obsoletes_dist"] = o.ObsoletesDist
 	}
 	if o.RequiresExternal != nil {
 		toSerialize["requires_external"] = o.RequiresExternal
 	}
-	if o.Classifiers != nil {
-		toSerialize["classifiers"] = o.Classifiers
+	if o.RequiresDist != nil {
+		toSerialize["requires_dist"] = o.RequiresDist
+	}
+	if !IsNil(o.RequiresPython) {
+		toSerialize["requires_python"] = o.RequiresPython
+	}
+	if !IsNil(o.DescriptionContentType) {
+		toSerialize["description_content_type"] = o.DescriptionContentType
+	}
+	if o.ProvidesExtras != nil {
+		toSerialize["provides_extras"] = o.ProvidesExtras
+	}
+	if o.Dynamic != nil {
+		toSerialize["dynamic"] = o.Dynamic
+	}
+	if !IsNil(o.LicenseExpression) {
+		toSerialize["license_expression"] = o.LicenseExpression
+	}
+	if o.LicenseFile != nil {
+		toSerialize["license_file"] = o.LicenseFile
+	}
+	if !IsNil(o.Filename) {
+		toSerialize["filename"] = o.Filename
+	}
+	if !IsNil(o.Packagetype) {
+		toSerialize["packagetype"] = o.Packagetype
+	}
+	if !IsNil(o.PythonVersion) {
+		toSerialize["python_version"] = o.PythonVersion
+	}
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
+	if !IsNil(o.Sha256) {
+		toSerialize["sha256"] = o.Sha256
+	}
+	if o.MetadataSha256.IsSet() {
+		toSerialize["metadata_sha256"] = o.MetadataSha256.Get()
+	}
+	if !IsNil(o.Provenance) {
+		toSerialize["provenance"] = o.Provenance
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1310,34 +1655,43 @@ func (o *PythonPythonPackageContentResponse) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "artifact")
-		delete(additionalProperties, "filename")
-		delete(additionalProperties, "packagetype")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "sha256")
-		delete(additionalProperties, "metadata_version")
-		delete(additionalProperties, "summary")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "description_content_type")
-		delete(additionalProperties, "keywords")
-		delete(additionalProperties, "home_page")
-		delete(additionalProperties, "download_url")
 		delete(additionalProperties, "author")
 		delete(additionalProperties, "author_email")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "home_page")
+		delete(additionalProperties, "keywords")
+		delete(additionalProperties, "license")
+		delete(additionalProperties, "metadata_version")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "summary")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "classifiers")
+		delete(additionalProperties, "download_url")
+		delete(additionalProperties, "supported_platform")
 		delete(additionalProperties, "maintainer")
 		delete(additionalProperties, "maintainer_email")
-		delete(additionalProperties, "license")
-		delete(additionalProperties, "requires_python")
+		delete(additionalProperties, "obsoletes_dist")
 		delete(additionalProperties, "project_url")
 		delete(additionalProperties, "project_urls")
-		delete(additionalProperties, "platform")
-		delete(additionalProperties, "supported_platform")
-		delete(additionalProperties, "requires_dist")
 		delete(additionalProperties, "provides_dist")
-		delete(additionalProperties, "obsoletes_dist")
 		delete(additionalProperties, "requires_external")
-		delete(additionalProperties, "classifiers")
+		delete(additionalProperties, "requires_dist")
+		delete(additionalProperties, "requires_python")
+		delete(additionalProperties, "description_content_type")
+		delete(additionalProperties, "provides_extras")
+		delete(additionalProperties, "dynamic")
+		delete(additionalProperties, "license_expression")
+		delete(additionalProperties, "license_file")
+		delete(additionalProperties, "filename")
+		delete(additionalProperties, "packagetype")
+		delete(additionalProperties, "python_version")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "sha256")
+		delete(additionalProperties, "metadata_sha256")
+		delete(additionalProperties, "provenance")
 		o.AdditionalProperties = additionalProperties
 	}
 

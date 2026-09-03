@@ -30,10 +30,17 @@ type TaskSchedulesAPITaskSchedulesAddRoleRequest struct {
 	ApiService *TaskSchedulesAPIService
 	taskScheduleHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r TaskSchedulesAPITaskSchedulesAddRoleRequest) NestedRole(nestedRole NestedRole) TaskSchedulesAPITaskSchedulesAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesAddRoleExecute(r TaskSchedulesAPI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,7 @@ type TaskSchedulesAPITaskSchedulesListRequest struct {
 	ctx context.Context
 	ApiService *TaskSchedulesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -157,6 +168,12 @@ type TaskSchedulesAPITaskSchedulesListRequest struct {
 	taskNameContains *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -183,7 +200,7 @@ func (r TaskSchedulesAPITaskSchedulesListRequest) Offset(offset int32) TaskSched
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;next_dispatch&#x60; - Next dispatch* &#x60;-next_dispatch&#x60; - Next dispatch (descending)* &#x60;dispatch_interval&#x60; - Dispatch interval* &#x60;-dispatch_interval&#x60; - Dispatch interval (descending)* &#x60;task_name&#x60; - Task name* &#x60;-task_name&#x60; - Task name (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;next_dispatch&#x60; - Next dispatch* &#x60;-next_dispatch&#x60; - Next dispatch (descending)* &#x60;dispatch_interval&#x60; - Dispatch interval* &#x60;-dispatch_interval&#x60; - Dispatch interval (descending)* &#x60;task_name&#x60; - Task name* &#x60;-task_name&#x60; - Task name (descending)* &#x60;task_args&#x60; - Task args* &#x60;-task_args&#x60; - Task args (descending)* &#x60;task_kwargs&#x60; - Task kwargs* &#x60;-task_kwargs&#x60; - Task kwargs (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r TaskSchedulesAPITaskSchedulesListRequest) Ordering(ordering []string) TaskSchedulesAPITaskSchedulesListRequest {
 	r.ordering = &ordering
 	return r
@@ -353,6 +370,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesListExecute(r TaskSchedulesAPITas
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -394,8 +414,15 @@ type TaskSchedulesAPITaskSchedulesListRolesRequest struct {
 	ctx context.Context
 	ApiService *TaskSchedulesAPIService
 	taskScheduleHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -493,6 +520,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesListRolesExecute(r TaskSchedulesA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -534,8 +564,15 @@ type TaskSchedulesAPITaskSchedulesMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *TaskSchedulesAPIService
 	taskScheduleHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -633,6 +670,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesMyPermissionsExecute(r TaskSchedu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -674,8 +714,15 @@ type TaskSchedulesAPITaskSchedulesReadRequest struct {
 	ctx context.Context
 	ApiService *TaskSchedulesAPIService
 	taskScheduleHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -773,6 +820,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesReadExecute(r TaskSchedulesAPITas
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -815,10 +865,17 @@ type TaskSchedulesAPITaskSchedulesRemoveRoleRequest struct {
 	ApiService *TaskSchedulesAPIService
 	taskScheduleHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r TaskSchedulesAPITaskSchedulesRemoveRoleRequest) NestedRole(nestedRole NestedRole) TaskSchedulesAPITaskSchedulesRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r TaskSchedulesAPITaskSchedulesRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) TaskSchedulesAPITaskSchedulesRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -885,6 +942,9 @@ func (a *TaskSchedulesAPIService) TaskSchedulesRemoveRoleExecute(r TaskSchedules
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.nestedRole

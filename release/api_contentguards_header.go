@@ -30,10 +30,17 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderAddRoleRequest struct {
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderAddRoleRequest) NestedRole(nestedRole NestedRole) ContentguardsHeaderAPIContentguardsCoreHeaderAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderAddRoleExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderCreateRequest struct {
 	ApiService *ContentguardsHeaderAPIService
 	pulpDomain string
 	headerContentGuard *HeaderContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderCreateRequest) HeaderContentGuard(headerContentGuard HeaderContentGuard) ContentguardsHeaderAPIContentguardsCoreHeaderCreateRequest {
 	r.headerContentGuard = &headerContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderCreateExecute(r C
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.headerContentGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderDeleteRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderDeleteRequest) Execute() (*http.Response, error) {
@@ -320,6 +347,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderDeleteExecute(r C
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -352,6 +382,7 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderListRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsHeaderAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -370,6 +401,12 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -611,6 +648,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderListExecute(r Con
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -652,8 +692,15 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderListRolesRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -751,6 +798,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderListRolesExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -792,8 +842,15 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -891,6 +948,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderMyPermissionsExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -933,10 +993,17 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderPartialUpdateRequest struct {
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
 	patchedHeaderContentGuard *PatchedHeaderContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderPartialUpdateRequest) PatchedHeaderContentGuard(patchedHeaderContentGuard PatchedHeaderContentGuard) ContentguardsHeaderAPIContentguardsCoreHeaderPartialUpdateRequest {
 	r.patchedHeaderContentGuard = &patchedHeaderContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1004,6 +1071,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderPartialUpdateExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedHeaderContentGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1047,8 +1117,15 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderReadRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1146,6 +1223,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderReadExecute(r Con
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1188,10 +1268,17 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderRemoveRoleRequest struct {
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderRemoveRoleRequest) NestedRole(nestedRole NestedRole) ContentguardsHeaderAPIContentguardsCoreHeaderRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1259,6 +1346,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderRemoveRoleExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1303,10 +1393,17 @@ type ContentguardsHeaderAPIContentguardsCoreHeaderUpdateRequest struct {
 	ApiService *ContentguardsHeaderAPIService
 	headerContentGuardHref string
 	headerContentGuard *HeaderContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsHeaderAPIContentguardsCoreHeaderUpdateRequest) HeaderContentGuard(headerContentGuard HeaderContentGuard) ContentguardsHeaderAPIContentguardsCoreHeaderUpdateRequest {
 	r.headerContentGuard = &headerContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsHeaderAPIContentguardsCoreHeaderUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsHeaderAPIContentguardsCoreHeaderUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1373,6 +1470,9 @@ func (a *ContentguardsHeaderAPIService) ContentguardsCoreHeaderUpdateExecute(r C
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.headerContentGuard

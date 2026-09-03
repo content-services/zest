@@ -26,6 +26,8 @@ type RepositoryAddRemoveContent struct {
 	RemoveContentUnits []string `json:"remove_content_units,omitempty"`
 	// A repository version whose content will be used as the initial set of content for the new repository version
 	BaseVersion *string `json:"base_version,omitempty"`
+	// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Defaults to true.
+	Overwrite *bool `json:"overwrite,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,6 +39,8 @@ type _RepositoryAddRemoveContent RepositoryAddRemoveContent
 // will change when the set of required properties is changed
 func NewRepositoryAddRemoveContent() *RepositoryAddRemoveContent {
 	this := RepositoryAddRemoveContent{}
+	var overwrite bool = true
+	this.Overwrite = &overwrite
 	return &this
 }
 
@@ -45,6 +49,8 @@ func NewRepositoryAddRemoveContent() *RepositoryAddRemoveContent {
 // but it doesn't guarantee that properties required by API are set
 func NewRepositoryAddRemoveContentWithDefaults() *RepositoryAddRemoveContent {
 	this := RepositoryAddRemoveContent{}
+	var overwrite bool = true
+	this.Overwrite = &overwrite
 	return &this
 }
 
@@ -144,6 +150,38 @@ func (o *RepositoryAddRemoveContent) SetBaseVersion(v string) {
 	o.BaseVersion = &v
 }
 
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
+func (o *RepositoryAddRemoveContent) GetOverwrite() bool {
+	if o == nil || IsNil(o.Overwrite) {
+		var ret bool
+		return ret
+	}
+	return *o.Overwrite
+}
+
+// GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RepositoryAddRemoveContent) GetOverwriteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Overwrite) {
+		return nil, false
+	}
+	return o.Overwrite, true
+}
+
+// HasOverwrite returns a boolean if a field has been set.
+func (o *RepositoryAddRemoveContent) HasOverwrite() bool {
+	if o != nil && !IsNil(o.Overwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
+func (o *RepositoryAddRemoveContent) SetOverwrite(v bool) {
+	o.Overwrite = &v
+}
+
 func (o RepositoryAddRemoveContent) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -162,6 +200,9 @@ func (o RepositoryAddRemoveContent) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.BaseVersion) {
 		toSerialize["base_version"] = o.BaseVersion
+	}
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -188,6 +229,7 @@ func (o *RepositoryAddRemoveContent) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "add_content_units")
 		delete(additionalProperties, "remove_content_units")
 		delete(additionalProperties, "base_version")
+		delete(additionalProperties, "overwrite")
 		o.AdditionalProperties = additionalProperties
 	}
 

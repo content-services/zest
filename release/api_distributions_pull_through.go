@@ -30,10 +30,17 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughAddRoleRequest 
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughAddRoleRequest) NestedRole(nestedRole NestedRole) DistributionsPullThroughAPIDistributionsContainerPullThroughAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughAd
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughCreateRequest s
 	ApiService *DistributionsPullThroughAPIService
 	pulpDomain string
 	containerContainerPullThroughDistribution *ContainerContainerPullThroughDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughCreateRequest) ContainerContainerPullThroughDistribution(containerContainerPullThroughDistribution ContainerContainerPullThroughDistribution) DistributionsPullThroughAPIDistributionsContainerPullThroughCreateRequest {
 	r.containerContainerPullThroughDistribution = &containerContainerPullThroughDistribution
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughCr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.containerContainerPullThroughDistribution
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughDeleteRequest s
 	ctx context.Context
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughDe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest str
 	ctx context.Context
 	ApiService *DistributionsPullThroughAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -390,6 +421,12 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest str
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -524,13 +561,11 @@ func (r DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest)
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest) Repository(repository string) DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest) RepositoryIn(repositoryIn []string) DistributionsPullThroughAPIDistributionsContainerPullThroughListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -712,6 +747,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughLi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -753,8 +791,15 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughListRolesReques
 	ctx context.Context
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -852,6 +897,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughLi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -893,8 +941,15 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughMyPermissionsRe
 	ctx context.Context
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -992,6 +1047,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughMy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1034,6 +1092,7 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRe
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	patchedcontainerContainerPullThroughDistribution *PatchedcontainerContainerPullThroughDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) PatchedcontainerContainerPullThroughDistribution(patchedcontainerContainerPullThroughDistribution PatchedcontainerContainerPullThroughDistribution) DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest {
@@ -1041,14 +1100,20 @@ func (r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdat
 	return r
 }
 
-func (r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) Execute() (*ContainerContainerPullThroughDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsContainerPullThroughPartialUpdateExecute(r)
 }
 
 /*
 DistributionsContainerPullThroughPartialUpdate Update a container pull through distribution
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPullThroughDistributionHref
@@ -1063,13 +1128,13 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughPa
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughPartialUpdateExecute(r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPullThroughDistributionResponse
+func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughPartialUpdateExecute(r DistributionsPullThroughAPIDistributionsContainerPullThroughPartialUpdateRequest) (*ContainerContainerPullThroughDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPullThroughDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsPullThroughAPIService.DistributionsContainerPullThroughPartialUpdate")
@@ -1104,6 +1169,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughPa
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedcontainerContainerPullThroughDistribution
@@ -1148,8 +1216,15 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughReadRequest str
 	ctx context.Context
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1247,6 +1322,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1289,10 +1367,17 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughRemoveRoleReque
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughRemoveRoleRequest) NestedRole(nestedRole NestedRole) DistributionsPullThroughAPIDistributionsContainerPullThroughRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1360,6 +1445,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1404,10 +1492,17 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughSetLabelRequest
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughSetLabelRequest) SetLabel(setLabel SetLabel) DistributionsPullThroughAPIDistributionsContainerPullThroughSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1475,6 +1570,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughSe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1519,10 +1617,17 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughUnsetLabelReque
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) DistributionsPullThroughAPIDistributionsContainerPullThroughUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1590,6 +1695,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUn
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1634,6 +1742,7 @@ type DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest s
 	ApiService *DistributionsPullThroughAPIService
 	containerContainerPullThroughDistributionHref string
 	containerContainerPullThroughDistribution *ContainerContainerPullThroughDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) ContainerContainerPullThroughDistribution(containerContainerPullThroughDistribution ContainerContainerPullThroughDistribution) DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest {
@@ -1641,14 +1750,20 @@ func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateReques
 	return r
 }
 
-func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) Execute() (*ContainerContainerPullThroughDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsContainerPullThroughUpdateExecute(r)
 }
 
 /*
 DistributionsContainerPullThroughUpdate Update a container pull through distribution
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPullThroughDistributionHref
@@ -1663,13 +1778,13 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUp
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUpdateExecute(r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPullThroughDistributionResponse
+func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUpdateExecute(r DistributionsPullThroughAPIDistributionsContainerPullThroughUpdateRequest) (*ContainerContainerPullThroughDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPullThroughDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsPullThroughAPIService.DistributionsContainerPullThroughUpdate")
@@ -1704,6 +1819,9 @@ func (a *DistributionsPullThroughAPIService) DistributionsContainerPullThroughUp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.containerContainerPullThroughDistribution

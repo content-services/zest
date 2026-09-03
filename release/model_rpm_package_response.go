@@ -42,6 +42,7 @@ type RpmPackageResponse struct {
 	Sha512 *string `json:"sha512,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Name of the package
@@ -118,6 +119,8 @@ type RpmPackageResponse struct {
 	TimeBuild *int64 `json:"time_build,omitempty"`
 	// The 'file' time attribute in the primary XML - file mtime in seconds since the epoch.
 	TimeFile *int64 `json:"time_file,omitempty"`
+	// List of signing key fingerprints used to sign this package. 
+	SigningKeys []string `json:"signing_keys,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -490,6 +493,38 @@ func (o *RpmPackageResponse) HasPulpLabels() bool {
 // SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
 func (o *RpmPackageResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
+}
+
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *RpmPackageResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmPackageResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *RpmPackageResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *RpmPackageResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
 }
 
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
@@ -1692,6 +1727,39 @@ func (o *RpmPackageResponse) SetTimeFile(v int64) {
 	o.TimeFile = &v
 }
 
+// GetSigningKeys returns the SigningKeys field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmPackageResponse) GetSigningKeys() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.SigningKeys
+}
+
+// GetSigningKeysOk returns a tuple with the SigningKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmPackageResponse) GetSigningKeysOk() ([]string, bool) {
+	if o == nil || IsNil(o.SigningKeys) {
+		return nil, false
+	}
+	return o.SigningKeys, true
+}
+
+// HasSigningKeys returns a boolean if a field has been set.
+func (o *RpmPackageResponse) HasSigningKeys() bool {
+	if o != nil && !IsNil(o.SigningKeys) {
+		return true
+	}
+
+	return false
+}
+
+// SetSigningKeys gets a reference to the given []string and assigns it to the SigningKeys field.
+func (o *RpmPackageResponse) SetSigningKeys(v []string) {
+	o.SigningKeys = v
+}
+
 func (o RpmPackageResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1734,6 +1802,9 @@ func (o RpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
+	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
 	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
@@ -1846,6 +1917,9 @@ func (o RpmPackageResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TimeFile) {
 		toSerialize["time_file"] = o.TimeFile
 	}
+	if o.SigningKeys != nil {
+		toSerialize["signing_keys"] = o.SigningKeys
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1879,6 +1953,7 @@ func (o *RpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sha384")
 		delete(additionalProperties, "sha512")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "epoch")
@@ -1916,6 +1991,7 @@ func (o *RpmPackageResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "size_package")
 		delete(additionalProperties, "time_build")
 		delete(additionalProperties, "time_file")
+		delete(additionalProperties, "signing_keys")
 		o.AdditionalProperties = additionalProperties
 	}
 

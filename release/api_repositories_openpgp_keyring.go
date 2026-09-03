@@ -30,10 +30,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringAddRoleRequest s
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringAddRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringAdd
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringCreateRequest st
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	pulpDomain string
 	openPGPKeyring *OpenPGPKeyring
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringCreateRequest) OpenPGPKeyring(openPGPKeyring OpenPGPKeyring) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringCreateRequest {
 	r.openPGPKeyring = &openPGPKeyring
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringCre
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.openPGPKeyring
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringDeleteRequest st
 	ctx context.Context
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringDel
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest stru
 	ctx context.Context
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	latestWithContent *string
 	limit *int32
 	name *string
@@ -382,6 +413,14 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest stru
 	pulpLabelSelect *string
 	q *string
 	remote *string
+	retainCheckpoints *int32
+	retainCheckpointsGt *int32
+	retainCheckpointsGte *int32
+	retainCheckpointsIsnull *bool
+	retainCheckpointsLt *int32
+	retainCheckpointsLte *int32
+	retainCheckpointsNe *int32
+	retainCheckpointsRange *[]int32
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
 	retainRepoVersionsGte *int32
@@ -393,6 +432,12 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest stru
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -467,7 +512,7 @@ func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) 
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) Ordering(ordering []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
 	r.ordering = &ordering
 	return r
@@ -503,9 +548,56 @@ func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) 
 	return r
 }
 
-// Foreign Key referenced by HREF
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) Remote(remote string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
 	r.remote = &remote
+	return r
+}
+
+// Filter results where retain_checkpoints matches value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpoints(retainCheckpoints int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpoints = &retainCheckpoints
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsGt(retainCheckpointsGt int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsGt = &retainCheckpointsGt
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than or equal to value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsGte(retainCheckpointsGte int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsGte = &retainCheckpointsGte
+	return r
+}
+
+// Filter results where retain_checkpoints has a null value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsIsnull(retainCheckpointsIsnull bool) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsIsnull = &retainCheckpointsIsnull
+	return r
+}
+
+// Filter results where retain_checkpoints is less than value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsLt(retainCheckpointsLt int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsLt = &retainCheckpointsLt
+	return r
+}
+
+// Filter results where retain_checkpoints is less than or equal to value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsLte(retainCheckpointsLte int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsLte = &retainCheckpointsLte
+	return r
+}
+
+// Filter results where retain_checkpoints not equal to value
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsNe(retainCheckpointsNe int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsNe = &retainCheckpointsNe
+	return r
+}
+
+// Filter results where retain_checkpoints is between two comma separated values
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest) RetainCheckpointsRange(retainCheckpointsRange []int32) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRequest {
+	r.retainCheckpointsRange = &retainCheckpointsRange
 	return r
 }
 
@@ -676,6 +768,30 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringLis
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "form", "")
 	}
+	if r.retainCheckpoints != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints", r.retainCheckpoints, "form", "")
+	}
+	if r.retainCheckpointsGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gt", r.retainCheckpointsGt, "form", "")
+	}
+	if r.retainCheckpointsGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gte", r.retainCheckpointsGte, "form", "")
+	}
+	if r.retainCheckpointsIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__isnull", r.retainCheckpointsIsnull, "form", "")
+	}
+	if r.retainCheckpointsLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lt", r.retainCheckpointsLt, "form", "")
+	}
+	if r.retainCheckpointsLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lte", r.retainCheckpointsLte, "form", "")
+	}
+	if r.retainCheckpointsNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__ne", r.retainCheckpointsNe, "form", "")
+	}
+	if r.retainCheckpointsRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__range", r.retainCheckpointsRange, "form", "csv")
+	}
 	if r.retainRepoVersions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_repo_versions", r.retainRepoVersions, "form", "")
 	}
@@ -742,6 +858,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringLis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -783,8 +902,15 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRolesRequest
 	ctx context.Context
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -882,6 +1008,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringLis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -924,10 +1053,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringModifyRequest st
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	repositoryAddRemoveContent *RepositoryAddRemoveContent
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringModifyRequest) RepositoryAddRemoveContent(repositoryAddRemoveContent RepositoryAddRemoveContent) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringModifyRequest {
 	r.repositoryAddRemoveContent = &repositoryAddRemoveContent
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringModifyRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringModifyRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -995,6 +1131,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringMod
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.repositoryAddRemoveContent
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1038,8 +1177,15 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringMyPermissionsReq
 	ctx context.Context
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1137,6 +1283,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringMyP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1179,6 +1328,7 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateReq
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	patchedOpenPGPKeyring *PatchedOpenPGPKeyring
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) PatchedOpenPGPKeyring(patchedOpenPGPKeyring PatchedOpenPGPKeyring) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest {
@@ -1186,14 +1336,20 @@ func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdate
 	return r
 }
 
-func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) Execute() (*OpenPGPKeyringResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesCoreOpenpgpKeyringPartialUpdateExecute(r)
 }
 
 /*
 RepositoriesCoreOpenpgpKeyringPartialUpdate Update an open pgp keyring
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param openPGPKeyringHref
@@ -1208,13 +1364,13 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringPar
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringPartialUpdateExecute(r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return OpenPGPKeyringResponse
+func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringPartialUpdateExecute(r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringPartialUpdateRequest) (*OpenPGPKeyringResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *OpenPGPKeyringResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesOpenpgpKeyringAPIService.RepositoriesCoreOpenpgpKeyringPartialUpdate")
@@ -1249,6 +1405,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringPar
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedOpenPGPKeyring
@@ -1293,8 +1452,15 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringReadRequest stru
 	ctx context.Context
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1392,6 +1558,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringRea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1434,10 +1603,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringRemoveRoleReques
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringRemoveRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1505,6 +1681,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringRem
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1549,10 +1728,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringSetLabelRequest 
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringSetLabelRequest) SetLabel(setLabel SetLabel) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1620,6 +1806,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringSet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1664,10 +1853,17 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUnsetLabelReques
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1735,6 +1931,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUns
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1779,6 +1978,7 @@ type RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest st
 	ApiService *RepositoriesOpenpgpKeyringAPIService
 	openPGPKeyringHref string
 	openPGPKeyring *OpenPGPKeyring
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) OpenPGPKeyring(openPGPKeyring OpenPGPKeyring) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest {
@@ -1786,14 +1986,20 @@ func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest
 	return r
 }
 
-func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) Execute() (*OpenPGPKeyringResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesCoreOpenpgpKeyringUpdateExecute(r)
 }
 
 /*
 RepositoriesCoreOpenpgpKeyringUpdate Update an open pgp keyring
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param openPGPKeyringHref
@@ -1808,13 +2014,13 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUpd
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUpdateExecute(r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return OpenPGPKeyringResponse
+func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUpdateExecute(r RepositoriesOpenpgpKeyringAPIRepositoriesCoreOpenpgpKeyringUpdateRequest) (*OpenPGPKeyringResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *OpenPGPKeyringResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesOpenpgpKeyringAPIService.RepositoriesCoreOpenpgpKeyringUpdate")
@@ -1849,6 +2055,9 @@ func (a *RepositoriesOpenpgpKeyringAPIService) RepositoriesCoreOpenpgpKeyringUpd
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.openPGPKeyring

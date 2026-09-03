@@ -30,10 +30,17 @@ type ExportersPulpAPIExportersCorePulpCreateRequest struct {
 	ApiService *ExportersPulpAPIService
 	pulpDomain string
 	pulpExporter *PulpExporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ExportersPulpAPIExportersCorePulpCreateRequest) PulpExporter(pulpExporter PulpExporter) ExportersPulpAPIExportersCorePulpCreateRequest {
 	r.pulpExporter = &pulpExporter
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpCreateExecute(r ExportersPulp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.pulpExporter
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type ExportersPulpAPIExportersCorePulpDeleteRequest struct {
 	ctx context.Context
 	ApiService *ExportersPulpAPIService
 	pulpExporterHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ExportersPulpAPIExportersCorePulpDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -207,6 +224,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpDeleteExecute(r ExportersPulp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -248,6 +268,7 @@ type ExportersPulpAPIExportersCorePulpListRequest struct {
 	ctx context.Context
 	ApiService *ExportersPulpAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -266,6 +287,12 @@ type ExportersPulpAPIExportersCorePulpListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -507,6 +534,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpListExecute(r ExportersPulpAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -549,6 +579,7 @@ type ExportersPulpAPIExportersCorePulpPartialUpdateRequest struct {
 	ApiService *ExportersPulpAPIService
 	pulpExporterHref string
 	patchedPulpExporter *PatchedPulpExporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) PatchedPulpExporter(patchedPulpExporter PatchedPulpExporter) ExportersPulpAPIExportersCorePulpPartialUpdateRequest {
@@ -556,14 +587,20 @@ func (r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) PatchedPulpExport
 	return r
 }
 
-func (r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) Execute() (*PulpExporterResponse, *http.Response, error) {
 	return r.ApiService.ExportersCorePulpPartialUpdateExecute(r)
 }
 
 /*
 ExportersCorePulpPartialUpdate Update a pulp exporter
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpExporterHref
@@ -578,13 +615,13 @@ func (a *ExportersPulpAPIService) ExportersCorePulpPartialUpdate(ctx context.Con
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *ExportersPulpAPIService) ExportersCorePulpPartialUpdateExecute(r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PulpExporterResponse
+func (a *ExportersPulpAPIService) ExportersCorePulpPartialUpdateExecute(r ExportersPulpAPIExportersCorePulpPartialUpdateRequest) (*PulpExporterResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PulpExporterResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportersPulpAPIService.ExportersCorePulpPartialUpdate")
@@ -619,6 +656,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpPartialUpdateExecute(r Export
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedPulpExporter
@@ -663,8 +703,15 @@ type ExportersPulpAPIExportersCorePulpReadRequest struct {
 	ctx context.Context
 	ApiService *ExportersPulpAPIService
 	pulpExporterHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -762,6 +809,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpReadExecute(r ExportersPulpAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -804,6 +854,7 @@ type ExportersPulpAPIExportersCorePulpUpdateRequest struct {
 	ApiService *ExportersPulpAPIService
 	pulpExporterHref string
 	pulpExporter *PulpExporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ExportersPulpAPIExportersCorePulpUpdateRequest) PulpExporter(pulpExporter PulpExporter) ExportersPulpAPIExportersCorePulpUpdateRequest {
@@ -811,14 +862,20 @@ func (r ExportersPulpAPIExportersCorePulpUpdateRequest) PulpExporter(pulpExporte
 	return r
 }
 
-func (r ExportersPulpAPIExportersCorePulpUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r ExportersPulpAPIExportersCorePulpUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersPulpAPIExportersCorePulpUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ExportersPulpAPIExportersCorePulpUpdateRequest) Execute() (*PulpExporterResponse, *http.Response, error) {
 	return r.ApiService.ExportersCorePulpUpdateExecute(r)
 }
 
 /*
 ExportersCorePulpUpdate Update a pulp exporter
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpExporterHref
@@ -833,13 +890,13 @@ func (a *ExportersPulpAPIService) ExportersCorePulpUpdate(ctx context.Context, p
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *ExportersPulpAPIService) ExportersCorePulpUpdateExecute(r ExportersPulpAPIExportersCorePulpUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PulpExporterResponse
+func (a *ExportersPulpAPIService) ExportersCorePulpUpdateExecute(r ExportersPulpAPIExportersCorePulpUpdateRequest) (*PulpExporterResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PulpExporterResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExportersPulpAPIService.ExportersCorePulpUpdate")
@@ -874,6 +931,9 @@ func (a *ExportersPulpAPIService) ExportersCorePulpUpdateExecute(r ExportersPulp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pulpExporter

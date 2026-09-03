@@ -30,7 +30,7 @@ Method | HTTP request | Description
 
 ## RepositoriesContainerContainerAdd
 
-> AsyncOperationResponse RepositoriesContainerContainerAdd(ctx, containerContainerRepositoryHref).RecursiveManage(recursiveManage).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerAdd(ctx, containerContainerRepositoryHref).RecursiveManage(recursiveManage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add content
 
@@ -51,10 +51,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	recursiveManage := *openapiclient.NewRecursiveManage() // RecursiveManage | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerAdd(context.Background(), containerContainerRepositoryHref).RecursiveManage(recursiveManage).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerAdd(context.Background(), containerContainerRepositoryHref).RecursiveManage(recursiveManage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -81,6 +82,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **recursiveManage** | [**RecursiveManage**](RecursiveManage.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -102,7 +104,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerAddRole
 
-> NestedRoleResponse RepositoriesContainerContainerAddRole(ctx, containerContainerRepositoryHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesContainerContainerAddRole(ctx, containerContainerRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -123,10 +125,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerAddRole(context.Background(), containerContainerRepositoryHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerAddRole(context.Background(), containerContainerRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -153,6 +156,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -174,7 +178,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerBuildImage
 
-> AsyncOperationResponse RepositoriesContainerContainerBuildImage(ctx, containerContainerRepositoryHref).ContainerfileName(containerfileName).Containerfile(containerfile).Tag(tag).BuildContext(buildContext).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerBuildImage(ctx, containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ContainerfileName(containerfileName).Containerfile(containerfile).Tag(tag).BuildContext(buildContext).Execute()
 
 Build an Image
 
@@ -194,6 +198,7 @@ import (
 
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	containerfileName := "containerfileName_example" // string | Name of the Containerfile, from build_context, that should be used to run podman-build. (optional)
 	containerfile := os.NewFile(1234, "some_file") // *os.File | An uploaded Containerfile that should be used to run podman-build. (optional)
 	tag := "tag_example" // string | A tag name for the new image being built. (optional) (default to "latest")
@@ -201,7 +206,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerBuildImage(context.Background(), containerContainerRepositoryHref).ContainerfileName(containerfileName).Containerfile(containerfile).Tag(tag).BuildContext(buildContext).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerBuildImage(context.Background(), containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ContainerfileName(containerfileName).Containerfile(containerfile).Tag(tag).BuildContext(buildContext).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerBuildImage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -227,6 +232,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **containerfileName** | **string** | Name of the Containerfile, from build_context, that should be used to run podman-build. | 
  **containerfile** | ***os.File** | An uploaded Containerfile that should be used to run podman-build. | 
  **tag** | **string** | A tag name for the new image being built. | [default to &quot;latest&quot;]
@@ -252,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerCopyManifests
 
-> AsyncOperationResponse RepositoriesContainerContainerCopyManifests(ctx, containerContainerRepositoryHref).ManifestCopy(manifestCopy).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerCopyManifests(ctx, containerContainerRepositoryHref).ManifestCopy(manifestCopy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Copy manifests
 
@@ -273,10 +279,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	manifestCopy := *openapiclient.NewManifestCopy() // ManifestCopy | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCopyManifests(context.Background(), containerContainerRepositoryHref).ManifestCopy(manifestCopy).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCopyManifests(context.Background(), containerContainerRepositoryHref).ManifestCopy(manifestCopy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerCopyManifests``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -303,6 +310,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **manifestCopy** | [**ManifestCopy**](ManifestCopy.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -324,7 +332,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerCopyTags
 
-> AsyncOperationResponse RepositoriesContainerContainerCopyTags(ctx, containerContainerRepositoryHref).TagCopy(tagCopy).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerCopyTags(ctx, containerContainerRepositoryHref).TagCopy(tagCopy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Copy tags
 
@@ -345,10 +353,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	tagCopy := *openapiclient.NewTagCopy() // TagCopy | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCopyTags(context.Background(), containerContainerRepositoryHref).TagCopy(tagCopy).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCopyTags(context.Background(), containerContainerRepositoryHref).TagCopy(tagCopy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerCopyTags``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -375,6 +384,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **tagCopy** | [**TagCopy**](TagCopy.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -396,7 +406,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerCreate
 
-> ContainerContainerRepositoryResponse RepositoriesContainerContainerCreate(ctx, pulpDomain).ContainerContainerRepository(containerContainerRepository).Execute()
+> ContainerContainerRepositoryResponse RepositoriesContainerContainerCreate(ctx, pulpDomain).ContainerContainerRepository(containerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a container repository
 
@@ -417,10 +427,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	containerContainerRepository := *openapiclient.NewContainerContainerRepository("Name_example") // ContainerContainerRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCreate(context.Background(), pulpDomain).ContainerContainerRepository(containerContainerRepository).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerCreate(context.Background(), pulpDomain).ContainerContainerRepository(containerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -447,6 +458,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerRepository** | [**ContainerContainerRepository**](ContainerContainerRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -468,7 +480,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerDelete
 
-> AsyncOperationResponse RepositoriesContainerContainerDelete(ctx, containerContainerRepositoryHref).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerDelete(ctx, containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a container repository
 
@@ -488,10 +500,11 @@ import (
 
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerDelete(context.Background(), containerContainerRepositoryHref).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerDelete(context.Background(), containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -517,6 +530,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -538,7 +552,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerList
 
-> PaginatedcontainerContainerRepositoryResponseList RepositoriesContainerContainerList(ctx, pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcontainerContainerRepositoryResponseList RepositoriesContainerContainerList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List container repositorys
 
@@ -558,6 +572,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	latestWithContent := "latestWithContent_example" // string | Content Unit referenced by HREF/PRN (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
@@ -570,13 +585,21 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `retain_checkpoints` - Retain checkpoints* `-retain_checkpoints` - Retain checkpoints (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
+	remote := "remote_example" // string |  (optional)
+	retainCheckpoints := int32(56) // int32 | Filter results where retain_checkpoints matches value (optional)
+	retainCheckpointsGt := int32(56) // int32 | Filter results where retain_checkpoints is greater than value (optional)
+	retainCheckpointsGte := int32(56) // int32 | Filter results where retain_checkpoints is greater than or equal to value (optional)
+	retainCheckpointsIsnull := true // bool | Filter results where retain_checkpoints has a null value (optional)
+	retainCheckpointsLt := int32(56) // int32 | Filter results where retain_checkpoints is less than value (optional)
+	retainCheckpointsLte := int32(56) // int32 | Filter results where retain_checkpoints is less than or equal to value (optional)
+	retainCheckpointsNe := int32(56) // int32 | Filter results where retain_checkpoints not equal to value (optional)
+	retainCheckpointsRange := []int32{int32(123)} // []int32 | Filter results where retain_checkpoints is between two comma separated values (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
 	retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
 	retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)
@@ -591,7 +614,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerList(context.Background(), pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -617,6 +640,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **latestWithContent** | **string** | Content Unit referenced by HREF/PRN | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
@@ -629,13 +653,21 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **remote** | **string** | Foreign Key referenced by HREF | 
+ **remote** | **string** |  | 
+ **retainCheckpoints** | **int32** | Filter results where retain_checkpoints matches value | 
+ **retainCheckpointsGt** | **int32** | Filter results where retain_checkpoints is greater than value | 
+ **retainCheckpointsGte** | **int32** | Filter results where retain_checkpoints is greater than or equal to value | 
+ **retainCheckpointsIsnull** | **bool** | Filter results where retain_checkpoints has a null value | 
+ **retainCheckpointsLt** | **int32** | Filter results where retain_checkpoints is less than value | 
+ **retainCheckpointsLte** | **int32** | Filter results where retain_checkpoints is less than or equal to value | 
+ **retainCheckpointsNe** | **int32** | Filter results where retain_checkpoints not equal to value | 
+ **retainCheckpointsRange** | **[]int32** | Filter results where retain_checkpoints is between two comma separated values | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 
  **retainRepoVersionsGt** | **int32** | Filter results where retain_repo_versions is greater than value | 
  **retainRepoVersionsGte** | **int32** | Filter results where retain_repo_versions is greater than or equal to value | 
@@ -668,7 +700,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerListRoles
 
-> ObjectRolesResponse RepositoriesContainerContainerListRoles(ctx, containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RepositoriesContainerContainerListRoles(ctx, containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -688,12 +720,13 @@ import (
 
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerListRoles(context.Background(), containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerListRoles(context.Background(), containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -719,6 +752,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -742,7 +776,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerMyPermissions
 
-> MyPermissionsResponse RepositoriesContainerContainerMyPermissions(ctx, containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RepositoriesContainerContainerMyPermissions(ctx, containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -762,12 +796,13 @@ import (
 
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerMyPermissions(context.Background(), containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerMyPermissions(context.Background(), containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -793,6 +828,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -816,7 +852,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerPartialUpdate
 
-> AsyncOperationResponse RepositoriesContainerContainerPartialUpdate(ctx, containerContainerRepositoryHref).PatchedcontainerContainerRepository(patchedcontainerContainerRepository).Execute()
+> ContainerContainerRepositoryResponse RepositoriesContainerContainerPartialUpdate(ctx, containerContainerRepositoryHref).PatchedcontainerContainerRepository(patchedcontainerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container repository
 
@@ -837,15 +873,16 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	patchedcontainerContainerRepository := *openapiclient.NewPatchedcontainerContainerRepository() // PatchedcontainerContainerRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerPartialUpdate(context.Background(), containerContainerRepositoryHref).PatchedcontainerContainerRepository(patchedcontainerContainerRepository).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerPartialUpdate(context.Background(), containerContainerRepositoryHref).PatchedcontainerContainerRepository(patchedcontainerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesContainerContainerPartialUpdate`: AsyncOperationResponse
+	// response from `RepositoriesContainerContainerPartialUpdate`: ContainerContainerRepositoryResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesContainerAPI.RepositoriesContainerContainerPartialUpdate`: %v\n", resp)
 }
 ```
@@ -867,10 +904,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedcontainerContainerRepository** | [**PatchedcontainerContainerRepository**](PatchedcontainerContainerRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerRepositoryResponse**](ContainerContainerRepositoryResponse.md)
 
 ### Authorization
 
@@ -888,7 +926,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerRead
 
-> ContainerContainerRepositoryResponse RepositoriesContainerContainerRead(ctx, containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContainerContainerRepositoryResponse RepositoriesContainerContainerRead(ctx, containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a container repository
 
@@ -908,12 +946,13 @@ import (
 
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRead(context.Background(), containerContainerRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRead(context.Background(), containerContainerRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -939,6 +978,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -962,7 +1002,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerRemove
 
-> AsyncOperationResponse RepositoriesContainerContainerRemove(ctx, containerContainerRepositoryHref).RecursiveManage(recursiveManage).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerRemove(ctx, containerContainerRepositoryHref).RecursiveManage(recursiveManage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove content
 
@@ -983,10 +1023,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	recursiveManage := *openapiclient.NewRecursiveManage() // RecursiveManage | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRemove(context.Background(), containerContainerRepositoryHref).RecursiveManage(recursiveManage).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRemove(context.Background(), containerContainerRepositoryHref).RecursiveManage(recursiveManage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerRemove``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1013,6 +1054,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **recursiveManage** | [**RecursiveManage**](RecursiveManage.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1034,7 +1076,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerRemoveRole
 
-> NestedRoleResponse RepositoriesContainerContainerRemoveRole(ctx, containerContainerRepositoryHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesContainerContainerRemoveRole(ctx, containerContainerRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -1055,10 +1097,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRemoveRole(context.Background(), containerContainerRepositoryHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerRemoveRole(context.Background(), containerContainerRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1085,6 +1128,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1106,7 +1150,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerSetLabel
 
-> SetLabelResponse RepositoriesContainerContainerSetLabel(ctx, containerContainerRepositoryHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RepositoriesContainerContainerSetLabel(ctx, containerContainerRepositoryHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -1127,10 +1171,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSetLabel(context.Background(), containerContainerRepositoryHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSetLabel(context.Background(), containerContainerRepositoryHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1157,6 +1202,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1178,7 +1224,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerSign
 
-> AsyncOperationResponse RepositoriesContainerContainerSign(ctx, containerContainerRepositoryHref).RepositorySign(repositorySign).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerSign(ctx, containerContainerRepositoryHref).RepositorySign(repositorySign).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Sign images in the repo
 
@@ -1199,10 +1245,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	repositorySign := *openapiclient.NewRepositorySign() // RepositorySign | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSign(context.Background(), containerContainerRepositoryHref).RepositorySign(repositorySign).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSign(context.Background(), containerContainerRepositoryHref).RepositorySign(repositorySign).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerSign``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1229,6 +1276,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repositorySign** | [**RepositorySign**](RepositorySign.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1250,7 +1298,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerSync
 
-> AsyncOperationResponse RepositoriesContainerContainerSync(ctx, containerContainerRepositoryHref).ContainerRepositorySyncURL(containerRepositorySyncURL).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerSync(ctx, containerContainerRepositoryHref).ContainerRepositorySyncURL(containerRepositorySyncURL).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Sync from a remote
 
@@ -1271,10 +1319,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	containerRepositorySyncURL := *openapiclient.NewContainerRepositorySyncURL() // ContainerRepositorySyncURL | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSync(context.Background(), containerContainerRepositoryHref).ContainerRepositorySyncURL(containerRepositorySyncURL).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerSync(context.Background(), containerContainerRepositoryHref).ContainerRepositorySyncURL(containerRepositorySyncURL).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerSync``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1301,6 +1350,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerRepositorySyncURL** | [**ContainerRepositorySyncURL**](ContainerRepositorySyncURL.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1322,7 +1372,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerTag
 
-> AsyncOperationResponse RepositoriesContainerContainerTag(ctx, containerContainerRepositoryHref).TagImage(tagImage).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerTag(ctx, containerContainerRepositoryHref).TagImage(tagImage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a Tag
 
@@ -1343,10 +1393,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	tagImage := *openapiclient.NewTagImage("Tag_example", "Digest_example") // TagImage | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerTag(context.Background(), containerContainerRepositoryHref).TagImage(tagImage).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerTag(context.Background(), containerContainerRepositoryHref).TagImage(tagImage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerTag``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1373,6 +1424,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **tagImage** | [**TagImage**](TagImage.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1394,7 +1446,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerUnsetLabel
 
-> UnsetLabelResponse RepositoriesContainerContainerUnsetLabel(ctx, containerContainerRepositoryHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RepositoriesContainerContainerUnsetLabel(ctx, containerContainerRepositoryHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -1415,10 +1467,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUnsetLabel(context.Background(), containerContainerRepositoryHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUnsetLabel(context.Background(), containerContainerRepositoryHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1445,6 +1498,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1466,7 +1520,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerUntag
 
-> AsyncOperationResponse RepositoriesContainerContainerUntag(ctx, containerContainerRepositoryHref).UnTagImage(unTagImage).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerUntag(ctx, containerContainerRepositoryHref).UnTagImage(unTagImage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a tag
 
@@ -1487,10 +1541,11 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	unTagImage := *openapiclient.NewUnTagImage("Tag_example") // UnTagImage | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUntag(context.Background(), containerContainerRepositoryHref).UnTagImage(unTagImage).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUntag(context.Background(), containerContainerRepositoryHref).UnTagImage(unTagImage).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerUntag``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1517,6 +1572,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unTagImage** | [**UnTagImage**](UnTagImage.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1538,7 +1594,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerUpdate
 
-> AsyncOperationResponse RepositoriesContainerContainerUpdate(ctx, containerContainerRepositoryHref).ContainerContainerRepository(containerContainerRepository).Execute()
+> ContainerContainerRepositoryResponse RepositoriesContainerContainerUpdate(ctx, containerContainerRepositoryHref).ContainerContainerRepository(containerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container repository
 
@@ -1559,15 +1615,16 @@ import (
 func main() {
 	containerContainerRepositoryHref := "containerContainerRepositoryHref_example" // string | 
 	containerContainerRepository := *openapiclient.NewContainerContainerRepository("Name_example") // ContainerContainerRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUpdate(context.Background(), containerContainerRepositoryHref).ContainerContainerRepository(containerContainerRepository).Execute()
+	resp, r, err := apiClient.RepositoriesContainerAPI.RepositoriesContainerContainerUpdate(context.Background(), containerContainerRepositoryHref).ContainerContainerRepository(containerContainerRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerAPI.RepositoriesContainerContainerUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesContainerContainerUpdate`: AsyncOperationResponse
+	// response from `RepositoriesContainerContainerUpdate`: ContainerContainerRepositoryResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesContainerAPI.RepositoriesContainerContainerUpdate`: %v\n", resp)
 }
 ```
@@ -1589,10 +1646,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerRepository** | [**ContainerContainerRepository**](ContainerContainerRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerRepositoryResponse**](ContainerContainerRepositoryResponse.md)
 
 ### Authorization
 

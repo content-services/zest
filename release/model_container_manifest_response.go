@@ -31,6 +31,7 @@ type ContainerManifestResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// sha256 of the Manifest file
 	Digest string `json:"digest"`
 	// Manifest schema version
@@ -252,6 +253,38 @@ func (o *ContainerManifestResponse) HasPulpLabels() bool {
 // SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
 func (o *ContainerManifestResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
+}
+
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *ContainerManifestResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerManifestResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *ContainerManifestResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *ContainerManifestResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
 }
 
 // GetDigest returns the Digest field value
@@ -687,6 +720,9 @@ func (o ContainerManifestResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	toSerialize["digest"] = o.Digest
 	toSerialize["schema_version"] = o.SchemaVersion
 	toSerialize["media_type"] = o.MediaType
@@ -771,6 +807,7 @@ func (o *ContainerManifestResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "digest")
 		delete(additionalProperties, "schema_version")
 		delete(additionalProperties, "media_type")

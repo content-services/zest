@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## ContentguardsServiceFeatureAddRole
 
-> NestedRoleResponse ContentguardsServiceFeatureAddRole(ctx, serviceFeatureContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsServiceFeatureAddRole(ctx, serviceFeatureContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureAddRole(context.Background(), serviceFeatureContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureAddRole(context.Background(), serviceFeatureContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureCreate
 
-> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureCreate(ctx, pulpDomain).ServiceFeatureContentGuard(serviceFeatureContentGuard).Execute()
+> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureCreate(ctx, pulpDomain).ServiceFeatureContentGuard(serviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a feature content guard
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	serviceFeatureContentGuard := *openapiclient.NewServiceFeatureContentGuard("Name_example", "HeaderName_example", []string{"Features_example"}) // ServiceFeatureContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureCreate(context.Background(), pulpDomain).ServiceFeatureContentGuard(serviceFeatureContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureCreate(context.Background(), pulpDomain).ServiceFeatureContentGuard(serviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **serviceFeatureContentGuard** | [**ServiceFeatureContentGuard**](ServiceFeatureContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureDelete
 
-> ContentguardsServiceFeatureDelete(ctx, serviceFeatureContentGuardHref).Execute()
+> ContentguardsServiceFeatureDelete(ctx, serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a feature content guard
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureDelete(context.Background(), serviceFeatureContentGuardHref).Execute()
+	r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureDelete(context.Background(), serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiContentguardsServiceFeatur
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureList
 
-> PaginatedserviceFeatureContentGuardResponseList ContentguardsServiceFeatureList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedserviceFeatureContentGuardResponseList ContentguardsServiceFeatureList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List feature content guards
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiContentguardsServiceFeatur
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureListRoles
 
-> ObjectRolesResponse ContentguardsServiceFeatureListRoles(ctx, serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse ContentguardsServiceFeatureListRoles(ctx, serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureListRoles(context.Background(), serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureListRoles(context.Background(), serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiContentguardsServiceFeatur
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureMyPermissions
 
-> MyPermissionsResponse ContentguardsServiceFeatureMyPermissions(ctx, serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse ContentguardsServiceFeatureMyPermissions(ctx, serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureMyPermissions(context.Background(), serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureMyPermissions(context.Background(), serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiContentguardsServiceFeatur
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeaturePartialUpdate
 
-> ServiceFeatureContentGuardResponse ContentguardsServiceFeaturePartialUpdate(ctx, serviceFeatureContentGuardHref).PatchedserviceFeatureContentGuard(patchedserviceFeatureContentGuard).Execute()
+> ServiceFeatureContentGuardResponse ContentguardsServiceFeaturePartialUpdate(ctx, serviceFeatureContentGuardHref).PatchedserviceFeatureContentGuard(patchedserviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a feature content guard
 
@@ -506,10 +518,11 @@ import (
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
 	patchedserviceFeatureContentGuard := *openapiclient.NewPatchedserviceFeatureContentGuard() // PatchedserviceFeatureContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeaturePartialUpdate(context.Background(), serviceFeatureContentGuardHref).PatchedserviceFeatureContentGuard(patchedserviceFeatureContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeaturePartialUpdate(context.Background(), serviceFeatureContentGuardHref).PatchedserviceFeatureContentGuard(patchedserviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeaturePartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedserviceFeatureContentGuard** | [**PatchedserviceFeatureContentGuard**](PatchedserviceFeatureContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -557,7 +571,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureRead
 
-> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureRead(ctx, serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureRead(ctx, serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a feature content guard
 
@@ -577,12 +591,13 @@ import (
 
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureRead(context.Background(), serviceFeatureContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureRead(context.Background(), serviceFeatureContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -608,6 +623,7 @@ Other parameters are passed through a pointer to a apiContentguardsServiceFeatur
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -631,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureRemoveRole
 
-> NestedRoleResponse ContentguardsServiceFeatureRemoveRole(ctx, serviceFeatureContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsServiceFeatureRemoveRole(ctx, serviceFeatureContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -652,10 +668,11 @@ import (
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureRemoveRole(context.Background(), serviceFeatureContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureRemoveRole(context.Background(), serviceFeatureContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,6 +699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -703,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsServiceFeatureUpdate
 
-> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureUpdate(ctx, serviceFeatureContentGuardHref).ServiceFeatureContentGuard(serviceFeatureContentGuard).Execute()
+> ServiceFeatureContentGuardResponse ContentguardsServiceFeatureUpdate(ctx, serviceFeatureContentGuardHref).ServiceFeatureContentGuard(serviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a feature content guard
 
@@ -724,10 +742,11 @@ import (
 func main() {
 	serviceFeatureContentGuardHref := "serviceFeatureContentGuardHref_example" // string | 
 	serviceFeatureContentGuard := *openapiclient.NewServiceFeatureContentGuard("Name_example", "HeaderName_example", []string{"Features_example"}) // ServiceFeatureContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureUpdate(context.Background(), serviceFeatureContentGuardHref).ServiceFeatureContentGuard(serviceFeatureContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsFeatureAPI.ContentguardsServiceFeatureUpdate(context.Background(), serviceFeatureContentGuardHref).ServiceFeatureContentGuard(serviceFeatureContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsFeatureAPI.ContentguardsServiceFeatureUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **serviceFeatureContentGuard** | [**ServiceFeatureContentGuard**](ServiceFeatureContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

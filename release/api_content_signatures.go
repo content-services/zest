@@ -29,6 +29,7 @@ type ContentSignaturesAPIContentContainerSignaturesListRequest struct {
 	ctx context.Context
 	ApiService *ContentSignaturesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	digest *string
 	digestIn *[]string
 	keyId *string
@@ -57,6 +58,12 @@ type ContentSignaturesAPIContentContainerSignaturesListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentSignaturesAPIContentContainerSignaturesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentSignaturesAPIContentContainerSignaturesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where digest matches value
@@ -155,7 +162,7 @@ func (r ContentSignaturesAPIContentContainerSignaturesListRequest) Offset(offset
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;type&#x60; - Type* &#x60;-type&#x60; - Type (descending)* &#x60;key_id&#x60; - Key id* &#x60;-key_id&#x60; - Key id (descending)* &#x60;timestamp&#x60; - Timestamp* &#x60;-timestamp&#x60; - Timestamp (descending)* &#x60;creator&#x60; - Creator* &#x60;-creator&#x60; - Creator (descending)* &#x60;data&#x60; - Data* &#x60;-data&#x60; - Data (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;digest&#x60; - Digest* &#x60;-digest&#x60; - Digest (descending)* &#x60;type&#x60; - Type* &#x60;-type&#x60; - Type (descending)* &#x60;key_id&#x60; - Key id* &#x60;-key_id&#x60; - Key id (descending)* &#x60;fingerprint&#x60; - Fingerprint* &#x60;-fingerprint&#x60; - Fingerprint (descending)* &#x60;timestamp&#x60; - Timestamp* &#x60;-timestamp&#x60; - Timestamp (descending)* &#x60;creator&#x60; - Creator* &#x60;-creator&#x60; - Creator (descending)* &#x60;data&#x60; - Data* &#x60;-data&#x60; - Data (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentSignaturesAPIContentContainerSignaturesListRequest) Ordering(ordering []string) ContentSignaturesAPIContentContainerSignaturesListRequest {
 	r.ordering = &ordering
 	return r
@@ -197,19 +204,16 @@ func (r ContentSignaturesAPIContentContainerSignaturesListRequest) Q(q string) C
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentSignaturesAPIContentContainerSignaturesListRequest) RepositoryVersion(repositoryVersion string) ContentSignaturesAPIContentContainerSignaturesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentSignaturesAPIContentContainerSignaturesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentSignaturesAPIContentContainerSignaturesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentSignaturesAPIContentContainerSignaturesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentSignaturesAPIContentContainerSignaturesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -388,6 +392,9 @@ func (a *ContentSignaturesAPIService) ContentContainerSignaturesListExecute(r Co
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -429,8 +436,15 @@ type ContentSignaturesAPIContentContainerSignaturesReadRequest struct {
 	ctx context.Context
 	ApiService *ContentSignaturesAPIService
 	containerManifestSignatureHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentSignaturesAPIContentContainerSignaturesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentSignaturesAPIContentContainerSignaturesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -528,6 +542,9 @@ func (a *ContentSignaturesAPIService) ContentContainerSignaturesReadExecute(r Co
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -570,10 +587,17 @@ type ContentSignaturesAPIContentContainerSignaturesSetLabelRequest struct {
 	ApiService *ContentSignaturesAPIService
 	containerManifestSignatureHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentSignaturesAPIContentContainerSignaturesSetLabelRequest) SetLabel(setLabel SetLabel) ContentSignaturesAPIContentContainerSignaturesSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentSignaturesAPIContentContainerSignaturesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentSignaturesAPIContentContainerSignaturesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -641,6 +665,9 @@ func (a *ContentSignaturesAPIService) ContentContainerSignaturesSetLabelExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -685,10 +712,17 @@ type ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest struct {
 	ApiService *ContentSignaturesAPIService
 	containerManifestSignatureHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentSignaturesAPIContentContainerSignaturesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -755,6 +789,9 @@ func (a *ContentSignaturesAPIService) ContentContainerSignaturesUnsetLabelExecut
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

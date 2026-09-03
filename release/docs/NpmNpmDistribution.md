@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Name** | **string** | A unique name. Ex, &#x60;rawhide&#x60; and &#x60;stable&#x60;. | 
 **Repository** | Pointer to **NullableString** | The latest RepositoryVersion for this Repository will be served. | [optional] 
+**RepositoryVersion** | Pointer to **NullableString** | RepositoryVersion to be served | [optional] 
 **Remote** | Pointer to **NullableString** | Remote that can be used to fetch content when using pull-through caching. | [optional] 
 
 ## Methods
@@ -191,6 +192,41 @@ HasRepository returns a boolean if a field has been set.
 `func (o *NpmNpmDistribution) UnsetRepository()`
 
 UnsetRepository ensures that no value is present for Repository, not even an explicit nil
+### GetRepositoryVersion
+
+`func (o *NpmNpmDistribution) GetRepositoryVersion() string`
+
+GetRepositoryVersion returns the RepositoryVersion field if non-nil, zero value otherwise.
+
+### GetRepositoryVersionOk
+
+`func (o *NpmNpmDistribution) GetRepositoryVersionOk() (*string, bool)`
+
+GetRepositoryVersionOk returns a tuple with the RepositoryVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepositoryVersion
+
+`func (o *NpmNpmDistribution) SetRepositoryVersion(v string)`
+
+SetRepositoryVersion sets RepositoryVersion field to given value.
+
+### HasRepositoryVersion
+
+`func (o *NpmNpmDistribution) HasRepositoryVersion() bool`
+
+HasRepositoryVersion returns a boolean if a field has been set.
+
+### SetRepositoryVersionNil
+
+`func (o *NpmNpmDistribution) SetRepositoryVersionNil(b bool)`
+
+ SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+
+### UnsetRepositoryVersion
+`func (o *NpmNpmDistribution) UnsetRepositoryVersion()`
+
+UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
 ### GetRemote
 
 `func (o *NpmNpmDistribution) GetRemote() string`

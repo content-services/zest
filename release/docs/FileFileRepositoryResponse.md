@@ -14,9 +14,11 @@ Name | Type | Description | Notes
 **Name** | **string** | A unique name for this repository. | 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
 **Remote** | Pointer to **NullableString** | An optional remote to use by default when syncing. | [optional] 
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **Manifest** | Pointer to **NullableString** | Filename to use for manifest file containing metadata for all the files. | [optional] [default to "PULP_MANIFEST"]
+**LastSyncDetails** | Pointer to **interface{}** | Details about the last sync of this repository. | [optional] [readonly] 
 
 ## Methods
 
@@ -302,6 +304,41 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *FileFileRepositoryResponse) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetRetainCheckpoints
+
+`func (o *FileFileRepositoryResponse) GetRetainCheckpoints() int64`
+
+GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
+
+### GetRetainCheckpointsOk
+
+`func (o *FileFileRepositoryResponse) GetRetainCheckpointsOk() (*int64, bool)`
+
+GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainCheckpoints
+
+`func (o *FileFileRepositoryResponse) SetRetainCheckpoints(v int64)`
+
+SetRetainCheckpoints sets RetainCheckpoints field to given value.
+
+### HasRetainCheckpoints
+
+`func (o *FileFileRepositoryResponse) HasRetainCheckpoints() bool`
+
+HasRetainCheckpoints returns a boolean if a field has been set.
+
+### SetRetainCheckpointsNil
+
+`func (o *FileFileRepositoryResponse) SetRetainCheckpointsNil(b bool)`
+
+ SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+
+### UnsetRetainCheckpoints
+`func (o *FileFileRepositoryResponse) UnsetRetainCheckpoints()`
+
+UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
 ### GetRemote
 
 `func (o *FileFileRepositoryResponse) GetRemote() string`
@@ -397,6 +434,41 @@ HasManifest returns a boolean if a field has been set.
 `func (o *FileFileRepositoryResponse) UnsetManifest()`
 
 UnsetManifest ensures that no value is present for Manifest, not even an explicit nil
+### GetLastSyncDetails
+
+`func (o *FileFileRepositoryResponse) GetLastSyncDetails() interface{}`
+
+GetLastSyncDetails returns the LastSyncDetails field if non-nil, zero value otherwise.
+
+### GetLastSyncDetailsOk
+
+`func (o *FileFileRepositoryResponse) GetLastSyncDetailsOk() (*interface{}, bool)`
+
+GetLastSyncDetailsOk returns a tuple with the LastSyncDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastSyncDetails
+
+`func (o *FileFileRepositoryResponse) SetLastSyncDetails(v interface{})`
+
+SetLastSyncDetails sets LastSyncDetails field to given value.
+
+### HasLastSyncDetails
+
+`func (o *FileFileRepositoryResponse) HasLastSyncDetails() bool`
+
+HasLastSyncDetails returns a boolean if a field has been set.
+
+### SetLastSyncDetailsNil
+
+`func (o *FileFileRepositoryResponse) SetLastSyncDetailsNil(b bool)`
+
+ SetLastSyncDetailsNil sets the value for LastSyncDetails to be an explicit nil
+
+### UnsetLastSyncDetails
+`func (o *FileFileRepositoryResponse) UnsetLastSyncDetails()`
+
+UnsetLastSyncDetails ensures that no value is present for LastSyncDetails, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

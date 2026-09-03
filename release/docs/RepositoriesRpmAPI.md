@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## RepositoriesRpmRpmAddRole
 
-> NestedRoleResponse RepositoriesRpmRpmAddRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesRpmRpmAddRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -44,10 +44,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmAddRole(context.Background(), rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmAddRole(context.Background(), rpmRpmRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -74,6 +75,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmCreate
 
-> RpmRpmRepositoryResponse RepositoriesRpmRpmCreate(ctx, pulpDomain).RpmRpmRepository(rpmRpmRepository).Execute()
+> RpmRpmRepositoryResponse RepositoriesRpmRpmCreate(ctx, pulpDomain).RpmRpmRepository(rpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rpm repository
 
@@ -116,10 +118,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmRpmRepository := *openapiclient.NewRpmRpmRepository("Name_example") // RpmRpmRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmCreate(context.Background(), pulpDomain).RpmRpmRepository(rpmRpmRepository).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmCreate(context.Background(), pulpDomain).RpmRpmRepository(rpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -146,6 +149,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmRepository** | [**RpmRpmRepository**](RpmRpmRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -167,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmDelete
 
-> AsyncOperationResponse RepositoriesRpmRpmDelete(ctx, rpmRpmRepositoryHref).Execute()
+> AsyncOperationResponse RepositoriesRpmRpmDelete(ctx, rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rpm repository
 
@@ -187,10 +191,11 @@ import (
 
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmDelete(context.Background(), rpmRpmRepositoryHref).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmDelete(context.Background(), rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -216,6 +221,7 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmDeleteRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -237,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmList
 
-> PaginatedrpmRpmRepositoryResponseList RepositoriesRpmRpmList(ctx, pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmRepositoryResponseList RepositoriesRpmRpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm repositorys
 
@@ -257,6 +263,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	latestWithContent := "latestWithContent_example" // string | Content Unit referenced by HREF/PRN (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
@@ -269,13 +276,21 @@ func main() {
 	nameRegex := "nameRegex_example" // string | Filter results where name matches regex value (optional)
 	nameStartswith := "nameStartswith_example" // string | Filter results where name starts with value (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `name` - Name* `-name` - Name (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `description` - Description* `-description` - Description (descending)* `next_version` - Next version* `-next_version` - Next version (descending)* `retain_repo_versions` - Retain repo versions* `-retain_repo_versions` - Retain repo versions (descending)* `retain_checkpoints` - Retain checkpoints* `-retain_checkpoints` - Retain checkpoints (descending)* `user_hidden` - User hidden* `-user_hidden` - User hidden (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	remote := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Foreign Key referenced by HREF (optional)
+	remote := "remote_example" // string |  (optional)
+	retainCheckpoints := int32(56) // int32 | Filter results where retain_checkpoints matches value (optional)
+	retainCheckpointsGt := int32(56) // int32 | Filter results where retain_checkpoints is greater than value (optional)
+	retainCheckpointsGte := int32(56) // int32 | Filter results where retain_checkpoints is greater than or equal to value (optional)
+	retainCheckpointsIsnull := true // bool | Filter results where retain_checkpoints has a null value (optional)
+	retainCheckpointsLt := int32(56) // int32 | Filter results where retain_checkpoints is less than value (optional)
+	retainCheckpointsLte := int32(56) // int32 | Filter results where retain_checkpoints is less than or equal to value (optional)
+	retainCheckpointsNe := int32(56) // int32 | Filter results where retain_checkpoints not equal to value (optional)
+	retainCheckpointsRange := []int32{int32(123)} // []int32 | Filter results where retain_checkpoints is between two comma separated values (optional)
 	retainRepoVersions := int32(56) // int32 | Filter results where retain_repo_versions matches value (optional)
 	retainRepoVersionsGt := int32(56) // int32 | Filter results where retain_repo_versions is greater than value (optional)
 	retainRepoVersionsGte := int32(56) // int32 | Filter results where retain_repo_versions is greater than or equal to value (optional)
@@ -290,7 +305,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmList(context.Background(), pulpDomain).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).LatestWithContent(latestWithContent).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Remote(remote).RetainCheckpoints(retainCheckpoints).RetainCheckpointsGt(retainCheckpointsGt).RetainCheckpointsGte(retainCheckpointsGte).RetainCheckpointsIsnull(retainCheckpointsIsnull).RetainCheckpointsLt(retainCheckpointsLt).RetainCheckpointsLte(retainCheckpointsLte).RetainCheckpointsNe(retainCheckpointsNe).RetainCheckpointsRange(retainCheckpointsRange).RetainRepoVersions(retainRepoVersions).RetainRepoVersionsGt(retainRepoVersionsGt).RetainRepoVersionsGte(retainRepoVersionsGte).RetainRepoVersionsIsnull(retainRepoVersionsIsnull).RetainRepoVersionsLt(retainRepoVersionsLt).RetainRepoVersionsLte(retainRepoVersionsLte).RetainRepoVersionsNe(retainRepoVersionsNe).RetainRepoVersionsRange(retainRepoVersionsRange).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -316,6 +331,7 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmListRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **latestWithContent** | **string** | Content Unit referenced by HREF/PRN | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
@@ -328,13 +344,21 @@ Name | Type | Description  | Notes
  **nameRegex** | **string** | Filter results where name matches regex value | 
  **nameStartswith** | **string** | Filter results where name starts with value | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **remote** | **string** | Foreign Key referenced by HREF | 
+ **remote** | **string** |  | 
+ **retainCheckpoints** | **int32** | Filter results where retain_checkpoints matches value | 
+ **retainCheckpointsGt** | **int32** | Filter results where retain_checkpoints is greater than value | 
+ **retainCheckpointsGte** | **int32** | Filter results where retain_checkpoints is greater than or equal to value | 
+ **retainCheckpointsIsnull** | **bool** | Filter results where retain_checkpoints has a null value | 
+ **retainCheckpointsLt** | **int32** | Filter results where retain_checkpoints is less than value | 
+ **retainCheckpointsLte** | **int32** | Filter results where retain_checkpoints is less than or equal to value | 
+ **retainCheckpointsNe** | **int32** | Filter results where retain_checkpoints not equal to value | 
+ **retainCheckpointsRange** | **[]int32** | Filter results where retain_checkpoints is between two comma separated values | 
  **retainRepoVersions** | **int32** | Filter results where retain_repo_versions matches value | 
  **retainRepoVersionsGt** | **int32** | Filter results where retain_repo_versions is greater than value | 
  **retainRepoVersionsGte** | **int32** | Filter results where retain_repo_versions is greater than or equal to value | 
@@ -367,7 +391,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmListRoles
 
-> ObjectRolesResponse RepositoriesRpmRpmListRoles(ctx, rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RepositoriesRpmRpmListRoles(ctx, rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -387,12 +411,13 @@ import (
 
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmListRoles(context.Background(), rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmListRoles(context.Background(), rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -418,6 +443,7 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmListRole
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -441,7 +467,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmModify
 
-> AsyncOperationResponse RepositoriesRpmRpmModify(ctx, rpmRpmRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
+> AsyncOperationResponse RepositoriesRpmRpmModify(ctx, rpmRpmRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Modify Repository Content
 
@@ -462,10 +488,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	repositoryAddRemoveContent := *openapiclient.NewRepositoryAddRemoveContent() // RepositoryAddRemoveContent | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmModify(context.Background(), rpmRpmRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmModify(context.Background(), rpmRpmRepositoryHref).RepositoryAddRemoveContent(repositoryAddRemoveContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmModify``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -492,6 +519,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repositoryAddRemoveContent** | [**RepositoryAddRemoveContent**](RepositoryAddRemoveContent.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -513,7 +541,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmMyPermissions
 
-> MyPermissionsResponse RepositoriesRpmRpmMyPermissions(ctx, rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RepositoriesRpmRpmMyPermissions(ctx, rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -533,12 +561,13 @@ import (
 
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmMyPermissions(context.Background(), rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmMyPermissions(context.Background(), rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -564,6 +593,7 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmMyPermis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -587,7 +617,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmPartialUpdate
 
-> AsyncOperationResponse RepositoriesRpmRpmPartialUpdate(ctx, rpmRpmRepositoryHref).PatchedrpmRpmRepository(patchedrpmRpmRepository).Execute()
+> RpmRpmRepositoryResponse RepositoriesRpmRpmPartialUpdate(ctx, rpmRpmRepositoryHref).PatchedrpmRpmRepository(patchedrpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm repository
 
@@ -608,15 +638,16 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	patchedrpmRpmRepository := *openapiclient.NewPatchedrpmRpmRepository() // PatchedrpmRpmRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmPartialUpdate(context.Background(), rpmRpmRepositoryHref).PatchedrpmRpmRepository(patchedrpmRpmRepository).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmPartialUpdate(context.Background(), rpmRpmRepositoryHref).PatchedrpmRpmRepository(patchedrpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesRpmRpmPartialUpdate`: AsyncOperationResponse
+	// response from `RepositoriesRpmRpmPartialUpdate`: RpmRpmRepositoryResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesRpmAPI.RepositoriesRpmRpmPartialUpdate`: %v\n", resp)
 }
 ```
@@ -638,10 +669,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedrpmRpmRepository** | [**PatchedrpmRpmRepository**](PatchedrpmRpmRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmRepositoryResponse**](RpmRpmRepositoryResponse.md)
 
 ### Authorization
 
@@ -659,7 +691,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmRead
 
-> RpmRpmRepositoryResponse RepositoriesRpmRpmRead(ctx, rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmRpmRepositoryResponse RepositoriesRpmRpmRead(ctx, rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rpm repository
 
@@ -679,12 +711,13 @@ import (
 
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmRead(context.Background(), rpmRpmRepositoryHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmRead(context.Background(), rpmRpmRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -710,6 +743,7 @@ Other parameters are passed through a pointer to a apiRepositoriesRpmRpmReadRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -733,7 +767,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmRemoveRole
 
-> NestedRoleResponse RepositoriesRpmRpmRemoveRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RepositoriesRpmRpmRemoveRole(ctx, rpmRpmRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -754,10 +788,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmRemoveRole(context.Background(), rpmRpmRepositoryHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmRemoveRole(context.Background(), rpmRpmRepositoryHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -784,6 +819,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -805,7 +841,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmSetLabel
 
-> SetLabelResponse RepositoriesRpmRpmSetLabel(ctx, rpmRpmRepositoryHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RepositoriesRpmRpmSetLabel(ctx, rpmRpmRepositoryHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -826,10 +862,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSetLabel(context.Background(), rpmRpmRepositoryHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSetLabel(context.Background(), rpmRpmRepositoryHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -856,6 +893,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -877,7 +915,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmSync
 
-> AsyncOperationResponse RepositoriesRpmRpmSync(ctx, rpmRpmRepositoryHref).RpmRepositorySyncURL(rpmRepositorySyncURL).Execute()
+> AsyncOperationResponse RepositoriesRpmRpmSync(ctx, rpmRpmRepositoryHref).RpmRepositorySyncURL(rpmRepositorySyncURL).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Sync from remote
 
@@ -898,10 +936,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	rpmRepositorySyncURL := *openapiclient.NewRpmRepositorySyncURL() // RpmRepositorySyncURL | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSync(context.Background(), rpmRpmRepositoryHref).RpmRepositorySyncURL(rpmRepositorySyncURL).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmSync(context.Background(), rpmRpmRepositoryHref).RpmRepositorySyncURL(rpmRepositorySyncURL).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmSync``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -928,6 +967,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRepositorySyncURL** | [**RpmRepositorySyncURL**](RpmRepositorySyncURL.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -949,7 +989,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmUnsetLabel
 
-> UnsetLabelResponse RepositoriesRpmRpmUnsetLabel(ctx, rpmRpmRepositoryHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RepositoriesRpmRpmUnsetLabel(ctx, rpmRpmRepositoryHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -970,10 +1010,11 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmUnsetLabel(context.Background(), rpmRpmRepositoryHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmUnsetLabel(context.Background(), rpmRpmRepositoryHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1000,6 +1041,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -1021,7 +1063,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesRpmRpmUpdate
 
-> AsyncOperationResponse RepositoriesRpmRpmUpdate(ctx, rpmRpmRepositoryHref).RpmRpmRepository(rpmRpmRepository).Execute()
+> RpmRpmRepositoryResponse RepositoriesRpmRpmUpdate(ctx, rpmRpmRepositoryHref).RpmRpmRepository(rpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm repository
 
@@ -1042,15 +1084,16 @@ import (
 func main() {
 	rpmRpmRepositoryHref := "rpmRpmRepositoryHref_example" // string | 
 	rpmRpmRepository := *openapiclient.NewRpmRpmRepository("Name_example") // RpmRpmRepository | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmUpdate(context.Background(), rpmRpmRepositoryHref).RpmRpmRepository(rpmRpmRepository).Execute()
+	resp, r, err := apiClient.RepositoriesRpmAPI.RepositoriesRpmRpmUpdate(context.Background(), rpmRpmRepositoryHref).RpmRpmRepository(rpmRpmRepository).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesRpmAPI.RepositoriesRpmRpmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesRpmRpmUpdate`: AsyncOperationResponse
+	// response from `RepositoriesRpmRpmUpdate`: RpmRpmRepositoryResponse
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesRpmAPI.RepositoriesRpmRpmUpdate`: %v\n", resp)
 }
 ```
@@ -1072,10 +1115,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmRepository** | [**RpmRpmRepository**](RpmRpmRepository.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmRepositoryResponse**](RpmRpmRepositoryResponse.md)
 
 ### Authorization
 

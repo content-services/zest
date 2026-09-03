@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## RemotesFileFileAddRole
 
-> NestedRoleResponse RemotesFileFileAddRole(ctx, fileFileRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesFileFileAddRole(ctx, fileFileRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileAddRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileAddRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileCreate
 
-> FileFileRemoteResponse RemotesFileFileCreate(ctx, pulpDomain).FileFileRemote(fileFileRemote).Execute()
+> FileFileRemoteResponse RemotesFileFileCreate(ctx, pulpDomain).FileFileRemote(fileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a file remote
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileCreate(context.Background(), pulpDomain).FileFileRemote(fileFileRemote).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileCreate(context.Background(), pulpDomain).FileFileRemote(fileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fileFileRemote** | [**FileFileRemote**](FileFileRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileDelete
 
-> AsyncOperationResponse RemotesFileFileDelete(ctx, fileFileRemoteHref).Execute()
+> AsyncOperationResponse RemotesFileFileDelete(ctx, fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a file remote
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileDelete(context.Background(), fileFileRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileDelete(context.Background(), fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiRemotesFileFileDeleteReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileList
 
-> PaginatedfileFileRemoteResponseList RemotesFileFileList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedfileFileRemoteResponseList RemotesFileFileList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List file remotes
 
@@ -256,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -285,7 +292,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiRemotesFileFileListRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -358,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileListRoles
 
-> ObjectRolesResponse RemotesFileFileListRoles(ctx, fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RemotesFileFileListRoles(ctx, fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -378,12 +386,13 @@ import (
 
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileListRoles(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileListRoles(context.Background(), fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,6 +418,7 @@ Other parameters are passed through a pointer to a apiRemotesFileFileListRolesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -432,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileMyPermissions
 
-> MyPermissionsResponse RemotesFileFileMyPermissions(ctx, fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RemotesFileFileMyPermissions(ctx, fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -452,12 +462,13 @@ import (
 
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileMyPermissions(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileMyPermissions(context.Background(), fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,6 +494,7 @@ Other parameters are passed through a pointer to a apiRemotesFileFileMyPermissio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -506,7 +518,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFilePartialUpdate
 
-> AsyncOperationResponse RemotesFileFilePartialUpdate(ctx, fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).Execute()
+> FileFileRemoteResponse RemotesFileFilePartialUpdate(ctx, fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a file remote
 
@@ -527,15 +539,16 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	patchedfileFileRemote := *openapiclient.NewPatchedfileFileRemote() // PatchedfileFileRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFilePartialUpdate(context.Background(), fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFilePartialUpdate(context.Background(), fileFileRemoteHref).PatchedfileFileRemote(patchedfileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFilePartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesFileFilePartialUpdate`: AsyncOperationResponse
+	// response from `RemotesFileFilePartialUpdate`: FileFileRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFilePartialUpdate`: %v\n", resp)
 }
 ```
@@ -557,10 +570,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedfileFileRemote** | [**PatchedfileFileRemote**](PatchedfileFileRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**FileFileRemoteResponse**](FileFileRemoteResponse.md)
 
 ### Authorization
 
@@ -578,7 +592,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileRead
 
-> FileFileRemoteResponse RemotesFileFileRead(ctx, fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> FileFileRemoteResponse RemotesFileFileRead(ctx, fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a file remote
 
@@ -598,12 +612,13 @@ import (
 
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRead(context.Background(), fileFileRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRead(context.Background(), fileFileRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -629,6 +644,7 @@ Other parameters are passed through a pointer to a apiRemotesFileFileReadRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -652,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileRemoveRole
 
-> NestedRoleResponse RemotesFileFileRemoveRole(ctx, fileFileRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesFileFileRemoveRole(ctx, fileFileRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -673,10 +689,11 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRemoveRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileRemoveRole(context.Background(), fileFileRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +720,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -724,7 +742,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileSetLabel
 
-> SetLabelResponse RemotesFileFileSetLabel(ctx, fileFileRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesFileFileSetLabel(ctx, fileFileRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -745,10 +763,11 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileSetLabel(context.Background(), fileFileRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileSetLabel(context.Background(), fileFileRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -775,6 +794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -796,7 +816,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileUnsetLabel
 
-> UnsetLabelResponse RemotesFileFileUnsetLabel(ctx, fileFileRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesFileFileUnsetLabel(ctx, fileFileRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -817,10 +837,11 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUnsetLabel(context.Background(), fileFileRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUnsetLabel(context.Background(), fileFileRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,6 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -868,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## RemotesFileFileUpdate
 
-> AsyncOperationResponse RemotesFileFileUpdate(ctx, fileFileRemoteHref).FileFileRemote(fileFileRemote).Execute()
+> FileFileRemoteResponse RemotesFileFileUpdate(ctx, fileFileRemoteHref).FileFileRemote(fileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a file remote
 
@@ -889,15 +911,16 @@ import (
 func main() {
 	fileFileRemoteHref := "fileFileRemoteHref_example" // string | 
 	fileFileRemote := *openapiclient.NewFileFileRemote("Name_example", "Url_example") // FileFileRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUpdate(context.Background(), fileFileRemoteHref).FileFileRemote(fileFileRemote).Execute()
+	resp, r, err := apiClient.RemotesFileAPI.RemotesFileFileUpdate(context.Background(), fileFileRemoteHref).FileFileRemote(fileFileRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesFileAPI.RemotesFileFileUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesFileFileUpdate`: AsyncOperationResponse
+	// response from `RemotesFileFileUpdate`: FileFileRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesFileAPI.RemotesFileFileUpdate`: %v\n", resp)
 }
 ```
@@ -919,10 +942,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fileFileRemote** | [**FileFileRemote**](FileFileRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**FileFileRemoteResponse**](FileFileRemoteResponse.md)
 
 ### Authorization
 

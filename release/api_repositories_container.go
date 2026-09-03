@@ -31,10 +31,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerAddRequest struct {
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	recursiveManage *RecursiveManage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerAddRequest) RecursiveManage(recursiveManage RecursiveManage) RepositoriesContainerAPIRepositoriesContainerContainerAddRequest {
 	r.recursiveManage = &recursiveManage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerAddRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerAddRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -102,6 +109,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerAddExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.recursiveManage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,10 +156,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerAddRoleRequest struct
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerAddRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesContainerAPIRepositoriesContainerContainerAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -217,6 +234,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerAddRoleE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -260,10 +280,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerBuildImageRequest str
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
+	xTaskDiagnostics *[]string
 	containerfileName *string
 	containerfile *os.File
 	tag *string
 	buildContext *string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerBuildImageRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerBuildImageRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Name of the Containerfile, from build_context, that should be used to run podman-build.
@@ -351,6 +378,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerBuildIma
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.containerfileName != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "containerfile_name", r.containerfileName, "", "")
 	}
@@ -419,10 +449,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerCopyManifestsRequest 
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	manifestCopy *ManifestCopy
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerCopyManifestsRequest) ManifestCopy(manifestCopy ManifestCopy) RepositoriesContainerAPIRepositoriesContainerContainerCopyManifestsRequest {
 	r.manifestCopy = &manifestCopy
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerCopyManifestsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerCopyManifestsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -490,6 +527,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerCopyMani
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.manifestCopy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -534,10 +574,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerCopyTagsRequest struc
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	tagCopy *TagCopy
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerCopyTagsRequest) TagCopy(tagCopy TagCopy) RepositoriesContainerAPIRepositoriesContainerContainerCopyTagsRequest {
 	r.tagCopy = &tagCopy
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerCopyTagsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerCopyTagsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -605,6 +652,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerCopyTags
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.tagCopy
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -649,10 +699,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest struct 
 	ApiService *RepositoriesContainerAPIService
 	pulpDomain string
 	containerContainerRepository *ContainerContainerRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest) ContainerContainerRepository(containerContainerRepository ContainerContainerRepository) RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest {
 	r.containerContainerRepository = &containerContainerRepository
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -663,7 +720,7 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerCreateRequest) Exe
 /*
 RepositoriesContainerContainerCreate Create a container repository
 
-ViewSet for container repo.
+ViewSet for container repo.Repositories linked to a registry distribution inherit the distribution's access policyfor read and content-modifying actions, matching legacy push repository behavior.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -720,6 +777,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerCreateEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.containerContainerRepository
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -763,6 +823,13 @@ type RepositoriesContainerAPIRepositoriesContainerContainerDeleteRequest struct 
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -826,6 +893,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerDeleteEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -867,6 +937,7 @@ type RepositoriesContainerAPIRepositoriesContainerContainerListRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	latestWithContent *string
 	limit *int32
 	name *string
@@ -886,6 +957,14 @@ type RepositoriesContainerAPIRepositoriesContainerContainerListRequest struct {
 	pulpLabelSelect *string
 	q *string
 	remote *string
+	retainCheckpoints *int32
+	retainCheckpointsGt *int32
+	retainCheckpointsGte *int32
+	retainCheckpointsIsnull *bool
+	retainCheckpointsLt *int32
+	retainCheckpointsLte *int32
+	retainCheckpointsNe *int32
+	retainCheckpointsRange *[]int32
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
 	retainRepoVersionsGte *int32
@@ -897,6 +976,12 @@ type RepositoriesContainerAPIRepositoriesContainerContainerListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -971,7 +1056,7 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) Offse
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) Ordering(ordering []string) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
 	r.ordering = &ordering
 	return r
@@ -1007,9 +1092,56 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) Q(q s
 	return r
 }
 
-// Foreign Key referenced by HREF
 func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) Remote(remote string) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
 	r.remote = &remote
+	return r
+}
+
+// Filter results where retain_checkpoints matches value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpoints(retainCheckpoints int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpoints = &retainCheckpoints
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsGt(retainCheckpointsGt int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsGt = &retainCheckpointsGt
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than or equal to value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsGte(retainCheckpointsGte int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsGte = &retainCheckpointsGte
+	return r
+}
+
+// Filter results where retain_checkpoints has a null value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsIsnull(retainCheckpointsIsnull bool) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsIsnull = &retainCheckpointsIsnull
+	return r
+}
+
+// Filter results where retain_checkpoints is less than value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsLt(retainCheckpointsLt int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsLt = &retainCheckpointsLt
+	return r
+}
+
+// Filter results where retain_checkpoints is less than or equal to value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsLte(retainCheckpointsLte int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsLte = &retainCheckpointsLte
+	return r
+}
+
+// Filter results where retain_checkpoints not equal to value
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsNe(retainCheckpointsNe int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsNe = &retainCheckpointsNe
+	return r
+}
+
+// Filter results where retain_checkpoints is between two comma separated values
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) RetainCheckpointsRange(retainCheckpointsRange []int32) RepositoriesContainerAPIRepositoriesContainerContainerListRequest {
+	r.retainCheckpointsRange = &retainCheckpointsRange
 	return r
 }
 
@@ -1086,7 +1218,7 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerListRequest) Execu
 /*
 RepositoriesContainerContainerList List container repositorys
 
-ViewSet for container repo.
+ViewSet for container repo.Repositories linked to a registry distribution inherit the distribution's access policyfor read and content-modifying actions, matching legacy push repository behavior.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -1180,6 +1312,30 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerListExec
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "form", "")
 	}
+	if r.retainCheckpoints != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints", r.retainCheckpoints, "form", "")
+	}
+	if r.retainCheckpointsGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gt", r.retainCheckpointsGt, "form", "")
+	}
+	if r.retainCheckpointsGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gte", r.retainCheckpointsGte, "form", "")
+	}
+	if r.retainCheckpointsIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__isnull", r.retainCheckpointsIsnull, "form", "")
+	}
+	if r.retainCheckpointsLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lt", r.retainCheckpointsLt, "form", "")
+	}
+	if r.retainCheckpointsLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lte", r.retainCheckpointsLte, "form", "")
+	}
+	if r.retainCheckpointsNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__ne", r.retainCheckpointsNe, "form", "")
+	}
+	if r.retainCheckpointsRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__range", r.retainCheckpointsRange, "form", "csv")
+	}
 	if r.retainRepoVersions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_repo_versions", r.retainRepoVersions, "form", "")
 	}
@@ -1246,6 +1402,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerListExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1287,8 +1446,15 @@ type RepositoriesContainerAPIRepositoriesContainerContainerListRolesRequest stru
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1386,6 +1552,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerListRole
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1427,8 +1596,15 @@ type RepositoriesContainerAPIRepositoriesContainerContainerMyPermissionsRequest 
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1526,6 +1702,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerMyPermis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1568,6 +1747,7 @@ type RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest 
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	patchedcontainerContainerRepository *PatchedcontainerContainerRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) PatchedcontainerContainerRepository(patchedcontainerContainerRepository PatchedcontainerContainerRepository) RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest {
@@ -1575,14 +1755,20 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateReque
 	return r
 }
 
-func (r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) Execute() (*ContainerContainerRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesContainerContainerPartialUpdateExecute(r)
 }
 
 /*
 RepositoriesContainerContainerPartialUpdate Update a container repository
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerRepositoryHref
@@ -1597,13 +1783,13 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerPartialU
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerPartialUpdateExecute(r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerRepositoryResponse
+func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerPartialUpdateExecute(r RepositoriesContainerAPIRepositoriesContainerContainerPartialUpdateRequest) (*ContainerContainerRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesContainerAPIService.RepositoriesContainerContainerPartialUpdate")
@@ -1638,6 +1824,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerPartialU
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedcontainerContainerRepository
@@ -1682,8 +1871,15 @@ type RepositoriesContainerAPIRepositoriesContainerContainerReadRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1705,7 +1901,7 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerReadRequest) Execu
 /*
 RepositoriesContainerContainerRead Inspect a container repository
 
-ViewSet for container repo.
+ViewSet for container repo.Repositories linked to a registry distribution inherit the distribution's access policyfor read and content-modifying actions, matching legacy push repository behavior.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerRepositoryHref
@@ -1781,6 +1977,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerReadExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1823,10 +2022,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerRemoveRequest struct 
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	recursiveManage *RecursiveManage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerRemoveRequest) RecursiveManage(recursiveManage RecursiveManage) RepositoriesContainerAPIRepositoriesContainerContainerRemoveRequest {
 	r.recursiveManage = &recursiveManage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerRemoveRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerRemoveRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1894,6 +2100,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerRemoveEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.recursiveManage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1938,10 +2147,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerRemoveRoleRequest str
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerRemoveRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesContainerAPIRepositoriesContainerContainerRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2009,6 +2225,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerRemoveRo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2053,10 +2272,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerSetLabelRequest struc
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerSetLabelRequest) SetLabel(setLabel SetLabel) RepositoriesContainerAPIRepositoriesContainerContainerSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2124,6 +2350,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerSetLabel
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2168,10 +2397,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerSignRequest struct {
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	repositorySign *RepositorySign
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerSignRequest) RepositorySign(repositorySign RepositorySign) RepositoriesContainerAPIRepositoriesContainerContainerSignRequest {
 	r.repositorySign = &repositorySign
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerSignRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerSignRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2239,6 +2475,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerSignExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.repositorySign
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2283,10 +2522,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerSyncRequest struct {
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	containerRepositorySyncURL *ContainerRepositorySyncURL
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerSyncRequest) ContainerRepositorySyncURL(containerRepositorySyncURL ContainerRepositorySyncURL) RepositoriesContainerAPIRepositoriesContainerContainerSyncRequest {
 	r.containerRepositorySyncURL = &containerRepositorySyncURL
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerSyncRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerSyncRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2354,6 +2600,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerSyncExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.containerRepositorySyncURL
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2398,10 +2647,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerTagRequest struct {
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	tagImage *TagImage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerTagRequest) TagImage(tagImage TagImage) RepositoriesContainerAPIRepositoriesContainerContainerTagRequest {
 	r.tagImage = &tagImage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerTagRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerTagRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2469,6 +2725,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerTagExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.tagImage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2513,10 +2772,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerUnsetLabelRequest str
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RepositoriesContainerAPIRepositoriesContainerContainerUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2584,6 +2850,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUnsetLab
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2628,10 +2897,17 @@ type RepositoriesContainerAPIRepositoriesContainerContainerUntagRequest struct {
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	unTagImage *UnTagImage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerUntagRequest) UnTagImage(unTagImage UnTagImage) RepositoriesContainerAPIRepositoriesContainerContainerUntagRequest {
 	r.unTagImage = &unTagImage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerUntagRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerUntagRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2699,6 +2975,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUntagExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unTagImage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2743,6 +3022,7 @@ type RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest struct 
 	ApiService *RepositoriesContainerAPIService
 	containerContainerRepositoryHref string
 	containerContainerRepository *ContainerContainerRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) ContainerContainerRepository(containerContainerRepository ContainerContainerRepository) RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest {
@@ -2750,14 +3030,20 @@ func (r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) Con
 	return r
 }
 
-func (r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) Execute() (*ContainerContainerRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesContainerContainerUpdateExecute(r)
 }
 
 /*
 RepositoriesContainerContainerUpdate Update a container repository
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerRepositoryHref
@@ -2772,13 +3058,13 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUpdate(c
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUpdateExecute(r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerRepositoryResponse
+func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUpdateExecute(r RepositoriesContainerAPIRepositoriesContainerContainerUpdateRequest) (*ContainerContainerRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesContainerAPIService.RepositoriesContainerContainerUpdate")
@@ -2813,6 +3099,9 @@ func (a *RepositoriesContainerAPIService) RepositoriesContainerContainerUpdateEx
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.containerContainerRepository

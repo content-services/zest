@@ -15,6 +15,12 @@ Name | Type | Description | Notes
 **CaCert** | Pointer to **NullableString** | A PEM encoded CA certificate used to validate the server certificate presented by the remote server. | [optional] 
 **ClientCert** | Pointer to **NullableString** | A PEM encoded client certificate used for authentication. | [optional] 
 **TlsValidation** | Pointer to **bool** | If True, TLS peer validation must be performed. | [optional] 
+**DownloadConcurrency** | Pointer to **NullableInt64** | Total number of simultaneous connections. If not set then the default value will be used. | [optional] 
+**MaxRetries** | Pointer to **NullableInt64** | Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used. | [optional] 
+**TotalTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
+**ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
+**SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
+**SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
 **LastReplication** | Pointer to **time.Time** | Timestamp of the last replication that occurred. Equals to &#39;null&#39; if no replication task has been executed. | [optional] [readonly] 
@@ -329,6 +335,216 @@ SetTlsValidation sets TlsValidation field to given value.
 
 HasTlsValidation returns a boolean if a field has been set.
 
+### GetDownloadConcurrency
+
+`func (o *UpstreamPulpResponse) GetDownloadConcurrency() int64`
+
+GetDownloadConcurrency returns the DownloadConcurrency field if non-nil, zero value otherwise.
+
+### GetDownloadConcurrencyOk
+
+`func (o *UpstreamPulpResponse) GetDownloadConcurrencyOk() (*int64, bool)`
+
+GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadConcurrency
+
+`func (o *UpstreamPulpResponse) SetDownloadConcurrency(v int64)`
+
+SetDownloadConcurrency sets DownloadConcurrency field to given value.
+
+### HasDownloadConcurrency
+
+`func (o *UpstreamPulpResponse) HasDownloadConcurrency() bool`
+
+HasDownloadConcurrency returns a boolean if a field has been set.
+
+### SetDownloadConcurrencyNil
+
+`func (o *UpstreamPulpResponse) SetDownloadConcurrencyNil(b bool)`
+
+ SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+
+### UnsetDownloadConcurrency
+`func (o *UpstreamPulpResponse) UnsetDownloadConcurrency()`
+
+UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
+### GetMaxRetries
+
+`func (o *UpstreamPulpResponse) GetMaxRetries() int64`
+
+GetMaxRetries returns the MaxRetries field if non-nil, zero value otherwise.
+
+### GetMaxRetriesOk
+
+`func (o *UpstreamPulpResponse) GetMaxRetriesOk() (*int64, bool)`
+
+GetMaxRetriesOk returns a tuple with the MaxRetries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxRetries
+
+`func (o *UpstreamPulpResponse) SetMaxRetries(v int64)`
+
+SetMaxRetries sets MaxRetries field to given value.
+
+### HasMaxRetries
+
+`func (o *UpstreamPulpResponse) HasMaxRetries() bool`
+
+HasMaxRetries returns a boolean if a field has been set.
+
+### SetMaxRetriesNil
+
+`func (o *UpstreamPulpResponse) SetMaxRetriesNil(b bool)`
+
+ SetMaxRetriesNil sets the value for MaxRetries to be an explicit nil
+
+### UnsetMaxRetries
+`func (o *UpstreamPulpResponse) UnsetMaxRetries()`
+
+UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
+### GetTotalTimeout
+
+`func (o *UpstreamPulpResponse) GetTotalTimeout() float64`
+
+GetTotalTimeout returns the TotalTimeout field if non-nil, zero value otherwise.
+
+### GetTotalTimeoutOk
+
+`func (o *UpstreamPulpResponse) GetTotalTimeoutOk() (*float64, bool)`
+
+GetTotalTimeoutOk returns a tuple with the TotalTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalTimeout
+
+`func (o *UpstreamPulpResponse) SetTotalTimeout(v float64)`
+
+SetTotalTimeout sets TotalTimeout field to given value.
+
+### HasTotalTimeout
+
+`func (o *UpstreamPulpResponse) HasTotalTimeout() bool`
+
+HasTotalTimeout returns a boolean if a field has been set.
+
+### SetTotalTimeoutNil
+
+`func (o *UpstreamPulpResponse) SetTotalTimeoutNil(b bool)`
+
+ SetTotalTimeoutNil sets the value for TotalTimeout to be an explicit nil
+
+### UnsetTotalTimeout
+`func (o *UpstreamPulpResponse) UnsetTotalTimeout()`
+
+UnsetTotalTimeout ensures that no value is present for TotalTimeout, not even an explicit nil
+### GetConnectTimeout
+
+`func (o *UpstreamPulpResponse) GetConnectTimeout() float64`
+
+GetConnectTimeout returns the ConnectTimeout field if non-nil, zero value otherwise.
+
+### GetConnectTimeoutOk
+
+`func (o *UpstreamPulpResponse) GetConnectTimeoutOk() (*float64, bool)`
+
+GetConnectTimeoutOk returns a tuple with the ConnectTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnectTimeout
+
+`func (o *UpstreamPulpResponse) SetConnectTimeout(v float64)`
+
+SetConnectTimeout sets ConnectTimeout field to given value.
+
+### HasConnectTimeout
+
+`func (o *UpstreamPulpResponse) HasConnectTimeout() bool`
+
+HasConnectTimeout returns a boolean if a field has been set.
+
+### SetConnectTimeoutNil
+
+`func (o *UpstreamPulpResponse) SetConnectTimeoutNil(b bool)`
+
+ SetConnectTimeoutNil sets the value for ConnectTimeout to be an explicit nil
+
+### UnsetConnectTimeout
+`func (o *UpstreamPulpResponse) UnsetConnectTimeout()`
+
+UnsetConnectTimeout ensures that no value is present for ConnectTimeout, not even an explicit nil
+### GetSockConnectTimeout
+
+`func (o *UpstreamPulpResponse) GetSockConnectTimeout() float64`
+
+GetSockConnectTimeout returns the SockConnectTimeout field if non-nil, zero value otherwise.
+
+### GetSockConnectTimeoutOk
+
+`func (o *UpstreamPulpResponse) GetSockConnectTimeoutOk() (*float64, bool)`
+
+GetSockConnectTimeoutOk returns a tuple with the SockConnectTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSockConnectTimeout
+
+`func (o *UpstreamPulpResponse) SetSockConnectTimeout(v float64)`
+
+SetSockConnectTimeout sets SockConnectTimeout field to given value.
+
+### HasSockConnectTimeout
+
+`func (o *UpstreamPulpResponse) HasSockConnectTimeout() bool`
+
+HasSockConnectTimeout returns a boolean if a field has been set.
+
+### SetSockConnectTimeoutNil
+
+`func (o *UpstreamPulpResponse) SetSockConnectTimeoutNil(b bool)`
+
+ SetSockConnectTimeoutNil sets the value for SockConnectTimeout to be an explicit nil
+
+### UnsetSockConnectTimeout
+`func (o *UpstreamPulpResponse) UnsetSockConnectTimeout()`
+
+UnsetSockConnectTimeout ensures that no value is present for SockConnectTimeout, not even an explicit nil
+### GetSockReadTimeout
+
+`func (o *UpstreamPulpResponse) GetSockReadTimeout() float64`
+
+GetSockReadTimeout returns the SockReadTimeout field if non-nil, zero value otherwise.
+
+### GetSockReadTimeoutOk
+
+`func (o *UpstreamPulpResponse) GetSockReadTimeoutOk() (*float64, bool)`
+
+GetSockReadTimeoutOk returns a tuple with the SockReadTimeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSockReadTimeout
+
+`func (o *UpstreamPulpResponse) SetSockReadTimeout(v float64)`
+
+SetSockReadTimeout sets SockReadTimeout field to given value.
+
+### HasSockReadTimeout
+
+`func (o *UpstreamPulpResponse) HasSockReadTimeout() bool`
+
+HasSockReadTimeout returns a boolean if a field has been set.
+
+### SetSockReadTimeoutNil
+
+`func (o *UpstreamPulpResponse) SetSockReadTimeoutNil(b bool)`
+
+ SetSockReadTimeoutNil sets the value for SockReadTimeout to be an explicit nil
+
+### UnsetSockReadTimeout
+`func (o *UpstreamPulpResponse) UnsetSockReadTimeout()`
+
+UnsetSockReadTimeout ensures that no value is present for SockReadTimeout, not even an explicit nil
 ### GetHiddenFields
 
 `func (o *UpstreamPulpResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`

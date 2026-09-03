@@ -29,10 +29,17 @@ type OrphansCleanupAPIOrphansCleanupCleanupRequest struct {
 	ApiService *OrphansCleanupAPIService
 	pulpDomain string
 	orphansCleanup *OrphansCleanup
+	xTaskDiagnostics *[]string
 }
 
 func (r OrphansCleanupAPIOrphansCleanupCleanupRequest) OrphansCleanup(orphansCleanup OrphansCleanup) OrphansCleanupAPIOrphansCleanupCleanupRequest {
 	r.orphansCleanup = &orphansCleanup
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r OrphansCleanupAPIOrphansCleanupCleanupRequest) XTaskDiagnostics(xTaskDiagnostics []string) OrphansCleanupAPIOrphansCleanupCleanupRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *OrphansCleanupAPIService) OrphansCleanupCleanupExecute(r OrphansCleanup
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.orphansCleanup

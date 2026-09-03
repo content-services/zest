@@ -30,10 +30,17 @@ type ImportersPulpAPIImportersCorePulpCreateRequest struct {
 	ApiService *ImportersPulpAPIService
 	pulpDomain string
 	pulpImporter *PulpImporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ImportersPulpAPIImportersCorePulpCreateRequest) PulpImporter(pulpImporter PulpImporter) ImportersPulpAPIImportersCorePulpCreateRequest {
 	r.pulpImporter = &pulpImporter
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpCreateExecute(r ImportersPulp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.pulpImporter
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type ImportersPulpAPIImportersCorePulpDeleteRequest struct {
 	ctx context.Context
 	ApiService *ImportersPulpAPIService
 	pulpImporterHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ImportersPulpAPIImportersCorePulpDeleteRequest) Execute() (*http.Response, error) {
@@ -205,6 +222,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpDeleteExecute(r ImportersPulp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -237,6 +257,7 @@ type ImportersPulpAPIImportersCorePulpListRequest struct {
 	ctx context.Context
 	ApiService *ImportersPulpAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -255,6 +276,12 @@ type ImportersPulpAPIImportersCorePulpListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -496,6 +523,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpListExecute(r ImportersPulpAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -538,10 +568,17 @@ type ImportersPulpAPIImportersCorePulpPartialUpdateRequest struct {
 	ApiService *ImportersPulpAPIService
 	pulpImporterHref string
 	patchedPulpImporter *PatchedPulpImporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ImportersPulpAPIImportersCorePulpPartialUpdateRequest) PatchedPulpImporter(patchedPulpImporter PatchedPulpImporter) ImportersPulpAPIImportersCorePulpPartialUpdateRequest {
 	r.patchedPulpImporter = &patchedPulpImporter
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -609,6 +646,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpPartialUpdateExecute(r Import
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedPulpImporter
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -652,8 +692,15 @@ type ImportersPulpAPIImportersCorePulpReadRequest struct {
 	ctx context.Context
 	ApiService *ImportersPulpAPIService
 	pulpImporterHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -751,6 +798,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpReadExecute(r ImportersPulpAP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -793,10 +843,17 @@ type ImportersPulpAPIImportersCorePulpUpdateRequest struct {
 	ApiService *ImportersPulpAPIService
 	pulpImporterHref string
 	pulpImporter *PulpImporter
+	xTaskDiagnostics *[]string
 }
 
 func (r ImportersPulpAPIImportersCorePulpUpdateRequest) PulpImporter(pulpImporter PulpImporter) ImportersPulpAPIImportersCorePulpUpdateRequest {
 	r.pulpImporter = &pulpImporter
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ImportersPulpAPIImportersCorePulpUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ImportersPulpAPIImportersCorePulpUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -863,6 +920,9 @@ func (a *ImportersPulpAPIService) ImportersCorePulpUpdateExecute(r ImportersPulp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pulpImporter

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## RemotesRpmUlnAddRole
 
-> NestedRoleResponse RemotesRpmUlnAddRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesRpmUlnAddRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnAddRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnAddRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnCreate
 
-> RpmUlnRemoteResponse RemotesRpmUlnCreate(ctx, pulpDomain).RpmUlnRemote(rpmUlnRemote).Execute()
+> RpmUlnRemoteResponse RemotesRpmUlnCreate(ctx, pulpDomain).RpmUlnRemote(rpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an uln remote
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnCreate(context.Background(), pulpDomain).RpmUlnRemote(rpmUlnRemote).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnCreate(context.Background(), pulpDomain).RpmUlnRemote(rpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmUlnRemote** | [**RpmUlnRemote**](RpmUlnRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnDelete
 
-> AsyncOperationResponse RemotesRpmUlnDelete(ctx, rpmUlnRemoteHref).Execute()
+> AsyncOperationResponse RemotesRpmUlnDelete(ctx, rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an uln remote
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnDelete(context.Background(), rpmUlnRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnDelete(context.Background(), rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiRemotesRpmUlnDeleteRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnList
 
-> PaginatedrpmUlnRemoteResponseList RemotesRpmUlnList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmUlnRemoteResponseList RemotesRpmUlnList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List uln remotes
 
@@ -256,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -285,7 +292,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiRemotesRpmUlnListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -358,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnListRoles
 
-> ObjectRolesResponse RemotesRpmUlnListRoles(ctx, rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RemotesRpmUlnListRoles(ctx, rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -378,12 +386,13 @@ import (
 
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnListRoles(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnListRoles(context.Background(), rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,6 +418,7 @@ Other parameters are passed through a pointer to a apiRemotesRpmUlnListRolesRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -432,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnMyPermissions
 
-> MyPermissionsResponse RemotesRpmUlnMyPermissions(ctx, rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RemotesRpmUlnMyPermissions(ctx, rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -452,12 +462,13 @@ import (
 
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnMyPermissions(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnMyPermissions(context.Background(), rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,6 +494,7 @@ Other parameters are passed through a pointer to a apiRemotesRpmUlnMyPermissions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -506,7 +518,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnPartialUpdate
 
-> AsyncOperationResponse RemotesRpmUlnPartialUpdate(ctx, rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).Execute()
+> RpmUlnRemoteResponse RemotesRpmUlnPartialUpdate(ctx, rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an uln remote
 
@@ -527,15 +539,16 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	patchedrpmUlnRemote := *openapiclient.NewPatchedrpmUlnRemote() // PatchedrpmUlnRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnPartialUpdate(context.Background(), rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnPartialUpdate(context.Background(), rpmUlnRemoteHref).PatchedrpmUlnRemote(patchedrpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesRpmUlnPartialUpdate`: AsyncOperationResponse
+	// response from `RemotesRpmUlnPartialUpdate`: RpmUlnRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnPartialUpdate`: %v\n", resp)
 }
 ```
@@ -557,10 +570,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedrpmUlnRemote** | [**PatchedrpmUlnRemote**](PatchedrpmUlnRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmUlnRemoteResponse**](RpmUlnRemoteResponse.md)
 
 ### Authorization
 
@@ -578,7 +592,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnRead
 
-> RpmUlnRemoteResponse RemotesRpmUlnRead(ctx, rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmUlnRemoteResponse RemotesRpmUlnRead(ctx, rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an uln remote
 
@@ -598,12 +612,13 @@ import (
 
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRead(context.Background(), rpmUlnRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRead(context.Background(), rpmUlnRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -629,6 +644,7 @@ Other parameters are passed through a pointer to a apiRemotesRpmUlnReadRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -652,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnRemoveRole
 
-> NestedRoleResponse RemotesRpmUlnRemoveRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesRpmUlnRemoveRole(ctx, rpmUlnRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -673,10 +689,11 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRemoveRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnRemoveRole(context.Background(), rpmUlnRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +720,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -724,7 +742,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnSetLabel
 
-> SetLabelResponse RemotesRpmUlnSetLabel(ctx, rpmUlnRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesRpmUlnSetLabel(ctx, rpmUlnRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -745,10 +763,11 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnSetLabel(context.Background(), rpmUlnRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnSetLabel(context.Background(), rpmUlnRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -775,6 +794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -796,7 +816,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnUnsetLabel
 
-> UnsetLabelResponse RemotesRpmUlnUnsetLabel(ctx, rpmUlnRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesRpmUlnUnsetLabel(ctx, rpmUlnRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -817,10 +837,11 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUnsetLabel(context.Background(), rpmUlnRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUnsetLabel(context.Background(), rpmUlnRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,6 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -868,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## RemotesRpmUlnUpdate
 
-> AsyncOperationResponse RemotesRpmUlnUpdate(ctx, rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).Execute()
+> RpmUlnRemoteResponse RemotesRpmUlnUpdate(ctx, rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an uln remote
 
@@ -889,15 +911,16 @@ import (
 func main() {
 	rpmUlnRemoteHref := "rpmUlnRemoteHref_example" // string | 
 	rpmUlnRemote := *openapiclient.NewRpmUlnRemote("Name_example", "Url_example", "Username_example", "Password_example") // RpmUlnRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUpdate(context.Background(), rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).Execute()
+	resp, r, err := apiClient.RemotesUlnAPI.RemotesRpmUlnUpdate(context.Background(), rpmUlnRemoteHref).RpmUlnRemote(rpmUlnRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesUlnAPI.RemotesRpmUlnUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesRpmUlnUpdate`: AsyncOperationResponse
+	// response from `RemotesRpmUlnUpdate`: RpmUlnRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesUlnAPI.RemotesRpmUlnUpdate`: %v\n", resp)
 }
 ```
@@ -919,10 +942,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmUlnRemote** | [**RpmUlnRemote**](RpmUlnRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmUlnRemoteResponse**](RpmUlnRemoteResponse.md)
 
 ### Authorization
 

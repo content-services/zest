@@ -29,6 +29,7 @@ type DistributionsAPIDistributionsListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -58,6 +59,12 @@ type DistributionsAPIDistributionsListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsAPIDistributionsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsAPIDistributionsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -186,13 +193,13 @@ func (r DistributionsAPIDistributionsListRequest) PulpLabelSelect(pulpLabelSelec
 	return r
 }
 
-// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r DistributionsAPIDistributionsListRequest) PulpType(pulpType string) DistributionsAPIDistributionsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;core.artifact&#x60; - core.artifact* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;container.container&#x60; - container.container* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r DistributionsAPIDistributionsListRequest) PulpTypeIn(pulpTypeIn []string) DistributionsAPIDistributionsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -204,13 +211,11 @@ func (r DistributionsAPIDistributionsListRequest) Q(q string) DistributionsAPIDi
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsAPIDistributionsListRequest) Repository(repository string) DistributionsAPIDistributionsListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsAPIDistributionsListRequest) RepositoryIn(repositoryIn []string) DistributionsAPIDistributionsListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -397,6 +402,9 @@ func (a *DistributionsAPIService) DistributionsListExecute(r DistributionsAPIDis
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

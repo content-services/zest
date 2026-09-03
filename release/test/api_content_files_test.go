@@ -92,4 +92,18 @@ func Test_zest_ContentFilesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentFilesAPIService ContentFileFilesUpload", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentFilesAPI.ContentFileFilesUpload(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

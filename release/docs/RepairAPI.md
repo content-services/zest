@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RepairPost
 
-> AsyncOperationResponse RepairPost(ctx, pulpDomain).Repair(repair).Execute()
+> AsyncOperationResponse RepairPost(ctx, pulpDomain).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Repair Artifact Storage
 
@@ -31,10 +31,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	repair := *openapiclient.NewRepair() // Repair | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepairAPI.RepairPost(context.Background(), pulpDomain).Repair(repair).Execute()
+	resp, r, err := apiClient.RepairAPI.RepairPost(context.Background(), pulpDomain).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepairAPI.RepairPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +62,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repair** | [**Repair**](Repair.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

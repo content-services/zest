@@ -30,10 +30,17 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeAddRoleRequest struct {
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeAddRoleRequest) NestedRole(nestedRole NestedRole) ContentguardsCompositeAPIContentguardsCoreCompositeAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeAddRoleExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeCreateRequest struct {
 	ApiService *ContentguardsCompositeAPIService
 	pulpDomain string
 	compositeContentGuard *CompositeContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeCreateRequest) CompositeContentGuard(compositeContentGuard CompositeContentGuard) ContentguardsCompositeAPIContentguardsCoreCompositeCreateRequest {
 	r.compositeContentGuard = &compositeContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeCreateExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.compositeContentGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeDeleteRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeDeleteRequest) Execute() (*http.Response, error) {
@@ -320,6 +347,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeDeleteExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -352,6 +382,7 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeListRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsCompositeAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -370,6 +401,12 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -611,6 +648,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeListExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -652,8 +692,15 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeListRolesRequest struct 
 	ctx context.Context
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -751,6 +798,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeListRolesEx
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -792,8 +842,15 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeMyPermissionsRequest str
 	ctx context.Context
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -891,6 +948,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeMyPermissio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -933,10 +993,17 @@ type ContentguardsCompositeAPIContentguardsCoreCompositePartialUpdateRequest str
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
 	patchedCompositeContentGuard *PatchedCompositeContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositePartialUpdateRequest) PatchedCompositeContentGuard(patchedCompositeContentGuard PatchedCompositeContentGuard) ContentguardsCompositeAPIContentguardsCoreCompositePartialUpdateRequest {
 	r.patchedCompositeContentGuard = &patchedCompositeContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositePartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositePartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1004,6 +1071,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositePartialUpda
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedCompositeContentGuard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1047,8 +1117,15 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeReadRequest struct {
 	ctx context.Context
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1146,6 +1223,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeReadExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1188,10 +1268,17 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeRemoveRoleRequest struct
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeRemoveRoleRequest) NestedRole(nestedRole NestedRole) ContentguardsCompositeAPIContentguardsCoreCompositeRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1259,6 +1346,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeRemoveRoleE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1303,10 +1393,17 @@ type ContentguardsCompositeAPIContentguardsCoreCompositeUpdateRequest struct {
 	ApiService *ContentguardsCompositeAPIService
 	compositeContentGuardHref string
 	compositeContentGuard *CompositeContentGuard
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentguardsCompositeAPIContentguardsCoreCompositeUpdateRequest) CompositeContentGuard(compositeContentGuard CompositeContentGuard) ContentguardsCompositeAPIContentguardsCoreCompositeUpdateRequest {
 	r.compositeContentGuard = &compositeContentGuard
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentguardsCompositeAPIContentguardsCoreCompositeUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentguardsCompositeAPIContentguardsCoreCompositeUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1373,6 +1470,9 @@ func (a *ContentguardsCompositeAPIService) ContentguardsCoreCompositeUpdateExecu
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.compositeContentGuard

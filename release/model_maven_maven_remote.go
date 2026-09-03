@@ -25,6 +25,9 @@ type MavenMavenRemote struct {
 	Name string `json:"name"`
 	// The URL of an external content source.
 	Url string `json:"url"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	// The policy to use when downloading content.* `immediate` - When syncing, download all metadata and content now.
+	Policy *PolicyB5fEnum `json:"policy,omitempty"`
 	// A PEM encoded CA certificate used to validate the server certificate presented by the remote server.
 	CaCert NullableString `json:"ca_cert,omitempty"`
 	// A PEM encoded client certificate used for authentication.
@@ -43,13 +46,8 @@ type MavenMavenRemote struct {
 	Username NullableString `json:"username,omitempty"`
 	// The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed.
 	Password NullableString `json:"password,omitempty"`
-	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
-	// Total number of simultaneous connections. If not set then the default value will be used.
-	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
 	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
-	// The policy to use when downloading content.* `immediate` - When syncing, download all metadata and content now.
-	Policy *PolicyB5fEnum `json:"policy,omitempty"`
 	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
 	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
@@ -60,6 +58,8 @@ type MavenMavenRemote struct {
 	SockReadTimeout NullableFloat64 `json:"sock_read_timeout,omitempty"`
 	// Headers for aiohttp.Clientsession
 	Headers []map[string]interface{} `json:"headers,omitempty"`
+	// Total number of simultaneous connections. If not set then the default value will be used.
+	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
 	// Limits requests per second for each concurrent downloader
 	RateLimit NullableInt64 `json:"rate_limit,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -136,6 +136,70 @@ func (o *MavenMavenRemote) GetUrlOk() (*string, bool) {
 // SetUrl sets field value
 func (o *MavenMavenRemote) SetUrl(v string) {
 	o.Url = v
+}
+
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *MavenMavenRemote) GetPulpLabels() map[string]*string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenRemote) GetPulpLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *MavenMavenRemote) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *MavenMavenRemote) SetPulpLabels(v map[string]*string) {
+	o.PulpLabels = &v
+}
+
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *MavenMavenRemote) GetPolicy() PolicyB5fEnum {
+	if o == nil || IsNil(o.Policy) {
+		var ret PolicyB5fEnum
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenRemote) GetPolicyOk() (*PolicyB5fEnum, bool) {
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *MavenMavenRemote) HasPolicy() bool {
+	if o != nil && !IsNil(o.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given PolicyB5fEnum and assigns it to the Policy field.
+func (o *MavenMavenRemote) SetPolicy(v PolicyB5fEnum) {
+	o.Policy = &v
 }
 
 // GetCaCert returns the CaCert field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -506,80 +570,6 @@ func (o *MavenMavenRemote) UnsetPassword() {
 	o.Password.Unset()
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *MavenMavenRemote) GetPulpLabels() map[string]*string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]*string
-		return ret
-	}
-	return *o.PulpLabels
-}
-
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MavenMavenRemote) GetPulpLabelsOk() (*map[string]*string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
-		return nil, false
-	}
-	return o.PulpLabels, true
-}
-
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *MavenMavenRemote) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
-func (o *MavenMavenRemote) SetPulpLabels(v map[string]*string) {
-	o.PulpLabels = &v
-}
-
-// GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MavenMavenRemote) GetDownloadConcurrency() int64 {
-	if o == nil || IsNil(o.DownloadConcurrency.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.DownloadConcurrency.Get()
-}
-
-// GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MavenMavenRemote) GetDownloadConcurrencyOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DownloadConcurrency.Get(), o.DownloadConcurrency.IsSet()
-}
-
-// HasDownloadConcurrency returns a boolean if a field has been set.
-func (o *MavenMavenRemote) HasDownloadConcurrency() bool {
-	if o != nil && o.DownloadConcurrency.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDownloadConcurrency gets a reference to the given NullableInt64 and assigns it to the DownloadConcurrency field.
-func (o *MavenMavenRemote) SetDownloadConcurrency(v int64) {
-	o.DownloadConcurrency.Set(&v)
-}
-// SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
-func (o *MavenMavenRemote) SetDownloadConcurrencyNil() {
-	o.DownloadConcurrency.Set(nil)
-}
-
-// UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
-func (o *MavenMavenRemote) UnsetDownloadConcurrency() {
-	o.DownloadConcurrency.Unset()
-}
-
 // GetMaxRetries returns the MaxRetries field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MavenMavenRemote) GetMaxRetries() int64 {
 	if o == nil || IsNil(o.MaxRetries.Get()) {
@@ -620,38 +610,6 @@ func (o *MavenMavenRemote) SetMaxRetriesNil() {
 // UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
 func (o *MavenMavenRemote) UnsetMaxRetries() {
 	o.MaxRetries.Unset()
-}
-
-// GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *MavenMavenRemote) GetPolicy() PolicyB5fEnum {
-	if o == nil || IsNil(o.Policy) {
-		var ret PolicyB5fEnum
-		return ret
-	}
-	return *o.Policy
-}
-
-// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MavenMavenRemote) GetPolicyOk() (*PolicyB5fEnum, bool) {
-	if o == nil || IsNil(o.Policy) {
-		return nil, false
-	}
-	return o.Policy, true
-}
-
-// HasPolicy returns a boolean if a field has been set.
-func (o *MavenMavenRemote) HasPolicy() bool {
-	if o != nil && !IsNil(o.Policy) {
-		return true
-	}
-
-	return false
-}
-
-// SetPolicy gets a reference to the given PolicyB5fEnum and assigns it to the Policy field.
-func (o *MavenMavenRemote) SetPolicy(v PolicyB5fEnum) {
-	o.Policy = &v
 }
 
 // GetTotalTimeout returns the TotalTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -854,6 +812,48 @@ func (o *MavenMavenRemote) SetHeaders(v []map[string]interface{}) {
 	o.Headers = v
 }
 
+// GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MavenMavenRemote) GetDownloadConcurrency() int64 {
+	if o == nil || IsNil(o.DownloadConcurrency.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.DownloadConcurrency.Get()
+}
+
+// GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MavenMavenRemote) GetDownloadConcurrencyOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DownloadConcurrency.Get(), o.DownloadConcurrency.IsSet()
+}
+
+// HasDownloadConcurrency returns a boolean if a field has been set.
+func (o *MavenMavenRemote) HasDownloadConcurrency() bool {
+	if o != nil && o.DownloadConcurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadConcurrency gets a reference to the given NullableInt64 and assigns it to the DownloadConcurrency field.
+func (o *MavenMavenRemote) SetDownloadConcurrency(v int64) {
+	o.DownloadConcurrency.Set(&v)
+}
+// SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+func (o *MavenMavenRemote) SetDownloadConcurrencyNil() {
+	o.DownloadConcurrency.Set(nil)
+}
+
+// UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
+func (o *MavenMavenRemote) UnsetDownloadConcurrency() {
+	o.DownloadConcurrency.Unset()
+}
+
 // GetRateLimit returns the RateLimit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MavenMavenRemote) GetRateLimit() int64 {
 	if o == nil || IsNil(o.RateLimit.Get()) {
@@ -908,6 +908,12 @@ func (o MavenMavenRemote) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["url"] = o.Url
+	if !IsNil(o.PulpLabels) {
+		toSerialize["pulp_labels"] = o.PulpLabels
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
+	}
 	if o.CaCert.IsSet() {
 		toSerialize["ca_cert"] = o.CaCert.Get()
 	}
@@ -935,17 +941,8 @@ func (o MavenMavenRemote) ToMap() (map[string]interface{}, error) {
 	if o.Password.IsSet() {
 		toSerialize["password"] = o.Password.Get()
 	}
-	if !IsNil(o.PulpLabels) {
-		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if o.DownloadConcurrency.IsSet() {
-		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()
-	}
 	if o.MaxRetries.IsSet() {
 		toSerialize["max_retries"] = o.MaxRetries.Get()
-	}
-	if !IsNil(o.Policy) {
-		toSerialize["policy"] = o.Policy
 	}
 	if o.TotalTimeout.IsSet() {
 		toSerialize["total_timeout"] = o.TotalTimeout.Get()
@@ -961,6 +958,9 @@ func (o MavenMavenRemote) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Headers) {
 		toSerialize["headers"] = o.Headers
+	}
+	if o.DownloadConcurrency.IsSet() {
+		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()
 	}
 	if o.RateLimit.IsSet() {
 		toSerialize["rate_limit"] = o.RateLimit.Get()
@@ -1011,6 +1011,8 @@ func (o *MavenMavenRemote) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "url")
+		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "policy")
 		delete(additionalProperties, "ca_cert")
 		delete(additionalProperties, "client_cert")
 		delete(additionalProperties, "client_key")
@@ -1020,15 +1022,13 @@ func (o *MavenMavenRemote) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "proxy_password")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "download_concurrency")
 		delete(additionalProperties, "max_retries")
-		delete(additionalProperties, "policy")
 		delete(additionalProperties, "total_timeout")
 		delete(additionalProperties, "connect_timeout")
 		delete(additionalProperties, "sock_connect_timeout")
 		delete(additionalProperties, "sock_read_timeout")
 		delete(additionalProperties, "headers")
+		delete(additionalProperties, "download_concurrency")
 		delete(additionalProperties, "rate_limit")
 		o.AdditionalProperties = additionalProperties
 	}

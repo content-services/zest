@@ -30,10 +30,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmAddRoleExecute(r Repositor
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmCreateRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	pulpDomain string
 	rpmRpmRepository *RpmRpmRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmCreateRequest) RpmRpmRepository(rpmRpmRepository RpmRpmRepository) RepositoriesRpmAPIRepositoriesRpmRpmCreateRequest {
 	r.rpmRpmRepository = &rpmRpmRepository
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmCreateExecute(r Repositori
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.rpmRpmRepository
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type RepositoriesRpmAPIRepositoriesRpmRpmDeleteRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmDeleteExecute(r Repositori
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type RepositoriesRpmAPIRepositoriesRpmRpmListRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	latestWithContent *string
 	limit *int32
 	name *string
@@ -382,6 +413,14 @@ type RepositoriesRpmAPIRepositoriesRpmRpmListRequest struct {
 	pulpLabelSelect *string
 	q *string
 	remote *string
+	retainCheckpoints *int32
+	retainCheckpointsGt *int32
+	retainCheckpointsGte *int32
+	retainCheckpointsIsnull *bool
+	retainCheckpointsLt *int32
+	retainCheckpointsLte *int32
+	retainCheckpointsNe *int32
+	retainCheckpointsRange *[]int32
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
 	retainRepoVersionsGte *int32
@@ -393,6 +432,12 @@ type RepositoriesRpmAPIRepositoriesRpmRpmListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -467,7 +512,7 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) Offset(offset int32) Re
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) Ordering(ordering []string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
 	r.ordering = &ordering
 	return r
@@ -503,9 +548,56 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) Q(q string) Repositorie
 	return r
 }
 
-// Foreign Key referenced by HREF
 func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) Remote(remote string) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
 	r.remote = &remote
+	return r
+}
+
+// Filter results where retain_checkpoints matches value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpoints(retainCheckpoints int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpoints = &retainCheckpoints
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsGt(retainCheckpointsGt int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsGt = &retainCheckpointsGt
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than or equal to value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsGte(retainCheckpointsGte int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsGte = &retainCheckpointsGte
+	return r
+}
+
+// Filter results where retain_checkpoints has a null value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsIsnull(retainCheckpointsIsnull bool) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsIsnull = &retainCheckpointsIsnull
+	return r
+}
+
+// Filter results where retain_checkpoints is less than value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsLt(retainCheckpointsLt int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsLt = &retainCheckpointsLt
+	return r
+}
+
+// Filter results where retain_checkpoints is less than or equal to value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsLte(retainCheckpointsLte int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsLte = &retainCheckpointsLte
+	return r
+}
+
+// Filter results where retain_checkpoints not equal to value
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsNe(retainCheckpointsNe int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsNe = &retainCheckpointsNe
+	return r
+}
+
+// Filter results where retain_checkpoints is between two comma separated values
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRequest) RetainCheckpointsRange(retainCheckpointsRange []int32) RepositoriesRpmAPIRepositoriesRpmRpmListRequest {
+	r.retainCheckpointsRange = &retainCheckpointsRange
 	return r
 }
 
@@ -676,6 +768,30 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmListExecute(r Repositories
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "form", "")
 	}
+	if r.retainCheckpoints != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints", r.retainCheckpoints, "form", "")
+	}
+	if r.retainCheckpointsGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gt", r.retainCheckpointsGt, "form", "")
+	}
+	if r.retainCheckpointsGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gte", r.retainCheckpointsGte, "form", "")
+	}
+	if r.retainCheckpointsIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__isnull", r.retainCheckpointsIsnull, "form", "")
+	}
+	if r.retainCheckpointsLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lt", r.retainCheckpointsLt, "form", "")
+	}
+	if r.retainCheckpointsLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lte", r.retainCheckpointsLte, "form", "")
+	}
+	if r.retainCheckpointsNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__ne", r.retainCheckpointsNe, "form", "")
+	}
+	if r.retainCheckpointsRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__range", r.retainCheckpointsRange, "form", "csv")
+	}
 	if r.retainRepoVersions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_repo_versions", r.retainRepoVersions, "form", "")
 	}
@@ -742,6 +858,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmListExecute(r Repositories
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -783,8 +902,15 @@ type RepositoriesRpmAPIRepositoriesRpmRpmListRolesRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -882,6 +1008,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmListRolesExecute(r Reposit
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -924,10 +1053,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmModifyRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	repositoryAddRemoveContent *RepositoryAddRemoveContent
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmModifyRequest) RepositoryAddRemoveContent(repositoryAddRemoveContent RepositoryAddRemoveContent) RepositoriesRpmAPIRepositoriesRpmRpmModifyRequest {
 	r.repositoryAddRemoveContent = &repositoryAddRemoveContent
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmModifyRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmModifyRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -995,6 +1131,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmModifyExecute(r Repositori
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.repositoryAddRemoveContent
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1038,8 +1177,15 @@ type RepositoriesRpmAPIRepositoriesRpmRpmMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1137,6 +1283,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmMyPermissionsExecute(r Rep
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1179,6 +1328,7 @@ type RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	patchedrpmRpmRepository *PatchedrpmRpmRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) PatchedrpmRpmRepository(patchedrpmRpmRepository PatchedrpmRpmRepository) RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest {
@@ -1186,14 +1336,20 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) PatchedrpmRpmR
 	return r
 }
 
-func (r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) Execute() (*RpmRpmRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesRpmRpmPartialUpdateExecute(r)
 }
 
 /*
 RepositoriesRpmRpmPartialUpdate Update a rpm repository
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmRepositoryHref
@@ -1208,13 +1364,13 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmPartialUpdate(ctx context.
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmPartialUpdateExecute(r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmRepositoryResponse
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmPartialUpdateExecute(r RepositoriesRpmAPIRepositoriesRpmRpmPartialUpdateRequest) (*RpmRpmRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesRpmAPIService.RepositoriesRpmRpmPartialUpdate")
@@ -1249,6 +1405,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmPartialUpdateExecute(r Rep
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedrpmRpmRepository
@@ -1293,8 +1452,15 @@ type RepositoriesRpmAPIRepositoriesRpmRpmReadRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1392,6 +1558,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmReadExecute(r Repositories
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1434,10 +1603,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1505,6 +1681,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmRemoveRoleExecute(r Reposi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1549,10 +1728,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest) SetLabel(setLabel SetLabel) RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1620,6 +1806,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmSetLabelExecute(r Reposito
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1664,10 +1853,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	rpmRepositorySyncURL *RpmRepositorySyncURL
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest) RpmRepositorySyncURL(rpmRepositorySyncURL RpmRepositorySyncURL) RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest {
 	r.rpmRepositorySyncURL = &rpmRepositorySyncURL
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmSyncRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1735,6 +1931,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmSyncExecute(r Repositories
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.rpmRepositorySyncURL
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1779,10 +1978,17 @@ type RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1850,6 +2056,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUnsetLabelExecute(r Reposi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1894,6 +2103,7 @@ type RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest struct {
 	ApiService *RepositoriesRpmAPIService
 	rpmRpmRepositoryHref string
 	rpmRpmRepository *RpmRpmRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) RpmRpmRepository(rpmRpmRepository RpmRpmRepository) RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest {
@@ -1901,14 +2111,20 @@ func (r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) RpmRpmRepository(rpmR
 	return r
 }
 
-func (r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) Execute() (*RpmRpmRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesRpmRpmUpdateExecute(r)
 }
 
 /*
 RepositoriesRpmRpmUpdate Update a rpm repository
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmRepositoryHref
@@ -1923,13 +2139,13 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUpdate(ctx context.Context
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUpdateExecute(r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmRepositoryResponse
+func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUpdateExecute(r RepositoriesRpmAPIRepositoriesRpmRpmUpdateRequest) (*RpmRpmRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesRpmAPIService.RepositoriesRpmRpmUpdate")
@@ -1964,6 +2180,9 @@ func (a *RepositoriesRpmAPIService) RepositoriesRpmRpmUpdateExecute(r Repositori
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.rpmRpmRepository

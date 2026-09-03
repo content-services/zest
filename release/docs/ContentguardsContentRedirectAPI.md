@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## ContentguardsCoreContentRedirectAddRole
 
-> NestedRoleResponse ContentguardsCoreContentRedirectAddRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreContentRedirectAddRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectCreate
 
-> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectCreate(ctx, pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectCreate(ctx, pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a content redirect content guard
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate(context.Background(), pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate(context.Background(), pulpDomain).ContentRedirectContentGuard(contentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **contentRedirectContentGuard** | [**ContentRedirectContentGuard**](ContentRedirectContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectDelete
 
-> ContentguardsCoreContentRedirectDelete(ctx, contentRedirectContentGuardHref).Execute()
+> ContentguardsCoreContentRedirectDelete(ctx, contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a content redirect content guard
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete(context.Background(), contentRedirectContentGuardHref).Execute()
+	r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete(context.Background(), contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreContentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectList
 
-> PaginatedContentRedirectContentGuardResponseList ContentguardsCoreContentRedirectList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedContentRedirectContentGuardResponseList ContentguardsCoreContentRedirectList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List content redirect content guards
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreContentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectListRoles
 
-> ObjectRolesResponse ContentguardsCoreContentRedirectListRoles(ctx, contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse ContentguardsCoreContentRedirectListRoles(ctx, contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles(context.Background(), contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreContentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectMyPermissions
 
-> MyPermissionsResponse ContentguardsCoreContentRedirectMyPermissions(ctx, contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse ContentguardsCoreContentRedirectMyPermissions(ctx, contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions(context.Background(), contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreContentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectPartialUpdate
 
-> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectPartialUpdate(ctx, contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).Execute()
+> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectPartialUpdate(ctx, contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a content redirect content guard
 
@@ -506,10 +518,11 @@ import (
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
 	patchedContentRedirectContentGuard := *openapiclient.NewPatchedContentRedirectContentGuard() // PatchedContentRedirectContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate(context.Background(), contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate(context.Background(), contentRedirectContentGuardHref).PatchedContentRedirectContentGuard(patchedContentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedContentRedirectContentGuard** | [**PatchedContentRedirectContentGuard**](PatchedContentRedirectContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -557,7 +571,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectRead
 
-> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectRead(ctx, contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectRead(ctx, contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a content redirect content guard
 
@@ -577,12 +591,13 @@ import (
 
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead(context.Background(), contentRedirectContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead(context.Background(), contentRedirectContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -608,6 +623,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreContentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -631,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectRemoveRole
 
-> NestedRoleResponse ContentguardsCoreContentRedirectRemoveRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreContentRedirectRemoveRole(ctx, contentRedirectContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -652,10 +668,11 @@ import (
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole(context.Background(), contentRedirectContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,6 +699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -703,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreContentRedirectUpdate
 
-> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectUpdate(ctx, contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+> ContentRedirectContentGuardResponse ContentguardsCoreContentRedirectUpdate(ctx, contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a content redirect content guard
 
@@ -724,10 +742,11 @@ import (
 func main() {
 	contentRedirectContentGuardHref := "contentRedirectContentGuardHref_example" // string | 
 	contentRedirectContentGuard := *openapiclient.NewContentRedirectContentGuard("Name_example") // ContentRedirectContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate(context.Background(), contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate(context.Background(), contentRedirectContentGuardHref).ContentRedirectContentGuard(contentRedirectContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsContentRedirectAPI.ContentguardsCoreContentRedirectUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **contentRedirectContentGuard** | [**ContentRedirectContentGuard**](ContentRedirectContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

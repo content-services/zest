@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## RemotesPythonPythonAddRole
 
-> NestedRoleResponse RemotesPythonPythonAddRole(ctx, pythonPythonRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesPythonPythonAddRole(ctx, pythonPythonRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -43,10 +43,11 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonAddRole(context.Background(), pythonPythonRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonAddRole(context.Background(), pythonPythonRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -73,6 +74,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -94,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonCreate
 
-> PythonPythonRemoteResponse RemotesPythonPythonCreate(ctx, pulpDomain).PythonPythonRemote(pythonPythonRemote).Execute()
+> PythonPythonRemoteResponse RemotesPythonPythonCreate(ctx, pulpDomain).PythonPythonRemote(pythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a python remote
 
@@ -115,10 +117,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	pythonPythonRemote := *openapiclient.NewPythonPythonRemote("Name_example", "Url_example") // PythonPythonRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonCreate(context.Background(), pulpDomain).PythonPythonRemote(pythonPythonRemote).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonCreate(context.Background(), pulpDomain).PythonPythonRemote(pythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,6 +148,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pythonPythonRemote** | [**PythonPythonRemote**](PythonPythonRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -166,7 +170,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonDelete
 
-> AsyncOperationResponse RemotesPythonPythonDelete(ctx, pythonPythonRemoteHref).Execute()
+> AsyncOperationResponse RemotesPythonPythonDelete(ctx, pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a python remote
 
@@ -186,10 +190,11 @@ import (
 
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonDelete(context.Background(), pythonPythonRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonDelete(context.Background(), pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -215,6 +220,7 @@ Other parameters are passed through a pointer to a apiRemotesPythonPythonDeleteR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -236,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonFromBandersnatch
 
-> PythonPythonRemoteResponse RemotesPythonPythonFromBandersnatch(ctx, pulpDomain).Config(config).Name(name).Policy(policy).Execute()
+> PythonPythonRemoteResponse RemotesPythonPythonFromBandersnatch(ctx, pulpDomain).Config(config).Name(name).XTaskDiagnostics(xTaskDiagnostics).Policy(policy).Execute()
 
 Create from Bandersnatch
 
@@ -258,11 +264,12 @@ func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	config := os.NewFile(1234, "some_file") // *os.File | A Bandersnatch config that may be used to construct a Python Remote.
 	name := "name_example" // string | A unique name for this remote
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	policy := openapiclient.Policy692Enum("immediate") // Policy692Enum | The policy to use when downloading content. The possible values include: 'immediate', 'on_demand', and 'streamed'. 'on_demand' is the default.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. (optional) (default to "on_demand")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonFromBandersnatch(context.Background(), pulpDomain).Config(config).Name(name).Policy(policy).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonFromBandersnatch(context.Background(), pulpDomain).Config(config).Name(name).XTaskDiagnostics(xTaskDiagnostics).Policy(policy).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonFromBandersnatch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -290,6 +297,7 @@ Name | Type | Description  | Notes
 
  **config** | ***os.File** | A Bandersnatch config that may be used to construct a Python Remote. | 
  **name** | **string** | A unique name for this remote | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **policy** | [**Policy692Enum**](Policy692Enum.md) | The policy to use when downloading content. The possible values include: &#39;immediate&#39;, &#39;on_demand&#39;, and &#39;streamed&#39;. &#39;on_demand&#39; is the default.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [default to &quot;on_demand&quot;]
 
 ### Return type
@@ -312,7 +320,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonList
 
-> PaginatedpythonPythonRemoteResponseList RemotesPythonPythonList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedpythonPythonRemoteResponseList RemotesPythonPythonList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List python remotes
 
@@ -333,6 +341,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -362,7 +371,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiRemotesPythonPythonListReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -435,7 +445,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonListRoles
 
-> ObjectRolesResponse RemotesPythonPythonListRoles(ctx, pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RemotesPythonPythonListRoles(ctx, pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -455,12 +465,13 @@ import (
 
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonListRoles(context.Background(), pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonListRoles(context.Background(), pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -486,6 +497,7 @@ Other parameters are passed through a pointer to a apiRemotesPythonPythonListRol
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -509,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonMyPermissions
 
-> MyPermissionsResponse RemotesPythonPythonMyPermissions(ctx, pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RemotesPythonPythonMyPermissions(ctx, pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -529,12 +541,13 @@ import (
 
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonMyPermissions(context.Background(), pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonMyPermissions(context.Background(), pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,6 +573,7 @@ Other parameters are passed through a pointer to a apiRemotesPythonPythonMyPermi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -583,7 +597,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonPartialUpdate
 
-> AsyncOperationResponse RemotesPythonPythonPartialUpdate(ctx, pythonPythonRemoteHref).PatchedpythonPythonRemote(patchedpythonPythonRemote).Execute()
+> PythonPythonRemoteResponse RemotesPythonPythonPartialUpdate(ctx, pythonPythonRemoteHref).PatchedpythonPythonRemote(patchedpythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a python remote
 
@@ -604,15 +618,16 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	patchedpythonPythonRemote := *openapiclient.NewPatchedpythonPythonRemote() // PatchedpythonPythonRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonPartialUpdate(context.Background(), pythonPythonRemoteHref).PatchedpythonPythonRemote(patchedpythonPythonRemote).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonPartialUpdate(context.Background(), pythonPythonRemoteHref).PatchedpythonPythonRemote(patchedpythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesPythonPythonPartialUpdate`: AsyncOperationResponse
+	// response from `RemotesPythonPythonPartialUpdate`: PythonPythonRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesPythonAPI.RemotesPythonPythonPartialUpdate`: %v\n", resp)
 }
 ```
@@ -634,10 +649,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedpythonPythonRemote** | [**PatchedpythonPythonRemote**](PatchedpythonPythonRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**PythonPythonRemoteResponse**](PythonPythonRemoteResponse.md)
 
 ### Authorization
 
@@ -655,7 +671,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonRead
 
-> PythonPythonRemoteResponse RemotesPythonPythonRead(ctx, pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PythonPythonRemoteResponse RemotesPythonPythonRead(ctx, pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a python remote
 
@@ -675,12 +691,13 @@ import (
 
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonRead(context.Background(), pythonPythonRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonRead(context.Background(), pythonPythonRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -706,6 +723,7 @@ Other parameters are passed through a pointer to a apiRemotesPythonPythonReadReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -729,7 +747,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonRemoveRole
 
-> NestedRoleResponse RemotesPythonPythonRemoveRole(ctx, pythonPythonRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesPythonPythonRemoveRole(ctx, pythonPythonRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -750,10 +768,11 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonRemoveRole(context.Background(), pythonPythonRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonRemoveRole(context.Background(), pythonPythonRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -780,6 +799,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -801,7 +821,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonSetLabel
 
-> SetLabelResponse RemotesPythonPythonSetLabel(ctx, pythonPythonRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesPythonPythonSetLabel(ctx, pythonPythonRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -822,10 +842,11 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonSetLabel(context.Background(), pythonPythonRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonSetLabel(context.Background(), pythonPythonRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -852,6 +873,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -873,7 +895,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonUnsetLabel
 
-> UnsetLabelResponse RemotesPythonPythonUnsetLabel(ctx, pythonPythonRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesPythonPythonUnsetLabel(ctx, pythonPythonRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -894,10 +916,11 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonUnsetLabel(context.Background(), pythonPythonRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonUnsetLabel(context.Background(), pythonPythonRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -924,6 +947,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -945,7 +969,7 @@ Name | Type | Description  | Notes
 
 ## RemotesPythonPythonUpdate
 
-> AsyncOperationResponse RemotesPythonPythonUpdate(ctx, pythonPythonRemoteHref).PythonPythonRemote(pythonPythonRemote).Execute()
+> PythonPythonRemoteResponse RemotesPythonPythonUpdate(ctx, pythonPythonRemoteHref).PythonPythonRemote(pythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a python remote
 
@@ -966,15 +990,16 @@ import (
 func main() {
 	pythonPythonRemoteHref := "pythonPythonRemoteHref_example" // string | 
 	pythonPythonRemote := *openapiclient.NewPythonPythonRemote("Name_example", "Url_example") // PythonPythonRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonUpdate(context.Background(), pythonPythonRemoteHref).PythonPythonRemote(pythonPythonRemote).Execute()
+	resp, r, err := apiClient.RemotesPythonAPI.RemotesPythonPythonUpdate(context.Background(), pythonPythonRemoteHref).PythonPythonRemote(pythonPythonRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesPythonAPI.RemotesPythonPythonUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesPythonPythonUpdate`: AsyncOperationResponse
+	// response from `RemotesPythonPythonUpdate`: PythonPythonRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesPythonAPI.RemotesPythonPythonUpdate`: %v\n", resp)
 }
 ```
@@ -996,10 +1021,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pythonPythonRemote** | [**PythonPythonRemote**](PythonPythonRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**PythonPythonRemoteResponse**](PythonPythonRemoteResponse.md)
 
 ### Authorization
 

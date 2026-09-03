@@ -18,8 +18,8 @@ Name | Type | Description | Notes
 **RepoGpgcheck** | Pointer to **int64** | REMOVED: An option specifying whether a client should perform a GPG signature check on the repodata. Not operational since pulp_rpm 3.30.0 release. Set these values using &#39;repo_config&#39; instead. | [optional] [readonly] 
 **SqliteMetadata** | Pointer to **bool** | REMOVED: An option specifying whether Pulp should generate SQLite metadata. Not operational since pulp_rpm 3.25.0 release | [optional] [readonly] [default to false]
 **RepoConfig** | Pointer to **interface{}** | A JSON document describing the config.repo file Pulp should generate for this repo | [optional] 
-**CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
-**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
+**CompressionType** | Pointer to [**CompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz* &#x60;none&#x60; - none | [optional] 
+**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat* &#x60;nested_by_digest&#x60; - nested_by_digest | [optional] 
 
 ## Methods
 

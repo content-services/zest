@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## ContentRpmModulemdsCreate
 
-> AsyncOperationResponse ContentRpmModulemdsCreate(ctx, pulpDomain).RpmModulemd(rpmModulemd).Execute()
+> AsyncOperationResponse ContentRpmModulemdsCreate(ctx, pulpDomain).RpmModulemd(rpmModulemd).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a modulemd
 
@@ -35,10 +35,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmModulemd := *openapiclient.NewRpmModulemd("Name_example", "Stream_example", "Version_example", "Context_example", "Arch_example", interface{}(123), interface{}(123), "Snippet_example", interface{}(123), "Description_example") // RpmModulemd | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsCreate(context.Background(), pulpDomain).RpmModulemd(rpmModulemd).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsCreate(context.Background(), pulpDomain).RpmModulemd(rpmModulemd).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +66,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmModulemd** | [**RpmModulemd**](RpmModulemd.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsList
 
-> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List modulemds
 
@@ -106,6 +108,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	arch := "arch_example" // string | Filter results where arch matches value (optional)
 	archIn := []string{"Inner_example"} // []string | Filter results where arch is in a comma-separated list of values (optional)
 	context := "context_example" // string | Filter results where context matches value (optional)
@@ -121,9 +124,9 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	sha256 := "sha256_example" // string |  (optional)
 	stream := "stream_example" // string | Filter results where stream matches value (optional)
 	streamIn := []string{"Inner_example"} // []string | Filter results where stream is in a comma-separated list of values (optional)
@@ -134,7 +137,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -160,6 +163,7 @@ Other parameters are passed through a pointer to a apiContentRpmModulemdsListReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **arch** | **string** | Filter results where arch matches value | 
  **archIn** | **[]string** | Filter results where arch is in a comma-separated list of values | 
  **context** | **string** | Filter results where context matches value | 
@@ -175,9 +179,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **sha256** | **string** |  | 
  **stream** | **string** | Filter results where stream matches value | 
  **streamIn** | **[]string** | Filter results where stream is in a comma-separated list of values | 
@@ -206,7 +210,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsRead
 
-> RpmModulemdResponse ContentRpmModulemdsRead(ctx, rpmModulemdHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmModulemdResponse ContentRpmModulemdsRead(ctx, rpmModulemdHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a modulemd
 
@@ -226,12 +230,13 @@ import (
 
 func main() {
 	rpmModulemdHref := "rpmModulemdHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsRead(context.Background(), rpmModulemdHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsRead(context.Background(), rpmModulemdHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -257,6 +262,7 @@ Other parameters are passed through a pointer to a apiContentRpmModulemdsReadReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -280,7 +286,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsSetLabel
 
-> SetLabelResponse ContentRpmModulemdsSetLabel(ctx, rpmModulemdHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentRpmModulemdsSetLabel(ctx, rpmModulemdHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -301,10 +307,11 @@ import (
 func main() {
 	rpmModulemdHref := "rpmModulemdHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsSetLabel(context.Background(), rpmModulemdHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsSetLabel(context.Background(), rpmModulemdHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -331,6 +338,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -352,7 +360,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsUnsetLabel
 
-> UnsetLabelResponse ContentRpmModulemdsUnsetLabel(ctx, rpmModulemdHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentRpmModulemdsUnsetLabel(ctx, rpmModulemdHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -373,10 +381,11 @@ import (
 func main() {
 	rpmModulemdHref := "rpmModulemdHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsUnsetLabel(context.Background(), rpmModulemdHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsUnsetLabel(context.Background(), rpmModulemdHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -403,6 +412,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

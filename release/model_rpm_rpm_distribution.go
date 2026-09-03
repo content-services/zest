@@ -32,6 +32,8 @@ type RpmRpmDistribution struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
+	// RepositoryVersion to be served
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// Publication to be served
 	Publication NullableString `json:"publication,omitempty"`
 	// An option specifying whether Pulp should generate *.repo files.
@@ -265,6 +267,48 @@ func (o *RpmRpmDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RpmRpmDistribution) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryVersion.Get()
+}
+
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RpmRpmDistribution) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+}
+
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *RpmRpmDistribution) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *RpmRpmDistribution) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *RpmRpmDistribution) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
+}
+
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *RpmRpmDistribution) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
+}
+
 // GetPublication returns the Publication field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RpmRpmDistribution) GetPublication() string {
 	if o == nil || IsNil(o.Publication.Get()) {
@@ -395,6 +439,9 @@ func (o RpmRpmDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
+	}
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
@@ -454,6 +501,7 @@ func (o *RpmRpmDistribution) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "publication")
 		delete(additionalProperties, "generate_repo_config")
 		delete(additionalProperties, "checkpoint")

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ExportersCoreFilesystemExportsCreate
 
-> AsyncOperationResponse ExportersCoreFilesystemExportsCreate(ctx, filesystemExporterHref).FilesystemExport(filesystemExport).Execute()
+> AsyncOperationResponse ExportersCoreFilesystemExportsCreate(ctx, filesystemExporterHref).FilesystemExport(filesystemExport).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a filesystem export
 
@@ -34,10 +34,11 @@ import (
 func main() {
 	filesystemExporterHref := "filesystemExporterHref_example" // string | 
 	filesystemExport := *openapiclient.NewFilesystemExport() // FilesystemExport | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate(context.Background(), filesystemExporterHref).FilesystemExport(filesystemExport).Execute()
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate(context.Background(), filesystemExporterHref).FilesystemExport(filesystemExport).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +65,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **filesystemExport** | [**FilesystemExport**](FilesystemExport.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -85,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## ExportersCoreFilesystemExportsDelete
 
-> ExportersCoreFilesystemExportsDelete(ctx, filesystemFilesystemExportHref).Execute()
+> ExportersCoreFilesystemExportsDelete(ctx, filesystemFilesystemExportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a filesystem export
 
@@ -105,10 +107,11 @@ import (
 
 func main() {
 	filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete(context.Background(), filesystemFilesystemExportHref).Execute()
+	r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete(context.Background(), filesystemFilesystemExportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +135,7 @@ Other parameters are passed through a pointer to a apiExportersCoreFilesystemExp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -153,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## ExportersCoreFilesystemExportsList
 
-> PaginatedFilesystemExportResponseList ExportersCoreFilesystemExportsList(ctx, filesystemExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedFilesystemExportResponseList ExportersCoreFilesystemExportsList(ctx, filesystemExporterHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List filesystem exports
 
@@ -173,6 +177,7 @@ import (
 
 func main() {
 	filesystemExporterHref := "filesystemExporterHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -180,7 +185,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList(context.Background(), filesystemExporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList(context.Background(), filesystemExporterHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -206,6 +211,7 @@ Other parameters are passed through a pointer to a apiExportersCoreFilesystemExp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ExportersCoreFilesystemExportsRead
 
-> FilesystemExportResponse ExportersCoreFilesystemExportsRead(ctx, filesystemFilesystemExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> FilesystemExportResponse ExportersCoreFilesystemExportsRead(ctx, filesystemFilesystemExportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a filesystem export
 
@@ -251,12 +257,13 @@ import (
 
 func main() {
 	filesystemFilesystemExportHref := "filesystemFilesystemExportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead(context.Background(), filesystemFilesystemExportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead(context.Background(), filesystemFilesystemExportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ExportersFilesystemExportsAPI.ExportersCoreFilesystemExportsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +289,7 @@ Other parameters are passed through a pointer to a apiExportersCoreFilesystemExp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

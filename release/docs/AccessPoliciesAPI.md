@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## AccessPoliciesList
 
-> PaginatedAccessPolicyResponseList AccessPoliciesList(ctx, pulpDomain).Customized(customized).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ViewsetName(viewsetName).ViewsetNameContains(viewsetNameContains).ViewsetNameIcontains(viewsetNameIcontains).ViewsetNameIexact(viewsetNameIexact).ViewsetNameIn(viewsetNameIn).ViewsetNameIregex(viewsetNameIregex).ViewsetNameIstartswith(viewsetNameIstartswith).ViewsetNameRegex(viewsetNameRegex).ViewsetNameStartswith(viewsetNameStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedAccessPolicyResponseList AccessPoliciesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Customized(customized).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ViewsetName(viewsetName).ViewsetNameContains(viewsetNameContains).ViewsetNameIcontains(viewsetNameIcontains).ViewsetNameIexact(viewsetNameIexact).ViewsetNameIn(viewsetNameIn).ViewsetNameIregex(viewsetNameIregex).ViewsetNameIstartswith(viewsetNameIstartswith).ViewsetNameRegex(viewsetNameRegex).ViewsetNameStartswith(viewsetNameStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List access policys
 
@@ -34,6 +34,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	customized := true // bool | Filter results where customized matches value (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
@@ -56,7 +57,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesList(context.Background(), pulpDomain).Customized(customized).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ViewsetName(viewsetName).ViewsetNameContains(viewsetNameContains).ViewsetNameIcontains(viewsetNameIcontains).ViewsetNameIexact(viewsetNameIexact).ViewsetNameIn(viewsetNameIn).ViewsetNameIregex(viewsetNameIregex).ViewsetNameIstartswith(viewsetNameIstartswith).ViewsetNameRegex(viewsetNameRegex).ViewsetNameStartswith(viewsetNameStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Customized(customized).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).ViewsetName(viewsetName).ViewsetNameContains(viewsetNameContains).ViewsetNameIcontains(viewsetNameIcontains).ViewsetNameIexact(viewsetNameIexact).ViewsetNameIn(viewsetNameIn).ViewsetNameIregex(viewsetNameIregex).ViewsetNameIstartswith(viewsetNameIstartswith).ViewsetNameRegex(viewsetNameRegex).ViewsetNameStartswith(viewsetNameStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessPoliciesAPI.AccessPoliciesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -82,6 +83,7 @@ Other parameters are passed through a pointer to a apiAccessPoliciesListRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **customized** | **bool** | Filter results where customized matches value | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
@@ -122,7 +124,7 @@ Name | Type | Description  | Notes
 
 ## AccessPoliciesPartialUpdate
 
-> AccessPolicyResponse AccessPoliciesPartialUpdate(ctx, accessPolicyHref).PatchedAccessPolicy(patchedAccessPolicy).Execute()
+> AccessPolicyResponse AccessPoliciesPartialUpdate(ctx, accessPolicyHref).PatchedAccessPolicy(patchedAccessPolicy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an access policy
 
@@ -143,10 +145,11 @@ import (
 func main() {
 	accessPolicyHref := "accessPolicyHref_example" // string | 
 	patchedAccessPolicy := *openapiclient.NewPatchedAccessPolicy() // PatchedAccessPolicy | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesPartialUpdate(context.Background(), accessPolicyHref).PatchedAccessPolicy(patchedAccessPolicy).Execute()
+	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesPartialUpdate(context.Background(), accessPolicyHref).PatchedAccessPolicy(patchedAccessPolicy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessPoliciesAPI.AccessPoliciesPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,6 +176,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedAccessPolicy** | [**PatchedAccessPolicy**](PatchedAccessPolicy.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -194,7 +198,7 @@ Name | Type | Description  | Notes
 
 ## AccessPoliciesRead
 
-> AccessPolicyResponse AccessPoliciesRead(ctx, accessPolicyHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> AccessPolicyResponse AccessPoliciesRead(ctx, accessPolicyHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an access policy
 
@@ -214,12 +218,13 @@ import (
 
 func main() {
 	accessPolicyHref := "accessPolicyHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesRead(context.Background(), accessPolicyHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesRead(context.Background(), accessPolicyHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessPoliciesAPI.AccessPoliciesRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -245,6 +250,7 @@ Other parameters are passed through a pointer to a apiAccessPoliciesReadRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -268,7 +274,7 @@ Name | Type | Description  | Notes
 
 ## AccessPoliciesReset
 
-> AccessPolicyResponse AccessPoliciesReset(ctx, accessPolicyHref).Execute()
+> AccessPolicyResponse AccessPoliciesReset(ctx, accessPolicyHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -288,10 +294,11 @@ import (
 
 func main() {
 	accessPolicyHref := "accessPolicyHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesReset(context.Background(), accessPolicyHref).Execute()
+	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesReset(context.Background(), accessPolicyHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessPoliciesAPI.AccessPoliciesReset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -317,6 +324,7 @@ Other parameters are passed through a pointer to a apiAccessPoliciesResetRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -338,7 +346,7 @@ Name | Type | Description  | Notes
 
 ## AccessPoliciesUpdate
 
-> AccessPolicyResponse AccessPoliciesUpdate(ctx, accessPolicyHref).AccessPolicy(accessPolicy).Execute()
+> AccessPolicyResponse AccessPoliciesUpdate(ctx, accessPolicyHref).AccessPolicy(accessPolicy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an access policy
 
@@ -359,10 +367,11 @@ import (
 func main() {
 	accessPolicyHref := "accessPolicyHref_example" // string | 
 	accessPolicy := *openapiclient.NewAccessPolicy([]map[string]interface{}{map[string]interface{}(123)}) // AccessPolicy | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesUpdate(context.Background(), accessPolicyHref).AccessPolicy(accessPolicy).Execute()
+	resp, r, err := apiClient.AccessPoliciesAPI.AccessPoliciesUpdate(context.Background(), accessPolicyHref).AccessPolicy(accessPolicy).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccessPoliciesAPI.AccessPoliciesUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -389,6 +398,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **accessPolicy** | [**AccessPolicy**](AccessPolicy.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

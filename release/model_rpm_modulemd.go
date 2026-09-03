@@ -23,6 +23,8 @@ var _ MappedNullable = &RpmModulemd{}
 type RpmModulemd struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true.
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Modulemd name.
@@ -111,6 +113,38 @@ func (o *RpmModulemd) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *RpmModulemd) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
+func (o *RpmModulemd) GetOverwrite() bool {
+	if o == nil || IsNil(o.Overwrite) {
+		var ret bool
+		return ret
+	}
+	return *o.Overwrite
+}
+
+// GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmModulemd) GetOverwriteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Overwrite) {
+		return nil, false
+	}
+	return o.Overwrite, true
+}
+
+// HasOverwrite returns a boolean if a field has been set.
+func (o *RpmModulemd) HasOverwrite() bool {
+	if o != nil && !IsNil(o.Overwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
+func (o *RpmModulemd) SetOverwrite(v bool) {
+	o.Overwrite = &v
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -468,6 +502,9 @@ func (o RpmModulemd) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
+	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
@@ -546,6 +583,7 @@ func (o *RpmModulemd) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "overwrite")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "stream")

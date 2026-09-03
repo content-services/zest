@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **BasePath** | **string** | The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \&quot;foo\&quot; and \&quot;foo/bar\&quot;) | 
 **BaseUrl** | Pointer to **string** | The URL for accessing the publication as defined by this distribution. | [optional] [readonly] 
 **ContentGuard** | Pointer to **NullableString** | An optional content-guard. | [optional] 
+**ContentGuardPrn** | Pointer to **string** | The Pulp Resource Name (PRN) of the associated optional content guard. | [optional] [readonly] 
 **NoContentChangeSince** | Pointer to **string** | Timestamp since when the distributed content served by this distribution has not changed. If equals to &#x60;null&#x60;, no guarantee is provided about content changes. | [optional] [readonly] 
 **Hidden** | Pointer to **bool** | Whether this distribution should be shown in the content app. | [optional] [default to false]
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
@@ -217,6 +218,31 @@ HasContentGuard returns a boolean if a field has been set.
 `func (o *OpenPGPDistributionResponse) UnsetContentGuard()`
 
 UnsetContentGuard ensures that no value is present for ContentGuard, not even an explicit nil
+### GetContentGuardPrn
+
+`func (o *OpenPGPDistributionResponse) GetContentGuardPrn() string`
+
+GetContentGuardPrn returns the ContentGuardPrn field if non-nil, zero value otherwise.
+
+### GetContentGuardPrnOk
+
+`func (o *OpenPGPDistributionResponse) GetContentGuardPrnOk() (*string, bool)`
+
+GetContentGuardPrnOk returns a tuple with the ContentGuardPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContentGuardPrn
+
+`func (o *OpenPGPDistributionResponse) SetContentGuardPrn(v string)`
+
+SetContentGuardPrn sets ContentGuardPrn field to given value.
+
+### HasContentGuardPrn
+
+`func (o *OpenPGPDistributionResponse) HasContentGuardPrn() bool`
+
+HasContentGuardPrn returns a boolean if a field has been set.
+
 ### GetNoContentChangeSince
 
 `func (o *OpenPGPDistributionResponse) GetNoContentChangeSince() string`

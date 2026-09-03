@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## TaskGroupsCancel
 
-> TaskGroupResponse TaskGroupsCancel(ctx, taskGroupHref).PatchedTaskCancel(patchedTaskCancel).Execute()
+> TaskGroupResponse TaskGroupsCancel(ctx, taskGroupHref).PatchedTaskCancel(patchedTaskCancel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Cancel a task group
 
@@ -33,10 +33,11 @@ import (
 func main() {
 	taskGroupHref := "taskGroupHref_example" // string | 
 	patchedTaskCancel := *openapiclient.NewPatchedTaskCancel() // PatchedTaskCancel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsCancel(context.Background(), taskGroupHref).PatchedTaskCancel(patchedTaskCancel).Execute()
+	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsCancel(context.Background(), taskGroupHref).PatchedTaskCancel(patchedTaskCancel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaskGroupsAPI.TaskGroupsCancel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedTaskCancel** | [**PatchedTaskCancel**](PatchedTaskCancel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -84,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## TaskGroupsList
 
-> PaginatedTaskGroupResponseList TaskGroupsList(ctx, pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedTaskGroupResponseList TaskGroupsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List task groups
 
@@ -102,6 +104,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -109,7 +112,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaskGroupsAPI.TaskGroupsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,6 +138,7 @@ Other parameters are passed through a pointer to a apiTaskGroupsListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
@@ -160,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## TaskGroupsRead
 
-> TaskGroupResponse TaskGroupsRead(ctx, taskGroupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> TaskGroupResponse TaskGroupsRead(ctx, taskGroupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a task group
 
@@ -178,12 +182,13 @@ import (
 
 func main() {
 	taskGroupHref := "taskGroupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsRead(context.Background(), taskGroupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.TaskGroupsAPI.TaskGroupsRead(context.Background(), taskGroupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaskGroupsAPI.TaskGroupsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +214,7 @@ Other parameters are passed through a pointer to a apiTaskGroupsReadRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

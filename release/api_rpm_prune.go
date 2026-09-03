@@ -29,10 +29,17 @@ type RpmPruneAPIRpmPrunePrunePackagesRequest struct {
 	ApiService *RpmPruneAPIService
 	pulpDomain string
 	prunePackages *PrunePackages
+	xTaskDiagnostics *[]string
 }
 
 func (r RpmPruneAPIRpmPrunePrunePackagesRequest) PrunePackages(prunePackages PrunePackages) RpmPruneAPIRpmPrunePrunePackagesRequest {
 	r.prunePackages = &prunePackages
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RpmPruneAPIRpmPrunePrunePackagesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RpmPruneAPIRpmPrunePrunePackagesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *RpmPruneAPIService) RpmPrunePrunePackagesExecute(r RpmPruneAPIRpmPruneP
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.prunePackages

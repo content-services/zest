@@ -30,10 +30,17 @@ type DistributionsPypiAPIDistributionsPythonPypiAddRoleRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiAddRoleRequest) NestedRole(nestedRole NestedRole) DistributionsPypiAPIDistributionsPythonPypiAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiAddRoleExecute(r Di
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type DistributionsPypiAPIDistributionsPythonPypiCreateRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pulpDomain string
 	pythonPythonDistribution *PythonPythonDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiCreateRequest) PythonPythonDistribution(pythonPythonDistribution PythonPythonDistribution) DistributionsPypiAPIDistributionsPythonPypiCreateRequest {
 	r.pythonPythonDistribution = &pythonPythonDistribution
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiCreateExecute(r Dis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.pythonPythonDistribution
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type DistributionsPypiAPIDistributionsPythonPypiDeleteRequest struct {
 	ctx context.Context
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiDeleteExecute(r Dis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type DistributionsPypiAPIDistributionsPythonPypiListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsPypiAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -390,6 +421,12 @@ type DistributionsPypiAPIDistributionsPythonPypiListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -524,13 +561,11 @@ func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) Q(q string) Dist
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) Repository(repository string) DistributionsPypiAPIDistributionsPythonPypiListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsPypiAPIDistributionsPythonPypiListRequest) RepositoryIn(repositoryIn []string) DistributionsPypiAPIDistributionsPythonPypiListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -712,6 +747,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiListExecute(r Distr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -753,8 +791,15 @@ type DistributionsPypiAPIDistributionsPythonPypiListRolesRequest struct {
 	ctx context.Context
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -852,6 +897,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiListRolesExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -893,8 +941,15 @@ type DistributionsPypiAPIDistributionsPythonPypiMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -992,6 +1047,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiMyPermissionsExecut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1034,6 +1092,7 @@ type DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	patchedpythonPythonDistribution *PatchedpythonPythonDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) PatchedpythonPythonDistribution(patchedpythonPythonDistribution PatchedpythonPythonDistribution) DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest {
@@ -1041,14 +1100,20 @@ func (r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) Patched
 	return r
 }
 
-func (r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) Execute() (*PythonPythonDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsPythonPypiPartialUpdateExecute(r)
 }
 
 /*
 DistributionsPythonPypiPartialUpdate Update a python distribution
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonDistributionHref
@@ -1063,13 +1128,13 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiPartialUpdate(ctx c
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsPypiAPIService) DistributionsPythonPypiPartialUpdateExecute(r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PythonPythonDistributionResponse
+func (a *DistributionsPypiAPIService) DistributionsPythonPypiPartialUpdateExecute(r DistributionsPypiAPIDistributionsPythonPypiPartialUpdateRequest) (*PythonPythonDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PythonPythonDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsPypiAPIService.DistributionsPythonPypiPartialUpdate")
@@ -1104,6 +1169,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiPartialUpdateExecut
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedpythonPythonDistribution
@@ -1148,8 +1216,15 @@ type DistributionsPypiAPIDistributionsPythonPypiReadRequest struct {
 	ctx context.Context
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1247,6 +1322,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiReadExecute(r Distr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1289,10 +1367,17 @@ type DistributionsPypiAPIDistributionsPythonPypiRemoveRoleRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiRemoveRoleRequest) NestedRole(nestedRole NestedRole) DistributionsPypiAPIDistributionsPythonPypiRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1360,6 +1445,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiRemoveRoleExecute(r
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1404,10 +1492,17 @@ type DistributionsPypiAPIDistributionsPythonPypiSetLabelRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiSetLabelRequest) SetLabel(setLabel SetLabel) DistributionsPypiAPIDistributionsPythonPypiSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1475,6 +1570,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiSetLabelExecute(r D
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1519,10 +1617,17 @@ type DistributionsPypiAPIDistributionsPythonPypiUnsetLabelRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) DistributionsPypiAPIDistributionsPythonPypiUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1590,6 +1695,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiUnsetLabelExecute(r
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1634,6 +1742,7 @@ type DistributionsPypiAPIDistributionsPythonPypiUpdateRequest struct {
 	ApiService *DistributionsPypiAPIService
 	pythonPythonDistributionHref string
 	pythonPythonDistribution *PythonPythonDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) PythonPythonDistribution(pythonPythonDistribution PythonPythonDistribution) DistributionsPypiAPIDistributionsPythonPypiUpdateRequest {
@@ -1641,14 +1750,20 @@ func (r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) PythonPythonDi
 	return r
 }
 
-func (r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsPypiAPIDistributionsPythonPypiUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) Execute() (*PythonPythonDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsPythonPypiUpdateExecute(r)
 }
 
 /*
 DistributionsPythonPypiUpdate Update a python distribution
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pythonPythonDistributionHref
@@ -1663,13 +1778,13 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiUpdate(ctx context.
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsPypiAPIService) DistributionsPythonPypiUpdateExecute(r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return PythonPythonDistributionResponse
+func (a *DistributionsPypiAPIService) DistributionsPythonPypiUpdateExecute(r DistributionsPypiAPIDistributionsPythonPypiUpdateRequest) (*PythonPythonDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *PythonPythonDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsPypiAPIService.DistributionsPythonPypiUpdate")
@@ -1704,6 +1819,9 @@ func (a *DistributionsPypiAPIService) DistributionsPythonPypiUpdateExecute(r Dis
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.pythonPythonDistribution

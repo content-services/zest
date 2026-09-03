@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## GroupsAddRole
 
-> NestedRoleResponse GroupsAddRole(ctx, groupHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse GroupsAddRole(ctx, groupHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	groupHref := "groupHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsAddRole(context.Background(), groupHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsAddRole(context.Background(), groupHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## GroupsCreate
 
-> GroupResponse GroupsCreate(ctx, pulpDomain).Group(group).Execute()
+> GroupResponse GroupsCreate(ctx, pulpDomain).Group(group).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a group
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	group := *openapiclient.NewGroup("Name_example") // Group | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsCreate(context.Background(), pulpDomain).Group(group).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsCreate(context.Background(), pulpDomain).Group(group).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **group** | [**Group**](Group.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## GroupsDelete
 
-> GroupsDelete(ctx, groupHref).Execute()
+> GroupsDelete(ctx, groupHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a group
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.GroupsAPI.GroupsDelete(context.Background(), groupHref).Execute()
+	r, err := apiClient.GroupsAPI.GroupsDelete(context.Background(), groupHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiGroupsDeleteRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## GroupsList
 
-> PaginatedGroupResponseList GroupsList(ctx, pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedGroupResponseList GroupsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List groups
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	id := int32(56) // int32 | Filter results where id matches value (optional)
 	idIn := []int32{int32(123)} // []int32 | Filter results where id is in a comma-separated list of values (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
@@ -270,7 +277,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsList(context.Background(), pulpDomain).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,6 +303,7 @@ Other parameters are passed through a pointer to a apiGroupsListRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **id** | **int32** | Filter results where id matches value | 
  **idIn** | **[]int32** | Filter results where id is in a comma-separated list of values | 
  **limit** | **int32** | Number of results to return per page. | 
@@ -333,7 +341,7 @@ Name | Type | Description  | Notes
 
 ## GroupsListRoles
 
-> ObjectRolesResponse GroupsListRoles(ctx, groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse GroupsListRoles(ctx, groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -353,12 +361,13 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsListRoles(context.Background(), groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsListRoles(context.Background(), groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -384,6 +393,7 @@ Other parameters are passed through a pointer to a apiGroupsListRolesRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -407,7 +417,7 @@ Name | Type | Description  | Notes
 
 ## GroupsMyPermissions
 
-> MyPermissionsResponse GroupsMyPermissions(ctx, groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse GroupsMyPermissions(ctx, groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -427,12 +437,13 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsMyPermissions(context.Background(), groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsMyPermissions(context.Background(), groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -458,6 +469,7 @@ Other parameters are passed through a pointer to a apiGroupsMyPermissionsRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -481,7 +493,7 @@ Name | Type | Description  | Notes
 
 ## GroupsPartialUpdate
 
-> GroupResponse GroupsPartialUpdate(ctx, groupHref).PatchedGroup(patchedGroup).Execute()
+> GroupResponse GroupsPartialUpdate(ctx, groupHref).PatchedGroup(patchedGroup).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a group
 
@@ -502,10 +514,11 @@ import (
 func main() {
 	groupHref := "groupHref_example" // string | 
 	patchedGroup := *openapiclient.NewPatchedGroup() // PatchedGroup | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsPartialUpdate(context.Background(), groupHref).PatchedGroup(patchedGroup).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsPartialUpdate(context.Background(), groupHref).PatchedGroup(patchedGroup).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -532,6 +545,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedGroup** | [**PatchedGroup**](PatchedGroup.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -553,7 +567,7 @@ Name | Type | Description  | Notes
 
 ## GroupsRead
 
-> GroupResponse GroupsRead(ctx, groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> GroupResponse GroupsRead(ctx, groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a group
 
@@ -573,12 +587,13 @@ import (
 
 func main() {
 	groupHref := "groupHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsRead(context.Background(), groupHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsRead(context.Background(), groupHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -604,6 +619,7 @@ Other parameters are passed through a pointer to a apiGroupsReadRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -627,7 +643,7 @@ Name | Type | Description  | Notes
 
 ## GroupsRemoveRole
 
-> NestedRoleResponse GroupsRemoveRole(ctx, groupHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse GroupsRemoveRole(ctx, groupHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -648,10 +664,11 @@ import (
 func main() {
 	groupHref := "groupHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsRemoveRole(context.Background(), groupHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsRemoveRole(context.Background(), groupHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -678,6 +695,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -699,7 +717,7 @@ Name | Type | Description  | Notes
 
 ## GroupsUpdate
 
-> GroupResponse GroupsUpdate(ctx, groupHref).Group(group).Execute()
+> GroupResponse GroupsUpdate(ctx, groupHref).Group(group).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a group
 
@@ -720,10 +738,11 @@ import (
 func main() {
 	groupHref := "groupHref_example" // string | 
 	group := *openapiclient.NewGroup("Name_example") // Group | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.GroupsAPI.GroupsUpdate(context.Background(), groupHref).Group(group).Execute()
+	resp, r, err := apiClient.GroupsAPI.GroupsUpdate(context.Background(), groupHref).Group(group).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GroupsAPI.GroupsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -750,6 +769,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **group** | [**Group**](Group.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

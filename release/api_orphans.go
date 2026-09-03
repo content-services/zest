@@ -28,6 +28,13 @@ type OrphansAPIOrphansDeleteRequest struct {
 	ctx context.Context
 	ApiService *OrphansAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r OrphansAPIOrphansDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) OrphansAPIOrphansDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r OrphansAPIOrphansDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -90,6 +97,9 @@ func (a *OrphansAPIService) OrphansDeleteExecute(r OrphansAPIOrphansDeleteReques
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

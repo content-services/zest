@@ -38,10 +38,19 @@ type PythonPythonRepositoryResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
-	// Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository.
+	// Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. [Deprecated]
+	// Deprecated
 	Autopublish *bool `json:"autopublish,omitempty"`
+	// Whether to allow package substitution (replacing existing packages with packages that have the same filename but a different checksum). When False, any new repository version that would cause such a substitution will be rejected. This applies to all repository version creation paths including uploads, modify, and sync. When True (the default), package substitution is allowed.
+	AllowPackageSubstitution *bool `json:"allow_package_substitution,omitempty"`
+	// Whether to fail the entire repository version when packages are rejected by the package substitution or blocklist policies. When True (the default), a ValidationError is raised and no packages from the request are added. When False, rejected packages are skipped and remaining packages are added; skipped packages are recorded in a task progress report.
+	ErrorOnReject *bool `json:"error_on_reject,omitempty"`
+	// URL to the blocklist entries for this repository.
+	BlocklistEntriesHref *string `json:"blocklist_entries_href,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,6 +65,10 @@ func NewPythonPythonRepositoryResponse(name string) *PythonPythonRepositoryRespo
 	this.Name = name
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var allowPackageSubstitution bool = true
+	this.AllowPackageSubstitution = &allowPackageSubstitution
+	var errorOnReject bool = true
+	this.ErrorOnReject = &errorOnReject
 	return &this
 }
 
@@ -66,6 +79,10 @@ func NewPythonPythonRepositoryResponseWithDefaults() *PythonPythonRepositoryResp
 	this := PythonPythonRepositoryResponse{}
 	var autopublish bool = false
 	this.Autopublish = &autopublish
+	var allowPackageSubstitution bool = true
+	this.AllowPackageSubstitution = &allowPackageSubstitution
+	var errorOnReject bool = true
+	this.ErrorOnReject = &errorOnReject
 	return &this
 }
 
@@ -401,6 +418,48 @@ func (o *PythonPythonRepositoryResponse) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonRepositoryResponse) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RetainCheckpoints.Get()
+}
+
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonRepositoryResponse) GetRetainCheckpointsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+}
+
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *PythonPythonRepositoryResponse) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *PythonPythonRepositoryResponse) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
+}
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *PythonPythonRepositoryResponse) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
+}
+
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *PythonPythonRepositoryResponse) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
+}
+
 // GetRemote returns the Remote field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PythonPythonRepositoryResponse) GetRemote() string {
 	if o == nil || IsNil(o.Remote.Get()) {
@@ -444,6 +503,7 @@ func (o *PythonPythonRepositoryResponse) UnsetRemote() {
 }
 
 // GetAutopublish returns the Autopublish field value if set, zero value otherwise.
+// Deprecated
 func (o *PythonPythonRepositoryResponse) GetAutopublish() bool {
 	if o == nil || IsNil(o.Autopublish) {
 		var ret bool
@@ -454,6 +514,7 @@ func (o *PythonPythonRepositoryResponse) GetAutopublish() bool {
 
 // GetAutopublishOk returns a tuple with the Autopublish field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *PythonPythonRepositoryResponse) GetAutopublishOk() (*bool, bool) {
 	if o == nil || IsNil(o.Autopublish) {
 		return nil, false
@@ -471,8 +532,105 @@ func (o *PythonPythonRepositoryResponse) HasAutopublish() bool {
 }
 
 // SetAutopublish gets a reference to the given bool and assigns it to the Autopublish field.
+// Deprecated
 func (o *PythonPythonRepositoryResponse) SetAutopublish(v bool) {
 	o.Autopublish = &v
+}
+
+// GetAllowPackageSubstitution returns the AllowPackageSubstitution field value if set, zero value otherwise.
+func (o *PythonPythonRepositoryResponse) GetAllowPackageSubstitution() bool {
+	if o == nil || IsNil(o.AllowPackageSubstitution) {
+		var ret bool
+		return ret
+	}
+	return *o.AllowPackageSubstitution
+}
+
+// GetAllowPackageSubstitutionOk returns a tuple with the AllowPackageSubstitution field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonRepositoryResponse) GetAllowPackageSubstitutionOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowPackageSubstitution) {
+		return nil, false
+	}
+	return o.AllowPackageSubstitution, true
+}
+
+// HasAllowPackageSubstitution returns a boolean if a field has been set.
+func (o *PythonPythonRepositoryResponse) HasAllowPackageSubstitution() bool {
+	if o != nil && !IsNil(o.AllowPackageSubstitution) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowPackageSubstitution gets a reference to the given bool and assigns it to the AllowPackageSubstitution field.
+func (o *PythonPythonRepositoryResponse) SetAllowPackageSubstitution(v bool) {
+	o.AllowPackageSubstitution = &v
+}
+
+// GetErrorOnReject returns the ErrorOnReject field value if set, zero value otherwise.
+func (o *PythonPythonRepositoryResponse) GetErrorOnReject() bool {
+	if o == nil || IsNil(o.ErrorOnReject) {
+		var ret bool
+		return ret
+	}
+	return *o.ErrorOnReject
+}
+
+// GetErrorOnRejectOk returns a tuple with the ErrorOnReject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonRepositoryResponse) GetErrorOnRejectOk() (*bool, bool) {
+	if o == nil || IsNil(o.ErrorOnReject) {
+		return nil, false
+	}
+	return o.ErrorOnReject, true
+}
+
+// HasErrorOnReject returns a boolean if a field has been set.
+func (o *PythonPythonRepositoryResponse) HasErrorOnReject() bool {
+	if o != nil && !IsNil(o.ErrorOnReject) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorOnReject gets a reference to the given bool and assigns it to the ErrorOnReject field.
+func (o *PythonPythonRepositoryResponse) SetErrorOnReject(v bool) {
+	o.ErrorOnReject = &v
+}
+
+// GetBlocklistEntriesHref returns the BlocklistEntriesHref field value if set, zero value otherwise.
+func (o *PythonPythonRepositoryResponse) GetBlocklistEntriesHref() string {
+	if o == nil || IsNil(o.BlocklistEntriesHref) {
+		var ret string
+		return ret
+	}
+	return *o.BlocklistEntriesHref
+}
+
+// GetBlocklistEntriesHrefOk returns a tuple with the BlocklistEntriesHref field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PythonPythonRepositoryResponse) GetBlocklistEntriesHrefOk() (*string, bool) {
+	if o == nil || IsNil(o.BlocklistEntriesHref) {
+		return nil, false
+	}
+	return o.BlocklistEntriesHref, true
+}
+
+// HasBlocklistEntriesHref returns a boolean if a field has been set.
+func (o *PythonPythonRepositoryResponse) HasBlocklistEntriesHref() bool {
+	if o != nil && !IsNil(o.BlocklistEntriesHref) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlocklistEntriesHref gets a reference to the given string and assigns it to the BlocklistEntriesHref field.
+func (o *PythonPythonRepositoryResponse) SetBlocklistEntriesHref(v string) {
+	o.BlocklistEntriesHref = &v
 }
 
 func (o PythonPythonRepositoryResponse) MarshalJSON() ([]byte, error) {
@@ -513,11 +671,23 @@ func (o PythonPythonRepositoryResponse) ToMap() (map[string]interface{}, error) 
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
+	}
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
 	if !IsNil(o.Autopublish) {
 		toSerialize["autopublish"] = o.Autopublish
+	}
+	if !IsNil(o.AllowPackageSubstitution) {
+		toSerialize["allow_package_substitution"] = o.AllowPackageSubstitution
+	}
+	if !IsNil(o.ErrorOnReject) {
+		toSerialize["error_on_reject"] = o.ErrorOnReject
+	}
+	if !IsNil(o.BlocklistEntriesHref) {
+		toSerialize["blocklist_entries_href"] = o.BlocklistEntriesHref
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -572,8 +742,12 @@ func (o *PythonPythonRepositoryResponse) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "remote")
 		delete(additionalProperties, "autopublish")
+		delete(additionalProperties, "allow_package_substitution")
+		delete(additionalProperties, "error_on_reject")
+		delete(additionalProperties, "blocklist_entries_href")
 		o.AdditionalProperties = additionalProperties
 	}
 

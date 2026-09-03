@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A URI of a repository the new content unit should be associated with. | [optional] 
+**Overwrite** | Pointer to **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
 **Modified** | **string** | Obsolete modified time. | 
 **ModuleName** | **string** | Modulemd name. | 
@@ -60,6 +61,31 @@ SetRepository sets Repository field to given value.
 `func (o *RpmModulemdObsolete) HasRepository() bool`
 
 HasRepository returns a boolean if a field has been set.
+
+### GetOverwrite
+
+`func (o *RpmModulemdObsolete) GetOverwrite() bool`
+
+GetOverwrite returns the Overwrite field if non-nil, zero value otherwise.
+
+### GetOverwriteOk
+
+`func (o *RpmModulemdObsolete) GetOverwriteOk() (*bool, bool)`
+
+GetOverwriteOk returns a tuple with the Overwrite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverwrite
+
+`func (o *RpmModulemdObsolete) SetOverwrite(v bool)`
+
+SetOverwrite sets Overwrite field to given value.
+
+### HasOverwrite
+
+`func (o *RpmModulemdObsolete) HasOverwrite() bool`
+
+HasOverwrite returns a boolean if a field has been set.
 
 ### GetPulpLabels
 

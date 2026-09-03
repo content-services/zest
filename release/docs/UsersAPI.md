@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## UsersCreate
 
-> UserResponse UsersCreate(ctx, pulpDomain).User(user).Execute()
+> UserResponse UsersCreate(ctx, pulpDomain).User(user).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an user
 
@@ -36,10 +36,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	user := *openapiclient.NewUser("Username_example") // User | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersCreate(context.Background(), pulpDomain).User(user).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersCreate(context.Background(), pulpDomain).User(user).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **user** | [**User**](User.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -87,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## UsersDelete
 
-> UsersDelete(ctx, authUserHref).Execute()
+> UsersDelete(ctx, authUserHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an user
 
@@ -107,10 +109,11 @@ import (
 
 func main() {
 	authUserHref := "authUserHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UsersAPI.UsersDelete(context.Background(), authUserHref).Execute()
+	r, err := apiClient.UsersAPI.UsersDelete(context.Background(), authUserHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +137,7 @@ Other parameters are passed through a pointer to a apiUsersDeleteRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -155,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## UsersList
 
-> PaginatedUserResponseList UsersList(ctx, pulpDomain).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedUserResponseList UsersList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List users
 
@@ -175,6 +179,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	email := "email_example" // string | Filter results where email matches value (optional)
 	emailContains := "emailContains_example" // string | Filter results where email contains value (optional)
 	emailIcontains := "emailIcontains_example" // string | Filter results where email contains value (optional)
@@ -209,7 +214,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersList(context.Background(), pulpDomain).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Email(email).EmailContains(emailContains).EmailIcontains(emailIcontains).EmailIexact(emailIexact).EmailIn(emailIn).FirstName(firstName).FirstNameContains(firstNameContains).FirstNameIcontains(firstNameIcontains).FirstNameIexact(firstNameIexact).FirstNameIn(firstNameIn).IsActive(isActive).IsStaff(isStaff).LastName(lastName).LastNameContains(lastNameContains).LastNameIcontains(lastNameIcontains).LastNameIexact(lastNameIexact).LastNameIn(lastNameIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Username(username).UsernameContains(usernameContains).UsernameIcontains(usernameIcontains).UsernameIexact(usernameIexact).UsernameIn(usernameIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,6 +240,7 @@ Other parameters are passed through a pointer to a apiUsersListRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **email** | **string** | Filter results where email matches value | 
  **emailContains** | **string** | Filter results where email contains value | 
  **emailIcontains** | **string** | Filter results where email contains value | 
@@ -287,7 +293,7 @@ Name | Type | Description  | Notes
 
 ## UsersPartialUpdate
 
-> UserResponse UsersPartialUpdate(ctx, authUserHref).PatchedUser(patchedUser).Execute()
+> UserResponse UsersPartialUpdate(ctx, authUserHref).PatchedUser(patchedUser).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an user
 
@@ -308,10 +314,11 @@ import (
 func main() {
 	authUserHref := "authUserHref_example" // string | 
 	patchedUser := *openapiclient.NewPatchedUser() // PatchedUser | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersPartialUpdate(context.Background(), authUserHref).PatchedUser(patchedUser).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersPartialUpdate(context.Background(), authUserHref).PatchedUser(patchedUser).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,6 +345,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedUser** | [**PatchedUser**](PatchedUser.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -359,7 +367,7 @@ Name | Type | Description  | Notes
 
 ## UsersRead
 
-> UserResponse UsersRead(ctx, authUserHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> UserResponse UsersRead(ctx, authUserHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an user
 
@@ -379,12 +387,13 @@ import (
 
 func main() {
 	authUserHref := "authUserHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersRead(context.Background(), authUserHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersRead(context.Background(), authUserHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -410,6 +419,7 @@ Other parameters are passed through a pointer to a apiUsersReadRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -433,7 +443,7 @@ Name | Type | Description  | Notes
 
 ## UsersUpdate
 
-> UserResponse UsersUpdate(ctx, authUserHref).User(user).Execute()
+> UserResponse UsersUpdate(ctx, authUserHref).User(user).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update an user
 
@@ -454,10 +464,11 @@ import (
 func main() {
 	authUserHref := "authUserHref_example" // string | 
 	user := *openapiclient.NewUser("Username_example") // User | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersAPI.UsersUpdate(context.Background(), authUserHref).User(user).Execute()
+	resp, r, err := apiClient.UsersAPI.UsersUpdate(context.Background(), authUserHref).User(user).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.UsersUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -484,6 +495,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **user** | [**User**](User.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

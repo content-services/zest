@@ -31,10 +31,17 @@ type UpstreamPulpsAPIUpstreamPulpsAddRoleRequest struct {
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsAddRoleRequest) NestedRole(nestedRole NestedRole) UpstreamPulpsAPIUpstreamPulpsAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -102,6 +109,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsAddRoleExecute(r UpstreamPulpsAPI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,10 +156,17 @@ type UpstreamPulpsAPIUpstreamPulpsCreateRequest struct {
 	ApiService *UpstreamPulpsAPIService
 	pulpDomain string
 	upstreamPulp *UpstreamPulp
+	xTaskDiagnostics *[]string
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsCreateRequest) UpstreamPulp(upstreamPulp UpstreamPulp) UpstreamPulpsAPIUpstreamPulpsCreateRequest {
 	r.upstreamPulp = &upstreamPulp
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -217,6 +234,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsCreateExecute(r UpstreamPulpsAPIU
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.upstreamPulp
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -260,6 +280,13 @@ type UpstreamPulpsAPIUpstreamPulpsDeleteRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsDeleteRequest) Execute() (*http.Response, error) {
@@ -321,6 +348,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsDeleteExecute(r UpstreamPulpsAPIU
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -353,6 +383,7 @@ type UpstreamPulpsAPIUpstreamPulpsListRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	baseUrl *string
 	baseUrlContains *string
 	baseUrlIcontains *string
@@ -387,6 +418,12 @@ type UpstreamPulpsAPIUpstreamPulpsListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_url matches value
@@ -551,7 +588,7 @@ func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Offset(offset int32) UpstreamP
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;policy&#x60; - Policy* &#x60;-policy&#x60; - Policy (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;base_url&#x60; - Base url* &#x60;-base_url&#x60; - Base url (descending)* &#x60;api_root&#x60; - Api root* &#x60;-api_root&#x60; - Api root (descending)* &#x60;domain&#x60; - Domain* &#x60;-domain&#x60; - Domain (descending)* &#x60;ca_cert&#x60; - Ca cert* &#x60;-ca_cert&#x60; - Ca cert (descending)* &#x60;client_cert&#x60; - Client cert* &#x60;-client_cert&#x60; - Client cert (descending)* &#x60;client_key&#x60; - Client key* &#x60;-client_key&#x60; - Client key (descending)* &#x60;tls_validation&#x60; - Tls validation* &#x60;-tls_validation&#x60; - Tls validation (descending)* &#x60;username&#x60; - Username* &#x60;-username&#x60; - Username (descending)* &#x60;password&#x60; - Password* &#x60;-password&#x60; - Password (descending)* &#x60;download_concurrency&#x60; - Download concurrency* &#x60;-download_concurrency&#x60; - Download concurrency (descending)* &#x60;max_retries&#x60; - Max retries* &#x60;-max_retries&#x60; - Max retries (descending)* &#x60;total_timeout&#x60; - Total timeout* &#x60;-total_timeout&#x60; - Total timeout (descending)* &#x60;connect_timeout&#x60; - Connect timeout* &#x60;-connect_timeout&#x60; - Connect timeout (descending)* &#x60;sock_connect_timeout&#x60; - Sock connect timeout* &#x60;-sock_connect_timeout&#x60; - Sock connect timeout (descending)* &#x60;sock_read_timeout&#x60; - Sock read timeout* &#x60;-sock_read_timeout&#x60; - Sock read timeout (descending)* &#x60;q_select&#x60; - Q select* &#x60;-q_select&#x60; - Q select (descending)* &#x60;policy&#x60; - Policy* &#x60;-policy&#x60; - Policy (descending)* &#x60;last_replication&#x60; - Last replication* &#x60;-last_replication&#x60; - Last replication (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r UpstreamPulpsAPIUpstreamPulpsListRequest) Ordering(ordering []string) UpstreamPulpsAPIUpstreamPulpsListRequest {
 	r.ordering = &ordering
 	return r
@@ -772,6 +809,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListExecute(r UpstreamPulpsAPIUps
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -813,8 +853,15 @@ type UpstreamPulpsAPIUpstreamPulpsListRolesRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -912,6 +959,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsListRolesExecute(r UpstreamPulpsA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -953,8 +1003,15 @@ type UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1052,6 +1109,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsMyPermissionsExecute(r UpstreamPu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1094,10 +1154,17 @@ type UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest struct {
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
 	patchedUpstreamPulp *PatchedUpstreamPulp
+	xTaskDiagnostics *[]string
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest) PatchedUpstreamPulp(patchedUpstreamPulp PatchedUpstreamPulp) UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest {
 	r.patchedUpstreamPulp = &patchedUpstreamPulp
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1165,6 +1232,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsPartialUpdateExecute(r UpstreamPu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedUpstreamPulp
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1208,8 +1278,15 @@ type UpstreamPulpsAPIUpstreamPulpsReadRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1307,6 +1384,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReadExecute(r UpstreamPulpsAPIUps
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1349,10 +1429,17 @@ type UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest struct {
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest) NestedRole(nestedRole NestedRole) UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1420,6 +1507,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsRemoveRoleExecute(r UpstreamPulps
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1463,6 +1553,19 @@ type UpstreamPulpsAPIUpstreamPulpsReplicateRequest struct {
 	ctx context.Context
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
+	upstreamPulpReplicate *UpstreamPulpReplicate
+	xTaskDiagnostics *[]string
+}
+
+func (r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) UpstreamPulpReplicate(upstreamPulpReplicate UpstreamPulpReplicate) UpstreamPulpsAPIUpstreamPulpsReplicateRequest {
+	r.upstreamPulpReplicate = &upstreamPulpReplicate
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsReplicateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsReplicateRequest) Execute() (*TaskGroupOperationResponse, *http.Response, error) {
@@ -1508,9 +1611,12 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicateExecute(r UpstreamPulpsA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.upstreamPulpReplicate == nil {
+		return localVarReturnValue, nil, reportError("upstreamPulpReplicate is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1526,6 +1632,11 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsReplicateExecute(r UpstreamPulpsA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.upstreamPulpReplicate
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1568,10 +1679,17 @@ type UpstreamPulpsAPIUpstreamPulpsUpdateRequest struct {
 	ApiService *UpstreamPulpsAPIService
 	upstreamPulpHref string
 	upstreamPulp *UpstreamPulp
+	xTaskDiagnostics *[]string
 }
 
 func (r UpstreamPulpsAPIUpstreamPulpsUpdateRequest) UpstreamPulp(upstreamPulp UpstreamPulp) UpstreamPulpsAPIUpstreamPulpsUpdateRequest {
 	r.upstreamPulp = &upstreamPulp
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r UpstreamPulpsAPIUpstreamPulpsUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) UpstreamPulpsAPIUpstreamPulpsUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1638,6 +1756,9 @@ func (a *UpstreamPulpsAPIService) UpstreamPulpsUpdateExecute(r UpstreamPulpsAPIU
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.upstreamPulp

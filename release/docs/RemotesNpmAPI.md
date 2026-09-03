@@ -4,20 +4,98 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**RemotesNpmNpmAddRole**](RemotesNpmAPI.md#RemotesNpmNpmAddRole) | **Post** /{npm_npm_remote_href}add_role/ | Add a role
 [**RemotesNpmNpmCreate**](RemotesNpmAPI.md#RemotesNpmNpmCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/npm/npm/ | Create a npm remote
 [**RemotesNpmNpmDelete**](RemotesNpmAPI.md#RemotesNpmNpmDelete) | **Delete** /{npm_npm_remote_href} | Delete a npm remote
 [**RemotesNpmNpmList**](RemotesNpmAPI.md#RemotesNpmNpmList) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/npm/npm/ | List npm remotes
+[**RemotesNpmNpmListRoles**](RemotesNpmAPI.md#RemotesNpmNpmListRoles) | **Get** /{npm_npm_remote_href}list_roles/ | List roles
+[**RemotesNpmNpmMyPermissions**](RemotesNpmAPI.md#RemotesNpmNpmMyPermissions) | **Get** /{npm_npm_remote_href}my_permissions/ | List user permissions
 [**RemotesNpmNpmPartialUpdate**](RemotesNpmAPI.md#RemotesNpmNpmPartialUpdate) | **Patch** /{npm_npm_remote_href} | Update a npm remote
 [**RemotesNpmNpmRead**](RemotesNpmAPI.md#RemotesNpmNpmRead) | **Get** /{npm_npm_remote_href} | Inspect a npm remote
+[**RemotesNpmNpmRemoveRole**](RemotesNpmAPI.md#RemotesNpmNpmRemoveRole) | **Post** /{npm_npm_remote_href}remove_role/ | Remove a role
 [**RemotesNpmNpmSetLabel**](RemotesNpmAPI.md#RemotesNpmNpmSetLabel) | **Post** /{npm_npm_remote_href}set_label/ | Set a label
 [**RemotesNpmNpmUnsetLabel**](RemotesNpmAPI.md#RemotesNpmNpmUnsetLabel) | **Post** /{npm_npm_remote_href}unset_label/ | Unset a label
 [**RemotesNpmNpmUpdate**](RemotesNpmAPI.md#RemotesNpmNpmUpdate) | **Put** /{npm_npm_remote_href} | Update a npm remote
 
 
 
+## RemotesNpmNpmAddRole
+
+> NestedRoleResponse RemotesNpmNpmAddRole(ctx, npmNpmRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Add a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmAddRole(context.Background(), npmNpmRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesNpmNpmAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmAddRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmRemoteHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemotesNpmNpmAddRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemotesNpmNpmCreate
 
-> NpmNpmRemoteResponse RemotesNpmNpmCreate(ctx, pulpDomain).NpmNpmRemote(npmNpmRemote).Execute()
+> NpmNpmRemoteResponse RemotesNpmNpmCreate(ctx, pulpDomain).NpmNpmRemote(npmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a npm remote
 
@@ -38,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	npmNpmRemote := *openapiclient.NewNpmNpmRemote("Name_example", "Url_example") // NpmNpmRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmCreate(context.Background(), pulpDomain).NpmNpmRemote(npmNpmRemote).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmCreate(context.Background(), pulpDomain).NpmNpmRemote(npmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **npmNpmRemote** | [**NpmNpmRemote**](NpmNpmRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## RemotesNpmNpmDelete
 
-> AsyncOperationResponse RemotesNpmNpmDelete(ctx, npmNpmRemoteHref).Execute()
+> AsyncOperationResponse RemotesNpmNpmDelete(ctx, npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a npm remote
 
@@ -109,10 +189,11 @@ import (
 
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmDelete(context.Background(), npmNpmRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmDelete(context.Background(), npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,6 +219,7 @@ Other parameters are passed through a pointer to a apiRemotesNpmNpmDeleteRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -159,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## RemotesNpmNpmList
 
-> PaginatednpmNpmRemoteResponseList RemotesNpmNpmList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatednpmNpmRemoteResponseList RemotesNpmNpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List npm remotes
 
@@ -180,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -209,7 +292,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,6 +318,7 @@ Other parameters are passed through a pointer to a apiRemotesNpmNpmListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -280,9 +364,161 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RemotesNpmNpmListRoles
+
+> ObjectRolesResponse RemotesNpmNpmListRoles(ctx, npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List roles
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmListRoles(context.Background(), npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesNpmNpmListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmListRoles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmRemoteHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemotesNpmNpmListRolesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**ObjectRolesResponse**](ObjectRolesResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemotesNpmNpmMyPermissions
+
+> MyPermissionsResponse RemotesNpmNpmMyPermissions(ctx, npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List user permissions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmMyPermissions(context.Background(), npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesNpmNpmMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmMyPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmRemoteHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemotesNpmNpmMyPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**MyPermissionsResponse**](MyPermissionsResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemotesNpmNpmPartialUpdate
 
-> AsyncOperationResponse RemotesNpmNpmPartialUpdate(ctx, npmNpmRemoteHref).PatchednpmNpmRemote(patchednpmNpmRemote).Execute()
+> NpmNpmRemoteResponse RemotesNpmNpmPartialUpdate(ctx, npmNpmRemoteHref).PatchednpmNpmRemote(patchednpmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a npm remote
 
@@ -303,15 +539,16 @@ import (
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
 	patchednpmNpmRemote := *openapiclient.NewPatchednpmNpmRemote() // PatchednpmNpmRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmPartialUpdate(context.Background(), npmNpmRemoteHref).PatchednpmNpmRemote(patchednpmNpmRemote).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmPartialUpdate(context.Background(), npmNpmRemoteHref).PatchednpmNpmRemote(patchednpmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesNpmNpmPartialUpdate`: AsyncOperationResponse
+	// response from `RemotesNpmNpmPartialUpdate`: NpmNpmRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmPartialUpdate`: %v\n", resp)
 }
 ```
@@ -333,10 +570,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchednpmNpmRemote** | [**PatchednpmNpmRemote**](PatchednpmNpmRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**NpmNpmRemoteResponse**](NpmNpmRemoteResponse.md)
 
 ### Authorization
 
@@ -354,7 +592,7 @@ Name | Type | Description  | Notes
 
 ## RemotesNpmNpmRead
 
-> NpmNpmRemoteResponse RemotesNpmNpmRead(ctx, npmNpmRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> NpmNpmRemoteResponse RemotesNpmNpmRead(ctx, npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a npm remote
 
@@ -374,12 +612,13 @@ import (
 
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmRead(context.Background(), npmNpmRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmRead(context.Background(), npmNpmRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -405,6 +644,7 @@ Other parameters are passed through a pointer to a apiRemotesNpmNpmReadRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -426,9 +666,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RemotesNpmNpmRemoveRole
+
+> NestedRoleResponse RemotesNpmNpmRemoveRole(ctx, npmNpmRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Remove a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmRemoveRole(context.Background(), npmNpmRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemotesNpmNpmRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmRemoveRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmRemoteHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemotesNpmNpmRemoveRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemotesNpmNpmSetLabel
 
-> SetLabelResponse RemotesNpmNpmSetLabel(ctx, npmNpmRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesNpmNpmSetLabel(ctx, npmNpmRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -449,10 +763,11 @@ import (
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmSetLabel(context.Background(), npmNpmRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmSetLabel(context.Background(), npmNpmRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -479,6 +794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -500,7 +816,7 @@ Name | Type | Description  | Notes
 
 ## RemotesNpmNpmUnsetLabel
 
-> UnsetLabelResponse RemotesNpmNpmUnsetLabel(ctx, npmNpmRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesNpmNpmUnsetLabel(ctx, npmNpmRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -521,10 +837,11 @@ import (
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmUnsetLabel(context.Background(), npmNpmRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmUnsetLabel(context.Background(), npmNpmRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -551,6 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -572,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## RemotesNpmNpmUpdate
 
-> AsyncOperationResponse RemotesNpmNpmUpdate(ctx, npmNpmRemoteHref).NpmNpmRemote(npmNpmRemote).Execute()
+> NpmNpmRemoteResponse RemotesNpmNpmUpdate(ctx, npmNpmRemoteHref).NpmNpmRemote(npmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a npm remote
 
@@ -593,15 +911,16 @@ import (
 func main() {
 	npmNpmRemoteHref := "npmNpmRemoteHref_example" // string | 
 	npmNpmRemote := *openapiclient.NewNpmNpmRemote("Name_example", "Url_example") // NpmNpmRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmUpdate(context.Background(), npmNpmRemoteHref).NpmNpmRemote(npmNpmRemote).Execute()
+	resp, r, err := apiClient.RemotesNpmAPI.RemotesNpmNpmUpdate(context.Background(), npmNpmRemoteHref).NpmNpmRemote(npmNpmRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesNpmAPI.RemotesNpmNpmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesNpmNpmUpdate`: AsyncOperationResponse
+	// response from `RemotesNpmNpmUpdate`: NpmNpmRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesNpmAPI.RemotesNpmNpmUpdate`: %v\n", resp)
 }
 ```
@@ -623,10 +942,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **npmNpmRemote** | [**NpmNpmRemote**](NpmNpmRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**NpmNpmRemoteResponse**](NpmNpmRemoteResponse.md)
 
 ### Authorization
 

@@ -20,7 +20,7 @@ var _ MappedNullable = &PatchedPulpExporter{}
 
 // PatchedPulpExporter Serializer for pulp exporters.
 type PatchedPulpExporter struct {
-	// Unique name of the file system exporter.
+	// Unique name of the exporter.
 	Name *string `json:"name,omitempty"`
 	// File system directory to store exported tar.gzs.
 	Path *string `json:"path,omitempty"`

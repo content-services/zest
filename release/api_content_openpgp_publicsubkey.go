@@ -29,6 +29,7 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest stru
 	ctx context.Context
 	ApiService *ContentOpenpgpPublicsubkeyAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	fingerprint *string
 	limit *int32
 	offset *int32
@@ -44,6 +45,12 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest stru
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where fingerprint matches value
@@ -106,19 +113,16 @@ func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) 
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) RepositoryVersion(repositoryVersion string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -258,6 +262,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeyLis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -299,8 +306,15 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyReadRequest stru
 	ctx context.Context
 	ApiService *ContentOpenpgpPublicsubkeyAPIService
 	openPGPPublicSubkeyHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -398,6 +412,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeyRea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -440,10 +457,17 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeySetLabelRequest 
 	ApiService *ContentOpenpgpPublicsubkeyAPIService
 	openPGPPublicSubkeyHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeySetLabelRequest) SetLabel(setLabel SetLabel) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeySetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeySetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeySetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -511,6 +535,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeySet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -555,10 +582,17 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyUnsetLabelReques
 	ApiService *ContentOpenpgpPublicsubkeyAPIService
 	openPGPPublicSubkeyHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -625,6 +659,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeyUns
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

@@ -30,10 +30,17 @@ type ExportersFilesystemExportsAPIExportersCoreFilesystemExportsCreateRequest st
 	ApiService *ExportersFilesystemExportsAPIService
 	filesystemExporterHref string
 	filesystemExport *FilesystemExport
+	xTaskDiagnostics *[]string
 }
 
 func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsCreateRequest) FilesystemExport(filesystemExport FilesystemExport) ExportersFilesystemExportsAPIExportersCoreFilesystemExportsCreateRequest {
 	r.filesystemExport = &filesystemExport
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersFilesystemExportsAPIExportersCoreFilesystemExportsCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsCre
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.filesystemExport
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type ExportersFilesystemExportsAPIExportersCoreFilesystemExportsDeleteRequest st
 	ctx context.Context
 	ApiService *ExportersFilesystemExportsAPIService
 	filesystemFilesystemExportHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersFilesystemExportsAPIExportersCoreFilesystemExportsDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsDeleteRequest) Execute() (*http.Response, error) {
@@ -205,6 +222,9 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsDel
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -237,10 +257,17 @@ type ExportersFilesystemExportsAPIExportersCoreFilesystemExportsListRequest stru
 	ctx context.Context
 	ApiService *ExportersFilesystemExportsAPIService
 	filesystemExporterHref string
+	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersFilesystemExportsAPIExportersCoreFilesystemExportsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -356,6 +383,9 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsLis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -397,8 +427,15 @@ type ExportersFilesystemExportsAPIExportersCoreFilesystemExportsReadRequest stru
 	ctx context.Context
 	ApiService *ExportersFilesystemExportsAPIService
 	filesystemFilesystemExportHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ExportersFilesystemExportsAPIExportersCoreFilesystemExportsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ExportersFilesystemExportsAPIExportersCoreFilesystemExportsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -495,6 +532,9 @@ func (a *ExportersFilesystemExportsAPIService) ExportersCoreFilesystemExportsRea
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

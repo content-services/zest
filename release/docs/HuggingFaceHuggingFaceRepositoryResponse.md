@@ -1,0 +1,377 @@
+# HuggingFaceHuggingFaceRepositoryResponse
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**PulpHref** | Pointer to **string** |  | [optional] [readonly] 
+**Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
+**PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
+**PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
+**VersionsHref** | Pointer to **string** |  | [optional] [readonly] 
+**PulpLabels** | Pointer to **map[string]string** |  | [optional] 
+**LatestVersionHref** | Pointer to **string** |  | [optional] [readonly] 
+**Name** | **string** | A unique name for this repository. | 
+**Description** | Pointer to **NullableString** | An optional description. | [optional] 
+**RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
+**Remote** | Pointer to **NullableString** | An optional remote to use by default when syncing. | [optional] 
+
+## Methods
+
+### NewHuggingFaceHuggingFaceRepositoryResponse
+
+`func NewHuggingFaceHuggingFaceRepositoryResponse(name string, ) *HuggingFaceHuggingFaceRepositoryResponse`
+
+NewHuggingFaceHuggingFaceRepositoryResponse instantiates a new HuggingFaceHuggingFaceRepositoryResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewHuggingFaceHuggingFaceRepositoryResponseWithDefaults
+
+`func NewHuggingFaceHuggingFaceRepositoryResponseWithDefaults() *HuggingFaceHuggingFaceRepositoryResponse`
+
+NewHuggingFaceHuggingFaceRepositoryResponseWithDefaults instantiates a new HuggingFaceHuggingFaceRepositoryResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetPulpHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpHref() string`
+
+GetPulpHref returns the PulpHref field if non-nil, zero value otherwise.
+
+### GetPulpHrefOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpHrefOk() (*string, bool)`
+
+GetPulpHrefOk returns a tuple with the PulpHref field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetPulpHref(v string)`
+
+SetPulpHref sets PulpHref field to given value.
+
+### HasPulpHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasPulpHref() bool`
+
+HasPulpHref returns a boolean if a field has been set.
+
+### GetPrn
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPrn() string`
+
+GetPrn returns the Prn field if non-nil, zero value otherwise.
+
+### GetPrnOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPrnOk() (*string, bool)`
+
+GetPrnOk returns a tuple with the Prn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrn
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetPrn(v string)`
+
+SetPrn sets Prn field to given value.
+
+### HasPrn
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasPrn() bool`
+
+HasPrn returns a boolean if a field has been set.
+
+### GetPulpCreated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpCreated() time.Time`
+
+GetPulpCreated returns the PulpCreated field if non-nil, zero value otherwise.
+
+### GetPulpCreatedOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpCreatedOk() (*time.Time, bool)`
+
+GetPulpCreatedOk returns a tuple with the PulpCreated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpCreated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetPulpCreated(v time.Time)`
+
+SetPulpCreated sets PulpCreated field to given value.
+
+### HasPulpCreated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasPulpCreated() bool`
+
+HasPulpCreated returns a boolean if a field has been set.
+
+### GetPulpLastUpdated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpLastUpdated() time.Time`
+
+GetPulpLastUpdated returns the PulpLastUpdated field if non-nil, zero value otherwise.
+
+### GetPulpLastUpdatedOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpLastUpdatedOk() (*time.Time, bool)`
+
+GetPulpLastUpdatedOk returns a tuple with the PulpLastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLastUpdated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetPulpLastUpdated(v time.Time)`
+
+SetPulpLastUpdated sets PulpLastUpdated field to given value.
+
+### HasPulpLastUpdated
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasPulpLastUpdated() bool`
+
+HasPulpLastUpdated returns a boolean if a field has been set.
+
+### GetVersionsHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetVersionsHref() string`
+
+GetVersionsHref returns the VersionsHref field if non-nil, zero value otherwise.
+
+### GetVersionsHrefOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetVersionsHrefOk() (*string, bool)`
+
+GetVersionsHrefOk returns a tuple with the VersionsHref field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionsHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetVersionsHref(v string)`
+
+SetVersionsHref sets VersionsHref field to given value.
+
+### HasVersionsHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasVersionsHref() bool`
+
+HasVersionsHref returns a boolean if a field has been set.
+
+### GetPulpLabels
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpLabels() map[string]*string`
+
+GetPulpLabels returns the PulpLabels field if non-nil, zero value otherwise.
+
+### GetPulpLabelsOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetPulpLabelsOk() (*map[string]*string, bool)`
+
+GetPulpLabelsOk returns a tuple with the PulpLabels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpLabels
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetPulpLabels(v map[string]*string)`
+
+SetPulpLabels sets PulpLabels field to given value.
+
+### HasPulpLabels
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasPulpLabels() bool`
+
+HasPulpLabels returns a boolean if a field has been set.
+
+### GetLatestVersionHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetLatestVersionHref() string`
+
+GetLatestVersionHref returns the LatestVersionHref field if non-nil, zero value otherwise.
+
+### GetLatestVersionHrefOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetLatestVersionHrefOk() (*string, bool)`
+
+GetLatestVersionHrefOk returns a tuple with the LatestVersionHref field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestVersionHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetLatestVersionHref(v string)`
+
+SetLatestVersionHref sets LatestVersionHref field to given value.
+
+### HasLatestVersionHref
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasLatestVersionHref() bool`
+
+HasLatestVersionHref returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetDescription
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetRetainRepoVersions
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRetainRepoVersions() int64`
+
+GetRetainRepoVersions returns the RetainRepoVersions field if non-nil, zero value otherwise.
+
+### GetRetainRepoVersionsOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRetainRepoVersionsOk() (*int64, bool)`
+
+GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainRepoVersions
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRetainRepoVersions(v int64)`
+
+SetRetainRepoVersions sets RetainRepoVersions field to given value.
+
+### HasRetainRepoVersions
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasRetainRepoVersions() bool`
+
+HasRetainRepoVersions returns a boolean if a field has been set.
+
+### SetRetainRepoVersionsNil
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRetainRepoVersionsNil(b bool)`
+
+ SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
+
+### UnsetRetainRepoVersions
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) UnsetRetainRepoVersions()`
+
+UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetRetainCheckpoints
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRetainCheckpoints() int64`
+
+GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
+
+### GetRetainCheckpointsOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRetainCheckpointsOk() (*int64, bool)`
+
+GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainCheckpoints
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRetainCheckpoints(v int64)`
+
+SetRetainCheckpoints sets RetainCheckpoints field to given value.
+
+### HasRetainCheckpoints
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasRetainCheckpoints() bool`
+
+HasRetainCheckpoints returns a boolean if a field has been set.
+
+### SetRetainCheckpointsNil
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRetainCheckpointsNil(b bool)`
+
+ SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+
+### UnsetRetainCheckpoints
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) UnsetRetainCheckpoints()`
+
+UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+### GetRemote
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRemote() string`
+
+GetRemote returns the Remote field if non-nil, zero value otherwise.
+
+### GetRemoteOk
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) GetRemoteOk() (*string, bool)`
+
+GetRemoteOk returns a tuple with the Remote field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemote
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRemote(v string)`
+
+SetRemote sets Remote field to given value.
+
+### HasRemote
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) HasRemote() bool`
+
+HasRemote returns a boolean if a field has been set.
+
+### SetRemoteNil
+
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) SetRemoteNil(b bool)`
+
+ SetRemoteNil sets the value for Remote to be an explicit nil
+
+### UnsetRemote
+`func (o *HuggingFaceHuggingFaceRepositoryResponse) UnsetRemote()`
+
+UnsetRemote ensures that no value is present for Remote, not even an explicit nil
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

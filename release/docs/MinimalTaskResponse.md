@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
+**PulpApiVersion** | Pointer to **string** | The API-version that was invoked when creating the task. | [optional] [default to "v3"]
 **Name** | **string** | The name of task. | 
 **State** | Pointer to **string** | The current state of the task. The possible values include: &#39;waiting&#39;, &#39;skipped&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;canceled&#39; and &#39;canceling&#39;. | [optional] [readonly] 
 **UnblockedAt** | Pointer to **time.Time** | Timestamp of when this task was identified ready for pickup. | [optional] [readonly] 
 **StartedAt** | Pointer to **time.Time** | Timestamp of when this task started execution. | [optional] [readonly] 
 **FinishedAt** | Pointer to **time.Time** | Timestamp of when this task stopped execution. | [optional] [readonly] 
-**Worker** | Pointer to **string** | The worker associated with this task. This field is empty if a worker is not yet assigned. | [optional] [readonly] 
+**Worker** | Pointer to **NullableString** | DEPRECATED - Always null | [optional] [readonly] 
 
 ## Methods
 
@@ -133,6 +134,31 @@ SetPulpLastUpdated sets PulpLastUpdated field to given value.
 `func (o *MinimalTaskResponse) HasPulpLastUpdated() bool`
 
 HasPulpLastUpdated returns a boolean if a field has been set.
+
+### GetPulpApiVersion
+
+`func (o *MinimalTaskResponse) GetPulpApiVersion() string`
+
+GetPulpApiVersion returns the PulpApiVersion field if non-nil, zero value otherwise.
+
+### GetPulpApiVersionOk
+
+`func (o *MinimalTaskResponse) GetPulpApiVersionOk() (*string, bool)`
+
+GetPulpApiVersionOk returns a tuple with the PulpApiVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPulpApiVersion
+
+`func (o *MinimalTaskResponse) SetPulpApiVersion(v string)`
+
+SetPulpApiVersion sets PulpApiVersion field to given value.
+
+### HasPulpApiVersion
+
+`func (o *MinimalTaskResponse) HasPulpApiVersion() bool`
+
+HasPulpApiVersion returns a boolean if a field has been set.
 
 ### GetName
 
@@ -279,6 +305,16 @@ SetWorker sets Worker field to given value.
 
 HasWorker returns a boolean if a field has been set.
 
+### SetWorkerNil
+
+`func (o *MinimalTaskResponse) SetWorkerNil(b bool)`
+
+ SetWorkerNil sets the value for Worker to be an explicit nil
+
+### UnsetWorker
+`func (o *MinimalTaskResponse) UnsetWorker()`
+
+UnsetWorker ensures that no value is present for Worker, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

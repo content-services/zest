@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RpmCompsUpload
 
-> AsyncOperationResponse RpmCompsUpload(ctx, pulpDomain).File(file).Repository(repository).Replace(replace).Execute()
+> AsyncOperationResponse RpmCompsUpload(ctx, pulpDomain).File(file).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Replace(replace).Execute()
 
 Upload comps.xml
 
@@ -31,12 +31,13 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	file := os.NewFile(1234, "some_file") // *os.File | Full path of a comps.xml file that may be parsed into comps.xml Content units.
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	repository := "repository_example" // string | URI of an RPM repository the comps.xml content units should be associated to. (optional)
 	replace := true // bool | If true, incoming comps.xml replaces existing comps-related ContentUnits in the specified repository. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RpmCompsAPI.RpmCompsUpload(context.Background(), pulpDomain).File(file).Repository(repository).Replace(replace).Execute()
+	resp, r, err := apiClient.RpmCompsAPI.RpmCompsUpload(context.Background(), pulpDomain).File(file).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Replace(replace).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RpmCompsAPI.RpmCompsUpload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **file** | ***os.File** | Full path of a comps.xml file that may be parsed into comps.xml Content units. | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **repository** | **string** | URI of an RPM repository the comps.xml content units should be associated to. | 
  **replace** | **bool** | If true, incoming comps.xml replaces existing comps-related ContentUnits in the specified repository. | 
 

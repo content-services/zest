@@ -20,7 +20,7 @@ import (
 // checks if the OpenPGPDistributionResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OpenPGPDistributionResponse{}
 
-// OpenPGPDistributionResponse The Serializer for the Distribution model.The serializer deliberately omits the `publication` and `repository_version` field due toplugins typically requiring one or the other but not both.To include the ``publication`` field, it is recommended plugins define the field::  publication = DetailRelatedField(      required=False,      help_text=_(\"Publication to be served\"),      view_name_pattern=r\"publications(-.*_/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),      allow_null=True,  )To include the ``repository_version`` field, it is recommended plugins define the field::  repository_version = RepositoryVersionRelatedField(      required=False, help_text=_(\"RepositoryVersion to be served\"), allow_null=True  )Additionally, the serializer omits the ``remote`` field, which is used for pull-through cachingfeature and only by plugins which use publications. Plugins implementing a pull-through cachingshould define the field in their derived serializer class like this::  remote = DetailRelatedField(      required=False,      help_text=_('Remote that can be used to fetch content when using pull-through caching.'),      queryset=models.Remote.objects.all(),      allow_null=True  )
+// OpenPGPDistributionResponse The Serializer for the Distribution model.The serializer deliberately omits the `publication` field due to not all plugins usingpublications. To include the `publication` field, plugins should define it::  publication = DetailRelatedField(      required=False,      help_text=_(\"Publication to be served\"),      view_name_pattern=r\"publications(-.*_/.*)?-detail\",      queryset=models.Publication.objects.exclude(complete=False),      allow_null=True,  )The serializer also omits the `remote` field, which is used for pull-through cachingand only by plugins which use publications. Plugins implementing pull-through cachingshould define the field in their derived serializer class like this::  remote = DetailRelatedField(      required=False,      help_text=_('Remote that can be used to fetch content when using pull-through caching.'),      queryset=models.Remote.objects.all(),      allow_null=True  )
 type OpenPGPDistributionResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// The Pulp Resource Name (PRN).
@@ -35,6 +35,8 @@ type OpenPGPDistributionResponse struct {
 	BaseUrl *string `json:"base_url,omitempty"`
 	// An optional content-guard.
 	ContentGuard NullableString `json:"content_guard,omitempty"`
+	// The Pulp Resource Name (PRN) of the associated optional content guard.
+	ContentGuardPrn *string `json:"content_guard_prn,omitempty"`
 	// Timestamp since when the distributed content served by this distribution has not changed. If equals to `null`, no guarantee is provided about content changes.
 	NoContentChangeSince *string `json:"no_content_change_since,omitempty"`
 	// Whether this distribution should be shown in the content app.
@@ -300,6 +302,38 @@ func (o *OpenPGPDistributionResponse) UnsetContentGuard() {
 	o.ContentGuard.Unset()
 }
 
+// GetContentGuardPrn returns the ContentGuardPrn field value if set, zero value otherwise.
+func (o *OpenPGPDistributionResponse) GetContentGuardPrn() string {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		var ret string
+		return ret
+	}
+	return *o.ContentGuardPrn
+}
+
+// GetContentGuardPrnOk returns a tuple with the ContentGuardPrn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpenPGPDistributionResponse) GetContentGuardPrnOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuardPrn) {
+		return nil, false
+	}
+	return o.ContentGuardPrn, true
+}
+
+// HasContentGuardPrn returns a boolean if a field has been set.
+func (o *OpenPGPDistributionResponse) HasContentGuardPrn() bool {
+	if o != nil && !IsNil(o.ContentGuardPrn) {
+		return true
+	}
+
+	return false
+}
+
+// SetContentGuardPrn gets a reference to the given string and assigns it to the ContentGuardPrn field.
+func (o *OpenPGPDistributionResponse) SetContentGuardPrn(v string) {
+	o.ContentGuardPrn = &v
+}
+
 // GetNoContentChangeSince returns the NoContentChangeSince field value if set, zero value otherwise.
 func (o *OpenPGPDistributionResponse) GetNoContentChangeSince() string {
 	if o == nil || IsNil(o.NoContentChangeSince) {
@@ -533,6 +567,9 @@ func (o OpenPGPDistributionResponse) ToMap() (map[string]interface{}, error) {
 	if o.ContentGuard.IsSet() {
 		toSerialize["content_guard"] = o.ContentGuard.Get()
 	}
+	if !IsNil(o.ContentGuardPrn) {
+		toSerialize["content_guard_prn"] = o.ContentGuardPrn
+	}
 	if !IsNil(o.NoContentChangeSince) {
 		toSerialize["no_content_change_since"] = o.NoContentChangeSince
 	}
@@ -600,6 +637,7 @@ func (o *OpenPGPDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "base_url")
 		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "content_guard_prn")
 		delete(additionalProperties, "no_content_change_since")
 		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")

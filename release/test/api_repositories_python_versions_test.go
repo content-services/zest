@@ -78,4 +78,18 @@ func Test_zest_RepositoriesPythonVersionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesPythonVersionsAPIService RepositoriesPythonPythonVersionsScan", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pythonPythonRepositoryVersionHref string
+
+		resp, httpRes, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsScan(context.Background(), pythonPythonRepositoryVersionHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

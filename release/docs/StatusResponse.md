@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Versions** | [**[]VersionResponse**](VersionResponse.md) | Version information of Pulp components | 
-**OnlineWorkers** | [**[]WorkerResponse**](WorkerResponse.md) | List of online workers known to the application. An online worker is actively heartbeating and can respond to new work. | 
-**OnlineApiApps** | [**[]ApiAppStatusResponse**](ApiAppStatusResponse.md) | List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients. | 
-**OnlineContentApps** | [**[]ContentAppStatusResponse**](ContentAppStatusResponse.md) | List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients. | 
+**OnlineWorkers** | [**[]AppStatusResponse**](AppStatusResponse.md) | List of online workers known to the application. An online worker is actively heartbeating and can respond to new work. | 
+**OnlineApiApps** | [**[]AppStatusResponse**](AppStatusResponse.md) | List of online api apps known to the application. An online api app is actively heartbeating and can serve the rest api to clients. | 
+**OnlineContentApps** | [**[]AppStatusResponse**](AppStatusResponse.md) | List of online content apps known to the application. An online content app is actively heartbeating and can serve data to clients. | 
 **DatabaseConnection** | [**DatabaseConnectionResponse**](DatabaseConnectionResponse.md) | Database connection information | 
 **RedisConnection** | Pointer to [**RedisConnectionResponse**](RedisConnectionResponse.md) | Redis connection information | [optional] 
 **Storage** | Pointer to [**StorageResponse**](StorageResponse.md) | Storage information | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewStatusResponse
 
-`func NewStatusResponse(versions []VersionResponse, onlineWorkers []WorkerResponse, onlineApiApps []ApiAppStatusResponse, onlineContentApps []ContentAppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool, ) *StatusResponse`
+`func NewStatusResponse(versions []VersionResponse, onlineWorkers []AppStatusResponse, onlineApiApps []AppStatusResponse, onlineContentApps []AppStatusResponse, databaseConnection DatabaseConnectionResponse, contentSettings ContentSettingsResponse, domainEnabled bool, ) *StatusResponse`
 
 NewStatusResponse instantiates a new StatusResponse object
 This constructor will assign default values to properties that have it defined,
@@ -55,60 +55,60 @@ SetVersions sets Versions field to given value.
 
 ### GetOnlineWorkers
 
-`func (o *StatusResponse) GetOnlineWorkers() []WorkerResponse`
+`func (o *StatusResponse) GetOnlineWorkers() []AppStatusResponse`
 
 GetOnlineWorkers returns the OnlineWorkers field if non-nil, zero value otherwise.
 
 ### GetOnlineWorkersOk
 
-`func (o *StatusResponse) GetOnlineWorkersOk() (*[]WorkerResponse, bool)`
+`func (o *StatusResponse) GetOnlineWorkersOk() (*[]AppStatusResponse, bool)`
 
 GetOnlineWorkersOk returns a tuple with the OnlineWorkers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnlineWorkers
 
-`func (o *StatusResponse) SetOnlineWorkers(v []WorkerResponse)`
+`func (o *StatusResponse) SetOnlineWorkers(v []AppStatusResponse)`
 
 SetOnlineWorkers sets OnlineWorkers field to given value.
 
 
 ### GetOnlineApiApps
 
-`func (o *StatusResponse) GetOnlineApiApps() []ApiAppStatusResponse`
+`func (o *StatusResponse) GetOnlineApiApps() []AppStatusResponse`
 
 GetOnlineApiApps returns the OnlineApiApps field if non-nil, zero value otherwise.
 
 ### GetOnlineApiAppsOk
 
-`func (o *StatusResponse) GetOnlineApiAppsOk() (*[]ApiAppStatusResponse, bool)`
+`func (o *StatusResponse) GetOnlineApiAppsOk() (*[]AppStatusResponse, bool)`
 
 GetOnlineApiAppsOk returns a tuple with the OnlineApiApps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnlineApiApps
 
-`func (o *StatusResponse) SetOnlineApiApps(v []ApiAppStatusResponse)`
+`func (o *StatusResponse) SetOnlineApiApps(v []AppStatusResponse)`
 
 SetOnlineApiApps sets OnlineApiApps field to given value.
 
 
 ### GetOnlineContentApps
 
-`func (o *StatusResponse) GetOnlineContentApps() []ContentAppStatusResponse`
+`func (o *StatusResponse) GetOnlineContentApps() []AppStatusResponse`
 
 GetOnlineContentApps returns the OnlineContentApps field if non-nil, zero value otherwise.
 
 ### GetOnlineContentAppsOk
 
-`func (o *StatusResponse) GetOnlineContentAppsOk() (*[]ContentAppStatusResponse, bool)`
+`func (o *StatusResponse) GetOnlineContentAppsOk() (*[]AppStatusResponse, bool)`
 
 GetOnlineContentAppsOk returns a tuple with the OnlineContentApps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOnlineContentApps
 
-`func (o *StatusResponse) SetOnlineContentApps(v []ContentAppStatusResponse)`
+`func (o *StatusResponse) SetOnlineContentApps(v []AppStatusResponse)`
 
 SetOnlineContentApps sets OnlineContentApps field to given value.
 

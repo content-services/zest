@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **ExportedResources** | Pointer to **[]string** | Resources that were exported. | [optional] [readonly] 
 **Params** | Pointer to **map[string]interface{}** | Any additional parameters that were used to create the export. | [optional] [readonly] 
 **OutputFileInfo** | Pointer to **map[string]interface{}** | Dictionary of filename: sha256hash entries for export-output-file(s) | [optional] [readonly] 
-**TocInfo** | Pointer to **map[string]interface{}** | Filename and sha256-checksum of table-of-contents for this export | [optional] [readonly] 
+**TocInfo** | Pointer to **map[string]interface{}** | Filename, sha256-checksum and meta of table-of-contents for this export | [optional] [readonly] 
 
 ## Methods
 

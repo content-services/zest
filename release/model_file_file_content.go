@@ -24,6 +24,8 @@ var _ MappedNullable = &FileFileContent{}
 type FileFileContent struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true.
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
@@ -36,6 +38,8 @@ type FileFileContent struct {
 	Upload *string `json:"upload,omitempty"`
 	// A url that Pulp can download and turn into the content unit.
 	FileUrl *string `json:"file_url,omitempty"`
+	// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url.
+	DownloaderConfig *RemoteNetworkConfig `json:"downloader_config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -89,6 +93,38 @@ func (o *FileFileContent) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *FileFileContent) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
+func (o *FileFileContent) GetOverwrite() bool {
+	if o == nil || IsNil(o.Overwrite) {
+		var ret bool
+		return ret
+	}
+	return *o.Overwrite
+}
+
+// GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFileContent) GetOverwriteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Overwrite) {
+		return nil, false
+	}
+	return o.Overwrite, true
+}
+
+// HasOverwrite returns a boolean if a field has been set.
+func (o *FileFileContent) HasOverwrite() bool {
+	if o != nil && !IsNil(o.Overwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
+func (o *FileFileContent) SetOverwrite(v bool) {
+	o.Overwrite = &v
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -275,6 +311,38 @@ func (o *FileFileContent) SetFileUrl(v string) {
 	o.FileUrl = &v
 }
 
+// GetDownloaderConfig returns the DownloaderConfig field value if set, zero value otherwise.
+func (o *FileFileContent) GetDownloaderConfig() RemoteNetworkConfig {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		var ret RemoteNetworkConfig
+		return ret
+	}
+	return *o.DownloaderConfig
+}
+
+// GetDownloaderConfigOk returns a tuple with the DownloaderConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FileFileContent) GetDownloaderConfigOk() (*RemoteNetworkConfig, bool) {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		return nil, false
+	}
+	return o.DownloaderConfig, true
+}
+
+// HasDownloaderConfig returns a boolean if a field has been set.
+func (o *FileFileContent) HasDownloaderConfig() bool {
+	if o != nil && !IsNil(o.DownloaderConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloaderConfig gets a reference to the given RemoteNetworkConfig and assigns it to the DownloaderConfig field.
+func (o *FileFileContent) SetDownloaderConfig(v RemoteNetworkConfig) {
+	o.DownloaderConfig = &v
+}
+
 func (o FileFileContent) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -287,6 +355,9 @@ func (o FileFileContent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
+	}
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
@@ -303,6 +374,9 @@ func (o FileFileContent) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.FileUrl) {
 		toSerialize["file_url"] = o.FileUrl
+	}
+	if !IsNil(o.DownloaderConfig) {
+		toSerialize["downloader_config"] = o.DownloaderConfig
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -348,12 +422,14 @@ func (o *FileFileContent) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "overwrite")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "file")
 		delete(additionalProperties, "upload")
 		delete(additionalProperties, "file_url")
+		delete(additionalProperties, "downloader_config")
 		o.AdditionalProperties = additionalProperties
 	}
 

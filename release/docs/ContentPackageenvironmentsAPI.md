@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ContentRpmPackageenvironmentsList
 
-> PaginatedrpmPackageEnvironmentResponseList ContentRpmPackageenvironmentsList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmPackageEnvironmentResponseList ContentRpmPackageenvironmentsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List package environments
 
@@ -33,6 +33,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pk` - Pk* `-pk` - Pk (descending) (optional)
@@ -42,15 +43,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -76,6 +77,7 @@ Other parameters are passed through a pointer to a apiContentRpmPackageenvironme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
@@ -85,9 +87,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -111,7 +113,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackageenvironmentsRead
 
-> RpmPackageEnvironmentResponse ContentRpmPackageenvironmentsRead(ctx, rpmPackageEnvironmentHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmPackageEnvironmentResponse ContentRpmPackageenvironmentsRead(ctx, rpmPackageEnvironmentHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a package environment
 
@@ -131,12 +133,13 @@ import (
 
 func main() {
 	rpmPackageEnvironmentHref := "rpmPackageEnvironmentHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsRead(context.Background(), rpmPackageEnvironmentHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsRead(context.Background(), rpmPackageEnvironmentHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -162,6 +165,7 @@ Other parameters are passed through a pointer to a apiContentRpmPackageenvironme
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -185,7 +189,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackageenvironmentsSetLabel
 
-> SetLabelResponse ContentRpmPackageenvironmentsSetLabel(ctx, rpmPackageEnvironmentHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentRpmPackageenvironmentsSetLabel(ctx, rpmPackageEnvironmentHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -206,10 +210,11 @@ import (
 func main() {
 	rpmPackageEnvironmentHref := "rpmPackageEnvironmentHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsSetLabel(context.Background(), rpmPackageEnvironmentHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsSetLabel(context.Background(), rpmPackageEnvironmentHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -236,6 +241,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -257,7 +263,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmPackageenvironmentsUnsetLabel
 
-> UnsetLabelResponse ContentRpmPackageenvironmentsUnsetLabel(ctx, rpmPackageEnvironmentHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentRpmPackageenvironmentsUnsetLabel(ctx, rpmPackageEnvironmentHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -278,10 +284,11 @@ import (
 func main() {
 	rpmPackageEnvironmentHref := "rpmPackageEnvironmentHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsUnsetLabel(context.Background(), rpmPackageEnvironmentHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsUnsetLabel(context.Background(), rpmPackageEnvironmentHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackageenvironmentsAPI.ContentRpmPackageenvironmentsUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -308,6 +315,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

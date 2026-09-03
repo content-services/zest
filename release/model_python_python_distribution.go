@@ -32,7 +32,10 @@ type PythonPythonDistribution struct {
 	Name string `json:"name"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
-	// Publication to be served
+	// RepositoryVersion to be served.
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
+	// Publication to be served. [Deprecated]
+	// Deprecated
 	Publication NullableString `json:"publication,omitempty"`
 	// Allow packages to be uploaded to this index.
 	AllowUploads *bool `json:"allow_uploads,omitempty"`
@@ -266,7 +269,50 @@ func (o *PythonPythonDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PythonPythonDistribution) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RepositoryVersion.Get()
+}
+
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PythonPythonDistribution) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+}
+
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *PythonPythonDistribution) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *PythonPythonDistribution) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *PythonPythonDistribution) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
+}
+
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *PythonPythonDistribution) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
+}
+
 // GetPublication returns the Publication field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *PythonPythonDistribution) GetPublication() string {
 	if o == nil || IsNil(o.Publication.Get()) {
 		var ret string
@@ -278,6 +324,7 @@ func (o *PythonPythonDistribution) GetPublication() string {
 // GetPublicationOk returns a tuple with the Publication field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *PythonPythonDistribution) GetPublicationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -295,6 +342,7 @@ func (o *PythonPythonDistribution) HasPublication() bool {
 }
 
 // SetPublication gets a reference to the given NullableString and assigns it to the Publication field.
+// Deprecated
 func (o *PythonPythonDistribution) SetPublication(v string) {
 	o.Publication.Set(&v)
 }
@@ -406,6 +454,9 @@ func (o PythonPythonDistribution) ToMap() (map[string]interface{}, error) {
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
 	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
+	}
 	if o.Publication.IsSet() {
 		toSerialize["publication"] = o.Publication.Get()
 	}
@@ -465,6 +516,7 @@ func (o *PythonPythonDistribution) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "publication")
 		delete(additionalProperties, "allow_uploads")
 		delete(additionalProperties, "remote")

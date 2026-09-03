@@ -43,6 +43,7 @@ type RpmRepoMetadataFileResponse struct {
 	Sha512 *string `json:"sha512,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
 	// Relative path of the file.
@@ -431,6 +432,38 @@ func (o *RpmRepoMetadataFileResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *RpmRepoMetadataFileResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RpmRepoMetadataFileResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *RpmRepoMetadataFileResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *RpmRepoMetadataFileResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetArtifact returns the Artifact field value if set, zero value otherwise.
 func (o *RpmRepoMetadataFileResponse) GetArtifact() string {
 	if o == nil || IsNil(o.Artifact) {
@@ -602,6 +635,9 @@ func (o RpmRepoMetadataFileResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
 	}
@@ -666,6 +702,7 @@ func (o *RpmRepoMetadataFileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "sha384")
 		delete(additionalProperties, "sha512")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "data_type")

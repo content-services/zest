@@ -30,6 +30,13 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsDeleteRequest struct
 	ctx context.Context
 	ApiService *RepositoriesFileVersionsAPIService
 	fileFileRepositoryVersionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -93,6 +100,9 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsDeleteE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -134,6 +144,7 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesFileVersionsAPIService
 	fileFileRepositoryHref string
+	xTaskDiagnostics *[]string
 	content *string
 	contentIn *[]string
 	limit *int32
@@ -157,6 +168,12 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -219,7 +236,7 @@ func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) Offs
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;content_ids&#x60; - Content ids* &#x60;-content_ids&#x60; - Content ids (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest) Ordering(ordering []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsListRequest {
 	r.ordering = &ordering
 	return r
@@ -443,6 +460,9 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsListExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -484,8 +504,15 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsReadRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesFileVersionsAPIService
 	fileFileRepositoryVersionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -583,6 +610,9 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsReadExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -625,10 +655,17 @@ type RepositoriesFileVersionsAPIRepositoriesFileFileVersionsRepairRequest struct
 	ApiService *RepositoriesFileVersionsAPIService
 	fileFileRepositoryVersionHref string
 	repair *Repair
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsRepairRequest) Repair(repair Repair) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsRepairRequest {
 	r.repair = &repair
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesFileVersionsAPIRepositoriesFileFileVersionsRepairRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesFileVersionsAPIRepositoriesFileFileVersionsRepairRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -695,6 +732,9 @@ func (a *RepositoriesFileVersionsAPIService) RepositoriesFileFileVersionsRepairE
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.repair

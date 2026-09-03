@@ -30,6 +30,7 @@ type RemotesAPIRemotesListRequest struct {
 	ctx context.Context
 	ApiService *RemotesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -58,6 +59,12 @@ type RemotesAPIRemotesListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesAPIRemotesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesAPIRemotesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -198,13 +205,13 @@ func (r RemotesAPIRemotesListRequest) PulpLastUpdatedRange(pulpLastUpdatedRange 
 	return r
 }
 
-// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;file.git&#x60; - file.git* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
 func (r RemotesAPIRemotesListRequest) PulpType(pulpType string) RemotesAPIRemotesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;npm.npm&#x60; - npm.npm* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.maven&#x60; - maven.maven* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln* &#x60;ostree.ostree&#x60; - ostree.ostree
+// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;file.git&#x60; - file.git* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.pull-through&#x60; - container.pull-through* &#x60;rpm.rpm&#x60; - rpm.rpm* &#x60;rpm.uln&#x60; - rpm.uln
 func (r RemotesAPIRemotesListRequest) PulpTypeIn(pulpTypeIn []string) RemotesAPIRemotesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -388,6 +395,9 @@ func (a *RemotesAPIService) RemotesListExecute(r RemotesAPIRemotesListRequest) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

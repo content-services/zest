@@ -29,10 +29,17 @@ type RpmCopyAPICopyContentRequest struct {
 	ApiService *RpmCopyAPIService
 	pulpDomain string
 	copy *Copy
+	xTaskDiagnostics *[]string
 }
 
 func (r RpmCopyAPICopyContentRequest) Copy(copy Copy) RpmCopyAPICopyContentRequest {
 	r.copy = &copy
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RpmCopyAPICopyContentRequest) XTaskDiagnostics(xTaskDiagnostics []string) RpmCopyAPICopyContentRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *RpmCopyAPIService) CopyContentExecute(r RpmCopyAPICopyContentRequest) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.copy

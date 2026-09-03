@@ -9,12 +9,13 @@ Method | HTTP request | Description
 [**ContentMavenArtifactRead**](ContentArtifactAPI.md#ContentMavenArtifactRead) | **Get** /{maven_maven_artifact_href} | Inspect a maven artifact
 [**ContentMavenArtifactSetLabel**](ContentArtifactAPI.md#ContentMavenArtifactSetLabel) | **Post** /{maven_maven_artifact_href}set_label/ | Set a label
 [**ContentMavenArtifactUnsetLabel**](ContentArtifactAPI.md#ContentMavenArtifactUnsetLabel) | **Post** /{maven_maven_artifact_href}unset_label/ | Unset a label
+[**ContentMavenArtifactUpload**](ContentArtifactAPI.md#ContentMavenArtifactUpload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/maven/artifact/upload/ | Upload a Maven artifact synchronously.
 
 
 
 ## ContentMavenArtifactCreate
 
-> MavenMavenArtifactResponse ContentMavenArtifactCreate(ctx, pulpDomain).MavenMavenArtifact(mavenMavenArtifact).Execute()
+> AsyncOperationResponse ContentMavenArtifactCreate(ctx, pulpDomain).RelativePath(relativePath).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 
 Create a maven artifact
 
@@ -34,16 +35,25 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
-	mavenMavenArtifact := *openapiclient.NewMavenMavenArtifact("Artifact_example", "RelativePath_example") // MavenMavenArtifact | 
+	relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	overwrite := true // bool | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true. (optional)
+	pulpLabels := map[string]*string{"key": "Inner_example"} // map[string]*string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
+	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
+	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
+	downloaderConfig := *openapiclient.NewRemoteNetworkConfig() // RemoteNetworkConfig | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactCreate(context.Background(), pulpDomain).MavenMavenArtifact(mavenMavenArtifact).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactCreate(context.Background(), pulpDomain).RelativePath(relativePath).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ContentMavenArtifactCreate`: MavenMavenArtifactResponse
+	// response from `ContentMavenArtifactCreate`: AsyncOperationResponse
 	fmt.Fprintf(os.Stdout, "Response from `ContentArtifactAPI.ContentMavenArtifactCreate`: %v\n", resp)
 }
 ```
@@ -64,11 +74,20 @@ Other parameters are passed through a pointer to a apiContentMavenArtifactCreate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **mavenMavenArtifact** | [**MavenMavenArtifact**](MavenMavenArtifact.md) |  | 
+ **relativePath** | **string** | Path where the artifact is located relative to distributions base_path | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
+ **overwrite** | **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | 
+ **pulpLabels** | **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | 
+ **artifact** | **string** | Artifact file representing the physical content | 
+ **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
+ **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
+ **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
+ **downloaderConfig** | [**RemoteNetworkConfig**](RemoteNetworkConfig.md) | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url. | 
 
 ### Return type
 
-[**MavenMavenArtifactResponse**](MavenMavenArtifactResponse.md)
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
 
 ### Authorization
 
@@ -76,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -86,7 +105,7 @@ Name | Type | Description  | Notes
 
 ## ContentMavenArtifactList
 
-> PaginatedmavenMavenArtifactResponseList ContentMavenArtifactList(ctx, pulpDomain).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedmavenMavenArtifactResponseList ContentMavenArtifactList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List maven artifacts
 
@@ -106,6 +125,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	artifactId := "artifactId_example" // string | Filter results where artifact_id matches value (optional)
 	filename := "filename_example" // string | Filter results where filename matches value (optional)
 	groupId := "groupId_example" // string | Filter results where group_id matches value (optional)
@@ -118,16 +138,16 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	version := "version_example" // string | Filter results where version matches value (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactList(context.Background(), pulpDomain).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -153,6 +173,7 @@ Other parameters are passed through a pointer to a apiContentMavenArtifactListRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **artifactId** | **string** | Filter results where artifact_id matches value | 
  **filename** | **string** | Filter results where filename matches value | 
  **groupId** | **string** | Filter results where group_id matches value | 
@@ -165,9 +186,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **version** | **string** | Filter results where version matches value | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -192,7 +213,7 @@ Name | Type | Description  | Notes
 
 ## ContentMavenArtifactRead
 
-> MavenMavenArtifactResponse ContentMavenArtifactRead(ctx, mavenMavenArtifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MavenMavenArtifactResponse ContentMavenArtifactRead(ctx, mavenMavenArtifactHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a maven artifact
 
@@ -212,12 +233,13 @@ import (
 
 func main() {
 	mavenMavenArtifactHref := "mavenMavenArtifactHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactRead(context.Background(), mavenMavenArtifactHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactRead(context.Background(), mavenMavenArtifactHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -243,6 +265,7 @@ Other parameters are passed through a pointer to a apiContentMavenArtifactReadRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -266,7 +289,7 @@ Name | Type | Description  | Notes
 
 ## ContentMavenArtifactSetLabel
 
-> SetLabelResponse ContentMavenArtifactSetLabel(ctx, mavenMavenArtifactHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentMavenArtifactSetLabel(ctx, mavenMavenArtifactHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -287,10 +310,11 @@ import (
 func main() {
 	mavenMavenArtifactHref := "mavenMavenArtifactHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactSetLabel(context.Background(), mavenMavenArtifactHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactSetLabel(context.Background(), mavenMavenArtifactHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -317,6 +341,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -338,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## ContentMavenArtifactUnsetLabel
 
-> UnsetLabelResponse ContentMavenArtifactUnsetLabel(ctx, mavenMavenArtifactHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentMavenArtifactUnsetLabel(ctx, mavenMavenArtifactHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -359,10 +384,11 @@ import (
 func main() {
 	mavenMavenArtifactHref := "mavenMavenArtifactHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactUnsetLabel(context.Background(), mavenMavenArtifactHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactUnsetLabel(context.Background(), mavenMavenArtifactHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -389,6 +415,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -401,6 +428,96 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ContentMavenArtifactUpload
+
+> MavenMavenArtifactResponse ContentMavenArtifactUpload(ctx, pulpDomain).RelativePath(relativePath).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
+
+Upload a Maven artifact synchronously.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	pulpDomain := "pulpDomain_example" // string | 
+	relativePath := "relativePath_example" // string | Path where the artifact is located relative to distributions base_path
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	overwrite := true // bool | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true. (optional)
+	pulpLabels := map[string]*string{"key": "Inner_example"} // map[string]*string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
+	artifact := "artifact_example" // string | Artifact file representing the physical content (optional)
+	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
+	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
+	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
+	downloaderConfig := *openapiclient.NewRemoteNetworkConfig() // RemoteNetworkConfig | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactUpload(context.Background(), pulpDomain).RelativePath(relativePath).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).Artifact(artifact).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactUpload``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ContentMavenArtifactUpload`: MavenMavenArtifactResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContentArtifactAPI.ContentMavenArtifactUpload`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pulpDomain** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiContentMavenArtifactUploadRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **relativePath** | **string** | Path where the artifact is located relative to distributions base_path | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
+ **overwrite** | **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | 
+ **pulpLabels** | **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | 
+ **artifact** | **string** | Artifact file representing the physical content | 
+ **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
+ **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
+ **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
+ **downloaderConfig** | [**RemoteNetworkConfig**](RemoteNetworkConfig.md) | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url. | 
+
+### Return type
+
+[**MavenMavenArtifactResponse**](MavenMavenArtifactResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data, application/x-www-form-urlencoded
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

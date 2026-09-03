@@ -8,16 +8,18 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A unique name for this repository. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
 **Remote** | Pointer to **NullableString** | An optional remote to use by default when syncing. | [optional] 
 **Autopublish** | Pointer to **bool** | Whether to automatically create publications for new repository versions, and update any distributions pointing to this repository. | [optional] [default to false]
 **MetadataSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **PackageSigningService** | Pointer to **NullableString** | A reference to an associated package signing service. | [optional] 
-**PackageSigningFingerprint** | Pointer to **NullableString** | The pubkey V4 fingerprint (160 bits) to be passed to the package signing service.The signing service will use that on signing operations related to this repository. | [optional] 
+**PackageSigningFingerprint** | Pointer to **NullableString** | The pubkey fingerprint to be passed to the package signing service. Format: &#39;v&lt;N&gt;:&lt;hex-fingerprint&gt;&#39; or &#39;keyid:&lt;16-hex-char&gt;&#39;. Example: &#39;v4:ABCDEF1234567890ABCDEF1234567890ABCDEF12&#39;. | [optional] 
 **RetainPackageVersions** | Pointer to **int64** | The number of versions of each package to keep in the repository; older versions will be purged. The default is &#39;0&#39;, which will disable this feature and keep all versions of each package. | [optional] 
 **ChecksumType** | Pointer to [**NullablePackageChecksumTypeEnum**](PackageChecksumTypeEnum.md) | The preferred checksum type during repo publish.* &#x60;unknown&#x60; - unknown* &#x60;md5&#x60; - md5* &#x60;sha1&#x60; - sha1* &#x60;sha224&#x60; - sha224* &#x60;sha256&#x60; - sha256* &#x60;sha384&#x60; - sha384* &#x60;sha512&#x60; - sha512 | [optional] 
 **RepoConfig** | Pointer to **interface{}** | A JSON document describing the config.repo file Pulp should generate for this repo | [optional] 
-**CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz | [optional] 
-**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat | [optional] 
+**CompressionType** | Pointer to [**NullableCompressionTypeEnum**](CompressionTypeEnum.md) | The compression type to use for metadata files.* &#x60;zstd&#x60; - zstd* &#x60;gz&#x60; - gz* &#x60;none&#x60; - none | [optional] 
+**Layout** | Pointer to [**NullableLayoutEnum**](LayoutEnum.md) | How to layout the packages within the published repository.* &#x60;nested_alphabetically&#x60; - nested_alphabetically* &#x60;flat&#x60; - flat* &#x60;nested_by_digest&#x60; - nested_by_digest | [optional] 
+**OsvConfig** | Pointer to [**[]PatchedrpmRpmRepositoryOsvConfigInner**](PatchedrpmRpmRepositoryOsvConfigInner.md) | OSV vulnerability scanning configuration. A JSON list of ecosystem entries, each with a &#39;name&#39; and required &#39;releases&#39; field. See [vulnerability-report](https://pulpproject.org/pulp_rpm/docs/user/guides/vulnerability-report) for supported ecosystems and release formats. | [optional] 
 
 ## Methods
 
@@ -158,6 +160,41 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *PatchedrpmRpmRepository) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetRetainCheckpoints
+
+`func (o *PatchedrpmRpmRepository) GetRetainCheckpoints() int64`
+
+GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
+
+### GetRetainCheckpointsOk
+
+`func (o *PatchedrpmRpmRepository) GetRetainCheckpointsOk() (*int64, bool)`
+
+GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainCheckpoints
+
+`func (o *PatchedrpmRpmRepository) SetRetainCheckpoints(v int64)`
+
+SetRetainCheckpoints sets RetainCheckpoints field to given value.
+
+### HasRetainCheckpoints
+
+`func (o *PatchedrpmRpmRepository) HasRetainCheckpoints() bool`
+
+HasRetainCheckpoints returns a boolean if a field has been set.
+
+### SetRetainCheckpointsNil
+
+`func (o *PatchedrpmRpmRepository) SetRetainCheckpointsNil(b bool)`
+
+ SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+
+### UnsetRetainCheckpoints
+`func (o *PatchedrpmRpmRepository) UnsetRetainCheckpoints()`
+
+UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
 ### GetRemote
 
 `func (o *PatchedrpmRpmRepository) GetRemote() string`
@@ -488,6 +525,41 @@ HasLayout returns a boolean if a field has been set.
 `func (o *PatchedrpmRpmRepository) UnsetLayout()`
 
 UnsetLayout ensures that no value is present for Layout, not even an explicit nil
+### GetOsvConfig
+
+`func (o *PatchedrpmRpmRepository) GetOsvConfig() []PatchedrpmRpmRepositoryOsvConfigInner`
+
+GetOsvConfig returns the OsvConfig field if non-nil, zero value otherwise.
+
+### GetOsvConfigOk
+
+`func (o *PatchedrpmRpmRepository) GetOsvConfigOk() (*[]PatchedrpmRpmRepositoryOsvConfigInner, bool)`
+
+GetOsvConfigOk returns a tuple with the OsvConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsvConfig
+
+`func (o *PatchedrpmRpmRepository) SetOsvConfig(v []PatchedrpmRpmRepositoryOsvConfigInner)`
+
+SetOsvConfig sets OsvConfig field to given value.
+
+### HasOsvConfig
+
+`func (o *PatchedrpmRpmRepository) HasOsvConfig() bool`
+
+HasOsvConfig returns a boolean if a field has been set.
+
+### SetOsvConfigNil
+
+`func (o *PatchedrpmRpmRepository) SetOsvConfigNil(b bool)`
+
+ SetOsvConfigNil sets the value for OsvConfig to be an explicit nil
+
+### UnsetOsvConfig
+`func (o *PatchedrpmRpmRepository) UnsetOsvConfig()`
+
+UnsetOsvConfig ensures that no value is present for OsvConfig, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## DocsApiJsonGet
 
-> map[string]interface{} DocsApiJsonGet(ctx).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+> map[string]interface{} DocsApiJsonGet(ctx).XTaskDiagnostics(xTaskDiagnostics).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 
 
@@ -29,13 +29,14 @@ import (
 )
 
 func main() {
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	lang := "lang_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DocsApiJsonAPI.DocsApiJsonGet(context.Background()).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DocsApiJsonAPI.DocsApiJsonGet(context.Background()).XTaskDiagnostics(xTaskDiagnostics).Lang(lang).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DocsApiJsonAPI.DocsApiJsonGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,6 +57,7 @@ Other parameters are passed through a pointer to a apiDocsApiJsonGetRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **lang** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 

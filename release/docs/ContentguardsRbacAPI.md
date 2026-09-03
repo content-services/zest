@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## ContentguardsCoreRbacAddRole
 
-> NestedRoleResponse ContentguardsCoreRbacAddRole(ctx, rBACContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreRbacAddRole(ctx, rBACContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacAddRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacAddRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacCreate
 
-> RBACContentGuardResponse ContentguardsCoreRbacCreate(ctx, pulpDomain).RBACContentGuard(rBACContentGuard).Execute()
+> RBACContentGuardResponse ContentguardsCoreRbacCreate(ctx, pulpDomain).RBACContentGuard(rBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rbac content guard
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacCreate(context.Background(), pulpDomain).RBACContentGuard(rBACContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacCreate(context.Background(), pulpDomain).RBACContentGuard(rBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rBACContentGuard** | [**RBACContentGuard**](RBACContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacDelete
 
-> ContentguardsCoreRbacDelete(ctx, rBACContentGuardHref).Execute()
+> ContentguardsCoreRbacDelete(ctx, rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rbac content guard
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacDelete(context.Background(), rBACContentGuardHref).Execute()
+	r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacDelete(context.Background(), rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreRbacDelet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacList
 
-> PaginatedRBACContentGuardResponseList ContentguardsCoreRbacList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRBACContentGuardResponseList ContentguardsCoreRbacList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rbac content guards
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreRbacListR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacListRoles
 
-> ObjectRolesResponse ContentguardsCoreRbacListRoles(ctx, rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse ContentguardsCoreRbacListRoles(ctx, rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacListRoles(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacListRoles(context.Background(), rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreRbacListR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacMyPermissions
 
-> MyPermissionsResponse ContentguardsCoreRbacMyPermissions(ctx, rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse ContentguardsCoreRbacMyPermissions(ctx, rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions(context.Background(), rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreRbacMyPer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacPartialUpdate
 
-> RBACContentGuardResponse ContentguardsCoreRbacPartialUpdate(ctx, rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).Execute()
+> RBACContentGuardResponse ContentguardsCoreRbacPartialUpdate(ctx, rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rbac content guard
 
@@ -506,10 +518,11 @@ import (
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
 	patchedRBACContentGuard := *openapiclient.NewPatchedRBACContentGuard() // PatchedRBACContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate(context.Background(), rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate(context.Background(), rBACContentGuardHref).PatchedRBACContentGuard(patchedRBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedRBACContentGuard** | [**PatchedRBACContentGuard**](PatchedRBACContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -557,7 +571,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacRead
 
-> RBACContentGuardResponse ContentguardsCoreRbacRead(ctx, rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RBACContentGuardResponse ContentguardsCoreRbacRead(ctx, rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rbac content guard
 
@@ -577,12 +591,13 @@ import (
 
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRead(context.Background(), rBACContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRead(context.Background(), rBACContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -608,6 +623,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreRbacReadR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -631,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacRemoveRole
 
-> NestedRoleResponse ContentguardsCoreRbacRemoveRole(ctx, rBACContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreRbacRemoveRole(ctx, rBACContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -652,10 +668,11 @@ import (
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole(context.Background(), rBACContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,6 +699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -703,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreRbacUpdate
 
-> RBACContentGuardResponse ContentguardsCoreRbacUpdate(ctx, rBACContentGuardHref).RBACContentGuard(rBACContentGuard).Execute()
+> RBACContentGuardResponse ContentguardsCoreRbacUpdate(ctx, rBACContentGuardHref).RBACContentGuard(rBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rbac content guard
 
@@ -724,10 +742,11 @@ import (
 func main() {
 	rBACContentGuardHref := "rBACContentGuardHref_example" // string | 
 	rBACContentGuard := *openapiclient.NewRBACContentGuard("Name_example") // RBACContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacUpdate(context.Background(), rBACContentGuardHref).RBACContentGuard(rBACContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsRbacAPI.ContentguardsCoreRbacUpdate(context.Background(), rBACContentGuardHref).RBACContentGuard(rBACContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsRbacAPI.ContentguardsCoreRbacUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rBACContentGuard** | [**RBACContentGuard**](RBACContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

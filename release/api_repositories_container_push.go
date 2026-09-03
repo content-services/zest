@@ -30,10 +30,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushAddRoleReques
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushAddRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesContainerPushAPIRepositoriesContainerContainerPushAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,7 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest s
 	ctx context.Context
 	ApiService *RepositoriesContainerPushAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	latestWithContent *string
 	limit *int32
 	name *string
@@ -163,6 +174,14 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest s
 	pulpLabelSelect *string
 	q *string
 	remote *string
+	retainCheckpoints *int32
+	retainCheckpointsGt *int32
+	retainCheckpointsGte *int32
+	retainCheckpointsIsnull *bool
+	retainCheckpointsLt *int32
+	retainCheckpointsLte *int32
+	retainCheckpointsNe *int32
+	retainCheckpointsRange *[]int32
 	retainRepoVersions *int32
 	retainRepoVersionsGt *int32
 	retainRepoVersionsGte *int32
@@ -174,6 +193,12 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest s
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -248,7 +273,7 @@ func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListReques
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;next_version&#x60; - Next version* &#x60;-next_version&#x60; - Next version (descending)* &#x60;retain_repo_versions&#x60; - Retain repo versions* &#x60;-retain_repo_versions&#x60; - Retain repo versions (descending)* &#x60;retain_checkpoints&#x60; - Retain checkpoints* &#x60;-retain_checkpoints&#x60; - Retain checkpoints (descending)* &#x60;user_hidden&#x60; - User hidden* &#x60;-user_hidden&#x60; - User hidden (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) Ordering(ordering []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
 	r.ordering = &ordering
 	return r
@@ -284,9 +309,56 @@ func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListReques
 	return r
 }
 
-// Foreign Key referenced by HREF
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) Remote(remote string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
 	r.remote = &remote
+	return r
+}
+
+// Filter results where retain_checkpoints matches value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpoints(retainCheckpoints int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpoints = &retainCheckpoints
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsGt(retainCheckpointsGt int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsGt = &retainCheckpointsGt
+	return r
+}
+
+// Filter results where retain_checkpoints is greater than or equal to value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsGte(retainCheckpointsGte int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsGte = &retainCheckpointsGte
+	return r
+}
+
+// Filter results where retain_checkpoints has a null value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsIsnull(retainCheckpointsIsnull bool) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsIsnull = &retainCheckpointsIsnull
+	return r
+}
+
+// Filter results where retain_checkpoints is less than value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsLt(retainCheckpointsLt int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsLt = &retainCheckpointsLt
+	return r
+}
+
+// Filter results where retain_checkpoints is less than or equal to value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsLte(retainCheckpointsLte int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsLte = &retainCheckpointsLte
+	return r
+}
+
+// Filter results where retain_checkpoints not equal to value
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsNe(retainCheckpointsNe int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsNe = &retainCheckpointsNe
+	return r
+}
+
+// Filter results where retain_checkpoints is between two comma separated values
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest) RetainCheckpointsRange(retainCheckpointsRange []int32) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRequest {
+	r.retainCheckpointsRange = &retainCheckpointsRange
 	return r
 }
 
@@ -457,6 +529,30 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if r.remote != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "remote", r.remote, "form", "")
 	}
+	if r.retainCheckpoints != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints", r.retainCheckpoints, "form", "")
+	}
+	if r.retainCheckpointsGt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gt", r.retainCheckpointsGt, "form", "")
+	}
+	if r.retainCheckpointsGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__gte", r.retainCheckpointsGte, "form", "")
+	}
+	if r.retainCheckpointsIsnull != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__isnull", r.retainCheckpointsIsnull, "form", "")
+	}
+	if r.retainCheckpointsLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lt", r.retainCheckpointsLt, "form", "")
+	}
+	if r.retainCheckpointsLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__lte", r.retainCheckpointsLte, "form", "")
+	}
+	if r.retainCheckpointsNe != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__ne", r.retainCheckpointsNe, "form", "")
+	}
+	if r.retainCheckpointsRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_checkpoints__range", r.retainCheckpointsRange, "form", "csv")
+	}
 	if r.retainRepoVersions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "retain_repo_versions", r.retainRepoVersions, "form", "")
 	}
@@ -523,6 +619,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -564,8 +663,15 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRolesRequ
 	ctx context.Context
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -663,6 +769,123 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesContainerPushAPIService
+	containerContainerPushRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesContainerContainerPushMigrateExecute(r)
+}
+
+/*
+RepositoriesContainerContainerPushMigrate Migrate push repository to container repository
+
+Trigger an asynchronous task to convert this push repository into a container repository in place. The repository primary key and version history are preserved; only the repository type changes.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param containerContainerPushRepositoryHref
+ @return RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest
+*/
+func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushMigrate(ctx context.Context, containerContainerPushRepositoryHref string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest {
+	return RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest{
+		ApiService: a,
+		ctx: ctx,
+		containerContainerPushRepositoryHref: containerContainerPushRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushMigrateExecute(r RepositoriesContainerPushAPIRepositoriesContainerContainerPushMigrateRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesContainerPushAPIService.RepositoriesContainerContainerPushMigrate")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{container_container_push_repository_href}migrate/"
+	localVarPath = strings.Replace(localVarPath, "{"+"container_container_push_repository_href"+"}", url.PathEscape(parameterValueToString(r.containerContainerPushRepositoryHref, "containerContainerPushRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -704,8 +927,15 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushMyPermissions
 	ctx context.Context
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -803,6 +1033,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -845,6 +1078,7 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdate
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	patchedcontainerContainerPushRepository *PatchedcontainerContainerPushRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) PatchedcontainerContainerPushRepository(patchedcontainerContainerPushRepository PatchedcontainerContainerPushRepository) RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest {
@@ -852,14 +1086,20 @@ func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpd
 	return r
 }
 
-func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) Execute() (*ContainerContainerPushRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesContainerContainerPushPartialUpdateExecute(r)
 }
 
 /*
 RepositoriesContainerContainerPushPartialUpdate Update a container push repository
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPushRepositoryHref
@@ -874,13 +1114,13 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushPartialUpdateExecute(r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPushRepositoryResponse
+func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushPartialUpdateExecute(r RepositoriesContainerPushAPIRepositoriesContainerContainerPushPartialUpdateRequest) (*ContainerContainerPushRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPushRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesContainerPushAPIService.RepositoriesContainerContainerPushPartialUpdate")
@@ -915,6 +1155,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedcontainerContainerPushRepository
@@ -959,8 +1202,15 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushReadRequest s
 	ctx context.Context
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1058,6 +1308,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1100,10 +1353,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveImageRe
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	removeImage *RemoveImage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveImageRequest) RemoveImage(removeImage RemoveImage) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveImageRequest {
 	r.removeImage = &removeImage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveImageRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveImageRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1171,6 +1431,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.removeImage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1215,10 +1478,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveRoleReq
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveRoleRequest) NestedRole(nestedRole NestedRole) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1286,6 +1556,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1330,10 +1603,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveSignatu
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	removeSignatures *RemoveSignatures
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveSignaturesRequest) RemoveSignatures(removeSignatures RemoveSignatures) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveSignaturesRequest {
 	r.removeSignatures = &removeSignatures
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveSignaturesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushRemoveSignaturesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1401,6 +1681,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.removeSignatures
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1445,10 +1728,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushSignRequest s
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	repositorySign *RepositorySign
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushSignRequest) RepositorySign(repositorySign RepositorySign) RepositoriesContainerPushAPIRepositoriesContainerContainerPushSignRequest {
 	r.repositorySign = &repositorySign
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushSignRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushSignRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1516,6 +1806,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.repositorySign
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1560,10 +1853,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushTagRequest st
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	tagImage *TagImage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushTagRequest) TagImage(tagImage TagImage) RepositoriesContainerPushAPIRepositoriesContainerContainerPushTagRequest {
 	r.tagImage = &tagImage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushTagRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushTagRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1631,6 +1931,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.tagImage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1675,10 +1978,17 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushUntagRequest 
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	unTagImage *UnTagImage
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUntagRequest) UnTagImage(unTagImage UnTagImage) RepositoriesContainerPushAPIRepositoriesContainerContainerPushUntagRequest {
 	r.unTagImage = &unTagImage
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUntagRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushUntagRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1746,6 +2056,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unTagImage
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1790,6 +2103,7 @@ type RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest
 	ApiService *RepositoriesContainerPushAPIService
 	containerContainerPushRepositoryHref string
 	containerContainerPushRepository *ContainerContainerPushRepository
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) ContainerContainerPushRepository(containerContainerPushRepository ContainerContainerPushRepository) RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest {
@@ -1797,14 +2111,20 @@ func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequ
 	return r
 }
 
-func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) Execute() (*ContainerContainerPushRepositoryResponse, *http.Response, error) {
 	return r.ApiService.RepositoriesContainerContainerPushUpdateExecute(r)
 }
 
 /*
 RepositoriesContainerContainerPushUpdate Update a container push repository
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPushRepositoryHref
@@ -1819,13 +2139,13 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushUpdateExecute(r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPushRepositoryResponse
+func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPushUpdateExecute(r RepositoriesContainerPushAPIRepositoriesContainerContainerPushUpdateRequest) (*ContainerContainerPushRepositoryResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPushRepositoryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesContainerPushAPIService.RepositoriesContainerContainerPushUpdate")
@@ -1860,6 +2180,9 @@ func (a *RepositoriesContainerPushAPIService) RepositoriesContainerContainerPush
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.containerContainerPushRepository

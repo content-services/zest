@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Prn** | Pointer to **string** | The Pulp Resource Name (PRN). | [optional] [readonly] 
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
-**Name** | **string** | Unique name of the file system exporter. | 
+**Name** | **string** | Unique name of the exporter. | 
 **Path** | **string** | File system directory to store exported tar.gzs. | 
 **Repositories** | **[]string** |  | 
 **LastExport** | Pointer to **NullableString** | Last attempted export for this PulpExporter | [optional] 

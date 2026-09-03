@@ -31,6 +31,7 @@ type ContainerManifestSignatureResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Signature name in the format of `digest_algo:manifest_digest@random_32_chars`
 	Name string `json:"name"`
 	// sha256 digest of the signature blob
@@ -39,6 +40,8 @@ type ContainerManifestSignatureResponse struct {
 	Type string `json:"type"`
 	// Signing key ID
 	KeyId string `json:"key_id"`
+	// Signing key fingerprint
+	Fingerprint NullableString `json:"fingerprint"`
 	// Timestamp of a signature
 	Timestamp int64 `json:"timestamp"`
 	// Signature creator
@@ -54,12 +57,13 @@ type _ContainerManifestSignatureResponse ContainerManifestSignatureResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContainerManifestSignatureResponse(name string, digest string, type_ string, keyId string, timestamp int64, creator string, signedManifest string) *ContainerManifestSignatureResponse {
+func NewContainerManifestSignatureResponse(name string, digest string, type_ string, keyId string, fingerprint NullableString, timestamp int64, creator string, signedManifest string) *ContainerManifestSignatureResponse {
 	this := ContainerManifestSignatureResponse{}
 	this.Name = name
 	this.Digest = digest
 	this.Type = type_
 	this.KeyId = keyId
+	this.Fingerprint = fingerprint
 	this.Timestamp = timestamp
 	this.Creator = creator
 	this.SignedManifest = signedManifest
@@ -234,6 +238,38 @@ func (o *ContainerManifestSignatureResponse) SetPulpLabels(v map[string]*string)
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *ContainerManifestSignatureResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerManifestSignatureResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *ContainerManifestSignatureResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *ContainerManifestSignatureResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetName returns the Name field value
 func (o *ContainerManifestSignatureResponse) GetName() string {
 	if o == nil {
@@ -328,6 +364,32 @@ func (o *ContainerManifestSignatureResponse) GetKeyIdOk() (*string, bool) {
 // SetKeyId sets field value
 func (o *ContainerManifestSignatureResponse) SetKeyId(v string) {
 	o.KeyId = v
+}
+
+// GetFingerprint returns the Fingerprint field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ContainerManifestSignatureResponse) GetFingerprint() string {
+	if o == nil || o.Fingerprint.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Fingerprint.Get()
+}
+
+// GetFingerprintOk returns a tuple with the Fingerprint field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerManifestSignatureResponse) GetFingerprintOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Fingerprint.Get(), o.Fingerprint.IsSet()
+}
+
+// SetFingerprint sets field value
+func (o *ContainerManifestSignatureResponse) SetFingerprint(v string) {
+	o.Fingerprint.Set(&v)
 }
 
 // GetTimestamp returns the Timestamp field value
@@ -427,10 +489,14 @@ func (o ContainerManifestSignatureResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["digest"] = o.Digest
 	toSerialize["type"] = o.Type
 	toSerialize["key_id"] = o.KeyId
+	toSerialize["fingerprint"] = o.Fingerprint.Get()
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["creator"] = o.Creator
 	toSerialize["signed_manifest"] = o.SignedManifest
@@ -451,6 +517,7 @@ func (o *ContainerManifestSignatureResponse) UnmarshalJSON(data []byte) (err err
 		"digest",
 		"type",
 		"key_id",
+		"fingerprint",
 		"timestamp",
 		"creator",
 		"signed_manifest",
@@ -488,10 +555,12 @@ func (o *ContainerManifestSignatureResponse) UnmarshalJSON(data []byte) (err err
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "digest")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "key_id")
+		delete(additionalProperties, "fingerprint")
 		delete(additionalProperties, "timestamp")
 		delete(additionalProperties, "creator")
 		delete(additionalProperties, "signed_manifest")

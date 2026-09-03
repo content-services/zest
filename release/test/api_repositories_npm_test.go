@@ -22,6 +22,20 @@ func Test_zest_RepositoriesNpmAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmAddRole(context.Background(), npmNpmRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +78,20 @@ func Test_zest_RepositoriesNpmAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmListRoles(context.Background(), npmNpmRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmModify", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -71,6 +99,20 @@ func Test_zest_RepositoriesNpmAPIService(t *testing.T) {
 		var npmNpmRepositoryHref string
 
 		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmModify(context.Background(), npmNpmRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmMyPermissions(context.Background(), npmNpmRepositoryHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -99,6 +141,20 @@ func Test_zest_RepositoriesNpmAPIService(t *testing.T) {
 		var npmNpmRepositoryHref string
 
 		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmRead(context.Background(), npmNpmRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RepositoriesNpmAPIService RepositoriesNpmNpmRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesNpmAPI.RepositoriesNpmNpmRemoveRole(context.Background(), npmNpmRepositoryHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

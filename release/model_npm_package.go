@@ -14,29 +14,35 @@ package zest
 import (
 	"encoding/json"
 	"os"
-	"fmt"
 )
 
 // checks if the NpmPackage type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NpmPackage{}
 
-// NpmPackage A Serializer for Package.Add serializers for the new fields defined in Package andadd those fields to the Meta class keeping fields from the parent class as well.For example::field1 = serializers.TextField()field2 = serializers.IntegerField()field3 = serializers.CharField()class Meta:    fields = core_serializers.SingleArtifactContentSerializer.Meta.fields + (        'field1', 'field2', 'field3'    )    model = models.Package
+// NpmPackage A Serializer for NpmPackage.
 type NpmPackage struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true.
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
 	Artifact *string `json:"artifact,omitempty"`
-	RelativePath string `json:"relative_path"`
+	// Path where the artifact is located relative to distributions base_path. If not provided, it will be computed from name and version.
+	RelativePath *string `json:"relative_path,omitempty"`
 	// An uploaded file that may be turned into the content unit.
 	File **os.File `json:"file,omitempty"`
 	// An uncommitted upload that may be turned into the content unit.
 	Upload *string `json:"upload,omitempty"`
 	// A url that Pulp can download and turn into the content unit.
 	FileUrl *string `json:"file_url,omitempty"`
-	Name string `json:"name"`
-	Version string `json:"version"`
+	// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url.
+	DownloaderConfig *RemoteNetworkConfig `json:"downloader_config,omitempty"`
+	// The name of the npm package.
+	Name *string `json:"name,omitempty"`
+	// The version of the npm package.
+	Version *string `json:"version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,11 +52,8 @@ type _NpmPackage NpmPackage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNpmPackage(relativePath string, name string, version string) *NpmPackage {
+func NewNpmPackage() *NpmPackage {
 	this := NpmPackage{}
-	this.RelativePath = relativePath
-	this.Name = name
-	this.Version = version
 	return &this
 }
 
@@ -92,6 +95,38 @@ func (o *NpmPackage) HasRepository() bool {
 // SetRepository gets a reference to the given string and assigns it to the Repository field.
 func (o *NpmPackage) SetRepository(v string) {
 	o.Repository = &v
+}
+
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
+func (o *NpmPackage) GetOverwrite() bool {
+	if o == nil || IsNil(o.Overwrite) {
+		var ret bool
+		return ret
+	}
+	return *o.Overwrite
+}
+
+// GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NpmPackage) GetOverwriteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Overwrite) {
+		return nil, false
+	}
+	return o.Overwrite, true
+}
+
+// HasOverwrite returns a boolean if a field has been set.
+func (o *NpmPackage) HasOverwrite() bool {
+	if o != nil && !IsNil(o.Overwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
+func (o *NpmPackage) SetOverwrite(v bool) {
+	o.Overwrite = &v
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -158,28 +193,36 @@ func (o *NpmPackage) SetArtifact(v string) {
 	o.Artifact = &v
 }
 
-// GetRelativePath returns the RelativePath field value
+// GetRelativePath returns the RelativePath field value if set, zero value otherwise.
 func (o *NpmPackage) GetRelativePath() string {
-	if o == nil {
+	if o == nil || IsNil(o.RelativePath) {
 		var ret string
 		return ret
 	}
-
-	return o.RelativePath
+	return *o.RelativePath
 }
 
-// GetRelativePathOk returns a tuple with the RelativePath field value
+// GetRelativePathOk returns a tuple with the RelativePath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackage) GetRelativePathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RelativePath) {
 		return nil, false
 	}
-	return &o.RelativePath, true
+	return o.RelativePath, true
 }
 
-// SetRelativePath sets field value
+// HasRelativePath returns a boolean if a field has been set.
+func (o *NpmPackage) HasRelativePath() bool {
+	if o != nil && !IsNil(o.RelativePath) {
+		return true
+	}
+
+	return false
+}
+
+// SetRelativePath gets a reference to the given string and assigns it to the RelativePath field.
 func (o *NpmPackage) SetRelativePath(v string) {
-	o.RelativePath = v
+	o.RelativePath = &v
 }
 
 // GetFile returns the File field value if set, zero value otherwise.
@@ -278,52 +321,100 @@ func (o *NpmPackage) SetFileUrl(v string) {
 	o.FileUrl = &v
 }
 
-// GetName returns the Name field value
+// GetDownloaderConfig returns the DownloaderConfig field value if set, zero value otherwise.
+func (o *NpmPackage) GetDownloaderConfig() RemoteNetworkConfig {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		var ret RemoteNetworkConfig
+		return ret
+	}
+	return *o.DownloaderConfig
+}
+
+// GetDownloaderConfigOk returns a tuple with the DownloaderConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NpmPackage) GetDownloaderConfigOk() (*RemoteNetworkConfig, bool) {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		return nil, false
+	}
+	return o.DownloaderConfig, true
+}
+
+// HasDownloaderConfig returns a boolean if a field has been set.
+func (o *NpmPackage) HasDownloaderConfig() bool {
+	if o != nil && !IsNil(o.DownloaderConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloaderConfig gets a reference to the given RemoteNetworkConfig and assigns it to the DownloaderConfig field.
+func (o *NpmPackage) SetDownloaderConfig(v RemoteNetworkConfig) {
+	o.DownloaderConfig = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *NpmPackage) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackage) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *NpmPackage) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *NpmPackage) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *NpmPackage) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NpmPackage) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *NpmPackage) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *NpmPackage) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
 func (o NpmPackage) MarshalJSON() ([]byte, error) {
@@ -339,13 +430,18 @@ func (o NpmPackage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
+	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
 	if !IsNil(o.Artifact) {
 		toSerialize["artifact"] = o.Artifact
 	}
-	toSerialize["relative_path"] = o.RelativePath
+	if !IsNil(o.RelativePath) {
+		toSerialize["relative_path"] = o.RelativePath
+	}
 	if !IsNil(o.File) {
 		toSerialize["file"] = o.File
 	}
@@ -355,8 +451,15 @@ func (o NpmPackage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FileUrl) {
 		toSerialize["file_url"] = o.FileUrl
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["version"] = o.Version
+	if !IsNil(o.DownloaderConfig) {
+		toSerialize["downloader_config"] = o.DownloaderConfig
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -366,29 +469,6 @@ func (o NpmPackage) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *NpmPackage) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"relative_path",
-		"name",
-		"version",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varNpmPackage := _NpmPackage{}
 
 	err = json.Unmarshal(data, &varNpmPackage)
@@ -403,12 +483,14 @@ func (o *NpmPackage) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "overwrite")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
 		delete(additionalProperties, "file")
 		delete(additionalProperties, "upload")
 		delete(additionalProperties, "file_url")
+		delete(additionalProperties, "downloader_config")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties

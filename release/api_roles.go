@@ -30,10 +30,17 @@ type RolesAPIRolesCreateRequest struct {
 	ApiService *RolesAPIService
 	pulpDomain string
 	role *Role
+	xTaskDiagnostics *[]string
 }
 
 func (r RolesAPIRolesCreateRequest) Role(role Role) RolesAPIRolesCreateRequest {
 	r.role = &role
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *RolesAPIService) RolesCreateExecute(r RolesAPIRolesCreateRequest) (*Rol
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.role
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +154,13 @@ type RolesAPIRolesDeleteRequest struct {
 	ctx context.Context
 	ApiService *RolesAPIService
 	roleHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RolesAPIRolesDeleteRequest) Execute() (*http.Response, error) {
@@ -205,6 +222,9 @@ func (a *RolesAPIService) RolesDeleteExecute(r RolesAPIRolesDeleteRequest) (*htt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -237,6 +257,7 @@ type RolesAPIRolesListRequest struct {
 	ctx context.Context
 	ApiService *RolesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	containsPermission *[]string
 	description *string
 	descriptionContains *string
@@ -262,6 +283,12 @@ type RolesAPIRolesListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter roles that have any of the permissions in the list.
@@ -574,6 +601,9 @@ func (a *RolesAPIService) RolesListExecute(r RolesAPIRolesListRequest) (*Paginat
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -616,10 +646,17 @@ type RolesAPIRolesPartialUpdateRequest struct {
 	ApiService *RolesAPIService
 	roleHref string
 	patchedRole *PatchedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RolesAPIRolesPartialUpdateRequest) PatchedRole(patchedRole PatchedRole) RolesAPIRolesPartialUpdateRequest {
 	r.patchedRole = &patchedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -687,6 +724,9 @@ func (a *RolesAPIService) RolesPartialUpdateExecute(r RolesAPIRolesPartialUpdate
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.patchedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -730,8 +770,15 @@ type RolesAPIRolesReadRequest struct {
 	ctx context.Context
 	ApiService *RolesAPIService
 	roleHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -829,6 +876,9 @@ func (a *RolesAPIService) RolesReadExecute(r RolesAPIRolesReadRequest) (*RoleRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -871,10 +921,17 @@ type RolesAPIRolesUpdateRequest struct {
 	ApiService *RolesAPIService
 	roleHref string
 	role *Role
+	xTaskDiagnostics *[]string
 }
 
 func (r RolesAPIRolesUpdateRequest) Role(role Role) RolesAPIRolesUpdateRequest {
 	r.role = &role
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RolesAPIRolesUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RolesAPIRolesUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -941,6 +998,9 @@ func (a *RolesAPIService) RolesUpdateExecute(r RolesAPIRolesUpdateRequest) (*Rol
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.role

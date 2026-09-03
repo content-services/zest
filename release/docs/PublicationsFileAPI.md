@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## PublicationsFileFileAddRole
 
-> NestedRoleResponse PublicationsFileFileAddRole(ctx, fileFilePublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsFileFileAddRole(ctx, fileFilePublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -38,10 +38,11 @@ import (
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileAddRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileAddRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +69,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileCreate
 
-> AsyncOperationResponse PublicationsFileFileCreate(ctx, pulpDomain).FileFilePublication(fileFilePublication).Execute()
+> AsyncOperationResponse PublicationsFileFileCreate(ctx, pulpDomain).FileFilePublication(fileFilePublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a file publication
 
@@ -110,10 +112,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	fileFilePublication := *openapiclient.NewFileFilePublication() // FileFilePublication | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileCreate(context.Background(), pulpDomain).FileFilePublication(fileFilePublication).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileCreate(context.Background(), pulpDomain).FileFilePublication(fileFilePublication).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fileFilePublication** | [**FileFilePublication**](FileFilePublication.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileDelete
 
-> PublicationsFileFileDelete(ctx, fileFilePublicationHref).Execute()
+> PublicationsFileFileDelete(ctx, fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a file publication
 
@@ -181,10 +185,11 @@ import (
 
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.PublicationsFileAPI.PublicationsFileFileDelete(context.Background(), fileFilePublicationHref).Execute()
+	r, err := apiClient.PublicationsFileAPI.PublicationsFileFileDelete(context.Background(), fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,6 +213,7 @@ Other parameters are passed through a pointer to a apiPublicationsFileFileDelete
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -229,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileList
 
-> PaginatedfileFilePublicationResponseList PublicationsFileFileList(ctx, pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedfileFilePublicationResponseList PublicationsFileFileList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List file publications
 
@@ -250,6 +256,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	checkpoint := true // bool | Filter results where checkpoint matches value (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
@@ -268,13 +275,13 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
-	repositoryVersion := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileList(context.Background(), pulpDomain).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Checkpoint(checkpoint).Content(content).ContentIn(contentIn).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Repository(repository).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -300,6 +307,7 @@ Other parameters are passed through a pointer to a apiPublicationsFileFileListRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **checkpoint** | **bool** | Filter results where checkpoint matches value | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
@@ -318,7 +326,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -342,7 +350,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileListRoles
 
-> ObjectRolesResponse PublicationsFileFileListRoles(ctx, fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse PublicationsFileFileListRoles(ctx, fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -362,12 +370,13 @@ import (
 
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileListRoles(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileListRoles(context.Background(), fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -393,6 +402,7 @@ Other parameters are passed through a pointer to a apiPublicationsFileFileListRo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -416,7 +426,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileMyPermissions
 
-> MyPermissionsResponse PublicationsFileFileMyPermissions(ctx, fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse PublicationsFileFileMyPermissions(ctx, fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -436,12 +446,13 @@ import (
 
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileMyPermissions(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileMyPermissions(context.Background(), fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -467,6 +478,7 @@ Other parameters are passed through a pointer to a apiPublicationsFileFileMyPerm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -490,7 +502,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileRead
 
-> FileFilePublicationResponse PublicationsFileFileRead(ctx, fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> FileFilePublicationResponse PublicationsFileFileRead(ctx, fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a file publication
 
@@ -510,12 +522,13 @@ import (
 
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRead(context.Background(), fileFilePublicationHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRead(context.Background(), fileFilePublicationHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -541,6 +554,7 @@ Other parameters are passed through a pointer to a apiPublicationsFileFileReadRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -564,7 +578,7 @@ Name | Type | Description  | Notes
 
 ## PublicationsFileFileRemoveRole
 
-> NestedRoleResponse PublicationsFileFileRemoveRole(ctx, fileFilePublicationHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse PublicationsFileFileRemoveRole(ctx, fileFilePublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -585,10 +599,11 @@ import (
 func main() {
 	fileFilePublicationHref := "fileFilePublicationHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRemoveRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.PublicationsFileAPI.PublicationsFileFileRemoveRole(context.Background(), fileFilePublicationHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PublicationsFileAPI.PublicationsFileFileRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +630,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

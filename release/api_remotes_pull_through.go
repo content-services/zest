@@ -31,10 +31,17 @@ type RemotesPullThroughAPIRemotesContainerPullThroughAddRoleRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughAddRoleRequest) NestedRole(nestedRole NestedRole) RemotesPullThroughAPIRemotesContainerPullThroughAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -102,6 +109,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughAddRoleExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -146,10 +156,17 @@ type RemotesPullThroughAPIRemotesContainerPullThroughCreateRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	pulpDomain string
 	containerContainerPullThroughRemote *ContainerContainerPullThroughRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughCreateRequest) ContainerContainerPullThroughRemote(containerContainerPullThroughRemote ContainerContainerPullThroughRemote) RemotesPullThroughAPIRemotesContainerPullThroughCreateRequest {
 	r.containerContainerPullThroughRemote = &containerContainerPullThroughRemote
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -217,6 +234,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughCreateExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.containerContainerPullThroughRemote
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -260,6 +280,13 @@ type RemotesPullThroughAPIRemotesContainerPullThroughDeleteRequest struct {
 	ctx context.Context
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -323,6 +350,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughDeleteExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -364,6 +394,7 @@ type RemotesPullThroughAPIRemotesContainerPullThroughListRequest struct {
 	ctx context.Context
 	ApiService *RemotesPullThroughAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -390,6 +421,12 @@ type RemotesPullThroughAPIRemotesContainerPullThroughListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -703,6 +740,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughListExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -744,8 +784,15 @@ type RemotesPullThroughAPIRemotesContainerPullThroughListRolesRequest struct {
 	ctx context.Context
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -843,6 +890,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughListRolesExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -884,8 +934,15 @@ type RemotesPullThroughAPIRemotesContainerPullThroughMyPermissionsRequest struct
 	ctx context.Context
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -983,6 +1040,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughMyPermissionsE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1025,6 +1085,7 @@ type RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest struct
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	patchedcontainerContainerPullThroughRemote *PatchedcontainerContainerPullThroughRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) PatchedcontainerContainerPullThroughRemote(patchedcontainerContainerPullThroughRemote PatchedcontainerContainerPullThroughRemote) RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest {
@@ -1032,14 +1093,20 @@ func (r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) Pa
 	return r
 }
 
-func (r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) Execute() (*ContainerContainerPullThroughRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesContainerPullThroughPartialUpdateExecute(r)
 }
 
 /*
 RemotesContainerPullThroughPartialUpdate Update a container pull through remote
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPullThroughRemoteHref
@@ -1054,13 +1121,13 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughPartialUpdate(
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughPartialUpdateExecute(r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPullThroughRemoteResponse
+func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughPartialUpdateExecute(r RemotesPullThroughAPIRemotesContainerPullThroughPartialUpdateRequest) (*ContainerContainerPullThroughRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPullThroughRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesPullThroughAPIService.RemotesContainerPullThroughPartialUpdate")
@@ -1095,6 +1162,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughPartialUpdateE
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedcontainerContainerPullThroughRemote
@@ -1139,8 +1209,15 @@ type RemotesPullThroughAPIRemotesContainerPullThroughReadRequest struct {
 	ctx context.Context
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1238,6 +1315,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughReadExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1280,10 +1360,17 @@ type RemotesPullThroughAPIRemotesContainerPullThroughRemoveRoleRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughRemoveRoleRequest) NestedRole(nestedRole NestedRole) RemotesPullThroughAPIRemotesContainerPullThroughRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1351,6 +1438,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughRemoveRoleExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1395,10 +1485,17 @@ type RemotesPullThroughAPIRemotesContainerPullThroughSetLabelRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughSetLabelRequest) SetLabel(setLabel SetLabel) RemotesPullThroughAPIRemotesContainerPullThroughSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1466,6 +1563,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughSetLabelExecut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1510,10 +1610,17 @@ type RemotesPullThroughAPIRemotesContainerPullThroughUnsetLabelRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) RemotesPullThroughAPIRemotesContainerPullThroughUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1581,6 +1688,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUnsetLabelExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1625,6 +1735,7 @@ type RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest struct {
 	ApiService *RemotesPullThroughAPIService
 	containerContainerPullThroughRemoteHref string
 	containerContainerPullThroughRemote *ContainerContainerPullThroughRemote
+	xTaskDiagnostics *[]string
 }
 
 func (r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) ContainerContainerPullThroughRemote(containerContainerPullThroughRemote ContainerContainerPullThroughRemote) RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest {
@@ -1632,14 +1743,20 @@ func (r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) Container
 	return r
 }
 
-func (r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) Execute() (*ContainerContainerPullThroughRemoteResponse, *http.Response, error) {
 	return r.ApiService.RemotesContainerPullThroughUpdateExecute(r)
 }
 
 /*
 RemotesContainerPullThroughUpdate Update a container pull through remote
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param containerContainerPullThroughRemoteHref
@@ -1654,13 +1771,13 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUpdate(ctx con
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUpdateExecute(r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return ContainerContainerPullThroughRemoteResponse
+func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUpdateExecute(r RemotesPullThroughAPIRemotesContainerPullThroughUpdateRequest) (*ContainerContainerPullThroughRemoteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *ContainerContainerPullThroughRemoteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RemotesPullThroughAPIService.RemotesContainerPullThroughUpdate")
@@ -1695,6 +1812,9 @@ func (a *RemotesPullThroughAPIService) RemotesContainerPullThroughUpdateExecute(
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.containerContainerPullThroughRemote

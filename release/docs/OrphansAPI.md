@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## OrphansDelete
 
-> AsyncOperationResponse OrphansDelete(ctx, pulpDomain).Execute()
+> AsyncOperationResponse OrphansDelete(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete orphans
 
@@ -30,10 +30,11 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrphansAPI.OrphansDelete(context.Background(), pulpDomain).Execute()
+	resp, r, err := apiClient.OrphansAPI.OrphansDelete(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrphansAPI.OrphansDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +60,7 @@ Other parameters are passed through a pointer to a apiOrphansDeleteRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

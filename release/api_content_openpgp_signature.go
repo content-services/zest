@@ -29,6 +29,7 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 	ctx context.Context
 	ApiService *ContentOpenpgpSignatureAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	issuer *string
 	limit *int32
 	offset *int32
@@ -44,6 +45,12 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where issuer matches value
@@ -106,19 +113,16 @@ func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) Q(q st
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) RepositoryVersion(repositoryVersion string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -258,6 +262,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureListExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -299,8 +306,15 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureReadRequest struct {
 	ctx context.Context
 	ApiService *ContentOpenpgpSignatureAPIService
 	openPGPSignatureHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -398,6 +412,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureReadExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -440,10 +457,17 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureSetLabelRequest struct
 	ApiService *ContentOpenpgpSignatureAPIService
 	openPGPSignatureHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureSetLabelRequest) SetLabel(setLabel SetLabel) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -511,6 +535,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureSetLabelE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -555,10 +582,17 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureUnsetLabelRequest stru
 	ApiService *ContentOpenpgpSignatureAPIService
 	openPGPSignatureHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -625,6 +659,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureUnsetLabe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.unsetLabel

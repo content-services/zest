@@ -14,7 +14,6 @@ package zest
 import (
 	"encoding/json"
 	"time"
-	"fmt"
 )
 
 // checks if the MavenMavenArtifactResponse type satisfies the MappedNullable interface at compile time
@@ -31,8 +30,9 @@ type MavenMavenArtifactResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Artifact file representing the physical content
-	Artifact string `json:"artifact"`
+	Artifact *string `json:"artifact,omitempty"`
 	// Group Id of the artifact's package.
 	GroupId *string `json:"group_id,omitempty"`
 	// Artifact Id of the artifact's package.
@@ -50,9 +50,8 @@ type _MavenMavenArtifactResponse MavenMavenArtifactResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMavenMavenArtifactResponse(artifact string) *MavenMavenArtifactResponse {
+func NewMavenMavenArtifactResponse() *MavenMavenArtifactResponse {
 	this := MavenMavenArtifactResponse{}
-	this.Artifact = artifact
 	return &this
 }
 
@@ -224,28 +223,68 @@ func (o *MavenMavenArtifactResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
-// GetArtifact returns the Artifact field value
-func (o *MavenMavenArtifactResponse) GetArtifact() string {
-	if o == nil {
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *MavenMavenArtifactResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
 		var ret string
 		return ret
 	}
-
-	return o.Artifact
+	return *o.VulnReport
 }
 
-// GetArtifactOk returns a tuple with the Artifact field value
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MavenMavenArtifactResponse) GetArtifactOk() (*string, bool) {
-	if o == nil {
+func (o *MavenMavenArtifactResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
 		return nil, false
 	}
-	return &o.Artifact, true
+	return o.VulnReport, true
 }
 
-// SetArtifact sets field value
+// HasVulnReport returns a boolean if a field has been set.
+func (o *MavenMavenArtifactResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *MavenMavenArtifactResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
+// GetArtifact returns the Artifact field value if set, zero value otherwise.
+func (o *MavenMavenArtifactResponse) GetArtifact() string {
+	if o == nil || IsNil(o.Artifact) {
+		var ret string
+		return ret
+	}
+	return *o.Artifact
+}
+
+// GetArtifactOk returns a tuple with the Artifact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifactResponse) GetArtifactOk() (*string, bool) {
+	if o == nil || IsNil(o.Artifact) {
+		return nil, false
+	}
+	return o.Artifact, true
+}
+
+// HasArtifact returns a boolean if a field has been set.
+func (o *MavenMavenArtifactResponse) HasArtifact() bool {
+	if o != nil && !IsNil(o.Artifact) {
+		return true
+	}
+
+	return false
+}
+
+// SetArtifact gets a reference to the given string and assigns it to the Artifact field.
 func (o *MavenMavenArtifactResponse) SetArtifact(v string) {
-	o.Artifact = v
+	o.Artifact = &v
 }
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
@@ -401,7 +440,12 @@ func (o MavenMavenArtifactResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
-	toSerialize["artifact"] = o.Artifact
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
+	if !IsNil(o.Artifact) {
+		toSerialize["artifact"] = o.Artifact
+	}
 	if !IsNil(o.GroupId) {
 		toSerialize["group_id"] = o.GroupId
 	}
@@ -423,27 +467,6 @@ func (o MavenMavenArtifactResponse) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *MavenMavenArtifactResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"artifact",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMavenMavenArtifactResponse := _MavenMavenArtifactResponse{}
 
 	err = json.Unmarshal(data, &varMavenMavenArtifactResponse)
@@ -462,6 +485,7 @@ func (o *MavenMavenArtifactResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "group_id")
 		delete(additionalProperties, "artifact_id")

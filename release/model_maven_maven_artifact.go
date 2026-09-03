@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"os"
 	"fmt"
 )
 
@@ -23,12 +24,22 @@ var _ MappedNullable = &MavenMavenArtifact{}
 type MavenMavenArtifact struct {
 	// A URI of a repository the new content unit should be associated with.
 	Repository *string `json:"repository,omitempty"`
+	// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true.
+	Overwrite *bool `json:"overwrite,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// Artifact file representing the physical content
-	Artifact string `json:"artifact"`
+	Artifact *string `json:"artifact,omitempty"`
 	// Path where the artifact is located relative to distributions base_path
 	RelativePath string `json:"relative_path"`
+	// An uploaded file that may be turned into the content unit.
+	File **os.File `json:"file,omitempty"`
+	// An uncommitted upload that may be turned into the content unit.
+	Upload *string `json:"upload,omitempty"`
+	// A url that Pulp can download and turn into the content unit.
+	FileUrl *string `json:"file_url,omitempty"`
+	// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url.
+	DownloaderConfig *RemoteNetworkConfig `json:"downloader_config,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,9 +49,8 @@ type _MavenMavenArtifact MavenMavenArtifact
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMavenMavenArtifact(artifact string, relativePath string) *MavenMavenArtifact {
+func NewMavenMavenArtifact(relativePath string) *MavenMavenArtifact {
 	this := MavenMavenArtifact{}
-	this.Artifact = artifact
 	this.RelativePath = relativePath
 	return &this
 }
@@ -85,6 +95,38 @@ func (o *MavenMavenArtifact) SetRepository(v string) {
 	o.Repository = &v
 }
 
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
+func (o *MavenMavenArtifact) GetOverwrite() bool {
+	if o == nil || IsNil(o.Overwrite) {
+		var ret bool
+		return ret
+	}
+	return *o.Overwrite
+}
+
+// GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifact) GetOverwriteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Overwrite) {
+		return nil, false
+	}
+	return o.Overwrite, true
+}
+
+// HasOverwrite returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasOverwrite() bool {
+	if o != nil && !IsNil(o.Overwrite) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
+func (o *MavenMavenArtifact) SetOverwrite(v bool) {
+	o.Overwrite = &v
+}
+
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
 func (o *MavenMavenArtifact) GetPulpLabels() map[string]*string {
 	if o == nil || IsNil(o.PulpLabels) {
@@ -117,28 +159,36 @@ func (o *MavenMavenArtifact) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
-// GetArtifact returns the Artifact field value
+// GetArtifact returns the Artifact field value if set, zero value otherwise.
 func (o *MavenMavenArtifact) GetArtifact() string {
-	if o == nil {
+	if o == nil || IsNil(o.Artifact) {
 		var ret string
 		return ret
 	}
-
-	return o.Artifact
+	return *o.Artifact
 }
 
-// GetArtifactOk returns a tuple with the Artifact field value
+// GetArtifactOk returns a tuple with the Artifact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MavenMavenArtifact) GetArtifactOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Artifact) {
 		return nil, false
 	}
-	return &o.Artifact, true
+	return o.Artifact, true
 }
 
-// SetArtifact sets field value
+// HasArtifact returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasArtifact() bool {
+	if o != nil && !IsNil(o.Artifact) {
+		return true
+	}
+
+	return false
+}
+
+// SetArtifact gets a reference to the given string and assigns it to the Artifact field.
 func (o *MavenMavenArtifact) SetArtifact(v string) {
-	o.Artifact = v
+	o.Artifact = &v
 }
 
 // GetRelativePath returns the RelativePath field value
@@ -165,6 +215,134 @@ func (o *MavenMavenArtifact) SetRelativePath(v string) {
 	o.RelativePath = v
 }
 
+// GetFile returns the File field value if set, zero value otherwise.
+func (o *MavenMavenArtifact) GetFile() *os.File {
+	if o == nil || IsNil(o.File) {
+		var ret *os.File
+		return ret
+	}
+	return *o.File
+}
+
+// GetFileOk returns a tuple with the File field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifact) GetFileOk() (**os.File, bool) {
+	if o == nil || IsNil(o.File) {
+		return nil, false
+	}
+	return o.File, true
+}
+
+// HasFile returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasFile() bool {
+	if o != nil && !IsNil(o.File) {
+		return true
+	}
+
+	return false
+}
+
+// SetFile gets a reference to the given *os.File and assigns it to the File field.
+func (o *MavenMavenArtifact) SetFile(v *os.File) {
+	o.File = &v
+}
+
+// GetUpload returns the Upload field value if set, zero value otherwise.
+func (o *MavenMavenArtifact) GetUpload() string {
+	if o == nil || IsNil(o.Upload) {
+		var ret string
+		return ret
+	}
+	return *o.Upload
+}
+
+// GetUploadOk returns a tuple with the Upload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifact) GetUploadOk() (*string, bool) {
+	if o == nil || IsNil(o.Upload) {
+		return nil, false
+	}
+	return o.Upload, true
+}
+
+// HasUpload returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasUpload() bool {
+	if o != nil && !IsNil(o.Upload) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpload gets a reference to the given string and assigns it to the Upload field.
+func (o *MavenMavenArtifact) SetUpload(v string) {
+	o.Upload = &v
+}
+
+// GetFileUrl returns the FileUrl field value if set, zero value otherwise.
+func (o *MavenMavenArtifact) GetFileUrl() string {
+	if o == nil || IsNil(o.FileUrl) {
+		var ret string
+		return ret
+	}
+	return *o.FileUrl
+}
+
+// GetFileUrlOk returns a tuple with the FileUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifact) GetFileUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.FileUrl) {
+		return nil, false
+	}
+	return o.FileUrl, true
+}
+
+// HasFileUrl returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasFileUrl() bool {
+	if o != nil && !IsNil(o.FileUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFileUrl gets a reference to the given string and assigns it to the FileUrl field.
+func (o *MavenMavenArtifact) SetFileUrl(v string) {
+	o.FileUrl = &v
+}
+
+// GetDownloaderConfig returns the DownloaderConfig field value if set, zero value otherwise.
+func (o *MavenMavenArtifact) GetDownloaderConfig() RemoteNetworkConfig {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		var ret RemoteNetworkConfig
+		return ret
+	}
+	return *o.DownloaderConfig
+}
+
+// GetDownloaderConfigOk returns a tuple with the DownloaderConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MavenMavenArtifact) GetDownloaderConfigOk() (*RemoteNetworkConfig, bool) {
+	if o == nil || IsNil(o.DownloaderConfig) {
+		return nil, false
+	}
+	return o.DownloaderConfig, true
+}
+
+// HasDownloaderConfig returns a boolean if a field has been set.
+func (o *MavenMavenArtifact) HasDownloaderConfig() bool {
+	if o != nil && !IsNil(o.DownloaderConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloaderConfig gets a reference to the given RemoteNetworkConfig and assigns it to the DownloaderConfig field.
+func (o *MavenMavenArtifact) SetDownloaderConfig(v RemoteNetworkConfig) {
+	o.DownloaderConfig = &v
+}
+
 func (o MavenMavenArtifact) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -178,11 +356,28 @@ func (o MavenMavenArtifact) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Repository) {
 		toSerialize["repository"] = o.Repository
 	}
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
+	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
-	toSerialize["artifact"] = o.Artifact
+	if !IsNil(o.Artifact) {
+		toSerialize["artifact"] = o.Artifact
+	}
 	toSerialize["relative_path"] = o.RelativePath
+	if !IsNil(o.File) {
+		toSerialize["file"] = o.File
+	}
+	if !IsNil(o.Upload) {
+		toSerialize["upload"] = o.Upload
+	}
+	if !IsNil(o.FileUrl) {
+		toSerialize["file_url"] = o.FileUrl
+	}
+	if !IsNil(o.DownloaderConfig) {
+		toSerialize["downloader_config"] = o.DownloaderConfig
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -196,7 +391,6 @@ func (o *MavenMavenArtifact) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"artifact",
 		"relative_path",
 	}
 
@@ -228,9 +422,14 @@ func (o *MavenMavenArtifact) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "repository")
+		delete(additionalProperties, "overwrite")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "artifact")
 		delete(additionalProperties, "relative_path")
+		delete(additionalProperties, "file")
+		delete(additionalProperties, "upload")
+		delete(additionalProperties, "file_url")
+		delete(additionalProperties, "downloader_config")
 		o.AdditionalProperties = additionalProperties
 	}
 

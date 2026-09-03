@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## UploadsAddRole
 
-> NestedRoleResponse UploadsAddRole(ctx, uploadHref).Upload(upload).Execute()
+> NestedRoleResponse UploadsAddRole(ctx, uploadHref).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	uploadHref := "uploadHref_example" // string | 
 	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsAddRole(context.Background(), uploadHref).Upload(upload).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsAddRole(context.Background(), uploadHref).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **upload** | [**Upload**](Upload.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## UploadsCommit
 
-> AsyncOperationResponse UploadsCommit(ctx, uploadHref).UploadCommit(uploadCommit).Execute()
+> AsyncOperationResponse UploadsCommit(ctx, uploadHref).UploadCommit(uploadCommit).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Finish an Upload
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	uploadHref := "uploadHref_example" // string | 
 	uploadCommit := *openapiclient.NewUploadCommit("Sha256_example") // UploadCommit | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsCommit(context.Background(), uploadHref).UploadCommit(uploadCommit).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsCommit(context.Background(), uploadHref).UploadCommit(uploadCommit).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCommit``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **uploadCommit** | [**UploadCommit**](UploadCommit.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## UploadsCreate
 
-> UploadResponse UploadsCreate(ctx, pulpDomain).Upload(upload).Execute()
+> UploadResponse UploadsCreate(ctx, pulpDomain).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create an upload
 
@@ -184,10 +188,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsCreate(context.Background(), pulpDomain).Upload(upload).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsCreate(context.Background(), pulpDomain).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **upload** | [**Upload**](Upload.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## UploadsDelete
 
-> UploadsDelete(ctx, uploadHref).Execute()
+> UploadsDelete(ctx, uploadHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete an upload
 
@@ -255,10 +261,11 @@ import (
 
 func main() {
 	uploadHref := "uploadHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UploadsAPI.UploadsDelete(context.Background(), uploadHref).Execute()
+	r, err := apiClient.UploadsAPI.UploadsDelete(context.Background(), uploadHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +289,7 @@ Other parameters are passed through a pointer to a apiUploadsDeleteRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -303,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## UploadsList
 
-> PaginatedUploadResponseList UploadsList(ctx, pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedUploadResponseList UploadsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List uploads
 
@@ -323,6 +331,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `size` - Size* `-size` - Size (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
@@ -339,7 +348,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsList(context.Background(), pulpDomain).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Size(size).SizeGt(sizeGt).SizeLt(sizeLt).SizeRange(sizeRange).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -365,6 +374,7 @@ Other parameters are passed through a pointer to a apiUploadsListRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
@@ -399,7 +409,7 @@ Name | Type | Description  | Notes
 
 ## UploadsListRoles
 
-> ObjectRolesResponse UploadsListRoles(ctx, uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse UploadsListRoles(ctx, uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -419,12 +429,13 @@ import (
 
 func main() {
 	uploadHref := "uploadHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsListRoles(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsListRoles(context.Background(), uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -450,6 +461,7 @@ Other parameters are passed through a pointer to a apiUploadsListRolesRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -473,7 +485,7 @@ Name | Type | Description  | Notes
 
 ## UploadsMyPermissions
 
-> MyPermissionsResponse UploadsMyPermissions(ctx, uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse UploadsMyPermissions(ctx, uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -493,12 +505,13 @@ import (
 
 func main() {
 	uploadHref := "uploadHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsMyPermissions(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsMyPermissions(context.Background(), uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -524,6 +537,7 @@ Other parameters are passed through a pointer to a apiUploadsMyPermissionsReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -547,7 +561,7 @@ Name | Type | Description  | Notes
 
 ## UploadsRead
 
-> UploadDetailResponse UploadsRead(ctx, uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> UploadDetailResponse UploadsRead(ctx, uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an upload
 
@@ -567,12 +581,13 @@ import (
 
 func main() {
 	uploadHref := "uploadHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsRead(context.Background(), uploadHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsRead(context.Background(), uploadHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -598,6 +613,7 @@ Other parameters are passed through a pointer to a apiUploadsReadRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -621,7 +637,7 @@ Name | Type | Description  | Notes
 
 ## UploadsRemoveRole
 
-> NestedRoleResponse UploadsRemoveRole(ctx, uploadHref).Upload(upload).Execute()
+> NestedRoleResponse UploadsRemoveRole(ctx, uploadHref).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -642,10 +658,11 @@ import (
 func main() {
 	uploadHref := "uploadHref_example" // string | 
 	upload := *openapiclient.NewUpload(int64(123)) // Upload | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsRemoveRole(context.Background(), uploadHref).Upload(upload).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsRemoveRole(context.Background(), uploadHref).Upload(upload).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -672,6 +689,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **upload** | [**Upload**](Upload.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -693,7 +711,7 @@ Name | Type | Description  | Notes
 
 ## UploadsUpdate
 
-> UploadResponse UploadsUpdate(ctx, uploadHref).ContentRange(contentRange).File(file).Sha256(sha256).Execute()
+> UploadResponse UploadsUpdate(ctx, uploadHref).ContentRange(contentRange).File(file).XTaskDiagnostics(xTaskDiagnostics).Sha256(sha256).Execute()
 
 Upload a file chunk
 
@@ -715,11 +733,12 @@ func main() {
 	contentRange := "contentRange_example" // string | The Content-Range header specifies the location of the file chunk within the file.
 	uploadHref := "uploadHref_example" // string | 
 	file := os.NewFile(1234, "some_file") // *os.File | A chunk of the uploaded file.
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	sha256 := "sha256_example" // string | The SHA-256 checksum of the chunk if available. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UploadsAPI.UploadsUpdate(context.Background(), uploadHref).ContentRange(contentRange).File(file).Sha256(sha256).Execute()
+	resp, r, err := apiClient.UploadsAPI.UploadsUpdate(context.Background(), uploadHref).ContentRange(contentRange).File(file).XTaskDiagnostics(xTaskDiagnostics).Sha256(sha256).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UploadsAPI.UploadsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -747,6 +766,7 @@ Name | Type | Description  | Notes
  **contentRange** | **string** | The Content-Range header specifies the location of the file chunk within the file. | 
 
  **file** | ***os.File** | A chunk of the uploaded file. | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **sha256** | **string** | The SHA-256 checksum of the chunk if available. | 
 
 ### Return type

@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ## RemotesContainerContainerAddRole
 
-> NestedRoleResponse RemotesContainerContainerAddRole(ctx, containerContainerRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesContainerContainerAddRole(ctx, containerContainerRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -42,10 +42,11 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerAddRole(context.Background(), containerContainerRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerAddRole(context.Background(), containerContainerRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +73,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -93,7 +95,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerCreate
 
-> ContainerContainerRemoteResponse RemotesContainerContainerCreate(ctx, pulpDomain).ContainerContainerRemote(containerContainerRemote).Execute()
+> ContainerContainerRemoteResponse RemotesContainerContainerCreate(ctx, pulpDomain).ContainerContainerRemote(containerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a container remote
 
@@ -114,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	containerContainerRemote := *openapiclient.NewContainerContainerRemote("Name_example", "Url_example", "UpstreamName_example") // ContainerContainerRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerCreate(context.Background(), pulpDomain).ContainerContainerRemote(containerContainerRemote).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerCreate(context.Background(), pulpDomain).ContainerContainerRemote(containerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -144,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerRemote** | [**ContainerContainerRemote**](ContainerContainerRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -165,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerDelete
 
-> AsyncOperationResponse RemotesContainerContainerDelete(ctx, containerContainerRemoteHref).Execute()
+> AsyncOperationResponse RemotesContainerContainerDelete(ctx, containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a container remote
 
@@ -185,10 +189,11 @@ import (
 
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerDelete(context.Background(), containerContainerRemoteHref).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerDelete(context.Background(), containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,6 +219,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerContainerD
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -235,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerList
 
-> PaginatedcontainerContainerRemoteResponseList RemotesContainerContainerList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedcontainerContainerRemoteResponseList RemotesContainerContainerList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List container remotes
 
@@ -256,6 +262,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -285,7 +292,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).PulpLastUpdated(pulpLastUpdated).PulpLastUpdatedGt(pulpLastUpdatedGt).PulpLastUpdatedGte(pulpLastUpdatedGte).PulpLastUpdatedIsnull(pulpLastUpdatedIsnull).PulpLastUpdatedLt(pulpLastUpdatedLt).PulpLastUpdatedLte(pulpLastUpdatedLte).PulpLastUpdatedRange(pulpLastUpdatedRange).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -311,6 +318,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerContainerL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -358,7 +366,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerListRoles
 
-> ObjectRolesResponse RemotesContainerContainerListRoles(ctx, containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse RemotesContainerContainerListRoles(ctx, containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -378,12 +386,13 @@ import (
 
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerListRoles(context.Background(), containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerListRoles(context.Background(), containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,6 +418,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerContainerL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -432,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerMyPermissions
 
-> MyPermissionsResponse RemotesContainerContainerMyPermissions(ctx, containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse RemotesContainerContainerMyPermissions(ctx, containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -452,12 +462,13 @@ import (
 
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerMyPermissions(context.Background(), containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerMyPermissions(context.Background(), containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,6 +494,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerContainerM
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -506,7 +518,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerPartialUpdate
 
-> AsyncOperationResponse RemotesContainerContainerPartialUpdate(ctx, containerContainerRemoteHref).PatchedcontainerContainerRemote(patchedcontainerContainerRemote).Execute()
+> ContainerContainerRemoteResponse RemotesContainerContainerPartialUpdate(ctx, containerContainerRemoteHref).PatchedcontainerContainerRemote(patchedcontainerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container remote
 
@@ -527,15 +539,16 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	patchedcontainerContainerRemote := *openapiclient.NewPatchedcontainerContainerRemote() // PatchedcontainerContainerRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerPartialUpdate(context.Background(), containerContainerRemoteHref).PatchedcontainerContainerRemote(patchedcontainerContainerRemote).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerPartialUpdate(context.Background(), containerContainerRemoteHref).PatchedcontainerContainerRemote(patchedcontainerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesContainerContainerPartialUpdate`: AsyncOperationResponse
+	// response from `RemotesContainerContainerPartialUpdate`: ContainerContainerRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesContainerAPI.RemotesContainerContainerPartialUpdate`: %v\n", resp)
 }
 ```
@@ -557,10 +570,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedcontainerContainerRemote** | [**PatchedcontainerContainerRemote**](PatchedcontainerContainerRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerRemoteResponse**](ContainerContainerRemoteResponse.md)
 
 ### Authorization
 
@@ -578,7 +592,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerRead
 
-> ContainerContainerRemoteResponse RemotesContainerContainerRead(ctx, containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ContainerContainerRemoteResponse RemotesContainerContainerRead(ctx, containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a container remote
 
@@ -598,12 +612,13 @@ import (
 
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerRead(context.Background(), containerContainerRemoteHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerRead(context.Background(), containerContainerRemoteHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -629,6 +644,7 @@ Other parameters are passed through a pointer to a apiRemotesContainerContainerR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -652,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerRemoveRole
 
-> NestedRoleResponse RemotesContainerContainerRemoveRole(ctx, containerContainerRemoteHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse RemotesContainerContainerRemoveRole(ctx, containerContainerRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -673,10 +689,11 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerRemoveRole(context.Background(), containerContainerRemoteHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerRemoveRole(context.Background(), containerContainerRemoteHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +720,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -724,7 +742,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerSetLabel
 
-> SetLabelResponse RemotesContainerContainerSetLabel(ctx, containerContainerRemoteHref).SetLabel(setLabel).Execute()
+> SetLabelResponse RemotesContainerContainerSetLabel(ctx, containerContainerRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -745,10 +763,11 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerSetLabel(context.Background(), containerContainerRemoteHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerSetLabel(context.Background(), containerContainerRemoteHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -775,6 +794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -796,7 +816,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerUnsetLabel
 
-> UnsetLabelResponse RemotesContainerContainerUnsetLabel(ctx, containerContainerRemoteHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse RemotesContainerContainerUnsetLabel(ctx, containerContainerRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -817,10 +837,11 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerUnsetLabel(context.Background(), containerContainerRemoteHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerUnsetLabel(context.Background(), containerContainerRemoteHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -847,6 +868,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -868,7 +890,7 @@ Name | Type | Description  | Notes
 
 ## RemotesContainerContainerUpdate
 
-> AsyncOperationResponse RemotesContainerContainerUpdate(ctx, containerContainerRemoteHref).ContainerContainerRemote(containerContainerRemote).Execute()
+> ContainerContainerRemoteResponse RemotesContainerContainerUpdate(ctx, containerContainerRemoteHref).ContainerContainerRemote(containerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a container remote
 
@@ -889,15 +911,16 @@ import (
 func main() {
 	containerContainerRemoteHref := "containerContainerRemoteHref_example" // string | 
 	containerContainerRemote := *openapiclient.NewContainerContainerRemote("Name_example", "Url_example", "UpstreamName_example") // ContainerContainerRemote | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerUpdate(context.Background(), containerContainerRemoteHref).ContainerContainerRemote(containerContainerRemote).Execute()
+	resp, r, err := apiClient.RemotesContainerAPI.RemotesContainerContainerUpdate(context.Background(), containerContainerRemoteHref).ContainerContainerRemote(containerContainerRemote).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RemotesContainerAPI.RemotesContainerContainerUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RemotesContainerContainerUpdate`: AsyncOperationResponse
+	// response from `RemotesContainerContainerUpdate`: ContainerContainerRemoteResponse
 	fmt.Fprintf(os.Stdout, "Response from `RemotesContainerAPI.RemotesContainerContainerUpdate`: %v\n", resp)
 }
 ```
@@ -919,10 +942,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **containerContainerRemote** | [**ContainerContainerRemote**](ContainerContainerRemote.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**ContainerContainerRemoteResponse**](ContainerContainerRemoteResponse.md)
 
 ### Authorization
 

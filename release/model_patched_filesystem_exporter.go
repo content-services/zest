@@ -20,7 +20,7 @@ var _ MappedNullable = &PatchedFilesystemExporter{}
 
 // PatchedFilesystemExporter Serializer for FilesystemExporters.
 type PatchedFilesystemExporter struct {
-	// Unique name of the file system exporter.
+	// Unique name of the exporter.
 	Name *string `json:"name,omitempty"`
 	// File system location to export to.
 	Path *string `json:"path,omitempty"`

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## DomainsCreate
 
-> DomainResponse DomainsCreate(ctx, pulpDomain).Domain(domain).Execute()
+> DomainResponse DomainsCreate(ctx, pulpDomain).Domain(domain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a domain
 
@@ -39,10 +39,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	domain := *openapiclient.NewDomain("Name_example", openapiclient.StorageClassEnum("pulpcore.app.models.storage.FileSystem"), map[string]interface{}(123)) // Domain | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsCreate(context.Background(), pulpDomain).Domain(domain).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsCreate(context.Background(), pulpDomain).Domain(domain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +70,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **domain** | [**Domain**](Domain.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -90,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## DomainsDelete
 
-> AsyncOperationResponse DomainsDelete(ctx, domainHref).Execute()
+> AsyncOperationResponse DomainsDelete(ctx, domainHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a domain
 
@@ -110,10 +112,11 @@ import (
 
 func main() {
 	domainHref := "domainHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsDelete(context.Background(), domainHref).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsDelete(context.Background(), domainHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,6 +142,7 @@ Other parameters are passed through a pointer to a apiDomainsDeleteRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -160,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## DomainsList
 
-> PaginatedDomainResponseList DomainsList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedDomainResponseList DomainsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List domains
 
@@ -180,6 +184,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -202,7 +207,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -228,6 +233,7 @@ Other parameters are passed through a pointer to a apiDomainsListRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -268,7 +274,7 @@ Name | Type | Description  | Notes
 
 ## DomainsMigrate
 
-> AsyncOperationResponse DomainsMigrate(ctx, pulpDomain).DomainBackendMigrator(domainBackendMigrator).Execute()
+> AsyncOperationResponse DomainsMigrate(ctx, pulpDomain).DomainBackendMigrator(domainBackendMigrator).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Migrate storage backend
 
@@ -289,10 +295,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	domainBackendMigrator := *openapiclient.NewDomainBackendMigrator(openapiclient.StorageClassEnum("pulpcore.app.models.storage.FileSystem"), map[string]interface{}(123)) // DomainBackendMigrator | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsMigrate(context.Background(), pulpDomain).DomainBackendMigrator(domainBackendMigrator).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsMigrate(context.Background(), pulpDomain).DomainBackendMigrator(domainBackendMigrator).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsMigrate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -319,6 +326,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **domainBackendMigrator** | [**DomainBackendMigrator**](DomainBackendMigrator.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -340,7 +348,7 @@ Name | Type | Description  | Notes
 
 ## DomainsPartialUpdate
 
-> AsyncOperationResponse DomainsPartialUpdate(ctx, domainHref).PatchedDomain(patchedDomain).Execute()
+> DomainResponse DomainsPartialUpdate(ctx, domainHref).PatchedDomain(patchedDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a domain
 
@@ -361,15 +369,16 @@ import (
 func main() {
 	domainHref := "domainHref_example" // string | 
 	patchedDomain := *openapiclient.NewPatchedDomain() // PatchedDomain | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsPartialUpdate(context.Background(), domainHref).PatchedDomain(patchedDomain).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsPartialUpdate(context.Background(), domainHref).PatchedDomain(patchedDomain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DomainsPartialUpdate`: AsyncOperationResponse
+	// response from `DomainsPartialUpdate`: DomainResponse
 	fmt.Fprintf(os.Stdout, "Response from `DomainsAPI.DomainsPartialUpdate`: %v\n", resp)
 }
 ```
@@ -391,10 +400,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedDomain** | [**PatchedDomain**](PatchedDomain.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**DomainResponse**](DomainResponse.md)
 
 ### Authorization
 
@@ -412,7 +422,7 @@ Name | Type | Description  | Notes
 
 ## DomainsRead
 
-> DomainResponse DomainsRead(ctx, domainHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> DomainResponse DomainsRead(ctx, domainHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a domain
 
@@ -432,12 +442,13 @@ import (
 
 func main() {
 	domainHref := "domainHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsRead(context.Background(), domainHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsRead(context.Background(), domainHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -463,6 +474,7 @@ Other parameters are passed through a pointer to a apiDomainsReadRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -486,7 +498,7 @@ Name | Type | Description  | Notes
 
 ## DomainsSetLabel
 
-> SetLabelResponse DomainsSetLabel(ctx, domainHref).SetLabel(setLabel).Execute()
+> SetLabelResponse DomainsSetLabel(ctx, domainHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -507,10 +519,11 @@ import (
 func main() {
 	domainHref := "domainHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsSetLabel(context.Background(), domainHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsSetLabel(context.Background(), domainHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -537,6 +550,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -558,7 +572,7 @@ Name | Type | Description  | Notes
 
 ## DomainsUnsetLabel
 
-> UnsetLabelResponse DomainsUnsetLabel(ctx, domainHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse DomainsUnsetLabel(ctx, domainHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -579,10 +593,11 @@ import (
 func main() {
 	domainHref := "domainHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsUnsetLabel(context.Background(), domainHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsUnsetLabel(context.Background(), domainHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -609,6 +624,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -630,7 +646,7 @@ Name | Type | Description  | Notes
 
 ## DomainsUpdate
 
-> AsyncOperationResponse DomainsUpdate(ctx, domainHref).Domain(domain).Execute()
+> DomainResponse DomainsUpdate(ctx, domainHref).Domain(domain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a domain
 
@@ -651,15 +667,16 @@ import (
 func main() {
 	domainHref := "domainHref_example" // string | 
 	domain := *openapiclient.NewDomain("Name_example", openapiclient.StorageClassEnum("pulpcore.app.models.storage.FileSystem"), map[string]interface{}(123)) // Domain | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DomainsAPI.DomainsUpdate(context.Background(), domainHref).Domain(domain).Execute()
+	resp, r, err := apiClient.DomainsAPI.DomainsUpdate(context.Background(), domainHref).Domain(domain).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DomainsAPI.DomainsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DomainsUpdate`: AsyncOperationResponse
+	// response from `DomainsUpdate`: DomainResponse
 	fmt.Fprintf(os.Stdout, "Response from `DomainsAPI.DomainsUpdate`: %v\n", resp)
 }
 ```
@@ -681,10 +698,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **domain** | [**Domain**](Domain.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**DomainResponse**](DomainResponse.md)
 
 ### Authorization
 

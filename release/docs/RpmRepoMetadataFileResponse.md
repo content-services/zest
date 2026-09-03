@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Sha384** | Pointer to **string** | The SHA-384 checksum if available. | [optional] [readonly] 
 **Sha512** | Pointer to **string** | The SHA-512 checksum if available. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
 **RelativePath** | **string** | Relative path of the file. | 
 **DataType** | **string** | Metadata type. | 
@@ -314,6 +315,31 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *RpmRepoMetadataFileResponse) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetVulnReport
+
+`func (o *RpmRepoMetadataFileResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *RpmRepoMetadataFileResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *RpmRepoMetadataFileResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *RpmRepoMetadataFileResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
 
 ### GetArtifact
 

@@ -92,4 +92,18 @@ func Test_zest_ContentArtifactAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ContentArtifactAPIService ContentMavenArtifactUpload", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var pulpDomain string
+
+		resp, httpRes, err := apiClient.ContentArtifactAPI.ContentMavenArtifactUpload(context.Background(), pulpDomain).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 }

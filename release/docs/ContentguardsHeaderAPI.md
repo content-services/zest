@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## ContentguardsCoreHeaderAddRole
 
-> NestedRoleResponse ContentguardsCoreHeaderAddRole(ctx, headerContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreHeaderAddRole(ctx, headerContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -40,10 +40,11 @@ import (
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderAddRole(context.Background(), headerContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderAddRole(context.Background(), headerContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -70,6 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -91,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderCreate
 
-> HeaderContentGuardResponse ContentguardsCoreHeaderCreate(ctx, pulpDomain).HeaderContentGuard(headerContentGuard).Execute()
+> HeaderContentGuardResponse ContentguardsCoreHeaderCreate(ctx, pulpDomain).HeaderContentGuard(headerContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a header content guard
 
@@ -112,10 +114,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	headerContentGuard := *openapiclient.NewHeaderContentGuard("Name_example", "HeaderName_example", "HeaderValue_example") // HeaderContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderCreate(context.Background(), pulpDomain).HeaderContentGuard(headerContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderCreate(context.Background(), pulpDomain).HeaderContentGuard(headerContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **headerContentGuard** | [**HeaderContentGuard**](HeaderContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -163,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderDelete
 
-> ContentguardsCoreHeaderDelete(ctx, headerContentGuardHref).Execute()
+> ContentguardsCoreHeaderDelete(ctx, headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a header content guard
 
@@ -183,10 +187,11 @@ import (
 
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderDelete(context.Background(), headerContentGuardHref).Execute()
+	r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderDelete(context.Background(), headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +215,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreHeaderDel
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderList
 
-> PaginatedHeaderContentGuardResponseList ContentguardsCoreHeaderList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedHeaderContentGuardResponseList ContentguardsCoreHeaderList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List header content guards
 
@@ -251,6 +257,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -272,7 +279,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -298,6 +305,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreHeaderLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -337,7 +345,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderListRoles
 
-> ObjectRolesResponse ContentguardsCoreHeaderListRoles(ctx, headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse ContentguardsCoreHeaderListRoles(ctx, headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -357,12 +365,13 @@ import (
 
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderListRoles(context.Background(), headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderListRoles(context.Background(), headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -388,6 +397,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreHeaderLis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderMyPermissions
 
-> MyPermissionsResponse ContentguardsCoreHeaderMyPermissions(ctx, headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse ContentguardsCoreHeaderMyPermissions(ctx, headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -431,12 +441,13 @@ import (
 
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderMyPermissions(context.Background(), headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderMyPermissions(context.Background(), headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -462,6 +473,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreHeaderMyP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -485,7 +497,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderPartialUpdate
 
-> HeaderContentGuardResponse ContentguardsCoreHeaderPartialUpdate(ctx, headerContentGuardHref).PatchedHeaderContentGuard(patchedHeaderContentGuard).Execute()
+> HeaderContentGuardResponse ContentguardsCoreHeaderPartialUpdate(ctx, headerContentGuardHref).PatchedHeaderContentGuard(patchedHeaderContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a header content guard
 
@@ -506,10 +518,11 @@ import (
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
 	patchedHeaderContentGuard := *openapiclient.NewPatchedHeaderContentGuard() // PatchedHeaderContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderPartialUpdate(context.Background(), headerContentGuardHref).PatchedHeaderContentGuard(patchedHeaderContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderPartialUpdate(context.Background(), headerContentGuardHref).PatchedHeaderContentGuard(patchedHeaderContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -536,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedHeaderContentGuard** | [**PatchedHeaderContentGuard**](PatchedHeaderContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -557,7 +571,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderRead
 
-> HeaderContentGuardResponse ContentguardsCoreHeaderRead(ctx, headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> HeaderContentGuardResponse ContentguardsCoreHeaderRead(ctx, headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a header content guard
 
@@ -577,12 +591,13 @@ import (
 
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderRead(context.Background(), headerContentGuardHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderRead(context.Background(), headerContentGuardHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -608,6 +623,7 @@ Other parameters are passed through a pointer to a apiContentguardsCoreHeaderRea
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -631,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderRemoveRole
 
-> NestedRoleResponse ContentguardsCoreHeaderRemoveRole(ctx, headerContentGuardHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse ContentguardsCoreHeaderRemoveRole(ctx, headerContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -652,10 +668,11 @@ import (
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderRemoveRole(context.Background(), headerContentGuardHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderRemoveRole(context.Background(), headerContentGuardHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,6 +699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -703,7 +721,7 @@ Name | Type | Description  | Notes
 
 ## ContentguardsCoreHeaderUpdate
 
-> HeaderContentGuardResponse ContentguardsCoreHeaderUpdate(ctx, headerContentGuardHref).HeaderContentGuard(headerContentGuard).Execute()
+> HeaderContentGuardResponse ContentguardsCoreHeaderUpdate(ctx, headerContentGuardHref).HeaderContentGuard(headerContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a header content guard
 
@@ -724,10 +742,11 @@ import (
 func main() {
 	headerContentGuardHref := "headerContentGuardHref_example" // string | 
 	headerContentGuard := *openapiclient.NewHeaderContentGuard("Name_example", "HeaderName_example", "HeaderValue_example") // HeaderContentGuard | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderUpdate(context.Background(), headerContentGuardHref).HeaderContentGuard(headerContentGuard).Execute()
+	resp, r, err := apiClient.ContentguardsHeaderAPI.ContentguardsCoreHeaderUpdate(context.Background(), headerContentGuardHref).HeaderContentGuard(headerContentGuard).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentguardsHeaderAPI.ContentguardsCoreHeaderUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -754,6 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **headerContentGuard** | [**HeaderContentGuard**](HeaderContentGuard.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

@@ -22,6 +22,20 @@ func Test_zest_RemotesNpmAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test RemotesNpmAPIService RemotesNpmNpmAddRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesNpmAPI.RemotesNpmNpmAddRole(context.Background(), npmNpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RemotesNpmAPIService RemotesNpmNpmCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -64,6 +78,34 @@ func Test_zest_RemotesNpmAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RemotesNpmAPIService RemotesNpmNpmListRoles", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesNpmAPI.RemotesNpmNpmListRoles(context.Background(), npmNpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RemotesNpmAPIService RemotesNpmNpmMyPermissions", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesNpmAPI.RemotesNpmNpmMyPermissions(context.Background(), npmNpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RemotesNpmAPIService RemotesNpmNpmPartialUpdate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -85,6 +127,20 @@ func Test_zest_RemotesNpmAPIService(t *testing.T) {
 		var npmNpmRemoteHref string
 
 		resp, httpRes, err := apiClient.RemotesNpmAPI.RemotesNpmNpmRead(context.Background(), npmNpmRemoteHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RemotesNpmAPIService RemotesNpmNpmRemoveRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var npmNpmRemoteHref string
+
+		resp, httpRes, err := apiClient.RemotesNpmAPI.RemotesNpmNpmRemoveRole(context.Background(), npmNpmRemoteHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

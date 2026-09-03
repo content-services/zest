@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## RolesCreate
 
-> RoleResponse RolesCreate(ctx, pulpDomain).Role(role).Execute()
+> RoleResponse RolesCreate(ctx, pulpDomain).Role(role).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a role
 
@@ -36,10 +36,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesAPI.RolesCreate(context.Background(), pulpDomain).Role(role).Execute()
+	resp, r, err := apiClient.RolesAPI.RolesCreate(context.Background(), pulpDomain).Role(role).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **role** | [**Role**](Role.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -87,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## RolesDelete
 
-> RolesDelete(ctx, roleHref).Execute()
+> RolesDelete(ctx, roleHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a role
 
@@ -107,10 +109,11 @@ import (
 
 func main() {
 	roleHref := "roleHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.RolesAPI.RolesDelete(context.Background(), roleHref).Execute()
+	r, err := apiClient.RolesAPI.RolesDelete(context.Background(), roleHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +137,7 @@ Other parameters are passed through a pointer to a apiRolesDeleteRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -155,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## RolesList
 
-> PaginatedRoleResponseList RolesList(ctx, pulpDomain).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRoleResponseList RolesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -175,6 +179,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	containsPermission := []string{"Inner_example"} // []string | Filter roles that have any of the permissions in the list. (optional)
 	description := "description_example" // string | Filter results where description matches value (optional)
 	descriptionContains := "descriptionContains_example" // string | Filter results where description contains value (optional)
@@ -203,7 +208,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesAPI.RolesList(context.Background(), pulpDomain).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RolesAPI.RolesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ContainsPermission(containsPermission).Description(description).DescriptionContains(descriptionContains).DescriptionIcontains(descriptionIcontains).DescriptionIexact(descriptionIexact).ForObjectType(forObjectType).Limit(limit).Locked(locked).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -229,6 +234,7 @@ Other parameters are passed through a pointer to a apiRolesListRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **containsPermission** | **[]string** | Filter roles that have any of the permissions in the list. | 
  **description** | **string** | Filter results where description matches value | 
  **descriptionContains** | **string** | Filter results where description contains value | 
@@ -275,7 +281,7 @@ Name | Type | Description  | Notes
 
 ## RolesPartialUpdate
 
-> RoleResponse RolesPartialUpdate(ctx, roleHref).PatchedRole(patchedRole).Execute()
+> RoleResponse RolesPartialUpdate(ctx, roleHref).PatchedRole(patchedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a role
 
@@ -296,10 +302,11 @@ import (
 func main() {
 	roleHref := "roleHref_example" // string | 
 	patchedRole := *openapiclient.NewPatchedRole() // PatchedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesAPI.RolesPartialUpdate(context.Background(), roleHref).PatchedRole(patchedRole).Execute()
+	resp, r, err := apiClient.RolesAPI.RolesPartialUpdate(context.Background(), roleHref).PatchedRole(patchedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -326,6 +333,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedRole** | [**PatchedRole**](PatchedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -347,7 +355,7 @@ Name | Type | Description  | Notes
 
 ## RolesRead
 
-> RoleResponse RolesRead(ctx, roleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RoleResponse RolesRead(ctx, roleHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a role
 
@@ -367,12 +375,13 @@ import (
 
 func main() {
 	roleHref := "roleHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesAPI.RolesRead(context.Background(), roleHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RolesAPI.RolesRead(context.Background(), roleHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -398,6 +407,7 @@ Other parameters are passed through a pointer to a apiRolesReadRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -421,7 +431,7 @@ Name | Type | Description  | Notes
 
 ## RolesUpdate
 
-> RoleResponse RolesUpdate(ctx, roleHref).Role(role).Execute()
+> RoleResponse RolesUpdate(ctx, roleHref).Role(role).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a role
 
@@ -442,10 +452,11 @@ import (
 func main() {
 	roleHref := "roleHref_example" // string | 
 	role := *openapiclient.NewRole("Name_example", []string{"Permissions_example"}) // Role | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesAPI.RolesUpdate(context.Background(), roleHref).Role(role).Execute()
+	resp, r, err := apiClient.RolesAPI.RolesUpdate(context.Background(), roleHref).Role(role).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesAPI.RolesUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -472,6 +483,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **role** | [**Role**](Role.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

@@ -4,20 +4,98 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DistributionsNpmNpmAddRole**](DistributionsNpmAPI.md#DistributionsNpmNpmAddRole) | **Post** /{npm_npm_distribution_href}add_role/ | Add a role
 [**DistributionsNpmNpmCreate**](DistributionsNpmAPI.md#DistributionsNpmNpmCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/ | Create a npm distribution
 [**DistributionsNpmNpmDelete**](DistributionsNpmAPI.md#DistributionsNpmNpmDelete) | **Delete** /{npm_npm_distribution_href} | Delete a npm distribution
 [**DistributionsNpmNpmList**](DistributionsNpmAPI.md#DistributionsNpmNpmList) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/ | List npm distributions
+[**DistributionsNpmNpmListRoles**](DistributionsNpmAPI.md#DistributionsNpmNpmListRoles) | **Get** /{npm_npm_distribution_href}list_roles/ | List roles
+[**DistributionsNpmNpmMyPermissions**](DistributionsNpmAPI.md#DistributionsNpmNpmMyPermissions) | **Get** /{npm_npm_distribution_href}my_permissions/ | List user permissions
 [**DistributionsNpmNpmPartialUpdate**](DistributionsNpmAPI.md#DistributionsNpmNpmPartialUpdate) | **Patch** /{npm_npm_distribution_href} | Update a npm distribution
 [**DistributionsNpmNpmRead**](DistributionsNpmAPI.md#DistributionsNpmNpmRead) | **Get** /{npm_npm_distribution_href} | Inspect a npm distribution
+[**DistributionsNpmNpmRemoveRole**](DistributionsNpmAPI.md#DistributionsNpmNpmRemoveRole) | **Post** /{npm_npm_distribution_href}remove_role/ | Remove a role
 [**DistributionsNpmNpmSetLabel**](DistributionsNpmAPI.md#DistributionsNpmNpmSetLabel) | **Post** /{npm_npm_distribution_href}set_label/ | Set a label
 [**DistributionsNpmNpmUnsetLabel**](DistributionsNpmAPI.md#DistributionsNpmNpmUnsetLabel) | **Post** /{npm_npm_distribution_href}unset_label/ | Unset a label
 [**DistributionsNpmNpmUpdate**](DistributionsNpmAPI.md#DistributionsNpmNpmUpdate) | **Put** /{npm_npm_distribution_href} | Update a npm distribution
 
 
 
+## DistributionsNpmNpmAddRole
+
+> NestedRoleResponse DistributionsNpmNpmAddRole(ctx, npmNpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Add a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmAddRole(context.Background(), npmNpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmAddRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsNpmNpmAddRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmAddRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsNpmNpmAddRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DistributionsNpmNpmCreate
 
-> AsyncOperationResponse DistributionsNpmNpmCreate(ctx, pulpDomain).NpmNpmDistribution(npmNpmDistribution).Execute()
+> AsyncOperationResponse DistributionsNpmNpmCreate(ctx, pulpDomain).NpmNpmDistribution(npmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a npm distribution
 
@@ -38,10 +116,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	npmNpmDistribution := *openapiclient.NewNpmNpmDistribution("BasePath_example", "Name_example") // NpmNpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmCreate(context.Background(), pulpDomain).NpmNpmDistribution(npmNpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmCreate(context.Background(), pulpDomain).NpmNpmDistribution(npmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,6 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **npmNpmDistribution** | [**NpmNpmDistribution**](NpmNpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -89,7 +169,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsNpmNpmDelete
 
-> AsyncOperationResponse DistributionsNpmNpmDelete(ctx, npmNpmDistributionHref).Execute()
+> AsyncOperationResponse DistributionsNpmNpmDelete(ctx, npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a npm distribution
 
@@ -109,10 +189,11 @@ import (
 
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmDelete(context.Background(), npmNpmDistributionHref).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmDelete(context.Background(), npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,6 +219,7 @@ Other parameters are passed through a pointer to a apiDistributionsNpmNpmDeleteR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -159,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsNpmNpmList
 
-> PaginatednpmNpmDistributionResponseList DistributionsNpmNpmList(ctx, pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatednpmNpmDistributionResponseList DistributionsNpmNpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List npm distributions
 
@@ -179,6 +261,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	basePath := "basePath_example" // string | Filter results where base_path matches value (optional)
 	basePathContains := "basePathContains_example" // string | Filter results where base_path contains value (optional)
 	basePathIcontains := "basePathIcontains_example" // string | Filter results where base_path contains value (optional)
@@ -201,15 +284,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repository := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Filter results where repository matches value (optional)
-	repositoryIn := []string{"Inner_example"} // []string | Filter results where repository is in a comma-separated list of values (optional)
+	repository := "repository_example" // string |  (optional)
+	repositoryIn := []string{"Inner_example"} // []string |  (optional)
 	withContent := "withContent_example" // string | Filter distributions based on the content served by them (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmList(context.Background(), pulpDomain).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).BasePath(basePath).BasePathContains(basePathContains).BasePathIcontains(basePathIcontains).BasePathIn(basePathIn).Checkpoint(checkpoint).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).Repository(repository).RepositoryIn(repositoryIn).WithContent(withContent).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,6 +318,7 @@ Other parameters are passed through a pointer to a apiDistributionsNpmNpmListReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **basePath** | **string** | Filter results where base_path matches value | 
  **basePathContains** | **string** | Filter results where base_path contains value | 
  **basePathIcontains** | **string** | Filter results where base_path contains value | 
@@ -257,8 +341,8 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repository** | **string** | Filter results where repository matches value | 
- **repositoryIn** | **[]string** | Filter results where repository is in a comma-separated list of values | 
+ **repository** | **string** |  | 
+ **repositoryIn** | **[]string** |  | 
  **withContent** | **string** | Filter distributions based on the content served by them | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -281,9 +365,161 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DistributionsNpmNpmListRoles
+
+> ObjectRolesResponse DistributionsNpmNpmListRoles(ctx, npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List roles
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmListRoles(context.Background(), npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmListRoles``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsNpmNpmListRoles`: ObjectRolesResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmListRoles`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsNpmNpmListRolesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**ObjectRolesResponse**](ObjectRolesResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DistributionsNpmNpmMyPermissions
+
+> MyPermissionsResponse DistributionsNpmNpmMyPermissions(ctx, npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List user permissions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmMyPermissions(context.Background(), npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmMyPermissions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsNpmNpmMyPermissions`: MyPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmMyPermissions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsNpmNpmMyPermissionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**MyPermissionsResponse**](MyPermissionsResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DistributionsNpmNpmPartialUpdate
 
-> AsyncOperationResponse DistributionsNpmNpmPartialUpdate(ctx, npmNpmDistributionHref).PatchednpmNpmDistribution(patchednpmNpmDistribution).Execute()
+> NpmNpmDistributionResponse DistributionsNpmNpmPartialUpdate(ctx, npmNpmDistributionHref).PatchednpmNpmDistribution(patchednpmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a npm distribution
 
@@ -304,15 +540,16 @@ import (
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
 	patchednpmNpmDistribution := *openapiclient.NewPatchednpmNpmDistribution() // PatchednpmNpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmPartialUpdate(context.Background(), npmNpmDistributionHref).PatchednpmNpmDistribution(patchednpmNpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmPartialUpdate(context.Background(), npmNpmDistributionHref).PatchednpmNpmDistribution(patchednpmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsNpmNpmPartialUpdate`: AsyncOperationResponse
+	// response from `DistributionsNpmNpmPartialUpdate`: NpmNpmDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmPartialUpdate`: %v\n", resp)
 }
 ```
@@ -334,10 +571,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchednpmNpmDistribution** | [**PatchednpmNpmDistribution**](PatchednpmNpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**NpmNpmDistributionResponse**](NpmNpmDistributionResponse.md)
 
 ### Authorization
 
@@ -355,7 +593,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsNpmNpmRead
 
-> NpmNpmDistributionResponse DistributionsNpmNpmRead(ctx, npmNpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> NpmNpmDistributionResponse DistributionsNpmNpmRead(ctx, npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a npm distribution
 
@@ -375,12 +613,13 @@ import (
 
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmRead(context.Background(), npmNpmDistributionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmRead(context.Background(), npmNpmDistributionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,6 +645,7 @@ Other parameters are passed through a pointer to a apiDistributionsNpmNpmReadReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -427,9 +667,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DistributionsNpmNpmRemoveRole
+
+> NestedRoleResponse DistributionsNpmNpmRemoveRole(ctx, npmNpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Remove a role
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
+	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmRemoveRole(context.Background(), npmNpmDistributionHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmRemoveRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DistributionsNpmNpmRemoveRole`: NestedRoleResponse
+	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmRemoveRole`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**npmNpmDistributionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDistributionsNpmNpmRemoveRoleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**NestedRoleResponse**](NestedRoleResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DistributionsNpmNpmSetLabel
 
-> SetLabelResponse DistributionsNpmNpmSetLabel(ctx, npmNpmDistributionHref).SetLabel(setLabel).Execute()
+> SetLabelResponse DistributionsNpmNpmSetLabel(ctx, npmNpmDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -450,10 +764,11 @@ import (
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmSetLabel(context.Background(), npmNpmDistributionHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmSetLabel(context.Background(), npmNpmDistributionHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmSetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,6 +795,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -501,7 +817,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsNpmNpmUnsetLabel
 
-> UnsetLabelResponse DistributionsNpmNpmUnsetLabel(ctx, npmNpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse DistributionsNpmNpmUnsetLabel(ctx, npmNpmDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -522,10 +838,11 @@ import (
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmUnsetLabel(context.Background(), npmNpmDistributionHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmUnsetLabel(context.Background(), npmNpmDistributionHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -552,6 +869,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -573,7 +891,7 @@ Name | Type | Description  | Notes
 
 ## DistributionsNpmNpmUpdate
 
-> AsyncOperationResponse DistributionsNpmNpmUpdate(ctx, npmNpmDistributionHref).NpmNpmDistribution(npmNpmDistribution).Execute()
+> NpmNpmDistributionResponse DistributionsNpmNpmUpdate(ctx, npmNpmDistributionHref).NpmNpmDistribution(npmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a npm distribution
 
@@ -594,15 +912,16 @@ import (
 func main() {
 	npmNpmDistributionHref := "npmNpmDistributionHref_example" // string | 
 	npmNpmDistribution := *openapiclient.NewNpmNpmDistribution("BasePath_example", "Name_example") // NpmNpmDistribution | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmUpdate(context.Background(), npmNpmDistributionHref).NpmNpmDistribution(npmNpmDistribution).Execute()
+	resp, r, err := apiClient.DistributionsNpmAPI.DistributionsNpmNpmUpdate(context.Background(), npmNpmDistributionHref).NpmNpmDistribution(npmNpmDistribution).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DistributionsNpmAPI.DistributionsNpmNpmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DistributionsNpmNpmUpdate`: AsyncOperationResponse
+	// response from `DistributionsNpmNpmUpdate`: NpmNpmDistributionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DistributionsNpmAPI.DistributionsNpmNpmUpdate`: %v\n", resp)
 }
 ```
@@ -624,10 +943,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **npmNpmDistribution** | [**NpmNpmDistribution**](NpmNpmDistribution.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**NpmNpmDistributionResponse**](NpmNpmDistributionResponse.md)
 
 ### Authorization
 

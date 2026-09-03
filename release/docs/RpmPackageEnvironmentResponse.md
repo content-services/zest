@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Id** | **string** | Environment id. | 
 **Name** | **string** | Environment name. | 
 **Description** | **string** | Environment description. | 
@@ -162,6 +163,31 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *RpmPackageEnvironmentResponse) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
+
+### GetVulnReport
+
+`func (o *RpmPackageEnvironmentResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *RpmPackageEnvironmentResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *RpmPackageEnvironmentResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *RpmPackageEnvironmentResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
 
 ### GetId
 

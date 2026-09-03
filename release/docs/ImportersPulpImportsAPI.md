@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ImportersCorePulpImportsCreate
 
-> TaskGroupOperationResponse ImportersCorePulpImportsCreate(ctx, pulpImporterHref).PulpImport(pulpImport).Execute()
+> TaskGroupOperationResponse ImportersCorePulpImportsCreate(ctx, pulpImporterHref).PulpImport(pulpImport).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a pulp import
 
@@ -34,10 +34,11 @@ import (
 func main() {
 	pulpImporterHref := "pulpImporterHref_example" // string | 
 	pulpImport := *openapiclient.NewPulpImport() // PulpImport | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsCreate(context.Background(), pulpImporterHref).PulpImport(pulpImport).Execute()
+	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsCreate(context.Background(), pulpImporterHref).PulpImport(pulpImport).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportsAPI.ImportersCorePulpImportsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +65,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pulpImport** | [**PulpImport**](PulpImport.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -85,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## ImportersCorePulpImportsDelete
 
-> ImportersCorePulpImportsDelete(ctx, pulpPulpImportHref).Execute()
+> ImportersCorePulpImportsDelete(ctx, pulpPulpImportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a pulp import
 
@@ -105,10 +107,11 @@ import (
 
 func main() {
 	pulpPulpImportHref := "pulpPulpImportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsDelete(context.Background(), pulpPulpImportHref).Execute()
+	r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsDelete(context.Background(), pulpPulpImportHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportsAPI.ImportersCorePulpImportsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,6 +135,7 @@ Other parameters are passed through a pointer to a apiImportersCorePulpImportsDe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -153,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## ImportersCorePulpImportsList
 
-> PaginatedImportResponseList ImportersCorePulpImportsList(ctx, pulpImporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedImportResponseList ImportersCorePulpImportsList(ctx, pulpImporterHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List pulp imports
 
@@ -173,6 +177,7 @@ import (
 
 func main() {
 	pulpImporterHref := "pulpImporterHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -180,7 +185,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsList(context.Background(), pulpImporterHref).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsList(context.Background(), pulpImporterHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportsAPI.ImportersCorePulpImportsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -206,6 +211,7 @@ Other parameters are passed through a pointer to a apiImportersCorePulpImportsLi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
@@ -231,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ImportersCorePulpImportsRead
 
-> ImportResponse ImportersCorePulpImportsRead(ctx, pulpPulpImportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ImportResponse ImportersCorePulpImportsRead(ctx, pulpPulpImportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a pulp import
 
@@ -251,12 +257,13 @@ import (
 
 func main() {
 	pulpPulpImportHref := "pulpPulpImportHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsRead(context.Background(), pulpPulpImportHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ImportersPulpImportsAPI.ImportersCorePulpImportsRead(context.Background(), pulpPulpImportHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportersPulpImportsAPI.ImportersCorePulpImportsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,6 +289,7 @@ Other parameters are passed through a pointer to a apiImportersCorePulpImportsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

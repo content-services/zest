@@ -30,10 +30,17 @@ type DistributionsFileAPIDistributionsFileFileAddRoleRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileAddRoleRequest) NestedRole(nestedRole NestedRole) DistributionsFileAPIDistributionsFileFileAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileAddRoleExecute(r Dist
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type DistributionsFileAPIDistributionsFileFileCreateRequest struct {
 	ApiService *DistributionsFileAPIService
 	pulpDomain string
 	fileFileDistribution *FileFileDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileCreateRequest) FileFileDistribution(fileFileDistribution FileFileDistribution) DistributionsFileAPIDistributionsFileFileCreateRequest {
 	r.fileFileDistribution = &fileFileDistribution
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileCreateExecute(r Distr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.fileFileDistribution
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type DistributionsFileAPIDistributionsFileFileDeleteRequest struct {
 	ctx context.Context
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r DistributionsFileAPIDistributionsFileFileDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileDeleteExecute(r Distr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type DistributionsFileAPIDistributionsFileFileListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsFileAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -390,6 +421,12 @@ type DistributionsFileAPIDistributionsFileFileListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -524,13 +561,11 @@ func (r DistributionsFileAPIDistributionsFileFileListRequest) Q(q string) Distri
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsFileAPIDistributionsFileFileListRequest) Repository(repository string) DistributionsFileAPIDistributionsFileFileListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsFileAPIDistributionsFileFileListRequest) RepositoryIn(repositoryIn []string) DistributionsFileAPIDistributionsFileFileListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -712,6 +747,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileListExecute(r Distrib
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -753,8 +791,15 @@ type DistributionsFileAPIDistributionsFileFileListRolesRequest struct {
 	ctx context.Context
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -852,6 +897,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileListRolesExecute(r Di
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -893,8 +941,15 @@ type DistributionsFileAPIDistributionsFileFileMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -992,6 +1047,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileMyPermissionsExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1034,6 +1092,7 @@ type DistributionsFileAPIDistributionsFileFilePartialUpdateRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	patchedfileFileDistribution *PatchedfileFileDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) PatchedfileFileDistribution(patchedfileFileDistribution PatchedfileFileDistribution) DistributionsFileAPIDistributionsFileFilePartialUpdateRequest {
@@ -1041,14 +1100,20 @@ func (r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) Patchedfi
 	return r
 }
 
-func (r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFilePartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) Execute() (*FileFileDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsFileFilePartialUpdateExecute(r)
 }
 
 /*
 DistributionsFileFilePartialUpdate Update a file distribution
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFileDistributionHref
@@ -1063,13 +1128,13 @@ func (a *DistributionsFileAPIService) DistributionsFileFilePartialUpdate(ctx con
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsFileAPIService) DistributionsFileFilePartialUpdateExecute(r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return FileFileDistributionResponse
+func (a *DistributionsFileAPIService) DistributionsFileFilePartialUpdateExecute(r DistributionsFileAPIDistributionsFileFilePartialUpdateRequest) (*FileFileDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *FileFileDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsFileAPIService.DistributionsFileFilePartialUpdate")
@@ -1104,6 +1169,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFilePartialUpdateExecute(
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedfileFileDistribution
@@ -1148,8 +1216,15 @@ type DistributionsFileAPIDistributionsFileFileReadRequest struct {
 	ctx context.Context
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1247,6 +1322,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileReadExecute(r Distrib
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1289,10 +1367,17 @@ type DistributionsFileAPIDistributionsFileFileRemoveRoleRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileRemoveRoleRequest) NestedRole(nestedRole NestedRole) DistributionsFileAPIDistributionsFileFileRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1360,6 +1445,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileRemoveRoleExecute(r D
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1404,10 +1492,17 @@ type DistributionsFileAPIDistributionsFileFileSetLabelRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileSetLabelRequest) SetLabel(setLabel SetLabel) DistributionsFileAPIDistributionsFileFileSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1475,6 +1570,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileSetLabelExecute(r Dis
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1519,10 +1617,17 @@ type DistributionsFileAPIDistributionsFileFileUnsetLabelRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) DistributionsFileAPIDistributionsFileFileUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1590,6 +1695,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileUnsetLabelExecute(r D
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1634,6 +1742,7 @@ type DistributionsFileAPIDistributionsFileFileUpdateRequest struct {
 	ApiService *DistributionsFileAPIService
 	fileFileDistributionHref string
 	fileFileDistribution *FileFileDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsFileAPIDistributionsFileFileUpdateRequest) FileFileDistribution(fileFileDistribution FileFileDistribution) DistributionsFileAPIDistributionsFileFileUpdateRequest {
@@ -1641,14 +1750,20 @@ func (r DistributionsFileAPIDistributionsFileFileUpdateRequest) FileFileDistribu
 	return r
 }
 
-func (r DistributionsFileAPIDistributionsFileFileUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsFileAPIDistributionsFileFileUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsFileAPIDistributionsFileFileUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsFileAPIDistributionsFileFileUpdateRequest) Execute() (*FileFileDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsFileFileUpdateExecute(r)
 }
 
 /*
 DistributionsFileFileUpdate Update a file distribution
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fileFileDistributionHref
@@ -1663,13 +1778,13 @@ func (a *DistributionsFileAPIService) DistributionsFileFileUpdate(ctx context.Co
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsFileAPIService) DistributionsFileFileUpdateExecute(r DistributionsFileAPIDistributionsFileFileUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return FileFileDistributionResponse
+func (a *DistributionsFileAPIService) DistributionsFileFileUpdateExecute(r DistributionsFileAPIDistributionsFileFileUpdateRequest) (*FileFileDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *FileFileDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsFileAPIService.DistributionsFileFileUpdate")
@@ -1704,6 +1819,9 @@ func (a *DistributionsFileAPIService) DistributionsFileFileUpdateExecute(r Distr
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.fileFileDistribution

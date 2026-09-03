@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 ## AcsRpmRpmAddRole
 
-> NestedRoleResponse AcsRpmRpmAddRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse AcsRpmRpmAddRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Add a role
 
@@ -41,10 +41,11 @@ import (
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmAddRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmAddRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmAddRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +72,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -92,7 +94,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmCreate
 
-> RpmRpmAlternateContentSourceResponse AcsRpmRpmCreate(ctx, pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+> RpmRpmAlternateContentSourceResponse AcsRpmRpmCreate(ctx, pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Create a rpm alternate content source
 
@@ -113,10 +115,11 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmCreate(context.Background(), pulpDomain).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -143,6 +146,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmAlternateContentSource** | [**RpmRpmAlternateContentSource**](RpmRpmAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -164,7 +168,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmDelete
 
-> AsyncOperationResponse AcsRpmRpmDelete(ctx, rpmRpmAlternateContentSourceHref).Execute()
+> AsyncOperationResponse AcsRpmRpmDelete(ctx, rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a rpm alternate content source
 
@@ -184,10 +188,11 @@ import (
 
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmDelete(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmDelete(context.Background(), rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,6 +218,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmDeleteRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -234,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmList
 
-> PaginatedrpmRpmAlternateContentSourceResponseList AcsRpmRpmList(ctx, pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmRpmAlternateContentSourceResponseList AcsRpmRpmList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List rpm alternate content sources
 
@@ -254,6 +260,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	name := "name_example" // string | Filter results where name matches value (optional)
 	nameContains := "nameContains_example" // string | Filter results where name contains value (optional)
@@ -275,7 +282,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Name(name).NameContains(nameContains).NameIcontains(nameIcontains).NameIexact(nameIexact).NameIn(nameIn).NameIregex(nameIregex).NameIstartswith(nameIstartswith).NameRegex(nameRegex).NameStartswith(nameStartswith).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -301,6 +308,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmListRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **name** | **string** | Filter results where name matches value | 
  **nameContains** | **string** | Filter results where name contains value | 
@@ -340,7 +348,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmListRoles
 
-> ObjectRolesResponse AcsRpmRpmListRoles(ctx, rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> ObjectRolesResponse AcsRpmRpmListRoles(ctx, rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List roles
 
@@ -360,12 +368,13 @@ import (
 
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmListRoles(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmListRoles(context.Background(), rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmListRoles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -391,6 +400,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmListRolesRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -414,7 +424,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmMyPermissions
 
-> MyPermissionsResponse AcsRpmRpmMyPermissions(ctx, rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> MyPermissionsResponse AcsRpmRpmMyPermissions(ctx, rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List user permissions
 
@@ -434,12 +444,13 @@ import (
 
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmMyPermissions(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmMyPermissions(context.Background(), rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmMyPermissions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -465,6 +476,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmMyPermissionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -488,7 +500,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmPartialUpdate
 
-> AsyncOperationResponse AcsRpmRpmPartialUpdate(ctx, rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).Execute()
+> RpmRpmAlternateContentSourceResponse AcsRpmRpmPartialUpdate(ctx, rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm alternate content source
 
@@ -509,15 +521,16 @@ import (
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 	patchedrpmRpmAlternateContentSource := *openapiclient.NewPatchedrpmRpmAlternateContentSource() // PatchedrpmRpmAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmPartialUpdate(context.Background(), rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmPartialUpdate(context.Background(), rpmRpmAlternateContentSourceHref).PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcsRpmRpmPartialUpdate`: AsyncOperationResponse
+	// response from `AcsRpmRpmPartialUpdate`: RpmRpmAlternateContentSourceResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmPartialUpdate`: %v\n", resp)
 }
 ```
@@ -539,10 +552,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **patchedrpmRpmAlternateContentSource** | [**PatchedrpmRpmAlternateContentSource**](PatchedrpmRpmAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmAlternateContentSourceResponse**](RpmRpmAlternateContentSourceResponse.md)
 
 ### Authorization
 
@@ -560,7 +574,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmRead
 
-> RpmRpmAlternateContentSourceResponse AcsRpmRpmRead(ctx, rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RpmRpmAlternateContentSourceResponse AcsRpmRpmRead(ctx, rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a rpm alternate content source
 
@@ -580,12 +594,13 @@ import (
 
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRead(context.Background(), rpmRpmAlternateContentSourceHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRead(context.Background(), rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -611,6 +626,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmReadRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -634,7 +650,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmRefresh
 
-> TaskGroupOperationResponse AcsRpmRpmRefresh(ctx, rpmRpmAlternateContentSourceHref).Execute()
+> TaskGroupOperationResponse AcsRpmRpmRefresh(ctx, rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -654,10 +670,11 @@ import (
 
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRefresh(context.Background(), rpmRpmAlternateContentSourceHref).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRefresh(context.Background(), rpmRpmAlternateContentSourceHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRefresh``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -683,6 +700,7 @@ Other parameters are passed through a pointer to a apiAcsRpmRpmRefreshRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -704,7 +722,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmRemoveRole
 
-> NestedRoleResponse AcsRpmRpmRemoveRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+> NestedRoleResponse AcsRpmRpmRemoveRole(ctx, rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Remove a role
 
@@ -725,10 +743,11 @@ import (
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 	nestedRole := *openapiclient.NewNestedRole("Role_example") // NestedRole | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRemoveRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmRemoveRole(context.Background(), rpmRpmAlternateContentSourceHref).NestedRole(nestedRole).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmRemoveRole``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -755,6 +774,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **nestedRole** | [**NestedRole**](NestedRole.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -776,7 +796,7 @@ Name | Type | Description  | Notes
 
 ## AcsRpmRpmUpdate
 
-> AsyncOperationResponse AcsRpmRpmUpdate(ctx, rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+> RpmRpmAlternateContentSourceResponse AcsRpmRpmUpdate(ctx, rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Update a rpm alternate content source
 
@@ -797,15 +817,16 @@ import (
 func main() {
 	rpmRpmAlternateContentSourceHref := "rpmRpmAlternateContentSourceHref_example" // string | 
 	rpmRpmAlternateContentSource := *openapiclient.NewRpmRpmAlternateContentSource("Name_example", "Remote_example") // RpmRpmAlternateContentSource | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmUpdate(context.Background(), rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).Execute()
+	resp, r, err := apiClient.AcsRpmAPI.AcsRpmRpmUpdate(context.Background(), rpmRpmAlternateContentSourceHref).RpmRpmAlternateContentSource(rpmRpmAlternateContentSource).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcsRpmAPI.AcsRpmRpmUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcsRpmRpmUpdate`: AsyncOperationResponse
+	// response from `AcsRpmRpmUpdate`: RpmRpmAlternateContentSourceResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcsRpmAPI.AcsRpmRpmUpdate`: %v\n", resp)
 }
 ```
@@ -827,10 +848,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **rpmRpmAlternateContentSource** | [**RpmRpmAlternateContentSource**](RpmRpmAlternateContentSource.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
+[**RpmRpmAlternateContentSourceResponse**](RpmRpmAlternateContentSourceResponse.md)
 
 ### Authorization
 

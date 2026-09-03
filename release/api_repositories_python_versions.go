@@ -30,6 +30,13 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsDeleteRequest 
 	ctx context.Context
 	ApiService *RepositoriesPythonVersionsAPIService
 	pythonPythonRepositoryVersionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -93,6 +100,9 @@ func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsD
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -134,6 +144,7 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest st
 	ctx context.Context
 	ApiService *RepositoriesPythonVersionsAPIService
 	pythonPythonRepositoryHref string
+	xTaskDiagnostics *[]string
 	content *string
 	contentIn *[]string
 	limit *int32
@@ -157,6 +168,12 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest st
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Content Unit referenced by HREF/PRN
@@ -219,7 +236,7 @@ func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;content_ids&#x60; - Content ids* &#x60;-content_ids&#x60; - Content ids (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest) Ordering(ordering []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsListRequest {
 	r.ordering = &ordering
 	return r
@@ -443,6 +460,9 @@ func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsL
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -484,8 +504,15 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsReadRequest st
 	ctx context.Context
 	ApiService *RepositoriesPythonVersionsAPIService
 	pythonPythonRepositoryVersionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -583,6 +610,9 @@ func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -625,10 +655,17 @@ type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsRepairRequest 
 	ApiService *RepositoriesPythonVersionsAPIService
 	pythonPythonRepositoryVersionHref string
 	repair *Repair
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsRepairRequest) Repair(repair Repair) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsRepairRequest {
 	r.repair = &repair
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsRepairRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsRepairRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -696,8 +733,125 @@ func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.repair
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesPythonVersionsAPIService
+	pythonPythonRepositoryVersionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesPythonPythonVersionsScanExecute(r)
+}
+
+/*
+RepositoriesPythonPythonVersionsScan Generate vulnerability report
+
+Scan a repository version for vulnerabilities.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pythonPythonRepositoryVersionHref
+ @return RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest
+*/
+func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsScan(ctx context.Context, pythonPythonRepositoryVersionHref string) RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest {
+	return RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest{
+		ApiService: a,
+		ctx: ctx,
+		pythonPythonRepositoryVersionHref: pythonPythonRepositoryVersionHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesPythonVersionsAPIService) RepositoriesPythonPythonVersionsScanExecute(r RepositoriesPythonVersionsAPIRepositoriesPythonPythonVersionsScanRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesPythonVersionsAPIService.RepositoriesPythonPythonVersionsScan")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{python_python_repository_version_href}scan/"
+	localVarPath = strings.Replace(localVarPath, "{"+"python_python_repository_version_href"+"}", url.PathEscape(parameterValueToString(r.pythonPythonRepositoryVersionHref, "pythonPythonRepositoryVersionHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

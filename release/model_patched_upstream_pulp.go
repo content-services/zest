@@ -40,6 +40,18 @@ type PatchedUpstreamPulp struct {
 	Username NullableString `json:"username,omitempty"`
 	// The password to be used for authentication when syncing. Extra leading and trailing whitespace characters are not trimmed.
 	Password NullableString `json:"password,omitempty"`
+	// Total number of simultaneous connections. If not set then the default value will be used.
+	DownloadConcurrency NullableInt64 `json:"download_concurrency,omitempty"`
+	// Maximum number of retry attempts after a download failure. If not set then the default value (3) will be used.
+	MaxRetries NullableInt64 `json:"max_retries,omitempty"`
+	// aiohttp.ClientTimeout.total (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+	TotalTimeout NullableFloat64 `json:"total_timeout,omitempty"`
+	// aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+	ConnectTimeout NullableFloat64 `json:"connect_timeout,omitempty"`
+	// aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+	SockConnectTimeout NullableFloat64 `json:"sock_connect_timeout,omitempty"`
+	// aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
+	SockReadTimeout NullableFloat64 `json:"sock_read_timeout,omitempty"`
 	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
 	QSelect NullableString `json:"q_select,omitempty"`
 	// Policy for how replicate will manage the local objects within the domain.* `all` - Replicate manages ALL local objects within the domain.* `labeled` - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* `nodelete` - Replicate will not delete any local object whether they were created by replication or not.
@@ -446,6 +458,258 @@ func (o *PatchedUpstreamPulp) UnsetPassword() {
 	o.Password.Unset()
 }
 
+// GetDownloadConcurrency returns the DownloadConcurrency field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetDownloadConcurrency() int64 {
+	if o == nil || IsNil(o.DownloadConcurrency.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.DownloadConcurrency.Get()
+}
+
+// GetDownloadConcurrencyOk returns a tuple with the DownloadConcurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetDownloadConcurrencyOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DownloadConcurrency.Get(), o.DownloadConcurrency.IsSet()
+}
+
+// HasDownloadConcurrency returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasDownloadConcurrency() bool {
+	if o != nil && o.DownloadConcurrency.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadConcurrency gets a reference to the given NullableInt64 and assigns it to the DownloadConcurrency field.
+func (o *PatchedUpstreamPulp) SetDownloadConcurrency(v int64) {
+	o.DownloadConcurrency.Set(&v)
+}
+// SetDownloadConcurrencyNil sets the value for DownloadConcurrency to be an explicit nil
+func (o *PatchedUpstreamPulp) SetDownloadConcurrencyNil() {
+	o.DownloadConcurrency.Set(nil)
+}
+
+// UnsetDownloadConcurrency ensures that no value is present for DownloadConcurrency, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetDownloadConcurrency() {
+	o.DownloadConcurrency.Unset()
+}
+
+// GetMaxRetries returns the MaxRetries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetMaxRetries() int64 {
+	if o == nil || IsNil(o.MaxRetries.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxRetries.Get()
+}
+
+// GetMaxRetriesOk returns a tuple with the MaxRetries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetMaxRetriesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxRetries.Get(), o.MaxRetries.IsSet()
+}
+
+// HasMaxRetries returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasMaxRetries() bool {
+	if o != nil && o.MaxRetries.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxRetries gets a reference to the given NullableInt64 and assigns it to the MaxRetries field.
+func (o *PatchedUpstreamPulp) SetMaxRetries(v int64) {
+	o.MaxRetries.Set(&v)
+}
+// SetMaxRetriesNil sets the value for MaxRetries to be an explicit nil
+func (o *PatchedUpstreamPulp) SetMaxRetriesNil() {
+	o.MaxRetries.Set(nil)
+}
+
+// UnsetMaxRetries ensures that no value is present for MaxRetries, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetMaxRetries() {
+	o.MaxRetries.Unset()
+}
+
+// GetTotalTimeout returns the TotalTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetTotalTimeout() float64 {
+	if o == nil || IsNil(o.TotalTimeout.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.TotalTimeout.Get()
+}
+
+// GetTotalTimeoutOk returns a tuple with the TotalTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetTotalTimeoutOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TotalTimeout.Get(), o.TotalTimeout.IsSet()
+}
+
+// HasTotalTimeout returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasTotalTimeout() bool {
+	if o != nil && o.TotalTimeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalTimeout gets a reference to the given NullableFloat64 and assigns it to the TotalTimeout field.
+func (o *PatchedUpstreamPulp) SetTotalTimeout(v float64) {
+	o.TotalTimeout.Set(&v)
+}
+// SetTotalTimeoutNil sets the value for TotalTimeout to be an explicit nil
+func (o *PatchedUpstreamPulp) SetTotalTimeoutNil() {
+	o.TotalTimeout.Set(nil)
+}
+
+// UnsetTotalTimeout ensures that no value is present for TotalTimeout, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetTotalTimeout() {
+	o.TotalTimeout.Unset()
+}
+
+// GetConnectTimeout returns the ConnectTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetConnectTimeout() float64 {
+	if o == nil || IsNil(o.ConnectTimeout.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.ConnectTimeout.Get()
+}
+
+// GetConnectTimeoutOk returns a tuple with the ConnectTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetConnectTimeoutOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ConnectTimeout.Get(), o.ConnectTimeout.IsSet()
+}
+
+// HasConnectTimeout returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasConnectTimeout() bool {
+	if o != nil && o.ConnectTimeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectTimeout gets a reference to the given NullableFloat64 and assigns it to the ConnectTimeout field.
+func (o *PatchedUpstreamPulp) SetConnectTimeout(v float64) {
+	o.ConnectTimeout.Set(&v)
+}
+// SetConnectTimeoutNil sets the value for ConnectTimeout to be an explicit nil
+func (o *PatchedUpstreamPulp) SetConnectTimeoutNil() {
+	o.ConnectTimeout.Set(nil)
+}
+
+// UnsetConnectTimeout ensures that no value is present for ConnectTimeout, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetConnectTimeout() {
+	o.ConnectTimeout.Unset()
+}
+
+// GetSockConnectTimeout returns the SockConnectTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetSockConnectTimeout() float64 {
+	if o == nil || IsNil(o.SockConnectTimeout.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.SockConnectTimeout.Get()
+}
+
+// GetSockConnectTimeoutOk returns a tuple with the SockConnectTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetSockConnectTimeoutOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SockConnectTimeout.Get(), o.SockConnectTimeout.IsSet()
+}
+
+// HasSockConnectTimeout returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasSockConnectTimeout() bool {
+	if o != nil && o.SockConnectTimeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSockConnectTimeout gets a reference to the given NullableFloat64 and assigns it to the SockConnectTimeout field.
+func (o *PatchedUpstreamPulp) SetSockConnectTimeout(v float64) {
+	o.SockConnectTimeout.Set(&v)
+}
+// SetSockConnectTimeoutNil sets the value for SockConnectTimeout to be an explicit nil
+func (o *PatchedUpstreamPulp) SetSockConnectTimeoutNil() {
+	o.SockConnectTimeout.Set(nil)
+}
+
+// UnsetSockConnectTimeout ensures that no value is present for SockConnectTimeout, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetSockConnectTimeout() {
+	o.SockConnectTimeout.Unset()
+}
+
+// GetSockReadTimeout returns the SockReadTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedUpstreamPulp) GetSockReadTimeout() float64 {
+	if o == nil || IsNil(o.SockReadTimeout.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.SockReadTimeout.Get()
+}
+
+// GetSockReadTimeoutOk returns a tuple with the SockReadTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedUpstreamPulp) GetSockReadTimeoutOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SockReadTimeout.Get(), o.SockReadTimeout.IsSet()
+}
+
+// HasSockReadTimeout returns a boolean if a field has been set.
+func (o *PatchedUpstreamPulp) HasSockReadTimeout() bool {
+	if o != nil && o.SockReadTimeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSockReadTimeout gets a reference to the given NullableFloat64 and assigns it to the SockReadTimeout field.
+func (o *PatchedUpstreamPulp) SetSockReadTimeout(v float64) {
+	o.SockReadTimeout.Set(&v)
+}
+// SetSockReadTimeoutNil sets the value for SockReadTimeout to be an explicit nil
+func (o *PatchedUpstreamPulp) SetSockReadTimeoutNil() {
+	o.SockReadTimeout.Set(nil)
+}
+
+// UnsetSockReadTimeout ensures that no value is present for SockReadTimeout, not even an explicit nil
+func (o *PatchedUpstreamPulp) UnsetSockReadTimeout() {
+	o.SockReadTimeout.Unset()
+}
+
 // GetQSelect returns the QSelect field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedUpstreamPulp) GetQSelect() string {
 	if o == nil || IsNil(o.QSelect.Get()) {
@@ -560,6 +824,24 @@ func (o PatchedUpstreamPulp) ToMap() (map[string]interface{}, error) {
 	if o.Password.IsSet() {
 		toSerialize["password"] = o.Password.Get()
 	}
+	if o.DownloadConcurrency.IsSet() {
+		toSerialize["download_concurrency"] = o.DownloadConcurrency.Get()
+	}
+	if o.MaxRetries.IsSet() {
+		toSerialize["max_retries"] = o.MaxRetries.Get()
+	}
+	if o.TotalTimeout.IsSet() {
+		toSerialize["total_timeout"] = o.TotalTimeout.Get()
+	}
+	if o.ConnectTimeout.IsSet() {
+		toSerialize["connect_timeout"] = o.ConnectTimeout.Get()
+	}
+	if o.SockConnectTimeout.IsSet() {
+		toSerialize["sock_connect_timeout"] = o.SockConnectTimeout.Get()
+	}
+	if o.SockReadTimeout.IsSet() {
+		toSerialize["sock_read_timeout"] = o.SockReadTimeout.Get()
+	}
 	if o.QSelect.IsSet() {
 		toSerialize["q_select"] = o.QSelect.Get()
 	}
@@ -598,6 +880,12 @@ func (o *PatchedUpstreamPulp) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tls_validation")
 		delete(additionalProperties, "username")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "download_concurrency")
+		delete(additionalProperties, "max_retries")
+		delete(additionalProperties, "total_timeout")
+		delete(additionalProperties, "connect_timeout")
+		delete(additionalProperties, "sock_connect_timeout")
+		delete(additionalProperties, "sock_read_timeout")
 		delete(additionalProperties, "q_select")
 		delete(additionalProperties, "policy")
 		o.AdditionalProperties = additionalProperties

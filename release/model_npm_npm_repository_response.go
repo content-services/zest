@@ -20,7 +20,7 @@ import (
 // checks if the NpmNpmRepositoryResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NpmNpmRepositoryResponse{}
 
-// NpmNpmRepositoryResponse A Serializer for NpmRepository.Add any new fields if defined on NpmRepository.Similar to the example above, in PackageSerializer.Additional validators can be added to the parent validators listFor example::class Meta:    validators = core_serializers.RepositorySerializer.Meta.validators + [myValidator1, ...]
+// NpmNpmRepositoryResponse A Serializer for NpmRepository.Add any new fields if defined on NpmRepository.Similar to the example above, in NpmPackageSerializer.Additional validators can be added to the parent validators listFor example::class Meta:    validators = core_serializers.RepositorySerializer.Meta.validators + [myValidator1, ...]
 type NpmNpmRepositoryResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// The Pulp Resource Name (PRN).
@@ -38,6 +38,8 @@ type NpmNpmRepositoryResponse struct {
 	Description NullableString `json:"description,omitempty"`
 	// Retain X versions of the repository. Default is null which retains all versions.
 	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	// An optional remote to use by default when syncing.
 	Remote NullableString `json:"remote,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -395,6 +397,48 @@ func (o *NpmNpmRepositoryResponse) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NpmNpmRepositoryResponse) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RetainCheckpoints.Get()
+}
+
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NpmNpmRepositoryResponse) GetRetainCheckpointsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+}
+
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *NpmNpmRepositoryResponse) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *NpmNpmRepositoryResponse) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
+}
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *NpmNpmRepositoryResponse) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
+}
+
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *NpmNpmRepositoryResponse) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
+}
+
 // GetRemote returns the Remote field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NpmNpmRepositoryResponse) GetRemote() string {
 	if o == nil || IsNil(o.Remote.Get()) {
@@ -475,6 +519,9 @@ func (o NpmNpmRepositoryResponse) ToMap() (map[string]interface{}, error) {
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
+	}
 	if o.Remote.IsSet() {
 		toSerialize["remote"] = o.Remote.Get()
 	}
@@ -531,6 +578,7 @@ func (o *NpmNpmRepositoryResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "remote")
 		o.AdditionalProperties = additionalProperties
 	}

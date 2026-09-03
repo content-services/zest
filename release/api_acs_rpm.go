@@ -30,10 +30,17 @@ type AcsRpmAPIAcsRpmRpmAddRoleRequest struct {
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r AcsRpmAPIAcsRpmRpmAddRoleRequest) NestedRole(nestedRole NestedRole) AcsRpmAPIAcsRpmRpmAddRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +108,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmAddRoleExecute(r AcsRpmAPIAcsRpmRpmAddRoleRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -145,10 +155,17 @@ type AcsRpmAPIAcsRpmRpmCreateRequest struct {
 	ApiService *AcsRpmAPIService
 	pulpDomain string
 	rpmRpmAlternateContentSource *RpmRpmAlternateContentSource
+	xTaskDiagnostics *[]string
 }
 
 func (r AcsRpmAPIAcsRpmRpmCreateRequest) RpmRpmAlternateContentSource(rpmRpmAlternateContentSource RpmRpmAlternateContentSource) AcsRpmAPIAcsRpmRpmCreateRequest {
 	r.rpmRpmAlternateContentSource = &rpmRpmAlternateContentSource
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -216,6 +233,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmCreateExecute(r AcsRpmAPIAcsRpmRpmCreateRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.rpmRpmAlternateContentSource
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -259,6 +279,13 @@ type AcsRpmAPIAcsRpmRpmDeleteRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r AcsRpmAPIAcsRpmRpmDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -322,6 +349,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmDeleteExecute(r AcsRpmAPIAcsRpmRpmDeleteRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -363,6 +393,7 @@ type AcsRpmAPIAcsRpmRpmListRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameContains *string
@@ -381,6 +412,12 @@ type AcsRpmAPIAcsRpmRpmListRequest struct {
 	q *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmListRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -622,6 +659,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmListExecute(r AcsRpmAPIAcsRpmRpmListRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -663,8 +703,15 @@ type AcsRpmAPIAcsRpmRpmListRolesRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -762,6 +809,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmListRolesExecute(r AcsRpmAPIAcsRpmRpmListRol
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -803,8 +853,15 @@ type AcsRpmAPIAcsRpmRpmMyPermissionsRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -902,6 +959,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmMyPermissionsExecute(r AcsRpmAPIAcsRpmRpmMyP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -944,6 +1004,7 @@ type AcsRpmAPIAcsRpmRpmPartialUpdateRequest struct {
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
 	patchedrpmRpmAlternateContentSource *PatchedrpmRpmAlternateContentSource
+	xTaskDiagnostics *[]string
 }
 
 func (r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) PatchedrpmRpmAlternateContentSource(patchedrpmRpmAlternateContentSource PatchedrpmRpmAlternateContentSource) AcsRpmAPIAcsRpmRpmPartialUpdateRequest {
@@ -951,14 +1012,20 @@ func (r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) PatchedrpmRpmAlternateContentSou
 	return r
 }
 
-func (r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) Execute() (*RpmRpmAlternateContentSourceResponse, *http.Response, error) {
 	return r.ApiService.AcsRpmRpmPartialUpdateExecute(r)
 }
 
 /*
 AcsRpmRpmPartialUpdate Update a rpm alternate content source
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmAlternateContentSourceHref
@@ -973,13 +1040,13 @@ func (a *AcsRpmAPIService) AcsRpmRpmPartialUpdate(ctx context.Context, rpmRpmAlt
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *AcsRpmAPIService) AcsRpmRpmPartialUpdateExecute(r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmAlternateContentSourceResponse
+func (a *AcsRpmAPIService) AcsRpmRpmPartialUpdateExecute(r AcsRpmAPIAcsRpmRpmPartialUpdateRequest) (*RpmRpmAlternateContentSourceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmAlternateContentSourceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AcsRpmAPIService.AcsRpmRpmPartialUpdate")
@@ -1014,6 +1081,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmPartialUpdateExecute(r AcsRpmAPIAcsRpmRpmPar
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedrpmRpmAlternateContentSource
@@ -1058,8 +1128,15 @@ type AcsRpmAPIAcsRpmRpmReadRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1157,6 +1234,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmReadExecute(r AcsRpmAPIAcsRpmRpmReadRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1198,6 +1278,13 @@ type AcsRpmAPIAcsRpmRpmRefreshRequest struct {
 	ctx context.Context
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmRefreshRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmRefreshRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r AcsRpmAPIAcsRpmRpmRefreshRequest) Execute() (*TaskGroupOperationResponse, *http.Response, error) {
@@ -1261,6 +1348,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmRefreshExecute(r AcsRpmAPIAcsRpmRpmRefreshRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1303,10 +1393,17 @@ type AcsRpmAPIAcsRpmRpmRemoveRoleRequest struct {
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
 	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
 }
 
 func (r AcsRpmAPIAcsRpmRpmRemoveRoleRequest) NestedRole(nestedRole NestedRole) AcsRpmAPIAcsRpmRpmRemoveRoleRequest {
 	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1374,6 +1471,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmRemoveRoleExecute(r AcsRpmAPIAcsRpmRpmRemove
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1418,6 +1518,7 @@ type AcsRpmAPIAcsRpmRpmUpdateRequest struct {
 	ApiService *AcsRpmAPIService
 	rpmRpmAlternateContentSourceHref string
 	rpmRpmAlternateContentSource *RpmRpmAlternateContentSource
+	xTaskDiagnostics *[]string
 }
 
 func (r AcsRpmAPIAcsRpmRpmUpdateRequest) RpmRpmAlternateContentSource(rpmRpmAlternateContentSource RpmRpmAlternateContentSource) AcsRpmAPIAcsRpmRpmUpdateRequest {
@@ -1425,14 +1526,20 @@ func (r AcsRpmAPIAcsRpmRpmUpdateRequest) RpmRpmAlternateContentSource(rpmRpmAlte
 	return r
 }
 
-func (r AcsRpmAPIAcsRpmRpmUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r AcsRpmAPIAcsRpmRpmUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) AcsRpmAPIAcsRpmRpmUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r AcsRpmAPIAcsRpmRpmUpdateRequest) Execute() (*RpmRpmAlternateContentSourceResponse, *http.Response, error) {
 	return r.ApiService.AcsRpmRpmUpdateExecute(r)
 }
 
 /*
 AcsRpmRpmUpdate Update a rpm alternate content source
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param rpmRpmAlternateContentSourceHref
@@ -1447,13 +1554,13 @@ func (a *AcsRpmAPIService) AcsRpmRpmUpdate(ctx context.Context, rpmRpmAlternateC
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *AcsRpmAPIService) AcsRpmRpmUpdateExecute(r AcsRpmAPIAcsRpmRpmUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return RpmRpmAlternateContentSourceResponse
+func (a *AcsRpmAPIService) AcsRpmRpmUpdateExecute(r AcsRpmAPIAcsRpmRpmUpdateRequest) (*RpmRpmAlternateContentSourceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *RpmRpmAlternateContentSourceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AcsRpmAPIService.AcsRpmRpmUpdate")
@@ -1488,6 +1595,9 @@ func (a *AcsRpmAPIService) AcsRpmRpmUpdateExecute(r AcsRpmAPIAcsRpmRpmUpdateRequ
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.rpmRpmAlternateContentSource

@@ -30,6 +30,7 @@ type RpmCompsAPIRpmCompsUploadRequest struct {
 	ApiService *RpmCompsAPIService
 	pulpDomain string
 	file *os.File
+	xTaskDiagnostics *[]string
 	repository *string
 	replace *bool
 }
@@ -37,6 +38,12 @@ type RpmCompsAPIRpmCompsUploadRequest struct {
 // Full path of a comps.xml file that may be parsed into comps.xml Content units.
 func (r RpmCompsAPIRpmCompsUploadRequest) File(file *os.File) RpmCompsAPIRpmCompsUploadRequest {
 	r.file = file
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RpmCompsAPIRpmCompsUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) RpmCompsAPIRpmCompsUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -115,6 +122,9 @@ func (a *RpmCompsAPIService) RpmCompsUploadExecute(r RpmCompsAPIRpmCompsUploadRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string

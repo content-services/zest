@@ -99,15 +99,24 @@ Class | Method | HTTP request | Description
 *AcsRpmAPI* | [**AcsRpmRpmRefresh**](docs/AcsRpmAPI.md#acsrpmrpmrefresh) | **Post** /{rpm_rpm_alternate_content_source_href}refresh/ | 
 *AcsRpmAPI* | [**AcsRpmRpmRemoveRole**](docs/AcsRpmAPI.md#acsrpmrpmremoverole) | **Post** /{rpm_rpm_alternate_content_source_href}remove_role/ | Remove a role
 *AcsRpmAPI* | [**AcsRpmRpmUpdate**](docs/AcsRpmAPI.md#acsrpmrpmupdate) | **Put** /{rpm_rpm_alternate_content_source_href} | Update a rpm alternate content source
+*ApiCreateDomainAPI* | [**ApiPulpCreateDomainCreate**](docs/ApiCreateDomainAPI.md#apipulpcreatedomaincreate) | **Post** /api/pulp/create-domain/ | Create domain
 *ApiDebugAuthHeaderAPI* | [**ApiPulpDebugAuthHeaderGet**](docs/ApiDebugAuthHeaderAPI.md#apipulpdebugauthheaderget) | **Get** /api/pulp/debug_auth_header/ | 
+*ApiDebugCleanupStaleLocksAPI* | [**ApiPulpDebugCleanupStaleLocksGet**](docs/ApiDebugCleanupStaleLocksAPI.md#apipulpdebugcleanupstalelocksget) | **Get** /api/pulp/debug/cleanup-stale-locks/ | 
+*ApiDebugCleanupStaleLocksAPI* | [**ApiPulpDebugCleanupStaleLocksPost**](docs/ApiDebugCleanupStaleLocksAPI.md#apipulpdebugcleanupstalelockspost) | **Post** /api/pulp/debug/cleanup-stale-locks/ | Dispatch stale lock cleanup
+*ApiDebugDatabaseTriggersAPI* | [**ApiPulpDebugDatabaseTriggersGet**](docs/ApiDebugDatabaseTriggersAPI.md#apipulpdebugdatabasetriggersget) | **Get** /api/pulp/debug/database-triggers/ | 
+*ApiDebugReleaseTaskLocksAPI* | [**ApiPulpDebugReleaseTaskLocksGet**](docs/ApiDebugReleaseTaskLocksAPI.md#apipulpdebugreleasetasklocksget) | **Get** /api/pulp/debug/release-task-locks/ | 
+*ApiDebugStaleLocksAPI* | [**ApiPulpDebugStaleLocksGet**](docs/ApiDebugStaleLocksAPI.md#apipulpdebugstalelocksget) | **Get** /api/pulp/debug/stale-locks/ | 
+*ApiDebugTaskDebugAPI* | [**ApiPulpDebugTaskDebugGet**](docs/ApiDebugTaskDebugAPI.md#apipulpdebugtaskdebugget) | **Get** /api/pulp/debug/task-debug/ | 
+*ApiDebugTaskQueueAPI* | [**ApiPulpDebugTaskQueueGet**](docs/ApiDebugTaskQueueAPI.md#apipulpdebugtaskqueueget) | **Get** /api/pulp/debug/task-queue/ | 
 *ApiMavenAPI* | [**ApiPulpMavenGet**](docs/ApiMavenAPI.md#apipulpmavenget) | **Get** /api/pulp/maven/{pulp_domain}/{name}/{path} | 
 *ApiMavenAPI* | [**ApiPulpMavenPut**](docs/ApiMavenAPI.md#apipulpmavenput) | **Put** /api/pulp/maven/{pulp_domain}/{name}/{path} | 
-*ApiPypiAPI* | [**ApiPulpPypiRead**](docs/ApiPypiAPI.md#apipulppypiread) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/ | Get index summary
-*ApiPypiLegacyAPI* | [**ApiPulpPypiLegacyCreate**](docs/ApiPypiLegacyAPI.md#apipulppypilegacycreate) | **Post** /api/pulp/pypi/{pulp_domain}/{path}/legacy/ | Upload a package
-*ApiPypiSimpleAPI* | [**ApiPulpPypiSimpleCreate**](docs/ApiPypiSimpleAPI.md#apipulppypisimplecreate) | **Post** /api/pulp/pypi/{pulp_domain}/{path}/simple/ | Upload a package
-*ApiPypiSimpleAPI* | [**ApiPulpPypiSimpleRead**](docs/ApiPypiSimpleAPI.md#apipulppypisimpleread) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/simple/ | Get index simple page
-*ApiPypiSimpleAPI* | [**PypiSimplePackageRead**](docs/ApiPypiSimpleAPI.md#pypisimplepackageread) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/simple/{package}/ | Get package simple page
+*ApiMigrateDomainAPI* | [**ApiPulpMigrateDomainCreate**](docs/ApiMigrateDomainAPI.md#apipulpmigratedomaincreate) | **Post** /api/pulp/migrate-domain/ | Migrate domain storage to S3
+*ApiRdsConnectionTestsAPI* | [**ApiPulpRdsConnectionTestsGet**](docs/ApiRdsConnectionTestsAPI.md#apipulprdsconnectiontestsget) | **Get** /api/pulp/rds-connection-tests/ | 
+*ApiRdsConnectionTestsAPI* | [**ApiPulpRdsConnectionTestsPost**](docs/ApiRdsConnectionTestsAPI.md#apipulprdsconnectiontestspost) | **Post** /api/pulp/rds-connection-tests/ | Dispatch RDS connection tests
+*ApiTestPagerdutyAlertAPI* | [**ApiPulpTestPagerdutyAlertPost**](docs/ApiTestPagerdutyAlertAPI.md#apipulptestpagerdutyalertpost) | **Post** /api/pulp/test/pagerduty-alert/ | 
+*ApiTestRandomLockTasksAPI* | [**ApiPulpTestRandomLockTasksGet**](docs/ApiTestRandomLockTasksAPI.md#apipulptestrandomlocktasksget) | **Get** /api/pulp/test/random_lock_tasks/ | 
 *ApiTestTasksAPI* | [**ApiPulpTestTasksGet**](docs/ApiTestTasksAPI.md#apipulptesttasksget) | **Get** /api/pulp/test/tasks/ | 
+*ApiTestTriggerOomAPI* | [**ApiPulpTestTriggerOomPost**](docs/ApiTestTriggerOomAPI.md#apipulptesttriggeroompost) | **Post** /api/pulp/test/trigger-oom/ | 
 *ArtifactsAPI* | [**ArtifactsCreate**](docs/ArtifactsAPI.md#artifactscreate) | **Post** /api/pulp/{pulp_domain}/api/v3/artifacts/ | Create an artifact
 *ArtifactsAPI* | [**ArtifactsDelete**](docs/ArtifactsAPI.md#artifactsdelete) | **Delete** /{artifact_href} | Delete an artifact
 *ArtifactsAPI* | [**ArtifactsList**](docs/ArtifactsAPI.md#artifactslist) | **Get** /api/pulp/{pulp_domain}/api/v3/artifacts/ | List artifacts
@@ -123,23 +132,11 @@ Class | Method | HTTP request | Description
 *ContentArtifactAPI* | [**ContentMavenArtifactRead**](docs/ContentArtifactAPI.md#contentmavenartifactread) | **Get** /{maven_maven_artifact_href} | Inspect a maven artifact
 *ContentArtifactAPI* | [**ContentMavenArtifactSetLabel**](docs/ContentArtifactAPI.md#contentmavenartifactsetlabel) | **Post** /{maven_maven_artifact_href}set_label/ | Set a label
 *ContentArtifactAPI* | [**ContentMavenArtifactUnsetLabel**](docs/ContentArtifactAPI.md#contentmavenartifactunsetlabel) | **Post** /{maven_maven_artifact_href}unset_label/ | Unset a label
+*ContentArtifactAPI* | [**ContentMavenArtifactUpload**](docs/ContentArtifactAPI.md#contentmavenartifactupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/maven/artifact/upload/ | Upload a Maven artifact synchronously.
 *ContentBlobsAPI* | [**ContentContainerBlobsList**](docs/ContentBlobsAPI.md#contentcontainerblobslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/container/blobs/ | List blobs
 *ContentBlobsAPI* | [**ContentContainerBlobsRead**](docs/ContentBlobsAPI.md#contentcontainerblobsread) | **Get** /{container_blob_href} | Inspect a blob
 *ContentBlobsAPI* | [**ContentContainerBlobsSetLabel**](docs/ContentBlobsAPI.md#contentcontainerblobssetlabel) | **Post** /{container_blob_href}set_label/ | Set a label
 *ContentBlobsAPI* | [**ContentContainerBlobsUnsetLabel**](docs/ContentBlobsAPI.md#contentcontainerblobsunsetlabel) | **Post** /{container_blob_href}unset_label/ | Unset a label
-*ContentCommitsAPI* | [**ContentOstreeCommitsList**](docs/ContentCommitsAPI.md#contentostreecommitslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/commits/ | List ostree commits
-*ContentCommitsAPI* | [**ContentOstreeCommitsRead**](docs/ContentCommitsAPI.md#contentostreecommitsread) | **Get** /{ostree_ostree_commit_href} | Inspect an ostree commit
-*ContentCommitsAPI* | [**ContentOstreeCommitsSetLabel**](docs/ContentCommitsAPI.md#contentostreecommitssetlabel) | **Post** /{ostree_ostree_commit_href}set_label/ | Set a label
-*ContentCommitsAPI* | [**ContentOstreeCommitsUnsetLabel**](docs/ContentCommitsAPI.md#contentostreecommitsunsetlabel) | **Post** /{ostree_ostree_commit_href}unset_label/ | Unset a label
-*ContentConfigsAPI* | [**ContentOstreeConfigsList**](docs/ContentConfigsAPI.md#contentostreeconfigslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/configs/ | List ostree configs
-*ContentConfigsAPI* | [**ContentOstreeConfigsRead**](docs/ContentConfigsAPI.md#contentostreeconfigsread) | **Get** /{ostree_ostree_config_href} | Inspect an ostree config
-*ContentConfigsAPI* | [**ContentOstreeConfigsSetLabel**](docs/ContentConfigsAPI.md#contentostreeconfigssetlabel) | **Post** /{ostree_ostree_config_href}set_label/ | Set a label
-*ContentConfigsAPI* | [**ContentOstreeConfigsUnsetLabel**](docs/ContentConfigsAPI.md#contentostreeconfigsunsetlabel) | **Post** /{ostree_ostree_config_href}unset_label/ | Unset a label
-*ContentContentAPI* | [**ContentOstreeContentCreate**](docs/ContentContentAPI.md#contentostreecontentcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/ostree/content/ | Create an ostree content
-*ContentContentAPI* | [**ContentOstreeContentList**](docs/ContentContentAPI.md#contentostreecontentlist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/content/ | List ostree contents
-*ContentContentAPI* | [**ContentOstreeContentRead**](docs/ContentContentAPI.md#contentostreecontentread) | **Get** /{ostree_ostree_content_href} | Inspect an ostree content
-*ContentContentAPI* | [**ContentOstreeContentSetLabel**](docs/ContentContentAPI.md#contentostreecontentsetlabel) | **Post** /{ostree_ostree_content_href}set_label/ | Set a label
-*ContentContentAPI* | [**ContentOstreeContentUnsetLabel**](docs/ContentContentAPI.md#contentostreecontentunsetlabel) | **Post** /{ostree_ostree_content_href}unset_label/ | Unset a label
 *ContentDistributionTreesAPI* | [**ContentRpmDistributionTreesList**](docs/ContentDistributionTreesAPI.md#contentrpmdistributiontreeslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/distribution_trees/ | List distribution trees
 *ContentDistributionTreesAPI* | [**ContentRpmDistributionTreesRead**](docs/ContentDistributionTreesAPI.md#contentrpmdistributiontreesread) | **Get** /{rpm_distribution_tree_href} | Inspect a distribution tree
 *ContentDistributionTreesAPI* | [**ContentRpmDistributionTreesSetLabel**](docs/ContentDistributionTreesAPI.md#contentrpmdistributiontreessetlabel) | **Post** /{rpm_distribution_tree_href}set_label/ | Set a label
@@ -149,15 +146,22 @@ Class | Method | HTTP request | Description
 *ContentFilesAPI* | [**ContentFileFilesRead**](docs/ContentFilesAPI.md#contentfilefilesread) | **Get** /{file_file_content_href} | Inspect a file content
 *ContentFilesAPI* | [**ContentFileFilesSetLabel**](docs/ContentFilesAPI.md#contentfilefilessetlabel) | **Post** /{file_file_content_href}set_label/ | Set a label
 *ContentFilesAPI* | [**ContentFileFilesUnsetLabel**](docs/ContentFilesAPI.md#contentfilefilesunsetlabel) | **Post** /{file_file_content_href}unset_label/ | Unset a label
-*ContentGemAPI* | [**ContentGemGemCreate**](docs/ContentGemAPI.md#contentgemgemcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/gem/gem/ | Create a gem content
-*ContentGemAPI* | [**ContentGemGemList**](docs/ContentGemAPI.md#contentgemgemlist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/gem/gem/ | List gem contents
-*ContentGemAPI* | [**ContentGemGemRead**](docs/ContentGemAPI.md#contentgemgemread) | **Get** /{gem_gem_content_href} | Inspect a gem content
-*ContentGemAPI* | [**ContentGemGemSetLabel**](docs/ContentGemAPI.md#contentgemgemsetlabel) | **Post** /{gem_gem_content_href}set_label/ | Set a label
-*ContentGemAPI* | [**ContentGemGemUnsetLabel**](docs/ContentGemAPI.md#contentgemgemunsetlabel) | **Post** /{gem_gem_content_href}unset_label/ | Unset a label
+*ContentFilesAPI* | [**ContentFileFilesUpload**](docs/ContentFilesAPI.md#contentfilefilesupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/file/files/upload/ | Upload a File synchronously.
+*ContentHuggingFaceAPI* | [**ContentHuggingFaceHuggingFaceCreate**](docs/ContentHuggingFaceAPI.md#contenthuggingfacehuggingfacecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/hugging_face/hugging-face/ | Create a hugging face content
+*ContentHuggingFaceAPI* | [**ContentHuggingFaceHuggingFaceList**](docs/ContentHuggingFaceAPI.md#contenthuggingfacehuggingfacelist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/hugging_face/hugging-face/ | List hugging face contents
+*ContentHuggingFaceAPI* | [**ContentHuggingFaceHuggingFaceRead**](docs/ContentHuggingFaceAPI.md#contenthuggingfacehuggingfaceread) | **Get** /{hugging_face_hugging_face_content_href} | Inspect a hugging face content
+*ContentHuggingFaceAPI* | [**ContentHuggingFaceHuggingFaceSetLabel**](docs/ContentHuggingFaceAPI.md#contenthuggingfacehuggingfacesetlabel) | **Post** /{hugging_face_hugging_face_content_href}set_label/ | Set a label
+*ContentHuggingFaceAPI* | [**ContentHuggingFaceHuggingFaceUnsetLabel**](docs/ContentHuggingFaceAPI.md#contenthuggingfacehuggingfaceunsetlabel) | **Post** /{hugging_face_hugging_face_content_href}unset_label/ | Unset a label
 *ContentManifestsAPI* | [**ContentContainerManifestsList**](docs/ContentManifestsAPI.md#contentcontainermanifestslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/container/manifests/ | List manifests
 *ContentManifestsAPI* | [**ContentContainerManifestsRead**](docs/ContentManifestsAPI.md#contentcontainermanifestsread) | **Get** /{container_manifest_href} | Inspect a manifest
 *ContentManifestsAPI* | [**ContentContainerManifestsSetLabel**](docs/ContentManifestsAPI.md#contentcontainermanifestssetlabel) | **Post** /{container_manifest_href}set_label/ | Set a label
 *ContentManifestsAPI* | [**ContentContainerManifestsUnsetLabel**](docs/ContentManifestsAPI.md#contentcontainermanifestsunsetlabel) | **Post** /{container_manifest_href}unset_label/ | Unset a label
+*ContentMetadataAPI* | [**ContentMavenMetadataCreate**](docs/ContentMetadataAPI.md#contentmavenmetadatacreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/maven/metadata/ | Create a maven metadata
+*ContentMetadataAPI* | [**ContentMavenMetadataList**](docs/ContentMetadataAPI.md#contentmavenmetadatalist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/maven/metadata/ | List maven metadatas
+*ContentMetadataAPI* | [**ContentMavenMetadataRead**](docs/ContentMetadataAPI.md#contentmavenmetadataread) | **Get** /{maven_maven_metadata_href} | Inspect a maven metadata
+*ContentMetadataAPI* | [**ContentMavenMetadataSetLabel**](docs/ContentMetadataAPI.md#contentmavenmetadatasetlabel) | **Post** /{maven_maven_metadata_href}set_label/ | Set a label
+*ContentMetadataAPI* | [**ContentMavenMetadataUnsetLabel**](docs/ContentMetadataAPI.md#contentmavenmetadataunsetlabel) | **Post** /{maven_maven_metadata_href}unset_label/ | Unset a label
+*ContentMetadataAPI* | [**ContentMavenMetadataUpload**](docs/ContentMetadataAPI.md#contentmavenmetadataupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/maven/metadata/upload/ | Upload a Maven metadata file synchronously.
 *ContentModulemdDefaultsAPI* | [**ContentRpmModulemdDefaultsCreate**](docs/ContentModulemdDefaultsAPI.md#contentrpmmodulemddefaultscreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_defaults/ | Create a modulemd defaults
 *ContentModulemdDefaultsAPI* | [**ContentRpmModulemdDefaultsList**](docs/ContentModulemdDefaultsAPI.md#contentrpmmodulemddefaultslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/modulemd_defaults/ | List modulemd defaultss
 *ContentModulemdDefaultsAPI* | [**ContentRpmModulemdDefaultsRead**](docs/ContentModulemdDefaultsAPI.md#contentrpmmodulemddefaultsread) | **Get** /{rpm_modulemd_defaults_href} | Inspect a modulemd defaults
@@ -173,10 +177,6 @@ Class | Method | HTTP request | Description
 *ContentModulemdsAPI* | [**ContentRpmModulemdsRead**](docs/ContentModulemdsAPI.md#contentrpmmodulemdsread) | **Get** /{rpm_modulemd_href} | Inspect a modulemd
 *ContentModulemdsAPI* | [**ContentRpmModulemdsSetLabel**](docs/ContentModulemdsAPI.md#contentrpmmodulemdssetlabel) | **Post** /{rpm_modulemd_href}set_label/ | Set a label
 *ContentModulemdsAPI* | [**ContentRpmModulemdsUnsetLabel**](docs/ContentModulemdsAPI.md#contentrpmmodulemdsunsetlabel) | **Post** /{rpm_modulemd_href}unset_label/ | Unset a label
-*ContentObjectsAPI* | [**ContentOstreeObjectsList**](docs/ContentObjectsAPI.md#contentostreeobjectslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/objects/ | List ostree objects
-*ContentObjectsAPI* | [**ContentOstreeObjectsRead**](docs/ContentObjectsAPI.md#contentostreeobjectsread) | **Get** /{ostree_ostree_object_href} | Inspect an ostree object
-*ContentObjectsAPI* | [**ContentOstreeObjectsSetLabel**](docs/ContentObjectsAPI.md#contentostreeobjectssetlabel) | **Post** /{ostree_ostree_object_href}set_label/ | Set a label
-*ContentObjectsAPI* | [**ContentOstreeObjectsUnsetLabel**](docs/ContentObjectsAPI.md#contentostreeobjectsunsetlabel) | **Post** /{ostree_ostree_object_href}unset_label/ | Unset a label
 *ContentOpenpgpPublickeyAPI* | [**ContentCoreOpenpgpPublickeyCreate**](docs/ContentOpenpgpPublickeyAPI.md#contentcoreopenpgppublickeycreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_publickey/ | Create an open pgp public key
 *ContentOpenpgpPublickeyAPI* | [**ContentCoreOpenpgpPublickeyList**](docs/ContentOpenpgpPublickeyAPI.md#contentcoreopenpgppublickeylist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/core/openpgp_publickey/ | List open pgp public keys
 *ContentOpenpgpPublickeyAPI* | [**ContentCoreOpenpgpPublickeyRead**](docs/ContentOpenpgpPublickeyAPI.md#contentcoreopenpgppublickeyread) | **Get** /{open_p_g_p_public_key_href} | Inspect an open pgp public key
@@ -198,6 +198,10 @@ Class | Method | HTTP request | Description
 *ContentOpenpgpUseridAPI* | [**ContentCoreOpenpgpUseridRead**](docs/ContentOpenpgpUseridAPI.md#contentcoreopenpgpuseridread) | **Get** /{open_p_g_p_user_i_d_href} | Inspect an open pgp user id
 *ContentOpenpgpUseridAPI* | [**ContentCoreOpenpgpUseridSetLabel**](docs/ContentOpenpgpUseridAPI.md#contentcoreopenpgpuseridsetlabel) | **Post** /{open_p_g_p_user_i_d_href}set_label/ | Set a label
 *ContentOpenpgpUseridAPI* | [**ContentCoreOpenpgpUseridUnsetLabel**](docs/ContentOpenpgpUseridAPI.md#contentcoreopenpgpuseridunsetlabel) | **Post** /{open_p_g_p_user_i_d_href}unset_label/ | Unset a label
+*ContentPackageAPI* | [**ContentMavenPackageList**](docs/ContentPackageAPI.md#contentmavenpackagelist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/maven/package/ | List maven packages
+*ContentPackageAPI* | [**ContentMavenPackageRead**](docs/ContentPackageAPI.md#contentmavenpackageread) | **Get** /{maven_maven_package_href} | Inspect a maven package
+*ContentPackageAPI* | [**ContentMavenPackageSetLabel**](docs/ContentPackageAPI.md#contentmavenpackagesetlabel) | **Post** /{maven_maven_package_href}set_label/ | Set a label
+*ContentPackageAPI* | [**ContentMavenPackageUnsetLabel**](docs/ContentPackageAPI.md#contentmavenpackageunsetlabel) | **Post** /{maven_maven_package_href}unset_label/ | Unset a label
 *ContentPackagecategoriesAPI* | [**ContentRpmPackagecategoriesList**](docs/ContentPackagecategoriesAPI.md#contentrpmpackagecategorieslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packagecategories/ | List package categorys
 *ContentPackagecategoriesAPI* | [**ContentRpmPackagecategoriesRead**](docs/ContentPackagecategoriesAPI.md#contentrpmpackagecategoriesread) | **Get** /{rpm_package_category_href} | Inspect a package category
 *ContentPackagecategoriesAPI* | [**ContentRpmPackagecategoriesSetLabel**](docs/ContentPackagecategoriesAPI.md#contentrpmpackagecategoriessetlabel) | **Post** /{rpm_package_category_href}set_label/ | Set a label
@@ -219,38 +223,58 @@ Class | Method | HTTP request | Description
 *ContentPackagesAPI* | [**ContentNpmPackagesRead**](docs/ContentPackagesAPI.md#contentnpmpackagesread) | **Get** /{npm_package_href} | Inspect a package
 *ContentPackagesAPI* | [**ContentNpmPackagesSetLabel**](docs/ContentPackagesAPI.md#contentnpmpackagessetlabel) | **Post** /{npm_package_href}set_label/ | Set a label
 *ContentPackagesAPI* | [**ContentNpmPackagesUnsetLabel**](docs/ContentPackagesAPI.md#contentnpmpackagesunsetlabel) | **Post** /{npm_package_href}unset_label/ | Unset a label
+*ContentPackagesAPI* | [**ContentNpmPackagesUpload**](docs/ContentPackagesAPI.md#contentnpmpackagesupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/npm/packages/upload/ | Synchronous npm package upload
 *ContentPackagesAPI* | [**ContentPythonPackagesCreate**](docs/ContentPackagesAPI.md#contentpythonpackagescreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/python/packages/ | Create a python package content
 *ContentPackagesAPI* | [**ContentPythonPackagesList**](docs/ContentPackagesAPI.md#contentpythonpackageslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/python/packages/ | List python package contents
 *ContentPackagesAPI* | [**ContentPythonPackagesRead**](docs/ContentPackagesAPI.md#contentpythonpackagesread) | **Get** /{python_python_package_content_href} | Inspect a python package content
 *ContentPackagesAPI* | [**ContentPythonPackagesSetLabel**](docs/ContentPackagesAPI.md#contentpythonpackagessetlabel) | **Post** /{python_python_package_content_href}set_label/ | Set a label
 *ContentPackagesAPI* | [**ContentPythonPackagesUnsetLabel**](docs/ContentPackagesAPI.md#contentpythonpackagesunsetlabel) | **Post** /{python_python_package_content_href}unset_label/ | Unset a label
+*ContentPackagesAPI* | [**ContentPythonPackagesUpload**](docs/ContentPackagesAPI.md#contentpythonpackagesupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/python/packages/upload/ | Synchronous Python package upload
 *ContentPackagesAPI* | [**ContentRpmPackagesCreate**](docs/ContentPackagesAPI.md#contentrpmpackagescreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/packages/ | Create a package
 *ContentPackagesAPI* | [**ContentRpmPackagesList**](docs/ContentPackagesAPI.md#contentrpmpackageslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/packages/ | List packages
-*ContentRefsAPI* | [**ContentOstreeRefsList**](docs/ContentRefsAPI.md#contentostreerefslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/refs/ | List ostree refs
-*ContentRefsAPI* | [**ContentOstreeRefsRead**](docs/ContentRefsAPI.md#contentostreerefsread) | **Get** /{ostree_ostree_ref_href} | Inspect an ostree ref
-*ContentRefsAPI* | [**ContentOstreeRefsSetLabel**](docs/ContentRefsAPI.md#contentostreerefssetlabel) | **Post** /{ostree_ostree_ref_href}set_label/ | Set a label
-*ContentRefsAPI* | [**ContentOstreeRefsUnsetLabel**](docs/ContentRefsAPI.md#contentostreerefsunsetlabel) | **Post** /{ostree_ostree_ref_href}unset_label/ | Unset a label
+*ContentPackagesAPI* | [**ContentRpmPackagesRead**](docs/ContentPackagesAPI.md#contentrpmpackagesread) | **Get** /{rpm_package_href} | Inspect a package
+*ContentPackagesAPI* | [**ContentRpmPackagesSetLabel**](docs/ContentPackagesAPI.md#contentrpmpackagessetlabel) | **Post** /{rpm_package_href}set_label/ | Set a label
+*ContentPackagesAPI* | [**ContentRpmPackagesUnsetLabel**](docs/ContentPackagesAPI.md#contentrpmpackagesunsetlabel) | **Post** /{rpm_package_href}unset_label/ | Unset a label
+*ContentPackagesAPI* | [**ContentRpmPackagesUpload**](docs/ContentPackagesAPI.md#contentrpmpackagesupload) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/packages/upload/ | Upload an RPM package synchronously.
+*ContentProvenanceAPI* | [**ContentPythonProvenanceCreate**](docs/ContentProvenanceAPI.md#contentpythonprovenancecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/python/provenance/ | Create a package provenance
+*ContentProvenanceAPI* | [**ContentPythonProvenanceList**](docs/ContentProvenanceAPI.md#contentpythonprovenancelist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/python/provenance/ | List package provenances
+*ContentProvenanceAPI* | [**ContentPythonProvenanceRead**](docs/ContentProvenanceAPI.md#contentpythonprovenanceread) | **Get** /{python_package_provenance_href} | Inspect a package provenance
+*ContentProvenanceAPI* | [**ContentPythonProvenanceSetLabel**](docs/ContentProvenanceAPI.md#contentpythonprovenancesetlabel) | **Post** /{python_package_provenance_href}set_label/ | Set a label
+*ContentProvenanceAPI* | [**ContentPythonProvenanceUnsetLabel**](docs/ContentProvenanceAPI.md#contentpythonprovenanceunsetlabel) | **Post** /{python_package_provenance_href}unset_label/ | Unset a label
 *ContentRepoMetadataFilesAPI* | [**ContentRpmRepoMetadataFilesList**](docs/ContentRepoMetadataFilesAPI.md#contentrpmrepometadatafileslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/repo_metadata_files/ | List repo metadata files
 *ContentRepoMetadataFilesAPI* | [**ContentRpmRepoMetadataFilesRead**](docs/ContentRepoMetadataFilesAPI.md#contentrpmrepometadatafilesread) | **Get** /{rpm_repo_metadata_file_href} | Inspect a repo metadata file
 *ContentRepoMetadataFilesAPI* | [**ContentRpmRepoMetadataFilesSetLabel**](docs/ContentRepoMetadataFilesAPI.md#contentrpmrepometadatafilessetlabel) | **Post** /{rpm_repo_metadata_file_href}set_label/ | Set a label
 *ContentRepoMetadataFilesAPI* | [**ContentRpmRepoMetadataFilesUnsetLabel**](docs/ContentRepoMetadataFilesAPI.md#contentrpmrepometadatafilesunsetlabel) | **Post** /{rpm_repo_metadata_file_href}unset_label/ | Unset a label
-*ContentRpmpackagesAPI* | [**ContentRpmRpmpackagesCreate**](docs/ContentRpmpackagesAPI.md#contentrpmrpmpackagescreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content/rpm/rpmpackages/ | Create a package
-*ContentRpmpackagesAPI* | [**ContentRpmRpmpackagesList**](docs/ContentRpmpackagesAPI.md#contentrpmrpmpackageslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/rpm/rpmpackages/ | List packages
-*ContentRpmpackagesAPI* | [**ContentRpmRpmpackagesRead**](docs/ContentRpmpackagesAPI.md#contentrpmrpmpackagesread) | **Get** /{rpm_package_href} | Inspect a package
-*ContentRpmpackagesAPI* | [**ContentRpmRpmpackagesSetLabel**](docs/ContentRpmpackagesAPI.md#contentrpmrpmpackagessetlabel) | **Post** /{rpm_package_href}set_label/ | Set a label
-*ContentRpmpackagesAPI* | [**ContentRpmRpmpackagesUnsetLabel**](docs/ContentRpmpackagesAPI.md#contentrpmrpmpackagesunsetlabel) | **Post** /{rpm_package_href}unset_label/ | Unset a label
 *ContentSignaturesAPI* | [**ContentContainerSignaturesList**](docs/ContentSignaturesAPI.md#contentcontainersignatureslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/container/signatures/ | List manifest signatures
 *ContentSignaturesAPI* | [**ContentContainerSignaturesRead**](docs/ContentSignaturesAPI.md#contentcontainersignaturesread) | **Get** /{container_manifest_signature_href} | Inspect a manifest signature
 *ContentSignaturesAPI* | [**ContentContainerSignaturesSetLabel**](docs/ContentSignaturesAPI.md#contentcontainersignaturessetlabel) | **Post** /{container_manifest_signature_href}set_label/ | Set a label
 *ContentSignaturesAPI* | [**ContentContainerSignaturesUnsetLabel**](docs/ContentSignaturesAPI.md#contentcontainersignaturesunsetlabel) | **Post** /{container_manifest_signature_href}unset_label/ | Unset a label
-*ContentSummariesAPI* | [**ContentOstreeSummariesList**](docs/ContentSummariesAPI.md#contentostreesummarieslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/ostree/summaries/ | List ostree summarys
-*ContentSummariesAPI* | [**ContentOstreeSummariesRead**](docs/ContentSummariesAPI.md#contentostreesummariesread) | **Get** /{ostree_ostree_summary_href} | Inspect an ostree summary
-*ContentSummariesAPI* | [**ContentOstreeSummariesSetLabel**](docs/ContentSummariesAPI.md#contentostreesummariessetlabel) | **Post** /{ostree_ostree_summary_href}set_label/ | Set a label
-*ContentSummariesAPI* | [**ContentOstreeSummariesUnsetLabel**](docs/ContentSummariesAPI.md#contentostreesummariesunsetlabel) | **Post** /{ostree_ostree_summary_href}unset_label/ | Unset a label
 *ContentTagsAPI* | [**ContentContainerTagsList**](docs/ContentTagsAPI.md#contentcontainertagslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/container/tags/ | List tags
 *ContentTagsAPI* | [**ContentContainerTagsRead**](docs/ContentTagsAPI.md#contentcontainertagsread) | **Get** /{container_tag_href} | Inspect a tag
 *ContentTagsAPI* | [**ContentContainerTagsSetLabel**](docs/ContentTagsAPI.md#contentcontainertagssetlabel) | **Post** /{container_tag_href}set_label/ | Set a label
 *ContentTagsAPI* | [**ContentContainerTagsUnsetLabel**](docs/ContentTagsAPI.md#contentcontainertagsunsetlabel) | **Post** /{container_tag_href}unset_label/ | Unset a label
+*ContentViewsAPI* | [**ContentViewsAddRole**](docs/ContentViewsAPI.md#contentviewsaddrole) | **Post** /{service_content_view_href}add_role/ | Add a role
+*ContentViewsAPI* | [**ContentViewsCreate**](docs/ContentViewsAPI.md#contentviewscreate) | **Post** /api/pulp/{pulp_domain}/api/v3/content-views/ | Create a content view
+*ContentViewsAPI* | [**ContentViewsDelete**](docs/ContentViewsAPI.md#contentviewsdelete) | **Delete** /{service_content_view_href} | Delete a content view
+*ContentViewsAPI* | [**ContentViewsList**](docs/ContentViewsAPI.md#contentviewslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content-views/ | List content views
+*ContentViewsAPI* | [**ContentViewsListRoles**](docs/ContentViewsAPI.md#contentviewslistroles) | **Get** /{service_content_view_href}list_roles/ | List roles
+*ContentViewsAPI* | [**ContentViewsMyPermissions**](docs/ContentViewsAPI.md#contentviewsmypermissions) | **Get** /{service_content_view_href}my_permissions/ | List user permissions
+*ContentViewsAPI* | [**ContentViewsPartialUpdate**](docs/ContentViewsAPI.md#contentviewspartialupdate) | **Patch** /{service_content_view_href} | Update a content view
+*ContentViewsAPI* | [**ContentViewsRead**](docs/ContentViewsAPI.md#contentviewsread) | **Get** /{service_content_view_href} | Inspect a content view
+*ContentViewsAPI* | [**ContentViewsRemoveRole**](docs/ContentViewsAPI.md#contentviewsremoverole) | **Post** /{service_content_view_href}remove_role/ | Remove a role
+*ContentViewsAPI* | [**ContentViewsSetLabel**](docs/ContentViewsAPI.md#contentviewssetlabel) | **Post** /{service_content_view_href}set_label/ | Set a label
+*ContentViewsAPI* | [**ContentViewsUnsetLabel**](docs/ContentViewsAPI.md#contentviewsunsetlabel) | **Post** /{service_content_view_href}unset_label/ | Unset a label
+*ContentViewsAPI* | [**ContentViewsUpdate**](docs/ContentViewsAPI.md#contentviewsupdate) | **Put** /{service_content_view_href} | Update a content view
+*ContentViewsRpmEnvironmentsAPI* | [**ContentViewsSearchRpmEnvironmentsList**](docs/ContentViewsRpmEnvironmentsAPI.md#contentviewssearchrpmenvironmentslist) | **Get** /{service_content_view_href}search/rpm/environments/ | List content view search scopes
+*ContentViewsRpmErrataAPI* | [**ContentViewsSearchRpmErrataList**](docs/ContentViewsRpmErrataAPI.md#contentviewssearchrpmerratalist) | **Get** /{service_content_view_href}search/rpm/errata/ | List content view search scopes
+*ContentViewsRpmModuleStreamsAPI* | [**ContentViewsSearchRpmModuleStreamsList**](docs/ContentViewsRpmModuleStreamsAPI.md#contentviewssearchrpmmodulestreamslist) | **Get** /{service_content_view_href}search/rpm/module-streams/ | List content view search scopes
+*ContentViewsRpmPackageGroupsAPI* | [**ContentViewsSearchRpmPackageGroupsList**](docs/ContentViewsRpmPackageGroupsAPI.md#contentviewssearchrpmpackagegroupslist) | **Get** /{service_content_view_href}search/rpm/package-groups/ | List content view search scopes
+*ContentViewsRpmPackagesAPI* | [**ContentViewsSearchRpmPackagesList**](docs/ContentViewsRpmPackagesAPI.md#contentviewssearchrpmpackageslist) | **Get** /{service_content_view_href}search/rpm/packages/ | List content view search scopes
+*ContentViewsRpmPackagesListAPI* | [**ContentViewsSearchRpmPackagesListList**](docs/ContentViewsRpmPackagesListAPI.md#contentviewssearchrpmpackageslistlist) | **Get** /{service_content_view_href}search/rpm/packages/list/ | List content view search scopes
+*ContentYanksAPI* | [**ContentPythonYanksList**](docs/ContentYanksAPI.md#contentpythonyankslist) | **Get** /api/pulp/{pulp_domain}/api/v3/content/python/yanks/ | List package yanks
+*ContentYanksAPI* | [**ContentPythonYanksRead**](docs/ContentYanksAPI.md#contentpythonyanksread) | **Get** /{python_package_yank_href} | Inspect a package yank
+*ContentYanksAPI* | [**ContentPythonYanksSetLabel**](docs/ContentYanksAPI.md#contentpythonyankssetlabel) | **Post** /{python_package_yank_href}set_label/ | Set a label
+*ContentYanksAPI* | [**ContentPythonYanksUnsetLabel**](docs/ContentYanksAPI.md#contentpythonyanksunsetlabel) | **Post** /{python_package_yank_href}unset_label/ | Unset a label
 *ContentguardsAPI* | [**ContentguardsList**](docs/ContentguardsAPI.md#contentguardslist) | **Get** /api/pulp/{pulp_domain}/api/v3/contentguards/ | List content guards
 *ContentguardsCompositeAPI* | [**ContentguardsCoreCompositeAddRole**](docs/ContentguardsCompositeAPI.md#contentguardscorecompositeaddrole) | **Post** /{composite_content_guard_href}add_role/ | Add a role
 *ContentguardsCompositeAPI* | [**ContentguardsCoreCompositeCreate**](docs/ContentguardsCompositeAPI.md#contentguardscorecompositecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/contentguards/core/composite/ | Create a composite content guard
@@ -314,6 +338,8 @@ Class | Method | HTTP request | Description
 *ContentguardsX509API* | [**ContentguardsCertguardX509PartialUpdate**](docs/ContentguardsX509API.md#contentguardscertguardx509partialupdate) | **Patch** /{certguard_x509_cert_guard_href} | Update a x509 cert guard
 *ContentguardsX509API* | [**ContentguardsCertguardX509Read**](docs/ContentguardsX509API.md#contentguardscertguardx509read) | **Get** /{certguard_x509_cert_guard_href} | Inspect a x509 cert guard
 *ContentguardsX509API* | [**ContentguardsCertguardX509Update**](docs/ContentguardsX509API.md#contentguardscertguardx509update) | **Put** /{certguard_x509_cert_guard_href} | Update a x509 cert guard
+*Datarepair7272API* | [**Datarepair7272Post**](docs/Datarepair7272API.md#datarepair7272post) | **Post** /api/pulp/{pulp_domain}/api/v3/datarepair/7272/ | Repair Repository Version Data (Issue #7272)
+*Datarepair7465V2API* | [**Datarepair7465V2Post**](docs/Datarepair7465V2API.md#datarepair7465v2post) | **Post** /api/pulp/{pulp_domain}/api/v3/datarepair/7465-v2/ | Rebuild content_ids cache (Issue #7465)
 *DistributionsAPI* | [**DistributionsList**](docs/DistributionsAPI.md#distributionslist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/ | List distributions
 *DistributionsArtifactsAPI* | [**DistributionsCoreArtifactsList**](docs/DistributionsArtifactsAPI.md#distributionscoreartifactslist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/core/artifacts/ | List artifact distributions
 *DistributionsArtifactsAPI* | [**DistributionsCoreArtifactsRead**](docs/DistributionsArtifactsAPI.md#distributionscoreartifactsread) | **Get** /{artifact_distribution_href} | Inspect an artifact distribution
@@ -341,31 +367,35 @@ Class | Method | HTTP request | Description
 *DistributionsFileAPI* | [**DistributionsFileFileSetLabel**](docs/DistributionsFileAPI.md#distributionsfilefilesetlabel) | **Post** /{file_file_distribution_href}set_label/ | Set a label
 *DistributionsFileAPI* | [**DistributionsFileFileUnsetLabel**](docs/DistributionsFileAPI.md#distributionsfilefileunsetlabel) | **Post** /{file_file_distribution_href}unset_label/ | Unset a label
 *DistributionsFileAPI* | [**DistributionsFileFileUpdate**](docs/DistributionsFileAPI.md#distributionsfilefileupdate) | **Put** /{file_file_distribution_href} | Update a file distribution
-*DistributionsGemAPI* | [**DistributionsGemGemAddRole**](docs/DistributionsGemAPI.md#distributionsgemgemaddrole) | **Post** /{gem_gem_distribution_href}add_role/ | Add a role
-*DistributionsGemAPI* | [**DistributionsGemGemCreate**](docs/DistributionsGemAPI.md#distributionsgemgemcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | Create a gem distribution
-*DistributionsGemAPI* | [**DistributionsGemGemDelete**](docs/DistributionsGemAPI.md#distributionsgemgemdelete) | **Delete** /{gem_gem_distribution_href} | Delete a gem distribution
-*DistributionsGemAPI* | [**DistributionsGemGemList**](docs/DistributionsGemAPI.md#distributionsgemgemlist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/gem/gem/ | List gem distributions
-*DistributionsGemAPI* | [**DistributionsGemGemListRoles**](docs/DistributionsGemAPI.md#distributionsgemgemlistroles) | **Get** /{gem_gem_distribution_href}list_roles/ | List roles
-*DistributionsGemAPI* | [**DistributionsGemGemMyPermissions**](docs/DistributionsGemAPI.md#distributionsgemgemmypermissions) | **Get** /{gem_gem_distribution_href}my_permissions/ | List user permissions
-*DistributionsGemAPI* | [**DistributionsGemGemPartialUpdate**](docs/DistributionsGemAPI.md#distributionsgemgempartialupdate) | **Patch** /{gem_gem_distribution_href} | Update a gem distribution
-*DistributionsGemAPI* | [**DistributionsGemGemRead**](docs/DistributionsGemAPI.md#distributionsgemgemread) | **Get** /{gem_gem_distribution_href} | Inspect a gem distribution
-*DistributionsGemAPI* | [**DistributionsGemGemRemoveRole**](docs/DistributionsGemAPI.md#distributionsgemgemremoverole) | **Post** /{gem_gem_distribution_href}remove_role/ | Remove a role
-*DistributionsGemAPI* | [**DistributionsGemGemSetLabel**](docs/DistributionsGemAPI.md#distributionsgemgemsetlabel) | **Post** /{gem_gem_distribution_href}set_label/ | Set a label
-*DistributionsGemAPI* | [**DistributionsGemGemUnsetLabel**](docs/DistributionsGemAPI.md#distributionsgemgemunsetlabel) | **Post** /{gem_gem_distribution_href}unset_label/ | Unset a label
-*DistributionsGemAPI* | [**DistributionsGemGemUpdate**](docs/DistributionsGemAPI.md#distributionsgemgemupdate) | **Put** /{gem_gem_distribution_href} | Update a gem distribution
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceCreate**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfacecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/hugging_face/hugging-face/ | Create a hugging face distribution
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceDelete**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfacedelete) | **Delete** /{hugging_face_hugging_face_distribution_href} | Delete a hugging face distribution
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceList**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfacelist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/hugging_face/hugging-face/ | List hugging face distributions
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFacePartialUpdate**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfacepartialupdate) | **Patch** /{hugging_face_hugging_face_distribution_href} | Update a hugging face distribution
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceRead**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfaceread) | **Get** /{hugging_face_hugging_face_distribution_href} | Inspect a hugging face distribution
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceSetLabel**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfacesetlabel) | **Post** /{hugging_face_hugging_face_distribution_href}set_label/ | Set a label
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceUnsetLabel**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfaceunsetlabel) | **Post** /{hugging_face_hugging_face_distribution_href}unset_label/ | Unset a label
+*DistributionsHuggingFaceAPI* | [**DistributionsHuggingFaceHuggingFaceUpdate**](docs/DistributionsHuggingFaceAPI.md#distributionshuggingfacehuggingfaceupdate) | **Put** /{hugging_face_hugging_face_distribution_href} | Update a hugging face distribution
+*DistributionsMavenAPI* | [**DistributionsMavenMavenAddRole**](docs/DistributionsMavenAPI.md#distributionsmavenmavenaddrole) | **Post** /{maven_maven_distribution_href}add_role/ | Add a role
 *DistributionsMavenAPI* | [**DistributionsMavenMavenCreate**](docs/DistributionsMavenAPI.md#distributionsmavenmavencreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/maven/maven/ | Create a maven distribution
 *DistributionsMavenAPI* | [**DistributionsMavenMavenDelete**](docs/DistributionsMavenAPI.md#distributionsmavenmavendelete) | **Delete** /{maven_maven_distribution_href} | Delete a maven distribution
 *DistributionsMavenAPI* | [**DistributionsMavenMavenList**](docs/DistributionsMavenAPI.md#distributionsmavenmavenlist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/maven/maven/ | List maven distributions
+*DistributionsMavenAPI* | [**DistributionsMavenMavenListRoles**](docs/DistributionsMavenAPI.md#distributionsmavenmavenlistroles) | **Get** /{maven_maven_distribution_href}list_roles/ | List roles
+*DistributionsMavenAPI* | [**DistributionsMavenMavenMyPermissions**](docs/DistributionsMavenAPI.md#distributionsmavenmavenmypermissions) | **Get** /{maven_maven_distribution_href}my_permissions/ | List user permissions
 *DistributionsMavenAPI* | [**DistributionsMavenMavenPartialUpdate**](docs/DistributionsMavenAPI.md#distributionsmavenmavenpartialupdate) | **Patch** /{maven_maven_distribution_href} | Update a maven distribution
 *DistributionsMavenAPI* | [**DistributionsMavenMavenRead**](docs/DistributionsMavenAPI.md#distributionsmavenmavenread) | **Get** /{maven_maven_distribution_href} | Inspect a maven distribution
+*DistributionsMavenAPI* | [**DistributionsMavenMavenRemoveRole**](docs/DistributionsMavenAPI.md#distributionsmavenmavenremoverole) | **Post** /{maven_maven_distribution_href}remove_role/ | Remove a role
 *DistributionsMavenAPI* | [**DistributionsMavenMavenSetLabel**](docs/DistributionsMavenAPI.md#distributionsmavenmavensetlabel) | **Post** /{maven_maven_distribution_href}set_label/ | Set a label
 *DistributionsMavenAPI* | [**DistributionsMavenMavenUnsetLabel**](docs/DistributionsMavenAPI.md#distributionsmavenmavenunsetlabel) | **Post** /{maven_maven_distribution_href}unset_label/ | Unset a label
 *DistributionsMavenAPI* | [**DistributionsMavenMavenUpdate**](docs/DistributionsMavenAPI.md#distributionsmavenmavenupdate) | **Put** /{maven_maven_distribution_href} | Update a maven distribution
+*DistributionsNpmAPI* | [**DistributionsNpmNpmAddRole**](docs/DistributionsNpmAPI.md#distributionsnpmnpmaddrole) | **Post** /{npm_npm_distribution_href}add_role/ | Add a role
 *DistributionsNpmAPI* | [**DistributionsNpmNpmCreate**](docs/DistributionsNpmAPI.md#distributionsnpmnpmcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/ | Create a npm distribution
 *DistributionsNpmAPI* | [**DistributionsNpmNpmDelete**](docs/DistributionsNpmAPI.md#distributionsnpmnpmdelete) | **Delete** /{npm_npm_distribution_href} | Delete a npm distribution
 *DistributionsNpmAPI* | [**DistributionsNpmNpmList**](docs/DistributionsNpmAPI.md#distributionsnpmnpmlist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/npm/npm/ | List npm distributions
+*DistributionsNpmAPI* | [**DistributionsNpmNpmListRoles**](docs/DistributionsNpmAPI.md#distributionsnpmnpmlistroles) | **Get** /{npm_npm_distribution_href}list_roles/ | List roles
+*DistributionsNpmAPI* | [**DistributionsNpmNpmMyPermissions**](docs/DistributionsNpmAPI.md#distributionsnpmnpmmypermissions) | **Get** /{npm_npm_distribution_href}my_permissions/ | List user permissions
 *DistributionsNpmAPI* | [**DistributionsNpmNpmPartialUpdate**](docs/DistributionsNpmAPI.md#distributionsnpmnpmpartialupdate) | **Patch** /{npm_npm_distribution_href} | Update a npm distribution
 *DistributionsNpmAPI* | [**DistributionsNpmNpmRead**](docs/DistributionsNpmAPI.md#distributionsnpmnpmread) | **Get** /{npm_npm_distribution_href} | Inspect a npm distribution
+*DistributionsNpmAPI* | [**DistributionsNpmNpmRemoveRole**](docs/DistributionsNpmAPI.md#distributionsnpmnpmremoverole) | **Post** /{npm_npm_distribution_href}remove_role/ | Remove a role
 *DistributionsNpmAPI* | [**DistributionsNpmNpmSetLabel**](docs/DistributionsNpmAPI.md#distributionsnpmnpmsetlabel) | **Post** /{npm_npm_distribution_href}set_label/ | Set a label
 *DistributionsNpmAPI* | [**DistributionsNpmNpmUnsetLabel**](docs/DistributionsNpmAPI.md#distributionsnpmnpmunsetlabel) | **Post** /{npm_npm_distribution_href}unset_label/ | Unset a label
 *DistributionsNpmAPI* | [**DistributionsNpmNpmUpdate**](docs/DistributionsNpmAPI.md#distributionsnpmnpmupdate) | **Put** /{npm_npm_distribution_href} | Update a npm distribution
@@ -377,18 +407,6 @@ Class | Method | HTTP request | Description
 *DistributionsOpenpgpAPI* | [**DistributionsCoreOpenpgpSetLabel**](docs/DistributionsOpenpgpAPI.md#distributionscoreopenpgpsetlabel) | **Post** /{open_p_g_p_distribution_href}set_label/ | Set a label
 *DistributionsOpenpgpAPI* | [**DistributionsCoreOpenpgpUnsetLabel**](docs/DistributionsOpenpgpAPI.md#distributionscoreopenpgpunsetlabel) | **Post** /{open_p_g_p_distribution_href}unset_label/ | Unset a label
 *DistributionsOpenpgpAPI* | [**DistributionsCoreOpenpgpUpdate**](docs/DistributionsOpenpgpAPI.md#distributionscoreopenpgpupdate) | **Put** /{open_p_g_p_distribution_href} | Update an open pgp distribution
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeAddRole**](docs/DistributionsOstreeAPI.md#distributionsostreeostreeaddrole) | **Post** /{ostree_ostree_distribution_href}add_role/ | Add a role
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeCreate**](docs/DistributionsOstreeAPI.md#distributionsostreeostreecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/ostree/ostree/ | Create an ostree distribution
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeDelete**](docs/DistributionsOstreeAPI.md#distributionsostreeostreedelete) | **Delete** /{ostree_ostree_distribution_href} | Delete an ostree distribution
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeList**](docs/DistributionsOstreeAPI.md#distributionsostreeostreelist) | **Get** /api/pulp/{pulp_domain}/api/v3/distributions/ostree/ostree/ | List ostree distributions
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeListRoles**](docs/DistributionsOstreeAPI.md#distributionsostreeostreelistroles) | **Get** /{ostree_ostree_distribution_href}list_roles/ | List roles
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeMyPermissions**](docs/DistributionsOstreeAPI.md#distributionsostreeostreemypermissions) | **Get** /{ostree_ostree_distribution_href}my_permissions/ | List user permissions
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreePartialUpdate**](docs/DistributionsOstreeAPI.md#distributionsostreeostreepartialupdate) | **Patch** /{ostree_ostree_distribution_href} | Update an ostree distribution
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeRead**](docs/DistributionsOstreeAPI.md#distributionsostreeostreeread) | **Get** /{ostree_ostree_distribution_href} | Inspect an ostree distribution
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeRemoveRole**](docs/DistributionsOstreeAPI.md#distributionsostreeostreeremoverole) | **Post** /{ostree_ostree_distribution_href}remove_role/ | Remove a role
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeSetLabel**](docs/DistributionsOstreeAPI.md#distributionsostreeostreesetlabel) | **Post** /{ostree_ostree_distribution_href}set_label/ | Set a label
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeUnsetLabel**](docs/DistributionsOstreeAPI.md#distributionsostreeostreeunsetlabel) | **Post** /{ostree_ostree_distribution_href}unset_label/ | Unset a label
-*DistributionsOstreeAPI* | [**DistributionsOstreeOstreeUpdate**](docs/DistributionsOstreeAPI.md#distributionsostreeostreeupdate) | **Put** /{ostree_ostree_distribution_href} | Update an ostree distribution
 *DistributionsPullThroughAPI* | [**DistributionsContainerPullThroughAddRole**](docs/DistributionsPullThroughAPI.md#distributionscontainerpullthroughaddrole) | **Post** /{container_container_pull_through_distribution_href}add_role/ | Add a role
 *DistributionsPullThroughAPI* | [**DistributionsContainerPullThroughCreate**](docs/DistributionsPullThroughAPI.md#distributionscontainerpullthroughcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/distributions/container/pull-through/ | Create a container pull through distribution
 *DistributionsPullThroughAPI* | [**DistributionsContainerPullThroughDelete**](docs/DistributionsPullThroughAPI.md#distributionscontainerpullthroughdelete) | **Delete** /{container_container_pull_through_distribution_href} | Delete a container pull through distribution
@@ -487,7 +505,11 @@ Class | Method | HTTP request | Description
 *LivezAPI* | [**LivezRead**](docs/LivezAPI.md#livezread) | **Get** /api/pulp/api/v3/livez/ | Inspect liveness of Pulp&#39;s REST API.
 *LoginAPI* | [**Login**](docs/LoginAPI.md#login) | **Post** /api/pulp/{pulp_domain}/api/v3/login/ | 
 *LoginAPI* | [**LoginRead**](docs/LoginAPI.md#loginread) | **Get** /api/pulp/{pulp_domain}/api/v3/login/ | 
+*LoginAPI* | [**LoginUpdate**](docs/LoginAPI.md#loginupdate) | **Patch** /api/pulp/{pulp_domain}/api/v3/login/ | 
 *LoginAPI* | [**Logout**](docs/LoginAPI.md#logout) | **Delete** /api/pulp/{pulp_domain}/api/v3/login/ | 
+*NpmAPI* | [**NpmPut**](docs/NpmAPI.md#npmput) | **Put** /npm/{pulp_domain}/{path}/{package_name} | 
+*NpmPingAPI* | [**NpmPingGet**](docs/NpmPingAPI.md#npmpingget) | **Get** /npm/{pulp_domain}/{path}/-/ping | 
+*NpmWhoamiAPI* | [**NpmWhoamiGet**](docs/NpmWhoamiAPI.md#npmwhoamiget) | **Get** /npm/{pulp_domain}/{path}/-/whoami | 
 *OrphansAPI* | [**OrphansDelete**](docs/OrphansAPI.md#orphansdelete) | **Delete** /api/pulp/{pulp_domain}/api/v3/orphans/ | Delete orphans
 *OrphansCleanupAPI* | [**OrphansCleanupCleanup**](docs/OrphansCleanupAPI.md#orphanscleanupcleanup) | **Post** /api/pulp/{pulp_domain}/api/v3/orphans/cleanup/ | 
 *PublicationsAPI* | [**PublicationsList**](docs/PublicationsAPI.md#publicationslist) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/ | List publications
@@ -499,14 +521,10 @@ Class | Method | HTTP request | Description
 *PublicationsFileAPI* | [**PublicationsFileFileMyPermissions**](docs/PublicationsFileAPI.md#publicationsfilefilemypermissions) | **Get** /{file_file_publication_href}my_permissions/ | List user permissions
 *PublicationsFileAPI* | [**PublicationsFileFileRead**](docs/PublicationsFileAPI.md#publicationsfilefileread) | **Get** /{file_file_publication_href} | Inspect a file publication
 *PublicationsFileAPI* | [**PublicationsFileFileRemoveRole**](docs/PublicationsFileAPI.md#publicationsfilefileremoverole) | **Post** /{file_file_publication_href}remove_role/ | Remove a role
-*PublicationsGemAPI* | [**PublicationsGemGemAddRole**](docs/PublicationsGemAPI.md#publicationsgemgemaddrole) | **Post** /{gem_gem_publication_href}add_role/ | Add a role
-*PublicationsGemAPI* | [**PublicationsGemGemCreate**](docs/PublicationsGemAPI.md#publicationsgemgemcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/gem/gem/ | Create a gem publication
-*PublicationsGemAPI* | [**PublicationsGemGemDelete**](docs/PublicationsGemAPI.md#publicationsgemgemdelete) | **Delete** /{gem_gem_publication_href} | Delete a gem publication
-*PublicationsGemAPI* | [**PublicationsGemGemList**](docs/PublicationsGemAPI.md#publicationsgemgemlist) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/gem/gem/ | List gem publications
-*PublicationsGemAPI* | [**PublicationsGemGemListRoles**](docs/PublicationsGemAPI.md#publicationsgemgemlistroles) | **Get** /{gem_gem_publication_href}list_roles/ | List roles
-*PublicationsGemAPI* | [**PublicationsGemGemMyPermissions**](docs/PublicationsGemAPI.md#publicationsgemgemmypermissions) | **Get** /{gem_gem_publication_href}my_permissions/ | List user permissions
-*PublicationsGemAPI* | [**PublicationsGemGemRead**](docs/PublicationsGemAPI.md#publicationsgemgemread) | **Get** /{gem_gem_publication_href} | Inspect a gem publication
-*PublicationsGemAPI* | [**PublicationsGemGemRemoveRole**](docs/PublicationsGemAPI.md#publicationsgemgemremoverole) | **Post** /{gem_gem_publication_href}remove_role/ | Remove a role
+*PublicationsHuggingFaceAPI* | [**PublicationsHuggingFaceHuggingFaceCreate**](docs/PublicationsHuggingFaceAPI.md#publicationshuggingfacehuggingfacecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/hugging_face/hugging-face/ | Create a hugging face publication
+*PublicationsHuggingFaceAPI* | [**PublicationsHuggingFaceHuggingFaceDelete**](docs/PublicationsHuggingFaceAPI.md#publicationshuggingfacehuggingfacedelete) | **Delete** /{hugging_face_hugging_face_publication_href} | Delete a hugging face publication
+*PublicationsHuggingFaceAPI* | [**PublicationsHuggingFaceHuggingFaceList**](docs/PublicationsHuggingFaceAPI.md#publicationshuggingfacehuggingfacelist) | **Get** /api/pulp/{pulp_domain}/api/v3/publications/hugging_face/hugging-face/ | List hugging face publications
+*PublicationsHuggingFaceAPI* | [**PublicationsHuggingFaceHuggingFaceRead**](docs/PublicationsHuggingFaceAPI.md#publicationshuggingfacehuggingfaceread) | **Get** /{hugging_face_hugging_face_publication_href} | Inspect a hugging face publication
 *PublicationsPypiAPI* | [**PublicationsPythonPypiAddRole**](docs/PublicationsPypiAPI.md#publicationspythonpypiaddrole) | **Post** /{python_python_publication_href}add_role/ | Add a role
 *PublicationsPypiAPI* | [**PublicationsPythonPypiCreate**](docs/PublicationsPypiAPI.md#publicationspythonpypicreate) | **Post** /api/pulp/{pulp_domain}/api/v3/publications/python/pypi/ | Create a python publication
 *PublicationsPypiAPI* | [**PublicationsPythonPypiDelete**](docs/PublicationsPypiAPI.md#publicationspythonpypidelete) | **Delete** /{python_python_publication_href} | Delete a python publication
@@ -531,7 +549,25 @@ Class | Method | HTTP request | Description
 *PulpContainerNamespacesAPI* | [**PulpContainerNamespacesMyPermissions**](docs/PulpContainerNamespacesAPI.md#pulpcontainernamespacesmypermissions) | **Get** /{container_container_namespace_href}my_permissions/ | List user permissions
 *PulpContainerNamespacesAPI* | [**PulpContainerNamespacesRead**](docs/PulpContainerNamespacesAPI.md#pulpcontainernamespacesread) | **Get** /{container_container_namespace_href} | Inspect a container namespace
 *PulpContainerNamespacesAPI* | [**PulpContainerNamespacesRemoveRole**](docs/PulpContainerNamespacesAPI.md#pulpcontainernamespacesremoverole) | **Post** /{container_container_namespace_href}remove_role/ | Remove a role
-*PypiMetadataAPI* | [**ApiPulpPypiPypiRead**](docs/PypiMetadataAPI.md#apipulppypipypiread) | **Get** /api/pulp/pypi/{pulp_domain}/{path}/pypi/{meta}/ | Get package metadata
+*PypiAPI* | [**PypiRead**](docs/PypiAPI.md#pypiread) | **Get** /pypi/{pulp_domain}/{path}/ | Get index summary
+*PypiLegacyAPI* | [**PypiLegacyCreate**](docs/PypiLegacyAPI.md#pypilegacycreate) | **Post** /pypi/{pulp_domain}/{path}/legacy/ | Upload a package
+*PypiMetadataAPI* | [**PypiPypiRead**](docs/PypiMetadataAPI.md#pypipypiread) | **Get** /pypi/{pulp_domain}/{path}/pypi/{meta}/ | Get package metadata
+*PypiProvenanceAPI* | [**PypiIntegrityProvenanceRead**](docs/PypiProvenanceAPI.md#pypiintegrityprovenanceread) | **Get** /pypi/{pulp_domain}/{path}/integrity/{package}/{version}/{filename}/provenance/ | Get package provenance
+*PypiSimpleAPI* | [**PypiSimpleCreate**](docs/PypiSimpleAPI.md#pypisimplecreate) | **Post** /pypi/{pulp_domain}/{path}/simple/ | Upload a package
+*PypiSimpleAPI* | [**PypiSimplePackageRead**](docs/PypiSimpleAPI.md#pypisimplepackageread) | **Get** /pypi/{pulp_domain}/{path}/simple/{package}/ | Get package simple page
+*PypiSimpleAPI* | [**PypiSimpleRead**](docs/PypiSimpleAPI.md#pypisimpleread) | **Get** /pypi/{pulp_domain}/{path}/simple/ | Get index simple page
+*PypiUnyankAPI* | [**PypiUnyankUnyank**](docs/PypiUnyankAPI.md#pypiunyankunyank) | **Post** /pypi/{pulp_domain}/{path}/unyank/ | Unyank a package version
+*PypiYankAPI* | [**PypiYankYank**](docs/PypiYankAPI.md#pypiyankyank) | **Post** /pypi/{pulp_domain}/{path}/yank/ | Yank a package version
+*PypiYankMonitorAPI* | [**PypiYankMonitorAddRole**](docs/PypiYankMonitorAPI.md#pypiyankmonitoraddrole) | **Post** /{service_py_p_i_yank_monitor_href}add_role/ | Add a role
+*PypiYankMonitorAPI* | [**PypiYankMonitorCheck**](docs/PypiYankMonitorAPI.md#pypiyankmonitorcheck) | **Post** /{service_py_p_i_yank_monitor_href}check/ | 
+*PypiYankMonitorAPI* | [**PypiYankMonitorCreate**](docs/PypiYankMonitorAPI.md#pypiyankmonitorcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/pypi_yank_monitor/ | Create a py pi yank monitor
+*PypiYankMonitorAPI* | [**PypiYankMonitorDelete**](docs/PypiYankMonitorAPI.md#pypiyankmonitordelete) | **Delete** /{service_py_p_i_yank_monitor_href} | Delete a py pi yank monitor
+*PypiYankMonitorAPI* | [**PypiYankMonitorList**](docs/PypiYankMonitorAPI.md#pypiyankmonitorlist) | **Get** /api/pulp/{pulp_domain}/api/v3/pypi_yank_monitor/ | List py pi yank monitors
+*PypiYankMonitorAPI* | [**PypiYankMonitorListRoles**](docs/PypiYankMonitorAPI.md#pypiyankmonitorlistroles) | **Get** /{service_py_p_i_yank_monitor_href}list_roles/ | List roles
+*PypiYankMonitorAPI* | [**PypiYankMonitorMyPermissions**](docs/PypiYankMonitorAPI.md#pypiyankmonitormypermissions) | **Get** /{service_py_p_i_yank_monitor_href}my_permissions/ | List user permissions
+*PypiYankMonitorAPI* | [**PypiYankMonitorRead**](docs/PypiYankMonitorAPI.md#pypiyankmonitorread) | **Get** /{service_py_p_i_yank_monitor_href} | Inspect a py pi yank monitor
+*PypiYankMonitorAPI* | [**PypiYankMonitorRemoveRole**](docs/PypiYankMonitorAPI.md#pypiyankmonitorremoverole) | **Post** /{service_py_p_i_yank_monitor_href}remove_role/ | Remove a role
+*PypiYankMonitorAPI* | [**PypiYankMonitorReport**](docs/PypiYankMonitorAPI.md#pypiyankmonitorreport) | **Get** /{service_py_p_i_yank_monitor_href}report/ | 
 *RemotesAPI* | [**RemotesList**](docs/RemotesAPI.md#remoteslist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/ | List remotes
 *RemotesContainerAPI* | [**RemotesContainerContainerAddRole**](docs/RemotesContainerAPI.md#remotescontainercontaineraddrole) | **Post** /{container_container_remote_href}add_role/ | Add a role
 *RemotesContainerAPI* | [**RemotesContainerContainerCreate**](docs/RemotesContainerAPI.md#remotescontainercontainercreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/container/container/ | Create a container remote
@@ -557,46 +593,50 @@ Class | Method | HTTP request | Description
 *RemotesFileAPI* | [**RemotesFileFileSetLabel**](docs/RemotesFileAPI.md#remotesfilefilesetlabel) | **Post** /{file_file_remote_href}set_label/ | Set a label
 *RemotesFileAPI* | [**RemotesFileFileUnsetLabel**](docs/RemotesFileAPI.md#remotesfilefileunsetlabel) | **Post** /{file_file_remote_href}unset_label/ | Unset a label
 *RemotesFileAPI* | [**RemotesFileFileUpdate**](docs/RemotesFileAPI.md#remotesfilefileupdate) | **Put** /{file_file_remote_href} | Update a file remote
-*RemotesGemAPI* | [**RemotesGemGemAddRole**](docs/RemotesGemAPI.md#remotesgemgemaddrole) | **Post** /{gem_gem_remote_href}add_role/ | Add a role
-*RemotesGemAPI* | [**RemotesGemGemCreate**](docs/RemotesGemAPI.md#remotesgemgemcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | Create a gem remote
-*RemotesGemAPI* | [**RemotesGemGemDelete**](docs/RemotesGemAPI.md#remotesgemgemdelete) | **Delete** /{gem_gem_remote_href} | Delete a gem remote
-*RemotesGemAPI* | [**RemotesGemGemList**](docs/RemotesGemAPI.md#remotesgemgemlist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/gem/gem/ | List gem remotes
-*RemotesGemAPI* | [**RemotesGemGemListRoles**](docs/RemotesGemAPI.md#remotesgemgemlistroles) | **Get** /{gem_gem_remote_href}list_roles/ | List roles
-*RemotesGemAPI* | [**RemotesGemGemMyPermissions**](docs/RemotesGemAPI.md#remotesgemgemmypermissions) | **Get** /{gem_gem_remote_href}my_permissions/ | List user permissions
-*RemotesGemAPI* | [**RemotesGemGemPartialUpdate**](docs/RemotesGemAPI.md#remotesgemgempartialupdate) | **Patch** /{gem_gem_remote_href} | Update a gem remote
-*RemotesGemAPI* | [**RemotesGemGemRead**](docs/RemotesGemAPI.md#remotesgemgemread) | **Get** /{gem_gem_remote_href} | Inspect a gem remote
-*RemotesGemAPI* | [**RemotesGemGemRemoveRole**](docs/RemotesGemAPI.md#remotesgemgemremoverole) | **Post** /{gem_gem_remote_href}remove_role/ | Remove a role
-*RemotesGemAPI* | [**RemotesGemGemSetLabel**](docs/RemotesGemAPI.md#remotesgemgemsetlabel) | **Post** /{gem_gem_remote_href}set_label/ | Set a label
-*RemotesGemAPI* | [**RemotesGemGemUnsetLabel**](docs/RemotesGemAPI.md#remotesgemgemunsetlabel) | **Post** /{gem_gem_remote_href}unset_label/ | Unset a label
-*RemotesGemAPI* | [**RemotesGemGemUpdate**](docs/RemotesGemAPI.md#remotesgemgemupdate) | **Put** /{gem_gem_remote_href} | Update a gem remote
+*RemotesGitAPI* | [**RemotesFileGitAddRole**](docs/RemotesGitAPI.md#remotesfilegitaddrole) | **Post** /{file_file_git_remote_href}add_role/ | Add a role
+*RemotesGitAPI* | [**RemotesFileGitCreate**](docs/RemotesGitAPI.md#remotesfilegitcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/file/git/ | Create a file git remote
+*RemotesGitAPI* | [**RemotesFileGitDelete**](docs/RemotesGitAPI.md#remotesfilegitdelete) | **Delete** /{file_file_git_remote_href} | Delete a file git remote
+*RemotesGitAPI* | [**RemotesFileGitList**](docs/RemotesGitAPI.md#remotesfilegitlist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/file/git/ | List file git remotes
+*RemotesGitAPI* | [**RemotesFileGitListRoles**](docs/RemotesGitAPI.md#remotesfilegitlistroles) | **Get** /{file_file_git_remote_href}list_roles/ | List roles
+*RemotesGitAPI* | [**RemotesFileGitMyPermissions**](docs/RemotesGitAPI.md#remotesfilegitmypermissions) | **Get** /{file_file_git_remote_href}my_permissions/ | List user permissions
+*RemotesGitAPI* | [**RemotesFileGitPartialUpdate**](docs/RemotesGitAPI.md#remotesfilegitpartialupdate) | **Patch** /{file_file_git_remote_href} | Update a file git remote
+*RemotesGitAPI* | [**RemotesFileGitRead**](docs/RemotesGitAPI.md#remotesfilegitread) | **Get** /{file_file_git_remote_href} | Inspect a file git remote
+*RemotesGitAPI* | [**RemotesFileGitRemoveRole**](docs/RemotesGitAPI.md#remotesfilegitremoverole) | **Post** /{file_file_git_remote_href}remove_role/ | Remove a role
+*RemotesGitAPI* | [**RemotesFileGitSetLabel**](docs/RemotesGitAPI.md#remotesfilegitsetlabel) | **Post** /{file_file_git_remote_href}set_label/ | Set a label
+*RemotesGitAPI* | [**RemotesFileGitUnsetLabel**](docs/RemotesGitAPI.md#remotesfilegitunsetlabel) | **Post** /{file_file_git_remote_href}unset_label/ | Unset a label
+*RemotesGitAPI* | [**RemotesFileGitUpdate**](docs/RemotesGitAPI.md#remotesfilegitupdate) | **Put** /{file_file_git_remote_href} | Update a file git remote
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceCreate**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfacecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/hugging_face/hugging-face/ | Create a hugging face remote
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceDelete**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfacedelete) | **Delete** /{hugging_face_hugging_face_remote_href} | Delete a hugging face remote
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceList**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfacelist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/hugging_face/hugging-face/ | List hugging face remotes
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFacePartialUpdate**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfacepartialupdate) | **Patch** /{hugging_face_hugging_face_remote_href} | Update a hugging face remote
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceRead**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfaceread) | **Get** /{hugging_face_hugging_face_remote_href} | Inspect a hugging face remote
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceSetLabel**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfacesetlabel) | **Post** /{hugging_face_hugging_face_remote_href}set_label/ | Set a label
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceUnsetLabel**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfaceunsetlabel) | **Post** /{hugging_face_hugging_face_remote_href}unset_label/ | Unset a label
+*RemotesHuggingFaceAPI* | [**RemotesHuggingFaceHuggingFaceUpdate**](docs/RemotesHuggingFaceAPI.md#remoteshuggingfacehuggingfaceupdate) | **Put** /{hugging_face_hugging_face_remote_href} | Update a hugging face remote
+*RemotesMavenAPI* | [**RemotesMavenMavenAddRole**](docs/RemotesMavenAPI.md#remotesmavenmavenaddrole) | **Post** /{maven_maven_remote_href}add_role/ | Add a role
 *RemotesMavenAPI* | [**RemotesMavenMavenCreate**](docs/RemotesMavenAPI.md#remotesmavenmavencreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/maven/maven/ | Create a maven remote
 *RemotesMavenAPI* | [**RemotesMavenMavenDelete**](docs/RemotesMavenAPI.md#remotesmavenmavendelete) | **Delete** /{maven_maven_remote_href} | Delete a maven remote
 *RemotesMavenAPI* | [**RemotesMavenMavenList**](docs/RemotesMavenAPI.md#remotesmavenmavenlist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/maven/maven/ | List maven remotes
+*RemotesMavenAPI* | [**RemotesMavenMavenListRoles**](docs/RemotesMavenAPI.md#remotesmavenmavenlistroles) | **Get** /{maven_maven_remote_href}list_roles/ | List roles
+*RemotesMavenAPI* | [**RemotesMavenMavenMyPermissions**](docs/RemotesMavenAPI.md#remotesmavenmavenmypermissions) | **Get** /{maven_maven_remote_href}my_permissions/ | List user permissions
 *RemotesMavenAPI* | [**RemotesMavenMavenPartialUpdate**](docs/RemotesMavenAPI.md#remotesmavenmavenpartialupdate) | **Patch** /{maven_maven_remote_href} | Update a maven remote
 *RemotesMavenAPI* | [**RemotesMavenMavenRead**](docs/RemotesMavenAPI.md#remotesmavenmavenread) | **Get** /{maven_maven_remote_href} | Inspect a maven remote
+*RemotesMavenAPI* | [**RemotesMavenMavenRemoveRole**](docs/RemotesMavenAPI.md#remotesmavenmavenremoverole) | **Post** /{maven_maven_remote_href}remove_role/ | Remove a role
 *RemotesMavenAPI* | [**RemotesMavenMavenSetLabel**](docs/RemotesMavenAPI.md#remotesmavenmavensetlabel) | **Post** /{maven_maven_remote_href}set_label/ | Set a label
 *RemotesMavenAPI* | [**RemotesMavenMavenUnsetLabel**](docs/RemotesMavenAPI.md#remotesmavenmavenunsetlabel) | **Post** /{maven_maven_remote_href}unset_label/ | Unset a label
 *RemotesMavenAPI* | [**RemotesMavenMavenUpdate**](docs/RemotesMavenAPI.md#remotesmavenmavenupdate) | **Put** /{maven_maven_remote_href} | Update a maven remote
+*RemotesNpmAPI* | [**RemotesNpmNpmAddRole**](docs/RemotesNpmAPI.md#remotesnpmnpmaddrole) | **Post** /{npm_npm_remote_href}add_role/ | Add a role
 *RemotesNpmAPI* | [**RemotesNpmNpmCreate**](docs/RemotesNpmAPI.md#remotesnpmnpmcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/npm/npm/ | Create a npm remote
 *RemotesNpmAPI* | [**RemotesNpmNpmDelete**](docs/RemotesNpmAPI.md#remotesnpmnpmdelete) | **Delete** /{npm_npm_remote_href} | Delete a npm remote
 *RemotesNpmAPI* | [**RemotesNpmNpmList**](docs/RemotesNpmAPI.md#remotesnpmnpmlist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/npm/npm/ | List npm remotes
+*RemotesNpmAPI* | [**RemotesNpmNpmListRoles**](docs/RemotesNpmAPI.md#remotesnpmnpmlistroles) | **Get** /{npm_npm_remote_href}list_roles/ | List roles
+*RemotesNpmAPI* | [**RemotesNpmNpmMyPermissions**](docs/RemotesNpmAPI.md#remotesnpmnpmmypermissions) | **Get** /{npm_npm_remote_href}my_permissions/ | List user permissions
 *RemotesNpmAPI* | [**RemotesNpmNpmPartialUpdate**](docs/RemotesNpmAPI.md#remotesnpmnpmpartialupdate) | **Patch** /{npm_npm_remote_href} | Update a npm remote
 *RemotesNpmAPI* | [**RemotesNpmNpmRead**](docs/RemotesNpmAPI.md#remotesnpmnpmread) | **Get** /{npm_npm_remote_href} | Inspect a npm remote
+*RemotesNpmAPI* | [**RemotesNpmNpmRemoveRole**](docs/RemotesNpmAPI.md#remotesnpmnpmremoverole) | **Post** /{npm_npm_remote_href}remove_role/ | Remove a role
 *RemotesNpmAPI* | [**RemotesNpmNpmSetLabel**](docs/RemotesNpmAPI.md#remotesnpmnpmsetlabel) | **Post** /{npm_npm_remote_href}set_label/ | Set a label
 *RemotesNpmAPI* | [**RemotesNpmNpmUnsetLabel**](docs/RemotesNpmAPI.md#remotesnpmnpmunsetlabel) | **Post** /{npm_npm_remote_href}unset_label/ | Unset a label
 *RemotesNpmAPI* | [**RemotesNpmNpmUpdate**](docs/RemotesNpmAPI.md#remotesnpmnpmupdate) | **Put** /{npm_npm_remote_href} | Update a npm remote
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeAddRole**](docs/RemotesOstreeAPI.md#remotesostreeostreeaddrole) | **Post** /{ostree_ostree_remote_href}add_role/ | Add a role
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeCreate**](docs/RemotesOstreeAPI.md#remotesostreeostreecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/ostree/ostree/ | Create an ostree remote
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeDelete**](docs/RemotesOstreeAPI.md#remotesostreeostreedelete) | **Delete** /{ostree_ostree_remote_href} | Delete an ostree remote
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeList**](docs/RemotesOstreeAPI.md#remotesostreeostreelist) | **Get** /api/pulp/{pulp_domain}/api/v3/remotes/ostree/ostree/ | List ostree remotes
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeListRoles**](docs/RemotesOstreeAPI.md#remotesostreeostreelistroles) | **Get** /{ostree_ostree_remote_href}list_roles/ | List roles
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeMyPermissions**](docs/RemotesOstreeAPI.md#remotesostreeostreemypermissions) | **Get** /{ostree_ostree_remote_href}my_permissions/ | List user permissions
-*RemotesOstreeAPI* | [**RemotesOstreeOstreePartialUpdate**](docs/RemotesOstreeAPI.md#remotesostreeostreepartialupdate) | **Patch** /{ostree_ostree_remote_href} | Update an ostree remote
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeRead**](docs/RemotesOstreeAPI.md#remotesostreeostreeread) | **Get** /{ostree_ostree_remote_href} | Inspect an ostree remote
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeRemoveRole**](docs/RemotesOstreeAPI.md#remotesostreeostreeremoverole) | **Post** /{ostree_ostree_remote_href}remove_role/ | Remove a role
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeSetLabel**](docs/RemotesOstreeAPI.md#remotesostreeostreesetlabel) | **Post** /{ostree_ostree_remote_href}set_label/ | Set a label
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeUnsetLabel**](docs/RemotesOstreeAPI.md#remotesostreeostreeunsetlabel) | **Post** /{ostree_ostree_remote_href}unset_label/ | Unset a label
-*RemotesOstreeAPI* | [**RemotesOstreeOstreeUpdate**](docs/RemotesOstreeAPI.md#remotesostreeostreeupdate) | **Put** /{ostree_ostree_remote_href} | Update an ostree remote
 *RemotesPullThroughAPI* | [**RemotesContainerPullThroughAddRole**](docs/RemotesPullThroughAPI.md#remotescontainerpullthroughaddrole) | **Post** /{container_container_pull_through_remote_href}add_role/ | Add a role
 *RemotesPullThroughAPI* | [**RemotesContainerPullThroughCreate**](docs/RemotesPullThroughAPI.md#remotescontainerpullthroughcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/remotes/container/pull-through/ | Create a container pull through remote
 *RemotesPullThroughAPI* | [**RemotesContainerPullThroughDelete**](docs/RemotesPullThroughAPI.md#remotescontainerpullthroughdelete) | **Delete** /{container_container_pull_through_remote_href} | Delete a container pull through remote
@@ -672,6 +712,7 @@ Class | Method | HTTP request | Description
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushAddRole**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushaddrole) | **Post** /{container_container_push_repository_href}add_role/ | Add a role
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushList**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushlist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/container/container-push/ | List container push repositorys
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushListRoles**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushlistroles) | **Get** /{container_container_push_repository_href}list_roles/ | List roles
+*RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushMigrate**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushmigrate) | **Post** /{container_container_push_repository_href}migrate/ | Migrate push repository to container repository
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushMyPermissions**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushmypermissions) | **Get** /{container_container_push_repository_href}my_permissions/ | List user permissions
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushPartialUpdate**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushpartialupdate) | **Patch** /{container_container_push_repository_href} | Update a container push repository
 *RepositoriesContainerPushAPI* | [**RepositoriesContainerContainerPushRead**](docs/RepositoriesContainerPushAPI.md#repositoriescontainercontainerpushread) | **Get** /{container_container_push_repository_href} | Inspect a container push repository
@@ -708,30 +749,34 @@ Class | Method | HTTP request | Description
 *RepositoriesFileVersionsAPI* | [**RepositoriesFileFileVersionsList**](docs/RepositoriesFileVersionsAPI.md#repositoriesfilefileversionslist) | **Get** /{file_file_repository_href}versions/ | List repository versions
 *RepositoriesFileVersionsAPI* | [**RepositoriesFileFileVersionsRead**](docs/RepositoriesFileVersionsAPI.md#repositoriesfilefileversionsread) | **Get** /{file_file_repository_version_href} | Inspect a repository version
 *RepositoriesFileVersionsAPI* | [**RepositoriesFileFileVersionsRepair**](docs/RepositoriesFileVersionsAPI.md#repositoriesfilefileversionsrepair) | **Post** /{file_file_repository_version_href}repair/ | 
-*RepositoriesGemAPI* | [**RepositoriesGemGemAddRole**](docs/RepositoriesGemAPI.md#repositoriesgemgemaddrole) | **Post** /{gem_gem_repository_href}add_role/ | Add a role
-*RepositoriesGemAPI* | [**RepositoriesGemGemCreate**](docs/RepositoriesGemAPI.md#repositoriesgemgemcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | Create a gem repository
-*RepositoriesGemAPI* | [**RepositoriesGemGemDelete**](docs/RepositoriesGemAPI.md#repositoriesgemgemdelete) | **Delete** /{gem_gem_repository_href} | Delete a gem repository
-*RepositoriesGemAPI* | [**RepositoriesGemGemList**](docs/RepositoriesGemAPI.md#repositoriesgemgemlist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/gem/gem/ | List gem repositorys
-*RepositoriesGemAPI* | [**RepositoriesGemGemListRoles**](docs/RepositoriesGemAPI.md#repositoriesgemgemlistroles) | **Get** /{gem_gem_repository_href}list_roles/ | List roles
-*RepositoriesGemAPI* | [**RepositoriesGemGemModify**](docs/RepositoriesGemAPI.md#repositoriesgemgemmodify) | **Post** /{gem_gem_repository_href}modify/ | Modify Repository Content
-*RepositoriesGemAPI* | [**RepositoriesGemGemMyPermissions**](docs/RepositoriesGemAPI.md#repositoriesgemgemmypermissions) | **Get** /{gem_gem_repository_href}my_permissions/ | List user permissions
-*RepositoriesGemAPI* | [**RepositoriesGemGemPartialUpdate**](docs/RepositoriesGemAPI.md#repositoriesgemgempartialupdate) | **Patch** /{gem_gem_repository_href} | Update a gem repository
-*RepositoriesGemAPI* | [**RepositoriesGemGemRead**](docs/RepositoriesGemAPI.md#repositoriesgemgemread) | **Get** /{gem_gem_repository_href} | Inspect a gem repository
-*RepositoriesGemAPI* | [**RepositoriesGemGemRemoveRole**](docs/RepositoriesGemAPI.md#repositoriesgemgemremoverole) | **Post** /{gem_gem_repository_href}remove_role/ | Remove a role
-*RepositoriesGemAPI* | [**RepositoriesGemGemSetLabel**](docs/RepositoriesGemAPI.md#repositoriesgemgemsetlabel) | **Post** /{gem_gem_repository_href}set_label/ | Set a label
-*RepositoriesGemAPI* | [**RepositoriesGemGemSync**](docs/RepositoriesGemAPI.md#repositoriesgemgemsync) | **Post** /{gem_gem_repository_href}sync/ | Sync from a remote
-*RepositoriesGemAPI* | [**RepositoriesGemGemUnsetLabel**](docs/RepositoriesGemAPI.md#repositoriesgemgemunsetlabel) | **Post** /{gem_gem_repository_href}unset_label/ | Unset a label
-*RepositoriesGemAPI* | [**RepositoriesGemGemUpdate**](docs/RepositoriesGemAPI.md#repositoriesgemgemupdate) | **Put** /{gem_gem_repository_href} | Update a gem repository
-*RepositoriesGemVersionsAPI* | [**RepositoriesGemGemVersionsDelete**](docs/RepositoriesGemVersionsAPI.md#repositoriesgemgemversionsdelete) | **Delete** /{gem_gem_repository_version_href} | Delete a repository version
-*RepositoriesGemVersionsAPI* | [**RepositoriesGemGemVersionsList**](docs/RepositoriesGemVersionsAPI.md#repositoriesgemgemversionslist) | **Get** /{gem_gem_repository_href}versions/ | List repository versions
-*RepositoriesGemVersionsAPI* | [**RepositoriesGemGemVersionsRead**](docs/RepositoriesGemVersionsAPI.md#repositoriesgemgemversionsread) | **Get** /{gem_gem_repository_version_href} | Inspect a repository version
-*RepositoriesGemVersionsAPI* | [**RepositoriesGemGemVersionsRepair**](docs/RepositoriesGemVersionsAPI.md#repositoriesgemgemversionsrepair) | **Post** /{gem_gem_repository_version_href}repair/ | 
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceCreate**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/hugging_face/hugging-face/ | Create a hugging face repository
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceDelete**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacedelete) | **Delete** /{hugging_face_hugging_face_repository_href} | Delete a hugging face repository
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceList**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacelist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/hugging_face/hugging-face/ | List hugging face repositorys
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceModify**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacemodify) | **Post** /{hugging_face_hugging_face_repository_href}modify/ | Modify Repository Content
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFacePartialUpdate**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacepartialupdate) | **Patch** /{hugging_face_hugging_face_repository_href} | Update a hugging face repository
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceRead**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfaceread) | **Get** /{hugging_face_hugging_face_repository_href} | Inspect a hugging face repository
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceSetLabel**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacesetlabel) | **Post** /{hugging_face_hugging_face_repository_href}set_label/ | Set a label
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceSync**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfacesync) | **Post** /{hugging_face_hugging_face_repository_href}sync/ | Sync from remote
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceUnsetLabel**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfaceunsetlabel) | **Post** /{hugging_face_hugging_face_repository_href}unset_label/ | Unset a label
+*RepositoriesHuggingFaceAPI* | [**RepositoriesHuggingFaceHuggingFaceUpdate**](docs/RepositoriesHuggingFaceAPI.md#repositorieshuggingfacehuggingfaceupdate) | **Put** /{hugging_face_hugging_face_repository_href} | Update a hugging face repository
+*RepositoriesHuggingFaceVersionsAPI* | [**RepositoriesHuggingFaceHuggingFaceVersionsDelete**](docs/RepositoriesHuggingFaceVersionsAPI.md#repositorieshuggingfacehuggingfaceversionsdelete) | **Delete** /{hugging_face_hugging_face_repository_version_href} | Delete a repository version
+*RepositoriesHuggingFaceVersionsAPI* | [**RepositoriesHuggingFaceHuggingFaceVersionsList**](docs/RepositoriesHuggingFaceVersionsAPI.md#repositorieshuggingfacehuggingfaceversionslist) | **Get** /{hugging_face_hugging_face_repository_href}versions/ | List repository versions
+*RepositoriesHuggingFaceVersionsAPI* | [**RepositoriesHuggingFaceHuggingFaceVersionsRead**](docs/RepositoriesHuggingFaceVersionsAPI.md#repositorieshuggingfacehuggingfaceversionsread) | **Get** /{hugging_face_hugging_face_repository_version_href} | Inspect a repository version
+*RepositoriesHuggingFaceVersionsAPI* | [**RepositoriesHuggingFaceHuggingFaceVersionsRepair**](docs/RepositoriesHuggingFaceVersionsAPI.md#repositorieshuggingfacehuggingfaceversionsrepair) | **Post** /{hugging_face_hugging_face_repository_version_href}repair/ | 
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenAddCachedContent**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenaddcachedcontent) | **Post** /{maven_maven_repository_href}add_cached_content/ | Add cached content
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenAddRole**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenaddrole) | **Post** /{maven_maven_repository_href}add_role/ | Add a role
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenCreate**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavencreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/ | Create a maven repository
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenDelete**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavendelete) | **Delete** /{maven_maven_repository_href} | Delete a maven repository
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenList**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenlist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/ | List maven repositorys
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenListRoles**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenlistroles) | **Get** /{maven_maven_repository_href}list_roles/ | List roles
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenMetrics**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenmetrics) | **Get** /{maven_maven_repository_href}metrics/ | Repository metrics
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenModify**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenmodify) | **Post** /{maven_maven_repository_href}modify/ | Modify Repository Content
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenMyPermissions**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenmypermissions) | **Get** /{maven_maven_repository_href}my_permissions/ | List user permissions
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenPackages**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenpackages) | **Get** /{maven_maven_repository_href}packages/ | List packages
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenPartialUpdate**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenpartialupdate) | **Patch** /{maven_maven_repository_href} | Update a maven repository
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenRead**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenread) | **Get** /{maven_maven_repository_href} | Inspect a maven repository
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenRemoveRole**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenremoverole) | **Post** /{maven_maven_repository_href}remove_role/ | Remove a role
+*RepositoriesMavenAPI* | [**RepositoriesMavenMavenRepairMetadata**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenrepairmetadata) | **Post** /{maven_maven_repository_href}repair_metadata/ | Repair metadata
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenSetLabel**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavensetlabel) | **Post** /{maven_maven_repository_href}set_label/ | Set a label
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenUnsetLabel**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenunsetlabel) | **Post** /{maven_maven_repository_href}unset_label/ | Unset a label
 *RepositoriesMavenAPI* | [**RepositoriesMavenMavenUpdate**](docs/RepositoriesMavenAPI.md#repositoriesmavenmavenupdate) | **Put** /{maven_maven_repository_href} | Update a maven repository
@@ -739,12 +784,16 @@ Class | Method | HTTP request | Description
 *RepositoriesMavenVersionsAPI* | [**RepositoriesMavenMavenVersionsList**](docs/RepositoriesMavenVersionsAPI.md#repositoriesmavenmavenversionslist) | **Get** /{maven_maven_repository_href}versions/ | List repository versions
 *RepositoriesMavenVersionsAPI* | [**RepositoriesMavenMavenVersionsRead**](docs/RepositoriesMavenVersionsAPI.md#repositoriesmavenmavenversionsread) | **Get** /{maven_maven_repository_version_href} | Inspect a repository version
 *RepositoriesMavenVersionsAPI* | [**RepositoriesMavenMavenVersionsRepair**](docs/RepositoriesMavenVersionsAPI.md#repositoriesmavenmavenversionsrepair) | **Post** /{maven_maven_repository_version_href}repair/ | 
+*RepositoriesNpmAPI* | [**RepositoriesNpmNpmAddRole**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmaddrole) | **Post** /{npm_npm_repository_href}add_role/ | Add a role
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmCreate**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/npm/npm/ | Create a npm repository
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmDelete**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmdelete) | **Delete** /{npm_npm_repository_href} | Delete a npm repository
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmList**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmlist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/npm/npm/ | List npm repositorys
+*RepositoriesNpmAPI* | [**RepositoriesNpmNpmListRoles**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmlistroles) | **Get** /{npm_npm_repository_href}list_roles/ | List roles
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmModify**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmmodify) | **Post** /{npm_npm_repository_href}modify/ | Modify Repository Content
+*RepositoriesNpmAPI* | [**RepositoriesNpmNpmMyPermissions**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmmypermissions) | **Get** /{npm_npm_repository_href}my_permissions/ | List user permissions
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmPartialUpdate**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmpartialupdate) | **Patch** /{npm_npm_repository_href} | Update a npm repository
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmRead**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmread) | **Get** /{npm_npm_repository_href} | Inspect a npm repository
+*RepositoriesNpmAPI* | [**RepositoriesNpmNpmRemoveRole**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmremoverole) | **Post** /{npm_npm_repository_href}remove_role/ | Remove a role
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmSetLabel**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmsetlabel) | **Post** /{npm_npm_repository_href}set_label/ | Set a label
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmSync**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmsync) | **Post** /{npm_npm_repository_href}sync/ | Sync from remote
 *RepositoriesNpmAPI* | [**RepositoriesNpmNpmUnsetLabel**](docs/RepositoriesNpmAPI.md#repositoriesnpmnpmunsetlabel) | **Post** /{npm_npm_repository_href}unset_label/ | Unset a label
@@ -766,26 +815,6 @@ Class | Method | HTTP request | Description
 *RepositoriesOpenpgpKeyringAPI* | [**RepositoriesCoreOpenpgpKeyringSetLabel**](docs/RepositoriesOpenpgpKeyringAPI.md#repositoriescoreopenpgpkeyringsetlabel) | **Post** /{open_p_g_p_keyring_href}set_label/ | Set a label
 *RepositoriesOpenpgpKeyringAPI* | [**RepositoriesCoreOpenpgpKeyringUnsetLabel**](docs/RepositoriesOpenpgpKeyringAPI.md#repositoriescoreopenpgpkeyringunsetlabel) | **Post** /{open_p_g_p_keyring_href}unset_label/ | Unset a label
 *RepositoriesOpenpgpKeyringAPI* | [**RepositoriesCoreOpenpgpKeyringUpdate**](docs/RepositoriesOpenpgpKeyringAPI.md#repositoriescoreopenpgpkeyringupdate) | **Put** /{open_p_g_p_keyring_href} | Update an open pgp keyring
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeAddRole**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeaddrole) | **Post** /{ostree_ostree_repository_href}add_role/ | Add a role
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeCreate**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/ostree/ostree/ | Create an ostree repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeDelete**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreedelete) | **Delete** /{ostree_ostree_repository_href} | Delete an ostree repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeImportAll**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeimportall) | **Post** /{ostree_ostree_repository_href}import_all/ | Import refs and commits to a repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeImportCommits**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeimportcommits) | **Post** /{ostree_ostree_repository_href}import_commits/ | Append child commits to a repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeList**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreelist) | **Get** /api/pulp/{pulp_domain}/api/v3/repositories/ostree/ostree/ | List ostree repositorys
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeListRoles**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreelistroles) | **Get** /{ostree_ostree_repository_href}list_roles/ | List roles
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeModify**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreemodify) | **Post** /{ostree_ostree_repository_href}modify/ | Modify repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeMyPermissions**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreemypermissions) | **Get** /{ostree_ostree_repository_href}my_permissions/ | List user permissions
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreePartialUpdate**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreepartialupdate) | **Patch** /{ostree_ostree_repository_href} | Update an ostree repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeRead**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeread) | **Get** /{ostree_ostree_repository_href} | Inspect an ostree repository
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeRemoveRole**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeremoverole) | **Post** /{ostree_ostree_repository_href}remove_role/ | Remove a role
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeSetLabel**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreesetlabel) | **Post** /{ostree_ostree_repository_href}set_label/ | Set a label
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeSync**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreesync) | **Post** /{ostree_ostree_repository_href}sync/ | Sync from remote
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeUnsetLabel**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeunsetlabel) | **Post** /{ostree_ostree_repository_href}unset_label/ | Unset a label
-*RepositoriesOstreeAPI* | [**RepositoriesOstreeOstreeUpdate**](docs/RepositoriesOstreeAPI.md#repositoriesostreeostreeupdate) | **Put** /{ostree_ostree_repository_href} | Update an ostree repository
-*RepositoriesOstreeVersionsAPI* | [**RepositoriesOstreeOstreeVersionsDelete**](docs/RepositoriesOstreeVersionsAPI.md#repositoriesostreeostreeversionsdelete) | **Delete** /{ostree_ostree_repository_version_href} | Delete a repository version
-*RepositoriesOstreeVersionsAPI* | [**RepositoriesOstreeOstreeVersionsList**](docs/RepositoriesOstreeVersionsAPI.md#repositoriesostreeostreeversionslist) | **Get** /{ostree_ostree_repository_href}versions/ | List repository versions
-*RepositoriesOstreeVersionsAPI* | [**RepositoriesOstreeOstreeVersionsRead**](docs/RepositoriesOstreeVersionsAPI.md#repositoriesostreeostreeversionsread) | **Get** /{ostree_ostree_repository_version_href} | Inspect a repository version
-*RepositoriesOstreeVersionsAPI* | [**RepositoriesOstreeOstreeVersionsRepair**](docs/RepositoriesOstreeVersionsAPI.md#repositoriesostreeostreeversionsrepair) | **Post** /{ostree_ostree_repository_version_href}repair/ | 
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonAddRole**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonaddrole) | **Post** /{python_python_repository_href}add_role/ | Add a role
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonCreate**](docs/RepositoriesPythonAPI.md#repositoriespythonpythoncreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/python/python/ | Create a python repository
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonDelete**](docs/RepositoriesPythonAPI.md#repositoriespythonpythondelete) | **Delete** /{python_python_repository_href} | Delete a python repository
@@ -796,14 +825,20 @@ Class | Method | HTTP request | Description
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonPartialUpdate**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonpartialupdate) | **Patch** /{python_python_repository_href} | Update a python repository
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonRead**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonread) | **Get** /{python_python_repository_href} | Inspect a python repository
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonRemoveRole**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonremoverole) | **Post** /{python_python_repository_href}remove_role/ | Remove a role
+*RepositoriesPythonAPI* | [**RepositoriesPythonPythonRepairMetadata**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonrepairmetadata) | **Post** /{python_python_repository_href}repair_metadata/ | Repair metadata
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonSetLabel**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonsetlabel) | **Post** /{python_python_repository_href}set_label/ | Set a label
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonSync**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonsync) | **Post** /{python_python_repository_href}sync/ | Sync from remote
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonUnsetLabel**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonunsetlabel) | **Post** /{python_python_repository_href}unset_label/ | Unset a label
 *RepositoriesPythonAPI* | [**RepositoriesPythonPythonUpdate**](docs/RepositoriesPythonAPI.md#repositoriespythonpythonupdate) | **Put** /{python_python_repository_href} | Update a python repository
+*RepositoriesPythonBlocklistEntriesAPI* | [**RepositoriesPythonPythonBlocklistEntriesCreate**](docs/RepositoriesPythonBlocklistEntriesAPI.md#repositoriespythonpythonblocklistentriescreate) | **Post** /{python_python_repository_href}blocklist_entries/ | Create a python blocklist entry
+*RepositoriesPythonBlocklistEntriesAPI* | [**RepositoriesPythonPythonBlocklistEntriesDelete**](docs/RepositoriesPythonBlocklistEntriesAPI.md#repositoriespythonpythonblocklistentriesdelete) | **Delete** /{python_python_python_blocklist_entry_href} | Delete a python blocklist entry
+*RepositoriesPythonBlocklistEntriesAPI* | [**RepositoriesPythonPythonBlocklistEntriesList**](docs/RepositoriesPythonBlocklistEntriesAPI.md#repositoriespythonpythonblocklistentrieslist) | **Get** /{python_python_repository_href}blocklist_entries/ | List python blocklist entrys
+*RepositoriesPythonBlocklistEntriesAPI* | [**RepositoriesPythonPythonBlocklistEntriesRead**](docs/RepositoriesPythonBlocklistEntriesAPI.md#repositoriespythonpythonblocklistentriesread) | **Get** /{python_python_python_blocklist_entry_href} | Inspect a python blocklist entry
 *RepositoriesPythonVersionsAPI* | [**RepositoriesPythonPythonVersionsDelete**](docs/RepositoriesPythonVersionsAPI.md#repositoriespythonpythonversionsdelete) | **Delete** /{python_python_repository_version_href} | Delete a repository version
 *RepositoriesPythonVersionsAPI* | [**RepositoriesPythonPythonVersionsList**](docs/RepositoriesPythonVersionsAPI.md#repositoriespythonpythonversionslist) | **Get** /{python_python_repository_href}versions/ | List repository versions
 *RepositoriesPythonVersionsAPI* | [**RepositoriesPythonPythonVersionsRead**](docs/RepositoriesPythonVersionsAPI.md#repositoriespythonpythonversionsread) | **Get** /{python_python_repository_version_href} | Inspect a repository version
 *RepositoriesPythonVersionsAPI* | [**RepositoriesPythonPythonVersionsRepair**](docs/RepositoriesPythonVersionsAPI.md#repositoriespythonpythonversionsrepair) | **Post** /{python_python_repository_version_href}repair/ | 
+*RepositoriesPythonVersionsAPI* | [**RepositoriesPythonPythonVersionsScan**](docs/RepositoriesPythonVersionsAPI.md#repositoriespythonpythonversionsscan) | **Post** /{python_python_repository_version_href}scan/ | Generate vulnerability report
 *RepositoriesReclaimSpaceAPI* | [**RepositoriesReclaimSpaceReclaim**](docs/RepositoriesReclaimSpaceAPI.md#repositoriesreclaimspacereclaim) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/reclaim_space/ | 
 *RepositoriesRpmAPI* | [**RepositoriesRpmRpmAddRole**](docs/RepositoriesRpmAPI.md#repositoriesrpmrpmaddrole) | **Post** /{rpm_rpm_repository_href}add_role/ | Add a role
 *RepositoriesRpmAPI* | [**RepositoriesRpmRpmCreate**](docs/RepositoriesRpmAPI.md#repositoriesrpmrpmcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/rpm/rpm/ | Create a rpm repository
@@ -823,6 +858,7 @@ Class | Method | HTTP request | Description
 *RepositoriesRpmVersionsAPI* | [**RepositoriesRpmRpmVersionsList**](docs/RepositoriesRpmVersionsAPI.md#repositoriesrpmrpmversionslist) | **Get** /{rpm_rpm_repository_href}versions/ | List repository versions
 *RepositoriesRpmVersionsAPI* | [**RepositoriesRpmRpmVersionsRead**](docs/RepositoriesRpmVersionsAPI.md#repositoriesrpmrpmversionsread) | **Get** /{rpm_rpm_repository_version_href} | Inspect a repository version
 *RepositoriesRpmVersionsAPI* | [**RepositoriesRpmRpmVersionsRepair**](docs/RepositoriesRpmVersionsAPI.md#repositoriesrpmrpmversionsrepair) | **Post** /{rpm_rpm_repository_version_href}repair/ | 
+*RepositoriesRpmVersionsAPI* | [**RepositoriesRpmRpmVersionsScan**](docs/RepositoriesRpmVersionsAPI.md#repositoriesrpmrpmversionsscan) | **Post** /{rpm_rpm_repository_version_href}scan/ | Scan for vulnerabilities
 *RepositoryVersionsAPI* | [**RepositoryVersionsList**](docs/RepositoryVersionsAPI.md#repositoryversionslist) | **Get** /api/pulp/{pulp_domain}/api/v3/repository_versions/ | List repository versions
 *RolesAPI* | [**RolesCreate**](docs/RolesAPI.md#rolescreate) | **Post** /api/pulp/{pulp_domain}/api/v3/roles/ | Create a role
 *RolesAPI* | [**RolesDelete**](docs/RolesAPI.md#rolesdelete) | **Delete** /{role_href} | Delete a role
@@ -845,11 +881,11 @@ Class | Method | HTTP request | Description
 *TaskSchedulesAPI* | [**TaskSchedulesMyPermissions**](docs/TaskSchedulesAPI.md#taskschedulesmypermissions) | **Get** /{task_schedule_href}my_permissions/ | List user permissions
 *TaskSchedulesAPI* | [**TaskSchedulesRead**](docs/TaskSchedulesAPI.md#taskschedulesread) | **Get** /{task_schedule_href} | Inspect a task schedule
 *TaskSchedulesAPI* | [**TaskSchedulesRemoveRole**](docs/TaskSchedulesAPI.md#taskschedulesremoverole) | **Post** /{task_schedule_href}remove_role/ | Remove a role
+*TasksAPI* | [**AdminTasks**](docs/TasksAPI.md#admintasks) | **Get** /api/pulp/admin/tasks/ | 
 *TasksAPI* | [**TasksAddRole**](docs/TasksAPI.md#tasksaddrole) | **Post** /{task_href}add_role/ | Add a role
 *TasksAPI* | [**TasksCancel**](docs/TasksAPI.md#taskscancel) | **Patch** /{task_href} | Cancel a task
 *TasksAPI* | [**TasksDelete**](docs/TasksAPI.md#tasksdelete) | **Delete** /{task_href} | Delete a task
-*TasksAPI* | [**TasksList**](docs/TasksAPI.md#taskslist) | **Get** /api/pulp/admin/tasks/ | List tasks
-*TasksAPI* | [**TasksList2**](docs/TasksAPI.md#taskslist2) | **Get** /api/pulp/{pulp_domain}/api/v3/tasks/ | List tasks
+*TasksAPI* | [**TasksList**](docs/TasksAPI.md#taskslist) | **Get** /api/pulp/{pulp_domain}/api/v3/tasks/ | List tasks
 *TasksAPI* | [**TasksListRoles**](docs/TasksAPI.md#taskslistroles) | **Get** /{task_href}list_roles/ | List roles
 *TasksAPI* | [**TasksMyPermissions**](docs/TasksAPI.md#tasksmypermissions) | **Get** /{task_href}my_permissions/ | List user permissions
 *TasksAPI* | [**TasksProfileArtifacts**](docs/TasksAPI.md#tasksprofileartifacts) | **Get** /{task_href}profile_artifacts/ | Fetch downloadable links for profile artifacts
@@ -888,12 +924,19 @@ Class | Method | HTTP request | Description
 *UsersRolesAPI* | [**UsersRolesDelete**](docs/UsersRolesAPI.md#usersrolesdelete) | **Delete** /{auth_users_user_role_href} | Delete an user role
 *UsersRolesAPI* | [**UsersRolesList**](docs/UsersRolesAPI.md#usersroleslist) | **Get** /{auth_user_href}roles/ | List user roles
 *UsersRolesAPI* | [**UsersRolesRead**](docs/UsersRolesAPI.md#usersrolesread) | **Get** /{auth_users_user_role_href} | Inspect an user role
-*VulnReportAPI* | [**VulnReportCreate**](docs/VulnReportAPI.md#vulnreportcreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | Generate vulnerability report
-*VulnReportAPI* | [**VulnReportDelete**](docs/VulnReportAPI.md#vulnreportdelete) | **Delete** /{service_vulnerability_report_href} | Delete a vulnerability report
+*VulnReportAPI* | [**VulnReportDelete**](docs/VulnReportAPI.md#vulnreportdelete) | **Delete** /{vulnerability_report_href} | Delete a vulnerability report
 *VulnReportAPI* | [**VulnReportList**](docs/VulnReportAPI.md#vulnreportlist) | **Get** /api/pulp/{pulp_domain}/api/v3/vuln_report/ | List vulnerability reports
-*VulnReportAPI* | [**VulnReportRead**](docs/VulnReportAPI.md#vulnreportread) | **Get** /{service_vulnerability_report_href} | Inspect a vulnerability report
-*WorkersAPI* | [**WorkersList**](docs/WorkersAPI.md#workerslist) | **Get** /api/pulp/{pulp_domain}/api/v3/workers/ | List workers
-*WorkersAPI* | [**WorkersRead**](docs/WorkersAPI.md#workersread) | **Get** /{worker_href} | Inspect a worker
+*VulnReportAPI* | [**VulnReportRead**](docs/VulnReportAPI.md#vulnreportread) | **Get** /{vulnerability_report_href} | Inspect a vulnerability report
+*VulnReportServiceAPI* | [**VulnReportServiceAddRole**](docs/VulnReportServiceAPI.md#vulnreportserviceaddrole) | **Post** /{service_vulnerability_report_href}add_role/ | Add a role
+*VulnReportServiceAPI* | [**VulnReportServiceCreate**](docs/VulnReportServiceAPI.md#vulnreportservicecreate) | **Post** /api/pulp/{pulp_domain}/api/v3/vuln_report_service/ | Generate vulnerability report
+*VulnReportServiceAPI* | [**VulnReportServiceDelete**](docs/VulnReportServiceAPI.md#vulnreportservicedelete) | **Delete** /{service_vulnerability_report_href} | Delete a vulnerability report
+*VulnReportServiceAPI* | [**VulnReportServiceList**](docs/VulnReportServiceAPI.md#vulnreportservicelist) | **Get** /api/pulp/{pulp_domain}/api/v3/vuln_report_service/ | List vulnerability reports
+*VulnReportServiceAPI* | [**VulnReportServiceListRoles**](docs/VulnReportServiceAPI.md#vulnreportservicelistroles) | **Get** /{service_vulnerability_report_href}list_roles/ | List roles
+*VulnReportServiceAPI* | [**VulnReportServiceMyPermissions**](docs/VulnReportServiceAPI.md#vulnreportservicemypermissions) | **Get** /{service_vulnerability_report_href}my_permissions/ | List user permissions
+*VulnReportServiceAPI* | [**VulnReportServiceRead**](docs/VulnReportServiceAPI.md#vulnreportserviceread) | **Get** /{service_vulnerability_report_href} | Inspect a vulnerability report
+*VulnReportServiceAPI* | [**VulnReportServiceRemoveRole**](docs/VulnReportServiceAPI.md#vulnreportserviceremoverole) | **Post** /{service_vulnerability_report_href}remove_role/ | Remove a role
+*WorkersAPI* | [**WorkersList**](docs/WorkersAPI.md#workerslist) | **Get** /api/pulp/{pulp_domain}/api/v3/workers/ | List app statuss
+*WorkersAPI* | [**WorkersRead**](docs/WorkersAPI.md#workersread) | **Get** /{worker_href} | Inspect an app status
 
 
 ## Documentation For Models
@@ -901,7 +944,8 @@ Class | Method | HTTP request | Description
  - [AccessPolicy](docs/AccessPolicy.md)
  - [AccessPolicyResponse](docs/AccessPolicyResponse.md)
  - [AddonResponse](docs/AddonResponse.md)
- - [ApiAppStatusResponse](docs/ApiAppStatusResponse.md)
+ - [ApiPulpMigrateDomainCreateRequest](docs/ApiPulpMigrateDomainCreateRequest.md)
+ - [AppStatusResponse](docs/AppStatusResponse.md)
  - [Artifact](docs/Artifact.md)
  - [ArtifactDistributionResponse](docs/ArtifactDistributionResponse.md)
  - [ArtifactResponse](docs/ArtifactResponse.md)
@@ -934,14 +978,19 @@ Class | Method | HTTP request | Description
  - [ContainerManifestSignatureResponse](docs/ContainerManifestSignatureResponse.md)
  - [ContainerRepositorySyncURL](docs/ContainerRepositorySyncURL.md)
  - [ContainerTagResponse](docs/ContainerTagResponse.md)
- - [ContentAppStatusResponse](docs/ContentAppStatusResponse.md)
  - [ContentGuardResponse](docs/ContentGuardResponse.md)
  - [ContentRedirectContentGuard](docs/ContentRedirectContentGuard.md)
  - [ContentRedirectContentGuardResponse](docs/ContentRedirectContentGuardResponse.md)
  - [ContentScan](docs/ContentScan.md)
  - [ContentSettingsResponse](docs/ContentSettingsResponse.md)
  - [ContentSummaryResponse](docs/ContentSummaryResponse.md)
+ - [ContentViewErrataResponse](docs/ContentViewErrataResponse.md)
+ - [ContentViewModuleStreamResponse](docs/ContentViewModuleStreamResponse.md)
+ - [ContentViewPackageEnvironmentResponse](docs/ContentViewPackageEnvironmentResponse.md)
+ - [ContentViewPackageGroupResponse](docs/ContentViewPackageGroupResponse.md)
+ - [ContentViewPackageResponse](docs/ContentViewPackageResponse.md)
  - [Copy](docs/Copy.md)
+ - [DataRepair7272](docs/DataRepair7272.md)
  - [DatabaseConnectionResponse](docs/DatabaseConnectionResponse.md)
  - [DistributionResponse](docs/DistributionResponse.md)
  - [Domain](docs/Domain.md)
@@ -949,32 +998,28 @@ Class | Method | HTTP request | Description
  - [DomainResponse](docs/DomainResponse.md)
  - [EvaluationResponse](docs/EvaluationResponse.md)
  - [ExcludePlatformsEnum](docs/ExcludePlatformsEnum.md)
+ - [FileContentUpload](docs/FileContentUpload.md)
+ - [FileContentUploadResponse](docs/FileContentUploadResponse.md)
  - [FileFileAlternateContentSource](docs/FileFileAlternateContentSource.md)
  - [FileFileAlternateContentSourceResponse](docs/FileFileAlternateContentSourceResponse.md)
  - [FileFileContent](docs/FileFileContent.md)
  - [FileFileContentResponse](docs/FileFileContentResponse.md)
  - [FileFileDistribution](docs/FileFileDistribution.md)
  - [FileFileDistributionResponse](docs/FileFileDistributionResponse.md)
+ - [FileFileGitRemote](docs/FileFileGitRemote.md)
+ - [FileFileGitRemoteResponse](docs/FileFileGitRemoteResponse.md)
  - [FileFilePublication](docs/FileFilePublication.md)
  - [FileFilePublicationResponse](docs/FileFilePublicationResponse.md)
  - [FileFileRemote](docs/FileFileRemote.md)
  - [FileFileRemoteResponse](docs/FileFileRemoteResponse.md)
  - [FileFileRepository](docs/FileFileRepository.md)
  - [FileFileRepositoryResponse](docs/FileFileRepositoryResponse.md)
+ - [FileRepositorySyncURL](docs/FileRepositorySyncURL.md)
  - [FilesystemExport](docs/FilesystemExport.md)
  - [FilesystemExportResponse](docs/FilesystemExportResponse.md)
  - [FilesystemExporter](docs/FilesystemExporter.md)
  - [FilesystemExporterResponse](docs/FilesystemExporterResponse.md)
- - [GemGemContent](docs/GemGemContent.md)
- - [GemGemContentResponse](docs/GemGemContentResponse.md)
- - [GemGemDistribution](docs/GemGemDistribution.md)
- - [GemGemDistributionResponse](docs/GemGemDistributionResponse.md)
- - [GemGemPublication](docs/GemGemPublication.md)
- - [GemGemPublicationResponse](docs/GemGemPublicationResponse.md)
- - [GemGemRemote](docs/GemGemRemote.md)
- - [GemGemRemoteResponse](docs/GemGemRemoteResponse.md)
- - [GemGemRepository](docs/GemGemRepository.md)
- - [GemGemRepositoryResponse](docs/GemGemRepositoryResponse.md)
+ - [FiletypeEnum](docs/FiletypeEnum.md)
  - [GenericRemoteResponse](docs/GenericRemoteResponse.md)
  - [GenericRemoteResponseHiddenFieldsInner](docs/GenericRemoteResponseHiddenFieldsInner.md)
  - [Group](docs/Group.md)
@@ -986,20 +1031,40 @@ Class | Method | HTTP request | Description
  - [GroupUserResponse](docs/GroupUserResponse.md)
  - [HeaderContentGuard](docs/HeaderContentGuard.md)
  - [HeaderContentGuardResponse](docs/HeaderContentGuardResponse.md)
+ - [HuggingFaceHuggingFaceContent](docs/HuggingFaceHuggingFaceContent.md)
+ - [HuggingFaceHuggingFaceContentResponse](docs/HuggingFaceHuggingFaceContentResponse.md)
+ - [HuggingFaceHuggingFaceDistribution](docs/HuggingFaceHuggingFaceDistribution.md)
+ - [HuggingFaceHuggingFaceDistributionResponse](docs/HuggingFaceHuggingFaceDistributionResponse.md)
+ - [HuggingFaceHuggingFacePublication](docs/HuggingFaceHuggingFacePublication.md)
+ - [HuggingFaceHuggingFacePublicationResponse](docs/HuggingFaceHuggingFacePublicationResponse.md)
+ - [HuggingFaceHuggingFaceRemote](docs/HuggingFaceHuggingFaceRemote.md)
+ - [HuggingFaceHuggingFaceRemoteResponse](docs/HuggingFaceHuggingFaceRemoteResponse.md)
+ - [HuggingFaceHuggingFaceRepository](docs/HuggingFaceHuggingFaceRepository.md)
+ - [HuggingFaceHuggingFaceRepositoryResponse](docs/HuggingFaceHuggingFaceRepositoryResponse.md)
  - [ImageResponse](docs/ImageResponse.md)
  - [ImportResponse](docs/ImportResponse.md)
  - [LayoutEnum](docs/LayoutEnum.md)
  - [LoginResponse](docs/LoginResponse.md)
+ - [LoginUpdateResponse](docs/LoginUpdateResponse.md)
  - [ManifestCopy](docs/ManifestCopy.md)
+ - [MavenArtifactUpload](docs/MavenArtifactUpload.md)
  - [MavenMavenArtifact](docs/MavenMavenArtifact.md)
  - [MavenMavenArtifactResponse](docs/MavenMavenArtifactResponse.md)
  - [MavenMavenDistribution](docs/MavenMavenDistribution.md)
  - [MavenMavenDistributionResponse](docs/MavenMavenDistributionResponse.md)
+ - [MavenMavenMetadata](docs/MavenMavenMetadata.md)
+ - [MavenMavenMetadataResponse](docs/MavenMavenMetadataResponse.md)
+ - [MavenMavenPackageResponse](docs/MavenMavenPackageResponse.md)
  - [MavenMavenRemote](docs/MavenMavenRemote.md)
  - [MavenMavenRemoteResponse](docs/MavenMavenRemoteResponse.md)
  - [MavenMavenRepository](docs/MavenMavenRepository.md)
  - [MavenMavenRepositoryResponse](docs/MavenMavenRepositoryResponse.md)
+ - [MavenMetadataUpload](docs/MavenMetadataUpload.md)
+ - [MavenPackageReleaseResponse](docs/MavenPackageReleaseResponse.md)
+ - [MavenRepositoryMetricsResponse](docs/MavenRepositoryMetricsResponse.md)
+ - [MavenRepositoryPackageResponse](docs/MavenRepositoryPackageResponse.md)
  - [MediaTypesEnum](docs/MediaTypesEnum.md)
+ - [MetadataVersionEnum](docs/MetadataVersionEnum.md)
  - [MethodEnum](docs/MethodEnum.md)
  - [MinimalTaskResponse](docs/MinimalTaskResponse.md)
  - [MultipleArtifactContentResponse](docs/MultipleArtifactContentResponse.md)
@@ -1022,6 +1087,7 @@ Class | Method | HTTP request | Description
  - [NpmNpmRepositoryResponse](docs/NpmNpmRepositoryResponse.md)
  - [NpmPackage](docs/NpmPackage.md)
  - [NpmPackageResponse](docs/NpmPackageResponse.md)
+ - [NpmPackageUpload](docs/NpmPackageUpload.md)
  - [OCIBuildImage](docs/OCIBuildImage.md)
  - [ObjectRolesResponse](docs/ObjectRolesResponse.md)
  - [OpenPGPDistribution](docs/OpenPGPDistribution.md)
@@ -1035,21 +1101,6 @@ Class | Method | HTTP request | Description
  - [OpenPGPUserAttributeResponse](docs/OpenPGPUserAttributeResponse.md)
  - [OpenPGPUserIDResponse](docs/OpenPGPUserIDResponse.md)
  - [OrphansCleanup](docs/OrphansCleanup.md)
- - [OstreeImportAll](docs/OstreeImportAll.md)
- - [OstreeImportCommitsToRef](docs/OstreeImportCommitsToRef.md)
- - [OstreeOstreeCommitResponse](docs/OstreeOstreeCommitResponse.md)
- - [OstreeOstreeConfigResponse](docs/OstreeOstreeConfigResponse.md)
- - [OstreeOstreeContent](docs/OstreeOstreeContent.md)
- - [OstreeOstreeContentResponse](docs/OstreeOstreeContentResponse.md)
- - [OstreeOstreeDistribution](docs/OstreeOstreeDistribution.md)
- - [OstreeOstreeDistributionResponse](docs/OstreeOstreeDistributionResponse.md)
- - [OstreeOstreeObjectResponse](docs/OstreeOstreeObjectResponse.md)
- - [OstreeOstreeRefResponse](docs/OstreeOstreeRefResponse.md)
- - [OstreeOstreeRemote](docs/OstreeOstreeRemote.md)
- - [OstreeOstreeRemoteResponse](docs/OstreeOstreeRemoteResponse.md)
- - [OstreeOstreeRepository](docs/OstreeOstreeRepository.md)
- - [OstreeOstreeRepositoryResponse](docs/OstreeOstreeRepositoryResponse.md)
- - [OstreeOstreeSummaryResponse](docs/OstreeOstreeSummaryResponse.md)
  - [PackageChecksumTypeEnum](docs/PackageChecksumTypeEnum.md)
  - [PackageMetadataResponse](docs/PackageMetadataResponse.md)
  - [PackageTypesEnum](docs/PackageTypesEnum.md)
@@ -1061,6 +1112,11 @@ Class | Method | HTTP request | Description
  - [PaginatedCompositeContentGuardResponseList](docs/PaginatedCompositeContentGuardResponseList.md)
  - [PaginatedContentGuardResponseList](docs/PaginatedContentGuardResponseList.md)
  - [PaginatedContentRedirectContentGuardResponseList](docs/PaginatedContentRedirectContentGuardResponseList.md)
+ - [PaginatedContentViewErrataResponseList](docs/PaginatedContentViewErrataResponseList.md)
+ - [PaginatedContentViewModuleStreamResponseList](docs/PaginatedContentViewModuleStreamResponseList.md)
+ - [PaginatedContentViewPackageEnvironmentResponseList](docs/PaginatedContentViewPackageEnvironmentResponseList.md)
+ - [PaginatedContentViewPackageGroupResponseList](docs/PaginatedContentViewPackageGroupResponseList.md)
+ - [PaginatedContentViewPackageResponseList](docs/PaginatedContentViewPackageResponseList.md)
  - [PaginatedDistributionResponseList](docs/PaginatedDistributionResponseList.md)
  - [PaginatedDomainResponseList](docs/PaginatedDomainResponseList.md)
  - [PaginatedFilesystemExportResponseList](docs/PaginatedFilesystemExportResponseList.md)
@@ -1071,6 +1127,7 @@ Class | Method | HTTP request | Description
  - [PaginatedGroupUserResponseList](docs/PaginatedGroupUserResponseList.md)
  - [PaginatedHeaderContentGuardResponseList](docs/PaginatedHeaderContentGuardResponseList.md)
  - [PaginatedImportResponseList](docs/PaginatedImportResponseList.md)
+ - [PaginatedMavenRepositoryPackageListResponse](docs/PaginatedMavenRepositoryPackageListResponse.md)
  - [PaginatedMultipleArtifactContentResponseList](docs/PaginatedMultipleArtifactContentResponseList.md)
  - [PaginatedOpenPGPDistributionResponseList](docs/PaginatedOpenPGPDistributionResponseList.md)
  - [PaginatedOpenPGPKeyringResponseList](docs/PaginatedOpenPGPKeyringResponseList.md)
@@ -1095,6 +1152,7 @@ Class | Method | HTTP request | Description
  - [PaginatedUpstreamPulpResponseList](docs/PaginatedUpstreamPulpResponseList.md)
  - [PaginatedUserResponseList](docs/PaginatedUserResponseList.md)
  - [PaginatedUserRoleResponseList](docs/PaginatedUserRoleResponseList.md)
+ - [PaginatedVulnerabilityReportResponseList](docs/PaginatedVulnerabilityReportResponseList.md)
  - [PaginatedWorkerResponseList](docs/PaginatedWorkerResponseList.md)
  - [PaginatedcertguardRHSMCertGuardResponseList](docs/PaginatedcertguardRHSMCertGuardResponseList.md)
  - [PaginatedcertguardX509CertGuardResponseList](docs/PaginatedcertguardX509CertGuardResponseList.md)
@@ -1112,31 +1170,28 @@ Class | Method | HTTP request | Description
  - [PaginatedfileFileAlternateContentSourceResponseList](docs/PaginatedfileFileAlternateContentSourceResponseList.md)
  - [PaginatedfileFileContentResponseList](docs/PaginatedfileFileContentResponseList.md)
  - [PaginatedfileFileDistributionResponseList](docs/PaginatedfileFileDistributionResponseList.md)
+ - [PaginatedfileFileGitRemoteResponseList](docs/PaginatedfileFileGitRemoteResponseList.md)
  - [PaginatedfileFilePublicationResponseList](docs/PaginatedfileFilePublicationResponseList.md)
  - [PaginatedfileFileRemoteResponseList](docs/PaginatedfileFileRemoteResponseList.md)
  - [PaginatedfileFileRepositoryResponseList](docs/PaginatedfileFileRepositoryResponseList.md)
- - [PaginatedgemGemContentResponseList](docs/PaginatedgemGemContentResponseList.md)
- - [PaginatedgemGemDistributionResponseList](docs/PaginatedgemGemDistributionResponseList.md)
- - [PaginatedgemGemPublicationResponseList](docs/PaginatedgemGemPublicationResponseList.md)
- - [PaginatedgemGemRemoteResponseList](docs/PaginatedgemGemRemoteResponseList.md)
- - [PaginatedgemGemRepositoryResponseList](docs/PaginatedgemGemRepositoryResponseList.md)
+ - [PaginatedhuggingFaceHuggingFaceContentResponseList](docs/PaginatedhuggingFaceHuggingFaceContentResponseList.md)
+ - [PaginatedhuggingFaceHuggingFaceDistributionResponseList](docs/PaginatedhuggingFaceHuggingFaceDistributionResponseList.md)
+ - [PaginatedhuggingFaceHuggingFacePublicationResponseList](docs/PaginatedhuggingFaceHuggingFacePublicationResponseList.md)
+ - [PaginatedhuggingFaceHuggingFaceRemoteResponseList](docs/PaginatedhuggingFaceHuggingFaceRemoteResponseList.md)
+ - [PaginatedhuggingFaceHuggingFaceRepositoryResponseList](docs/PaginatedhuggingFaceHuggingFaceRepositoryResponseList.md)
  - [PaginatedmavenMavenArtifactResponseList](docs/PaginatedmavenMavenArtifactResponseList.md)
  - [PaginatedmavenMavenDistributionResponseList](docs/PaginatedmavenMavenDistributionResponseList.md)
+ - [PaginatedmavenMavenMetadataResponseList](docs/PaginatedmavenMavenMetadataResponseList.md)
+ - [PaginatedmavenMavenPackageResponseList](docs/PaginatedmavenMavenPackageResponseList.md)
  - [PaginatedmavenMavenRemoteResponseList](docs/PaginatedmavenMavenRemoteResponseList.md)
  - [PaginatedmavenMavenRepositoryResponseList](docs/PaginatedmavenMavenRepositoryResponseList.md)
  - [PaginatednpmNpmDistributionResponseList](docs/PaginatednpmNpmDistributionResponseList.md)
  - [PaginatednpmNpmRemoteResponseList](docs/PaginatednpmNpmRemoteResponseList.md)
  - [PaginatednpmNpmRepositoryResponseList](docs/PaginatednpmNpmRepositoryResponseList.md)
  - [PaginatednpmPackageResponseList](docs/PaginatednpmPackageResponseList.md)
- - [PaginatedostreeOstreeCommitResponseList](docs/PaginatedostreeOstreeCommitResponseList.md)
- - [PaginatedostreeOstreeConfigResponseList](docs/PaginatedostreeOstreeConfigResponseList.md)
- - [PaginatedostreeOstreeContentResponseList](docs/PaginatedostreeOstreeContentResponseList.md)
- - [PaginatedostreeOstreeDistributionResponseList](docs/PaginatedostreeOstreeDistributionResponseList.md)
- - [PaginatedostreeOstreeObjectResponseList](docs/PaginatedostreeOstreeObjectResponseList.md)
- - [PaginatedostreeOstreeRefResponseList](docs/PaginatedostreeOstreeRefResponseList.md)
- - [PaginatedostreeOstreeRemoteResponseList](docs/PaginatedostreeOstreeRemoteResponseList.md)
- - [PaginatedostreeOstreeRepositoryResponseList](docs/PaginatedostreeOstreeRepositoryResponseList.md)
- - [PaginatedostreeOstreeSummaryResponseList](docs/PaginatedostreeOstreeSummaryResponseList.md)
+ - [PaginatedpythonPackageProvenanceResponseList](docs/PaginatedpythonPackageProvenanceResponseList.md)
+ - [PaginatedpythonPackageYankResponseList](docs/PaginatedpythonPackageYankResponseList.md)
+ - [PaginatedpythonPythonBlocklistEntryResponseList](docs/PaginatedpythonPythonBlocklistEntryResponseList.md)
  - [PaginatedpythonPythonDistributionResponseList](docs/PaginatedpythonPythonDistributionResponseList.md)
  - [PaginatedpythonPythonPackageContentResponseList](docs/PaginatedpythonPythonPackageContentResponseList.md)
  - [PaginatedpythonPythonPublicationResponseList](docs/PaginatedpythonPythonPublicationResponseList.md)
@@ -1159,7 +1214,9 @@ Class | Method | HTTP request | Description
  - [PaginatedrpmRpmRepositoryResponseList](docs/PaginatedrpmRpmRepositoryResponseList.md)
  - [PaginatedrpmUlnRemoteResponseList](docs/PaginatedrpmUlnRemoteResponseList.md)
  - [PaginatedrpmUpdateRecordResponseList](docs/PaginatedrpmUpdateRecordResponseList.md)
+ - [PaginatedserviceContentViewResponseList](docs/PaginatedserviceContentViewResponseList.md)
  - [PaginatedserviceFeatureContentGuardResponseList](docs/PaginatedserviceFeatureContentGuardResponseList.md)
+ - [PaginatedservicePyPIYankMonitorResponseList](docs/PaginatedservicePyPIYankMonitorResponseList.md)
  - [PaginatedserviceVulnerabilityReportResponseList](docs/PaginatedserviceVulnerabilityReportResponseList.md)
  - [PatchedAccessPolicy](docs/PatchedAccessPolicy.md)
  - [PatchedCompositeContentGuard](docs/PatchedCompositeContentGuard.md)
@@ -1168,6 +1225,7 @@ Class | Method | HTTP request | Description
  - [PatchedFilesystemExporter](docs/PatchedFilesystemExporter.md)
  - [PatchedGroup](docs/PatchedGroup.md)
  - [PatchedHeaderContentGuard](docs/PatchedHeaderContentGuard.md)
+ - [PatchedLoginUpdate](docs/PatchedLoginUpdate.md)
  - [PatchedOpenPGPDistribution](docs/PatchedOpenPGPDistribution.md)
  - [PatchedOpenPGPKeyring](docs/PatchedOpenPGPKeyring.md)
  - [PatchedPulpExporter](docs/PatchedPulpExporter.md)
@@ -1187,20 +1245,18 @@ Class | Method | HTTP request | Description
  - [PatchedcontainerContainerRepository](docs/PatchedcontainerContainerRepository.md)
  - [PatchedfileFileAlternateContentSource](docs/PatchedfileFileAlternateContentSource.md)
  - [PatchedfileFileDistribution](docs/PatchedfileFileDistribution.md)
+ - [PatchedfileFileGitRemote](docs/PatchedfileFileGitRemote.md)
  - [PatchedfileFileRemote](docs/PatchedfileFileRemote.md)
  - [PatchedfileFileRepository](docs/PatchedfileFileRepository.md)
- - [PatchedgemGemDistribution](docs/PatchedgemGemDistribution.md)
- - [PatchedgemGemRemote](docs/PatchedgemGemRemote.md)
- - [PatchedgemGemRepository](docs/PatchedgemGemRepository.md)
+ - [PatchedhuggingFaceHuggingFaceDistribution](docs/PatchedhuggingFaceHuggingFaceDistribution.md)
+ - [PatchedhuggingFaceHuggingFaceRemote](docs/PatchedhuggingFaceHuggingFaceRemote.md)
+ - [PatchedhuggingFaceHuggingFaceRepository](docs/PatchedhuggingFaceHuggingFaceRepository.md)
  - [PatchedmavenMavenDistribution](docs/PatchedmavenMavenDistribution.md)
  - [PatchedmavenMavenRemote](docs/PatchedmavenMavenRemote.md)
  - [PatchedmavenMavenRepository](docs/PatchedmavenMavenRepository.md)
  - [PatchednpmNpmDistribution](docs/PatchednpmNpmDistribution.md)
  - [PatchednpmNpmRemote](docs/PatchednpmNpmRemote.md)
  - [PatchednpmNpmRepository](docs/PatchednpmNpmRepository.md)
- - [PatchedostreeOstreeDistribution](docs/PatchedostreeOstreeDistribution.md)
- - [PatchedostreeOstreeRemote](docs/PatchedostreeOstreeRemote.md)
- - [PatchedostreeOstreeRepository](docs/PatchedostreeOstreeRepository.md)
  - [PatchedpythonPythonDistribution](docs/PatchedpythonPythonDistribution.md)
  - [PatchedpythonPythonRemote](docs/PatchedpythonPythonRemote.md)
  - [PatchedpythonPythonRepository](docs/PatchedpythonPythonRepository.md)
@@ -1208,15 +1264,17 @@ Class | Method | HTTP request | Description
  - [PatchedrpmRpmDistribution](docs/PatchedrpmRpmDistribution.md)
  - [PatchedrpmRpmRemote](docs/PatchedrpmRpmRemote.md)
  - [PatchedrpmRpmRepository](docs/PatchedrpmRpmRepository.md)
+ - [PatchedrpmRpmRepositoryOsvConfigInner](docs/PatchedrpmRpmRepositoryOsvConfigInner.md)
  - [PatchedrpmUlnRemote](docs/PatchedrpmUlnRemote.md)
+ - [PatchedserviceContentView](docs/PatchedserviceContentView.md)
  - [PatchedserviceFeatureContentGuard](docs/PatchedserviceFeatureContentGuard.md)
  - [Policy357Enum](docs/Policy357Enum.md)
  - [Policy692Enum](docs/Policy692Enum.md)
  - [Policy7e0Enum](docs/Policy7e0Enum.md)
  - [PolicyB5fEnum](docs/PolicyB5fEnum.md)
- - [PolicyBfeEnum](docs/PolicyBfeEnum.md)
  - [ProfileArtifactResponse](docs/ProfileArtifactResponse.md)
  - [ProgressReportResponse](docs/ProgressReportResponse.md)
+ - [ProtocolVersionEnum](docs/ProtocolVersionEnum.md)
  - [PrunePackages](docs/PrunePackages.md)
  - [PublicationResponse](docs/PublicationResponse.md)
  - [PulpExport](docs/PulpExport.md)
@@ -1230,6 +1288,12 @@ Class | Method | HTTP request | Description
  - [PulpImporterResponse](docs/PulpImporterResponse.md)
  - [Purge](docs/Purge.md)
  - [PythonBanderRemote](docs/PythonBanderRemote.md)
+ - [PythonPackageContentUpload](docs/PythonPackageContentUpload.md)
+ - [PythonPackageProvenance](docs/PythonPackageProvenance.md)
+ - [PythonPackageProvenanceResponse](docs/PythonPackageProvenanceResponse.md)
+ - [PythonPackageYankResponse](docs/PythonPackageYankResponse.md)
+ - [PythonPythonBlocklistEntry](docs/PythonPythonBlocklistEntry.md)
+ - [PythonPythonBlocklistEntryResponse](docs/PythonPythonBlocklistEntryResponse.md)
  - [PythonPythonDistribution](docs/PythonPythonDistribution.md)
  - [PythonPythonDistributionResponse](docs/PythonPythonDistributionResponse.md)
  - [PythonPythonPackageContent](docs/PythonPythonPackageContent.md)
@@ -1242,13 +1306,17 @@ Class | Method | HTTP request | Description
  - [PythonPythonRepositoryResponse](docs/PythonPythonRepositoryResponse.md)
  - [RBACContentGuard](docs/RBACContentGuard.md)
  - [RBACContentGuardResponse](docs/RBACContentGuardResponse.md)
+ - [RPMPackageUpload](docs/RPMPackageUpload.md)
  - [ReclaimSpace](docs/ReclaimSpace.md)
  - [RecursiveManage](docs/RecursiveManage.md)
  - [RedisConnectionResponse](docs/RedisConnectionResponse.md)
+ - [RemoteNetworkConfig](docs/RemoteNetworkConfig.md)
+ - [RemoteNetworkConfigResponse](docs/RemoteNetworkConfigResponse.md)
  - [RemoveImage](docs/RemoveImage.md)
  - [RemoveSignatures](docs/RemoveSignatures.md)
  - [RemoveSignaturesResponse](docs/RemoveSignaturesResponse.md)
  - [Repair](docs/Repair.md)
+ - [RepoTypeEnum](docs/RepoTypeEnum.md)
  - [RepositoryAddCachedContent](docs/RepositoryAddCachedContent.md)
  - [RepositoryAddRemoveContent](docs/RepositoryAddRemoveContent.md)
  - [RepositoryResponse](docs/RepositoryResponse.md)
@@ -1288,9 +1356,14 @@ Class | Method | HTTP request | Description
  - [RpmUpdateCollectionResponse](docs/RpmUpdateCollectionResponse.md)
  - [RpmUpdateRecord](docs/RpmUpdateRecord.md)
  - [RpmUpdateRecordResponse](docs/RpmUpdateRecordResponse.md)
+ - [ServiceContentView](docs/ServiceContentView.md)
+ - [ServiceContentViewResponse](docs/ServiceContentViewResponse.md)
  - [ServiceFeatureContentGuard](docs/ServiceFeatureContentGuard.md)
  - [ServiceFeatureContentGuardResponse](docs/ServiceFeatureContentGuardResponse.md)
+ - [ServicePyPIYankMonitor](docs/ServicePyPIYankMonitor.md)
+ - [ServicePyPIYankMonitorResponse](docs/ServicePyPIYankMonitorResponse.md)
  - [ServiceVulnerabilityReportResponse](docs/ServiceVulnerabilityReportResponse.md)
+ - [ServiceYankedPackageReportResponse](docs/ServiceYankedPackageReportResponse.md)
  - [SetLabel](docs/SetLabel.md)
  - [SetLabelResponse](docs/SetLabelResponse.md)
  - [SigningServiceResponse](docs/SigningServiceResponse.md)
@@ -1317,6 +1390,7 @@ Class | Method | HTTP request | Description
  - [UploadDetailResponse](docs/UploadDetailResponse.md)
  - [UploadResponse](docs/UploadResponse.md)
  - [UpstreamPulp](docs/UpstreamPulp.md)
+ - [UpstreamPulpReplicate](docs/UpstreamPulpReplicate.md)
  - [UpstreamPulpResponse](docs/UpstreamPulpResponse.md)
  - [User](docs/User.md)
  - [UserGroup](docs/UserGroup.md)
@@ -1326,7 +1400,9 @@ Class | Method | HTTP request | Description
  - [UserRoleResponse](docs/UserRoleResponse.md)
  - [VariantResponse](docs/VariantResponse.md)
  - [VersionResponse](docs/VersionResponse.md)
+ - [VulnerabilityReportResponse](docs/VulnerabilityReportResponse.md)
  - [WorkerResponse](docs/WorkerResponse.md)
+ - [Yank](docs/Yank.md)
 
 
 ## Documentation For Authorization

@@ -29,10 +29,17 @@ type RepositoriesReclaimSpaceAPIRepositoriesReclaimSpaceReclaimRequest struct {
 	ApiService *RepositoriesReclaimSpaceAPIService
 	pulpDomain string
 	reclaimSpace *ReclaimSpace
+	xTaskDiagnostics *[]string
 }
 
 func (r RepositoriesReclaimSpaceAPIRepositoriesReclaimSpaceReclaimRequest) ReclaimSpace(reclaimSpace ReclaimSpace) RepositoriesReclaimSpaceAPIRepositoriesReclaimSpaceReclaimRequest {
 	r.reclaimSpace = &reclaimSpace
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesReclaimSpaceAPIRepositoriesReclaimSpaceReclaimRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesReclaimSpaceAPIRepositoriesReclaimSpaceReclaimRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -99,6 +106,9 @@ func (a *RepositoriesReclaimSpaceAPIService) RepositoriesReclaimSpaceReclaimExec
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.reclaimSpace

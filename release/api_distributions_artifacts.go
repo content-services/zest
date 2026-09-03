@@ -29,6 +29,7 @@ type DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsArtifactsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -56,6 +57,12 @@ type DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -190,13 +197,11 @@ func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) Q(q stri
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) Repository(repository string) DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest) RepositoryIn(repositoryIn []string) DistributionsArtifactsAPIDistributionsCoreArtifactsListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -378,6 +383,9 @@ func (a *DistributionsArtifactsAPIService) DistributionsCoreArtifactsListExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -419,8 +427,15 @@ type DistributionsArtifactsAPIDistributionsCoreArtifactsReadRequest struct {
 	ctx context.Context
 	ApiService *DistributionsArtifactsAPIService
 	artifactDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsArtifactsAPIDistributionsCoreArtifactsReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsArtifactsAPIDistributionsCoreArtifactsReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -517,6 +532,9 @@ func (a *DistributionsArtifactsAPIService) DistributionsCoreArtifactsReadExecute
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

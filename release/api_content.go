@@ -29,6 +29,7 @@ type ContentAPIContentListRequest struct {
 	ctx context.Context
 	ApiService *ContentAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -45,6 +46,12 @@ type ContentAPIContentListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentAPIContentListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAPIContentListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -95,13 +102,13 @@ func (r ContentAPIContentListRequest) PulpLabelSelect(pulpLabelSelect string) Co
 	return r
 }
 
-// Pulp type* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;core.openpgp_publickey&#x60; - core.openpgp_publickey* &#x60;core.openpgp_publicsubkey&#x60; - core.openpgp_publicsubkey* &#x60;core.openpgp_userid&#x60; - core.openpgp_userid* &#x60;core.openpgp_userattribute&#x60; - core.openpgp_userattribute* &#x60;core.openpgp_signature&#x60; - core.openpgp_signature* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.blob&#x60; - container.blob* &#x60;container.manifest&#x60; - container.manifest* &#x60;container.tag&#x60; - container.tag* &#x60;container.signature&#x60; - container.signature* &#x60;npm.package&#x60; - npm.package* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.artifact&#x60; - maven.artifact* &#x60;maven.metadata&#x60; - maven.metadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
+// Pulp type* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;core.openpgp_publickey&#x60; - core.openpgp_publickey* &#x60;core.openpgp_publicsubkey&#x60; - core.openpgp_publicsubkey* &#x60;core.openpgp_userid&#x60; - core.openpgp_userid* &#x60;core.openpgp_userattribute&#x60; - core.openpgp_userattribute* &#x60;core.openpgp_signature&#x60; - core.openpgp_signature* &#x60;file.file&#x60; - file.file* &#x60;npm.package&#x60; - npm.package* &#x60;python.python&#x60; - python.python* &#x60;python.provenance&#x60; - python.provenance* &#x60;python.python_yank&#x60; - python.python_yank* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.artifact&#x60; - maven.artifact* &#x60;maven.metadata&#x60; - maven.metadata* &#x60;maven.package&#x60; - maven.package* &#x60;container.blob&#x60; - container.blob* &#x60;container.manifest&#x60; - container.manifest* &#x60;container.tag&#x60; - container.tag* &#x60;container.signature&#x60; - container.signature* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete
 func (r ContentAPIContentListRequest) PulpType(pulpType string) ContentAPIContentListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;core.openpgp_publickey&#x60; - core.openpgp_publickey* &#x60;core.openpgp_publicsubkey&#x60; - core.openpgp_publicsubkey* &#x60;core.openpgp_userid&#x60; - core.openpgp_userid* &#x60;core.openpgp_userattribute&#x60; - core.openpgp_userattribute* &#x60;core.openpgp_signature&#x60; - core.openpgp_signature* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;container.blob&#x60; - container.blob* &#x60;container.manifest&#x60; - container.manifest* &#x60;container.tag&#x60; - container.tag* &#x60;container.signature&#x60; - container.signature* &#x60;npm.package&#x60; - npm.package* &#x60;gem.gem&#x60; - gem.gem* &#x60;maven.artifact&#x60; - maven.artifact* &#x60;maven.metadata&#x60; - maven.metadata* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete* &#x60;ostree.object&#x60; - ostree.object* &#x60;ostree.commit&#x60; - ostree.commit* &#x60;ostree.refs&#x60; - ostree.refs* &#x60;ostree.content&#x60; - ostree.content* &#x60;ostree.config&#x60; - ostree.config* &#x60;ostree.summary&#x60; - ostree.summary
+// Multiple values may be separated by commas.* &#x60;core.publishedmetadata&#x60; - core.publishedmetadata* &#x60;core.openpgp_publickey&#x60; - core.openpgp_publickey* &#x60;core.openpgp_publicsubkey&#x60; - core.openpgp_publicsubkey* &#x60;core.openpgp_userid&#x60; - core.openpgp_userid* &#x60;core.openpgp_userattribute&#x60; - core.openpgp_userattribute* &#x60;core.openpgp_signature&#x60; - core.openpgp_signature* &#x60;file.file&#x60; - file.file* &#x60;npm.package&#x60; - npm.package* &#x60;python.python&#x60; - python.python* &#x60;python.provenance&#x60; - python.provenance* &#x60;python.python_yank&#x60; - python.python_yank* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.artifact&#x60; - maven.artifact* &#x60;maven.metadata&#x60; - maven.metadata* &#x60;maven.package&#x60; - maven.package* &#x60;container.blob&#x60; - container.blob* &#x60;container.manifest&#x60; - container.manifest* &#x60;container.tag&#x60; - container.tag* &#x60;container.signature&#x60; - container.signature* &#x60;rpm.advisory&#x60; - rpm.advisory* &#x60;rpm.packagegroup&#x60; - rpm.packagegroup* &#x60;rpm.packagecategory&#x60; - rpm.packagecategory* &#x60;rpm.packageenvironment&#x60; - rpm.packageenvironment* &#x60;rpm.packagelangpacks&#x60; - rpm.packagelangpacks* &#x60;rpm.repo_metadata_file&#x60; - rpm.repo_metadata_file* &#x60;rpm.distribution_tree&#x60; - rpm.distribution_tree* &#x60;rpm.package&#x60; - rpm.package* &#x60;rpm.modulemd&#x60; - rpm.modulemd* &#x60;rpm.modulemd_defaults&#x60; - rpm.modulemd_defaults* &#x60;rpm.modulemd_obsolete&#x60; - rpm.modulemd_obsolete
 func (r ContentAPIContentListRequest) PulpTypeIn(pulpTypeIn []string) ContentAPIContentListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -113,19 +120,16 @@ func (r ContentAPIContentListRequest) Q(q string) ContentAPIContentListRequest {
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersion(repositoryVersion string) ContentAPIContentListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentAPIContentListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentAPIContentListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentAPIContentListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -267,6 +271,9 @@ func (a *ContentAPIService) ContentListExecute(r ContentAPIContentListRequest) (
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

@@ -30,6 +30,7 @@ type PublicationsAPIPublicationsListRequest struct {
 	ctx context.Context
 	ApiService *PublicationsAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	checkpoint *bool
 	content *string
 	contentIn *[]string
@@ -53,6 +54,12 @@ type PublicationsAPIPublicationsListRequest struct {
 	repositoryVersion *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r PublicationsAPIPublicationsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) PublicationsAPIPublicationsListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where checkpoint matches value
@@ -151,13 +158,13 @@ func (r PublicationsAPIPublicationsListRequest) PulpIdIn(pulpIdIn []string) Publ
 	return r
 }
 
-// Pulp type* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r PublicationsAPIPublicationsListRequest) PulpType(pulpType string) PublicationsAPIPublicationsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;gem.gem&#x60; - gem.gem* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r PublicationsAPIPublicationsListRequest) PulpTypeIn(pulpTypeIn []string) PublicationsAPIPublicationsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
@@ -175,7 +182,6 @@ func (r PublicationsAPIPublicationsListRequest) Repository(repository string) Pu
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r PublicationsAPIPublicationsListRequest) RepositoryVersion(repositoryVersion string) PublicationsAPIPublicationsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -338,6 +344,9 @@ func (a *PublicationsAPIService) PublicationsListExecute(r PublicationsAPIPublic
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

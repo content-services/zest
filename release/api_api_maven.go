@@ -31,8 +31,15 @@ type ApiMavenAPIApiPulpMavenGetRequest struct {
 	name string
 	path string
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ApiMavenAPIApiPulpMavenGetRequest) XTaskDiagnostics(xTaskDiagnostics []string) ApiMavenAPIApiPulpMavenGetRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -134,6 +141,9 @@ func (a *ApiMavenAPIService) ApiPulpMavenGetExecute(r ApiMavenAPIApiPulpMavenGet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -168,6 +178,13 @@ type ApiMavenAPIApiPulpMavenPutRequest struct {
 	name string
 	path string
 	pulpDomain string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ApiMavenAPIApiPulpMavenPutRequest) XTaskDiagnostics(xTaskDiagnostics []string) ApiMavenAPIApiPulpMavenPutRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r ApiMavenAPIApiPulpMavenPutRequest) Execute() (*http.Response, error) {
@@ -234,6 +251,9 @@ func (a *ApiMavenAPIService) ApiPulpMavenPutExecute(r ApiMavenAPIApiPulpMavenPut
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

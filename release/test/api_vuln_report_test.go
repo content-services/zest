@@ -22,27 +22,13 @@ func Test_zest_VulnReportAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test VulnReportAPIService VulnReportCreate", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var pulpDomain string
-
-		resp, httpRes, err := apiClient.VulnReportAPI.VulnReportCreate(context.Background(), pulpDomain).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test VulnReportAPIService VulnReportDelete", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serviceVulnerabilityReportHref string
+		var vulnerabilityReportHref string
 
-		httpRes, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), serviceVulnerabilityReportHref).Execute()
+		httpRes, err := apiClient.VulnReportAPI.VulnReportDelete(context.Background(), vulnerabilityReportHref).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -67,9 +53,9 @@ func Test_zest_VulnReportAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var serviceVulnerabilityReportHref string
+		var vulnerabilityReportHref string
 
-		resp, httpRes, err := apiClient.VulnReportAPI.VulnReportRead(context.Background(), serviceVulnerabilityReportHref).Execute()
+		resp, httpRes, err := apiClient.VulnReportAPI.VulnReportRead(context.Background(), vulnerabilityReportHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

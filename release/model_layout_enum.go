@@ -16,19 +16,21 @@ import (
 	"fmt"
 )
 
-// LayoutEnum * `nested_alphabetically` - nested_alphabetically* `flat` - flat
+// LayoutEnum * `nested_alphabetically` - nested_alphabetically* `flat` - flat* `nested_by_digest` - nested_by_digest
 type LayoutEnum string
 
 // List of LayoutEnum
 const (
 	LAYOUTENUM_NESTED_ALPHABETICALLY LayoutEnum = "nested_alphabetically"
 	LAYOUTENUM_FLAT LayoutEnum = "flat"
+	LAYOUTENUM_NESTED_BY_DIGEST LayoutEnum = "nested_by_digest"
 )
 
 // All allowed values of LayoutEnum enum
 var AllowedLayoutEnumEnumValues = []LayoutEnum{
 	"nested_alphabetically",
 	"flat",
+	"nested_by_digest",
 }
 
 func (v *LayoutEnum) UnmarshalJSON(src []byte) error {

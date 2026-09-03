@@ -31,6 +31,7 @@ type ContainerTagResponse struct {
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
 	// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	VulnReport *string `json:"vuln_report,omitempty"`
 	// Tag name
 	Name string `json:"name"`
 	// Manifest that is tagged
@@ -219,6 +220,38 @@ func (o *ContainerTagResponse) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
+// GetVulnReport returns the VulnReport field value if set, zero value otherwise.
+func (o *ContainerTagResponse) GetVulnReport() string {
+	if o == nil || IsNil(o.VulnReport) {
+		var ret string
+		return ret
+	}
+	return *o.VulnReport
+}
+
+// GetVulnReportOk returns a tuple with the VulnReport field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerTagResponse) GetVulnReportOk() (*string, bool) {
+	if o == nil || IsNil(o.VulnReport) {
+		return nil, false
+	}
+	return o.VulnReport, true
+}
+
+// HasVulnReport returns a boolean if a field has been set.
+func (o *ContainerTagResponse) HasVulnReport() bool {
+	if o != nil && !IsNil(o.VulnReport) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnReport gets a reference to the given string and assigns it to the VulnReport field.
+func (o *ContainerTagResponse) SetVulnReport(v string) {
+	o.VulnReport = &v
+}
+
 // GetName returns the Name field value
 func (o *ContainerTagResponse) GetName() string {
 	if o == nil {
@@ -292,6 +325,9 @@ func (o ContainerTagResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if !IsNil(o.VulnReport) {
+		toSerialize["vuln_report"] = o.VulnReport
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["tagged_manifest"] = o.TaggedManifest
 
@@ -343,6 +379,7 @@ func (o *ContainerTagResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pulp_created")
 		delete(additionalProperties, "pulp_last_updated")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "vuln_report")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "tagged_manifest")
 		o.AdditionalProperties = additionalProperties

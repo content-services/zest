@@ -29,7 +29,7 @@ type FilesystemExporterResponse struct {
 	PulpCreated *time.Time `json:"pulp_created,omitempty"`
 	// Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same.
 	PulpLastUpdated *time.Time `json:"pulp_last_updated,omitempty"`
-	// Unique name of the file system exporter.
+	// Unique name of the exporter.
 	Name string `json:"name"`
 	// File system location to export to.
 	Path string `json:"path"`

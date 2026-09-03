@@ -36,7 +36,7 @@ type TaskResponse struct {
 	// The logging correlation id associated with this task
 	LoggingCid string `json:"logging_cid"`
 	// User who dispatched this task.
-	CreatedBy *string `json:"created_by,omitempty"`
+	CreatedBy NullableString `json:"created_by,omitempty"`
 	// Timestamp of when this task was identified ready for pickup.
 	UnblockedAt *time.Time `json:"unblocked_at,omitempty"`
 	// Timestamp of when this task started execution.
@@ -45,8 +45,8 @@ type TaskResponse struct {
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// A JSON Object of a fatal error encountered during the execution of this task.
 	Error *map[string]string `json:"error,omitempty"`
-	// The worker associated with this task. This field is empty if a worker is not yet assigned.
-	Worker *string `json:"worker,omitempty"`
+	// DEPRECATED - Always null
+	Worker NullableString `json:"worker,omitempty"`
 	// The parent task that spawned this task.
 	ParentTask *string `json:"parent_task,omitempty"`
 	// Any tasks spawned by this task.
@@ -56,8 +56,14 @@ type TaskResponse struct {
 	ProgressReports []ProgressReportResponse `json:"progress_reports,omitempty"`
 	// Resources created by this task.
 	CreatedResources []string `json:"created_resources,omitempty"`
+	// Resources created by this task as PRNs.
+	CreatedResourcePrns []string `json:"created_resource_prns,omitempty"`
 	// A list of resources required by that task.
 	ReservedResourcesRecord []string `json:"reserved_resources_record,omitempty"`
+	// The result of this task.
+	Result interface{} `json:"result,omitempty"`
+	// The API-version that was invoked when creating the task.
+	PulpApiVersion *string `json:"pulp_api_version,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,6 +77,8 @@ func NewTaskResponse(name string, loggingCid string) *TaskResponse {
 	this := TaskResponse{}
 	this.Name = name
 	this.LoggingCid = loggingCid
+	var pulpApiVersion string = "v3"
+	this.PulpApiVersion = &pulpApiVersion
 	return &this
 }
 
@@ -79,6 +87,8 @@ func NewTaskResponse(name string, loggingCid string) *TaskResponse {
 // but it doesn't guarantee that properties required by API are set
 func NewTaskResponseWithDefaults() *TaskResponse {
 	this := TaskResponse{}
+	var pulpApiVersion string = "v3"
+	this.PulpApiVersion = &pulpApiVersion
 	return &this
 }
 
@@ -290,36 +300,46 @@ func (o *TaskResponse) SetLoggingCid(v string) {
 	o.LoggingCid = v
 }
 
-// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TaskResponse) GetCreatedBy() string {
-	if o == nil || IsNil(o.CreatedBy) {
+	if o == nil || IsNil(o.CreatedBy.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CreatedBy
+	return *o.CreatedBy.Get()
 }
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TaskResponse) GetCreatedByOk() (*string, bool) {
-	if o == nil || IsNil(o.CreatedBy) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedBy, true
+	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *TaskResponse) HasCreatedBy() bool {
-	if o != nil && !IsNil(o.CreatedBy) {
+	if o != nil && o.CreatedBy.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
+// SetCreatedBy gets a reference to the given NullableString and assigns it to the CreatedBy field.
 func (o *TaskResponse) SetCreatedBy(v string) {
-	o.CreatedBy = &v
+	o.CreatedBy.Set(&v)
+}
+// SetCreatedByNil sets the value for CreatedBy to be an explicit nil
+func (o *TaskResponse) SetCreatedByNil() {
+	o.CreatedBy.Set(nil)
+}
+
+// UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
+func (o *TaskResponse) UnsetCreatedBy() {
+	o.CreatedBy.Unset()
 }
 
 // GetUnblockedAt returns the UnblockedAt field value if set, zero value otherwise.
@@ -450,36 +470,46 @@ func (o *TaskResponse) SetError(v map[string]string) {
 	o.Error = &v
 }
 
-// GetWorker returns the Worker field value if set, zero value otherwise.
+// GetWorker returns the Worker field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TaskResponse) GetWorker() string {
-	if o == nil || IsNil(o.Worker) {
+	if o == nil || IsNil(o.Worker.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Worker
+	return *o.Worker.Get()
 }
 
 // GetWorkerOk returns a tuple with the Worker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *TaskResponse) GetWorkerOk() (*string, bool) {
-	if o == nil || IsNil(o.Worker) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Worker, true
+	return o.Worker.Get(), o.Worker.IsSet()
 }
 
 // HasWorker returns a boolean if a field has been set.
 func (o *TaskResponse) HasWorker() bool {
-	if o != nil && !IsNil(o.Worker) {
+	if o != nil && o.Worker.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWorker gets a reference to the given string and assigns it to the Worker field.
+// SetWorker gets a reference to the given NullableString and assigns it to the Worker field.
 func (o *TaskResponse) SetWorker(v string) {
-	o.Worker = &v
+	o.Worker.Set(&v)
+}
+// SetWorkerNil sets the value for Worker to be an explicit nil
+func (o *TaskResponse) SetWorkerNil() {
+	o.Worker.Set(nil)
+}
+
+// UnsetWorker ensures that no value is present for Worker, not even an explicit nil
+func (o *TaskResponse) UnsetWorker() {
+	o.Worker.Unset()
 }
 
 // GetParentTask returns the ParentTask field value if set, zero value otherwise.
@@ -642,6 +672,38 @@ func (o *TaskResponse) SetCreatedResources(v []string) {
 	o.CreatedResources = v
 }
 
+// GetCreatedResourcePrns returns the CreatedResourcePrns field value if set, zero value otherwise.
+func (o *TaskResponse) GetCreatedResourcePrns() []string {
+	if o == nil || IsNil(o.CreatedResourcePrns) {
+		var ret []string
+		return ret
+	}
+	return o.CreatedResourcePrns
+}
+
+// GetCreatedResourcePrnsOk returns a tuple with the CreatedResourcePrns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskResponse) GetCreatedResourcePrnsOk() ([]string, bool) {
+	if o == nil || IsNil(o.CreatedResourcePrns) {
+		return nil, false
+	}
+	return o.CreatedResourcePrns, true
+}
+
+// HasCreatedResourcePrns returns a boolean if a field has been set.
+func (o *TaskResponse) HasCreatedResourcePrns() bool {
+	if o != nil && !IsNil(o.CreatedResourcePrns) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedResourcePrns gets a reference to the given []string and assigns it to the CreatedResourcePrns field.
+func (o *TaskResponse) SetCreatedResourcePrns(v []string) {
+	o.CreatedResourcePrns = v
+}
+
 // GetReservedResourcesRecord returns the ReservedResourcesRecord field value if set, zero value otherwise.
 func (o *TaskResponse) GetReservedResourcesRecord() []string {
 	if o == nil || IsNil(o.ReservedResourcesRecord) {
@@ -674,6 +736,71 @@ func (o *TaskResponse) SetReservedResourcesRecord(v []string) {
 	o.ReservedResourcesRecord = v
 }
 
+// GetResult returns the Result field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TaskResponse) GetResult() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Result
+}
+
+// GetResultOk returns a tuple with the Result field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TaskResponse) GetResultOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Result) {
+		return nil, false
+	}
+	return &o.Result, true
+}
+
+// HasResult returns a boolean if a field has been set.
+func (o *TaskResponse) HasResult() bool {
+	if o != nil && !IsNil(o.Result) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult gets a reference to the given interface{} and assigns it to the Result field.
+func (o *TaskResponse) SetResult(v interface{}) {
+	o.Result = v
+}
+
+// GetPulpApiVersion returns the PulpApiVersion field value if set, zero value otherwise.
+func (o *TaskResponse) GetPulpApiVersion() string {
+	if o == nil || IsNil(o.PulpApiVersion) {
+		var ret string
+		return ret
+	}
+	return *o.PulpApiVersion
+}
+
+// GetPulpApiVersionOk returns a tuple with the PulpApiVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskResponse) GetPulpApiVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.PulpApiVersion) {
+		return nil, false
+	}
+	return o.PulpApiVersion, true
+}
+
+// HasPulpApiVersion returns a boolean if a field has been set.
+func (o *TaskResponse) HasPulpApiVersion() bool {
+	if o != nil && !IsNil(o.PulpApiVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpApiVersion gets a reference to the given string and assigns it to the PulpApiVersion field.
+func (o *TaskResponse) SetPulpApiVersion(v string) {
+	o.PulpApiVersion = &v
+}
+
 func (o TaskResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -701,8 +828,8 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["logging_cid"] = o.LoggingCid
-	if !IsNil(o.CreatedBy) {
-		toSerialize["created_by"] = o.CreatedBy
+	if o.CreatedBy.IsSet() {
+		toSerialize["created_by"] = o.CreatedBy.Get()
 	}
 	if !IsNil(o.UnblockedAt) {
 		toSerialize["unblocked_at"] = o.UnblockedAt
@@ -716,8 +843,8 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
 	}
-	if !IsNil(o.Worker) {
-		toSerialize["worker"] = o.Worker
+	if o.Worker.IsSet() {
+		toSerialize["worker"] = o.Worker.Get()
 	}
 	if !IsNil(o.ParentTask) {
 		toSerialize["parent_task"] = o.ParentTask
@@ -734,8 +861,17 @@ func (o TaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedResources) {
 		toSerialize["created_resources"] = o.CreatedResources
 	}
+	if !IsNil(o.CreatedResourcePrns) {
+		toSerialize["created_resource_prns"] = o.CreatedResourcePrns
+	}
 	if !IsNil(o.ReservedResourcesRecord) {
 		toSerialize["reserved_resources_record"] = o.ReservedResourcesRecord
+	}
+	if o.Result != nil {
+		toSerialize["result"] = o.Result
+	}
+	if !IsNil(o.PulpApiVersion) {
+		toSerialize["pulp_api_version"] = o.PulpApiVersion
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -799,7 +935,10 @@ func (o *TaskResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "task_group")
 		delete(additionalProperties, "progress_reports")
 		delete(additionalProperties, "created_resources")
+		delete(additionalProperties, "created_resource_prns")
 		delete(additionalProperties, "reserved_resources_record")
+		delete(additionalProperties, "result")
+		delete(additionalProperties, "pulp_api_version")
 		o.AdditionalProperties = additionalProperties
 	}
 

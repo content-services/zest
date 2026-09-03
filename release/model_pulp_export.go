@@ -32,6 +32,8 @@ type PulpExport struct {
 	ChunkSize *string `json:"chunk_size,omitempty"`
 	// List of explicit last-exported-repo-version hrefs (replaces last_export).
 	StartVersions []string `json:"start_versions,omitempty"`
+	// Dictionary of meta information about the export. Stored in the TOC JSON.
+	Meta map[string]interface{} `json:"meta,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -264,6 +266,38 @@ func (o *PulpExport) SetStartVersions(v []string) {
 	o.StartVersions = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *PulpExport) GetMeta() map[string]interface{} {
+	if o == nil || IsNil(o.Meta) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PulpExport) GetMetaOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return map[string]interface{}{}, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *PulpExport) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given map[string]interface{} and assigns it to the Meta field.
+func (o *PulpExport) SetMeta(v map[string]interface{}) {
+	o.Meta = v
+}
+
 func (o PulpExport) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -291,6 +325,9 @@ func (o PulpExport) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.StartVersions) {
 		toSerialize["start_versions"] = o.StartVersions
+	}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -320,6 +357,7 @@ func (o *PulpExport) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "versions")
 		delete(additionalProperties, "chunk_size")
 		delete(additionalProperties, "start_versions")
+		delete(additionalProperties, "meta")
 		o.AdditionalProperties = additionalProperties
 	}
 

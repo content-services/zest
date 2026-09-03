@@ -9,16 +9,17 @@ Name | Type | Description | Notes
 **PulpCreated** | Pointer to **time.Time** | Timestamp of creation. | [optional] [readonly] 
 **PulpLastUpdated** | Pointer to **time.Time** | Timestamp of the last time this resource was updated. Note: for immutable resources - like content, repository versions, and publication - pulp_created and pulp_last_updated dates will be the same. | [optional] [readonly] 
 **PulpLabels** | Pointer to **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | [optional] 
+**VulnReport** | Pointer to **string** |  | [optional] [readonly] 
 **Artifact** | Pointer to **string** | Artifact file representing the physical content | [optional] 
-**RelativePath** | **string** |  | 
-**Name** | **string** |  | 
-**Version** | **string** |  | 
+**RelativePath** | Pointer to **string** | Path where the artifact is located relative to distributions base_path. If not provided, it will be computed from name and version. | [optional] 
+**Name** | Pointer to **string** | The name of the npm package. | [optional] 
+**Version** | Pointer to **string** | The version of the npm package. | [optional] 
 
 ## Methods
 
 ### NewNpmPackageResponse
 
-`func NewNpmPackageResponse(relativePath string, name string, version string, ) *NpmPackageResponse`
+`func NewNpmPackageResponse() *NpmPackageResponse`
 
 NewNpmPackageResponse instantiates a new NpmPackageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -158,6 +159,31 @@ SetPulpLabels sets PulpLabels field to given value.
 
 HasPulpLabels returns a boolean if a field has been set.
 
+### GetVulnReport
+
+`func (o *NpmPackageResponse) GetVulnReport() string`
+
+GetVulnReport returns the VulnReport field if non-nil, zero value otherwise.
+
+### GetVulnReportOk
+
+`func (o *NpmPackageResponse) GetVulnReportOk() (*string, bool)`
+
+GetVulnReportOk returns a tuple with the VulnReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnReport
+
+`func (o *NpmPackageResponse) SetVulnReport(v string)`
+
+SetVulnReport sets VulnReport field to given value.
+
+### HasVulnReport
+
+`func (o *NpmPackageResponse) HasVulnReport() bool`
+
+HasVulnReport returns a boolean if a field has been set.
+
 ### GetArtifact
 
 `func (o *NpmPackageResponse) GetArtifact() string`
@@ -202,6 +228,11 @@ and a boolean to check if the value has been set.
 
 SetRelativePath sets RelativePath field to given value.
 
+### HasRelativePath
+
+`func (o *NpmPackageResponse) HasRelativePath() bool`
+
+HasRelativePath returns a boolean if a field has been set.
 
 ### GetName
 
@@ -222,6 +253,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *NpmPackageResponse) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -242,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *NpmPackageResponse) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

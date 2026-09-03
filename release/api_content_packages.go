@@ -30,35 +30,35 @@ type ContentPackagesAPIContentNpmPackagesCreateRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
-	relativePath *string
-	name *string
-	version *string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	artifact *string
+	relativePath *string
 	file *os.File
 	upload *string
 	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+	name *string
+	version *string
 }
 
-func (r ContentPackagesAPIContentNpmPackagesCreateRequest) RelativePath(relativePath string) ContentPackagesAPIContentNpmPackagesCreateRequest {
-	r.relativePath = &relativePath
-	return r
-}
-
-func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Name(name string) ContentPackagesAPIContentNpmPackagesCreateRequest {
-	r.name = &name
-	return r
-}
-
-func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Version(version string) ContentPackagesAPIContentNpmPackagesCreateRequest {
-	r.version = &version
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
 // A URI of a repository the new content unit should be associated with.
 func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Repository(repository string) ContentPackagesAPIContentNpmPackagesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Overwrite(overwrite bool) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -71,6 +71,12 @@ func (r ContentPackagesAPIContentNpmPackagesCreateRequest) PulpLabels(pulpLabels
 // Artifact file representing the physical content
 func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Artifact(artifact string) ContentPackagesAPIContentNpmPackagesCreateRequest {
 	r.artifact = &artifact
+	return r
+}
+
+// Path where the artifact is located relative to distributions base_path. If not provided, it will be computed from name and version.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) RelativePath(relativePath string) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.relativePath = &relativePath
 	return r
 }
 
@@ -92,14 +98,32 @@ func (r ContentPackagesAPIContentNpmPackagesCreateRequest) FileUrl(fileUrl strin
 	return r
 }
 
-func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Execute() (*NpmPackageResponse, *http.Response, error) {
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+// The name of the npm package.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Name(name string) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.name = &name
+	return r
+}
+
+// The version of the npm package.
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Version(version string) ContentPackagesAPIContentNpmPackagesCreateRequest {
+	r.version = &version
+	return r
+}
+
+func (r ContentPackagesAPIContentNpmPackagesCreateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
 	return r.ApiService.ContentNpmPackagesCreateExecute(r)
 }
 
 /*
 ContentNpmPackagesCreate Create a package
 
-Perform bookkeeping when saving Content."Artifacts" need to be popped off and saved independently, as they are not actually partof the Content model.
+Trigger an asynchronous task to create content,optionally create new repository version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -114,13 +138,13 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreate(ctx context.Context
 }
 
 // Execute executes the request
-//  @return NpmPackageResponse
-func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPackagesAPIContentNpmPackagesCreateRequest) (*NpmPackageResponse, *http.Response, error) {
+//  @return AsyncOperationResponse
+func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPackagesAPIContentNpmPackagesCreateRequest) (*AsyncOperationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NpmPackageResponse
+		localVarReturnValue  *AsyncOperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentNpmPackagesCreate")
@@ -135,24 +159,6 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPac
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.relativePath == nil {
-		return localVarReturnValue, nil, reportError("relativePath is required and must be specified")
-	}
-	if strlen(*r.relativePath) < 1 {
-		return localVarReturnValue, nil, reportError("relativePath must have at least 1 elements")
-	}
-	if r.name == nil {
-		return localVarReturnValue, nil, reportError("name is required and must be specified")
-	}
-	if strlen(*r.name) < 1 {
-		return localVarReturnValue, nil, reportError("name must have at least 1 elements")
-	}
-	if r.version == nil {
-		return localVarReturnValue, nil, reportError("version is required and must be specified")
-	}
-	if strlen(*r.version) < 1 {
-		return localVarReturnValue, nil, reportError("version must have at least 1 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
@@ -171,8 +177,14 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPac
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -180,7 +192,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPac
 	if r.artifact != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	if r.relativePath != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
 	var fileLocalVarFileBytes    []byte
@@ -204,8 +218,19 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesCreateExecute(r ContentPac
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "version", r.version, "", "")
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	}
+	if r.version != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "version", r.version, "", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -247,6 +272,7 @@ type ContentPackagesAPIContentNpmPackagesListRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	limit *int32
 	name *string
 	nameIn *[]string
@@ -263,6 +289,12 @@ type ContentPackagesAPIContentNpmPackagesListRequest struct {
 	repositoryVersionRemoved *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Number of results to return per page.
@@ -331,19 +363,16 @@ func (r ContentPackagesAPIContentNpmPackagesListRequest) Q(q string) ContentPack
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentNpmPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentNpmPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentNpmPackagesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagesAPIContentNpmPackagesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentNpmPackagesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagesAPIContentNpmPackagesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -368,7 +397,7 @@ func (r ContentPackagesAPIContentNpmPackagesListRequest) Execute() (*Paginatednp
 /*
 ContentNpmPackagesList List packages
 
-A ViewSet for Package.Define endpoint name which will appear in the API endpoint for this content type.For example::    http://pulp.example.com/pulp/api/v3/content/npm/units/Also specify queryset and serializer for Package.
+A ViewSet for NpmPackage.Define endpoint name which will appear in the API endpoint for this content type.For example::    http://pulp.example.com/pulp/api/v3/content/npm/packages/Also specify queryset and serializer for NpmPackage.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -486,6 +515,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesListExecute(r ContentPacka
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -527,8 +559,15 @@ type ContentPackagesAPIContentNpmPackagesReadRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	npmPackageHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -550,7 +589,7 @@ func (r ContentPackagesAPIContentNpmPackagesReadRequest) Execute() (*NpmPackageR
 /*
 ContentNpmPackagesRead Inspect a package
 
-A ViewSet for Package.Define endpoint name which will appear in the API endpoint for this content type.For example::    http://pulp.example.com/pulp/api/v3/content/npm/units/Also specify queryset and serializer for Package.
+A ViewSet for NpmPackage.Define endpoint name which will appear in the API endpoint for this content type.For example::    http://pulp.example.com/pulp/api/v3/content/npm/packages/Also specify queryset and serializer for NpmPackage.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param npmPackageHref
@@ -626,6 +665,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesReadExecute(r ContentPacka
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -668,10 +710,17 @@ type ContentPackagesAPIContentNpmPackagesSetLabelRequest struct {
 	ApiService *ContentPackagesAPIService
 	npmPackageHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagesAPIContentNpmPackagesSetLabelRequest) SetLabel(setLabel SetLabel) ContentPackagesAPIContentNpmPackagesSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -739,6 +788,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesSetLabelExecute(r ContentP
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -783,10 +835,17 @@ type ContentPackagesAPIContentNpmPackagesUnsetLabelRequest struct {
 	ApiService *ContentPackagesAPIService
 	npmPackageHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagesAPIContentNpmPackagesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentPackagesAPIContentNpmPackagesUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -854,8 +913,243 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesUnsetLabelExecute(r Conten
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentNpmPackagesUploadRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	pulpDomain string
+	xTaskDiagnostics *[]string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	relativePath *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+	name *string
+	version *string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Overwrite(overwrite bool) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Artifact(artifact string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// Path where the artifact is located relative to distributions base_path. If not provided, it will be computed from name and version.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) RelativePath(relativePath string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.relativePath = &relativePath
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) File(file *os.File) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Upload(upload string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) FileUrl(fileUrl string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+// The name of the npm package.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Name(name string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.name = &name
+	return r
+}
+
+// The version of the npm package.
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Version(version string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	r.version = &version
+	return r
+}
+
+func (r ContentPackagesAPIContentNpmPackagesUploadRequest) Execute() (*NpmPackageResponse, *http.Response, error) {
+	return r.ApiService.ContentNpmPackagesUploadExecute(r)
+}
+
+/*
+ContentNpmPackagesUpload Synchronous npm package upload
+
+Create an npm package content unit synchronously.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return ContentPackagesAPIContentNpmPackagesUploadRequest
+*/
+func (a *ContentPackagesAPIService) ContentNpmPackagesUpload(ctx context.Context, pulpDomain string) ContentPackagesAPIContentNpmPackagesUploadRequest {
+	return ContentPackagesAPIContentNpmPackagesUploadRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return NpmPackageResponse
+func (a *ContentPackagesAPIService) ContentNpmPackagesUploadExecute(r ContentPackagesAPIContentNpmPackagesUploadRequest) (*NpmPackageResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NpmPackageResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentNpmPackagesUpload")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/npm/packages/upload/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	if r.relativePath != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "relative_path", r.relativePath, "", "")
+	}
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	}
+	if r.version != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "version", r.version, "", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -898,34 +1192,43 @@ type ContentPackagesAPIContentPythonPackagesCreateRequest struct {
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
 	relativePath *string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	artifact *string
 	file *os.File
 	upload *string
 	fileUrl *string
-	sha256 *string
-	summary *string
-	description *string
-	descriptionContentType *string
-	keywords *string
-	homePage *string
-	downloadUrl *string
+	downloaderConfig *RemoteNetworkConfig
 	author *string
 	authorEmail *string
+	description *string
+	homePage *string
+	keywords *string
+	license *string
+	platform *string
+	summary *string
+	classifiers *interface{}
+	downloadUrl *string
+	supportedPlatform *string
 	maintainer *string
 	maintainerEmail *string
-	license *string
-	requiresPython *string
+	obsoletesDist *interface{}
 	projectUrl *string
 	projectUrls *interface{}
-	platform *string
-	supportedPlatform *string
-	requiresDist *interface{}
 	providesDist *interface{}
-	obsoletesDist *interface{}
 	requiresExternal *interface{}
-	classifiers *interface{}
+	requiresDist *interface{}
+	requiresPython *string
+	descriptionContentType *string
+	providesExtras *interface{}
+	dynamic *interface{}
+	licenseExpression *string
+	licenseFile *interface{}
+	sha256 *string
+	metadataSha256 *string
+	attestations *interface{}
 }
 
 // Path where the artifact is located relative to distributions base_path
@@ -934,9 +1237,21 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RelativePath(relat
 	return r
 }
 
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
 // A URI of a repository the new content unit should be associated with.
 func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Repository(repository string) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Overwrite(overwrite bool) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -970,45 +1285,9 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) FileUrl(fileUrl st
 	return r
 }
 
-// The SHA256 digest of this package.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Sha256(sha256 string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.sha256 = &sha256
-	return r
-}
-
-// A one-line summary of what the package does.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Summary(summary string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.summary = &summary
-	return r
-}
-
-// A longer description of the package that can run to several paragraphs.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Description(description string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.description = &description
-	return r
-}
-
-// A string stating the markup syntax (if any) used in the distribution’s description, so that tools can intelligently render the description.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) DescriptionContentType(descriptionContentType string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.descriptionContentType = &descriptionContentType
-	return r
-}
-
-// Additional keywords to be used to assist searching for the package in a larger catalog.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Keywords(keywords string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.keywords = &keywords
-	return r
-}
-
-// The URL for the package&#39;s home page.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) HomePage(homePage string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.homePage = &homePage
-	return r
-}
-
-// Legacy field denoting the URL from which this package can be downloaded.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) DownloadUrl(downloadUrl string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.downloadUrl = &downloadUrl
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.downloaderConfig = &downloaderConfig
 	return r
 }
 
@@ -1024,6 +1303,60 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) AuthorEmail(author
 	return r
 }
 
+// A longer description of the package that can run to several paragraphs.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Description(description string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.description = &description
+	return r
+}
+
+// The URL for the package&#39;s home page.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) HomePage(homePage string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.homePage = &homePage
+	return r
+}
+
+// Additional keywords to be used to assist searching for the package in a larger catalog.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Keywords(keywords string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.keywords = &keywords
+	return r
+}
+
+// Text indicating the license covering the distribution
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) License(license string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.license = &license
+	return r
+}
+
+// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Platform(platform string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.platform = &platform
+	return r
+}
+
+// A one-line summary of what the package does.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Summary(summary string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.summary = &summary
+	return r
+}
+
+// A JSON list containing classification values for a Python package.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.classifiers = &classifiers
+	return r
+}
+
+// Legacy field denoting the URL from which this package can be downloaded.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) DownloadUrl(downloadUrl string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.downloadUrl = &downloadUrl
+	return r
+}
+
+// Field to specify the OS and CPU for which the binary package was compiled. 
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) SupportedPlatform(supportedPlatform string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.supportedPlatform = &supportedPlatform
+	return r
+}
+
 // The maintainer&#39;s name at a minimum; additional contact information may be provided.
 func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Maintainer(maintainer string) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.maintainer = &maintainer
@@ -1036,15 +1369,9 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) MaintainerEmail(ma
 	return r
 }
 
-// Text indicating the license covering the distribution
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) License(license string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.license = &license
-	return r
-}
-
-// The Python version(s) that the distribution is guaranteed to be compatible with.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresPython(requiresPython string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.requiresPython = &requiresPython
+// A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.obsoletesDist = &obsoletesDist
 	return r
 }
 
@@ -1060,33 +1387,9 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProjectUrls(projec
 	return r
 }
 
-// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Platform(platform string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.platform = &platform
-	return r
-}
-
-// Field to specify the OS and CPU for which the binary package was compiled. 
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) SupportedPlatform(supportedPlatform string) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.supportedPlatform = &supportedPlatform
-	return r
-}
-
-// A JSON list containing names of some other distutils project required by this distribution.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.requiresDist = &requiresDist
-	return r
-}
-
 // A JSON list containing names of a Distutils project which is contained within this distribution.
 func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesDist(providesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
 	r.providesDist = &providesDist
-	return r
-}
-
-// A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ObsoletesDist(obsoletesDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.obsoletesDist = &obsoletesDist
 	return r
 }
 
@@ -1096,9 +1399,63 @@ func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresExternal(r
 	return r
 }
 
-// A JSON list containing classification values for a Python package.
-func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Classifiers(classifiers interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
-	r.classifiers = &classifiers
+// A JSON list containing names of some other distutils project required by this distribution.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresDist(requiresDist interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.requiresDist = &requiresDist
+	return r
+}
+
+// The Python version(s) that the distribution is guaranteed to be compatible with.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) RequiresPython(requiresPython string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.requiresPython = &requiresPython
+	return r
+}
+
+// A string stating the markup syntax (if any) used in the distribution&#39;s description, so that tools can intelligently render the description.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) DescriptionContentType(descriptionContentType string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.descriptionContentType = &descriptionContentType
+	return r
+}
+
+// A JSON list containing names of optional features provided by the package.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) ProvidesExtras(providesExtras interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.providesExtras = &providesExtras
+	return r
+}
+
+// A JSON list containing names of other core metadata fields which are permitted to vary between sdist and bdist packages. Fields NOT marked dynamic MUST be the same between bdist and sdist.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Dynamic(dynamic interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.dynamic = &dynamic
+	return r
+}
+
+// Text string that is a valid SPDX license expression.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) LicenseExpression(licenseExpression string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.licenseExpression = &licenseExpression
+	return r
+}
+
+// A JSON list containing names of the paths to license-related files.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) LicenseFile(licenseFile interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.licenseFile = &licenseFile
+	return r
+}
+
+// The SHA256 digest of this package.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Sha256(sha256 string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.sha256 = &sha256
+	return r
+}
+
+// The SHA256 digest of the package&#39;s METADATA file.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) MetadataSha256(metadataSha256 string) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.metadataSha256 = &metadataSha256
+	return r
+}
+
+// A JSON list containing attestations for the package.
+func (r ContentPackagesAPIContentPythonPackagesCreateRequest) Attestations(attestations interface{}) ContentPackagesAPIContentPythonPackagesCreateRequest {
+	r.attestations = &attestations
 	return r
 }
 
@@ -1169,8 +1526,14 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -1202,26 +1565,12 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
 	}
-	if r.sha256 != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
-	}
-	if r.summary != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "summary", r.summary, "", "")
-	}
-	if r.description != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
-	}
-	if r.descriptionContentType != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "description_content_type", r.descriptionContentType, "", "")
-	}
-	if r.keywords != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "keywords", r.keywords, "", "")
-	}
-	if r.homePage != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "home_page", r.homePage, "", "")
-	}
-	if r.downloadUrl != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "download_url", r.downloadUrl, "", "")
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	if r.author != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "author", r.author, "", "")
@@ -1229,17 +1578,41 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 	if r.authorEmail != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "author_email", r.authorEmail, "", "")
 	}
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
+	}
+	if r.homePage != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "home_page", r.homePage, "", "")
+	}
+	if r.keywords != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "keywords", r.keywords, "", "")
+	}
+	if r.license != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license", r.license, "", "")
+	}
+	if r.platform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "platform", r.platform, "", "")
+	}
+	if r.summary != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "summary", r.summary, "", "")
+	}
+	if r.classifiers != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "classifiers", r.classifiers, "", "")
+	}
+	if r.downloadUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "download_url", r.downloadUrl, "", "")
+	}
+	if r.supportedPlatform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "supported_platform", r.supportedPlatform, "", "")
+	}
 	if r.maintainer != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer", r.maintainer, "", "")
 	}
 	if r.maintainerEmail != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer_email", r.maintainerEmail, "", "")
 	}
-	if r.license != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "license", r.license, "", "")
-	}
-	if r.requiresPython != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "requires_python", r.requiresPython, "", "")
+	if r.obsoletesDist != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "obsoletes_dist", r.obsoletesDist, "", "")
 	}
 	if r.projectUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "project_url", r.projectUrl, "", "")
@@ -1247,26 +1620,41 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesCreateExecute(r Content
 	if r.projectUrls != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "project_urls", r.projectUrls, "", "")
 	}
-	if r.platform != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "platform", r.platform, "", "")
-	}
-	if r.supportedPlatform != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "supported_platform", r.supportedPlatform, "", "")
-	}
-	if r.requiresDist != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "requires_dist", r.requiresDist, "", "")
-	}
 	if r.providesDist != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "provides_dist", r.providesDist, "", "")
-	}
-	if r.obsoletesDist != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "obsoletes_dist", r.obsoletesDist, "", "")
 	}
 	if r.requiresExternal != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "requires_external", r.requiresExternal, "", "")
 	}
-	if r.classifiers != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "classifiers", r.classifiers, "", "")
+	if r.requiresDist != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_dist", r.requiresDist, "", "")
+	}
+	if r.requiresPython != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_python", r.requiresPython, "", "")
+	}
+	if r.descriptionContentType != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "description_content_type", r.descriptionContentType, "", "")
+	}
+	if r.providesExtras != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "provides_extras", r.providesExtras, "", "")
+	}
+	if r.dynamic != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "dynamic", r.dynamic, "", "")
+	}
+	if r.licenseExpression != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license_expression", r.licenseExpression, "", "")
+	}
+	if r.licenseFile != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license_file", r.licenseFile, "", "")
+	}
+	if r.sha256 != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
+	}
+	if r.metadataSha256 != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "metadata_sha256", r.metadataSha256, "", "")
+	}
+	if r.attestations != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "attestations", r.attestations, "", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1309,7 +1697,9 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	author *string
+	authorContains *string
 	authorIn *[]string
 	filename *string
 	filenameContains *string
@@ -1318,6 +1708,7 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	keywordsIn *[]string
 	limit *int32
 	name *string
+	nameContains *string
 	nameIn *[]string
 	offset *int32
 	ordering *[]string
@@ -1342,13 +1733,26 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	versionGte *string
 	versionLt *string
 	versionLte *string
+	versionSpecifier *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where author matches value
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Author(author string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.author = &author
+	return r
+}
+
+// Filter results where author contains value
+func (r ContentPackagesAPIContentPythonPackagesListRequest) AuthorContains(authorContains string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.authorContains = &authorContains
 	return r
 }
 
@@ -1394,13 +1798,17 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) Limit(limit int32) C
 	return r
 }
 
-// Filter results where name matches value
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Name(name string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.name = &name
 	return r
 }
 
-// Filter results where name is in a comma-separated list of values
+func (r ContentPackagesAPIContentPythonPackagesListRequest) NameContains(nameContains string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.nameContains = &nameContains
+	return r
+}
+
+// Multiple values may be separated by commas.
 func (r ContentPackagesAPIContentPythonPackagesListRequest) NameIn(nameIn []string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.nameIn = &nameIn
 	return r
@@ -1412,7 +1820,7 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) Offset(offset int32)
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;filename&#x60; - Filename* &#x60;-filename&#x60; - Filename (descending)* &#x60;packagetype&#x60; - Packagetype* &#x60;-packagetype&#x60; - Packagetype (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;python_version&#x60; - Python version* &#x60;-python_version&#x60; - Python version (descending)* &#x60;metadata_version&#x60; - Metadata version* &#x60;-metadata_version&#x60; - Metadata version (descending)* &#x60;summary&#x60; - Summary* &#x60;-summary&#x60; - Summary (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;keywords&#x60; - Keywords* &#x60;-keywords&#x60; - Keywords (descending)* &#x60;home_page&#x60; - Home page* &#x60;-home_page&#x60; - Home page (descending)* &#x60;download_url&#x60; - Download url* &#x60;-download_url&#x60; - Download url (descending)* &#x60;author&#x60; - Author* &#x60;-author&#x60; - Author (descending)* &#x60;author_email&#x60; - Author email* &#x60;-author_email&#x60; - Author email (descending)* &#x60;maintainer&#x60; - Maintainer* &#x60;-maintainer&#x60; - Maintainer (descending)* &#x60;maintainer_email&#x60; - Maintainer email* &#x60;-maintainer_email&#x60; - Maintainer email (descending)* &#x60;license&#x60; - License* &#x60;-license&#x60; - License (descending)* &#x60;requires_python&#x60; - Requires python* &#x60;-requires_python&#x60; - Requires python (descending)* &#x60;project_url&#x60; - Project url* &#x60;-project_url&#x60; - Project url (descending)* &#x60;platform&#x60; - Platform* &#x60;-platform&#x60; - Platform (descending)* &#x60;supported_platform&#x60; - Supported platform* &#x60;-supported_platform&#x60; - Supported platform (descending)* &#x60;requires_dist&#x60; - Requires dist* &#x60;-requires_dist&#x60; - Requires dist (descending)* &#x60;provides_dist&#x60; - Provides dist* &#x60;-provides_dist&#x60; - Provides dist (descending)* &#x60;obsoletes_dist&#x60; - Obsoletes dist* &#x60;-obsoletes_dist&#x60; - Obsoletes dist (descending)* &#x60;requires_external&#x60; - Requires external* &#x60;-requires_external&#x60; - Requires external (descending)* &#x60;classifiers&#x60; - Classifiers* &#x60;-classifiers&#x60; - Classifiers (descending)* &#x60;project_urls&#x60; - Project urls* &#x60;-project_urls&#x60; - Project urls (descending)* &#x60;description_content_type&#x60; - Description content type* &#x60;-description_content_type&#x60; - Description content type (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;author&#x60; - Author* &#x60;-author&#x60; - Author (descending)* &#x60;author_email&#x60; - Author email* &#x60;-author_email&#x60; - Author email (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;home_page&#x60; - Home page* &#x60;-home_page&#x60; - Home page (descending)* &#x60;keywords&#x60; - Keywords* &#x60;-keywords&#x60; - Keywords (descending)* &#x60;license&#x60; - License* &#x60;-license&#x60; - License (descending)* &#x60;metadata_version&#x60; - Metadata version* &#x60;-metadata_version&#x60; - Metadata version (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;platform&#x60; - Platform* &#x60;-platform&#x60; - Platform (descending)* &#x60;summary&#x60; - Summary* &#x60;-summary&#x60; - Summary (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;classifiers&#x60; - Classifiers* &#x60;-classifiers&#x60; - Classifiers (descending)* &#x60;download_url&#x60; - Download url* &#x60;-download_url&#x60; - Download url (descending)* &#x60;supported_platform&#x60; - Supported platform* &#x60;-supported_platform&#x60; - Supported platform (descending)* &#x60;maintainer&#x60; - Maintainer* &#x60;-maintainer&#x60; - Maintainer (descending)* &#x60;maintainer_email&#x60; - Maintainer email* &#x60;-maintainer_email&#x60; - Maintainer email (descending)* &#x60;obsoletes_dist&#x60; - Obsoletes dist* &#x60;-obsoletes_dist&#x60; - Obsoletes dist (descending)* &#x60;project_url&#x60; - Project url* &#x60;-project_url&#x60; - Project url (descending)* &#x60;project_urls&#x60; - Project urls* &#x60;-project_urls&#x60; - Project urls (descending)* &#x60;provides_dist&#x60; - Provides dist* &#x60;-provides_dist&#x60; - Provides dist (descending)* &#x60;requires_external&#x60; - Requires external* &#x60;-requires_external&#x60; - Requires external (descending)* &#x60;requires_dist&#x60; - Requires dist* &#x60;-requires_dist&#x60; - Requires dist (descending)* &#x60;requires_python&#x60; - Requires python* &#x60;-requires_python&#x60; - Requires python (descending)* &#x60;description_content_type&#x60; - Description content type* &#x60;-description_content_type&#x60; - Description content type (descending)* &#x60;provides_extras&#x60; - Provides extras* &#x60;-provides_extras&#x60; - Provides extras (descending)* &#x60;dynamic&#x60; - Dynamic* &#x60;-dynamic&#x60; - Dynamic (descending)* &#x60;license_expression&#x60; - License expression* &#x60;-license_expression&#x60; - License expression (descending)* &#x60;license_file&#x60; - License file* &#x60;-license_file&#x60; - License file (descending)* &#x60;name_normalized&#x60; - Name normalized* &#x60;-name_normalized&#x60; - Name normalized (descending)* &#x60;filename&#x60; - Filename* &#x60;-filename&#x60; - Filename (descending)* &#x60;packagetype&#x60; - Packagetype* &#x60;-packagetype&#x60; - Packagetype (descending)* &#x60;python_version&#x60; - Python version* &#x60;-python_version&#x60; - Python version (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;metadata_sha256&#x60; - Metadata sha256* &#x60;-metadata_sha256&#x60; - Metadata sha256 (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Ordering(ordering []string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.ordering = &ordering
 	return r
@@ -1466,19 +1874,16 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) Q(q string) ContentP
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentPythonPackagesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -1544,6 +1949,12 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) VersionLte(versionLt
 	return r
 }
 
+// Filter by PEP 440 version specifier (e.g., &gt;&#x3D;2.4,&lt;3.0 or ~&#x3D;1.26)
+func (r ContentPackagesAPIContentPythonPackagesListRequest) VersionSpecifier(versionSpecifier string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.versionSpecifier = &versionSpecifier
+	return r
+}
+
 // A list of fields to include in the response.
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Fields(fields []string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.fields = &fields
@@ -1603,6 +2014,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	if r.author != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "author", r.author, "form", "")
 	}
+	if r.authorContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "author__contains", r.authorContains, "form", "")
+	}
 	if r.authorIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "author__in", r.authorIn, "form", "csv")
 	}
@@ -1626,6 +2040,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.nameContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__contains", r.nameContains, "form", "")
 	}
 	if r.nameIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name__in", r.nameIn, "form", "csv")
@@ -1699,6 +2116,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	if r.versionLte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "version__lte", r.versionLte, "form", "")
 	}
+	if r.versionSpecifier != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "version_specifier", r.versionSpecifier, "form", "")
+	}
 	if r.fields != nil {
 		t := *r.fields
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
@@ -1737,6 +2157,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1779,8 +2202,15 @@ type ContentPackagesAPIContentPythonPackagesReadRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pythonPythonPackageContentHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -1878,6 +2308,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesReadExecute(r ContentPa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1920,10 +2353,17 @@ type ContentPackagesAPIContentPythonPackagesSetLabelRequest struct {
 	ApiService *ContentPackagesAPIService
 	pythonPythonPackageContentHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagesAPIContentPythonPackagesSetLabelRequest) SetLabel(setLabel SetLabel) ContentPackagesAPIContentPythonPackagesSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1991,6 +2431,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesSetLabelExecute(r Conte
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -2035,10 +2478,17 @@ type ContentPackagesAPIContentPythonPackagesUnsetLabelRequest struct {
 	ApiService *ContentPackagesAPIService
 	pythonPythonPackageContentHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r ContentPackagesAPIContentPythonPackagesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentPackagesAPIContentPythonPackagesUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -2106,8 +2556,493 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesUnsetLabelExecute(r Con
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentPythonPackagesUploadRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	pulpDomain string
+	xTaskDiagnostics *[]string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+	author *string
+	authorEmail *string
+	description *string
+	homePage *string
+	keywords *string
+	license *string
+	platform *string
+	summary *string
+	classifiers *interface{}
+	downloadUrl *string
+	supportedPlatform *string
+	maintainer *string
+	maintainerEmail *string
+	obsoletesDist *interface{}
+	projectUrl *string
+	projectUrls *interface{}
+	providesDist *interface{}
+	requiresExternal *interface{}
+	requiresDist *interface{}
+	requiresPython *string
+	descriptionContentType *string
+	providesExtras *interface{}
+	dynamic *interface{}
+	licenseExpression *string
+	licenseFile *interface{}
+	sha256 *string
+	metadataSha256 *string
+	attestations *interface{}
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Overwrite(overwrite bool) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Artifact(artifact string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) File(file *os.File) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Upload(upload string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) FileUrl(fileUrl string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+// Text containing the author&#39;s name. Contact information can also be added, separated with newlines.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Author(author string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.author = &author
+	return r
+}
+
+// The author&#39;s e-mail address. 
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) AuthorEmail(authorEmail string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.authorEmail = &authorEmail
+	return r
+}
+
+// A longer description of the package that can run to several paragraphs.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Description(description string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.description = &description
+	return r
+}
+
+// The URL for the package&#39;s home page.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) HomePage(homePage string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.homePage = &homePage
+	return r
+}
+
+// Additional keywords to be used to assist searching for the package in a larger catalog.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Keywords(keywords string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.keywords = &keywords
+	return r
+}
+
+// Text indicating the license covering the distribution
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) License(license string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.license = &license
+	return r
+}
+
+// A comma-separated list of platform specifications, summarizing the operating systems supported by the package.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Platform(platform string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.platform = &platform
+	return r
+}
+
+// A one-line summary of what the package does.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Summary(summary string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.summary = &summary
+	return r
+}
+
+// A JSON list containing classification values for a Python package.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Classifiers(classifiers interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.classifiers = &classifiers
+	return r
+}
+
+// Legacy field denoting the URL from which this package can be downloaded.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) DownloadUrl(downloadUrl string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.downloadUrl = &downloadUrl
+	return r
+}
+
+// Field to specify the OS and CPU for which the binary package was compiled. 
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) SupportedPlatform(supportedPlatform string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.supportedPlatform = &supportedPlatform
+	return r
+}
+
+// The maintainer&#39;s name at a minimum; additional contact information may be provided.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Maintainer(maintainer string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.maintainer = &maintainer
+	return r
+}
+
+// The maintainer&#39;s e-mail address.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) MaintainerEmail(maintainerEmail string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.maintainerEmail = &maintainerEmail
+	return r
+}
+
+// A JSON list containing names of a distutils project&#39;s distribution which this distribution renders obsolete, meaning that the two projects should not be installed at the same time.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) ObsoletesDist(obsoletesDist interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.obsoletesDist = &obsoletesDist
+	return r
+}
+
+// A browsable URL for the project and a label for it, separated by a comma.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) ProjectUrl(projectUrl string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.projectUrl = &projectUrl
+	return r
+}
+
+// A dictionary of labels and URLs for the project.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) ProjectUrls(projectUrls interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.projectUrls = &projectUrls
+	return r
+}
+
+// A JSON list containing names of a Distutils project which is contained within this distribution.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) ProvidesDist(providesDist interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.providesDist = &providesDist
+	return r
+}
+
+// A JSON list containing some dependency in the system that the distribution is to be used.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) RequiresExternal(requiresExternal interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.requiresExternal = &requiresExternal
+	return r
+}
+
+// A JSON list containing names of some other distutils project required by this distribution.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) RequiresDist(requiresDist interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.requiresDist = &requiresDist
+	return r
+}
+
+// The Python version(s) that the distribution is guaranteed to be compatible with.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) RequiresPython(requiresPython string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.requiresPython = &requiresPython
+	return r
+}
+
+// A string stating the markup syntax (if any) used in the distribution&#39;s description, so that tools can intelligently render the description.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) DescriptionContentType(descriptionContentType string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.descriptionContentType = &descriptionContentType
+	return r
+}
+
+// A JSON list containing names of optional features provided by the package.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) ProvidesExtras(providesExtras interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.providesExtras = &providesExtras
+	return r
+}
+
+// A JSON list containing names of other core metadata fields which are permitted to vary between sdist and bdist packages. Fields NOT marked dynamic MUST be the same between bdist and sdist.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Dynamic(dynamic interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.dynamic = &dynamic
+	return r
+}
+
+// Text string that is a valid SPDX license expression.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) LicenseExpression(licenseExpression string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.licenseExpression = &licenseExpression
+	return r
+}
+
+// A JSON list containing names of the paths to license-related files.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) LicenseFile(licenseFile interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.licenseFile = &licenseFile
+	return r
+}
+
+// The SHA256 digest of this package.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Sha256(sha256 string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.sha256 = &sha256
+	return r
+}
+
+// The SHA256 digest of the package&#39;s METADATA file.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) MetadataSha256(metadataSha256 string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.metadataSha256 = &metadataSha256
+	return r
+}
+
+// A JSON list containing attestations for the package.
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Attestations(attestations interface{}) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	r.attestations = &attestations
+	return r
+}
+
+func (r ContentPackagesAPIContentPythonPackagesUploadRequest) Execute() (*PythonPythonPackageContentResponse, *http.Response, error) {
+	return r.ApiService.ContentPythonPackagesUploadExecute(r)
+}
+
+/*
+ContentPythonPackagesUpload Synchronous Python package upload
+
+Create a Python package.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return ContentPackagesAPIContentPythonPackagesUploadRequest
+*/
+func (a *ContentPackagesAPIService) ContentPythonPackagesUpload(ctx context.Context, pulpDomain string) ContentPackagesAPIContentPythonPackagesUploadRequest {
+	return ContentPackagesAPIContentPythonPackagesUploadRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return PythonPythonPackageContentResponse
+func (a *ContentPackagesAPIService) ContentPythonPackagesUploadExecute(r ContentPackagesAPIContentPythonPackagesUploadRequest) (*PythonPythonPackageContentResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PythonPythonPackageContentResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentPythonPackagesUpload")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/python/packages/upload/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
+	}
+	if r.author != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "author", r.author, "", "")
+	}
+	if r.authorEmail != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "author_email", r.authorEmail, "", "")
+	}
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
+	}
+	if r.homePage != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "home_page", r.homePage, "", "")
+	}
+	if r.keywords != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "keywords", r.keywords, "", "")
+	}
+	if r.license != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license", r.license, "", "")
+	}
+	if r.platform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "platform", r.platform, "", "")
+	}
+	if r.summary != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "summary", r.summary, "", "")
+	}
+	if r.classifiers != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "classifiers", r.classifiers, "", "")
+	}
+	if r.downloadUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "download_url", r.downloadUrl, "", "")
+	}
+	if r.supportedPlatform != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "supported_platform", r.supportedPlatform, "", "")
+	}
+	if r.maintainer != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer", r.maintainer, "", "")
+	}
+	if r.maintainerEmail != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "maintainer_email", r.maintainerEmail, "", "")
+	}
+	if r.obsoletesDist != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "obsoletes_dist", r.obsoletesDist, "", "")
+	}
+	if r.projectUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "project_url", r.projectUrl, "", "")
+	}
+	if r.projectUrls != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "project_urls", r.projectUrls, "", "")
+	}
+	if r.providesDist != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "provides_dist", r.providesDist, "", "")
+	}
+	if r.requiresExternal != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_external", r.requiresExternal, "", "")
+	}
+	if r.requiresDist != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_dist", r.requiresDist, "", "")
+	}
+	if r.requiresPython != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "requires_python", r.requiresPython, "", "")
+	}
+	if r.descriptionContentType != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "description_content_type", r.descriptionContentType, "", "")
+	}
+	if r.providesExtras != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "provides_extras", r.providesExtras, "", "")
+	}
+	if r.dynamic != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "dynamic", r.dynamic, "", "")
+	}
+	if r.licenseExpression != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license_expression", r.licenseExpression, "", "")
+	}
+	if r.licenseFile != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "license_file", r.licenseFile, "", "")
+	}
+	if r.sha256 != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "sha256", r.sha256, "", "")
+	}
+	if r.metadataSha256 != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "metadata_sha256", r.metadataSha256, "", "")
+	}
+	if r.attestations != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "attestations", r.attestations, "", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2149,18 +3084,33 @@ type ContentPackagesAPIContentRpmPackagesCreateRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	repository *string
+	overwrite *bool
 	pulpLabels *map[string]*string
 	artifact *string
 	relativePath *string
 	file *os.File
 	upload *string
 	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A URI of a repository the new content unit should be associated with.
 func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Repository(repository string) ContentPackagesAPIContentRpmPackagesCreateRequest {
 	r.repository = &repository
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Overwrite(overwrite bool) ContentPackagesAPIContentRpmPackagesCreateRequest {
+	r.overwrite = &overwrite
 	return r
 }
 
@@ -2197,6 +3147,12 @@ func (r ContentPackagesAPIContentRpmPackagesCreateRequest) Upload(upload string)
 // A url that Pulp can download and turn into the content unit.
 func (r ContentPackagesAPIContentRpmPackagesCreateRequest) FileUrl(fileUrl string) ContentPackagesAPIContentRpmPackagesCreateRequest {
 	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentRpmPackagesCreateRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentRpmPackagesCreateRequest {
+	r.downloaderConfig = &downloaderConfig
 	return r
 }
 
@@ -2261,8 +3217,14 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	if r.repository != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "repository", r.repository, "", "")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
 	}
 	if r.pulpLabels != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
@@ -2295,6 +3257,13 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesCreateExecute(r ContentPac
 	}
 	if r.fileUrl != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2337,6 +3306,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	ctx context.Context
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	arch *string
 	archContains *string
 	archIn *[]string
@@ -2374,11 +3344,18 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
 	sha256 *string
+	signingKey *string
 	version *string
 	versionIn *[]string
 	versionNe *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where arch matches value
@@ -2494,7 +3471,7 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) Offset(offset int32) Co
 	return r
 }
 
-// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;epoch&#x60; - Epoch* &#x60;-epoch&#x60; - Epoch (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;release&#x60; - Release* &#x60;-release&#x60; - Release (descending)* &#x60;arch&#x60; - Arch* &#x60;-arch&#x60; - Arch (descending)* &#x60;evr&#x60; - Evr* &#x60;-evr&#x60; - Evr (descending)* &#x60;pkgId&#x60; - Pkgid* &#x60;-pkgId&#x60; - Pkgid (descending)* &#x60;checksum_type&#x60; - Checksum type* &#x60;-checksum_type&#x60; - Checksum type (descending)* &#x60;summary&#x60; - Summary* &#x60;-summary&#x60; - Summary (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;url&#x60; - Url* &#x60;-url&#x60; - Url (descending)* &#x60;changelogs&#x60; - Changelogs* &#x60;-changelogs&#x60; - Changelogs (descending)* &#x60;files&#x60; - Files* &#x60;-files&#x60; - Files (descending)* &#x60;requires&#x60; - Requires* &#x60;-requires&#x60; - Requires (descending)* &#x60;provides&#x60; - Provides* &#x60;-provides&#x60; - Provides (descending)* &#x60;conflicts&#x60; - Conflicts* &#x60;-conflicts&#x60; - Conflicts (descending)* &#x60;obsoletes&#x60; - Obsoletes* &#x60;-obsoletes&#x60; - Obsoletes (descending)* &#x60;suggests&#x60; - Suggests* &#x60;-suggests&#x60; - Suggests (descending)* &#x60;enhances&#x60; - Enhances* &#x60;-enhances&#x60; - Enhances (descending)* &#x60;recommends&#x60; - Recommends* &#x60;-recommends&#x60; - Recommends (descending)* &#x60;supplements&#x60; - Supplements* &#x60;-supplements&#x60; - Supplements (descending)* &#x60;location_base&#x60; - Location base* &#x60;-location_base&#x60; - Location base (descending)* &#x60;location_href&#x60; - Location href* &#x60;-location_href&#x60; - Location href (descending)* &#x60;rpm_buildhost&#x60; - Rpm buildhost* &#x60;-rpm_buildhost&#x60; - Rpm buildhost (descending)* &#x60;rpm_group&#x60; - Rpm group* &#x60;-rpm_group&#x60; - Rpm group (descending)* &#x60;rpm_license&#x60; - Rpm license* &#x60;-rpm_license&#x60; - Rpm license (descending)* &#x60;rpm_packager&#x60; - Rpm packager* &#x60;-rpm_packager&#x60; - Rpm packager (descending)* &#x60;rpm_sourcerpm&#x60; - Rpm sourcerpm* &#x60;-rpm_sourcerpm&#x60; - Rpm sourcerpm (descending)* &#x60;rpm_vendor&#x60; - Rpm vendor* &#x60;-rpm_vendor&#x60; - Rpm vendor (descending)* &#x60;rpm_header_start&#x60; - Rpm header start* &#x60;-rpm_header_start&#x60; - Rpm header start (descending)* &#x60;rpm_header_end&#x60; - Rpm header end* &#x60;-rpm_header_end&#x60; - Rpm header end (descending)* &#x60;size_archive&#x60; - Size archive* &#x60;-size_archive&#x60; - Size archive (descending)* &#x60;size_installed&#x60; - Size installed* &#x60;-size_installed&#x60; - Size installed (descending)* &#x60;size_package&#x60; - Size package* &#x60;-size_package&#x60; - Size package (descending)* &#x60;time_build&#x60; - Time build* &#x60;-time_build&#x60; - Time build (descending)* &#x60;time_file&#x60; - Time file* &#x60;-time_file&#x60; - Time file (descending)* &#x60;is_modular&#x60; - Is modular* &#x60;-is_modular&#x60; - Is modular (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
+// Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;name&#x60; - Name* &#x60;-name&#x60; - Name (descending)* &#x60;epoch&#x60; - Epoch* &#x60;-epoch&#x60; - Epoch (descending)* &#x60;version&#x60; - Version* &#x60;-version&#x60; - Version (descending)* &#x60;release&#x60; - Release* &#x60;-release&#x60; - Release (descending)* &#x60;arch&#x60; - Arch* &#x60;-arch&#x60; - Arch (descending)* &#x60;evr&#x60; - Evr* &#x60;-evr&#x60; - Evr (descending)* &#x60;pkgId&#x60; - Pkgid* &#x60;-pkgId&#x60; - Pkgid (descending)* &#x60;checksum_type&#x60; - Checksum type* &#x60;-checksum_type&#x60; - Checksum type (descending)* &#x60;summary&#x60; - Summary* &#x60;-summary&#x60; - Summary (descending)* &#x60;description&#x60; - Description* &#x60;-description&#x60; - Description (descending)* &#x60;url&#x60; - Url* &#x60;-url&#x60; - Url (descending)* &#x60;changelogs&#x60; - Changelogs* &#x60;-changelogs&#x60; - Changelogs (descending)* &#x60;files&#x60; - Files* &#x60;-files&#x60; - Files (descending)* &#x60;requires&#x60; - Requires* &#x60;-requires&#x60; - Requires (descending)* &#x60;provides&#x60; - Provides* &#x60;-provides&#x60; - Provides (descending)* &#x60;conflicts&#x60; - Conflicts* &#x60;-conflicts&#x60; - Conflicts (descending)* &#x60;obsoletes&#x60; - Obsoletes* &#x60;-obsoletes&#x60; - Obsoletes (descending)* &#x60;suggests&#x60; - Suggests* &#x60;-suggests&#x60; - Suggests (descending)* &#x60;enhances&#x60; - Enhances* &#x60;-enhances&#x60; - Enhances (descending)* &#x60;recommends&#x60; - Recommends* &#x60;-recommends&#x60; - Recommends (descending)* &#x60;supplements&#x60; - Supplements* &#x60;-supplements&#x60; - Supplements (descending)* &#x60;location_base&#x60; - Location base* &#x60;-location_base&#x60; - Location base (descending)* &#x60;location_href&#x60; - Location href* &#x60;-location_href&#x60; - Location href (descending)* &#x60;rpm_buildhost&#x60; - Rpm buildhost* &#x60;-rpm_buildhost&#x60; - Rpm buildhost (descending)* &#x60;rpm_group&#x60; - Rpm group* &#x60;-rpm_group&#x60; - Rpm group (descending)* &#x60;rpm_license&#x60; - Rpm license* &#x60;-rpm_license&#x60; - Rpm license (descending)* &#x60;rpm_packager&#x60; - Rpm packager* &#x60;-rpm_packager&#x60; - Rpm packager (descending)* &#x60;rpm_sourcerpm&#x60; - Rpm sourcerpm* &#x60;-rpm_sourcerpm&#x60; - Rpm sourcerpm (descending)* &#x60;rpm_vendor&#x60; - Rpm vendor* &#x60;-rpm_vendor&#x60; - Rpm vendor (descending)* &#x60;rpm_header_start&#x60; - Rpm header start* &#x60;-rpm_header_start&#x60; - Rpm header start (descending)* &#x60;rpm_header_end&#x60; - Rpm header end* &#x60;-rpm_header_end&#x60; - Rpm header end (descending)* &#x60;size_archive&#x60; - Size archive* &#x60;-size_archive&#x60; - Size archive (descending)* &#x60;size_installed&#x60; - Size installed* &#x60;-size_installed&#x60; - Size installed (descending)* &#x60;size_package&#x60; - Size package* &#x60;-size_package&#x60; - Size package (descending)* &#x60;time_build&#x60; - Time build* &#x60;-time_build&#x60; - Time build (descending)* &#x60;time_file&#x60; - Time file* &#x60;-time_file&#x60; - Time file (descending)* &#x60;is_modular&#x60; - Is modular* &#x60;-is_modular&#x60; - Is modular (descending)* &#x60;signing_keys&#x60; - Signing keys* &#x60;-signing_keys&#x60; - Signing keys (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending)
 func (r ContentPackagesAPIContentRpmPackagesListRequest) Ordering(ordering []string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.ordering = &ordering
 	return r
@@ -2578,19 +3555,16 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) ReleaseStartswith(relea
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersionAdded(repositoryVersionAdded string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersionAdded = &repositoryVersionAdded
 	return r
 }
 
-// Repository Version referenced by HREF/PRN
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersionRemoved(repositoryVersionRemoved string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersionRemoved = &repositoryVersionRemoved
 	return r
@@ -2598,6 +3572,11 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersionRemove
 
 func (r ContentPackagesAPIContentRpmPackagesListRequest) Sha256(sha256 string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.sha256 = &sha256
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesListRequest) SigningKey(signingKey string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.signingKey = &signingKey
 	return r
 }
 
@@ -2786,6 +3765,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	if r.sha256 != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sha256", r.sha256, "form", "")
 	}
+	if r.signingKey != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "signing_key", r.signingKey, "form", "")
+	}
 	if r.version != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "version", r.version, "form", "")
 	}
@@ -2833,6 +3815,611 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentRpmPackagesReadRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	rpmPackageHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r ContentPackagesAPIContentRpmPackagesReadRequest) Fields(fields []string) ContentPackagesAPIContentRpmPackagesReadRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r ContentPackagesAPIContentRpmPackagesReadRequest) ExcludeFields(excludeFields []string) ContentPackagesAPIContentRpmPackagesReadRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesReadRequest) Execute() (*RpmPackageResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagesReadExecute(r)
+}
+
+/*
+ContentRpmPackagesRead Inspect a package
+
+A ViewSet for Package.Define endpoint name which will appear in the API endpoint for this content type.For example::    http://pulp.example.com/pulp/api/v3/content/rpm/packages/Also specify queryset and serializer for Package.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmPackageHref
+ @return ContentPackagesAPIContentRpmPackagesReadRequest
+*/
+func (a *ContentPackagesAPIService) ContentRpmPackagesRead(ctx context.Context, rpmPackageHref string) ContentPackagesAPIContentRpmPackagesReadRequest {
+	return ContentPackagesAPIContentRpmPackagesReadRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmPackageHref: rpmPackageHref,
+	}
+}
+
+// Execute executes the request
+//  @return RpmPackageResponse
+func (a *ContentPackagesAPIService) ContentRpmPackagesReadExecute(r ContentPackagesAPIContentRpmPackagesReadRequest) (*RpmPackageResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RpmPackageResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentRpmPackagesRead")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_package_href}"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageHref, "rpmPackageHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentRpmPackagesSetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	rpmPackageHref string
+	setLabel *SetLabel
+	xTaskDiagnostics *[]string
+}
+
+func (r ContentPackagesAPIContentRpmPackagesSetLabelRequest) SetLabel(setLabel SetLabel) ContentPackagesAPIContentRpmPackagesSetLabelRequest {
+	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesSetLabelRequest) Execute() (*SetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagesSetLabelExecute(r)
+}
+
+/*
+ContentRpmPackagesSetLabel Set a label
+
+Set a single pulp_label on the object to a specific value or null.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmPackageHref
+ @return ContentPackagesAPIContentRpmPackagesSetLabelRequest
+*/
+func (a *ContentPackagesAPIService) ContentRpmPackagesSetLabel(ctx context.Context, rpmPackageHref string) ContentPackagesAPIContentRpmPackagesSetLabelRequest {
+	return ContentPackagesAPIContentRpmPackagesSetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmPackageHref: rpmPackageHref,
+	}
+}
+
+// Execute executes the request
+//  @return SetLabelResponse
+func (a *ContentPackagesAPIService) ContentRpmPackagesSetLabelExecute(r ContentPackagesAPIContentRpmPackagesSetLabelRequest) (*SetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentRpmPackagesSetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_package_href}set_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageHref, "rpmPackageHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.setLabel == nil {
+		return localVarReturnValue, nil, reportError("setLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.setLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentRpmPackagesUnsetLabelRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	rpmPackageHref string
+	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
+}
+
+func (r ContentPackagesAPIContentRpmPackagesUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) ContentPackagesAPIContentRpmPackagesUnsetLabelRequest {
+	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesUnsetLabelRequest) Execute() (*UnsetLabelResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagesUnsetLabelExecute(r)
+}
+
+/*
+ContentRpmPackagesUnsetLabel Unset a label
+
+Unset a single pulp_label on the object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rpmPackageHref
+ @return ContentPackagesAPIContentRpmPackagesUnsetLabelRequest
+*/
+func (a *ContentPackagesAPIService) ContentRpmPackagesUnsetLabel(ctx context.Context, rpmPackageHref string) ContentPackagesAPIContentRpmPackagesUnsetLabelRequest {
+	return ContentPackagesAPIContentRpmPackagesUnsetLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		rpmPackageHref: rpmPackageHref,
+	}
+}
+
+// Execute executes the request
+//  @return UnsetLabelResponse
+func (a *ContentPackagesAPIService) ContentRpmPackagesUnsetLabelExecute(r ContentPackagesAPIContentRpmPackagesUnsetLabelRequest) (*UnsetLabelResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UnsetLabelResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentRpmPackagesUnsetLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{rpm_package_href}unset_label/"
+	localVarPath = strings.Replace(localVarPath, "{"+"rpm_package_href"+"}", url.PathEscape(parameterValueToString(r.rpmPackageHref, "rpmPackageHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.unsetLabel == nil {
+		return localVarReturnValue, nil, reportError("unsetLabel is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.unsetLabel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ContentPackagesAPIContentRpmPackagesUploadRequest struct {
+	ctx context.Context
+	ApiService *ContentPackagesAPIService
+	pulpDomain string
+	xTaskDiagnostics *[]string
+	overwrite *bool
+	pulpLabels *map[string]*string
+	artifact *string
+	file *os.File
+	upload *string
+	fileUrl *string
+	downloaderConfig *RemoteNetworkConfig
+}
+
+// List of profilers to use on tasks.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) Overwrite(overwrite bool) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.overwrite = &overwrite
+	return r
+}
+
+// A dictionary of arbitrary key/value pairs used to describe a specific Content instance.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) PulpLabels(pulpLabels map[string]*string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.pulpLabels = &pulpLabels
+	return r
+}
+
+// Artifact file representing the physical content
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) Artifact(artifact string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.artifact = &artifact
+	return r
+}
+
+// An uploaded file that may be turned into the content unit.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) File(file *os.File) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.file = file
+	return r
+}
+
+// An uncommitted upload that may be turned into the content unit.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) Upload(upload string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.upload = &upload
+	return r
+}
+
+// A url that Pulp can download and turn into the content unit.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) FileUrl(fileUrl string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.fileUrl = &fileUrl
+	return r
+}
+
+// Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url.
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) DownloaderConfig(downloaderConfig RemoteNetworkConfig) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	r.downloaderConfig = &downloaderConfig
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesUploadRequest) Execute() (*RpmPackageResponse, *http.Response, error) {
+	return r.ApiService.ContentRpmPackagesUploadExecute(r)
+}
+
+/*
+ContentRpmPackagesUpload Upload an RPM package synchronously.
+
+Synchronously upload an RPM package.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param pulpDomain
+ @return ContentPackagesAPIContentRpmPackagesUploadRequest
+*/
+func (a *ContentPackagesAPIService) ContentRpmPackagesUpload(ctx context.Context, pulpDomain string) ContentPackagesAPIContentRpmPackagesUploadRequest {
+	return ContentPackagesAPIContentRpmPackagesUploadRequest{
+		ApiService: a,
+		ctx: ctx,
+		pulpDomain: pulpDomain,
+	}
+}
+
+// Execute executes the request
+//  @return RpmPackageResponse
+func (a *ContentPackagesAPIService) ContentRpmPackagesUploadExecute(r ContentPackagesAPIContentRpmPackagesUploadRequest) (*RpmPackageResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RpmPackageResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContentPackagesAPIService.ContentRpmPackagesUpload")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/pulp/{pulp_domain}/api/v3/content/rpm/packages/upload/"
+	localVarPath = strings.Replace(localVarPath, "{"+"pulp_domain"+"}", url.PathEscape(parameterValueToString(r.pulpDomain, "pulpDomain")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	if r.overwrite != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "overwrite", r.overwrite, "", "")
+	}
+	if r.pulpLabels != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "pulp_labels", r.pulpLabels, "", "")
+	}
+	if r.artifact != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "artifact", r.artifact, "", "")
+	}
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+
+
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	if r.upload != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "upload", r.upload, "", "")
+	}
+	if r.fileUrl != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "file_url", r.fileUrl, "", "")
+	}
+	if r.downloaderConfig != nil {
+		paramJson, err := parameterToJson(*r.downloaderConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+		localVarFormParams.Add("downloader_config", paramJson)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

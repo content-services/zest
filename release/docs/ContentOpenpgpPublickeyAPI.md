@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## ContentCoreOpenpgpPublickeyCreate
 
-> AsyncOperationResponse ContentCoreOpenpgpPublickeyCreate(ctx, pulpDomain).Repository(repository).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).Execute()
+> AsyncOperationResponse ContentCoreOpenpgpPublickeyCreate(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 
 Create an open pgp public key
 
@@ -34,15 +34,18 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	repository := "repository_example" // string | A URI of a repository the new content unit should be associated with. (optional)
+	overwrite := true // bool | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when 'repository' is specified. Defaults to true. (optional)
 	pulpLabels := map[string]*string{"key": "Inner_example"} // map[string]*string | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. (optional)
 	file := os.NewFile(1234, "some_file") // *os.File | An uploaded file that may be turned into the content unit. (optional)
 	upload := "upload_example" // string | An uncommitted upload that may be turned into the content unit. (optional)
 	fileUrl := "fileUrl_example" // string | A url that Pulp can download and turn into the content unit. (optional)
+	downloaderConfig := *openapiclient.NewRemoteNetworkConfig() // RemoteNetworkConfig | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a 'file_url. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyCreate(context.Background(), pulpDomain).Repository(repository).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyCreate(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Repository(repository).Overwrite(overwrite).PulpLabels(pulpLabels).File(file).Upload(upload).FileUrl(fileUrl).DownloaderConfig(downloaderConfig).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,11 +71,14 @@ Other parameters are passed through a pointer to a apiContentCoreOpenpgpPublicke
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **repository** | **string** | A URI of a repository the new content unit should be associated with. | 
+ **overwrite** | **bool** | When set to true, existing content in the repository with the same unique key will be silently overwritten. When set to false, the task will fail if content would be overwritten. Only used when &#39;repository&#39; is specified. Defaults to true. | 
  **pulpLabels** | **map[string]string** | A dictionary of arbitrary key/value pairs used to describe a specific Content instance. | 
  **file** | ***os.File** | An uploaded file that may be turned into the content unit. | 
  **upload** | **string** | An uncommitted upload that may be turned into the content unit. | 
  **fileUrl** | **string** | A url that Pulp can download and turn into the content unit. | 
+ **downloaderConfig** | [**RemoteNetworkConfig**](RemoteNetworkConfig.md) | Configuration for the download process (e.g., proxies, auth, timeouts). Only applicable when providing a &#39;file_url. | 
 
 ### Return type
 
@@ -94,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## ContentCoreOpenpgpPublickeyList
 
-> PaginatedOpenPGPPublicKeyResponseList ContentCoreOpenpgpPublickeyList(ctx, pulpDomain).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedOpenPGPPublicKeyResponseList ContentCoreOpenpgpPublickeyList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List open pgp public keys
 
@@ -114,6 +120,7 @@ import (
 
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fingerprint := "fingerprint_example" // string | Filter results where fingerprint matches value (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
@@ -124,15 +131,15 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
-	repositoryVersion := "repositoryVersion_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionAdded := "repositoryVersionAdded_example" // string | Repository Version referenced by HREF/PRN (optional)
-	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string | Repository Version referenced by HREF/PRN (optional)
+	repositoryVersion := "repositoryVersion_example" // string |  (optional)
+	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
+	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList(context.Background(), pulpDomain).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -158,6 +165,7 @@ Other parameters are passed through a pointer to a apiContentCoreOpenpgpPublicke
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fingerprint** | **string** | Filter results where fingerprint matches value | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
@@ -168,9 +176,9 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
- **repositoryVersion** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionAdded** | **string** | Repository Version referenced by HREF/PRN | 
- **repositoryVersionRemoved** | **string** | Repository Version referenced by HREF/PRN | 
+ **repositoryVersion** | **string** |  | 
+ **repositoryVersionAdded** | **string** |  | 
+ **repositoryVersionRemoved** | **string** |  | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -194,7 +202,7 @@ Name | Type | Description  | Notes
 
 ## ContentCoreOpenpgpPublickeyRead
 
-> OpenPGPPublicKeyResponse ContentCoreOpenpgpPublickeyRead(ctx, openPGPPublicKeyHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> OpenPGPPublicKeyResponse ContentCoreOpenpgpPublickeyRead(ctx, openPGPPublicKeyHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect an open pgp public key
 
@@ -214,12 +222,13 @@ import (
 
 func main() {
 	openPGPPublicKeyHref := "openPGPPublicKeyHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyRead(context.Background(), openPGPPublicKeyHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyRead(context.Background(), openPGPPublicKeyHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -245,6 +254,7 @@ Other parameters are passed through a pointer to a apiContentCoreOpenpgpPublicke
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -268,7 +278,7 @@ Name | Type | Description  | Notes
 
 ## ContentCoreOpenpgpPublickeySetLabel
 
-> SetLabelResponse ContentCoreOpenpgpPublickeySetLabel(ctx, openPGPPublicKeyHref).SetLabel(setLabel).Execute()
+> SetLabelResponse ContentCoreOpenpgpPublickeySetLabel(ctx, openPGPPublicKeyHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Set a label
 
@@ -289,10 +299,11 @@ import (
 func main() {
 	openPGPPublicKeyHref := "openPGPPublicKeyHref_example" // string | 
 	setLabel := *openapiclient.NewSetLabel("Key_example", "Value_example") // SetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeySetLabel(context.Background(), openPGPPublicKeyHref).SetLabel(setLabel).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeySetLabel(context.Background(), openPGPPublicKeyHref).SetLabel(setLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeySetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -319,6 +330,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **setLabel** | [**SetLabel**](SetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -340,7 +352,7 @@ Name | Type | Description  | Notes
 
 ## ContentCoreOpenpgpPublickeyUnsetLabel
 
-> UnsetLabelResponse ContentCoreOpenpgpPublickeyUnsetLabel(ctx, openPGPPublicKeyHref).UnsetLabel(unsetLabel).Execute()
+> UnsetLabelResponse ContentCoreOpenpgpPublickeyUnsetLabel(ctx, openPGPPublicKeyHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Unset a label
 
@@ -361,10 +373,11 @@ import (
 func main() {
 	openPGPPublicKeyHref := "openPGPPublicKeyHref_example" // string | 
 	unsetLabel := *openapiclient.NewUnsetLabel("Key_example") // UnsetLabel | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyUnsetLabel(context.Background(), openPGPPublicKeyHref).UnsetLabel(unsetLabel).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyUnsetLabel(context.Background(), openPGPPublicKeyHref).UnsetLabel(unsetLabel).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyUnsetLabel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -391,6 +404,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **unsetLabel** | [**UnsetLabel**](UnsetLabel.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 

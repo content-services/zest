@@ -25,15 +25,147 @@ import (
 // DistributionsMavenAPIService DistributionsMavenAPI service
 type DistributionsMavenAPIService service
 
+type DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest struct {
+	ctx context.Context
+	ApiService *DistributionsMavenAPIService
+	mavenMavenDistributionHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest) NestedRole(nestedRole NestedRole) DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.DistributionsMavenMavenAddRoleExecute(r)
+}
+
+/*
+DistributionsMavenMavenAddRole Add a role
+
+Add a role for this object to users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenDistributionHref
+ @return DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest
+*/
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenAddRole(ctx context.Context, mavenMavenDistributionHref string) DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest {
+	return DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenDistributionHref: mavenMavenDistributionHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenAddRoleExecute(r DistributionsMavenAPIDistributionsMavenMavenAddRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenAddRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_distribution_href}add_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type DistributionsMavenAPIDistributionsMavenMavenCreateRequest struct {
 	ctx context.Context
 	ApiService *DistributionsMavenAPIService
 	pulpDomain string
 	mavenMavenDistribution *MavenMavenDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenCreateRequest) MavenMavenDistribution(mavenMavenDistribution MavenMavenDistribution) DistributionsMavenAPIDistributionsMavenMavenCreateRequest {
 	r.mavenMavenDistribution = &mavenMavenDistribution
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenCreateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenCreateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -101,6 +233,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenCreateExecute(r Di
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.mavenMavenDistribution
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -144,6 +279,13 @@ type DistributionsMavenAPIDistributionsMavenMavenDeleteRequest struct {
 	ctx context.Context
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenDeleteRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenDeleteRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenDeleteRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
@@ -207,6 +349,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenDeleteExecute(r Di
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -248,6 +393,7 @@ type DistributionsMavenAPIDistributionsMavenMavenListRequest struct {
 	ctx context.Context
 	ApiService *DistributionsMavenAPIService
 	pulpDomain string
+	xTaskDiagnostics *[]string
 	basePath *string
 	basePathContains *string
 	basePathIcontains *string
@@ -275,6 +421,12 @@ type DistributionsMavenAPIDistributionsMavenMavenListRequest struct {
 	withContent *string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenListRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenListRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // Filter results where base_path matches value
@@ -409,13 +561,11 @@ func (r DistributionsMavenAPIDistributionsMavenMavenListRequest) Q(q string) Dis
 	return r
 }
 
-// Filter results where repository matches value
 func (r DistributionsMavenAPIDistributionsMavenMavenListRequest) Repository(repository string) DistributionsMavenAPIDistributionsMavenMavenListRequest {
 	r.repository = &repository
 	return r
 }
 
-// Filter results where repository is in a comma-separated list of values
 func (r DistributionsMavenAPIDistributionsMavenMavenListRequest) RepositoryIn(repositoryIn []string) DistributionsMavenAPIDistributionsMavenMavenListRequest {
 	r.repositoryIn = &repositoryIn
 	return r
@@ -597,6 +747,309 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenListExecute(r Dist
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DistributionsMavenAPIDistributionsMavenMavenListRolesRequest struct {
+	ctx context.Context
+	ApiService *DistributionsMavenAPIService
+	mavenMavenDistributionHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenListRolesRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenListRolesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r DistributionsMavenAPIDistributionsMavenMavenListRolesRequest) Fields(fields []string) DistributionsMavenAPIDistributionsMavenMavenListRolesRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r DistributionsMavenAPIDistributionsMavenMavenListRolesRequest) ExcludeFields(excludeFields []string) DistributionsMavenAPIDistributionsMavenMavenListRolesRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenListRolesRequest) Execute() (*ObjectRolesResponse, *http.Response, error) {
+	return r.ApiService.DistributionsMavenMavenListRolesExecute(r)
+}
+
+/*
+DistributionsMavenMavenListRoles List roles
+
+List roles assigned to this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenDistributionHref
+ @return DistributionsMavenAPIDistributionsMavenMavenListRolesRequest
+*/
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenListRoles(ctx context.Context, mavenMavenDistributionHref string) DistributionsMavenAPIDistributionsMavenMavenListRolesRequest {
+	return DistributionsMavenAPIDistributionsMavenMavenListRolesRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenDistributionHref: mavenMavenDistributionHref,
+	}
+}
+
+// Execute executes the request
+//  @return ObjectRolesResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenListRolesExecute(r DistributionsMavenAPIDistributionsMavenMavenListRolesRequest) (*ObjectRolesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ObjectRolesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenListRoles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_distribution_href}list_roles/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest struct {
+	ctx context.Context
+	ApiService *DistributionsMavenAPIService
+	mavenMavenDistributionHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest) Fields(fields []string) DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest) ExcludeFields(excludeFields []string) DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest) Execute() (*MyPermissionsResponse, *http.Response, error) {
+	return r.ApiService.DistributionsMavenMavenMyPermissionsExecute(r)
+}
+
+/*
+DistributionsMavenMavenMyPermissions List user permissions
+
+List permissions available to the current user on this object.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenDistributionHref
+ @return DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest
+*/
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenMyPermissions(ctx context.Context, mavenMavenDistributionHref string) DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest {
+	return DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenDistributionHref: mavenMavenDistributionHref,
+	}
+}
+
+// Execute executes the request
+//  @return MyPermissionsResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenMyPermissionsExecute(r DistributionsMavenAPIDistributionsMavenMavenMyPermissionsRequest) (*MyPermissionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MyPermissionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenMyPermissions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_distribution_href}my_permissions/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -639,6 +1092,7 @@ type DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest struct {
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
 	patchedmavenMavenDistribution *PatchedmavenMavenDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) PatchedmavenMavenDistribution(patchedmavenMavenDistribution PatchedmavenMavenDistribution) DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest {
@@ -646,14 +1100,20 @@ func (r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) Patche
 	return r
 }
 
-func (r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) Execute() (*MavenMavenDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsMavenMavenPartialUpdateExecute(r)
 }
 
 /*
 DistributionsMavenMavenPartialUpdate Update a maven distribution
 
-Trigger an asynchronous partial update task
+Update the entity partially and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenDistributionHref
@@ -668,13 +1128,13 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenPartialUpdate(ctx 
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsMavenAPIService) DistributionsMavenMavenPartialUpdateExecute(r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return MavenMavenDistributionResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenPartialUpdateExecute(r DistributionsMavenAPIDistributionsMavenMavenPartialUpdateRequest) (*MavenMavenDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *MavenMavenDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenPartialUpdate")
@@ -709,6 +1169,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenPartialUpdateExecu
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.patchedmavenMavenDistribution
@@ -753,8 +1216,15 @@ type DistributionsMavenAPIDistributionsMavenMavenReadRequest struct {
 	ctx context.Context
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
+	xTaskDiagnostics *[]string
 	fields *[]string
 	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenReadRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenReadRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
 }
 
 // A list of fields to include in the response.
@@ -852,6 +1322,134 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenReadExecute(r Dist
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest struct {
+	ctx context.Context
+	ApiService *DistributionsMavenAPIService
+	mavenMavenDistributionHref string
+	nestedRole *NestedRole
+	xTaskDiagnostics *[]string
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest) NestedRole(nestedRole NestedRole) DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest {
+	r.nestedRole = &nestedRole
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest) Execute() (*NestedRoleResponse, *http.Response, error) {
+	return r.ApiService.DistributionsMavenMavenRemoveRoleExecute(r)
+}
+
+/*
+DistributionsMavenMavenRemoveRole Remove a role
+
+Remove a role for this object from users/groups.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenDistributionHref
+ @return DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest
+*/
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenRemoveRole(ctx context.Context, mavenMavenDistributionHref string) DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest {
+	return DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenDistributionHref: mavenMavenDistributionHref,
+	}
+}
+
+// Execute executes the request
+//  @return NestedRoleResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenRemoveRoleExecute(r DistributionsMavenAPIDistributionsMavenMavenRemoveRoleRequest) (*NestedRoleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *NestedRoleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenRemoveRole")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_distribution_href}remove_role/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_distribution_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenDistributionHref, "mavenMavenDistributionHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.nestedRole == nil {
+		return localVarReturnValue, nil, reportError("nestedRole is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	// body params
+	localVarPostBody = r.nestedRole
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -894,10 +1492,17 @@ type DistributionsMavenAPIDistributionsMavenMavenSetLabelRequest struct {
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
 	setLabel *SetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenSetLabelRequest) SetLabel(setLabel SetLabel) DistributionsMavenAPIDistributionsMavenMavenSetLabelRequest {
 	r.setLabel = &setLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenSetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenSetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -965,6 +1570,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenSetLabelExecute(r 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.setLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1009,10 +1617,17 @@ type DistributionsMavenAPIDistributionsMavenMavenUnsetLabelRequest struct {
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
 	unsetLabel *UnsetLabel
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenUnsetLabelRequest) UnsetLabel(unsetLabel UnsetLabel) DistributionsMavenAPIDistributionsMavenMavenUnsetLabelRequest {
 	r.unsetLabel = &unsetLabel
+	return r
+}
+
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenUnsetLabelRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenUnsetLabelRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
 	return r
 }
 
@@ -1080,6 +1695,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenUnsetLabelExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	// body params
 	localVarPostBody = r.unsetLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1124,6 +1742,7 @@ type DistributionsMavenAPIDistributionsMavenMavenUpdateRequest struct {
 	ApiService *DistributionsMavenAPIService
 	mavenMavenDistributionHref string
 	mavenMavenDistribution *MavenMavenDistribution
+	xTaskDiagnostics *[]string
 }
 
 func (r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) MavenMavenDistribution(mavenMavenDistribution MavenMavenDistribution) DistributionsMavenAPIDistributionsMavenMavenUpdateRequest {
@@ -1131,14 +1750,20 @@ func (r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) MavenMavenDis
 	return r
 }
 
-func (r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+// List of profilers to use on tasks.
+func (r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) XTaskDiagnostics(xTaskDiagnostics []string) DistributionsMavenAPIDistributionsMavenMavenUpdateRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) Execute() (*MavenMavenDistributionResponse, *http.Response, error) {
 	return r.ApiService.DistributionsMavenMavenUpdateExecute(r)
 }
 
 /*
 DistributionsMavenMavenUpdate Update a maven distribution
 
-Trigger an asynchronous update task
+Update the entity and trigger an asynchronous task if necessary
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenDistributionHref
@@ -1153,13 +1778,13 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenUpdate(ctx context
 }
 
 // Execute executes the request
-//  @return AsyncOperationResponse
-func (a *DistributionsMavenAPIService) DistributionsMavenMavenUpdateExecute(r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) (*AsyncOperationResponse, *http.Response, error) {
+//  @return MavenMavenDistributionResponse
+func (a *DistributionsMavenAPIService) DistributionsMavenMavenUpdateExecute(r DistributionsMavenAPIDistributionsMavenMavenUpdateRequest) (*MavenMavenDistributionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
+		localVarReturnValue  *MavenMavenDistributionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DistributionsMavenAPIService.DistributionsMavenMavenUpdate")
@@ -1194,6 +1819,9 @@ func (a *DistributionsMavenAPIService) DistributionsMavenMavenUpdateExecute(r Di
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
 	}
 	// body params
 	localVarPostBody = r.mavenMavenDistribution

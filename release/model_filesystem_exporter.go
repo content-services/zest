@@ -21,7 +21,7 @@ var _ MappedNullable = &FilesystemExporter{}
 
 // FilesystemExporter Serializer for FilesystemExporters.
 type FilesystemExporter struct {
-	// Unique name of the file system exporter.
+	// Unique name of the exporter.
 	Name string `json:"name"`
 	// File system location to export to.
 	Path string `json:"path"`

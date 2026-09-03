@@ -8,12 +8,13 @@ Method | HTTP request | Description
 [**RepositoriesPythonPythonVersionsList**](RepositoriesPythonVersionsAPI.md#RepositoriesPythonPythonVersionsList) | **Get** /{python_python_repository_href}versions/ | List repository versions
 [**RepositoriesPythonPythonVersionsRead**](RepositoriesPythonVersionsAPI.md#RepositoriesPythonPythonVersionsRead) | **Get** /{python_python_repository_version_href} | Inspect a repository version
 [**RepositoriesPythonPythonVersionsRepair**](RepositoriesPythonVersionsAPI.md#RepositoriesPythonPythonVersionsRepair) | **Post** /{python_python_repository_version_href}repair/ | 
+[**RepositoriesPythonPythonVersionsScan**](RepositoriesPythonVersionsAPI.md#RepositoriesPythonPythonVersionsScan) | **Post** /{python_python_repository_version_href}scan/ | Generate vulnerability report
 
 
 
 ## RepositoriesPythonPythonVersionsDelete
 
-> AsyncOperationResponse RepositoriesPythonPythonVersionsDelete(ctx, pythonPythonRepositoryVersionHref).Execute()
+> AsyncOperationResponse RepositoriesPythonPythonVersionsDelete(ctx, pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a repository version
 
@@ -33,10 +34,11 @@ import (
 
 func main() {
 	pythonPythonRepositoryVersionHref := "pythonPythonRepositoryVersionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsDelete(context.Background(), pythonPythonRepositoryVersionHref).Execute()
+	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsDelete(context.Background(), pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +64,7 @@ Other parameters are passed through a pointer to a apiRepositoriesPythonPythonVe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -83,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesPythonPythonVersionsList
 
-> PaginatedRepositoryVersionResponseList RepositoriesPythonPythonVersionsList(ctx, pythonPythonRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRepositoryVersionResponseList RepositoriesPythonPythonVersionsList(ctx, pythonPythonRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List repository versions
 
@@ -104,6 +107,7 @@ import (
 
 func main() {
 	pythonPythonRepositoryHref := "pythonPythonRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
@@ -114,7 +118,7 @@ func main() {
 	numberLte := int32(56) // int32 | Filter results where number is less than or equal to value (optional)
 	numberRange := []int32{int32(123)} // []int32 | Filter results where number is between two comma separated values (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `content_ids` - Content ids* `-content_ids` - Content ids (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
@@ -130,7 +134,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsList(context.Background(), pythonPythonRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsList(context.Background(), pythonPythonRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -156,6 +160,7 @@ Other parameters are passed through a pointer to a apiRepositoriesPythonPythonVe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
  **limit** | **int32** | Number of results to return per page. | 
@@ -166,7 +171,7 @@ Name | Type | Description  | Notes
  **numberLte** | **int32** | Filter results where number is less than or equal to value | 
  **numberRange** | **[]int32** | Filter results where number is between two comma separated values | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;content_ids&#x60; - Content ids* &#x60;-content_ids&#x60; - Content ids (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
@@ -200,7 +205,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesPythonPythonVersionsRead
 
-> RepositoryVersionResponse RepositoriesPythonPythonVersionsRead(ctx, pythonPythonRepositoryVersionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RepositoryVersionResponse RepositoriesPythonPythonVersionsRead(ctx, pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a repository version
 
@@ -220,12 +225,13 @@ import (
 
 func main() {
 	pythonPythonRepositoryVersionHref := "pythonPythonRepositoryVersionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRead(context.Background(), pythonPythonRepositoryVersionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRead(context.Background(), pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -251,6 +257,7 @@ Other parameters are passed through a pointer to a apiRepositoriesPythonPythonVe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -274,7 +281,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesPythonPythonVersionsRepair
 
-> AsyncOperationResponse RepositoriesPythonPythonVersionsRepair(ctx, pythonPythonRepositoryVersionHref).Repair(repair).Execute()
+> AsyncOperationResponse RepositoriesPythonPythonVersionsRepair(ctx, pythonPythonRepositoryVersionHref).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -295,10 +302,11 @@ import (
 func main() {
 	pythonPythonRepositoryVersionHref := "pythonPythonRepositoryVersionHref_example" // string | 
 	repair := *openapiclient.NewRepair() // Repair | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRepair(context.Background(), pythonPythonRepositoryVersionHref).Repair(repair).Execute()
+	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRepair(context.Background(), pythonPythonRepositoryVersionHref).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsRepair``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -325,6 +333,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repair** | [**Repair**](Repair.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -337,6 +346,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RepositoriesPythonPythonVersionsScan
+
+> AsyncOperationResponse RepositoriesPythonPythonVersionsScan(ctx, pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Generate vulnerability report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	pythonPythonRepositoryVersionHref := "pythonPythonRepositoryVersionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsScan(context.Background(), pythonPythonRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsScan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesPythonPythonVersionsScan`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesPythonVersionsAPI.RepositoriesPythonPythonVersionsScan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pythonPythonRepositoryVersionHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRepositoriesPythonPythonVersionsScanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

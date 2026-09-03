@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## RepositoriesContainerContainerPushVersionsDelete
 
-> AsyncOperationResponse RepositoriesContainerContainerPushVersionsDelete(ctx, containerContainerPushRepositoryVersionHref).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerPushVersionsDelete(ctx, containerContainerPushRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 Delete a repository version
 
@@ -33,10 +33,11 @@ import (
 
 func main() {
 	containerContainerPushRepositoryVersionHref := "containerContainerPushRepositoryVersionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsDelete(context.Background(), containerContainerPushRepositoryVersionHref).Execute()
+	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsDelete(context.Background(), containerContainerPushRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +63,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
@@ -83,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerPushVersionsList
 
-> PaginatedRepositoryVersionResponseList RepositoriesContainerContainerPushVersionsList(ctx, containerContainerPushRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedRepositoryVersionResponseList RepositoriesContainerContainerPushVersionsList(ctx, containerContainerPushRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List repository versions
 
@@ -104,6 +106,7 @@ import (
 
 func main() {
 	containerContainerPushRepositoryHref := "containerContainerPushRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	content := "content_example" // string | Content Unit referenced by HREF/PRN (optional)
 	contentIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
@@ -114,7 +117,7 @@ func main() {
 	numberLte := int32(56) // int32 | Filter results where number is less than or equal to value (optional)
 	numberRange := []int32{int32(123)} // []int32 | Filter results where number is between two comma separated values (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
+	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `number` - Number* `-number` - Number (descending)* `complete` - Complete* `-complete` - Complete (descending)* `info` - Info* `-info` - Info (descending)* `content_ids` - Content ids* `-content_ids` - Content ids (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpCreated := time.Now() // time.Time | Filter results where pulp_created matches value (optional)
 	pulpCreatedGt := time.Now() // time.Time | Filter results where pulp_created is greater than value (optional)
@@ -130,7 +133,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsList(context.Background(), containerContainerPushRepositoryHref).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsList(context.Background(), containerContainerPushRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Content(content).ContentIn(contentIn).Limit(limit).Number(number).NumberGt(numberGt).NumberGte(numberGte).NumberLt(numberLt).NumberLte(numberLte).NumberRange(numberRange).Offset(offset).Ordering(ordering).PrnIn(prnIn).PulpCreated(pulpCreated).PulpCreatedGt(pulpCreatedGt).PulpCreatedGte(pulpCreatedGte).PulpCreatedIsnull(pulpCreatedIsnull).PulpCreatedLt(pulpCreatedLt).PulpCreatedLte(pulpCreatedLte).PulpCreatedRange(pulpCreatedRange).PulpHrefIn(pulpHrefIn).Q(q).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -156,6 +159,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **content** | **string** | Content Unit referenced by HREF/PRN | 
  **contentIn** | **[]string** | Multiple values may be separated by commas. | 
  **limit** | **int32** | Number of results to return per page. | 
@@ -166,7 +170,7 @@ Name | Type | Description  | Notes
  **numberLte** | **int32** | Filter results where number is less than or equal to value | 
  **numberRange** | **[]int32** | Filter results where number is between two comma separated values | 
  **offset** | **int32** | The initial index from which to return the results. | 
- **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
+ **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;number&#x60; - Number* &#x60;-number&#x60; - Number (descending)* &#x60;complete&#x60; - Complete* &#x60;-complete&#x60; - Complete (descending)* &#x60;info&#x60; - Info* &#x60;-info&#x60; - Info (descending)* &#x60;content_ids&#x60; - Content ids* &#x60;-content_ids&#x60; - Content ids (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpCreated** | **time.Time** | Filter results where pulp_created matches value | 
  **pulpCreatedGt** | **time.Time** | Filter results where pulp_created is greater than value | 
@@ -200,7 +204,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerPushVersionsRead
 
-> RepositoryVersionResponse RepositoriesContainerContainerPushVersionsRead(ctx, containerContainerPushRepositoryVersionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+> RepositoryVersionResponse RepositoriesContainerContainerPushVersionsRead(ctx, containerContainerPushRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 Inspect a repository version
 
@@ -220,12 +224,13 @@ import (
 
 func main() {
 	containerContainerPushRepositoryVersionHref := "containerContainerPushRepositoryVersionHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRead(context.Background(), containerContainerPushRepositoryVersionHref).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRead(context.Background(), containerContainerPushRepositoryVersionHref).XTaskDiagnostics(xTaskDiagnostics).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -251,6 +256,7 @@ Other parameters are passed through a pointer to a apiRepositoriesContainerConta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
@@ -274,7 +280,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesContainerContainerPushVersionsRepair
 
-> AsyncOperationResponse RepositoriesContainerContainerPushVersionsRepair(ctx, containerContainerPushRepositoryVersionHref).Repair(repair).Execute()
+> AsyncOperationResponse RepositoriesContainerContainerPushVersionsRepair(ctx, containerContainerPushRepositoryVersionHref).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 
 
 
@@ -295,10 +301,11 @@ import (
 func main() {
 	containerContainerPushRepositoryVersionHref := "containerContainerPushRepositoryVersionHref_example" // string | 
 	repair := *openapiclient.NewRepair() // Repair | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRepair(context.Background(), containerContainerPushRepositoryVersionHref).Repair(repair).Execute()
+	resp, r, err := apiClient.RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRepair(context.Background(), containerContainerPushRepositoryVersionHref).Repair(repair).XTaskDiagnostics(xTaskDiagnostics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesContainerPushVersionsAPI.RepositoriesContainerContainerPushVersionsRepair``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -325,6 +332,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **repair** | [**Repair**](Repair.md) |  | 
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
 
 ### Return type
 
