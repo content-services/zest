@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Read tag from version file
         id: version
@@ -26,13 +26,29 @@ jobs:
             echo "::error::.pulp-version not found"
             exit 1
           fi
-          TAG_NAME=$(cat .pulp-version)
-          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          BASE_TAG=$(tr -d '[:space:]' < .pulp-version)
+          if [[ ! "$BASE_TAG" =~ ^release/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Unexpected .pulp-version format: $BASE_TAG"
+            exit 1
+          fi
+          # Unique tag per workflow run. Tags must stay Go-module semver
+          # (release/vYEAR.MONTH.PATCH) so consumers of
+          # github.com/content-services/zest/release/vYEAR can resolve them.
+          # A hyphenated time suffix would be a prerelease and sort *older*
+          # than the pulp-image tag, so use the run timestamp as PATCH.
+          PREFIX=${BASE_TAG%.*}
+          TAG_NAME="${PREFIX}.$(date +%s)"
+          echo "tag_name=$TAG_NAME" >> "$GITHUB_OUTPUT"
+          echo "base_tag=$BASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "Releasing $TAG_NAME (pulp version $BASE_TAG)"
 
       - name: Tag and Release version
-        uses: avakar/tag-and-release@v1
-        with:
-          commit: ${{ github.sha }}
-          tag_name: ${{ steps.version.outputs.tag_name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ steps.version.outputs.tag_name }}
+          BASE_TAG: ${{ steps.version.outputs.base_tag }}
+        run: |
+          gh release create "$TAG_NAME" \
+            --target "${{ github.sha }}" \
+            --title "$TAG_NAME" \
+            --notes "Pulp bindings generated from ${BASE_TAG}."
