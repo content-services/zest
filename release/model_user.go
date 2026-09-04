@@ -23,7 +23,7 @@ var _ MappedNullable = &User{}
 type User struct {
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	Username string `json:"username"`
-	// Users password. Set to ``null`` to disable password authentication.
+	// Users password. Set to `null` to disable password authentication.
 	Password NullableString `json:"password,omitempty"`
 	// First name
 	FirstName *string `json:"first_name,omitempty"`

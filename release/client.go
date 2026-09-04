@@ -258,11 +258,17 @@ type APIClient struct {
 
 	PypiMetadataAPI *PypiMetadataAPIService
 
+	PypiPackagesXmlAPI *PypiPackagesXmlAPIService
+
+	PypiProjectReleasesXmlAPI *PypiProjectReleasesXmlAPIService
+
 	PypiProvenanceAPI *PypiProvenanceAPIService
 
 	PypiSimpleAPI *PypiSimpleAPIService
 
 	PypiUnyankAPI *PypiUnyankAPIService
+
+	PypiUpdatesXmlAPI *PypiUpdatesXmlAPIService
 
 	PypiYankAPI *PypiYankAPIService
 
@@ -489,9 +495,12 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PypiAPI = (*PypiAPIService)(&c.common)
 	c.PypiLegacyAPI = (*PypiLegacyAPIService)(&c.common)
 	c.PypiMetadataAPI = (*PypiMetadataAPIService)(&c.common)
+	c.PypiPackagesXmlAPI = (*PypiPackagesXmlAPIService)(&c.common)
+	c.PypiProjectReleasesXmlAPI = (*PypiProjectReleasesXmlAPIService)(&c.common)
 	c.PypiProvenanceAPI = (*PypiProvenanceAPIService)(&c.common)
 	c.PypiSimpleAPI = (*PypiSimpleAPIService)(&c.common)
 	c.PypiUnyankAPI = (*PypiUnyankAPIService)(&c.common)
+	c.PypiUpdatesXmlAPI = (*PypiUpdatesXmlAPIService)(&c.common)
 	c.PypiYankAPI = (*PypiYankAPIService)(&c.common)
 	c.PypiYankMonitorAPI = (*PypiYankMonitorAPIService)(&c.common)
 	c.RemotesAPI = (*RemotesAPIService)(&c.common)

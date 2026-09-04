@@ -33,6 +33,8 @@ type PatchedDomain struct {
 	RedirectToObjectStorage *bool `json:"redirect_to_object_storage,omitempty"`
 	// Boolean to hide distributions with a content guard in the content app.
 	HideGuardedDistributions *bool `json:"hide_guarded_distributions,omitempty"`
+	// An optional content-guard that is automatically assigned to new distributions created within this domain when they do not specify their own content-guard. To apply multiple guards by default, use a composite content-guard.
+	DefaultContentGuard NullableString `json:"default_content_guard,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -297,6 +299,48 @@ func (o *PatchedDomain) SetHideGuardedDistributions(v bool) {
 	o.HideGuardedDistributions = &v
 }
 
+// GetDefaultContentGuard returns the DefaultContentGuard field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedDomain) GetDefaultContentGuard() string {
+	if o == nil || IsNil(o.DefaultContentGuard.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultContentGuard.Get()
+}
+
+// GetDefaultContentGuardOk returns a tuple with the DefaultContentGuard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedDomain) GetDefaultContentGuardOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DefaultContentGuard.Get(), o.DefaultContentGuard.IsSet()
+}
+
+// HasDefaultContentGuard returns a boolean if a field has been set.
+func (o *PatchedDomain) HasDefaultContentGuard() bool {
+	if o != nil && o.DefaultContentGuard.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultContentGuard gets a reference to the given NullableString and assigns it to the DefaultContentGuard field.
+func (o *PatchedDomain) SetDefaultContentGuard(v string) {
+	o.DefaultContentGuard.Set(&v)
+}
+// SetDefaultContentGuardNil sets the value for DefaultContentGuard to be an explicit nil
+func (o *PatchedDomain) SetDefaultContentGuardNil() {
+	o.DefaultContentGuard.Set(nil)
+}
+
+// UnsetDefaultContentGuard ensures that no value is present for DefaultContentGuard, not even an explicit nil
+func (o *PatchedDomain) UnsetDefaultContentGuard() {
+	o.DefaultContentGuard.Unset()
+}
+
 func (o PatchedDomain) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -328,6 +372,9 @@ func (o PatchedDomain) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HideGuardedDistributions) {
 		toSerialize["hide_guarded_distributions"] = o.HideGuardedDistributions
 	}
+	if o.DefaultContentGuard.IsSet() {
+		toSerialize["default_content_guard"] = o.DefaultContentGuard.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -357,6 +404,7 @@ func (o *PatchedDomain) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "storage_settings")
 		delete(additionalProperties, "redirect_to_object_storage")
 		delete(additionalProperties, "hide_guarded_distributions")
+		delete(additionalProperties, "default_content_guard")
 		o.AdditionalProperties = additionalProperties
 	}
 

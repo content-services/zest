@@ -19,7 +19,7 @@ import (
 // checks if the NestedOpenPGPUserAttribute type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NestedOpenPGPUserAttribute{}
 
-// NestedOpenPGPUserAttribute Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// NestedOpenPGPUserAttribute Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the `ref_name` attribute in theModelSerializers's `Meta` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type NestedOpenPGPUserAttribute struct {
 	Sha256 string `json:"sha256"`
 	AdditionalProperties map[string]interface{}

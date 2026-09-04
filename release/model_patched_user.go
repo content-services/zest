@@ -22,7 +22,7 @@ var _ MappedNullable = &PatchedUser{}
 type PatchedUser struct {
 	// Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
 	Username *string `json:"username,omitempty"`
-	// Users password. Set to ``null`` to disable password authentication.
+	// Users password. Set to `null` to disable password authentication.
 	Password NullableString `json:"password,omitempty"`
 	// First name
 	FirstName *string `json:"first_name,omitempty"`

@@ -19,7 +19,7 @@ import (
 // checks if the OpenPGPKeyring type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OpenPGPKeyring{}
 
-// OpenPGPKeyring Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// OpenPGPKeyring Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the `ref_name` attribute in theModelSerializers's `Meta` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type OpenPGPKeyring struct {
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name for this repository.

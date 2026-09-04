@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **StorageSettings** | **map[string]interface{}** | Settings for storage class. | 
 **RedirectToObjectStorage** | Pointer to **bool** | Boolean to have the content app redirect to object storage. | [optional] [default to true]
 **HideGuardedDistributions** | Pointer to **bool** | Boolean to hide distributions with a content guard in the content app. | [optional] [default to false]
+**DefaultContentGuard** | Pointer to **NullableString** | An optional content-guard that is automatically assigned to new distributions created within this domain when they do not specify their own content-guard. To apply multiple guards by default, use a composite content-guard. | [optional] 
+**DefaultContentGuardPrn** | Pointer to **string** | The Pulp Resource Name (PRN) of the domain&#39;s default content-guard. | [optional] [readonly] 
 
 ## Methods
 
@@ -304,6 +306,66 @@ SetHideGuardedDistributions sets HideGuardedDistributions field to given value.
 `func (o *DomainResponse) HasHideGuardedDistributions() bool`
 
 HasHideGuardedDistributions returns a boolean if a field has been set.
+
+### GetDefaultContentGuard
+
+`func (o *DomainResponse) GetDefaultContentGuard() string`
+
+GetDefaultContentGuard returns the DefaultContentGuard field if non-nil, zero value otherwise.
+
+### GetDefaultContentGuardOk
+
+`func (o *DomainResponse) GetDefaultContentGuardOk() (*string, bool)`
+
+GetDefaultContentGuardOk returns a tuple with the DefaultContentGuard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultContentGuard
+
+`func (o *DomainResponse) SetDefaultContentGuard(v string)`
+
+SetDefaultContentGuard sets DefaultContentGuard field to given value.
+
+### HasDefaultContentGuard
+
+`func (o *DomainResponse) HasDefaultContentGuard() bool`
+
+HasDefaultContentGuard returns a boolean if a field has been set.
+
+### SetDefaultContentGuardNil
+
+`func (o *DomainResponse) SetDefaultContentGuardNil(b bool)`
+
+ SetDefaultContentGuardNil sets the value for DefaultContentGuard to be an explicit nil
+
+### UnsetDefaultContentGuard
+`func (o *DomainResponse) UnsetDefaultContentGuard()`
+
+UnsetDefaultContentGuard ensures that no value is present for DefaultContentGuard, not even an explicit nil
+### GetDefaultContentGuardPrn
+
+`func (o *DomainResponse) GetDefaultContentGuardPrn() string`
+
+GetDefaultContentGuardPrn returns the DefaultContentGuardPrn field if non-nil, zero value otherwise.
+
+### GetDefaultContentGuardPrnOk
+
+`func (o *DomainResponse) GetDefaultContentGuardPrnOk() (*string, bool)`
+
+GetDefaultContentGuardPrnOk returns a tuple with the DefaultContentGuardPrn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultContentGuardPrn
+
+`func (o *DomainResponse) SetDefaultContentGuardPrn(v string)`
+
+SetDefaultContentGuardPrn sets DefaultContentGuardPrn field to given value.
+
+### HasDefaultContentGuardPrn
+
+`func (o *DomainResponse) HasDefaultContentGuardPrn() bool`
+
+HasDefaultContentGuardPrn returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

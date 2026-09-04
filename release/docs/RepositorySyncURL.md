@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Remote** | Pointer to **string** | A remote to sync from. This will override a remote set on repository. | [optional] 
-**Mirror** | Pointer to **bool** | If &#x60;&#x60;True&#x60;&#x60;, synchronization will remove all content that is not present in the remote repository. If &#x60;&#x60;False&#x60;&#x60;, sync will be additive only. | [optional] [default to false]
+**Mirror** | Pointer to **bool** | If &#x60;True&#x60;, synchronization will remove all content that is not present in the remote repository. If &#x60;False&#x60;, sync will be additive only. | [optional] [default to false]
 
 ## Methods
 
