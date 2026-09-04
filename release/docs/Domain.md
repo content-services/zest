@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **StorageSettings** | **map[string]interface{}** | Settings for storage class. | 
 **RedirectToObjectStorage** | Pointer to **bool** | Boolean to have the content app redirect to object storage. | [optional] [default to true]
 **HideGuardedDistributions** | Pointer to **bool** | Boolean to hide distributions with a content guard in the content app. | [optional] [default to false]
+**DefaultContentGuard** | Pointer to **NullableString** | An optional content-guard that is automatically assigned to new distributions created within this domain when they do not specify their own content-guard. To apply multiple guards by default, use a composite content-guard. | [optional] 
 
 ## Methods
 
@@ -201,6 +202,41 @@ SetHideGuardedDistributions sets HideGuardedDistributions field to given value.
 
 HasHideGuardedDistributions returns a boolean if a field has been set.
 
+### GetDefaultContentGuard
+
+`func (o *Domain) GetDefaultContentGuard() string`
+
+GetDefaultContentGuard returns the DefaultContentGuard field if non-nil, zero value otherwise.
+
+### GetDefaultContentGuardOk
+
+`func (o *Domain) GetDefaultContentGuardOk() (*string, bool)`
+
+GetDefaultContentGuardOk returns a tuple with the DefaultContentGuard field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultContentGuard
+
+`func (o *Domain) SetDefaultContentGuard(v string)`
+
+SetDefaultContentGuard sets DefaultContentGuard field to given value.
+
+### HasDefaultContentGuard
+
+`func (o *Domain) HasDefaultContentGuard() bool`
+
+HasDefaultContentGuard returns a boolean if a field has been set.
+
+### SetDefaultContentGuardNil
+
+`func (o *Domain) SetDefaultContentGuardNil(b bool)`
+
+ SetDefaultContentGuardNil sets the value for DefaultContentGuard to be an explicit nil
+
+### UnsetDefaultContentGuard
+`func (o *Domain) UnsetDefaultContentGuard()`
+
+UnsetDefaultContentGuard ensures that no value is present for DefaultContentGuard, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

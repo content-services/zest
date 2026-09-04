@@ -48,8 +48,8 @@ func main() {
 	pulpCreatedRange := []time.Time{time.Now()} // []time.Time | Filter results where pulp_created is between two comma separated values (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `file.file` - file.file* `python.python` - python.python* `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `file.file` - file.file* `python.python` - python.python* `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `hugging_face.hugging-face` - hugging_face.hugging-face* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `hugging_face.hugging-face` - hugging_face.hugging-face* `python.python` - python.python* `file.file` - file.file* `rpm.rpm` - rpm.rpm (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	repository := "repository_example" // string | Repository referenced by HREF/PRN (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
@@ -101,8 +101,8 @@ Name | Type | Description  | Notes
  **pulpCreatedRange** | [**[]time.Time**](time.Time.md) | Filter results where pulp_created is between two comma separated values | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;file.file&#x60; - file.file* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpType** | **string** | Pulp type* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;python.python&#x60; - python.python* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **repository** | **string** | Repository referenced by HREF/PRN | 
  **repositoryVersion** | **string** |  | 

@@ -22,7 +22,7 @@ var _ MappedNullable = &ContainerRepositorySyncURL{}
 type ContainerRepositorySyncURL struct {
 	// A remote to sync from. This will override a remote set on repository.
 	Remote *string `json:"remote,omitempty"`
-	// If ``True``, synchronization will remove all content that is not present in the remote repository. If ``False``, sync will be additive only.
+	// If `True`, synchronization will remove all content that is not present in the remote repository. If `False`, sync will be additive only.
 	Mirror *bool `json:"mirror,omitempty"`
 	// If ``True``, only signed content will be synced. Signatures are not verified.
 	SignedOnly *bool `json:"signed_only,omitempty"`

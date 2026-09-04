@@ -180,13 +180,13 @@ func (r RepositoriesAPIRepositoriesListRequest) PulpLabelSelect(pulpLabelSelect 
 	return r
 }
 
-// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Pulp type* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;npm.npm&#x60; - npm.npm* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;python.python&#x60; - python.python* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r RepositoriesAPIRepositoriesListRequest) PulpType(pulpType string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;file.file&#x60; - file.file* &#x60;npm.npm&#x60; - npm.npm* &#x60;python.python&#x60; - python.python* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;rpm.rpm&#x60; - rpm.rpm
+// Multiple values may be separated by commas.* &#x60;core.openpgp&#x60; - core.openpgp* &#x60;npm.npm&#x60; - npm.npm* &#x60;hugging_face.hugging-face&#x60; - hugging_face.hugging-face* &#x60;python.python&#x60; - python.python* &#x60;maven.maven&#x60; - maven.maven* &#x60;container.container&#x60; - container.container* &#x60;container.container-push&#x60; - container.container-push* &#x60;file.file&#x60; - file.file* &#x60;rpm.rpm&#x60; - rpm.rpm
 func (r RepositoriesAPIRepositoriesListRequest) PulpTypeIn(pulpTypeIn []string) RepositoriesAPIRepositoriesListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Username** | Pointer to **string** | Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. | [optional] 
-**Password** | Pointer to **NullableString** | Users password. Set to &#x60;&#x60;null&#x60;&#x60; to disable password authentication. | [optional] 
+**Password** | Pointer to **NullableString** | Users password. Set to &#x60;null&#x60; to disable password authentication. | [optional] 
 **FirstName** | Pointer to **string** | First name | [optional] 
 **LastName** | Pointer to **string** | Last name | [optional] 
 **Email** | Pointer to **string** | Email address | [optional] 

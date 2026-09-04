@@ -20,7 +20,7 @@ import (
 // checks if the OpenPGPUserAttributeResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OpenPGPUserAttributeResponse{}
 
-// OpenPGPUserAttributeResponse Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the ``ref_name`` attribute in theModelSerializers's ``Meta`` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
+// OpenPGPUserAttributeResponse Base serializer for use with [pulpcore.app.models.Model][]This ensures that all Serializers provide values for the 'pulp_href` field.The class provides a default for the `ref_name` attribute in theModelSerializers's `Meta` class. This ensures that the OpenAPI definitionsof plugins are namespaced properly.
 type OpenPGPUserAttributeResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// The Pulp Resource Name (PRN).
