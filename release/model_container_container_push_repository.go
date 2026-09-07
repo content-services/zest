@@ -21,17 +21,17 @@ var _ MappedNullable = &ContainerContainerPushRepository{}
 
 // ContainerContainerPushRepository Serializer for Container Push Repositories.
 type ContainerContainerPushRepository struct {
-	// A unique name for this repository.
-	Name string `json:"name"`
+	// Retain X versions of the repository. Default is null which retains all versions.
+	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
 	// A reference to an associated signing service.
 	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
-	// Retain X versions of the repository. Default is null which retains all versions.
-	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// A unique name for this repository.
+	Name string `json:"name"`
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
-	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
-	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,28 +55,88 @@ func NewContainerContainerPushRepositoryWithDefaults() *ContainerContainerPushRe
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *ContainerContainerPushRepository) GetName() string {
-	if o == nil {
-		var ret string
+// GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64 {
+	if o == nil || IsNil(o.RetainRepoVersions.Get()) {
+		var ret int64
 		return ret
 	}
-
-	return o.Name
+	return *o.RetainRepoVersions.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.RetainRepoVersions.Get(), o.RetainRepoVersions.IsSet()
 }
 
-// SetName sets field value
-func (o *ContainerContainerPushRepository) SetName(v string) {
-	o.Name = v
+// HasRetainRepoVersions returns a boolean if a field has been set.
+func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool {
+	if o != nil && o.RetainRepoVersions.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainRepoVersions gets a reference to the given NullableInt64 and assigns it to the RetainRepoVersions field.
+func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64) {
+	o.RetainRepoVersions.Set(&v)
+}
+// SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
+func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil() {
+	o.RetainRepoVersions.Set(nil)
+}
+
+// UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
+	o.RetainRepoVersions.Unset()
+}
+
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerPushRepository) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RetainCheckpoints.Get()
+}
+
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+}
+
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *ContainerContainerPushRepository) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *ContainerContainerPushRepository) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
+}
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *ContainerContainerPushRepository) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
+}
+
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *ContainerContainerPushRepository) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -163,46 +223,28 @@ func (o *ContainerContainerPushRepository) UnsetManifestSigningService() {
 	o.ManifestSigningService.Unset()
 }
 
-// GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPushRepository) GetRetainRepoVersions() int64 {
-	if o == nil || IsNil(o.RetainRepoVersions.Get()) {
-		var ret int64
+// GetName returns the Name field value
+func (o *ContainerContainerPushRepository) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.RetainRepoVersions.Get()
+
+	return o.Name
 }
 
-// GetRetainRepoVersionsOk returns a tuple with the RetainRepoVersions field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPushRepository) GetRetainRepoVersionsOk() (*int64, bool) {
+func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RetainRepoVersions.Get(), o.RetainRepoVersions.IsSet()
+	return &o.Name, true
 }
 
-// HasRetainRepoVersions returns a boolean if a field has been set.
-func (o *ContainerContainerPushRepository) HasRetainRepoVersions() bool {
-	if o != nil && o.RetainRepoVersions.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetainRepoVersions gets a reference to the given NullableInt64 and assigns it to the RetainRepoVersions field.
-func (o *ContainerContainerPushRepository) SetRetainRepoVersions(v int64) {
-	o.RetainRepoVersions.Set(&v)
-}
-// SetRetainRepoVersionsNil sets the value for RetainRepoVersions to be an explicit nil
-func (o *ContainerContainerPushRepository) SetRetainRepoVersionsNil() {
-	o.RetainRepoVersions.Set(nil)
-}
-
-// UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
-func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions() {
-	o.RetainRepoVersions.Unset()
+// SetName sets field value
+func (o *ContainerContainerPushRepository) SetName(v string) {
+	o.Name = v
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -237,48 +279,6 @@ func (o *ContainerContainerPushRepository) SetPulpLabels(v map[string]*string) {
 	o.PulpLabels = &v
 }
 
-// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerPushRepository) GetRetainCheckpoints() int64 {
-	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.RetainCheckpoints.Get()
-}
-
-// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
-}
-
-// HasRetainCheckpoints returns a boolean if a field has been set.
-func (o *ContainerContainerPushRepository) HasRetainCheckpoints() bool {
-	if o != nil && o.RetainCheckpoints.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
-func (o *ContainerContainerPushRepository) SetRetainCheckpoints(v int64) {
-	o.RetainCheckpoints.Set(&v)
-}
-// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
-func (o *ContainerContainerPushRepository) SetRetainCheckpointsNil() {
-	o.RetainCheckpoints.Set(nil)
-}
-
-// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
-func (o *ContainerContainerPushRepository) UnsetRetainCheckpoints() {
-	o.RetainCheckpoints.Unset()
-}
-
 func (o ContainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -289,21 +289,21 @@ func (o ContainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 
 func (o ContainerContainerPushRepository) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if o.RetainRepoVersions.IsSet() {
+		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
+	}
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
+	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.ManifestSigningService.IsSet() {
 		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
 	}
-	if o.RetainRepoVersions.IsSet() {
-		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
-	}
+	toSerialize["name"] = o.Name
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
-	}
-	if o.RetainCheckpoints.IsSet() {
-		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -348,12 +348,12 @@ func (o *ContainerContainerPushRepository) UnmarshalJSON(data []byte) (err error
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "manifest_signing_service")
-		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "pulp_labels")
-		delete(additionalProperties, "retain_checkpoints")
 		o.AdditionalProperties = additionalProperties
 	}
 
