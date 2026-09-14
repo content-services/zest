@@ -30,6 +30,7 @@ api_content_distribution_trees.go
 api_content_files.go
 api_content_hugging_face.go
 api_content_manifests.go
+api_content_maven_index_page.go
 api_content_metadata.go
 api_content_modulemd_defaults.go
 api_content_modulemd_obsoletes.go
@@ -232,6 +233,7 @@ docs/ContentFilesAPI.md
 docs/ContentGuardResponse.md
 docs/ContentHuggingFaceAPI.md
 docs/ContentManifestsAPI.md
+docs/ContentMavenIndexPageAPI.md
 docs/ContentMetadataAPI.md
 docs/ContentModulemdDefaultsAPI.md
 docs/ContentModulemdObsoletesAPI.md
@@ -368,6 +370,7 @@ docs/MavenMavenArtifact.md
 docs/MavenMavenArtifactResponse.md
 docs/MavenMavenDistribution.md
 docs/MavenMavenDistributionResponse.md
+docs/MavenMavenIndexPageResponse.md
 docs/MavenMavenMetadata.md
 docs/MavenMavenMetadataResponse.md
 docs/MavenMavenPackageResponse.md
@@ -502,6 +505,7 @@ docs/PaginatedhuggingFaceHuggingFaceRemoteResponseList.md
 docs/PaginatedhuggingFaceHuggingFaceRepositoryResponseList.md
 docs/PaginatedmavenMavenArtifactResponseList.md
 docs/PaginatedmavenMavenDistributionResponseList.md
+docs/PaginatedmavenMavenIndexPageResponseList.md
 docs/PaginatedmavenMavenMetadataResponseList.md
 docs/PaginatedmavenMavenPackageResponseList.md
 docs/PaginatedmavenMavenRemoteResponseList.md
@@ -905,6 +909,7 @@ model_maven_maven_artifact.go
 model_maven_maven_artifact_response.go
 model_maven_maven_distribution.go
 model_maven_maven_distribution_response.go
+model_maven_maven_index_page_response.go
 model_maven_maven_metadata.go
 model_maven_maven_metadata_response.go
 model_maven_maven_package_response.go
@@ -1034,6 +1039,7 @@ model_paginatedhugging_face_hugging_face_remote_response_list.go
 model_paginatedhugging_face_hugging_face_repository_response_list.go
 model_paginatedmaven_maven_artifact_response_list.go
 model_paginatedmaven_maven_distribution_response_list.go
+model_paginatedmaven_maven_index_page_response_list.go
 model_paginatedmaven_maven_metadata_response_list.go
 model_paginatedmaven_maven_package_response_list.go
 model_paginatedmaven_maven_remote_response_list.go
@@ -1283,6 +1289,7 @@ test/api_content_distribution_trees_test.go
 test/api_content_files_test.go
 test/api_content_hugging_face_test.go
 test/api_content_manifests_test.go
+test/api_content_maven_index_page_test.go
 test/api_content_metadata_test.go
 test/api_content_modulemd_defaults_test.go
 test/api_content_modulemd_obsoletes_test.go
