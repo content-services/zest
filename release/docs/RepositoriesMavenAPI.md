@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**RepositoriesMavenMavenPartialUpdate**](RepositoriesMavenAPI.md#RepositoriesMavenMavenPartialUpdate) | **Patch** /{maven_maven_repository_href} | Update a maven repository
 [**RepositoriesMavenMavenRead**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRead) | **Get** /{maven_maven_repository_href} | Inspect a maven repository
 [**RepositoriesMavenMavenRemoveRole**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRemoveRole) | **Post** /{maven_maven_repository_href}remove_role/ | Remove a role
+[**RepositoriesMavenMavenRepairIndexPages**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRepairIndexPages) | **Post** /{maven_maven_repository_href}repair_index_pages/ | Repair index pages
 [**RepositoriesMavenMavenRepairMetadata**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRepairMetadata) | **Post** /{maven_maven_repository_href}repair_metadata/ | Repair metadata
 [**RepositoriesMavenMavenSetLabel**](RepositoriesMavenAPI.md#RepositoriesMavenMavenSetLabel) | **Post** /{maven_maven_repository_href}set_label/ | Set a label
 [**RepositoriesMavenMavenUnsetLabel**](RepositoriesMavenAPI.md#RepositoriesMavenMavenUnsetLabel) | **Post** /{maven_maven_repository_href}unset_label/ | Unset a label
@@ -1069,6 +1070,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RepositoriesMavenMavenRepairIndexPages
+
+> AsyncOperationResponse RepositoriesMavenMavenRepairIndexPages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Repair index pages
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	mavenMavenRepositoryHref := "mavenMavenRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenRepairIndexPages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenRepairIndexPages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesMavenMavenRepairIndexPages`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesMavenAPI.RepositoriesMavenMavenRepairIndexPages`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**mavenMavenRepositoryHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRepositoriesMavenMavenRepairIndexPagesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

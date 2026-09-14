@@ -2188,6 +2188,120 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRemoveRoleExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenRepairIndexPagesExecute(r)
+}
+
+/*
+RepositoriesMavenMavenRepairIndexPages Repair index pages
+
+Trigger an asynchronous task to generate (or regenerate) HTML directory index pages for every directory in the latest repository version. This is a one-time catch-up for repositories created before the pre-generation feature was deployed. After the task completes every directory URL will be served by a pre-generated page rather than the on-demand fallback.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRepairIndexPages(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRepairIndexPagesExecute(r RepositoriesMavenAPIRepositoriesMavenMavenRepairIndexPagesRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenRepairIndexPages")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}repair_index_pages/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RepositoriesMavenAPIRepositoriesMavenMavenRepairMetadataRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesMavenAPIService

@@ -104,6 +104,8 @@ type APIClient struct {
 
 	ContentManifestsAPI *ContentManifestsAPIService
 
+	ContentMavenIndexPageAPI *ContentMavenIndexPageAPIService
+
 	ContentMetadataAPI *ContentMetadataAPIService
 
 	ContentModulemdDefaultsAPI *ContentModulemdDefaultsAPIService
@@ -418,6 +420,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentFilesAPI = (*ContentFilesAPIService)(&c.common)
 	c.ContentHuggingFaceAPI = (*ContentHuggingFaceAPIService)(&c.common)
 	c.ContentManifestsAPI = (*ContentManifestsAPIService)(&c.common)
+	c.ContentMavenIndexPageAPI = (*ContentMavenIndexPageAPIService)(&c.common)
 	c.ContentMetadataAPI = (*ContentMetadataAPIService)(&c.common)
 	c.ContentModulemdDefaultsAPI = (*ContentModulemdDefaultsAPIService)(&c.common)
 	c.ContentModulemdObsoletesAPI = (*ContentModulemdObsoletesAPIService)(&c.common)
