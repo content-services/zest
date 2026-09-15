@@ -25,131 +25,6 @@ import (
 // RepositoriesMavenAPIService RepositoriesMavenAPI service
 type RepositoriesMavenAPIService service
 
-type RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest struct {
-	ctx context.Context
-	ApiService *RepositoriesMavenAPIService
-	mavenMavenRepositoryHref string
-	repositoryAddCachedContent *RepositoryAddCachedContent
-	xTaskDiagnostics *[]string
-}
-
-func (r RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest) RepositoryAddCachedContent(repositoryAddCachedContent RepositoryAddCachedContent) RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest {
-	r.repositoryAddCachedContent = &repositoryAddCachedContent
-	return r
-}
-
-// List of profilers to use on tasks.
-func (r RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest {
-	r.xTaskDiagnostics = &xTaskDiagnostics
-	return r
-}
-
-func (r RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
-	return r.ApiService.RepositoriesMavenMavenAddCachedContentExecute(r)
-}
-
-/*
-RepositoriesMavenMavenAddCachedContent Add cached content
-
-Trigger an asynchronous task to add cached content to a repository.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param mavenMavenRepositoryHref
- @return RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest
-*/
-func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenAddCachedContent(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest {
-	return RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest{
-		ApiService: a,
-		ctx: ctx,
-		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
-	}
-}
-
-// Execute executes the request
-//  @return AsyncOperationResponse
-func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenAddCachedContentExecute(r RepositoriesMavenAPIRepositoriesMavenMavenAddCachedContentRequest) (*AsyncOperationResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AsyncOperationResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenAddCachedContent")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/{maven_maven_repository_href}add_cached_content/"
-	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
-	localVarPath, _ = url.PathUnescape(localVarPath)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.repositoryAddCachedContent == nil {
-		return localVarReturnValue, nil, reportError("repositoryAddCachedContent is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xTaskDiagnostics != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
-	}
-	// body params
-	localVarPostBody = r.repositoryAddCachedContent
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type RepositoriesMavenAPIRepositoriesMavenMavenAddRoleRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesMavenAPIService
@@ -1615,6 +1490,8 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest struct {
 	xTaskDiagnostics *[]string
 	artifactIdIstartswith *string
 	groupIdIstartswith *string
+	limit *int32
+	offset *int32
 	ordering *[]string
 	repositoryVersion *string
 	search *string
@@ -1637,6 +1514,18 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) ArtifactIdIst
 // Case-insensitive prefix on group_id.
 func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) GroupIdIstartswith(groupIdIstartswith string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
 	r.groupIdIstartswith = &groupIdIstartswith
+	return r
+}
+
+// Number of results to return per page.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Limit(limit int32) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
+	r.limit = &limit
+	return r
+}
+
+// The initial index from which to return the results.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Offset(offset int32) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
+	r.offset = &offset
 	return r
 }
 
@@ -1719,6 +1608,12 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesExecute(r Re
 	}
 	if r.groupIdIstartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "group_id__istartswith", r.groupIdIstartswith, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.ordering != nil {
 		t := *r.ordering
