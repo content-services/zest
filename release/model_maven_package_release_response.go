@@ -24,7 +24,7 @@ var _ MappedNullable = &MavenPackageReleaseResponse{}
 type MavenPackageReleaseResponse struct {
 	// Logical version key (rebuild suffix stripped).
 	Version string `json:"version"`
-	// Rebuild/release qualifier within the version line (e.g. rhlw-00003). Empty when the selected unit has no rebuild suffix.
+	// Rebuild/release qualifier within the version line (e.g. rhlw-00001 or rhlw-00001-n0001). Empty when the selected unit has no rebuild suffix.
 	Release string `json:"release"`
 	// When this logical version entered the repository: RepositoryContent.pulp_created of the newest rebuild, falling back to the content unit's pulp_created.
 	CreatedAt time.Time `json:"created_at"`

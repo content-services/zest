@@ -1615,7 +1615,9 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest struct {
 	xTaskDiagnostics *[]string
 	artifactIdIstartswith *string
 	groupIdIstartswith *string
+	ordering *[]string
 	repositoryVersion *string
+	search *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -1638,9 +1640,21 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) GroupIdIstart
 	return r
 }
 
+// Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with &#39;-&#39; for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Ordering(ordering []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
+	r.ordering = &ordering
+	return r
+}
+
 // HREF or PRN of a version of this repository. Defaults to the latest complete version.
 func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) RepositoryVersion(repositoryVersion string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
 	r.repositoryVersion = &repositoryVersion
+	return r
+}
+
+// Case-insensitive package search. Without &#39;:&#39;, group_id or artifact_id contains the term (OR). With &#39;:&#39;, group_id contains the left part AND artifact_id contains the right part. A third &#39;:&#39; segment (version) is ignored. Empty or &#39;:&#39; is a no-op. Combines with prefix filters using AND.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Search(search string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
+	r.search = &search
 	return r
 }
 
@@ -1663,7 +1677,7 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Execute() (*P
 /*
 RepositoriesMavenMavenPackages List packages
 
-Return one row per distinct (group_id, artifact_id) in a repository version (latest complete version if repository_version is omitted). Pagination count is the number of distinct packages, not GAVs. Each row includes versions (logical version keys after rebuild-suffix strip) and latest_releases (newest rebuild per logical version). set(versions) === set(latest_releases[].version).
+Return one row per distinct (group_id, artifact_id) in a repository version (latest complete version if repository_version is omitted). Pagination count is the number of distinct packages, not GAVs. Each row includes last_updated (newest membership among any rebuild), versions (logical version keys after rebuild-suffix strip, newest first), and latest_releases (newest rebuild per logical version, same order). set(versions) === set(latest_releases[].version).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenRepositoryHref
@@ -1706,8 +1720,22 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesExecute(r Re
 	if r.groupIdIstartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "group_id__istartswith", r.groupIdIstartswith, "form", "")
 	}
+	if r.ordering != nil {
+		t := *r.ordering
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", t, "form", "multi")
+		}
+	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields
