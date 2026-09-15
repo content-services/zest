@@ -4,7 +4,6 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RepositoriesMavenMavenAddCachedContent**](RepositoriesMavenAPI.md#RepositoriesMavenMavenAddCachedContent) | **Post** /{maven_maven_repository_href}add_cached_content/ | Add cached content
 [**RepositoriesMavenMavenAddRole**](RepositoriesMavenAPI.md#RepositoriesMavenMavenAddRole) | **Post** /{maven_maven_repository_href}add_role/ | Add a role
 [**RepositoriesMavenMavenCreate**](RepositoriesMavenAPI.md#RepositoriesMavenMavenCreate) | **Post** /api/pulp/{pulp_domain}/api/v3/repositories/maven/maven/ | Create a maven repository
 [**RepositoriesMavenMavenDelete**](RepositoriesMavenAPI.md#RepositoriesMavenMavenDelete) | **Delete** /{maven_maven_repository_href} | Delete a maven repository
@@ -23,80 +22,6 @@ Method | HTTP request | Description
 [**RepositoriesMavenMavenUnsetLabel**](RepositoriesMavenAPI.md#RepositoriesMavenMavenUnsetLabel) | **Post** /{maven_maven_repository_href}unset_label/ | Unset a label
 [**RepositoriesMavenMavenUpdate**](RepositoriesMavenAPI.md#RepositoriesMavenMavenUpdate) | **Put** /{maven_maven_repository_href} | Update a maven repository
 
-
-
-## RepositoriesMavenMavenAddCachedContent
-
-> AsyncOperationResponse RepositoriesMavenMavenAddCachedContent(ctx, mavenMavenRepositoryHref).RepositoryAddCachedContent(repositoryAddCachedContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
-
-Add cached content
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/content-services/zest/release/v2026"
-)
-
-func main() {
-	mavenMavenRepositoryHref := "mavenMavenRepositoryHref_example" // string | 
-	repositoryAddCachedContent := *openapiclient.NewRepositoryAddCachedContent() // RepositoryAddCachedContent | 
-	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenAddCachedContent(context.Background(), mavenMavenRepositoryHref).RepositoryAddCachedContent(repositoryAddCachedContent).XTaskDiagnostics(xTaskDiagnostics).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenAddCachedContent``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RepositoriesMavenMavenAddCachedContent`: AsyncOperationResponse
-	fmt.Fprintf(os.Stdout, "Response from `RepositoriesMavenAPI.RepositoriesMavenMavenAddCachedContent`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**mavenMavenRepositoryHref** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRepositoriesMavenMavenAddCachedContentRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **repositoryAddCachedContent** | [**RepositoryAddCachedContent**](RepositoryAddCachedContent.md) |  | 
- **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
-
-### Return type
-
-[**AsyncOperationResponse**](AsyncOperationResponse.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## RepositoriesMavenMavenAddRole
@@ -773,7 +698,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesMavenMavenPackages
 
-> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages
 
@@ -796,6 +721,8 @@ func main() {
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	artifactIdIstartswith := "artifactIdIstartswith_example" // string | Case-insensitive prefix on artifact_id. (optional)
 	groupIdIstartswith := "groupIdIstartswith_example" // string | Case-insensitive prefix on group_id. (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Inner_example"} // []string | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with '-' for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. (optional)
 	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
 	search := "search_example" // string | Case-insensitive package search. Without ':', group_id or artifact_id contains the term (OR). With ':', group_id contains the left part AND artifact_id contains the right part. A third ':' segment (version) is ignored. Empty or ':' is a no-op. Combines with prefix filters using AND. (optional)
@@ -804,7 +731,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -833,6 +760,8 @@ Name | Type | Description  | Notes
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **artifactIdIstartswith** | **string** | Case-insensitive prefix on artifact_id. | 
  **groupIdIstartswith** | **string** | Case-insensitive prefix on group_id. | 
+ **limit** | **int32** | Number of results to return per page. | 
+ **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with &#39;-&#39; for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. | 
  **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
  **search** | **string** | Case-insensitive package search. Without &#39;:&#39;, group_id or artifact_id contains the term (OR). With &#39;:&#39;, group_id contains the left part AND artifact_id contains the right part. A third &#39;:&#39; segment (version) is ignored. Empty or &#39;:&#39; is a no-op. Combines with prefix filters using AND. | 

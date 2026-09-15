@@ -691,7 +691,6 @@ docs/RepositoriesPythonVersionsAPI.md
 docs/RepositoriesReclaimSpaceAPI.md
 docs/RepositoriesRpmAPI.md
 docs/RepositoriesRpmVersionsAPI.md
-docs/RepositoryAddCachedContent.md
 docs/RepositoryAddRemoveContent.md
 docs/RepositoryResponse.md
 docs/RepositorySign.md
@@ -1175,7 +1174,6 @@ model_remove_signatures.go
 model_remove_signatures_response.go
 model_repair.go
 model_repo_type_enum.go
-model_repository_add_cached_content.go
 model_repository_add_remove_content.go
 model_repository_response.go
 model_repository_sign.go
