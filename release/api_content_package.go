@@ -66,13 +66,13 @@ func (r ContentPackageAPIContentMavenPackageListRequest) ArtifactId(artifactId s
 	return r
 }
 
-// Match units whose version strips to this logical version (same suffix as collapse_builds: \\.[a-zA-Z]+-\\d+$). 5.3.18 matches 5.3.18 and 5.3.18.rhlw-00003, but not 5.3.180.
+// Match units whose version strips to this logical version (same suffix as collapse_builds: \\.[a-zA-Z]+-[^.]+$). 5.3.17 matches 5.3.17, 5.3.17.rhlw-00001, and 5.3.17.rhlw-00001-n0001, but not 5.3.170.
 func (r ContentPackageAPIContentMavenPackageListRequest) BaseVersion(baseVersion string) ContentPackageAPIContentMavenPackageListRequest {
 	r.baseVersion = &baseVersion
 	return r
 }
 
-// When true, collapse rebuilds of the same logical version: strip a trailing suffix matching \\.[a-zA-Z]+-\\d+$ from version, then keep one MavenPackage per (group_id, artifact_id, base_version) with the latest pulp_created. Default false.
+// When true, collapse rebuilds of the same logical version: strip a trailing suffix matching \\.[a-zA-Z]+-[^.]+$ from version, then keep one MavenPackage per (group_id, artifact_id, base_version) with the latest pulp_created. Default false.
 func (r ContentPackageAPIContentMavenPackageListRequest) CollapseBuilds(collapseBuilds bool) ContentPackageAPIContentMavenPackageListRequest {
 	r.collapseBuilds = &collapseBuilds
 	return r

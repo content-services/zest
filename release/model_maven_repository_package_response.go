@@ -13,6 +13,7 @@ package zest
 
 import (
 	"encoding/json"
+	"time"
 	"fmt"
 )
 
@@ -25,9 +26,11 @@ type MavenRepositoryPackageResponse struct {
 	GroupId string `json:"group_id"`
 	// Maven artifactId. Index rows are unique on GA.
 	ArtifactId string `json:"artifact_id"`
-	// Distinct logical version keys after rebuild-suffix strip. The set of values matches latest_releases[].version.
+	// When this package was last updated in the repository: the latest RepositoryContent.pulp_created among all MavenPackage units for this GA (any rebuild), falling back to the content unit's pulp_created.
+	LastUpdated NullableTime `json:"last_updated"`
+	// Distinct logical version keys after rebuild-suffix strip, newest first. The set of values matches latest_releases[].version.
 	Versions []string `json:"versions"`
-	// Newest rebuild per logical version (latest pulp_created). set(versions) === set(latest_releases[].version).
+	// Newest rebuild per logical version (latest pulp_created), newest version first. set(versions) === set(latest_releases[].version).
 	LatestReleases []MavenPackageReleaseResponse `json:"latest_releases"`
 	AdditionalProperties map[string]interface{}
 }
@@ -38,10 +41,11 @@ type _MavenRepositoryPackageResponse MavenRepositoryPackageResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMavenRepositoryPackageResponse(groupId string, artifactId string, versions []string, latestReleases []MavenPackageReleaseResponse) *MavenRepositoryPackageResponse {
+func NewMavenRepositoryPackageResponse(groupId string, artifactId string, lastUpdated NullableTime, versions []string, latestReleases []MavenPackageReleaseResponse) *MavenRepositoryPackageResponse {
 	this := MavenRepositoryPackageResponse{}
 	this.GroupId = groupId
 	this.ArtifactId = artifactId
+	this.LastUpdated = lastUpdated
 	this.Versions = versions
 	this.LatestReleases = latestReleases
 	return &this
@@ -101,6 +105,32 @@ func (o *MavenRepositoryPackageResponse) GetArtifactIdOk() (*string, bool) {
 // SetArtifactId sets field value
 func (o *MavenRepositoryPackageResponse) SetArtifactId(v string) {
 	o.ArtifactId = v
+}
+
+// GetLastUpdated returns the LastUpdated field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *MavenRepositoryPackageResponse) GetLastUpdated() time.Time {
+	if o == nil || o.LastUpdated.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.LastUpdated.Get()
+}
+
+// GetLastUpdatedOk returns a tuple with the LastUpdated field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MavenRepositoryPackageResponse) GetLastUpdatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastUpdated.Get(), o.LastUpdated.IsSet()
+}
+
+// SetLastUpdated sets field value
+func (o *MavenRepositoryPackageResponse) SetLastUpdated(v time.Time) {
+	o.LastUpdated.Set(&v)
 }
 
 // GetVersions returns the Versions field value
@@ -163,6 +193,7 @@ func (o MavenRepositoryPackageResponse) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["group_id"] = o.GroupId
 	toSerialize["artifact_id"] = o.ArtifactId
+	toSerialize["last_updated"] = o.LastUpdated.Get()
 	toSerialize["versions"] = o.Versions
 	toSerialize["latest_releases"] = o.LatestReleases
 
@@ -180,6 +211,7 @@ func (o *MavenRepositoryPackageResponse) UnmarshalJSON(data []byte) (err error) 
 	requiredProperties := []string{
 		"group_id",
 		"artifact_id",
+		"last_updated",
 		"versions",
 		"latest_releases",
 	}
@@ -213,6 +245,7 @@ func (o *MavenRepositoryPackageResponse) UnmarshalJSON(data []byte) (err error) 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "group_id")
 		delete(additionalProperties, "artifact_id")
+		delete(additionalProperties, "last_updated")
 		delete(additionalProperties, "versions")
 		delete(additionalProperties, "latest_releases")
 		o.AdditionalProperties = additionalProperties

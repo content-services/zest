@@ -773,7 +773,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesMavenMavenPackages
 
-> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages
 
@@ -796,13 +796,15 @@ func main() {
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	artifactIdIstartswith := "artifactIdIstartswith_example" // string | Case-insensitive prefix on artifact_id. (optional)
 	groupIdIstartswith := "groupIdIstartswith_example" // string | Case-insensitive prefix on group_id. (optional)
+	ordering := []string{"Inner_example"} // []string | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with '-' for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. (optional)
 	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
+	search := "search_example" // string | Case-insensitive package search. Without ':', group_id or artifact_id contains the term (OR). With ':', group_id contains the left part AND artifact_id contains the right part. A third ':' segment (version) is ignored. Empty or ':' is a no-op. Combines with prefix filters using AND. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -831,7 +833,9 @@ Name | Type | Description  | Notes
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **artifactIdIstartswith** | **string** | Case-insensitive prefix on artifact_id. | 
  **groupIdIstartswith** | **string** | Case-insensitive prefix on group_id. | 
+ **ordering** | **[]string** | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with &#39;-&#39; for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. | 
  **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
+ **search** | **string** | Case-insensitive package search. Without &#39;:&#39;, group_id or artifact_id contains the term (OR). With &#39;:&#39;, group_id contains the left part AND artifact_id contains the right part. A third &#39;:&#39; segment (version) is ignored. Empty or &#39;:&#39; is a no-op. Combines with prefix filters using AND. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

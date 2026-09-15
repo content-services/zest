@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **GroupId** | **string** | Maven groupId. Index rows are unique on GA. | 
 **ArtifactId** | **string** | Maven artifactId. Index rows are unique on GA. | 
-**Versions** | **[]string** | Distinct logical version keys after rebuild-suffix strip. The set of values matches latest_releases[].version. | 
-**LatestReleases** | [**[]MavenPackageReleaseResponse**](MavenPackageReleaseResponse.md) | Newest rebuild per logical version (latest pulp_created). set(versions) &#x3D;&#x3D;&#x3D; set(latest_releases[].version). | 
+**LastUpdated** | **NullableTime** | When this package was last updated in the repository: the latest RepositoryContent.pulp_created among all MavenPackage units for this GA (any rebuild), falling back to the content unit&#39;s pulp_created. | 
+**Versions** | **[]string** | Distinct logical version keys after rebuild-suffix strip, newest first. The set of values matches latest_releases[].version. | 
+**LatestReleases** | [**[]MavenPackageReleaseResponse**](MavenPackageReleaseResponse.md) | Newest rebuild per logical version (latest pulp_created), newest version first. set(versions) &#x3D;&#x3D;&#x3D; set(latest_releases[].version). | 
 
 ## Methods
 
 ### NewMavenRepositoryPackageResponse
 
-`func NewMavenRepositoryPackageResponse(groupId string, artifactId string, versions []string, latestReleases []MavenPackageReleaseResponse, ) *MavenRepositoryPackageResponse`
+`func NewMavenRepositoryPackageResponse(groupId string, artifactId string, lastUpdated NullableTime, versions []string, latestReleases []MavenPackageReleaseResponse, ) *MavenRepositoryPackageResponse`
 
 NewMavenRepositoryPackageResponse instantiates a new MavenRepositoryPackageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -68,6 +69,36 @@ and a boolean to check if the value has been set.
 SetArtifactId sets ArtifactId field to given value.
 
 
+### GetLastUpdated
+
+`func (o *MavenRepositoryPackageResponse) GetLastUpdated() time.Time`
+
+GetLastUpdated returns the LastUpdated field if non-nil, zero value otherwise.
+
+### GetLastUpdatedOk
+
+`func (o *MavenRepositoryPackageResponse) GetLastUpdatedOk() (*time.Time, bool)`
+
+GetLastUpdatedOk returns a tuple with the LastUpdated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastUpdated
+
+`func (o *MavenRepositoryPackageResponse) SetLastUpdated(v time.Time)`
+
+SetLastUpdated sets LastUpdated field to given value.
+
+
+### SetLastUpdatedNil
+
+`func (o *MavenRepositoryPackageResponse) SetLastUpdatedNil(b bool)`
+
+ SetLastUpdatedNil sets the value for LastUpdated to be an explicit nil
+
+### UnsetLastUpdated
+`func (o *MavenRepositoryPackageResponse) UnsetLastUpdated()`
+
+UnsetLastUpdated ensures that no value is present for LastUpdated, not even an explicit nil
 ### GetVersions
 
 `func (o *MavenRepositoryPackageResponse) GetVersions() []string`

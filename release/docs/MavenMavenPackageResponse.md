@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **GroupId** | Pointer to **string** | Group Id of the package. | [optional] [readonly] 
 **ArtifactId** | Pointer to **string** | Artifact Id of the package. | [optional] [readonly] 
 **Version** | Pointer to **string** | Version of the package. | [optional] [readonly] 
-**BaseVersion** | Pointer to **string** | The package version with a trailing rebuild suffix stripped (matching \\.[a-zA-Z]+-\\d+$). Equal to version when no suffix is present. | [optional] [readonly] 
+**BaseVersion** | Pointer to **string** | The package version with a trailing rebuild suffix stripped (matching \\.[a-zA-Z]+-[^.]+$). Equal to version when no suffix is present. | [optional] [readonly] 
 **Name** | Pointer to **NullableString** | Human-readable name from the POM. | [optional] [readonly] 
 **Description** | Pointer to **NullableString** | Description from the POM. | [optional] [readonly] 
 **Packaging** | Pointer to **NullableString** | Packaging type (jar, war, pom, etc). | [optional] [readonly] 

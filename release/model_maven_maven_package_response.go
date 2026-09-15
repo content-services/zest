@@ -37,7 +37,7 @@ type MavenMavenPackageResponse struct {
 	ArtifactId *string `json:"artifact_id,omitempty"`
 	// Version of the package.
 	Version *string `json:"version,omitempty"`
-	// The package version with a trailing rebuild suffix stripped (matching \\.[a-zA-Z]+-\\d+$). Equal to version when no suffix is present.
+	// The package version with a trailing rebuild suffix stripped (matching \\.[a-zA-Z]+-[^.]+$). Equal to version when no suffix is present.
 	BaseVersion *string `json:"base_version,omitempty"`
 	// Human-readable name from the POM.
 	Name NullableString `json:"name,omitempty"`

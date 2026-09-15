@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Version** | **string** | Logical version key (rebuild suffix stripped). | 
-**Release** | **string** | Rebuild/release qualifier within the version line (e.g. rhlw-00003). Empty when the selected unit has no rebuild suffix. | 
+**Release** | **string** | Rebuild/release qualifier within the version line (e.g. rhlw-00001 or rhlw-00001-n0001). Empty when the selected unit has no rebuild suffix. | 
 **CreatedAt** | **time.Time** | When this logical version entered the repository: RepositoryContent.pulp_created of the newest rebuild, falling back to the content unit&#39;s pulp_created. | 
 
 ## Methods
