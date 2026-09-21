@@ -30,6 +30,7 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest stru
 	ApiService *ContentOpenpgpPublicsubkeyAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	fingerprint *string
 	limit *int32
 	offset *int32
@@ -40,6 +41,7 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest stru
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -50,6 +52,11 @@ type ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest stru
 // List of profilers to use on tasks.
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) AddedBetween(addedBetween []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -110,6 +117,11 @@ func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) 
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) Q(q string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest) RemovedBetween(removedBetween []string) ContentOpenpgpPublicsubkeyAPIContentCoreOpenpgpPublicsubkeyListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -184,6 +196,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeyLis
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.fingerprint != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fingerprint", r.fingerprint, "form", "")
 	}
@@ -213,6 +228,9 @@ func (a *ContentOpenpgpPublicsubkeyAPIService) ContentCoreOpenpgpPublicsubkeyLis
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

@@ -155,6 +155,7 @@ type ContentModulemdsAPIContentRpmModulemdsListRequest struct {
 	ApiService *ContentModulemdsAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	arch *string
 	archIn *[]string
 	context *string
@@ -170,6 +171,7 @@ type ContentModulemdsAPIContentRpmModulemdsListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -185,6 +187,11 @@ type ContentModulemdsAPIContentRpmModulemdsListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsListRequest) AddedBetween(addedBetween []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -275,6 +282,11 @@ func (r ContentModulemdsAPIContentRpmModulemdsListRequest) PulpLabelSelect(pulpL
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentModulemdsAPIContentRpmModulemdsListRequest) Q(q string) ContentModulemdsAPIContentRpmModulemdsListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentModulemdsAPIContentRpmModulemdsListRequest) RemovedBetween(removedBetween []string) ContentModulemdsAPIContentRpmModulemdsListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -378,6 +390,9 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.arch != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "arch", r.arch, "form", "")
 	}
@@ -422,6 +437,9 @@ func (a *ContentModulemdsAPIService) ContentRpmModulemdsListExecute(r ContentMod
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

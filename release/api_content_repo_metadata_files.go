@@ -30,6 +30,7 @@ type ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest struct {
 	ApiService *ContentRepoMetadataFilesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -39,6 +40,7 @@ type ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -49,6 +51,11 @@ type ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) AddedBetween(addedBetween []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -103,6 +110,11 @@ func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) PulpL
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) Q(q string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest) RemovedBetween(removedBetween []string) ContentRepoMetadataFilesAPIContentRpmRepoMetadataFilesListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -177,6 +189,9 @@ func (a *ContentRepoMetadataFilesAPIService) ContentRpmRepoMetadataFilesListExec
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -203,6 +218,9 @@ func (a *ContentRepoMetadataFilesAPIService) ContentRpmRepoMetadataFilesListExec
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

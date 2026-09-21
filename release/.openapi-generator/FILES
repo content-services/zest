@@ -380,6 +380,7 @@ docs/MavenMavenRepository.md
 docs/MavenMavenRepositoryResponse.md
 docs/MavenMetadataUpload.md
 docs/MavenPackageReleaseResponse.md
+docs/MavenPathIndexStatusResponse.md
 docs/MavenRepositoryMetricsResponse.md
 docs/MavenRepositoryPackageResponse.md
 docs/MediaTypesEnum.md
@@ -918,6 +919,7 @@ model_maven_maven_repository.go
 model_maven_maven_repository_response.go
 model_maven_metadata_upload.go
 model_maven_package_release_response.go
+model_maven_path_index_status_response.go
 model_maven_repository_metrics_response.go
 model_maven_repository_package_response.go
 model_media_types_enum.go

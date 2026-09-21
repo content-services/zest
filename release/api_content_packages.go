@@ -273,6 +273,7 @@ type ContentPackagesAPIContentNpmPackagesListRequest struct {
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	name *string
 	nameIn *[]string
@@ -284,6 +285,7 @@ type ContentPackagesAPIContentNpmPackagesListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -294,6 +296,11 @@ type ContentPackagesAPIContentNpmPackagesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentPackagesAPIContentNpmPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentNpmPackagesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagesAPIContentNpmPackagesListRequest) AddedBetween(addedBetween []string) ContentPackagesAPIContentNpmPackagesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -360,6 +367,11 @@ func (r ContentPackagesAPIContentNpmPackagesListRequest) PulpLabelSelect(pulpLab
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagesAPIContentNpmPackagesListRequest) Q(q string) ContentPackagesAPIContentNpmPackagesListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentPackagesAPIContentNpmPackagesListRequest) RemovedBetween(removedBetween []string) ContentPackagesAPIContentNpmPackagesListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -434,6 +446,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesListExecute(r ContentPacka
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -466,6 +481,9 @@ func (a *ContentPackagesAPIService) ContentNpmPackagesListExecute(r ContentPacka
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
@@ -1698,6 +1716,7 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	author *string
 	authorContains *string
 	authorIn *[]string
@@ -1720,6 +1739,7 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -1741,6 +1761,11 @@ type ContentPackagesAPIContentPythonPackagesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentPackagesAPIContentPythonPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagesAPIContentPythonPackagesListRequest) AddedBetween(addedBetween []string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -1871,6 +1896,11 @@ func (r ContentPackagesAPIContentPythonPackagesListRequest) PulpLabelSelect(pulp
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagesAPIContentPythonPackagesListRequest) Q(q string) ContentPackagesAPIContentPythonPackagesListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentPackagesAPIContentPythonPackagesListRequest) RemovedBetween(removedBetween []string) ContentPackagesAPIContentPythonPackagesListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -2011,6 +2041,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.author != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "author", r.author, "form", "")
 	}
@@ -2076,6 +2109,9 @@ func (a *ContentPackagesAPIService) ContentPythonPackagesListExecute(r ContentPa
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
@@ -3307,6 +3343,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	ApiService *ContentPackagesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	arch *string
 	archContains *string
 	archIn *[]string
@@ -3340,6 +3377,7 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 	releaseIn *[]string
 	releaseNe *string
 	releaseStartswith *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -3355,6 +3393,11 @@ type ContentPackagesAPIContentRpmPackagesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentPackagesAPIContentRpmPackagesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagesAPIContentRpmPackagesListRequest) AddedBetween(addedBetween []string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -3555,6 +3598,11 @@ func (r ContentPackagesAPIContentRpmPackagesListRequest) ReleaseStartswith(relea
 	return r
 }
 
+func (r ContentPackagesAPIContentRpmPackagesListRequest) RemovedBetween(removedBetween []string) ContentPackagesAPIContentRpmPackagesListRequest {
+	r.removedBetween = &removedBetween
+	return r
+}
+
 func (r ContentPackagesAPIContentRpmPackagesListRequest) RepositoryVersion(repositoryVersion string) ContentPackagesAPIContentRpmPackagesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -3654,6 +3702,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.arch != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "arch", r.arch, "form", "")
 	}
@@ -3752,6 +3803,9 @@ func (a *ContentPackagesAPIService) ContentRpmPackagesListExecute(r ContentPacka
 	}
 	if r.releaseStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "release__startswith", r.releaseStartswith, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

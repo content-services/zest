@@ -254,6 +254,7 @@ type ContentProvenanceAPIContentPythonProvenanceListRequest struct {
 	ApiService *ContentProvenanceAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -265,6 +266,7 @@ type ContentProvenanceAPIContentPythonProvenanceListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -277,6 +279,11 @@ type ContentProvenanceAPIContentPythonProvenanceListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentProvenanceAPIContentPythonProvenanceListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentProvenanceAPIContentPythonProvenanceListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentProvenanceAPIContentPythonProvenanceListRequest) AddedBetween(addedBetween []string) ContentProvenanceAPIContentPythonProvenanceListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -341,6 +348,11 @@ func (r ContentProvenanceAPIContentPythonProvenanceListRequest) PulpLabelSelect(
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentProvenanceAPIContentPythonProvenanceListRequest) Q(q string) ContentProvenanceAPIContentPythonProvenanceListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentProvenanceAPIContentPythonProvenanceListRequest) RemovedBetween(removedBetween []string) ContentProvenanceAPIContentPythonProvenanceListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -427,6 +439,9 @@ func (a *ContentProvenanceAPIService) ContentPythonProvenanceListExecute(r Conte
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -459,6 +474,9 @@ func (a *ContentProvenanceAPIService) ContentPythonProvenanceListExecute(r Conte
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

@@ -30,6 +30,7 @@ type ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest st
 	ApiService *ContentOpenpgpUserattributeAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -39,6 +40,7 @@ type ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest st
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -50,6 +52,11 @@ type ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest st
 // List of profilers to use on tasks.
 func (r ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest) AddedBetween(addedBetween []string) ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -104,6 +111,11 @@ func (r ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest) Q(q string) ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest) RemovedBetween(removedBetween []string) ContentOpenpgpUserattributeAPIContentCoreOpenpgpUserattributeListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -184,6 +196,9 @@ func (a *ContentOpenpgpUserattributeAPIService) ContentCoreOpenpgpUserattributeL
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -210,6 +225,9 @@ func (a *ContentOpenpgpUserattributeAPIService) ContentCoreOpenpgpUserattributeL
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

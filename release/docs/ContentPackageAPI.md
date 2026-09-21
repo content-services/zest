@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ContentMavenPackageList
 
-> PaginatedmavenMavenPackageResponseList ContentMavenPackageList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).BaseVersion(baseVersion).CollapseBuilds(collapseBuilds).GroupId(groupId).Limit(limit).Name(name).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packaging(packaging).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).VersionStartswith(versionStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedmavenMavenPackageResponseList ContentMavenPackageList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).ArtifactId(artifactId).BaseVersion(baseVersion).CollapseBuilds(collapseBuilds).GroupId(groupId).Limit(limit).Name(name).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packaging(packaging).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).VersionStartswith(versionStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List maven packages
 
@@ -34,6 +34,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	artifactId := "artifactId_example" // string | Filter results where artifact_id matches value (optional)
 	baseVersion := "baseVersion_example" // string | Match units whose version strips to this logical version (same suffix as collapse_builds: \\.[a-zA-Z]+-[^.]+$). 5.3.17 matches 5.3.17, 5.3.17.rhlw-00001, and 5.3.17.rhlw-00001-n0001, but not 5.3.170. (optional)
 	collapseBuilds := true // bool | When true, collapse rebuilds of the same logical version: strip a trailing suffix matching \\.[a-zA-Z]+-[^.]+$ from version, then keep one MavenPackage per (group_id, artifact_id, base_version) with the latest pulp_created. Default false. (optional)
@@ -49,6 +50,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -59,7 +61,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentPackageAPI.ContentMavenPackageList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).BaseVersion(baseVersion).CollapseBuilds(collapseBuilds).GroupId(groupId).Limit(limit).Name(name).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packaging(packaging).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).VersionStartswith(versionStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentPackageAPI.ContentMavenPackageList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).ArtifactId(artifactId).BaseVersion(baseVersion).CollapseBuilds(collapseBuilds).GroupId(groupId).Limit(limit).Name(name).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Packaging(packaging).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).VersionStartswith(versionStartswith).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentPackageAPI.ContentMavenPackageList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -86,6 +88,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **artifactId** | **string** | Filter results where artifact_id matches value | 
  **baseVersion** | **string** | Match units whose version strips to this logical version (same suffix as collapse_builds: \\.[a-zA-Z]+-[^.]+$). 5.3.17 matches 5.3.17, 5.3.17.rhlw-00001, and 5.3.17.rhlw-00001-n0001, but not 5.3.170. | 
  **collapseBuilds** | **bool** | When true, collapse rebuilds of the same logical version: strip a trailing suffix matching \\.[a-zA-Z]+-[^.]+$ from version, then keep one MavenPackage per (group_id, artifact_id, base_version) with the latest pulp_created. Default false. | 
@@ -101,6 +104,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

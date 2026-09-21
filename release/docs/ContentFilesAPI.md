@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ## ContentFileFilesList
 
-> PaginatedfileFileContentResponseList ContentFileFilesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Digest(digest).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RelativePathContains(relativePathContains).RelativePathIcontains(relativePathIcontains).RelativePathIexact(relativePathIexact).RelativePathIn(relativePathIn).RelativePathIregex(relativePathIregex).RelativePathIstartswith(relativePathIstartswith).RelativePathRegex(relativePathRegex).RelativePathStartswith(relativePathStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedfileFileContentResponseList ContentFileFilesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Digest(digest).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RelativePathContains(relativePathContains).RelativePathIcontains(relativePathIcontains).RelativePathIexact(relativePathIexact).RelativePathIn(relativePathIn).RelativePathIregex(relativePathIregex).RelativePathIstartswith(relativePathIstartswith).RelativePathRegex(relativePathRegex).RelativePathStartswith(relativePathStartswith).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List file contents
 
@@ -126,6 +126,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	digest := "digest_example" // string | Filter results where digest matches value (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
@@ -145,6 +146,7 @@ func main() {
 	relativePathIstartswith := "relativePathIstartswith_example" // string | Filter results where relative_path starts with value (optional)
 	relativePathRegex := "relativePathRegex_example" // string | Filter results where relative_path matches regex value (optional)
 	relativePathStartswith := "relativePathStartswith_example" // string | Filter results where relative_path starts with value (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -154,7 +156,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Digest(digest).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RelativePathContains(relativePathContains).RelativePathIcontains(relativePathIcontains).RelativePathIexact(relativePathIexact).RelativePathIn(relativePathIn).RelativePathIregex(relativePathIregex).RelativePathIstartswith(relativePathIstartswith).RelativePathRegex(relativePathRegex).RelativePathStartswith(relativePathStartswith).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentFilesAPI.ContentFileFilesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Digest(digest).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RelativePathContains(relativePathContains).RelativePathIcontains(relativePathIcontains).RelativePathIexact(relativePathIexact).RelativePathIn(relativePathIn).RelativePathIregex(relativePathIregex).RelativePathIstartswith(relativePathIstartswith).RelativePathRegex(relativePathRegex).RelativePathStartswith(relativePathStartswith).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentFilesAPI.ContentFileFilesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,6 +183,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **digest** | **string** | Filter results where digest matches value | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
@@ -200,6 +203,7 @@ Name | Type | Description  | Notes
  **relativePathIstartswith** | **string** | Filter results where relative_path starts with value | 
  **relativePathRegex** | **string** | Filter results where relative_path matches regex value | 
  **relativePathStartswith** | **string** | Filter results where relative_path starts with value | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 
