@@ -257,6 +257,7 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	ApiService *ContentFilesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	digest *string
 	limit *int32
 	offset *int32
@@ -276,6 +277,7 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 	relativePathIstartswith *string
 	relativePathRegex *string
 	relativePathStartswith *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -287,6 +289,11 @@ type ContentFilesAPIContentFileFilesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentFilesAPIContentFileFilesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentFilesAPIContentFileFilesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentFilesAPIContentFileFilesListRequest) AddedBetween(addedBetween []string) ContentFilesAPIContentFileFilesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -404,6 +411,11 @@ func (r ContentFilesAPIContentFileFilesListRequest) RelativePathStartswith(relat
 	return r
 }
 
+func (r ContentFilesAPIContentFileFilesListRequest) RemovedBetween(removedBetween []string) ContentFilesAPIContentFileFilesListRequest {
+	r.removedBetween = &removedBetween
+	return r
+}
+
 func (r ContentFilesAPIContentFileFilesListRequest) RepositoryVersion(repositoryVersion string) ContentFilesAPIContentFileFilesListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -480,6 +492,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.digest != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "digest", r.digest, "form", "")
 	}
@@ -536,6 +551,9 @@ func (a *ContentFilesAPIService) ContentFileFilesListExecute(r ContentFilesAPICo
 	}
 	if r.relativePathStartswith != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path__startswith", r.relativePathStartswith, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

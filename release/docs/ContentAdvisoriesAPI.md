@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmAdvisoriesList
 
-> PaginatedrpmUpdateRecordResponseList ContentRpmAdvisoriesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmUpdateRecordResponseList ContentRpmAdvisoriesList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List update records
 
@@ -121,6 +121,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	id := "id_example" // string | Filter results where id matches value (optional)
 	idIn := []string{"Inner_example"} // []string | Filter results where id is in a comma-separated list of values (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
@@ -132,6 +133,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -149,7 +151,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentAdvisoriesAPI.ContentRpmAdvisoriesList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Id(id).IdIn(idIn).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Severity(severity).SeverityIn(severityIn).SeverityNe(severityNe).Status(status).StatusIn(statusIn).StatusNe(statusNe).Type_(type_).TypeIn(typeIn).TypeNe(typeNe).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentAdvisoriesAPI.ContentRpmAdvisoriesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -176,6 +178,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **id** | **string** | Filter results where id matches value | 
  **idIn** | **[]string** | Filter results where id is in a comma-separated list of values | 
  **limit** | **int32** | Number of results to return per page. | 
@@ -187,6 +190,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

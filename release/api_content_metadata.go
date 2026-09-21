@@ -257,6 +257,7 @@ type ContentMetadataAPIContentMavenMetadataListRequest struct {
 	ApiService *ContentMetadataAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	artifactId *string
 	filename *string
 	groupId *string
@@ -269,6 +270,7 @@ type ContentMetadataAPIContentMavenMetadataListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -280,6 +282,11 @@ type ContentMetadataAPIContentMavenMetadataListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentMetadataAPIContentMavenMetadataListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentMetadataAPIContentMavenMetadataListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentMetadataAPIContentMavenMetadataListRequest) AddedBetween(addedBetween []string) ContentMetadataAPIContentMavenMetadataListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -352,6 +359,11 @@ func (r ContentMetadataAPIContentMavenMetadataListRequest) PulpLabelSelect(pulpL
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentMetadataAPIContentMavenMetadataListRequest) Q(q string) ContentMetadataAPIContentMavenMetadataListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentMetadataAPIContentMavenMetadataListRequest) RemovedBetween(removedBetween []string) ContentMetadataAPIContentMavenMetadataListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -432,6 +444,9 @@ func (a *ContentMetadataAPIService) ContentMavenMetadataListExecute(r ContentMet
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.artifactId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "artifact_id", r.artifactId, "form", "")
 	}
@@ -467,6 +482,9 @@ func (a *ContentMetadataAPIService) ContentMavenMetadataListExecute(r ContentMet
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

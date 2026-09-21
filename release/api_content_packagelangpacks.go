@@ -30,6 +30,7 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	ApiService *ContentPackagelangpacksAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -39,6 +40,7 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -49,6 +51,11 @@ type ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) AddedBetween(addedBetween []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -103,6 +110,11 @@ func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) PulpLab
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) Q(q string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest) RemovedBetween(removedBetween []string) ContentPackagelangpacksAPIContentRpmPackagelangpacksListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -177,6 +189,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksListExecut
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -203,6 +218,9 @@ func (a *ContentPackagelangpacksAPIService) ContentRpmPackagelangpacksListExecut
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

@@ -155,6 +155,7 @@ type ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest struct {
 	ApiService *ContentHuggingFaceAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	limit *int32
 	offset *int32
 	ordering *[]string
@@ -165,6 +166,7 @@ type ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest struct {
 	pulpLabelSelect *string
 	q *string
 	relativePath *string
+	removedBetween *[]string
 	repoId *string
 	repoType *string
 	repositoryVersion *string
@@ -178,6 +180,11 @@ type ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest) AddedBetween(addedBetween []string) ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -238,6 +245,11 @@ func (r ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest) Q(q strin
 // Filter results where relative_path matches value
 func (r ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest) RelativePath(relativePath string) ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest {
 	r.relativePath = &relativePath
+	return r
+}
+
+func (r ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest) RemovedBetween(removedBetween []string) ContentHuggingFaceAPIContentHuggingFaceHuggingFaceListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -330,6 +342,9 @@ func (a *ContentHuggingFaceAPIService) ContentHuggingFaceHuggingFaceListExecute(
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
@@ -359,6 +374,9 @@ func (a *ContentHuggingFaceAPIService) ContentHuggingFaceHuggingFaceListExecute(
 	}
 	if r.relativePath != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "relative_path", r.relativePath, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repoId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repo_id", r.repoId, "form", "")

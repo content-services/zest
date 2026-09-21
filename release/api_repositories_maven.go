@@ -150,6 +150,244 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenAddRoleExecute(r Rep
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+	repositoryVersion *string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// Optional pinned version HREF or PRN; otherwise resolve latest in task.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest) RepositoryVersion(repositoryVersion string) RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest {
+	r.repositoryVersion = &repositoryVersion
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenBuildPathIndexExecute(r)
+}
+
+/*
+RepositoriesMavenMavenBuildPathIndex Method for RepositoriesMavenMavenBuildPathIndex
+
+Build a consistent initial index while repository mutations queue.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenBuildPathIndex(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenBuildPathIndexExecute(r RepositoriesMavenAPIRepositoriesMavenMavenBuildPathIndexRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenBuildPathIndex")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}build_path_index/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.repositoryVersion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenCompactPathIndexExecute(r)
+}
+
+/*
+RepositoriesMavenMavenCompactPathIndex Method for RepositoriesMavenMavenCompactPathIndex
+
+Rebase the latest completed index while repository mutations queue.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenCompactPathIndex(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenCompactPathIndexExecute(r RepositoriesMavenAPIRepositoriesMavenMavenCompactPathIndexRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenCompactPathIndex")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}compact_path_index/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RepositoriesMavenAPIRepositoriesMavenMavenCreateRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesMavenAPIService
@@ -1799,6 +2037,156 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPartialUpdateExecute
 	}
 	// body params
 	localVarPostBody = r.patchedmavenMavenRepository
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest) Fields(fields []string) RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest) ExcludeFields(excludeFields []string) RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest) Execute() (*MavenPathIndexStatusResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenPathIndexStatusExecute(r)
+}
+
+/*
+RepositoriesMavenMavenPathIndexStatus Method for RepositoriesMavenMavenPathIndexStatus
+
+Inspect durable publication state without scanning repository content.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPathIndexStatus(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return MavenPathIndexStatusResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPathIndexStatusExecute(r RepositoriesMavenAPIRepositoriesMavenMavenPathIndexStatusRequest) (*MavenPathIndexStatusResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MavenPathIndexStatusResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenPathIndexStatus")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}path_index_status/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

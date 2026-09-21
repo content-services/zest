@@ -30,6 +30,7 @@ type ContentBlobsAPIContentContainerBlobsListRequest struct {
 	ApiService *ContentBlobsAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	digest *string
 	digestIn *[]string
 	limit *int32
@@ -41,6 +42,7 @@ type ContentBlobsAPIContentContainerBlobsListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -51,6 +53,11 @@ type ContentBlobsAPIContentContainerBlobsListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentBlobsAPIContentContainerBlobsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentBlobsAPIContentContainerBlobsListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentBlobsAPIContentContainerBlobsListRequest) AddedBetween(addedBetween []string) ContentBlobsAPIContentContainerBlobsListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -117,6 +124,11 @@ func (r ContentBlobsAPIContentContainerBlobsListRequest) PulpLabelSelect(pulpLab
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentBlobsAPIContentContainerBlobsListRequest) Q(q string) ContentBlobsAPIContentContainerBlobsListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentBlobsAPIContentContainerBlobsListRequest) RemovedBetween(removedBetween []string) ContentBlobsAPIContentContainerBlobsListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -191,6 +203,9 @@ func (a *ContentBlobsAPIService) ContentContainerBlobsListExecute(r ContentBlobs
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.digest != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "digest", r.digest, "form", "")
 	}
@@ -223,6 +238,9 @@ func (a *ContentBlobsAPIService) ContentContainerBlobsListExecute(r ContentBlobs
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

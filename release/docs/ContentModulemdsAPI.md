@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ContentRpmModulemdsList
 
-> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedrpmModulemdResponseList ContentRpmModulemdsList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List modulemds
 
@@ -109,6 +109,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	arch := "arch_example" // string | Filter results where arch matches value (optional)
 	archIn := []string{"Inner_example"} // []string | Filter results where arch is in a comma-separated list of values (optional)
 	context := "context_example" // string | Filter results where context matches value (optional)
@@ -124,6 +125,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -137,7 +139,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentModulemdsAPI.ContentRpmModulemdsList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Arch(arch).ArchIn(archIn).Context(context).ContextIn(contextIn).Limit(limit).Name(name).NameIn(nameIn).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Stream(stream).StreamIn(streamIn).Version(version).VersionIn(versionIn).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentModulemdsAPI.ContentRpmModulemdsList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -164,6 +166,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **arch** | **string** | Filter results where arch matches value | 
  **archIn** | **[]string** | Filter results where arch is in a comma-separated list of values | 
  **context** | **string** | Filter results where context matches value | 
@@ -179,6 +182,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

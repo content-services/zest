@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## ContentHuggingFaceHuggingFaceList
 
-> PaginatedhuggingFaceHuggingFaceContentResponseList ContentHuggingFaceHuggingFaceList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RepoId(repoId).RepoType(repoType).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Revision(revision).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedhuggingFaceHuggingFaceContentResponseList ContentHuggingFaceHuggingFaceList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RemovedBetween(removedBetween).RepoId(repoId).RepoType(repoType).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Revision(revision).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List hugging face contents
 
@@ -109,6 +109,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest` - Timestamp of interest (descending)* `repo_id` - Repo id* `-repo_id` - Repo id (descending)* `repo_type` - Repo type* `-repo_type` - Repo type (descending)* `relative_path` - Relative path* `-relative_path` - Relative path (descending)* `revision` - Revision* `-revision` - Revision (descending)* `size` - Size* `-size` - Size (descending)* `etag` - Etag* `-etag` - Etag (descending)* `last_modified` - Last modified* `-last_modified` - Last modified (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
@@ -119,6 +120,7 @@ func main() {
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	relativePath := "relativePath_example" // string | Filter results where relative_path matches value (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repoId := "repoId_example" // string | Filter results where repo_id matches value (optional)
 	repoType := "repoType_example" // string | Filter results where repo_type matches value* `models` - Models* `datasets` - Datasets* `spaces` - Spaces (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
@@ -130,7 +132,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentHuggingFaceAPI.ContentHuggingFaceHuggingFaceList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RepoId(repoId).RepoType(repoType).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Revision(revision).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentHuggingFaceAPI.ContentHuggingFaceHuggingFaceList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RelativePath(relativePath).RemovedBetween(removedBetween).RepoId(repoId).RepoType(repoType).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Revision(revision).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentHuggingFaceAPI.ContentHuggingFaceHuggingFaceList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -157,6 +159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;repo_id&#x60; - Repo id* &#x60;-repo_id&#x60; - Repo id (descending)* &#x60;repo_type&#x60; - Repo type* &#x60;-repo_type&#x60; - Repo type (descending)* &#x60;relative_path&#x60; - Relative path* &#x60;-relative_path&#x60; - Relative path (descending)* &#x60;revision&#x60; - Revision* &#x60;-revision&#x60; - Revision (descending)* &#x60;size&#x60; - Size* &#x60;-size&#x60; - Size (descending)* &#x60;etag&#x60; - Etag* &#x60;-etag&#x60; - Etag (descending)* &#x60;last_modified&#x60; - Last modified* &#x60;-last_modified&#x60; - Last modified (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
@@ -167,6 +170,7 @@ Name | Type | Description  | Notes
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **relativePath** | **string** | Filter results where relative_path matches value | 
+ **removedBetween** | **[]string** |  | 
  **repoId** | **string** | Filter results where repo_id matches value | 
  **repoType** | **string** | Filter results where repo_type matches value* &#x60;models&#x60; - Models* &#x60;datasets&#x60; - Datasets* &#x60;spaces&#x60; - Spaces | 
  **repositoryVersion** | **string** |  | 

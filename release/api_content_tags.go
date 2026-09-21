@@ -30,6 +30,7 @@ type ContentTagsAPIContentContainerTagsListRequest struct {
 	ApiService *ContentTagsAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	digest *[]string
 	limit *int32
 	mediaType *[]string
@@ -43,6 +44,7 @@ type ContentTagsAPIContentContainerTagsListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -53,6 +55,11 @@ type ContentTagsAPIContentContainerTagsListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentTagsAPIContentContainerTagsListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentTagsAPIContentContainerTagsListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentTagsAPIContentContainerTagsListRequest) AddedBetween(addedBetween []string) ContentTagsAPIContentContainerTagsListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -134,6 +141,11 @@ func (r ContentTagsAPIContentContainerTagsListRequest) Q(q string) ContentTagsAP
 	return r
 }
 
+func (r ContentTagsAPIContentContainerTagsListRequest) RemovedBetween(removedBetween []string) ContentTagsAPIContentContainerTagsListRequest {
+	r.removedBetween = &removedBetween
+	return r
+}
+
 func (r ContentTagsAPIContentContainerTagsListRequest) RepositoryVersion(repositoryVersion string) ContentTagsAPIContentContainerTagsListRequest {
 	r.repositoryVersion = &repositoryVersion
 	return r
@@ -205,6 +217,9 @@ func (a *ContentTagsAPIService) ContentContainerTagsListExecute(r ContentTagsAPI
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.digest != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "digest", r.digest, "form", "csv")
 	}
@@ -251,6 +266,9 @@ func (a *ContentTagsAPIService) ContentContainerTagsListExecute(r ContentTagsAPI
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

@@ -104,7 +104,7 @@ Name | Type | Description  | Notes
 
 ## ContentPythonProvenanceList
 
-> PaginatedpythonPackageProvenanceResponseList ContentPythonProvenanceList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Package_(package_).PackageIn(packageIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Sha256In(sha256In).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedpythonPackageProvenanceResponseList ContentPythonProvenanceList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Package_(package_).PackageIn(packageIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Sha256In(sha256In).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List package provenances
 
@@ -125,6 +125,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Ordering_example"} // []string | Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)* `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)* `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type (descending)* `upstream_id` - Upstream id* `-upstream_id` - Upstream id (descending)* `pulp_labels` - Pulp labels* `-pulp_labels` - Pulp labels (descending)* `timestamp_of_interest` - Timestamp of interest* `-timestamp_of_interest` - Timestamp of interest (descending)* `provenance` - Provenance* `-provenance` - Provenance (descending)* `sha256` - Sha256* `-sha256` - Sha256 (descending)* `pk` - Pk* `-pk` - Pk (descending) (optional)
@@ -136,6 +137,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -146,7 +148,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentProvenanceAPI.ContentPythonProvenanceList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Package_(package_).PackageIn(packageIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Sha256In(sha256In).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentProvenanceAPI.ContentPythonProvenanceList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).Package_(package_).PackageIn(packageIn).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Sha256(sha256).Sha256In(sha256In).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentProvenanceAPI.ContentPythonProvenanceList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,6 +175,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Ordering* &#x60;pulp_id&#x60; - Pulp id* &#x60;-pulp_id&#x60; - Pulp id (descending)* &#x60;pulp_created&#x60; - Pulp created* &#x60;-pulp_created&#x60; - Pulp created (descending)* &#x60;pulp_last_updated&#x60; - Pulp last updated* &#x60;-pulp_last_updated&#x60; - Pulp last updated (descending)* &#x60;pulp_type&#x60; - Pulp type* &#x60;-pulp_type&#x60; - Pulp type (descending)* &#x60;upstream_id&#x60; - Upstream id* &#x60;-upstream_id&#x60; - Upstream id (descending)* &#x60;pulp_labels&#x60; - Pulp labels* &#x60;-pulp_labels&#x60; - Pulp labels (descending)* &#x60;timestamp_of_interest&#x60; - Timestamp of interest* &#x60;-timestamp_of_interest&#x60; - Timestamp of interest (descending)* &#x60;provenance&#x60; - Provenance* &#x60;-provenance&#x60; - Provenance (descending)* &#x60;sha256&#x60; - Sha256* &#x60;-sha256&#x60; - Sha256 (descending)* &#x60;pk&#x60; - Pk* &#x60;-pk&#x60; - Pk (descending) | 
@@ -184,6 +187,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

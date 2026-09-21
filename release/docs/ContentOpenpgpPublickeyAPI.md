@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## ContentCoreOpenpgpPublickeyList
 
-> PaginatedOpenPGPPublicKeyResponseList ContentCoreOpenpgpPublickeyList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedOpenPGPPublicKeyResponseList ContentCoreOpenpgpPublickeyList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List open pgp public keys
 
@@ -121,6 +121,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	fingerprint := "fingerprint_example" // string | Filter results where fingerprint matches value (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
@@ -131,6 +132,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -139,7 +141,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).Fingerprint(fingerprint).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentOpenpgpPublickeyAPI.ContentCoreOpenpgpPublickeyList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -166,6 +168,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **fingerprint** | **string** | Filter results where fingerprint matches value | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
@@ -176,6 +179,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

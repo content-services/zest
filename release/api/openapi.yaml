@@ -13,15 +13,15 @@ info:
   x-logo:
     url: https://pulpproject.org/assets/pulp_logo_icon.svg
   x-pulp-app-versions:
-    core: 3.117.1
+    core: 3.118.1
     npm: 0.10.0
-    maven: 0.30.0
+    maven: 0.33.0
     hugging_face: 0.3.2
-    certguard: 3.117.1
-    file: 3.117.1
     container: 2.29.0
     rpm: 3.38.5
     service: 0.1.0
+    certguard: 3.118.1
+    file: 3.118.1
     python: 3.36.2
   x-pulp-domain-enabled: true
 servers:
@@ -2246,6 +2246,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -2337,15 +2346,15 @@ paths:
           - core.openpgp_signature* `npm.package` - npm.package* `maven.artifact`
           - maven.artifact* `maven.metadata` - maven.metadata* `maven.package` - maven.package*
           `maven.index-page` - maven.index-page* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `file.file` - file.file* `container.blob` - container.blob* `container.manifest`
-          - container.manifest* `container.tag` - container.tag* `container.signature`
-          - container.signature* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
-          - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
-          - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
-          `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
-          - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
-          `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `python.python` - python.python* `python.provenance`
+          `container.blob` - container.blob* `container.manifest` - container.manifest*
+          `container.tag` - container.tag* `container.signature` - container.signature*
+          `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
+          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
+          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
+          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
+          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
+          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
+          `file.file` - file.file* `python.python` - python.python* `python.provenance`
           - python.provenance* `python.python_yank` - python.python_yank
         explode: true
         in: query
@@ -2393,17 +2402,16 @@ paths:
           `core.openpgp_signature` - core.openpgp_signature* `npm.package` - npm.package*
           `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata* `maven.package`
           - maven.package* `maven.index-page` - maven.index-page* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `file.file` - file.file* `container.blob` -
-          container.blob* `container.manifest` - container.manifest* `container.tag`
-          - container.tag* `container.signature` - container.signature* `rpm.advisory`
-          - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
-          - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
-          `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
-          - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
-          `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
-          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `python.python` - python.python* `python.provenance` - python.provenance*
-          `python.python_yank` - python.python_yank
+          - hugging_face.hugging-face* `container.blob` - container.blob* `container.manifest`
+          - container.manifest* `container.tag` - container.tag* `container.signature`
+          - container.signature* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
+          - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
+          - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
+          `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
+          - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
+          `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
+          - rpm.modulemd_obsolete* `file.file` - file.file* `python.python` - python.python*
+          `python.provenance` - python.provenance* `python.python_yank` - python.python_yank
         explode: false
         in: query
         name: pulp_type__in
@@ -2453,6 +2461,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -3818,6 +3835,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where digest matches value
         explode: true
         in: query
@@ -3952,6 +3978,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -4171,6 +4206,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where digest matches value
         explode: true
         in: query
@@ -4373,6 +4417,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -4592,6 +4645,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where digest matches value
         explode: true
         in: query
@@ -4848,6 +4910,15 @@ paths:
         schema:
           type: string
         style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: true
         in: query
         name: repository_version
@@ -5066,6 +5137,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Multiple values may be separated by commas.
         explode: false
         in: query
@@ -5230,6 +5310,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -5450,6 +5539,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where fingerprint matches value
         explode: true
         in: query
@@ -5580,6 +5678,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -5845,6 +5952,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where fingerprint matches value
         explode: true
         in: query
@@ -5975,6 +6091,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -6194,6 +6319,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where issuer matches value
         explode: true
         in: query
@@ -6339,6 +6473,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -6558,6 +6701,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -6677,6 +6829,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -6904,6 +7065,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -7023,6 +7193,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -7318,6 +7497,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where digest matches value
         explode: true
         in: query
@@ -7520,6 +7708,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -7839,6 +8036,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -7980,6 +8186,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - description: Filter results where repo_id matches value
         explode: true
@@ -8279,6 +8494,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where artifact_id matches value
         explode: true
         in: query
@@ -8428,6 +8652,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -8745,6 +8978,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -8837,6 +9079,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -9056,6 +9307,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where artifact_id matches value
         explode: true
         in: query
@@ -9207,6 +9467,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -9526,6 +9795,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where artifact_id matches value
         explode: true
         in: query
@@ -9720,6 +9998,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -9959,6 +10246,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -10096,6 +10392,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -10411,6 +10716,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where author matches value
         explode: true
         in: query
@@ -10755,6 +11069,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -11163,6 +11486,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -11298,6 +11630,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -11584,6 +11925,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -11676,6 +12026,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -11899,6 +12258,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where id matches value
         explode: true
         in: query
@@ -12078,6 +12446,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -12423,6 +12800,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -12515,6 +12901,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -12734,6 +13129,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -12879,6 +13283,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -13171,6 +13584,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -13263,6 +13685,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -13530,6 +13961,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where arch matches value
         explode: true
         in: query
@@ -13732,6 +14172,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -14043,6 +14492,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -14135,6 +14593,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -14354,6 +14821,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -14446,6 +14922,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -14665,6 +15150,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -14757,6 +15251,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -14976,6 +15479,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -15068,6 +15580,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -15289,6 +15810,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Filter results where arch matches value
         explode: true
         in: query
@@ -15728,6 +16258,15 @@ paths:
         schema:
           type: string
         style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - explode: true
         in: query
         name: repository_version
@@ -16079,6 +16618,15 @@ paths:
             type: string
           type: array
         style: simple
+      - explode: false
+        in: query
+        name: added_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Number of results to return per page.
         explode: true
         in: query
@@ -16171,6 +16719,15 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: false
+        in: query
+        name: removed_between
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -21085,9 +21642,9 @@ paths:
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
           core.openpgp* `npm.npm` - npm.npm* `maven.maven` - maven.maven* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `file.file` - file.file* `container.pull-through`
-          - container.pull-through* `container.container` - container.container* `rpm.rpm`
-          - rpm.rpm* `python.python` - python.python
+          - hugging_face.hugging-face* `container.pull-through` - container.pull-through*
+          `container.container` - container.container* `rpm.rpm` - rpm.rpm* `file.file`
+          - file.file* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -21109,8 +21666,8 @@ paths:
       - description: Multiple values may be separated by commas.* `core.artifact`
           - core.artifact* `core.openpgp` - core.openpgp* `npm.npm` - npm.npm* `maven.maven`
           - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `file.file` - file.file* `container.pull-through` - container.pull-through*
-          `container.container` - container.container* `rpm.rpm` - rpm.rpm* `python.python`
+          `container.pull-through` - container.pull-through* `container.container`
+          - container.container* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python`
           - python.python
         explode: false
         in: query
@@ -32783,7 +33340,7 @@ paths:
           type: array
         style: form
       - description: Pulp type* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `file.file` - file.file* `rpm.rpm` - rpm.rpm* `python.python` - python.python
+          `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -32797,7 +33354,7 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `file.file` - file.file* `rpm.rpm` - rpm.rpm*
+          - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm* `file.file` - file.file*
           `python.python` - python.python
         explode: false
         in: query
@@ -36673,10 +37230,10 @@ paths:
           type: array
         style: form
       - description: Pulp type* `npm.npm` - npm.npm* `maven.maven` - maven.maven*
-          `hugging_face.hugging-face` - hugging_face.hugging-face* `file.file` - file.file*
-          `file.git` - file.git* `container.container` - container.container* `container.pull-through`
-          - container.pull-through* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `python.python`
-          - python.python
+          `hugging_face.hugging-face` - hugging_face.hugging-face* `container.container`
+          - container.container* `container.pull-through` - container.pull-through*
+          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file* `file.git`
+          - file.git* `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -36697,9 +37254,9 @@ paths:
         style: form
       - description: Multiple values may be separated by commas.* `npm.npm` - npm.npm*
           `maven.maven` - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `file.file` - file.file* `file.git` - file.git* `container.container` -
-          container.container* `container.pull-through` - container.pull-through*
-          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `python.python` - python.python
+          `container.container` - container.container* `container.pull-through` -
+          container.pull-through* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file`
+          - file.file* `file.git` - file.git* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -45763,8 +46320,9 @@ paths:
         style: form
       - description: Pulp type* `core.openpgp` - core.openpgp* `npm.npm` - npm.npm*
           `maven.maven` - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `file.file` - file.file* `container.container` - container.container* `container.container-push`
-          - container.container-push* `rpm.rpm` - rpm.rpm* `python.python` - python.python
+          `container.container` - container.container* `container.container-push`
+          - container.container-push* `rpm.rpm` - rpm.rpm* `file.file` - file.file*
+          `python.python` - python.python
         explode: true
         in: query
         name: pulp_type
@@ -45784,9 +46342,9 @@ paths:
         style: form
       - description: Multiple values may be separated by commas.* `core.openpgp` -
           core.openpgp* `npm.npm` - npm.npm* `maven.maven` - maven.maven* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `file.file` - file.file* `container.container`
-          - container.container* `container.container-push` - container.container-push*
-          `rpm.rpm` - rpm.rpm* `python.python` - python.python
+          - hugging_face.hugging-face* `container.container` - container.container*
+          `container.container-push` - container.container-push* `rpm.rpm` - rpm.rpm*
+          `file.file` - file.file* `python.python` - python.python
         explode: false
         in: query
         name: pulp_type__in
@@ -53578,6 +54136,84 @@ paths:
       summary: Add a role
       tags:
       - "Repositories: Maven"
+  '{maven_maven_repository_href}build_path_index/':
+    post:
+      description: Build a consistent initial index while repository mutations queue.
+      operationId: repositories_maven_maven_build_path_index
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Optional pinned version HREF or PRN; otherwise resolve latest
+          in task.
+        explode: true
+        in: query
+        name: repository_version
+        required: false
+        schema:
+          format: uri
+          type: string
+        style: form
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AsyncOperationResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}compact_path_index/':
+    post:
+      description: Rebase the latest completed index while repository mutations queue.
+      operationId: repositories_maven_maven_compact_path_index
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AsyncOperationResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Repositories: Maven"
   '{maven_maven_repository_href}list_roles/':
     get:
       description: List roles assigned to this object.
@@ -53928,6 +54564,60 @@ paths:
       - basicAuth: []
       - cookieAuth: []
       summary: List packages
+      tags:
+      - "Repositories: Maven"
+  '{maven_maven_repository_href}path_index_status/':
+    get:
+      description: Inspect durable publication state without scanning repository content.
+      operationId: repositories_maven_maven_path_index_status
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: maven_maven_repository_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MavenPathIndexStatusResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
       tags:
       - "Repositories: Maven"
   '{maven_maven_repository_href}remove_role/':
@@ -68627,21 +69317,43 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
+        base_url: base_url
+        pulp_labels:
+          key: pulp_labels
+        content_guard_prn: content_guard_prn
+        name: name
+        repository_version: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        prn: prn
         base_path: base_path
+        no_content_change_since: no_content_change_since
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        base_url: base_url
-        content_guard_prn: content_guard_prn
-        no_content_change_since: no_content_change_since
-        name: name
-        pulp_labels:
-          key: pulp_labels
-        repository_version: https://openapi-generator.tech
+        prn: prn
       properties:
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: An optional content-guard.
           format: uri
@@ -68658,14 +69370,16 @@ components:
           format: date-time
           readOnly: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         pulp_href:
           format: uri
@@ -68676,33 +69390,9 @@ components:
           format: date-time
           readOnly: true
           type: string
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
-          type: string
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
-          readOnly: true
-          type: string
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
       required:
       - base_path
@@ -70765,6 +71455,34 @@ components:
       - release
       - version
       type: object
+    MavenPathIndexStatusResponse:
+      example:
+        enabled: true
+        ready: true
+        latest_version: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        manifest_digest: manifest_digest
+        error: error
+      properties:
+        enabled:
+          type: boolean
+        ready:
+          type: boolean
+        latest_version:
+          format: uuid
+          nullable: true
+          type: string
+        manifest_digest:
+          nullable: true
+          type: string
+        error:
+          type: string
+      required:
+      - enabled
+      - error
+      - latest_version
+      - manifest_digest
+      - ready
+      type: object
     MavenRepositoryMetricsResponse:
       description: Distinct package / version / build counts for a repository version.
       example:
@@ -72453,34 +73171,34 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - content_guard: https://openapi-generator.tech
-          hidden: false
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
-          base_path: base_path
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          base_url: base_url
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
+        - base_url: base_url
           pulp_labels:
             key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
           repository_version: https://openapi-generator.tech
-        - content_guard: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
           hidden: false
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
           base_path: base_path
+          no_content_change_since: no_content_change_since
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          base_url: base_url
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
+          prn: prn
+        - base_url: base_url
           pulp_labels:
             key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
           repository_version: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
+          hidden: false
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          base_path: base_path
+          no_content_change_since: no_content_change_since
+          pulp_href: https://openapi-generator.tech
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          prn: prn
       properties:
         count:
           example: 123
@@ -75347,39 +76065,39 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - content_guard: https://openapi-generator.tech
+        - pulp_labels:
+            key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
           hidden: false
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
           base_path: base_path
+          no_content_change_since: no_content_change_since
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
-          repository: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          repository_version: https://openapi-generator.tech
+          prn: prn
           registry_path: registry_path
           remote: https://openapi-generator.tech
           namespace: https://openapi-generator.tech
           private: true
           description: description
-        - content_guard: https://openapi-generator.tech
+        - pulp_labels:
+            key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
           hidden: false
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
           base_path: base_path
+          no_content_change_since: no_content_change_since
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
-          repository: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          repository_version: https://openapi-generator.tech
+          prn: prn
           registry_path: registry_path
           remote: https://openapi-generator.tech
           namespace: https://openapi-generator.tech
@@ -75455,20 +76173,20 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - content_guard: https://openapi-generator.tech
+        - pulp_labels:
+            key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
           hidden: false
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
           base_path: base_path
+          no_content_change_since: no_content_change_since
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
-          repository: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          repository_version: https://openapi-generator.tech
+          prn: prn
           remote: https://openapi-generator.tech
           distributions:
           - https://openapi-generator.tech
@@ -75476,20 +76194,20 @@ components:
           namespace: https://openapi-generator.tech
           private: true
           description: description
-        - content_guard: https://openapi-generator.tech
+        - pulp_labels:
+            key: pulp_labels
+          content_guard_prn: content_guard_prn
+          name: name
+          repository_version: https://openapi-generator.tech
+          repository: https://openapi-generator.tech
+          content_guard: https://openapi-generator.tech
           hidden: false
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          prn: prn
           base_path: base_path
+          no_content_change_since: no_content_change_since
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          content_guard_prn: content_guard_prn
-          no_content_change_since: no_content_change_since
-          name: name
-          repository: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          repository_version: https://openapi-generator.tech
+          prn: prn
           remote: https://openapi-generator.tech
           distributions:
           - https://openapi-generator.tech
@@ -75621,32 +76339,32 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - description: description
+        - pulp_labels:
+            key: pulp_labels
+          name: name
           versions_href: https://openapi-generator.tech
-          retain_repo_versions: 1
+          latest_version_href: https://openapi-generator.tech
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          retain_checkpoints: 1
           manifest_signing_service: https://openapi-generator.tech
-          prn: prn
+          description: description
+          retain_repo_versions: 1
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          name: name
-          latest_version_href: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          retain_checkpoints: 1
-        - description: description
-          versions_href: https://openapi-generator.tech
-          retain_repo_versions: 1
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          manifest_signing_service: https://openapi-generator.tech
           prn: prn
+        - pulp_labels:
+            key: pulp_labels
+          name: name
+          versions_href: https://openapi-generator.tech
+          latest_version_href: https://openapi-generator.tech
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          retain_checkpoints: 1
+          manifest_signing_service: https://openapi-generator.tech
+          description: description
+          retain_repo_versions: 1
           pulp_href: https://openapi-generator.tech
           pulp_created: 2000-01-23T04:56:07.000+00:00
-          name: name
-          latest_version_href: https://openapi-generator.tech
-          pulp_labels:
-            key: pulp_labels
-          retain_checkpoints: 1
+          prn: prn
       properties:
         count:
           example: 123
@@ -80115,6 +80833,25 @@ components:
     Patchedcontainer.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -80129,25 +80866,6 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           minLength: 1
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          minLength: 1
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         private:
           description: Restrict pull access to explicitly authorized users. Defaults
@@ -80163,6 +80881,25 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -80177,25 +80914,6 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           minLength: 1
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          minLength: 1
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
@@ -80368,14 +81086,18 @@ components:
     Patchedcontainer.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
-        description:
-          description: An optional description.
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
           minLength: 1
-          nullable: true
           type: string
-        retain_repo_versions:
-          description: Retain X versions of the repository. Default is null which
-            retains all versions.
+        retain_checkpoints:
+          description: Retain X checkpoint publications for the repository. Default
+            is null which retains all checkpoints.
           format: int64
           minimum: 1
           nullable: true
@@ -80385,18 +81107,14 @@ components:
           format: uri
           nullable: true
           type: string
-        name:
-          description: A unique name for this repository.
+        description:
+          description: An optional description.
           minLength: 1
+          nullable: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        retain_checkpoints:
-          description: Retain X checkpoint publications for the repository. Default
-            is null which retains all checkpoints.
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
           format: int64
           minimum: 1
           nullable: true
@@ -85792,6 +86510,25 @@ components:
     container.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -85806,25 +86543,6 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           minLength: 1
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          minLength: 1
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         private:
           description: Restrict pull access to explicitly authorized users. Defaults
@@ -85842,26 +86560,49 @@ components:
     container.ContainerDistributionResponse:
       description: A serializer for ContainerDistribution.
       example:
+        pulp_labels:
+          key: pulp_labels
+        content_guard_prn: content_guard_prn
+        name: name
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        prn: prn
         base_path: base_path
+        no_content_change_since: no_content_change_since
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        content_guard_prn: content_guard_prn
-        no_content_change_since: no_content_change_since
-        name: name
-        repository: https://openapi-generator.tech
-        pulp_labels:
-          key: pulp_labels
-        repository_version: https://openapi-generator.tech
+        prn: prn
         registry_path: registry_path
         remote: https://openapi-generator.tech
         namespace: https://openapi-generator.tech
         private: true
         description: description
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -85878,14 +86619,16 @@ components:
           format: date-time
           readOnly: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         pulp_href:
           format: uri
@@ -85896,34 +86639,9 @@ components:
           format: date-time
           readOnly: true
           type: string
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
-          type: string
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         registry_path:
           description: The Registry hostname/name/ to use with docker pull command
@@ -86012,6 +86730,25 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          minLength: 1
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -86026,25 +86763,6 @@ components:
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
           minLength: 1
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          minLength: 1
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
@@ -86075,20 +86793,20 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       example:
+        pulp_labels:
+          key: pulp_labels
+        content_guard_prn: content_guard_prn
+        name: name
+        repository_version: https://openapi-generator.tech
+        repository: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        prn: prn
         base_path: base_path
+        no_content_change_since: no_content_change_since
         pulp_href: https://openapi-generator.tech
         pulp_created: 2000-01-23T04:56:07.000+00:00
-        content_guard_prn: content_guard_prn
-        no_content_change_since: no_content_change_since
-        name: name
-        repository: https://openapi-generator.tech
-        pulp_labels:
-          key: pulp_labels
-        repository_version: https://openapi-generator.tech
+        prn: prn
         remote: https://openapi-generator.tech
         distributions:
         - https://openapi-generator.tech
@@ -86097,6 +86815,29 @@ components:
         private: true
         description: description
       properties:
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
+          readOnly: true
+          type: string
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -86113,14 +86854,16 @@ components:
           format: date-time
           readOnly: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
             (e.g. "foo" and "foo/bar")
+          type: string
+        no_content_change_since:
+          description: "Timestamp since when the distributed content served by this\
+            \ distribution has not changed. If equals to `null`, no guarantee is provided\
+            \ about content changes."
+          readOnly: true
           type: string
         pulp_href:
           format: uri
@@ -86131,34 +86874,9 @@ components:
           format: date-time
           readOnly: true
           type: string
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
-          type: string
-        no_content_change_since:
-          description: "Timestamp since when the distributed content served by this\
-            \ distribution has not changed. If equals to `null`, no guarantee is provided\
-            \ about content changes."
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
           type: string
         remote:
           description: Remote that can be used to fetch content when using pull-through
@@ -86512,14 +87230,18 @@ components:
     container.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
-        description:
-          description: An optional description.
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
           minLength: 1
-          nullable: true
           type: string
-        retain_repo_versions:
-          description: Retain X versions of the repository. Default is null which
-            retains all versions.
+        retain_checkpoints:
+          description: Retain X checkpoint publications for the repository. Default
+            is null which retains all checkpoints.
           format: int64
           minimum: 1
           nullable: true
@@ -86529,18 +87251,14 @@ components:
           format: uri
           nullable: true
           type: string
-        name:
-          description: A unique name for this repository.
+        description:
+          description: An optional description.
           minLength: 1
+          nullable: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        retain_checkpoints:
-          description: Retain X checkpoint publications for the repository. Default
-            is null which retains all checkpoints.
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
           format: int64
           minimum: 1
           nullable: true
@@ -86551,27 +87269,58 @@ components:
     container.ContainerPushRepositoryResponse:
       description: Serializer for Container Push Repositories.
       example:
-        description: description
-        versions_href: https://openapi-generator.tech
-        retain_repo_versions: 1
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        manifest_signing_service: https://openapi-generator.tech
-        prn: prn
-        pulp_href: https://openapi-generator.tech
-        pulp_created: 2000-01-23T04:56:07.000+00:00
-        name: name
-        latest_version_href: https://openapi-generator.tech
         pulp_labels:
           key: pulp_labels
+        name: name
+        versions_href: https://openapi-generator.tech
+        latest_version_href: https://openapi-generator.tech
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
         retain_checkpoints: 1
+        manifest_signing_service: https://openapi-generator.tech
+        description: description
+        retain_repo_versions: 1
+        pulp_href: https://openapi-generator.tech
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        prn: prn
       properties:
-        description:
-          description: An optional description.
-          nullable: true
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: A unique name for this repository.
           type: string
         versions_href:
           format: uri
           readOnly: true
+          type: string
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        retain_checkpoints:
+          description: Retain X checkpoint publications for the repository. Default
+            is null which retains all checkpoints.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        manifest_signing_service:
+          description: A reference to an associated signing service.
+          format: uri
+          nullable: true
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
           type: string
         retain_repo_versions:
           description: Retain X versions of the repository. Default is null which
@@ -86580,22 +87329,6 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
-        manifest_signing_service:
-          description: A reference to an associated signing service.
-          format: uri
-          nullable: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
-          readOnly: true
-          type: string
         pulp_href:
           format: uri
           readOnly: true
@@ -86605,25 +87338,10 @@ components:
           format: date-time
           readOnly: true
           type: string
-        name:
-          description: A unique name for this repository.
-          type: string
-        latest_version_href:
-          format: uri
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        retain_checkpoints:
-          description: Retain X checkpoint publications for the repository. Default
-            is null which retains all checkpoints.
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
       required:
       - name
       type: object

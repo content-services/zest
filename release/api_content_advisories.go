@@ -233,6 +233,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	ApiService *ContentAdvisoriesAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	id *string
 	idIn *[]string
 	limit *int32
@@ -244,6 +245,7 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -263,6 +265,11 @@ type ContentAdvisoriesAPIContentRpmAdvisoriesListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) AddedBetween(addedBetween []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -329,6 +336,11 @@ func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) PulpLabelSelect(pul
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) Q(q string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentAdvisoriesAPIContentRpmAdvisoriesListRequest) RemovedBetween(removedBetween []string) ContentAdvisoriesAPIContentRpmAdvisoriesListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -457,6 +469,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
@@ -489,6 +504,9 @@ func (a *ContentAdvisoriesAPIService) ContentRpmAdvisoriesListExecute(r ContentA
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")

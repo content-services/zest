@@ -36,6 +36,34 @@ func Test_zest_RepositoriesMavenAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenBuildPathIndex", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenBuildPathIndex(context.Background(), mavenMavenRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenCompactPathIndex", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenCompactPathIndex(context.Background(), mavenMavenRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenCreate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -155,6 +183,20 @@ func Test_zest_RepositoriesMavenAPIService(t *testing.T) {
 		var mavenMavenRepositoryHref string
 
 		resp, httpRes, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPartialUpdate(context.Background(), mavenMavenRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenPathIndexStatus", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPathIndexStatus(context.Background(), mavenMavenRepositoryHref).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

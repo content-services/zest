@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 ## ContentMavenArtifactList
 
-> PaginatedmavenMavenArtifactResponseList ContentMavenArtifactList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedmavenMavenArtifactResponseList ContentMavenArtifactList(ctx, pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List maven artifacts
 
@@ -126,6 +126,7 @@ import (
 func main() {
 	pulpDomain := "pulpDomain_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	addedBetween := []string{"Inner_example"} // []string |  (optional)
 	artifactId := "artifactId_example" // string | Filter results where artifact_id matches value (optional)
 	filename := "filename_example" // string | Filter results where filename matches value (optional)
 	groupId := "groupId_example" // string | Filter results where group_id matches value (optional)
@@ -138,6 +139,7 @@ func main() {
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpLabelSelect := "pulpLabelSelect_example" // string | Filter labels by search string (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
+	removedBetween := []string{"Inner_example"} // []string |  (optional)
 	repositoryVersion := "repositoryVersion_example" // string |  (optional)
 	repositoryVersionAdded := "repositoryVersionAdded_example" // string |  (optional)
 	repositoryVersionRemoved := "repositoryVersionRemoved_example" // string |  (optional)
@@ -147,7 +149,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.ContentArtifactAPI.ContentMavenArtifactList(context.Background(), pulpDomain).XTaskDiagnostics(xTaskDiagnostics).AddedBetween(addedBetween).ArtifactId(artifactId).Filename(filename).GroupId(groupId).Limit(limit).Offset(offset).Ordering(ordering).OrphanedFor(orphanedFor).PrnIn(prnIn).PulpHrefIn(pulpHrefIn).PulpIdIn(pulpIdIn).PulpLabelSelect(pulpLabelSelect).Q(q).RemovedBetween(removedBetween).RepositoryVersion(repositoryVersion).RepositoryVersionAdded(repositoryVersionAdded).RepositoryVersionRemoved(repositoryVersionRemoved).Version(version).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContentArtifactAPI.ContentMavenArtifactList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -174,6 +176,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **addedBetween** | **[]string** |  | 
  **artifactId** | **string** | Filter results where artifact_id matches value | 
  **filename** | **string** | Filter results where filename matches value | 
  **groupId** | **string** | Filter results where group_id matches value | 
@@ -186,6 +189,7 @@ Name | Type | Description  | Notes
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpLabelSelect** | **string** | Filter labels by search string | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
+ **removedBetween** | **[]string** |  | 
  **repositoryVersion** | **string** |  | 
  **repositoryVersionAdded** | **string** |  | 
  **repositoryVersionRemoved** | **string** |  | 

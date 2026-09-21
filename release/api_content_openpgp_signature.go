@@ -30,6 +30,7 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 	ApiService *ContentOpenpgpSignatureAPIService
 	pulpDomain string
 	xTaskDiagnostics *[]string
+	addedBetween *[]string
 	issuer *string
 	limit *int32
 	offset *int32
@@ -40,6 +41,7 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 	pulpIdIn *[]string
 	pulpLabelSelect *string
 	q *string
+	removedBetween *[]string
 	repositoryVersion *string
 	repositoryVersionAdded *string
 	repositoryVersionRemoved *string
@@ -50,6 +52,11 @@ type ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest struct {
 // List of profilers to use on tasks.
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) XTaskDiagnostics(xTaskDiagnostics []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) AddedBetween(addedBetween []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
+	r.addedBetween = &addedBetween
 	return r
 }
 
@@ -110,6 +117,11 @@ func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) PulpLa
 // Filter results by using NOT, AND and OR operations on other filters
 func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) Q(q string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
 	r.q = &q
+	return r
+}
+
+func (r ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest) RemovedBetween(removedBetween []string) ContentOpenpgpSignatureAPIContentCoreOpenpgpSignatureListRequest {
+	r.removedBetween = &removedBetween
 	return r
 }
 
@@ -184,6 +196,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureListExecu
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.addedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "added_between", r.addedBetween, "form", "csv")
+	}
 	if r.issuer != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "issuer", r.issuer, "form", "")
 	}
@@ -213,6 +228,9 @@ func (a *ContentOpenpgpSignatureAPIService) ContentCoreOpenpgpSignatureListExecu
 	}
 	if r.q != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	}
+	if r.removedBetween != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "removed_between", r.removedBetween, "form", "csv")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
