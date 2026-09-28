@@ -10,12 +10,15 @@ api_api_create_domain.go
 api_api_debug_auth_header.go
 api_api_debug_cleanup_stale_locks.go
 api_api_debug_database_triggers.go
+api_api_debug_domainorg_backfill_report.go
+api_api_debug_flush_content_cache.go
 api_api_debug_release_task_locks.go
 api_api_debug_stale_locks.go
 api_api_debug_task_debug.go
 api_api_debug_task_queue.go
 api_api_maven.go
 api_api_migrate_domain.go
+api_api_public_debug_auth_header.go
 api_api_rds_connection_tests.go
 api_api_test_pagerduty_alert.go
 api_api_test_random_lock_tasks.go
@@ -61,6 +64,7 @@ api_content_yanks.go
 api_contentguards.go
 api_contentguards_composite.go
 api_contentguards_content_redirect.go
+api_contentguards_envvar_header.go
 api_contentguards_feature.go
 api_contentguards_header.go
 api_contentguards_rbac.go
@@ -178,12 +182,15 @@ docs/ApiCreateDomainAPI.md
 docs/ApiDebugAuthHeaderAPI.md
 docs/ApiDebugCleanupStaleLocksAPI.md
 docs/ApiDebugDatabaseTriggersAPI.md
+docs/ApiDebugDomainorgBackfillReportAPI.md
+docs/ApiDebugFlushContentCacheAPI.md
 docs/ApiDebugReleaseTaskLocksAPI.md
 docs/ApiDebugStaleLocksAPI.md
 docs/ApiDebugTaskDebugAPI.md
 docs/ApiDebugTaskQueueAPI.md
 docs/ApiMavenAPI.md
 docs/ApiMigrateDomainAPI.md
+docs/ApiPublicDebugAuthHeaderAPI.md
 docs/ApiPulpMigrateDomainCreateRequest.md
 docs/ApiRdsConnectionTestsAPI.md
 docs/ApiTestPagerdutyAlertAPI.md
@@ -274,6 +281,7 @@ docs/ContentYanksAPI.md
 docs/ContentguardsAPI.md
 docs/ContentguardsCompositeAPI.md
 docs/ContentguardsContentRedirectAPI.md
+docs/ContentguardsEnvvarHeaderAPI.md
 docs/ContentguardsFeatureAPI.md
 docs/ContentguardsHeaderAPI.md
 docs/ContentguardsRbacAPI.md
@@ -302,6 +310,8 @@ docs/Domain.md
 docs/DomainBackendMigrator.md
 docs/DomainResponse.md
 docs/DomainsAPI.md
+docs/EnvVarHeaderContentGuard.md
+docs/EnvVarHeaderContentGuardResponse.md
 docs/EvaluationResponse.md
 docs/ExcludePlatformsEnum.md
 docs/ExportersFilesystemAPI.md
@@ -444,6 +454,7 @@ docs/PaginatedContentViewPackageGroupResponseList.md
 docs/PaginatedContentViewPackageResponseList.md
 docs/PaginatedDistributionResponseList.md
 docs/PaginatedDomainResponseList.md
+docs/PaginatedEnvVarHeaderContentGuardResponseList.md
 docs/PaginatedFilesystemExportResponseList.md
 docs/PaginatedFilesystemExporterResponseList.md
 docs/PaginatedGenericRemoteResponseList.md
@@ -548,6 +559,7 @@ docs/PatchedAccessPolicy.md
 docs/PatchedCompositeContentGuard.md
 docs/PatchedContentRedirectContentGuard.md
 docs/PatchedDomain.md
+docs/PatchedEnvVarHeaderContentGuard.md
 docs/PatchedFilesystemExporter.md
 docs/PatchedGroup.md
 docs/PatchedHeaderContentGuard.md
@@ -602,6 +614,7 @@ docs/ProfileArtifactResponse.md
 docs/ProgressReportResponse.md
 docs/ProtocolVersionEnum.md
 docs/PrunePackages.md
+docs/PublicDebugAuthenticationHeadersResponse.md
 docs/PublicationResponse.md
 docs/PublicationsAPI.md
 docs/PublicationsFileAPI.md
@@ -853,6 +866,8 @@ model_distribution_response.go
 model_domain.go
 model_domain_backend_migrator.go
 model_domain_response.go
+model_env_var_header_content_guard.go
+model_env_var_header_content_guard_response.go
 model_evaluation_response.go
 model_exclude_platforms_enum.go
 model_file_content_upload.go
@@ -978,6 +993,7 @@ model_paginated_content_view_package_group_response_list.go
 model_paginated_content_view_package_response_list.go
 model_paginated_distribution_response_list.go
 model_paginated_domain_response_list.go
+model_paginated_env_var_header_content_guard_response_list.go
 model_paginated_filesystem_export_response_list.go
 model_paginated_filesystem_exporter_response_list.go
 model_paginated_generic_remote_response_list.go
@@ -1082,6 +1098,7 @@ model_patched_access_policy.go
 model_patched_composite_content_guard.go
 model_patched_content_redirect_content_guard.go
 model_patched_domain.go
+model_patched_env_var_header_content_guard.go
 model_patched_filesystem_exporter.go
 model_patched_group.go
 model_patched_header_content_guard.go
@@ -1136,6 +1153,7 @@ model_profile_artifact_response.go
 model_progress_report_response.go
 model_protocol_version_enum.go
 model_prune_packages.go
+model_public_debug_authentication_headers_response.go
 model_publication_response.go
 model_pulp_export.go
 model_pulp_export_response.go
@@ -1270,12 +1288,15 @@ test/api_api_create_domain_test.go
 test/api_api_debug_auth_header_test.go
 test/api_api_debug_cleanup_stale_locks_test.go
 test/api_api_debug_database_triggers_test.go
+test/api_api_debug_domainorg_backfill_report_test.go
+test/api_api_debug_flush_content_cache_test.go
 test/api_api_debug_release_task_locks_test.go
 test/api_api_debug_stale_locks_test.go
 test/api_api_debug_task_debug_test.go
 test/api_api_debug_task_queue_test.go
 test/api_api_maven_test.go
 test/api_api_migrate_domain_test.go
+test/api_api_public_debug_auth_header_test.go
 test/api_api_rds_connection_tests_test.go
 test/api_api_test_pagerduty_alert_test.go
 test/api_api_test_random_lock_tasks_test.go
@@ -1320,6 +1341,7 @@ test/api_content_views_test.go
 test/api_content_yanks_test.go
 test/api_contentguards_composite_test.go
 test/api_contentguards_content_redirect_test.go
+test/api_contentguards_envvar_header_test.go
 test/api_contentguards_feature_test.go
 test/api_contentguards_header_test.go
 test/api_contentguards_rbac_test.go

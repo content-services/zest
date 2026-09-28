@@ -13,16 +13,16 @@ info:
   x-logo:
     url: https://pulpproject.org/assets/pulp_logo_icon.svg
   x-pulp-app-versions:
-    core: 3.118.1
+    core: 3.119.0
+    certguard: 3.119.0
+    file: 3.119.0
+    maven: 0.33.1
     npm: 0.10.0
-    maven: 0.33.0
-    hugging_face: 0.3.2
-    container: 2.29.0
-    rpm: 3.38.5
-    service: 0.1.0
-    certguard: 3.118.1
-    file: 3.118.1
     python: 3.36.2
+    container: 2.29.0
+    hugging_face: 0.3.2
+    service: 0.1.0
+    rpm: 3.38.5
   x-pulp-domain-enabled: true
 servers:
 - url: http://localhost:8080/
@@ -2343,19 +2343,19 @@ paths:
           `core.openpgp_publickey` - core.openpgp_publickey* `core.openpgp_publicsubkey`
           - core.openpgp_publicsubkey* `core.openpgp_userid` - core.openpgp_userid*
           `core.openpgp_userattribute` - core.openpgp_userattribute* `core.openpgp_signature`
-          - core.openpgp_signature* `npm.package` - npm.package* `maven.artifact`
-          - maven.artifact* `maven.metadata` - maven.metadata* `maven.package` - maven.package*
-          `maven.index-page` - maven.index-page* `hugging_face.hugging-face` - hugging_face.hugging-face*
+          - core.openpgp_signature* `file.file` - file.file* `maven.artifact` - maven.artifact*
+          `maven.metadata` - maven.metadata* `maven.package` - maven.package* `maven.index-page`
+          - maven.index-page* `npm.package` - npm.package* `python.python` - python.python*
+          `python.provenance` - python.provenance* `python.python_yank` - python.python_yank*
           `container.blob` - container.blob* `container.manifest` - container.manifest*
           `container.tag` - container.tag* `container.signature` - container.signature*
-          `rpm.advisory` - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
+          `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.advisory`
+          - rpm.advisory* `rpm.packagegroup` - rpm.packagegroup* `rpm.packagecategory`
           - rpm.packagecategory* `rpm.packageenvironment` - rpm.packageenvironment*
           `rpm.packagelangpacks` - rpm.packagelangpacks* `rpm.repo_metadata_file`
           - rpm.repo_metadata_file* `rpm.distribution_tree` - rpm.distribution_tree*
           `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd* `rpm.modulemd_defaults`
-          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete*
-          `file.file` - file.file* `python.python` - python.python* `python.provenance`
-          - python.provenance* `python.python_yank` - python.python_yank
+          - rpm.modulemd_defaults* `rpm.modulemd_obsolete` - rpm.modulemd_obsolete
         explode: true
         in: query
         name: pulp_type
@@ -2399,19 +2399,20 @@ paths:
           - core.publishedmetadata* `core.openpgp_publickey` - core.openpgp_publickey*
           `core.openpgp_publicsubkey` - core.openpgp_publicsubkey* `core.openpgp_userid`
           - core.openpgp_userid* `core.openpgp_userattribute` - core.openpgp_userattribute*
-          `core.openpgp_signature` - core.openpgp_signature* `npm.package` - npm.package*
+          `core.openpgp_signature` - core.openpgp_signature* `file.file` - file.file*
           `maven.artifact` - maven.artifact* `maven.metadata` - maven.metadata* `maven.package`
-          - maven.package* `maven.index-page` - maven.index-page* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `container.blob` - container.blob* `container.manifest`
-          - container.manifest* `container.tag` - container.tag* `container.signature`
-          - container.signature* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
+          - maven.package* `maven.index-page` - maven.index-page* `npm.package` -
+          npm.package* `python.python` - python.python* `python.provenance` - python.provenance*
+          `python.python_yank` - python.python_yank* `container.blob` - container.blob*
+          `container.manifest` - container.manifest* `container.tag` - container.tag*
+          `container.signature` - container.signature* `hugging_face.hugging-face`
+          - hugging_face.hugging-face* `rpm.advisory` - rpm.advisory* `rpm.packagegroup`
           - rpm.packagegroup* `rpm.packagecategory` - rpm.packagecategory* `rpm.packageenvironment`
           - rpm.packageenvironment* `rpm.packagelangpacks` - rpm.packagelangpacks*
           `rpm.repo_metadata_file` - rpm.repo_metadata_file* `rpm.distribution_tree`
           - rpm.distribution_tree* `rpm.package` - rpm.package* `rpm.modulemd` - rpm.modulemd*
           `rpm.modulemd_defaults` - rpm.modulemd_defaults* `rpm.modulemd_obsolete`
-          - rpm.modulemd_obsolete* `file.file` - file.file* `python.python` - python.python*
-          `python.provenance` - python.provenance* `python.python_yank` - python.python_yank
+          - rpm.modulemd_obsolete
         explode: false
         in: query
         name: pulp_type__in
@@ -17108,8 +17109,9 @@ paths:
           type: array
         style: form
       - description: Pulp type* `core.rbac` - core.rbac* `core.content_redirect` -
-          core.content_redirect* `core.header` - core.header* `core.composite` - core.composite*
-          `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509
+          core.content_redirect* `core.header` - core.header* `core.envvar_header`
+          - core.envvar_header* `core.composite` - core.composite* `certguard.rhsm`
+          - certguard.rhsm* `certguard.x509` - certguard.x509
         explode: true
         in: query
         name: pulp_type
@@ -17120,14 +17122,15 @@ paths:
           - certguard.x509
           - core.composite
           - core.content_redirect
+          - core.envvar_header
           - core.header
           - core.rbac
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.rbac` - core.rbac*
           `core.content_redirect` - core.content_redirect* `core.header` - core.header*
-          `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509`
-          - certguard.x509
+          `core.envvar_header` - core.envvar_header* `core.composite` - core.composite*
+          `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509
         explode: false
         in: query
         name: pulp_type__in
@@ -17139,6 +17142,7 @@ paths:
             - certguard.x509
             - core.composite
             - core.content_redirect
+            - core.envvar_header
             - core.header
             - core.rbac
             type: string
@@ -19370,6 +19374,657 @@ paths:
       summary: Remove a role
       tags:
       - "Contentguards: Content_Redirect"
+  /api/pulp/{pulp_domain}/api/v3/contentguards/core/envvar_header/:
+    get:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_list
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name contains value
+        explode: true
+        in: query
+        name: name__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches value
+        explode: true
+        in: query
+        name: name__iexact
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name is in a comma-separated list of values
+        explode: false
+        in: query
+        name: name__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__iregex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__istartswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name matches regex value
+        explode: true
+        in: query
+        name: name__regex
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results where name starts with value
+        explode: true
+        in: query
+        name: name__startswith
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The initial index from which to return the results.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Ordering* `pulp_id` - Pulp id* `-pulp_id` - Pulp id (descending)*
+          `pulp_created` - Pulp created* `-pulp_created` - Pulp created (descending)*
+          `pulp_last_updated` - Pulp last updated* `-pulp_last_updated` - Pulp last
+          updated (descending)* `pulp_type` - Pulp type* `-pulp_type` - Pulp type
+          (descending)* `name` - Name* `-name` - Name (descending)* `description`
+          - Description* `-description` - Description (descending)* `pk` - Pk* `-pk`
+          - Pk (descending)
+        explode: false
+        in: query
+        name: ordering
+        required: false
+        schema:
+          items:
+            enum:
+            - -description
+            - -name
+            - -pk
+            - -pulp_created
+            - -pulp_id
+            - -pulp_last_updated
+            - -pulp_type
+            - description
+            - name
+            - pk
+            - pulp_created
+            - pulp_id
+            - pulp_last_updated
+            - pulp_type
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: prn__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_href__in
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Multiple values may be separated by commas.
+        explode: false
+        in: query
+        name: pulp_id__in
+        required: false
+        schema:
+          items:
+            format: uuid
+            type: string
+          type: array
+        style: form
+      - description: "Filter results by using NOT, AND and OR operations on other\
+          \ filters"
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedEnvVarHeaderContentGuardResponseList"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List env var header content guards
+      tags:
+      - "Contentguards: Envvar_Header"
+    post:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_create
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: pulp_domain
+        required: true
+        schema:
+          type: string
+        style: simple
+        x-isDomain: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvVarHeaderContentGuardResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Create an env var header content guard
+      tags:
+      - "Contentguards: Envvar_Header"
+  '{env_var_header_content_guard_href}':
+    delete:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_delete
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Delete an env var header content guard
+      tags:
+      - "Contentguards: Envvar_Header"
+    get:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_read
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvVarHeaderContentGuardResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Inspect an env var header content guard
+      tags:
+      - "Contentguards: Envvar_Header"
+    patch:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_partial_update
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedEnvVarHeaderContentGuard"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/PatchedEnvVarHeaderContentGuard"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PatchedEnvVarHeaderContentGuard"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvVarHeaderContentGuardResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an env var header content guard
+      tags:
+      - "Contentguards: Envvar_Header"
+    put:
+      description: Content guard that validates a Base64-encoded header against a
+        server-side environment variable.
+      operationId: contentguards_core_envvar_header_update
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/EnvVarHeaderContentGuard"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnvVarHeaderContentGuardResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Update an env var header content guard
+      tags:
+      - "Contentguards: Envvar_Header"
+  '{env_var_header_content_guard_href}add_role/':
+    post:
+      description: Add a role for this object to users/groups.
+      operationId: contentguards_core_envvar_header_add_role
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NestedRoleResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Add a role
+      tags:
+      - "Contentguards: Envvar_Header"
+  '{env_var_header_content_guard_href}list_roles/':
+    get:
+      description: List roles assigned to this object.
+      operationId: contentguards_core_envvar_header_list_roles
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObjectRolesResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List roles
+      tags:
+      - "Contentguards: Envvar_Header"
+  '{env_var_header_content_guard_href}my_permissions/':
+    get:
+      description: List permissions available to the current user on this object.
+      operationId: contentguards_core_envvar_header_my_permissions
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyPermissionsResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: List user permissions
+      tags:
+      - "Contentguards: Envvar_Header"
+  '{env_var_header_content_guard_href}remove_role/':
+    post:
+      description: Remove a role for this object from users/groups.
+      operationId: contentguards_core_envvar_header_remove_role
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - explode: false
+        in: path
+        name: env_var_header_content_guard_href
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/NestedRole"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NestedRoleResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Remove a role
+      tags:
+      - "Contentguards: Envvar_Header"
   /api/pulp/{pulp_domain}/api/v3/contentguards/core/header/:
     get:
       description: Content guard to protect the content app using a specific header.
@@ -21641,10 +22296,10 @@ paths:
           type: string
         style: form
       - description: Pulp type* `core.artifact` - core.artifact* `core.openpgp` -
-          core.openpgp* `npm.npm` - npm.npm* `maven.maven` - maven.maven* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `container.pull-through` - container.pull-through*
-          `container.container` - container.container* `rpm.rpm` - rpm.rpm* `file.file`
-          - file.file* `python.python` - python.python
+          core.openpgp* `file.file` - file.file* `maven.maven` - maven.maven* `npm.npm`
+          - npm.npm* `python.python` - python.python* `container.pull-through` - container.pull-through*
+          `container.container` - container.container* `hugging_face.hugging-face`
+          - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -21664,11 +22319,11 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.artifact`
-          - core.artifact* `core.openpgp` - core.openpgp* `npm.npm` - npm.npm* `maven.maven`
-          - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
+          - core.artifact* `core.openpgp` - core.openpgp* `file.file` - file.file*
+          `maven.maven` - maven.maven* `npm.npm` - npm.npm* `python.python` - python.python*
           `container.pull-through` - container.pull-through* `container.container`
-          - container.container* `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python`
-          - python.python
+          - container.container* `hugging_face.hugging-face` - hugging_face.hugging-face*
+          `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -33339,8 +33994,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `rpm.rpm` - rpm.rpm* `file.file` - file.file* `python.python` - python.python
+      - description: Pulp type* `file.file` - file.file* `python.python` - python.python*
+          `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -33353,9 +34008,9 @@ paths:
           - rpm.rpm
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm* `file.file` - file.file*
-          `python.python` - python.python
+      - description: Multiple values may be separated by commas.* `file.file` - file.file*
+          `python.python` - python.python* `hugging_face.hugging-face` - hugging_face.hugging-face*
+          `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -37229,11 +37884,11 @@ paths:
             type: string
           type: array
         style: form
-      - description: Pulp type* `npm.npm` - npm.npm* `maven.maven` - maven.maven*
-          `hugging_face.hugging-face` - hugging_face.hugging-face* `container.container`
+      - description: Pulp type* `file.file` - file.file* `file.git` - file.git* `maven.maven`
+          - maven.maven* `npm.npm` - npm.npm* `python.python` - python.python* `container.container`
           - container.container* `container.pull-through` - container.pull-through*
-          `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file` - file.file* `file.git`
-          - file.git* `python.python` - python.python
+          `hugging_face.hugging-face` - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm*
+          `rpm.uln` - rpm.uln
         explode: true
         in: query
         name: pulp_type
@@ -37252,11 +37907,11 @@ paths:
           - rpm.uln
           type: string
         style: form
-      - description: Multiple values may be separated by commas.* `npm.npm` - npm.npm*
-          `maven.maven` - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
-          `container.container` - container.container* `container.pull-through` -
-          container.pull-through* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln* `file.file`
-          - file.file* `file.git` - file.git* `python.python` - python.python
+      - description: Multiple values may be separated by commas.* `file.file` - file.file*
+          `file.git` - file.git* `maven.maven` - maven.maven* `npm.npm` - npm.npm*
+          `python.python` - python.python* `container.container` - container.container*
+          `container.pull-through` - container.pull-through* `hugging_face.hugging-face`
+          - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm* `rpm.uln` - rpm.uln
         explode: false
         in: query
         name: pulp_type__in
@@ -46318,11 +46973,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: Pulp type* `core.openpgp` - core.openpgp* `npm.npm` - npm.npm*
-          `maven.maven` - maven.maven* `hugging_face.hugging-face` - hugging_face.hugging-face*
+      - description: Pulp type* `core.openpgp` - core.openpgp* `file.file` - file.file*
+          `maven.maven` - maven.maven* `npm.npm` - npm.npm* `python.python` - python.python*
           `container.container` - container.container* `container.container-push`
-          - container.container-push* `rpm.rpm` - rpm.rpm* `file.file` - file.file*
-          `python.python` - python.python
+          - container.container-push* `hugging_face.hugging-face` - hugging_face.hugging-face*
+          `rpm.rpm` - rpm.rpm
         explode: true
         in: query
         name: pulp_type
@@ -46341,10 +46996,10 @@ paths:
           type: string
         style: form
       - description: Multiple values may be separated by commas.* `core.openpgp` -
-          core.openpgp* `npm.npm` - npm.npm* `maven.maven` - maven.maven* `hugging_face.hugging-face`
-          - hugging_face.hugging-face* `container.container` - container.container*
-          `container.container-push` - container.container-push* `rpm.rpm` - rpm.rpm*
-          `file.file` - file.file* `python.python` - python.python
+          core.openpgp* `file.file` - file.file* `maven.maven` - maven.maven* `npm.npm`
+          - npm.npm* `python.python` - python.python* `container.container` - container.container*
+          `container.container-push` - container.container-push* `hugging_face.hugging-face`
+          - hugging_face.hugging-face* `rpm.rpm` - rpm.rpm
         explode: false
         in: query
         name: pulp_type__in
@@ -67539,6 +68194,106 @@ paths:
           description: No response body
       tags:
       - "Api: Debug Database-Triggers"
+  /api/pulp/debug/domainorg-backfill-report/:
+    get:
+      description: Return endpoint documentation.
+      operationId: api_pulp_debug_domainorg_backfill_report_get
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          description: No response body
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      tags:
+      - "Api: Debug Domainorg-Backfill-Report"
+    post:
+      description: Dispatch a background task that generates the DomainOrg backfill
+        report as a downloadable JSON artifact attached to the task.
+      operationId: api_pulp_debug_domainorg_backfill_report_post
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AsyncOperationResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Dispatch DomainOrg backfill report
+      tags:
+      - "Api: Debug Domainorg-Backfill-Report"
+  /api/pulp/debug/flush-content-cache/:
+    post:
+      description: Dispatch a task that deletes the content-cache hash of every distribution
+        from Redis while leaving worker and task locks intact.
+      operationId: api_pulp_debug_flush_content_cache_post
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AsyncOperationResponse"
+          description: ""
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      summary: Flush the content app's distribution cache (preserves locks)
+      tags:
+      - "Api: Debug Flush-Content-Cache"
   /api/pulp/debug/release-task-locks/:
     get:
       description: "Release all Redis locks for a given task UUID.Query parameters:\
@@ -67941,6 +68696,50 @@ paths:
       summary: Migrate domain storage to S3
       tags:
       - "Api: Migrate-Domain"
+  /api/pulp/public-debug_auth_header/:
+    get:
+      description: Return safe diagnostics about headers received from the edge.
+      operationId: public_debug_auth_header
+      parameters:
+      - description: List of profilers to use on tasks.
+        explode: false
+        in: header
+        name: X-Task-Diagnostics
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: simple
+      - description: A list of fields to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: A list of fields to exclude from the response.
+        explode: true
+        in: query
+        name: exclude_fields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicDebugAuthenticationHeadersResponse"
+          description: ""
+      tags:
+      - "Api: Public-Debug_Auth_Header"
   /api/pulp/rds-connection-tests/:
     get:
       description: Get available tests and their descriptions.This endpoint is always
@@ -69317,43 +70116,21 @@ components:
     ArtifactDistributionResponse:
       description: A serializer for ArtifactDistribution.
       example:
-        base_url: base_url
-        pulp_labels:
-          key: pulp_labels
-        content_guard_prn: content_guard_prn
-        name: name
-        repository_version: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        repository_version: https://openapi-generator.tech
+        prn: prn
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        base_url: base_url
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        pulp_href: https://openapi-generator.tech
         base_path: base_path
         no_content_change_since: no_content_change_since
-        pulp_href: https://openapi-generator.tech
-        pulp_created: 2000-01-23T04:56:07.000+00:00
-        prn: prn
+        content_guard_prn: content_guard_prn
       properties:
-        base_url:
-          description: The URL for accessing the publication as defined by this distribution.
-          readOnly: true
-          type: string
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
-          type: string
         content_guard:
           description: An optional content-guard.
           format: uri
@@ -69363,11 +70140,41 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        base_url:
+          description: The URL for accessing the publication as defined by this distribution.
+          readOnly: true
+          type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
             \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
+          readOnly: true
+          type: string
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         base_path:
@@ -69381,17 +70188,9 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
           readOnly: true
           type: string
       required:
@@ -70364,6 +71163,98 @@ components:
       - name
       - storage_class
       - storage_settings
+      type: object
+    EnvVarHeaderContentGuard:
+      description: A serializer for EnvVarHeaderContentGuard.The guard expects the
+        request header named ``header_name`` to carry a Base64-encodedUTF-8 representation
+        of the secret. The plaintext secret is read from ``env_var`` onthe server
+        at request time and is never stored in or returned by the API.
+      example:
+        name: name
+        description: description
+        header_name: header_name
+        env_var: env_var
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          minLength: 1
+          type: string
+        env_var:
+          description: Name of a content-app environment variable holding the expected
+            secret (plaintext UTF-8). Must be listed in ENVVAR_HEADER_CONTENT_GUARD_ALLOWED_VARS.
+            The request header must send that value Base64-encoded. The value is never
+            stored in or returned by the API.
+          minLength: 1
+          type: string
+      required:
+      - env_var
+      - header_name
+      - name
+      type: object
+    EnvVarHeaderContentGuardResponse:
+      description: A serializer for EnvVarHeaderContentGuard.The guard expects the
+        request header named ``header_name`` to carry a Base64-encodedUTF-8 representation
+        of the secret. The plaintext secret is read from ``env_var`` onthe server
+        at request time and is never stored in or returned by the API.
+      example:
+        pulp_href: https://openapi-generator.tech
+        prn: prn
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        name: name
+        description: description
+        header_name: header_name
+        env_var: env_var
+      properties:
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: The unique name.
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          type: string
+        env_var:
+          description: Name of a content-app environment variable holding the expected
+            secret (plaintext UTF-8). Must be listed in ENVVAR_HEADER_CONTENT_GUARD_ALLOWED_VARS.
+            The request header must send that value Base64-encoded. The value is never
+            stored in or returned by the API.
+          type: string
+      required:
+      - env_var
+      - header_name
+      - name
       type: object
     EvaluationResponse:
       description: Results from evaluating a proposed parameter to a PulpImport call.
@@ -73171,34 +74062,34 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - base_url: base_url
+        - content_guard: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_url: base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
-        - base_url: base_url
+          content_guard_prn: content_guard_prn
+        - content_guard: https://openapi-generator.tech
+          hidden: false
           pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          base_url: base_url
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
+          content_guard_prn: content_guard_prn
       properties:
         count:
           example: 123
@@ -73742,6 +74633,50 @@ components:
         results:
           items:
             $ref: "#/components/schemas/DomainResponse"
+          type: array
+      required:
+      - count
+      - results
+      type: object
+    PaginatedEnvVarHeaderContentGuardResponseList:
+      example:
+        count: 123
+        next: http://api.example.org/accounts/?offset=400&limit=100
+        previous: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+        - pulp_href: https://openapi-generator.tech
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          header_name: header_name
+          env_var: env_var
+        - pulp_href: https://openapi-generator.tech
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          header_name: header_name
+          env_var: env_var
+      properties:
+        count:
+          example: 123
+          type: integer
+        next:
+          example: http://api.example.org/accounts/?offset=400&limit=100
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          example: http://api.example.org/accounts/?offset=200&limit=100
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/EnvVarHeaderContentGuardResponse"
           type: array
       required:
       - count
@@ -76065,39 +77000,39 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - pulp_labels:
+        - content_guard: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
+          content_guard_prn: content_guard_prn
           registry_path: registry_path
           remote: https://openapi-generator.tech
           namespace: https://openapi-generator.tech
           private: true
           description: description
-        - pulp_labels:
+        - content_guard: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
+          content_guard_prn: content_guard_prn
           registry_path: registry_path
           remote: https://openapi-generator.tech
           namespace: https://openapi-generator.tech
@@ -76173,20 +77108,20 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - pulp_labels:
+        - content_guard: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
+          content_guard_prn: content_guard_prn
           remote: https://openapi-generator.tech
           distributions:
           - https://openapi-generator.tech
@@ -76194,20 +77129,20 @@ components:
           namespace: https://openapi-generator.tech
           private: true
           description: description
-        - pulp_labels:
+        - content_guard: https://openapi-generator.tech
+          hidden: false
+          pulp_labels:
             key: pulp_labels
-          content_guard_prn: content_guard_prn
           name: name
           repository_version: https://openapi-generator.tech
-          repository: https://openapi-generator.tech
-          content_guard: https://openapi-generator.tech
-          hidden: false
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
           pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          repository: https://openapi-generator.tech
+          pulp_href: https://openapi-generator.tech
           base_path: base_path
           no_content_change_since: no_content_change_since
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
+          content_guard_prn: content_guard_prn
           remote: https://openapi-generator.tech
           distributions:
           - https://openapi-generator.tech
@@ -76339,32 +77274,32 @@ components:
         next: http://api.example.org/accounts/?offset=400&limit=100
         previous: http://api.example.org/accounts/?offset=200&limit=100
         results:
-        - pulp_labels:
-            key: pulp_labels
+        - retain_checkpoints: 1
           name: name
-          versions_href: https://openapi-generator.tech
-          latest_version_href: https://openapi-generator.tech
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          retain_checkpoints: 1
-          manifest_signing_service: https://openapi-generator.tech
-          description: description
-          retain_repo_versions: 1
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
-          prn: prn
-        - pulp_labels:
+          pulp_labels:
             key: pulp_labels
-          name: name
-          versions_href: https://openapi-generator.tech
-          latest_version_href: https://openapi-generator.tech
-          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-          retain_checkpoints: 1
-          manifest_signing_service: https://openapi-generator.tech
-          description: description
-          retain_repo_versions: 1
-          pulp_href: https://openapi-generator.tech
-          pulp_created: 2000-01-23T04:56:07.000+00:00
           prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          manifest_signing_service: https://openapi-generator.tech
+          latest_version_href: https://openapi-generator.tech
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          description: description
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
+        - retain_checkpoints: 1
+          name: name
+          pulp_labels:
+            key: pulp_labels
+          prn: prn
+          pulp_created: 2000-01-23T04:56:07.000+00:00
+          manifest_signing_service: https://openapi-generator.tech
+          latest_version_href: https://openapi-generator.tech
+          retain_repo_versions: 1
+          pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+          description: description
+          pulp_href: https://openapi-generator.tech
+          versions_href: https://openapi-generator.tech
       properties:
         count:
           example: 123
@@ -80306,6 +81241,38 @@ components:
           nullable: true
           type: string
       type: object
+    PatchedEnvVarHeaderContentGuard:
+      description: A serializer for EnvVarHeaderContentGuard.The guard expects the
+        request header named ``header_name`` to carry a Base64-encodedUTF-8 representation
+        of the secret. The plaintext secret is read from ``env_var`` onthe server
+        at request time and is never stored in or returned by the API.
+      example:
+        name: name
+        description: description
+        header_name: header_name
+        env_var: env_var
+      properties:
+        name:
+          description: The unique name.
+          minLength: 1
+          type: string
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
+        header_name:
+          description: The header name the guard will check on.
+          minLength: 1
+          type: string
+        env_var:
+          description: Name of a content-app environment variable holding the expected
+            secret (plaintext UTF-8). Must be listed in ENVVAR_HEADER_CONTENT_GUARD_ALLOWED_VARS.
+            The request header must send that value Base64-encoded. The value is never
+            stored in or returned by the API.
+          minLength: 1
+          type: string
+      type: object
     PatchedFilesystemExporter:
       description: Serializer for FilesystemExporters.
       example:
@@ -80833,6 +81800,15 @@ components:
     Patchedcontainer.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
@@ -80852,15 +81828,6 @@ components:
           format: uri
           nullable: true
           type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -80881,6 +81848,15 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
@@ -80900,15 +81876,6 @@ components:
           format: uri
           nullable: true
           type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -81086,15 +82053,6 @@ components:
     Patchedcontainer.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        name:
-          description: A unique name for this repository.
-          minLength: 1
-          type: string
         retain_checkpoints:
           description: Retain X checkpoint publications for the repository. Default
             is null which retains all checkpoints.
@@ -81102,14 +82060,18 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
         manifest_signing_service:
           description: A reference to an associated signing service.
           format: uri
-          nullable: true
-          type: string
-        description:
-          description: An optional description.
-          minLength: 1
           nullable: true
           type: string
         retain_repo_versions:
@@ -81119,6 +82081,11 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
       type: object
     Patchedcontainer.ContainerRemote:
       description: A Serializer for ContainerRemote.
@@ -83334,6 +84301,26 @@ components:
           type: boolean
       required:
       - repo_hrefs
+      type: object
+    PublicDebugAuthenticationHeadersResponse:
+      description: "Safe, non-sensitive diagnostics returned by the public auth debug\
+        \ endpoint."
+      example:
+        x_rh_identity_present: true
+        x_pulp_vpn_verified: true
+        x_pulp_vpn_access_present: true
+      properties:
+        x_rh_identity_present:
+          type: boolean
+        x_pulp_vpn_verified:
+          description: Whether the trusted X-Pulp-VPN-Verified assertion reached Pulp.
+          type: boolean
+        x_pulp_vpn_access_present:
+          type: boolean
+      required:
+      - x_pulp_vpn_access_present
+      - x_pulp_vpn_verified
+      - x_rh_identity_present
       type: object
     PublicationResponse:
       description: "Base serializer for use with [pulpcore.app.models.Model][]This\
@@ -86510,6 +87497,15 @@ components:
     container.ContainerDistribution:
       description: A serializer for ContainerDistribution.
       properties:
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
@@ -86529,15 +87525,6 @@ components:
           format: uri
           nullable: true
           type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -86560,49 +87547,26 @@ components:
     container.ContainerDistributionResponse:
       description: A serializer for ContainerDistribution.
       example:
-        pulp_labels:
-          key: pulp_labels
-        content_guard_prn: content_guard_prn
-        name: name
-        repository_version: https://openapi-generator.tech
-        repository: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        repository_version: https://openapi-generator.tech
+        prn: prn
+        pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
         base_path: base_path
         no_content_change_since: no_content_change_since
-        pulp_href: https://openapi-generator.tech
-        pulp_created: 2000-01-23T04:56:07.000+00:00
-        prn: prn
+        content_guard_prn: content_guard_prn
         registry_path: registry_path
         remote: https://openapi-generator.tech
         namespace: https://openapi-generator.tech
         private: true
         description: description
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -86612,11 +87576,42 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
             \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
+          readOnly: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         base_path:
@@ -86630,17 +87625,9 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
           readOnly: true
           type: string
         registry_path:
@@ -86730,6 +87717,15 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       properties:
+        content_guard:
+          description: "An optional content-guard. If none is specified, a default\
+            \ one will be used."
+          format: uri
+          type: string
+        hidden:
+          default: false
+          description: Whether this distribution should be shown in the content app.
+          type: boolean
         pulp_labels:
           additionalProperties:
             nullable: true
@@ -86749,15 +87745,6 @@ components:
           format: uri
           nullable: true
           type: string
-        content_guard:
-          description: "An optional content-guard. If none is specified, a default\
-            \ one will be used."
-          format: uri
-          type: string
-        hidden:
-          default: false
-          description: Whether this distribution should be shown in the content app.
-          type: boolean
         base_path:
           description: The base (relative) path component of the published url. Avoid
             paths that                     overlap with other distribution base paths
@@ -86793,20 +87780,20 @@ components:
       description: A serializer for a specialized pull-through distribution referencing
         sub-distributions.
       example:
-        pulp_labels:
-          key: pulp_labels
-        content_guard_prn: content_guard_prn
-        name: name
-        repository_version: https://openapi-generator.tech
-        repository: https://openapi-generator.tech
         content_guard: https://openapi-generator.tech
         hidden: false
+        pulp_labels:
+          key: pulp_labels
+        name: name
+        repository_version: https://openapi-generator.tech
+        prn: prn
+        pulp_created: 2000-01-23T04:56:07.000+00:00
         pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        repository: https://openapi-generator.tech
+        pulp_href: https://openapi-generator.tech
         base_path: base_path
         no_content_change_since: no_content_change_since
-        pulp_href: https://openapi-generator.tech
-        pulp_created: 2000-01-23T04:56:07.000+00:00
-        prn: prn
+        content_guard_prn: content_guard_prn
         remote: https://openapi-generator.tech
         distributions:
         - https://openapi-generator.tech
@@ -86815,29 +87802,6 @@ components:
         private: true
         description: description
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        content_guard_prn:
-          description: The Pulp Resource Name (PRN) of the associated optional content
-            guard.
-          readOnly: true
-          type: string
-        name:
-          description: "A unique name. Ex, `rawhide` and `stable`."
-          type: string
-        repository_version:
-          description: RepositoryVersion to be served
-          format: uri
-          nullable: true
-          type: string
-        repository:
-          description: The latest RepositoryVersion for this Repository will be served.
-          format: uri
-          nullable: true
-          type: string
         content_guard:
           description: "An optional content-guard. If none is specified, a default\
             \ one will be used."
@@ -86847,11 +87811,42 @@ components:
           default: false
           description: Whether this distribution should be shown in the content app.
           type: boolean
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        name:
+          description: "A unique name. Ex, `rawhide` and `stable`."
+          type: string
+        repository_version:
+          description: RepositoryVersion to be served
+          format: uri
+          nullable: true
+          type: string
+        prn:
+          description: The Pulp Resource Name (PRN).
+          readOnly: true
+          type: string
+        pulp_created:
+          description: Timestamp of creation.
+          format: date-time
+          readOnly: true
+          type: string
         pulp_last_updated:
           description: "Timestamp of the last time this resource was updated. Note:\
             \ for immutable resources - like content, repository versions, and publication\
             \ - pulp_created and pulp_last_updated dates will be the same."
           format: date-time
+          readOnly: true
+          type: string
+        repository:
+          description: The latest RepositoryVersion for this Repository will be served.
+          format: uri
+          nullable: true
+          type: string
+        pulp_href:
+          format: uri
           readOnly: true
           type: string
         base_path:
@@ -86865,17 +87860,9 @@ components:
             \ about content changes."
           readOnly: true
           type: string
-        pulp_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_created:
-          description: Timestamp of creation.
-          format: date-time
-          readOnly: true
-          type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
+        content_guard_prn:
+          description: The Pulp Resource Name (PRN) of the associated optional content
+            guard.
           readOnly: true
           type: string
         remote:
@@ -87230,15 +88217,6 @@ components:
     container.ContainerPushRepository:
       description: Serializer for Container Push Repositories.
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        name:
-          description: A unique name for this repository.
-          minLength: 1
-          type: string
         retain_checkpoints:
           description: Retain X checkpoint publications for the repository. Default
             is null which retains all checkpoints.
@@ -87246,14 +88224,18 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        name:
+          description: A unique name for this repository.
+          minLength: 1
+          type: string
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
         manifest_signing_service:
           description: A reference to an associated signing service.
           format: uri
-          nullable: true
-          type: string
-        description:
-          description: An optional description.
-          minLength: 1
           nullable: true
           type: string
         retain_repo_versions:
@@ -87263,49 +88245,31 @@ components:
           minimum: 1
           nullable: true
           type: integer
+        description:
+          description: An optional description.
+          minLength: 1
+          nullable: true
+          type: string
       required:
       - name
       type: object
     container.ContainerPushRepositoryResponse:
       description: Serializer for Container Push Repositories.
       example:
+        retain_checkpoints: 1
+        name: name
         pulp_labels:
           key: pulp_labels
-        name: name
-        versions_href: https://openapi-generator.tech
-        latest_version_href: https://openapi-generator.tech
-        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
-        retain_checkpoints: 1
-        manifest_signing_service: https://openapi-generator.tech
-        description: description
-        retain_repo_versions: 1
-        pulp_href: https://openapi-generator.tech
-        pulp_created: 2000-01-23T04:56:07.000+00:00
         prn: prn
+        pulp_created: 2000-01-23T04:56:07.000+00:00
+        manifest_signing_service: https://openapi-generator.tech
+        latest_version_href: https://openapi-generator.tech
+        retain_repo_versions: 1
+        pulp_last_updated: 2000-01-23T04:56:07.000+00:00
+        description: description
+        pulp_href: https://openapi-generator.tech
+        versions_href: https://openapi-generator.tech
       properties:
-        pulp_labels:
-          additionalProperties:
-            nullable: true
-            type: string
-          type: object
-        name:
-          description: A unique name for this repository.
-          type: string
-        versions_href:
-          format: uri
-          readOnly: true
-          type: string
-        latest_version_href:
-          format: uri
-          readOnly: true
-          type: string
-        pulp_last_updated:
-          description: "Timestamp of the last time this resource was updated. Note:\
-            \ for immutable resources - like content, repository versions, and publication\
-            \ - pulp_created and pulp_last_updated dates will be the same."
-          format: date-time
-          readOnly: true
-          type: string
         retain_checkpoints:
           description: Retain X checkpoint publications for the repository. Default
             is null which retains all checkpoints.
@@ -87313,24 +88277,16 @@ components:
           minimum: 1
           nullable: true
           type: integer
-        manifest_signing_service:
-          description: A reference to an associated signing service.
-          format: uri
-          nullable: true
+        name:
+          description: A unique name for this repository.
           type: string
-        description:
-          description: An optional description.
-          nullable: true
-          type: string
-        retain_repo_versions:
-          description: Retain X versions of the repository. Default is null which
-            retains all versions.
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-        pulp_href:
-          format: uri
+        pulp_labels:
+          additionalProperties:
+            nullable: true
+            type: string
+          type: object
+        prn:
+          description: The Pulp Resource Name (PRN).
           readOnly: true
           type: string
         pulp_created:
@@ -87338,8 +88294,39 @@ components:
           format: date-time
           readOnly: true
           type: string
-        prn:
-          description: The Pulp Resource Name (PRN).
+        manifest_signing_service:
+          description: A reference to an associated signing service.
+          format: uri
+          nullable: true
+          type: string
+        latest_version_href:
+          format: uri
+          readOnly: true
+          type: string
+        retain_repo_versions:
+          description: Retain X versions of the repository. Default is null which
+            retains all versions.
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        pulp_last_updated:
+          description: "Timestamp of the last time this resource was updated. Note:\
+            \ for immutable resources - like content, repository versions, and publication\
+            \ - pulp_created and pulp_last_updated dates will be the same."
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: An optional description.
+          nullable: true
+          type: string
+        pulp_href:
+          format: uri
+          readOnly: true
+          type: string
+        versions_href:
+          format: uri
           readOnly: true
           type: string
       required:

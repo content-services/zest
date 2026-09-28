@@ -21,6 +21,10 @@ var _ MappedNullable = &ContainerContainerDistribution{}
 
 // ContainerContainerDistribution A serializer for ContainerDistribution.
 type ContainerContainerDistribution struct {
+	// An optional content-guard. If none is specified, a default one will be used.
+	ContentGuard *string `json:"content_guard,omitempty"`
+	// Whether this distribution should be shown in the content app.
+	Hidden *bool `json:"hidden,omitempty"`
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	// A unique name. Ex, `rawhide` and `stable`.
 	Name string `json:"name"`
@@ -28,10 +32,6 @@ type ContainerContainerDistribution struct {
 	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// The latest RepositoryVersion for this Repository will be served.
 	Repository NullableString `json:"repository,omitempty"`
-	// An optional content-guard. If none is specified, a default one will be used.
-	ContentGuard *string `json:"content_guard,omitempty"`
-	// Whether this distribution should be shown in the content app.
-	Hidden *bool `json:"hidden,omitempty"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
 	// Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access.
@@ -49,9 +49,9 @@ type _ContainerContainerDistribution ContainerContainerDistribution
 // will change when the set of required properties is changed
 func NewContainerContainerDistribution(name string, basePath string) *ContainerContainerDistribution {
 	this := ContainerContainerDistribution{}
-	this.Name = name
 	var hidden bool = false
 	this.Hidden = &hidden
+	this.Name = name
 	this.BasePath = basePath
 	return &this
 }
@@ -64,6 +64,70 @@ func NewContainerContainerDistributionWithDefaults() *ContainerContainerDistribu
 	var hidden bool = false
 	this.Hidden = &hidden
 	return &this
+}
+
+// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
+func (o *ContainerContainerDistribution) GetContentGuard() string {
+	if o == nil || IsNil(o.ContentGuard) {
+		var ret string
+		return ret
+	}
+	return *o.ContentGuard
+}
+
+// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistribution) GetContentGuardOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuard) {
+		return nil, false
+	}
+	return o.ContentGuard, true
+}
+
+// HasContentGuard returns a boolean if a field has been set.
+func (o *ContainerContainerDistribution) HasContentGuard() bool {
+	if o != nil && !IsNil(o.ContentGuard) {
+		return true
+	}
+
+	return false
+}
+
+// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
+func (o *ContainerContainerDistribution) SetContentGuard(v string) {
+	o.ContentGuard = &v
+}
+
+// GetHidden returns the Hidden field value if set, zero value otherwise.
+func (o *ContainerContainerDistribution) GetHidden() bool {
+	if o == nil || IsNil(o.Hidden) {
+		var ret bool
+		return ret
+	}
+	return *o.Hidden
+}
+
+// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistribution) GetHiddenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Hidden) {
+		return nil, false
+	}
+	return o.Hidden, true
+}
+
+// HasHidden returns a boolean if a field has been set.
+func (o *ContainerContainerDistribution) HasHidden() bool {
+	if o != nil && !IsNil(o.Hidden) {
+		return true
+	}
+
+	return false
+}
+
+// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
+func (o *ContainerContainerDistribution) SetHidden(v bool) {
+	o.Hidden = &v
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -206,70 +270,6 @@ func (o *ContainerContainerDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
-// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
-func (o *ContainerContainerDistribution) GetContentGuard() string {
-	if o == nil || IsNil(o.ContentGuard) {
-		var ret string
-		return ret
-	}
-	return *o.ContentGuard
-}
-
-// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetContentGuardOk() (*string, bool) {
-	if o == nil || IsNil(o.ContentGuard) {
-		return nil, false
-	}
-	return o.ContentGuard, true
-}
-
-// HasContentGuard returns a boolean if a field has been set.
-func (o *ContainerContainerDistribution) HasContentGuard() bool {
-	if o != nil && !IsNil(o.ContentGuard) {
-		return true
-	}
-
-	return false
-}
-
-// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
-func (o *ContainerContainerDistribution) SetContentGuard(v string) {
-	o.ContentGuard = &v
-}
-
-// GetHidden returns the Hidden field value if set, zero value otherwise.
-func (o *ContainerContainerDistribution) GetHidden() bool {
-	if o == nil || IsNil(o.Hidden) {
-		var ret bool
-		return ret
-	}
-	return *o.Hidden
-}
-
-// GetHiddenOk returns a tuple with the Hidden field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetHiddenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Hidden) {
-		return nil, false
-	}
-	return o.Hidden, true
-}
-
-// HasHidden returns a boolean if a field has been set.
-func (o *ContainerContainerDistribution) HasHidden() bool {
-	if o != nil && !IsNil(o.Hidden) {
-		return true
-	}
-
-	return false
-}
-
-// SetHidden gets a reference to the given bool and assigns it to the Hidden field.
-func (o *ContainerContainerDistribution) SetHidden(v bool) {
-	o.Hidden = &v
-}
-
 // GetBasePath returns the BasePath field value
 func (o *ContainerContainerDistribution) GetBasePath() string {
 	if o == nil {
@@ -378,6 +378,12 @@ func (o ContainerContainerDistribution) MarshalJSON() ([]byte, error) {
 
 func (o ContainerContainerDistribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ContentGuard) {
+		toSerialize["content_guard"] = o.ContentGuard
+	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
@@ -387,12 +393,6 @@ func (o ContainerContainerDistribution) ToMap() (map[string]interface{}, error) 
 	}
 	if o.Repository.IsSet() {
 		toSerialize["repository"] = o.Repository.Get()
-	}
-	if !IsNil(o.ContentGuard) {
-		toSerialize["content_guard"] = o.ContentGuard
-	}
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
 	}
 	toSerialize["base_path"] = o.BasePath
 	if !IsNil(o.Private) {
@@ -445,12 +445,12 @@ func (o *ContainerContainerDistribution) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content_guard")
+		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "repository_version")
 		delete(additionalProperties, "repository")
-		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "private")
 		delete(additionalProperties, "description")

@@ -148,13 +148,13 @@ func (r ContentguardsAPIContentguardsListRequest) PulpIdIn(pulpIdIn []string) Co
 	return r
 }
 
-// Pulp type* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509
+// Pulp type* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.envvar_header&#x60; - core.envvar_header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509
 func (r ContentguardsAPIContentguardsListRequest) PulpType(pulpType string) ContentguardsAPIContentguardsListRequest {
 	r.pulpType = &pulpType
 	return r
 }
 
-// Multiple values may be separated by commas.* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509
+// Multiple values may be separated by commas.* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.envvar_header&#x60; - core.envvar_header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509
 func (r ContentguardsAPIContentguardsListRequest) PulpTypeIn(pulpTypeIn []string) ContentguardsAPIContentguardsListRequest {
 	r.pulpTypeIn = &pulpTypeIn
 	return r
