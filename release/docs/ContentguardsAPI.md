@@ -46,8 +46,8 @@ func main() {
 	prnIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpHrefIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	pulpIdIn := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
-	pulpType := "pulpType_example" // string | Pulp type* `core.rbac` - core.rbac* `core.content_redirect` - core.content_redirect* `core.header` - core.header* `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509 (optional)
-	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.rbac` - core.rbac* `core.content_redirect` - core.content_redirect* `core.header` - core.header* `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509 (optional)
+	pulpType := "pulpType_example" // string | Pulp type* `core.rbac` - core.rbac* `core.content_redirect` - core.content_redirect* `core.header` - core.header* `core.envvar_header` - core.envvar_header* `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509 (optional)
+	pulpTypeIn := []string{"PulpTypeIn_example"} // []string | Multiple values may be separated by commas.* `core.rbac` - core.rbac* `core.content_redirect` - core.content_redirect* `core.header` - core.header* `core.envvar_header` - core.envvar_header* `core.composite` - core.composite* `certguard.rhsm` - certguard.rhsm* `certguard.x509` - certguard.x509 (optional)
 	q := "q_example" // string | Filter results by using NOT, AND and OR operations on other filters (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
@@ -96,8 +96,8 @@ Name | Type | Description  | Notes
  **prnIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpHrefIn** | **[]string** | Multiple values may be separated by commas. | 
  **pulpIdIn** | **[]string** | Multiple values may be separated by commas. | 
- **pulpType** | **string** | Pulp type* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509 | 
- **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509 | 
+ **pulpType** | **string** | Pulp type* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.envvar_header&#x60; - core.envvar_header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509 | 
+ **pulpTypeIn** | **[]string** | Multiple values may be separated by commas.* &#x60;core.rbac&#x60; - core.rbac* &#x60;core.content_redirect&#x60; - core.content_redirect* &#x60;core.header&#x60; - core.header* &#x60;core.envvar_header&#x60; - core.envvar_header* &#x60;core.composite&#x60; - core.composite* &#x60;certguard.rhsm&#x60; - certguard.rhsm* &#x60;certguard.x509&#x60; - certguard.x509 | 
  **q** | **string** | Filter results by using NOT, AND and OR operations on other filters | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
