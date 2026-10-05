@@ -11,6 +11,7 @@ api_api_debug_auth_header.go
 api_api_debug_cleanup_stale_locks.go
 api_api_debug_database_triggers.go
 api_api_debug_domainorg_backfill_report.go
+api_api_debug_domainorg_rbac_report.go
 api_api_debug_flush_content_cache.go
 api_api_debug_release_task_locks.go
 api_api_debug_stale_locks.go
@@ -183,6 +184,7 @@ docs/ApiDebugAuthHeaderAPI.md
 docs/ApiDebugCleanupStaleLocksAPI.md
 docs/ApiDebugDatabaseTriggersAPI.md
 docs/ApiDebugDomainorgBackfillReportAPI.md
+docs/ApiDebugDomainorgRbacReportAPI.md
 docs/ApiDebugFlushContentCacheAPI.md
 docs/ApiDebugReleaseTaskLocksAPI.md
 docs/ApiDebugStaleLocksAPI.md
@@ -1289,6 +1291,7 @@ test/api_api_debug_auth_header_test.go
 test/api_api_debug_cleanup_stale_locks_test.go
 test/api_api_debug_database_triggers_test.go
 test/api_api_debug_domainorg_backfill_report_test.go
+test/api_api_debug_domainorg_rbac_report_test.go
 test/api_api_debug_flush_content_cache_test.go
 test/api_api_debug_release_task_locks_test.go
 test/api_api_debug_stale_locks_test.go
