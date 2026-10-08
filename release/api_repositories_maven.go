@@ -1949,6 +1949,166 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesExecute(r Re
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+	repositoryVersion *string
+	fields *[]string
+	excludeFields *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// HREF or PRN of a version of this repository. Defaults to the latest complete version.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) RepositoryVersion(repositoryVersion string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.repositoryVersion = &repositoryVersion
+	return r
+}
+
+// A list of fields to include in the response.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Fields(fields []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.fields = &fields
+	return r
+}
+
+// A list of fields to exclude from the response.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) ExcludeFields(excludeFields []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.excludeFields = &excludeFields
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Execute() (*PaginatedMavenRepositoryFlatPackageListResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenPackagesFlatExecute(r)
+}
+
+/*
+RepositoriesMavenMavenPackagesFlat List packages (flat)
+
+Return one MavenPackage row per stored GAV in a repository version (latest complete version if repository_version is omitted). version is the stored string, so rebuilds are separate rows. Pagination count is the number of GAVs. description is an empty string when the POM has none. licenses is an empty list when the POM has none. Ordered by group_id, artifact_id, version in byte order.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlat(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedMavenRepositoryFlatPackageListResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlatExecute(r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) (*PaginatedMavenRepositoryFlatPackageListResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedMavenRepositoryFlatPackageListResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenPackagesFlat")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}packages/flat/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.repositoryVersion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
+	}
+	if r.fields != nil {
+		t := *r.fields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "fields", t, "form", "multi")
+		}
+	}
+	if r.excludeFields != nil {
+		t := *r.excludeFields
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_fields", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type RepositoriesMavenAPIRepositoriesMavenMavenPartialUpdateRequest struct {
 	ctx context.Context
 	ApiService *RepositoriesMavenAPIService
