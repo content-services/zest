@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**RepositoriesMavenMavenModify**](RepositoriesMavenAPI.md#RepositoriesMavenMavenModify) | **Post** /{maven_maven_repository_href}modify/ | Modify Repository Content
 [**RepositoriesMavenMavenMyPermissions**](RepositoriesMavenAPI.md#RepositoriesMavenMavenMyPermissions) | **Get** /{maven_maven_repository_href}my_permissions/ | List user permissions
 [**RepositoriesMavenMavenPackages**](RepositoriesMavenAPI.md#RepositoriesMavenMavenPackages) | **Get** /{maven_maven_repository_href}packages/ | List packages
+[**RepositoriesMavenMavenPackagesFlat**](RepositoriesMavenAPI.md#RepositoriesMavenMavenPackagesFlat) | **Get** /{maven_maven_repository_href}packages/flat/ | List packages (flat)
 [**RepositoriesMavenMavenPartialUpdate**](RepositoriesMavenAPI.md#RepositoriesMavenMavenPartialUpdate) | **Patch** /{maven_maven_repository_href} | Update a maven repository
 [**RepositoriesMavenMavenPathIndexStatus**](RepositoriesMavenAPI.md#RepositoriesMavenMavenPathIndexStatus) | **Get** /{maven_maven_repository_href}path_index_status/ | 
 [**RepositoriesMavenMavenRead**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRead) | **Get** /{maven_maven_repository_href} | Inspect a maven repository
@@ -920,6 +921,84 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedMavenRepositoryPackageListResponse**](PaginatedMavenRepositoryPackageListResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RepositoriesMavenMavenPackagesFlat
+
+> PaginatedMavenRepositoryFlatPackageListResponse RepositoriesMavenMavenPackagesFlat(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+
+List packages (flat)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	mavenMavenRepositoryHref := "mavenMavenRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
+	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
+	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesMavenMavenPackagesFlat`: PaginatedMavenRepositoryFlatPackageListResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**mavenMavenRepositoryHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRepositoriesMavenMavenPackagesFlatRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
+ **fields** | **[]string** | A list of fields to include in the response. | 
+ **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
+
+### Return type
+
+[**PaginatedMavenRepositoryFlatPackageListResponse**](PaginatedMavenRepositoryFlatPackageListResponse.md)
 
 ### Authorization
 

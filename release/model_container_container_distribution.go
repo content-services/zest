@@ -21,17 +21,17 @@ var _ MappedNullable = &ContainerContainerDistribution{}
 
 // ContainerContainerDistribution A serializer for ContainerDistribution.
 type ContainerContainerDistribution struct {
-	// RepositoryVersion to be served
-	RepositoryVersion NullableString `json:"repository_version,omitempty"`
-	// The latest RepositoryVersion for this Repository will be served.
-	Repository NullableString `json:"repository,omitempty"`
 	// An optional content-guard. If none is specified, a default one will be used.
 	ContentGuard *string `json:"content_guard,omitempty"`
-	// A unique name. Ex, `rawhide` and `stable`.
-	Name string `json:"name"`
+	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	// The latest RepositoryVersion for this Repository will be served.
+	Repository NullableString `json:"repository,omitempty"`
+	// RepositoryVersion to be served
+	RepositoryVersion NullableString `json:"repository_version,omitempty"`
 	// Whether this distribution should be shown in the content app.
 	Hidden *bool `json:"hidden,omitempty"`
-	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
+	// A unique name. Ex, `rawhide` and `stable`.
+	Name string `json:"name"`
 	// The base (relative) path component of the published url. Avoid paths that                     overlap with other distribution base paths (e.g. \"foo\" and \"foo/bar\")
 	BasePath string `json:"base_path"`
 	// Restrict pull access to explicitly authorized users. Defaults to unrestricted pull access.
@@ -49,9 +49,9 @@ type _ContainerContainerDistribution ContainerContainerDistribution
 // will change when the set of required properties is changed
 func NewContainerContainerDistribution(name string, basePath string) *ContainerContainerDistribution {
 	this := ContainerContainerDistribution{}
-	this.Name = name
 	var hidden bool = false
 	this.Hidden = &hidden
+	this.Name = name
 	this.BasePath = basePath
 	return &this
 }
@@ -66,46 +66,68 @@ func NewContainerContainerDistributionWithDefaults() *ContainerContainerDistribu
 	return &this
 }
 
-// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContainerContainerDistribution) GetRepositoryVersion() string {
-	if o == nil || IsNil(o.RepositoryVersion.Get()) {
+// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
+func (o *ContainerContainerDistribution) GetContentGuard() string {
+	if o == nil || IsNil(o.ContentGuard) {
 		var ret string
 		return ret
 	}
-	return *o.RepositoryVersion.Get()
+	return *o.ContentGuard
 }
 
-// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
+// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContainerContainerDistribution) GetRepositoryVersionOk() (*string, bool) {
-	if o == nil {
+func (o *ContainerContainerDistribution) GetContentGuardOk() (*string, bool) {
+	if o == nil || IsNil(o.ContentGuard) {
 		return nil, false
 	}
-	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
+	return o.ContentGuard, true
 }
 
-// HasRepositoryVersion returns a boolean if a field has been set.
-func (o *ContainerContainerDistribution) HasRepositoryVersion() bool {
-	if o != nil && o.RepositoryVersion.IsSet() {
+// HasContentGuard returns a boolean if a field has been set.
+func (o *ContainerContainerDistribution) HasContentGuard() bool {
+	if o != nil && !IsNil(o.ContentGuard) {
 		return true
 	}
 
 	return false
 }
 
-// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
-func (o *ContainerContainerDistribution) SetRepositoryVersion(v string) {
-	o.RepositoryVersion.Set(&v)
-}
-// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
-func (o *ContainerContainerDistribution) SetRepositoryVersionNil() {
-	o.RepositoryVersion.Set(nil)
+// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
+func (o *ContainerContainerDistribution) SetContentGuard(v string) {
+	o.ContentGuard = &v
 }
 
-// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
-func (o *ContainerContainerDistribution) UnsetRepositoryVersion() {
-	o.RepositoryVersion.Unset()
+// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
+func (o *ContainerContainerDistribution) GetPulpLabels() map[string]*string {
+	if o == nil || IsNil(o.PulpLabels) {
+		var ret map[string]*string
+		return ret
+	}
+	return *o.PulpLabels
+}
+
+// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContainerContainerDistribution) GetPulpLabelsOk() (*map[string]*string, bool) {
+	if o == nil || IsNil(o.PulpLabels) {
+		return nil, false
+	}
+	return o.PulpLabels, true
+}
+
+// HasPulpLabels returns a boolean if a field has been set.
+func (o *ContainerContainerDistribution) HasPulpLabels() bool {
+	if o != nil && !IsNil(o.PulpLabels) {
+		return true
+	}
+
+	return false
+}
+
+// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
+func (o *ContainerContainerDistribution) SetPulpLabels(v map[string]*string) {
+	o.PulpLabels = &v
 }
 
 // GetRepository returns the Repository field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -150,60 +172,46 @@ func (o *ContainerContainerDistribution) UnsetRepository() {
 	o.Repository.Unset()
 }
 
-// GetContentGuard returns the ContentGuard field value if set, zero value otherwise.
-func (o *ContainerContainerDistribution) GetContentGuard() string {
-	if o == nil || IsNil(o.ContentGuard) {
+// GetRepositoryVersion returns the RepositoryVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContainerContainerDistribution) GetRepositoryVersion() string {
+	if o == nil || IsNil(o.RepositoryVersion.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ContentGuard
+	return *o.RepositoryVersion.Get()
 }
 
-// GetContentGuardOk returns a tuple with the ContentGuard field value if set, nil otherwise
+// GetRepositoryVersionOk returns a tuple with the RepositoryVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetContentGuardOk() (*string, bool) {
-	if o == nil || IsNil(o.ContentGuard) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContainerContainerDistribution) GetRepositoryVersionOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ContentGuard, true
+	return o.RepositoryVersion.Get(), o.RepositoryVersion.IsSet()
 }
 
-// HasContentGuard returns a boolean if a field has been set.
-func (o *ContainerContainerDistribution) HasContentGuard() bool {
-	if o != nil && !IsNil(o.ContentGuard) {
+// HasRepositoryVersion returns a boolean if a field has been set.
+func (o *ContainerContainerDistribution) HasRepositoryVersion() bool {
+	if o != nil && o.RepositoryVersion.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetContentGuard gets a reference to the given string and assigns it to the ContentGuard field.
-func (o *ContainerContainerDistribution) SetContentGuard(v string) {
-	o.ContentGuard = &v
+// SetRepositoryVersion gets a reference to the given NullableString and assigns it to the RepositoryVersion field.
+func (o *ContainerContainerDistribution) SetRepositoryVersion(v string) {
+	o.RepositoryVersion.Set(&v)
+}
+// SetRepositoryVersionNil sets the value for RepositoryVersion to be an explicit nil
+func (o *ContainerContainerDistribution) SetRepositoryVersionNil() {
+	o.RepositoryVersion.Set(nil)
 }
 
-// GetName returns the Name field value
-func (o *ContainerContainerDistribution) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ContainerContainerDistribution) SetName(v string) {
-	o.Name = v
+// UnsetRepositoryVersion ensures that no value is present for RepositoryVersion, not even an explicit nil
+func (o *ContainerContainerDistribution) UnsetRepositoryVersion() {
+	o.RepositoryVersion.Unset()
 }
 
 // GetHidden returns the Hidden field value if set, zero value otherwise.
@@ -238,36 +246,28 @@ func (o *ContainerContainerDistribution) SetHidden(v bool) {
 	o.Hidden = &v
 }
 
-// GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
-func (o *ContainerContainerDistribution) GetPulpLabels() map[string]*string {
-	if o == nil || IsNil(o.PulpLabels) {
-		var ret map[string]*string
+// GetName returns the Name field value
+func (o *ContainerContainerDistribution) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.PulpLabels
+
+	return o.Name
 }
 
-// GetPulpLabelsOk returns a tuple with the PulpLabels field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ContainerContainerDistribution) GetPulpLabelsOk() (*map[string]*string, bool) {
-	if o == nil || IsNil(o.PulpLabels) {
+func (o *ContainerContainerDistribution) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PulpLabels, true
+	return &o.Name, true
 }
 
-// HasPulpLabels returns a boolean if a field has been set.
-func (o *ContainerContainerDistribution) HasPulpLabels() bool {
-	if o != nil && !IsNil(o.PulpLabels) {
-		return true
-	}
-
-	return false
-}
-
-// SetPulpLabels gets a reference to the given map[string]*string and assigns it to the PulpLabels field.
-func (o *ContainerContainerDistribution) SetPulpLabels(v map[string]*string) {
-	o.PulpLabels = &v
+// SetName sets field value
+func (o *ContainerContainerDistribution) SetName(v string) {
+	o.Name = v
 }
 
 // GetBasePath returns the BasePath field value
@@ -378,22 +378,22 @@ func (o ContainerContainerDistribution) MarshalJSON() ([]byte, error) {
 
 func (o ContainerContainerDistribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RepositoryVersion.IsSet() {
-		toSerialize["repository_version"] = o.RepositoryVersion.Get()
-	}
-	if o.Repository.IsSet() {
-		toSerialize["repository"] = o.Repository.Get()
-	}
 	if !IsNil(o.ContentGuard) {
 		toSerialize["content_guard"] = o.ContentGuard
-	}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Hidden) {
-		toSerialize["hidden"] = o.Hidden
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
 	}
+	if o.Repository.IsSet() {
+		toSerialize["repository"] = o.Repository.Get()
+	}
+	if o.RepositoryVersion.IsSet() {
+		toSerialize["repository_version"] = o.RepositoryVersion.Get()
+	}
+	if !IsNil(o.Hidden) {
+		toSerialize["hidden"] = o.Hidden
+	}
+	toSerialize["name"] = o.Name
 	toSerialize["base_path"] = o.BasePath
 	if !IsNil(o.Private) {
 		toSerialize["private"] = o.Private
@@ -445,12 +445,12 @@ func (o *ContainerContainerDistribution) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "repository_version")
-		delete(additionalProperties, "repository")
 		delete(additionalProperties, "content_guard")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "hidden")
 		delete(additionalProperties, "pulp_labels")
+		delete(additionalProperties, "repository")
+		delete(additionalProperties, "repository_version")
+		delete(additionalProperties, "hidden")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "base_path")
 		delete(additionalProperties, "private")
 		delete(additionalProperties, "description")
