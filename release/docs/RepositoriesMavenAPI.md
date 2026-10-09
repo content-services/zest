@@ -938,7 +938,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesMavenMavenPackagesFlat
 
-> PaginatedMavenRepositoryFlatPackageListResponse RepositoriesMavenMavenPackagesFlat(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedMavenRepositoryFlatPackageResponseList RepositoriesMavenMavenPackagesFlat(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages (flat)
 
@@ -959,18 +959,20 @@ import (
 func main() {
 	mavenMavenRepositoryHref := "mavenMavenRepositoryHref_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+	limit := int32(56) // int32 | Number of results to return per page. (optional)
+	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RepositoriesMavenMavenPackagesFlat`: PaginatedMavenRepositoryFlatPackageListResponse
+	// response from `RepositoriesMavenMavenPackagesFlat`: PaginatedMavenRepositoryFlatPackageResponseList
 	fmt.Fprintf(os.Stdout, "Response from `RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat`: %v\n", resp)
 }
 ```
@@ -992,13 +994,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+ **limit** | **int32** | Number of results to return per page. | 
+ **offset** | **int32** | The initial index from which to return the results. | 
  **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 
 ### Return type
 
-[**PaginatedMavenRepositoryFlatPackageListResponse**](PaginatedMavenRepositoryFlatPackageListResponse.md)
+[**PaginatedMavenRepositoryFlatPackageResponseList**](PaginatedMavenRepositoryFlatPackageResponseList.md)
 
 ### Authorization
 

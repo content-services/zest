@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
-**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
-**Name** | **string** | A unique name for this repository. | 
 **ManifestSigningService** | Pointer to **NullableString** | A reference to an associated signing service. | [optional] 
 **Description** | Pointer to **NullableString** | An optional description. | [optional] 
 **RetainRepoVersions** | Pointer to **NullableInt64** | Retain X versions of the repository. Default is null which retains all versions. | [optional] 
+**Name** | **string** | A unique name for this repository. | 
+**RetainCheckpoints** | Pointer to **NullableInt64** | Retain X checkpoint publications for the repository. Default is null which retains all checkpoints. | [optional] 
 
 ## Methods
 
@@ -54,61 +54,6 @@ SetPulpLabels sets PulpLabels field to given value.
 `func (o *ContainerContainerPushRepository) HasPulpLabels() bool`
 
 HasPulpLabels returns a boolean if a field has been set.
-
-### GetRetainCheckpoints
-
-`func (o *ContainerContainerPushRepository) GetRetainCheckpoints() int64`
-
-GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
-
-### GetRetainCheckpointsOk
-
-`func (o *ContainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool)`
-
-GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetainCheckpoints
-
-`func (o *ContainerContainerPushRepository) SetRetainCheckpoints(v int64)`
-
-SetRetainCheckpoints sets RetainCheckpoints field to given value.
-
-### HasRetainCheckpoints
-
-`func (o *ContainerContainerPushRepository) HasRetainCheckpoints() bool`
-
-HasRetainCheckpoints returns a boolean if a field has been set.
-
-### SetRetainCheckpointsNil
-
-`func (o *ContainerContainerPushRepository) SetRetainCheckpointsNil(b bool)`
-
- SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
-
-### UnsetRetainCheckpoints
-`func (o *ContainerContainerPushRepository) UnsetRetainCheckpoints()`
-
-UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
-### GetName
-
-`func (o *ContainerContainerPushRepository) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ContainerContainerPushRepository) SetName(v string)`
-
-SetName sets Name field to given value.
-
 
 ### GetManifestSigningService
 
@@ -215,6 +160,61 @@ HasRetainRepoVersions returns a boolean if a field has been set.
 `func (o *ContainerContainerPushRepository) UnsetRetainRepoVersions()`
 
 UnsetRetainRepoVersions ensures that no value is present for RetainRepoVersions, not even an explicit nil
+### GetName
+
+`func (o *ContainerContainerPushRepository) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ContainerContainerPushRepository) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ContainerContainerPushRepository) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetRetainCheckpoints
+
+`func (o *ContainerContainerPushRepository) GetRetainCheckpoints() int64`
+
+GetRetainCheckpoints returns the RetainCheckpoints field if non-nil, zero value otherwise.
+
+### GetRetainCheckpointsOk
+
+`func (o *ContainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool)`
+
+GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetainCheckpoints
+
+`func (o *ContainerContainerPushRepository) SetRetainCheckpoints(v int64)`
+
+SetRetainCheckpoints sets RetainCheckpoints field to given value.
+
+### HasRetainCheckpoints
+
+`func (o *ContainerContainerPushRepository) HasRetainCheckpoints() bool`
+
+HasRetainCheckpoints returns a boolean if a field has been set.
+
+### SetRetainCheckpointsNil
+
+`func (o *ContainerContainerPushRepository) SetRetainCheckpointsNil(b bool)`
+
+ SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+
+### UnsetRetainCheckpoints
+`func (o *ContainerContainerPushRepository) UnsetRetainCheckpoints()`
+
+UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1954,6 +1954,8 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest struct {
 	ApiService *RepositoriesMavenAPIService
 	mavenMavenRepositoryHref string
 	xTaskDiagnostics *[]string
+	limit *int32
+	offset *int32
 	repositoryVersion *string
 	fields *[]string
 	excludeFields *[]string
@@ -1962,6 +1964,18 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest struct {
 // List of profilers to use on tasks.
 func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
 	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+// Number of results to return per page.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Limit(limit int32) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.limit = &limit
+	return r
+}
+
+// The initial index from which to return the results.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Offset(offset int32) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.offset = &offset
 	return r
 }
 
@@ -1983,7 +1997,7 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) ExcludeFi
 	return r
 }
 
-func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Execute() (*PaginatedMavenRepositoryFlatPackageListResponse, *http.Response, error) {
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Execute() (*PaginatedMavenRepositoryFlatPackageResponseList, *http.Response, error) {
 	return r.ApiService.RepositoriesMavenMavenPackagesFlatExecute(r)
 }
 
@@ -2005,13 +2019,13 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlat(ctx con
 }
 
 // Execute executes the request
-//  @return PaginatedMavenRepositoryFlatPackageListResponse
-func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlatExecute(r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) (*PaginatedMavenRepositoryFlatPackageListResponse, *http.Response, error) {
+//  @return PaginatedMavenRepositoryFlatPackageResponseList
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlatExecute(r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) (*PaginatedMavenRepositoryFlatPackageResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedMavenRepositoryFlatPackageListResponse
+		localVarReturnValue  *PaginatedMavenRepositoryFlatPackageResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenPackagesFlat")
@@ -2027,6 +2041,12 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlatExecute(
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
 	}
