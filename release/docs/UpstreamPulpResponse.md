@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
+**RemotePolicy** | Pointer to [**NullableRemotePolicyEnum**](RemotePolicyEnum.md) | Download policy for remotes created during replication. One of &#39;immediate&#39;, &#39;on_demand&#39;, or &#39;streamed&#39;. Distinct from &#39;policy&#39;, which controls how replicate manages local objects. Defaults to the Remote default (&#39;immediate&#39;) when unset.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] 
 **HiddenFields** | Pointer to [**[]GenericRemoteResponseHiddenFieldsInner**](GenericRemoteResponseHiddenFieldsInner.md) | List of hidden (write only) fields | [optional] [readonly] 
 **QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
 **LastReplication** | Pointer to **time.Time** | Timestamp of the last replication that occurred. Equals to &#39;null&#39; if no replication task has been executed. | [optional] [readonly] 
@@ -545,6 +546,41 @@ HasSockReadTimeout returns a boolean if a field has been set.
 `func (o *UpstreamPulpResponse) UnsetSockReadTimeout()`
 
 UnsetSockReadTimeout ensures that no value is present for SockReadTimeout, not even an explicit nil
+### GetRemotePolicy
+
+`func (o *UpstreamPulpResponse) GetRemotePolicy() RemotePolicyEnum`
+
+GetRemotePolicy returns the RemotePolicy field if non-nil, zero value otherwise.
+
+### GetRemotePolicyOk
+
+`func (o *UpstreamPulpResponse) GetRemotePolicyOk() (*RemotePolicyEnum, bool)`
+
+GetRemotePolicyOk returns a tuple with the RemotePolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemotePolicy
+
+`func (o *UpstreamPulpResponse) SetRemotePolicy(v RemotePolicyEnum)`
+
+SetRemotePolicy sets RemotePolicy field to given value.
+
+### HasRemotePolicy
+
+`func (o *UpstreamPulpResponse) HasRemotePolicy() bool`
+
+HasRemotePolicy returns a boolean if a field has been set.
+
+### SetRemotePolicyNil
+
+`func (o *UpstreamPulpResponse) SetRemotePolicyNil(b bool)`
+
+ SetRemotePolicyNil sets the value for RemotePolicy to be an explicit nil
+
+### UnsetRemotePolicy
+`func (o *UpstreamPulpResponse) UnsetRemotePolicy()`
+
+UnsetRemotePolicy ensures that no value is present for RemotePolicy, not even an explicit nil
 ### GetHiddenFields
 
 `func (o *UpstreamPulpResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner`

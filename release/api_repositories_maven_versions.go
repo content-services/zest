@@ -321,7 +321,7 @@ func (r RepositoriesMavenVersionsAPIRepositoriesMavenMavenVersionsListRequest) E
 /*
 RepositoriesMavenMavenVersionsList List repository versions
 
-MavenRepositoryVersion represents a single Maven repository version.
+MavenRepositoryVersion represents a single Maven repository version.Cursor pagination is a Maven-only pilot. If successful, this behavior shouldmove to pulpcore so repository-version endpoints share one cursor contractacross plugins.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenRepositoryHref
@@ -534,7 +534,7 @@ func (r RepositoriesMavenVersionsAPIRepositoriesMavenMavenVersionsReadRequest) E
 /*
 RepositoriesMavenMavenVersionsRead Inspect a repository version
 
-MavenRepositoryVersion represents a single Maven repository version.
+MavenRepositoryVersion represents a single Maven repository version.Cursor pagination is a Maven-only pilot. If successful, this behavior shouldmove to pulpcore so repository-version endpoints share one cursor contractacross plugins.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param mavenMavenRepositoryVersionHref

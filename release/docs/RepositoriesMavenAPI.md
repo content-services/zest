@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**RepositoriesMavenMavenRemoveRole**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRemoveRole) | **Post** /{maven_maven_repository_href}remove_role/ | Remove a role
 [**RepositoriesMavenMavenRepairIndexPages**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRepairIndexPages) | **Post** /{maven_maven_repository_href}repair_index_pages/ | Repair index pages
 [**RepositoriesMavenMavenRepairMetadata**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRepairMetadata) | **Post** /{maven_maven_repository_href}repair_metadata/ | Repair metadata
+[**RepositoriesMavenMavenRepairPackages**](RepositoriesMavenAPI.md#RepositoriesMavenMavenRepairPackages) | **Post** /{maven_maven_repository_href}repair_packages/ | Repair packages
 [**RepositoriesMavenMavenSetLabel**](RepositoriesMavenAPI.md#RepositoriesMavenMavenSetLabel) | **Post** /{maven_maven_repository_href}set_label/ | Set a label
 [**RepositoriesMavenMavenUnsetLabel**](RepositoriesMavenAPI.md#RepositoriesMavenMavenUnsetLabel) | **Post** /{maven_maven_repository_href}unset_label/ | Unset a label
 [**RepositoriesMavenMavenUpdate**](RepositoriesMavenAPI.md#RepositoriesMavenMavenUpdate) | **Put** /{maven_maven_repository_href} | Update a maven repository
@@ -848,7 +849,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesMavenMavenPackages
 
-> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedMavenRepositoryPackageListResponse RepositoriesMavenMavenPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).Pagination(pagination).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages
 
@@ -874,6 +875,7 @@ func main() {
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
 	ordering := []string{"Inner_example"} // []string | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with '-' for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. (optional)
+	pagination := "pagination_example" // string | Set to cursor for count-free cursor pagination. (optional)
 	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
 	search := "search_example" // string | Case-insensitive package search. Without ':', group_id or artifact_id contains the term (OR). With ':', group_id contains the left part AND artifact_id contains the right part. A third ':' segment (version) is ignored. Empty or ':' is a no-op. Combines with prefix filters using AND. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
@@ -881,7 +883,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).ArtifactIdIstartswith(artifactIdIstartswith).GroupIdIstartswith(groupIdIstartswith).Limit(limit).Offset(offset).Ordering(ordering).Pagination(pagination).RepositoryVersion(repositoryVersion).Search(search).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -913,6 +915,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
  **ordering** | **[]string** | Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with &#39;-&#39; for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id. | 
+ **pagination** | **string** | Set to cursor for count-free cursor pagination. | 
  **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
  **search** | **string** | Case-insensitive package search. Without &#39;:&#39;, group_id or artifact_id contains the term (OR). With &#39;:&#39;, group_id contains the left part AND artifact_id contains the right part. A third &#39;:&#39; segment (version) is ignored. Empty or &#39;:&#39; is a no-op. Combines with prefix filters using AND. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
@@ -938,7 +941,7 @@ Name | Type | Description  | Notes
 
 ## RepositoriesMavenMavenPackagesFlat
 
-> PaginatedMavenRepositoryFlatPackageResponseList RepositoriesMavenMavenPackagesFlat(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+> PaginatedMavenRepositoryFlatPackageResponseList RepositoriesMavenMavenPackagesFlat(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Pagination(pagination).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 
 List packages (flat)
 
@@ -961,13 +964,14 @@ func main() {
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
 	limit := int32(56) // int32 | Number of results to return per page. (optional)
 	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
+	pagination := "pagination_example" // string | Set to cursor to opt into count-free cursor pagination. Without this parameter, limit/offset pagination remains unchanged. (optional)
 	repositoryVersion := "repositoryVersion_example" // string | HREF or PRN of a version of this repository. Defaults to the latest complete version. (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Limit(limit).Offset(offset).Pagination(pagination).RepositoryVersion(repositoryVersion).Fields(fields).ExcludeFields(excludeFields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenPackagesFlat``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -996,6 +1000,7 @@ Name | Type | Description  | Notes
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
  **limit** | **int32** | Number of results to return per page. | 
  **offset** | **int32** | The initial index from which to return the results. | 
+ **pagination** | **string** | Set to cursor to opt into count-free cursor pagination. Without this parameter, limit/offset pagination remains unchanged. | 
  **repositoryVersion** | **string** | HREF or PRN of a version of this repository. Defaults to the latest complete version. | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
@@ -1437,6 +1442,78 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiRepositoriesMavenMavenRepairMetadataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
+
+### Return type
+
+[**AsyncOperationResponse**](AsyncOperationResponse.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth), [cookieAuth](../README.md#cookieAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RepositoriesMavenMavenRepairPackages
+
+> AsyncOperationResponse RepositoriesMavenMavenRepairPackages(ctx, mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+
+Repair packages
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/content-services/zest/release/v2026"
+)
+
+func main() {
+	mavenMavenRepositoryHref := "mavenMavenRepositoryHref_example" // string | 
+	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenRepairPackages(context.Background(), mavenMavenRepositoryHref).XTaskDiagnostics(xTaskDiagnostics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesMavenAPI.RepositoriesMavenMavenRepairPackages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RepositoriesMavenMavenRepairPackages`: AsyncOperationResponse
+	fmt.Fprintf(os.Stdout, "Response from `RepositoriesMavenAPI.RepositoriesMavenMavenRepairPackages`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**mavenMavenRepositoryHref** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRepositoriesMavenMavenRepairPackagesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

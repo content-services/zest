@@ -78,8 +78,6 @@ type APIClient struct {
 
 	ApiDebugTaskQueueAPI *ApiDebugTaskQueueAPIService
 
-	ApiMavenAPI *ApiMavenAPIService
-
 	ApiMigrateDomainAPI *ApiMigrateDomainAPIService
 
 	ApiPublicDebugAuthHeaderAPI *ApiPublicDebugAuthHeaderAPIService
@@ -358,6 +356,8 @@ type APIClient struct {
 
 	RpmCopyAPI *RpmCopyAPIService
 
+	RpmPackagesAPI *RpmPackagesAPIService
+
 	RpmPruneAPI *RpmPruneAPIService
 
 	SigningServicesAPI *SigningServicesAPIService
@@ -417,7 +417,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiDebugStaleLocksAPI = (*ApiDebugStaleLocksAPIService)(&c.common)
 	c.ApiDebugTaskDebugAPI = (*ApiDebugTaskDebugAPIService)(&c.common)
 	c.ApiDebugTaskQueueAPI = (*ApiDebugTaskQueueAPIService)(&c.common)
-	c.ApiMavenAPI = (*ApiMavenAPIService)(&c.common)
 	c.ApiMigrateDomainAPI = (*ApiMigrateDomainAPIService)(&c.common)
 	c.ApiPublicDebugAuthHeaderAPI = (*ApiPublicDebugAuthHeaderAPIService)(&c.common)
 	c.ApiRdsConnectionTestsAPI = (*ApiRdsConnectionTestsAPIService)(&c.common)
@@ -557,6 +556,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RolesAPI = (*RolesAPIService)(&c.common)
 	c.RpmCompsAPI = (*RpmCompsAPIService)(&c.common)
 	c.RpmCopyAPI = (*RpmCopyAPIService)(&c.common)
+	c.RpmPackagesAPI = (*RpmPackagesAPIService)(&c.common)
 	c.RpmPruneAPI = (*RpmPruneAPIService)(&c.common)
 	c.SigningServicesAPI = (*SigningServicesAPIService)(&c.common)
 	c.StatusAPI = (*StatusAPIService)(&c.common)

@@ -22,7 +22,7 @@ var _ MappedNullable = &AddonResponse{}
 // AddonResponse Addon serializer.
 type AddonResponse struct {
 	// Addon id.
-	AddonId string `json:"addon_id"`
+	AddonId string `json:"addon_id" validate:"regexp=^(?!\\.{1\\,2}$)[A-Za-z0-9._-]+$"`
 	// Addon uid.
 	Uid string `json:"uid"`
 	// Addon name.
