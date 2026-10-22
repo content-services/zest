@@ -192,7 +192,7 @@ func (a *{{{classname}}}Service) {{nickname}}Execute(r {{#structPrefix}}{{&class
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", "", "{{style}}", s.Index(i).Interface(), "{{collectionFormat}}")
+                               parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", s.Index(i).Interface(), "{{style}}", "{{collectionFormat}}")
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "{{baseName}}", t, "{{style}}", "{{collectionFormat}}")
