@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **ConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockConnectTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_connect (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
 **SockReadTimeout** | Pointer to **NullableFloat64** | aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used. | [optional] 
+**RemotePolicy** | Pointer to [**NullableRemotePolicyEnum**](RemotePolicyEnum.md) | Download policy for remotes created during replication. One of &#39;immediate&#39;, &#39;on_demand&#39;, or &#39;streamed&#39;. Distinct from &#39;policy&#39;, which controls how replicate manages local objects. Defaults to the Remote default (&#39;immediate&#39;) when unset.* &#x60;immediate&#x60; - When syncing, download all metadata and content now.* &#x60;on_demand&#x60; - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* &#x60;streamed&#x60; - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again. | [optional] 
 **QSelect** | Pointer to **NullableString** | Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select&#x3D;\&quot;foo\&quot; OR pulp_label_select&#x3D;\&quot;key&#x3D;val\&quot; | [optional] 
 **Policy** | Pointer to [**Policy357Enum**](Policy357Enum.md) | Policy for how replicate will manage the local objects within the domain.* &#x60;all&#x60; - Replicate manages ALL local objects within the domain.* &#x60;labeled&#x60; - Replicate will only manage the objects created from a previous replication, unlabled local objects will be untouched.* &#x60;nodelete&#x60; - Replicate will not delete any local object whether they were created by replication or not. | [optional] 
 
@@ -562,6 +563,41 @@ HasSockReadTimeout returns a boolean if a field has been set.
 `func (o *PatchedUpstreamPulp) UnsetSockReadTimeout()`
 
 UnsetSockReadTimeout ensures that no value is present for SockReadTimeout, not even an explicit nil
+### GetRemotePolicy
+
+`func (o *PatchedUpstreamPulp) GetRemotePolicy() RemotePolicyEnum`
+
+GetRemotePolicy returns the RemotePolicy field if non-nil, zero value otherwise.
+
+### GetRemotePolicyOk
+
+`func (o *PatchedUpstreamPulp) GetRemotePolicyOk() (*RemotePolicyEnum, bool)`
+
+GetRemotePolicyOk returns a tuple with the RemotePolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemotePolicy
+
+`func (o *PatchedUpstreamPulp) SetRemotePolicy(v RemotePolicyEnum)`
+
+SetRemotePolicy sets RemotePolicy field to given value.
+
+### HasRemotePolicy
+
+`func (o *PatchedUpstreamPulp) HasRemotePolicy() bool`
+
+HasRemotePolicy returns a boolean if a field has been set.
+
+### SetRemotePolicyNil
+
+`func (o *PatchedUpstreamPulp) SetRemotePolicyNil(b bool)`
+
+ SetRemotePolicyNil sets the value for RemotePolicy to be an explicit nil
+
+### UnsetRemotePolicy
+`func (o *PatchedUpstreamPulp) UnsetRemotePolicy()`
+
+UnsetRemotePolicy ensures that no value is present for RemotePolicy, not even an explicit nil
 ### GetQSelect
 
 `func (o *PatchedUpstreamPulp) GetQSelect() string`

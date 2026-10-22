@@ -1731,6 +1731,7 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest struct {
 	limit *int32
 	offset *int32
 	ordering *[]string
+	pagination *string
 	repositoryVersion *string
 	search *string
 	fields *[]string
@@ -1770,6 +1771,12 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Offset(offset
 // Order catalog rows. Allowed: group_id, artifact_id, last_updated. Prefix with &#39;-&#39; for descending. Default is group_id, artifact_id. Ordering by group_id without artifact_id also sorts by artifact_id.
 func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Ordering(ordering []string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
 	r.ordering = &ordering
+	return r
+}
+
+// Set to cursor for count-free cursor pagination.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest) Pagination(pagination string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesRequest {
+	r.pagination = &pagination
 	return r
 }
 
@@ -1864,6 +1871,9 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesExecute(r Re
 			parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", t, "form", "multi")
 		}
 	}
+	if r.pagination != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pagination", r.pagination, "form", "")
+	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
 	}
@@ -1956,6 +1966,7 @@ type RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest struct {
 	xTaskDiagnostics *[]string
 	limit *int32
 	offset *int32
+	pagination *string
 	repositoryVersion *string
 	fields *[]string
 	excludeFields *[]string
@@ -1976,6 +1987,12 @@ func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Limit(lim
 // The initial index from which to return the results.
 func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Offset(offset int32) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
 	r.offset = &offset
+	return r
+}
+
+// Set to cursor to opt into count-free cursor pagination. Without this parameter, limit/offset pagination remains unchanged.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest) Pagination(pagination string) RepositoriesMavenAPIRepositoriesMavenMavenPackagesFlatRequest {
+	r.pagination = &pagination
 	return r
 }
 
@@ -2046,6 +2063,9 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenPackagesFlatExecute(
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.pagination != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pagination", r.pagination, "form", "")
 	}
 	if r.repositoryVersion != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", r.repositoryVersion, "form", "")
@@ -2843,6 +2863,120 @@ func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRepairMetadataExecut
 	}
 
 	localVarPath := localBasePath + "/{maven_maven_repository_href}repair_metadata/"
+	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
+	localVarPath, _ = url.PathUnescape(localVarPath)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xTaskDiagnostics != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Task-Diagnostics", r.xTaskDiagnostics, "simple", "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest struct {
+	ctx context.Context
+	ApiService *RepositoriesMavenAPIService
+	mavenMavenRepositoryHref string
+	xTaskDiagnostics *[]string
+}
+
+// List of profilers to use on tasks.
+func (r RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest) XTaskDiagnostics(xTaskDiagnostics []string) RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest {
+	r.xTaskDiagnostics = &xTaskDiagnostics
+	return r
+}
+
+func (r RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest) Execute() (*AsyncOperationResponse, *http.Response, error) {
+	return r.ApiService.RepositoriesMavenMavenRepairPackagesExecute(r)
+}
+
+/*
+RepositoriesMavenMavenRepairPackages Repair packages
+
+Trigger an asynchronous task that reconciles MavenPackage membership for the latest repository version: associate missing packages and remove packages whose GAV no longer has a POM.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param mavenMavenRepositoryHref
+ @return RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest
+*/
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRepairPackages(ctx context.Context, mavenMavenRepositoryHref string) RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest {
+	return RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest{
+		ApiService: a,
+		ctx: ctx,
+		mavenMavenRepositoryHref: mavenMavenRepositoryHref,
+	}
+}
+
+// Execute executes the request
+//  @return AsyncOperationResponse
+func (a *RepositoriesMavenAPIService) RepositoriesMavenMavenRepairPackagesExecute(r RepositoriesMavenAPIRepositoriesMavenMavenRepairPackagesRequest) (*AsyncOperationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AsyncOperationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RepositoriesMavenAPIService.RepositoriesMavenMavenRepairPackages")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/{maven_maven_repository_href}repair_packages/"
 	localVarPath = strings.Replace(localVarPath, "{"+"maven_maven_repository_href"+"}", url.PathEscape(parameterValueToString(r.mavenMavenRepositoryHref, "mavenMavenRepositoryHref")), -1)
 	localVarPath, _ = url.PathUnescape(localVarPath)
 

@@ -17,7 +17,6 @@ api_api_debug_release_task_locks.go
 api_api_debug_stale_locks.go
 api_api_debug_task_debug.go
 api_api_debug_task_queue.go
-api_api_maven.go
 api_api_migrate_domain.go
 api_api_public_debug_auth_header.go
 api_api_rds_connection_tests.go
@@ -157,6 +156,7 @@ api_repository_versions.go
 api_roles.go
 api_rpm_comps.go
 api_rpm_copy.go
+api_rpm_packages.go
 api_rpm_prune.go
 api_signing_services.go
 api_status.go
@@ -190,7 +190,6 @@ docs/ApiDebugReleaseTaskLocksAPI.md
 docs/ApiDebugStaleLocksAPI.md
 docs/ApiDebugTaskDebugAPI.md
 docs/ApiDebugTaskQueueAPI.md
-docs/ApiMavenAPI.md
 docs/ApiMigrateDomainAPI.md
 docs/ApiPublicDebugAuthHeaderAPI.md
 docs/ApiPulpMigrateDomainCreateRequest.md
@@ -673,6 +672,7 @@ docs/RecursiveManage.md
 docs/RedisConnectionResponse.md
 docs/RemoteNetworkConfig.md
 docs/RemoteNetworkConfigResponse.md
+docs/RemotePolicyEnum.md
 docs/RemotesAPI.md
 docs/RemotesContainerAPI.md
 docs/RemotesFileAPI.md
@@ -734,6 +734,7 @@ docs/RpmPackageEnvironmentResponse.md
 docs/RpmPackageGroupResponse.md
 docs/RpmPackageLangpacksResponse.md
 docs/RpmPackageResponse.md
+docs/RpmPackagesAPI.md
 docs/RpmPruneAPI.md
 docs/RpmRepoMetadataFileResponse.md
 docs/RpmRepositorySyncURL.md
@@ -1197,6 +1198,7 @@ model_recursive_manage.go
 model_redis_connection_response.go
 model_remote_network_config.go
 model_remote_network_config_response.go
+model_remote_policy_enum.go
 model_remove_image.go
 model_remove_signatures.go
 model_remove_signatures_response.go
@@ -1303,7 +1305,6 @@ test/api_api_debug_release_task_locks_test.go
 test/api_api_debug_stale_locks_test.go
 test/api_api_debug_task_debug_test.go
 test/api_api_debug_task_queue_test.go
-test/api_api_maven_test.go
 test/api_api_migrate_domain_test.go
 test/api_api_public_debug_auth_header_test.go
 test/api_api_rds_connection_tests_test.go
@@ -1443,6 +1444,7 @@ test/api_repository_versions_test.go
 test/api_roles_test.go
 test/api_rpm_comps_test.go
 test/api_rpm_copy_test.go
+test/api_rpm_packages_test.go
 test/api_rpm_prune_test.go
 test/api_signing_services_test.go
 test/api_status_test.go

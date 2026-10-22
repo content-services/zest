@@ -22,7 +22,7 @@ var _ MappedNullable = &VariantResponse{}
 // VariantResponse Variant serializer.
 type VariantResponse struct {
 	// Variant id.
-	VariantId string `json:"variant_id"`
+	VariantId string `json:"variant_id" validate:"regexp=^(?!\\.{1\\,2}$)[A-Za-z0-9._-]+$"`
 	// Variant uid.
 	Uid string `json:"uid"`
 	// Variant name.

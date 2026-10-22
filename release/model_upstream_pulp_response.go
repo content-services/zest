@@ -55,6 +55,8 @@ type UpstreamPulpResponse struct {
 	SockConnectTimeout NullableFloat64 `json:"sock_connect_timeout,omitempty"`
 	// aiohttp.ClientTimeout.sock_read (q.v.) for download-connections. The default is null, which will cause the default from the aiohttp library to be used.
 	SockReadTimeout NullableFloat64 `json:"sock_read_timeout,omitempty"`
+	// Download policy for remotes created during replication. One of 'immediate', 'on_demand', or 'streamed'. Distinct from 'policy', which controls how replicate manages local objects. Defaults to the Remote default ('immediate') when unset.* `immediate` - When syncing, download all metadata and content now.* `on_demand` - When syncing, download metadata, but do not download content now. Instead, download content as clients request it, and save it in Pulp to be served for future client requests.* `streamed` - When syncing, download metadata, but do not download content now. Instead,download content as clients request it, but never save it in Pulp. This causes future requests for that same content to have to be downloaded again.
+	RemotePolicy NullableRemotePolicyEnum `json:"remote_policy,omitempty"`
 	// List of hidden (write only) fields
 	HiddenFields []GenericRemoteResponseHiddenFieldsInner `json:"hidden_fields,omitempty"`
 	// Filter distributions on the upstream Pulp using complex filtering. E.g. pulp_label_select=\"foo\" OR pulp_label_select=\"key=val\"
@@ -698,6 +700,48 @@ func (o *UpstreamPulpResponse) UnsetSockReadTimeout() {
 	o.SockReadTimeout.Unset()
 }
 
+// GetRemotePolicy returns the RemotePolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpstreamPulpResponse) GetRemotePolicy() RemotePolicyEnum {
+	if o == nil || IsNil(o.RemotePolicy.Get()) {
+		var ret RemotePolicyEnum
+		return ret
+	}
+	return *o.RemotePolicy.Get()
+}
+
+// GetRemotePolicyOk returns a tuple with the RemotePolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpstreamPulpResponse) GetRemotePolicyOk() (*RemotePolicyEnum, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RemotePolicy.Get(), o.RemotePolicy.IsSet()
+}
+
+// HasRemotePolicy returns a boolean if a field has been set.
+func (o *UpstreamPulpResponse) HasRemotePolicy() bool {
+	if o != nil && o.RemotePolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRemotePolicy gets a reference to the given NullableRemotePolicyEnum and assigns it to the RemotePolicy field.
+func (o *UpstreamPulpResponse) SetRemotePolicy(v RemotePolicyEnum) {
+	o.RemotePolicy.Set(&v)
+}
+// SetRemotePolicyNil sets the value for RemotePolicy to be an explicit nil
+func (o *UpstreamPulpResponse) SetRemotePolicyNil() {
+	o.RemotePolicy.Set(nil)
+}
+
+// UnsetRemotePolicy ensures that no value is present for RemotePolicy, not even an explicit nil
+func (o *UpstreamPulpResponse) UnsetRemotePolicy() {
+	o.RemotePolicy.Unset()
+}
+
 // GetHiddenFields returns the HiddenFields field value if set, zero value otherwise.
 func (o *UpstreamPulpResponse) GetHiddenFields() []GenericRemoteResponseHiddenFieldsInner {
 	if o == nil || IsNil(o.HiddenFields) {
@@ -891,6 +935,9 @@ func (o UpstreamPulpResponse) ToMap() (map[string]interface{}, error) {
 	if o.SockReadTimeout.IsSet() {
 		toSerialize["sock_read_timeout"] = o.SockReadTimeout.Get()
 	}
+	if o.RemotePolicy.IsSet() {
+		toSerialize["remote_policy"] = o.RemotePolicy.Get()
+	}
 	if !IsNil(o.HiddenFields) {
 		toSerialize["hidden_fields"] = o.HiddenFields
 	}
@@ -965,6 +1012,7 @@ func (o *UpstreamPulpResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "connect_timeout")
 		delete(additionalProperties, "sock_connect_timeout")
 		delete(additionalProperties, "sock_read_timeout")
+		delete(additionalProperties, "remote_policy")
 		delete(additionalProperties, "hidden_fields")
 		delete(additionalProperties, "q_select")
 		delete(additionalProperties, "last_replication")

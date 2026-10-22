@@ -274,6 +274,20 @@ func Test_zest_RepositoriesMavenAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenRepairPackages", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var mavenMavenRepositoryHref string
+
+		resp, httpRes, err := apiClient.RepositoriesMavenAPI.RepositoriesMavenMavenRepairPackages(context.Background(), mavenMavenRepositoryHref).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RepositoriesMavenAPIService RepositoriesMavenMavenSetLabel", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

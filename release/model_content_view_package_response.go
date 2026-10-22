@@ -19,7 +19,7 @@ import (
 // checks if the ContentViewPackageResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContentViewPackageResponse{}
 
-// ContentViewPackageResponse A lightweight representation of a Package for Content View search results.Used by the ``packages/`` (typeahead) and ``packages/list/`` search endpoints. Instancesmay originate from any domain the ContentView's Distributions span, so ``pulp_href``resolves per-object using each Package's own domain.
+// ContentViewPackageResponse A lightweight representation of a Package for Content View search results.Used by the ``packages/`` (typeahead) and ``packages/list/`` search endpoints, as well asthe ad-hoc ``rpm/content-search/packages`` endpoint (content_search_viewsets.py). Instancesmay originate from any domain spanned by the ContentView's Distributions, or -- for thead-hoc endpoint -- by the caller-supplied ``repository_version`` hrefs, so ``pulp_href``resolves per-object using each Package's own domain.
 type ContentViewPackageResponse struct {
 	PulpHref *string `json:"pulp_href,omitempty"`
 	// Name of the package
