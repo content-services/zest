@@ -64,10 +64,6 @@ type APIClient struct {
 
 	ApiDebugDatabaseTriggersAPI *ApiDebugDatabaseTriggersAPIService
 
-	ApiDebugDomainorgBackfillReportAPI *ApiDebugDomainorgBackfillReportAPIService
-
-	ApiDebugDomainorgRbacReportAPI *ApiDebugDomainorgRbacReportAPIService
-
 	ApiDebugFlushContentCacheAPI *ApiDebugFlushContentCacheAPIService
 
 	ApiDebugReleaseTaskLocksAPI *ApiDebugReleaseTaskLocksAPIService
@@ -410,8 +406,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiDebugAuthHeaderAPI = (*ApiDebugAuthHeaderAPIService)(&c.common)
 	c.ApiDebugCleanupStaleLocksAPI = (*ApiDebugCleanupStaleLocksAPIService)(&c.common)
 	c.ApiDebugDatabaseTriggersAPI = (*ApiDebugDatabaseTriggersAPIService)(&c.common)
-	c.ApiDebugDomainorgBackfillReportAPI = (*ApiDebugDomainorgBackfillReportAPIService)(&c.common)
-	c.ApiDebugDomainorgRbacReportAPI = (*ApiDebugDomainorgRbacReportAPIService)(&c.common)
 	c.ApiDebugFlushContentCacheAPI = (*ApiDebugFlushContentCacheAPIService)(&c.common)
 	c.ApiDebugReleaseTaskLocksAPI = (*ApiDebugReleaseTaskLocksAPIService)(&c.common)
 	c.ApiDebugStaleLocksAPI = (*ApiDebugStaleLocksAPIService)(&c.common)
