@@ -28,6 +28,8 @@ type PackageMetadataResponse struct {
 	// List of all the releases of the package
 	Releases interface{} `json:"releases"`
 	Urls interface{} `json:"urls"`
+	// Known vulnerabilities for the selected package version.
+	Vulnerabilities interface{} `json:"vulnerabilities"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +39,13 @@ type _PackageMetadataResponse PackageMetadataResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}) *PackageMetadataResponse {
+func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}, vulnerabilities interface{}) *PackageMetadataResponse {
 	this := PackageMetadataResponse{}
 	this.LastSerial = lastSerial
 	this.Info = info
 	this.Releases = releases
 	this.Urls = urls
+	this.Vulnerabilities = vulnerabilities
 	return &this
 }
 
@@ -156,6 +159,32 @@ func (o *PackageMetadataResponse) SetUrls(v interface{}) {
 	o.Urls = v
 }
 
+// GetVulnerabilities returns the Vulnerabilities field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PackageMetadataResponse) GetVulnerabilities() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+
+	return o.Vulnerabilities
+}
+
+// GetVulnerabilitiesOk returns a tuple with the Vulnerabilities field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PackageMetadataResponse) GetVulnerabilitiesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Vulnerabilities) {
+		return nil, false
+	}
+	return &o.Vulnerabilities, true
+}
+
+// SetVulnerabilities sets field value
+func (o *PackageMetadataResponse) SetVulnerabilities(v interface{}) {
+	o.Vulnerabilities = v
+}
+
 func (o PackageMetadataResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -176,6 +205,9 @@ func (o PackageMetadataResponse) ToMap() (map[string]interface{}, error) {
 	if o.Urls != nil {
 		toSerialize["urls"] = o.Urls
 	}
+	if o.Vulnerabilities != nil {
+		toSerialize["vulnerabilities"] = o.Vulnerabilities
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -193,6 +225,7 @@ func (o *PackageMetadataResponse) UnmarshalJSON(data []byte) (err error) {
 		"info",
 		"releases",
 		"urls",
+		"vulnerabilities",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -226,6 +259,7 @@ func (o *PackageMetadataResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "info")
 		delete(additionalProperties, "releases")
 		delete(additionalProperties, "urls")
+		delete(additionalProperties, "vulnerabilities")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -75,6 +75,8 @@ type PatchedpythonPythonRemote struct {
 	ExcludePlatforms []ExcludePlatformsEnum `json:"exclude_platforms,omitempty"`
 	// Whether to sync available provenances for Python packages.
 	Provenance *bool `json:"provenance,omitempty"`
+	// Whether to scan the new repository version for vulnerabilities after a sync.
+	Vulnerabilities *bool `json:"vulnerabilities,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -92,6 +94,8 @@ func NewPatchedpythonPythonRemote() *PatchedpythonPythonRemote {
 	this.KeepLatestPackages = &keepLatestPackages
 	var provenance bool = false
 	this.Provenance = &provenance
+	var vulnerabilities bool = false
+	this.Vulnerabilities = &vulnerabilities
 	return &this
 }
 
@@ -106,6 +110,8 @@ func NewPatchedpythonPythonRemoteWithDefaults() *PatchedpythonPythonRemote {
 	this.KeepLatestPackages = &keepLatestPackages
 	var provenance bool = false
 	this.Provenance = &provenance
+	var vulnerabilities bool = false
+	this.Vulnerabilities = &vulnerabilities
 	return &this
 }
 
@@ -1155,6 +1161,38 @@ func (o *PatchedpythonPythonRemote) SetProvenance(v bool) {
 	o.Provenance = &v
 }
 
+// GetVulnerabilities returns the Vulnerabilities field value if set, zero value otherwise.
+func (o *PatchedpythonPythonRemote) GetVulnerabilities() bool {
+	if o == nil || IsNil(o.Vulnerabilities) {
+		var ret bool
+		return ret
+	}
+	return *o.Vulnerabilities
+}
+
+// GetVulnerabilitiesOk returns a tuple with the Vulnerabilities field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedpythonPythonRemote) GetVulnerabilitiesOk() (*bool, bool) {
+	if o == nil || IsNil(o.Vulnerabilities) {
+		return nil, false
+	}
+	return o.Vulnerabilities, true
+}
+
+// HasVulnerabilities returns a boolean if a field has been set.
+func (o *PatchedpythonPythonRemote) HasVulnerabilities() bool {
+	if o != nil && !IsNil(o.Vulnerabilities) {
+		return true
+	}
+
+	return false
+}
+
+// SetVulnerabilities gets a reference to the given bool and assigns it to the Vulnerabilities field.
+func (o *PatchedpythonPythonRemote) SetVulnerabilities(v bool) {
+	o.Vulnerabilities = &v
+}
+
 func (o PatchedpythonPythonRemote) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1249,6 +1287,9 @@ func (o PatchedpythonPythonRemote) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Provenance) {
 		toSerialize["provenance"] = o.Provenance
 	}
+	if !IsNil(o.Vulnerabilities) {
+		toSerialize["vulnerabilities"] = o.Vulnerabilities
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1299,6 +1340,7 @@ func (o *PatchedpythonPythonRemote) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "keep_latest_packages")
 		delete(additionalProperties, "exclude_platforms")
 		delete(additionalProperties, "provenance")
+		delete(additionalProperties, "vulnerabilities")
 		o.AdditionalProperties = additionalProperties
 	}
 
