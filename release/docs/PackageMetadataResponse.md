@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Info** | **interface{}** | Core metadata of the package | 
 **Releases** | **interface{}** | List of all the releases of the package | 
 **Urls** | **interface{}** |  | 
+**Vulnerabilities** | **interface{}** | Known vulnerabilities for the selected package version. | 
 
 ## Methods
 
 ### NewPackageMetadataResponse
 
-`func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}, ) *PackageMetadataResponse`
+`func NewPackageMetadataResponse(lastSerial int64, info interface{}, releases interface{}, urls interface{}, vulnerabilities interface{}, ) *PackageMetadataResponse`
 
 NewPackageMetadataResponse instantiates a new PackageMetadataResponse object
 This constructor will assign default values to properties that have it defined,
@@ -138,6 +139,36 @@ SetUrls sets Urls field to given value.
 `func (o *PackageMetadataResponse) UnsetUrls()`
 
 UnsetUrls ensures that no value is present for Urls, not even an explicit nil
+### GetVulnerabilities
+
+`func (o *PackageMetadataResponse) GetVulnerabilities() interface{}`
+
+GetVulnerabilities returns the Vulnerabilities field if non-nil, zero value otherwise.
+
+### GetVulnerabilitiesOk
+
+`func (o *PackageMetadataResponse) GetVulnerabilitiesOk() (*interface{}, bool)`
+
+GetVulnerabilitiesOk returns a tuple with the Vulnerabilities field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnerabilities
+
+`func (o *PackageMetadataResponse) SetVulnerabilities(v interface{})`
+
+SetVulnerabilities sets Vulnerabilities field to given value.
+
+
+### SetVulnerabilitiesNil
+
+`func (o *PackageMetadataResponse) SetVulnerabilitiesNil(b bool)`
+
+ SetVulnerabilitiesNil sets the value for Vulnerabilities to be an explicit nil
+
+### UnsetVulnerabilities
+`func (o *PackageMetadataResponse) UnsetVulnerabilities()`
+
+UnsetVulnerabilities ensures that no value is present for Vulnerabilities, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

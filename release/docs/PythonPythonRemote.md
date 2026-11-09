@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **KeepLatestPackages** | Pointer to **int64** | The amount of latest versions of a package to keep on sync, includespre-releases if synced. Default 0 keeps all versions. | [optional] [default to 0]
 **ExcludePlatforms** | Pointer to [**[]ExcludePlatformsEnum**](ExcludePlatformsEnum.md) | List of platforms to exclude syncing Python packages for. Possible valuesinclude: windows, macos, freebsd, and linux. | [optional] 
 **Provenance** | Pointer to **bool** | Whether to sync available provenances for Python packages. | [optional] [default to false]
+**Vulnerabilities** | Pointer to **bool** | Whether to scan the new repository version for vulnerabilities after a sync. | [optional] [default to false]
 
 ## Methods
 
@@ -891,6 +892,31 @@ SetProvenance sets Provenance field to given value.
 `func (o *PythonPythonRemote) HasProvenance() bool`
 
 HasProvenance returns a boolean if a field has been set.
+
+### GetVulnerabilities
+
+`func (o *PythonPythonRemote) GetVulnerabilities() bool`
+
+GetVulnerabilities returns the Vulnerabilities field if non-nil, zero value otherwise.
+
+### GetVulnerabilitiesOk
+
+`func (o *PythonPythonRemote) GetVulnerabilitiesOk() (*bool, bool)`
+
+GetVulnerabilitiesOk returns a tuple with the Vulnerabilities field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVulnerabilities
+
+`func (o *PythonPythonRemote) SetVulnerabilities(v bool)`
+
+SetVulnerabilities sets Vulnerabilities field to given value.
+
+### HasVulnerabilities
+
+`func (o *PythonPythonRemote) HasVulnerabilities() bool`
+
+HasVulnerabilities returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

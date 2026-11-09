@@ -154,6 +154,9 @@ api_repository_versions.go
 api_roles.go
 api_rpm_comps.go
 api_rpm_copy.go
+api_rpm_errata.go
+api_rpm_module_streams.go
+api_rpm_package_groups.go
 api_rpm_packages.go
 api_rpm_prune.go
 api_signing_services.go
@@ -718,6 +721,8 @@ docs/RolesAPI.md
 docs/RpmCompsAPI.md
 docs/RpmCopyAPI.md
 docs/RpmDistributionTreeResponse.md
+docs/RpmErrataAPI.md
+docs/RpmModuleStreamsAPI.md
 docs/RpmModulemd.md
 docs/RpmModulemdDefaults.md
 docs/RpmModulemdDefaultsResponse.md
@@ -728,6 +733,7 @@ docs/RpmPackage.md
 docs/RpmPackageCategoryResponse.md
 docs/RpmPackageEnvironmentResponse.md
 docs/RpmPackageGroupResponse.md
+docs/RpmPackageGroupsAPI.md
 docs/RpmPackageLangpacksResponse.md
 docs/RpmPackageResponse.md
 docs/RpmPackagesAPI.md
@@ -1438,6 +1444,9 @@ test/api_repository_versions_test.go
 test/api_roles_test.go
 test/api_rpm_comps_test.go
 test/api_rpm_copy_test.go
+test/api_rpm_errata_test.go
+test/api_rpm_module_streams_test.go
+test/api_rpm_package_groups_test.go
 test/api_rpm_packages_test.go
 test/api_rpm_prune_test.go
 test/api_signing_services_test.go
