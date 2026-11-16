@@ -20,16 +20,16 @@ var _ MappedNullable = &PatchedcontainerContainerPushRepository{}
 
 // PatchedcontainerContainerPushRepository Serializer for Container Push Repositories.
 type PatchedcontainerContainerPushRepository struct {
-	// A reference to an associated signing service.
-	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
 	// A unique name for this repository.
 	Name *string `json:"name,omitempty"`
-	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
-	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
-	// Retain X versions of the repository. Default is null which retains all versions.
-	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// A reference to an associated signing service.
+	ManifestSigningService NullableString `json:"manifest_signing_service,omitempty"`
 	// An optional description.
 	Description NullableString `json:"description,omitempty"`
+	// Retain X versions of the repository. Default is null which retains all versions.
+	RetainRepoVersions NullableInt64 `json:"retain_repo_versions,omitempty"`
+	// Retain X checkpoint publications for the repository. Default is null which retains all checkpoints.
+	RetainCheckpoints NullableInt64 `json:"retain_checkpoints,omitempty"`
 	PulpLabels *map[string]*string `json:"pulp_labels,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -51,6 +51,38 @@ func NewPatchedcontainerContainerPushRepository() *PatchedcontainerContainerPush
 func NewPatchedcontainerContainerPushRepositoryWithDefaults() *PatchedcontainerContainerPushRepository {
 	this := PatchedcontainerContainerPushRepository{}
 	return &this
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PatchedcontainerContainerPushRepository) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedcontainerContainerPushRepository) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PatchedcontainerContainerPushRepository) SetName(v string) {
+	o.Name = &v
 }
 
 // GetManifestSigningService returns the ManifestSigningService field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -95,78 +127,46 @@ func (o *PatchedcontainerContainerPushRepository) UnsetManifestSigningService() 
 	o.ManifestSigningService.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedcontainerContainerPushRepository) GetName() string {
-	if o == nil || IsNil(o.Name) {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedcontainerContainerPushRepository) GetDescription() string {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Description.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedcontainerContainerPushRepository) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedcontainerContainerPushRepository) SetName(v string) {
-	o.Name = &v
-}
-
-// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedcontainerContainerPushRepository) GetRetainCheckpoints() int64 {
-	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.RetainCheckpoints.Get()
-}
-
-// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedcontainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool) {
+func (o *PatchedcontainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
+	return o.Description.Get(), o.Description.IsSet()
 }
 
-// HasRetainCheckpoints returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasRetainCheckpoints() bool {
-	if o != nil && o.RetainCheckpoints.IsSet() {
+// HasDescription returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasDescription() bool {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
-func (o *PatchedcontainerContainerPushRepository) SetRetainCheckpoints(v int64) {
-	o.RetainCheckpoints.Set(&v)
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+func (o *PatchedcontainerContainerPushRepository) SetDescription(v string) {
+	o.Description.Set(&v)
 }
-// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
-func (o *PatchedcontainerContainerPushRepository) SetRetainCheckpointsNil() {
-	o.RetainCheckpoints.Set(nil)
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *PatchedcontainerContainerPushRepository) SetDescriptionNil() {
+	o.Description.Set(nil)
 }
 
-// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
-func (o *PatchedcontainerContainerPushRepository) UnsetRetainCheckpoints() {
-	o.RetainCheckpoints.Unset()
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *PatchedcontainerContainerPushRepository) UnsetDescription() {
+	o.Description.Unset()
 }
 
 // GetRetainRepoVersions returns the RetainRepoVersions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -211,46 +211,46 @@ func (o *PatchedcontainerContainerPushRepository) UnsetRetainRepoVersions() {
 	o.RetainRepoVersions.Unset()
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedcontainerContainerPushRepository) GetDescription() string {
-	if o == nil || IsNil(o.Description.Get()) {
-		var ret string
+// GetRetainCheckpoints returns the RetainCheckpoints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedcontainerContainerPushRepository) GetRetainCheckpoints() int64 {
+	if o == nil || IsNil(o.RetainCheckpoints.Get()) {
+		var ret int64
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.RetainCheckpoints.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetRetainCheckpointsOk returns a tuple with the RetainCheckpoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedcontainerContainerPushRepository) GetDescriptionOk() (*string, bool) {
+func (o *PatchedcontainerContainerPushRepository) GetRetainCheckpointsOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.RetainCheckpoints.Get(), o.RetainCheckpoints.IsSet()
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *PatchedcontainerContainerPushRepository) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+// HasRetainCheckpoints returns a boolean if a field has been set.
+func (o *PatchedcontainerContainerPushRepository) HasRetainCheckpoints() bool {
+	if o != nil && o.RetainCheckpoints.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *PatchedcontainerContainerPushRepository) SetDescription(v string) {
-	o.Description.Set(&v)
+// SetRetainCheckpoints gets a reference to the given NullableInt64 and assigns it to the RetainCheckpoints field.
+func (o *PatchedcontainerContainerPushRepository) SetRetainCheckpoints(v int64) {
+	o.RetainCheckpoints.Set(&v)
 }
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *PatchedcontainerContainerPushRepository) SetDescriptionNil() {
-	o.Description.Set(nil)
+// SetRetainCheckpointsNil sets the value for RetainCheckpoints to be an explicit nil
+func (o *PatchedcontainerContainerPushRepository) SetRetainCheckpointsNil() {
+	o.RetainCheckpoints.Set(nil)
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *PatchedcontainerContainerPushRepository) UnsetDescription() {
-	o.Description.Unset()
+// UnsetRetainCheckpoints ensures that no value is present for RetainCheckpoints, not even an explicit nil
+func (o *PatchedcontainerContainerPushRepository) UnsetRetainCheckpoints() {
+	o.RetainCheckpoints.Unset()
 }
 
 // GetPulpLabels returns the PulpLabels field value if set, zero value otherwise.
@@ -295,20 +295,20 @@ func (o PatchedcontainerContainerPushRepository) MarshalJSON() ([]byte, error) {
 
 func (o PatchedcontainerContainerPushRepository) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ManifestSigningService.IsSet() {
-		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
-	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if o.RetainCheckpoints.IsSet() {
-		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
+	if o.ManifestSigningService.IsSet() {
+		toSerialize["manifest_signing_service"] = o.ManifestSigningService.Get()
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.RetainRepoVersions.IsSet() {
 		toSerialize["retain_repo_versions"] = o.RetainRepoVersions.Get()
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if o.RetainCheckpoints.IsSet() {
+		toSerialize["retain_checkpoints"] = o.RetainCheckpoints.Get()
 	}
 	if !IsNil(o.PulpLabels) {
 		toSerialize["pulp_labels"] = o.PulpLabels
@@ -335,11 +335,11 @@ func (o *PatchedcontainerContainerPushRepository) UnmarshalJSON(data []byte) (er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "manifest_signing_service")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "retain_checkpoints")
-		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "manifest_signing_service")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "retain_repo_versions")
+		delete(additionalProperties, "retain_checkpoints")
 		delete(additionalProperties, "pulp_labels")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -76,6 +76,8 @@ type APIClient struct {
 
 	ApiMigrateDomainAPI *ApiMigrateDomainAPIService
 
+	ApiNpmBackfillManifestsAPI *ApiNpmBackfillManifestsAPIService
+
 	ApiPublicDebugAuthHeaderAPI *ApiPublicDebugAuthHeaderAPIService
 
 	ApiRdsConnectionTestsAPI *ApiRdsConnectionTestsAPIService
@@ -164,6 +166,8 @@ type APIClient struct {
 
 	ContentguardsAPI *ContentguardsAPIService
 
+	ContentguardsAndgateAPI *ContentguardsAndgateAPIService
+
 	ContentguardsCompositeAPI *ContentguardsCompositeAPIService
 
 	ContentguardsContentRedirectAPI *ContentguardsContentRedirectAPIService
@@ -237,6 +241,8 @@ type APIClient struct {
 	LoginAPI *LoginAPIService
 
 	NpmAPI *NpmAPIService
+
+	NpmBackfillManifestsAPI *NpmBackfillManifestsAPIService
 
 	NpmPingAPI *NpmPingAPIService
 
@@ -418,6 +424,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApiDebugTaskDebugAPI = (*ApiDebugTaskDebugAPIService)(&c.common)
 	c.ApiDebugTaskQueueAPI = (*ApiDebugTaskQueueAPIService)(&c.common)
 	c.ApiMigrateDomainAPI = (*ApiMigrateDomainAPIService)(&c.common)
+	c.ApiNpmBackfillManifestsAPI = (*ApiNpmBackfillManifestsAPIService)(&c.common)
 	c.ApiPublicDebugAuthHeaderAPI = (*ApiPublicDebugAuthHeaderAPIService)(&c.common)
 	c.ApiRdsConnectionTestsAPI = (*ApiRdsConnectionTestsAPIService)(&c.common)
 	c.ApiTestPagerdutyAlertAPI = (*ApiTestPagerdutyAlertAPIService)(&c.common)
@@ -462,6 +469,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ContentViewsRpmPackagesListAPI = (*ContentViewsRpmPackagesListAPIService)(&c.common)
 	c.ContentYanksAPI = (*ContentYanksAPIService)(&c.common)
 	c.ContentguardsAPI = (*ContentguardsAPIService)(&c.common)
+	c.ContentguardsAndgateAPI = (*ContentguardsAndgateAPIService)(&c.common)
 	c.ContentguardsCompositeAPI = (*ContentguardsCompositeAPIService)(&c.common)
 	c.ContentguardsContentRedirectAPI = (*ContentguardsContentRedirectAPIService)(&c.common)
 	c.ContentguardsEnvvarHeaderAPI = (*ContentguardsEnvvarHeaderAPIService)(&c.common)
@@ -499,6 +507,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LivezAPI = (*LivezAPIService)(&c.common)
 	c.LoginAPI = (*LoginAPIService)(&c.common)
 	c.NpmAPI = (*NpmAPIService)(&c.common)
+	c.NpmBackfillManifestsAPI = (*NpmBackfillManifestsAPIService)(&c.common)
 	c.NpmPingAPI = (*NpmPingAPIService)(&c.common)
 	c.NpmWhoamiAPI = (*NpmWhoamiAPIService)(&c.common)
 	c.OrphansAPI = (*OrphansAPIService)(&c.common)

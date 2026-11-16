@@ -16,6 +16,7 @@ api_api_debug_stale_locks.go
 api_api_debug_task_debug.go
 api_api_debug_task_queue.go
 api_api_migrate_domain.go
+api_api_npm_backfill_manifests.go
 api_api_public_debug_auth_header.go
 api_api_rds_connection_tests.go
 api_api_test_pagerduty_alert.go
@@ -60,6 +61,7 @@ api_content_views_rpm_packages.go
 api_content_views_rpm_packages_list.go
 api_content_yanks.go
 api_contentguards.go
+api_contentguards_andgate.go
 api_contentguards_composite.go
 api_contentguards_content_redirect.go
 api_contentguards_envvar_header.go
@@ -97,6 +99,7 @@ api_importers_pulp_imports.go
 api_livez.go
 api_login.go
 api_npm.go
+api_npm_backfill_manifests.go
 api_npm_ping.go
 api_npm_whoami.go
 api_orphans.go
@@ -190,6 +193,7 @@ docs/ApiDebugStaleLocksAPI.md
 docs/ApiDebugTaskDebugAPI.md
 docs/ApiDebugTaskQueueAPI.md
 docs/ApiMigrateDomainAPI.md
+docs/ApiNpmBackfillManifestsAPI.md
 docs/ApiPublicDebugAuthHeaderAPI.md
 docs/ApiPulpMigrateDomainCreateRequest.md
 docs/ApiRdsConnectionTestsAPI.md
@@ -279,6 +283,7 @@ docs/ContentViewsRpmPackagesAPI.md
 docs/ContentViewsRpmPackagesListAPI.md
 docs/ContentYanksAPI.md
 docs/ContentguardsAPI.md
+docs/ContentguardsAndgateAPI.md
 docs/ContentguardsCompositeAPI.md
 docs/ContentguardsContentRedirectAPI.md
 docs/ContentguardsEnvvarHeaderAPI.md
@@ -412,6 +417,8 @@ docs/NestedOpenPGPUserIDResponse.md
 docs/NestedRole.md
 docs/NestedRoleResponse.md
 docs/NpmAPI.md
+docs/NpmBackfillManifestsAPI.md
+docs/NpmManifestBackfill.md
 docs/NpmNpmDistribution.md
 docs/NpmNpmDistributionResponse.md
 docs/NpmNpmRemote.md
@@ -554,6 +561,7 @@ docs/PaginatedrpmRpmRemoteResponseList.md
 docs/PaginatedrpmRpmRepositoryResponseList.md
 docs/PaginatedrpmUlnRemoteResponseList.md
 docs/PaginatedrpmUpdateRecordResponseList.md
+docs/PaginatedserviceAndGateContentGuardResponseList.md
 docs/PaginatedserviceContentViewResponseList.md
 docs/PaginatedserviceFeatureContentGuardResponseList.md
 docs/PaginatedservicePyPIYankMonitorResponseList.md
@@ -607,6 +615,7 @@ docs/PatchedrpmRpmRemote.md
 docs/PatchedrpmRpmRepository.md
 docs/PatchedrpmRpmRepositoryOsvConfigInner.md
 docs/PatchedrpmUlnRemote.md
+docs/PatchedserviceAndGateContentGuard.md
 docs/PatchedserviceContentView.md
 docs/PatchedserviceFeatureContentGuard.md
 docs/Policy357Enum.md
@@ -756,6 +765,8 @@ docs/RpmUpdateCollection.md
 docs/RpmUpdateCollectionResponse.md
 docs/RpmUpdateRecord.md
 docs/RpmUpdateRecordResponse.md
+docs/ServiceAndGateContentGuard.md
+docs/ServiceAndGateContentGuardResponse.md
 docs/ServiceContentView.md
 docs/ServiceContentViewResponse.md
 docs/ServiceFeatureContentGuard.md
@@ -963,6 +974,7 @@ model_nested_open_pgp_user_id.go
 model_nested_open_pgp_user_id_response.go
 model_nested_role.go
 model_nested_role_response.go
+model_npm_manifest_backfill.go
 model_npm_npm_distribution.go
 model_npm_npm_distribution_response.go
 model_npm_npm_remote.go
@@ -1101,6 +1113,7 @@ model_paginatedrpm_rpm_remote_response_list.go
 model_paginatedrpm_rpm_repository_response_list.go
 model_paginatedrpm_uln_remote_response_list.go
 model_paginatedrpm_update_record_response_list.go
+model_paginatedservice_and_gate_content_guard_response_list.go
 model_paginatedservice_content_view_response_list.go
 model_paginatedservice_feature_content_guard_response_list.go
 model_paginatedservice_py_pi_yank_monitor_response_list.go
@@ -1154,6 +1167,7 @@ model_patchedrpm_rpm_remote.go
 model_patchedrpm_rpm_repository.go
 model_patchedrpm_rpm_repository_osv_config_inner.go
 model_patchedrpm_uln_remote.go
+model_patchedservice_and_gate_content_guard.go
 model_patchedservice_content_view.go
 model_patchedservice_feature_content_guard.go
 model_policy357_enum.go
@@ -1245,6 +1259,8 @@ model_rpm_update_collection.go
 model_rpm_update_collection_response.go
 model_rpm_update_record.go
 model_rpm_update_record_response.go
+model_service_and_gate_content_guard.go
+model_service_and_gate_content_guard_response.go
 model_service_content_view.go
 model_service_content_view_response.go
 model_service_feature_content_guard.go
@@ -1306,6 +1322,7 @@ test/api_api_debug_stale_locks_test.go
 test/api_api_debug_task_debug_test.go
 test/api_api_debug_task_queue_test.go
 test/api_api_migrate_domain_test.go
+test/api_api_npm_backfill_manifests_test.go
 test/api_api_public_debug_auth_header_test.go
 test/api_api_rds_connection_tests_test.go
 test/api_api_test_pagerduty_alert_test.go
@@ -1349,6 +1366,7 @@ test/api_content_views_rpm_packages_list_test.go
 test/api_content_views_rpm_packages_test.go
 test/api_content_views_test.go
 test/api_content_yanks_test.go
+test/api_contentguards_andgate_test.go
 test/api_contentguards_composite_test.go
 test/api_contentguards_content_redirect_test.go
 test/api_contentguards_envvar_header_test.go
@@ -1386,6 +1404,7 @@ test/api_importers_pulp_imports_test.go
 test/api_importers_pulp_test.go
 test/api_livez_test.go
 test/api_login_test.go
+test/api_npm_backfill_manifests_test.go
 test/api_npm_ping_test.go
 test/api_npm_test.go
 test/api_npm_whoami_test.go
