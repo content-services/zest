@@ -25,7 +25,7 @@ type ContentViewErrataResponse struct {
 	// Update id (e.g. RHEA-2013:1777)
 	Id string `json:"id"`
 	// Date when the update was updated
-	UpdatedDate string `json:"updated_date"`
+	UpdatedDate NullableString `json:"updated_date"`
 	// Date when the update was issued
 	IssuedDate string `json:"issued_date"`
 	// Update description
@@ -49,7 +49,7 @@ type ContentViewErrataResponse struct {
 	// Whether a reboot is suggested
 	RebootSuggested bool `json:"reboot_suggested"`
 	// CVE references attached to this errata
-	Cves *string `json:"cves,omitempty"`
+	Cves []ContentViewUpdateReferenceResponse `json:"cves,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,7 +59,7 @@ type _ContentViewErrataResponse ContentViewErrataResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContentViewErrataResponse(id string, updatedDate string, issuedDate string, description string, title string, summary string, version string, type_ string, severity string, solution string, release string, rights string, rebootSuggested bool) *ContentViewErrataResponse {
+func NewContentViewErrataResponse(id string, updatedDate NullableString, issuedDate string, description string, title string, summary string, version string, type_ string, severity string, solution string, release string, rights string, rebootSuggested bool) *ContentViewErrataResponse {
 	this := ContentViewErrataResponse{}
 	this.Id = id
 	this.UpdatedDate = updatedDate
@@ -142,27 +142,29 @@ func (o *ContentViewErrataResponse) SetId(v string) {
 }
 
 // GetUpdatedDate returns the UpdatedDate field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ContentViewErrataResponse) GetUpdatedDate() string {
-	if o == nil {
+	if o == nil || o.UpdatedDate.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UpdatedDate
+	return *o.UpdatedDate.Get()
 }
 
 // GetUpdatedDateOk returns a tuple with the UpdatedDate field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContentViewErrataResponse) GetUpdatedDateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.UpdatedDate, true
+	return o.UpdatedDate.Get(), o.UpdatedDate.IsSet()
 }
 
 // SetUpdatedDate sets field value
 func (o *ContentViewErrataResponse) SetUpdatedDate(v string) {
-	o.UpdatedDate = v
+	o.UpdatedDate.Set(&v)
 }
 
 // GetIssuedDate returns the IssuedDate field value
@@ -430,17 +432,17 @@ func (o *ContentViewErrataResponse) SetRebootSuggested(v bool) {
 }
 
 // GetCves returns the Cves field value if set, zero value otherwise.
-func (o *ContentViewErrataResponse) GetCves() string {
+func (o *ContentViewErrataResponse) GetCves() []ContentViewUpdateReferenceResponse {
 	if o == nil || IsNil(o.Cves) {
-		var ret string
+		var ret []ContentViewUpdateReferenceResponse
 		return ret
 	}
-	return *o.Cves
+	return o.Cves
 }
 
 // GetCvesOk returns a tuple with the Cves field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContentViewErrataResponse) GetCvesOk() (*string, bool) {
+func (o *ContentViewErrataResponse) GetCvesOk() ([]ContentViewUpdateReferenceResponse, bool) {
 	if o == nil || IsNil(o.Cves) {
 		return nil, false
 	}
@@ -456,9 +458,9 @@ func (o *ContentViewErrataResponse) HasCves() bool {
 	return false
 }
 
-// SetCves gets a reference to the given string and assigns it to the Cves field.
-func (o *ContentViewErrataResponse) SetCves(v string) {
-	o.Cves = &v
+// SetCves gets a reference to the given []ContentViewUpdateReferenceResponse and assigns it to the Cves field.
+func (o *ContentViewErrataResponse) SetCves(v []ContentViewUpdateReferenceResponse) {
+	o.Cves = v
 }
 
 func (o ContentViewErrataResponse) MarshalJSON() ([]byte, error) {
@@ -475,7 +477,7 @@ func (o ContentViewErrataResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["pulp_href"] = o.PulpHref
 	}
 	toSerialize["id"] = o.Id
-	toSerialize["updated_date"] = o.UpdatedDate
+	toSerialize["updated_date"] = o.UpdatedDate.Get()
 	toSerialize["issued_date"] = o.IssuedDate
 	toSerialize["description"] = o.Description
 	toSerialize["title"] = o.Title

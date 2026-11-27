@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Arch** | **string** | Module artifact architecture | 
 **Description** | **string** | A verbose description of the module | 
 **Profiles** | **interface{}** | Package lists of installable profiles | 
-**Packages** | Pointer to **string** | Names of packages in this module | [optional] [readonly] 
+**Packages** | Pointer to **[]string** | Names of packages in this module | [optional] [readonly] 
 
 ## Methods
 
@@ -210,20 +210,20 @@ SetProfiles sets Profiles field to given value.
 UnsetProfiles ensures that no value is present for Profiles, not even an explicit nil
 ### GetPackages
 
-`func (o *ContentViewModuleStreamResponse) GetPackages() string`
+`func (o *ContentViewModuleStreamResponse) GetPackages() []string`
 
 GetPackages returns the Packages field if non-nil, zero value otherwise.
 
 ### GetPackagesOk
 
-`func (o *ContentViewModuleStreamResponse) GetPackagesOk() (*string, bool)`
+`func (o *ContentViewModuleStreamResponse) GetPackagesOk() (*[]string, bool)`
 
 GetPackagesOk returns a tuple with the Packages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPackages
 
-`func (o *ContentViewModuleStreamResponse) SetPackages(v string)`
+`func (o *ContentViewModuleStreamResponse) SetPackages(v []string)`
 
 SetPackages sets Packages field to given value.
 

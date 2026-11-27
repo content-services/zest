@@ -37,7 +37,7 @@ type ServiceContentViewResponse struct {
 	// Distributions this content view searches across. May reference distributions belonging to any domain the user has read access to, not just this content view's own domain.
 	Distributions []string `json:"distributions,omitempty"`
 	// Per-distribution resolution status: whether each linked distribution's domain is currently accessible and whether it resolves to a repository version.
-	DistributionsStatus *string `json:"distributions_status,omitempty"`
+	DistributionsStatus []ContentViewDistributionStatusResponse `json:"distributions_status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -320,17 +320,17 @@ func (o *ServiceContentViewResponse) SetDistributions(v []string) {
 }
 
 // GetDistributionsStatus returns the DistributionsStatus field value if set, zero value otherwise.
-func (o *ServiceContentViewResponse) GetDistributionsStatus() string {
+func (o *ServiceContentViewResponse) GetDistributionsStatus() []ContentViewDistributionStatusResponse {
 	if o == nil || IsNil(o.DistributionsStatus) {
-		var ret string
+		var ret []ContentViewDistributionStatusResponse
 		return ret
 	}
-	return *o.DistributionsStatus
+	return o.DistributionsStatus
 }
 
 // GetDistributionsStatusOk returns a tuple with the DistributionsStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceContentViewResponse) GetDistributionsStatusOk() (*string, bool) {
+func (o *ServiceContentViewResponse) GetDistributionsStatusOk() ([]ContentViewDistributionStatusResponse, bool) {
 	if o == nil || IsNil(o.DistributionsStatus) {
 		return nil, false
 	}
@@ -346,9 +346,9 @@ func (o *ServiceContentViewResponse) HasDistributionsStatus() bool {
 	return false
 }
 
-// SetDistributionsStatus gets a reference to the given string and assigns it to the DistributionsStatus field.
-func (o *ServiceContentViewResponse) SetDistributionsStatus(v string) {
-	o.DistributionsStatus = &v
+// SetDistributionsStatus gets a reference to the given []ContentViewDistributionStatusResponse and assigns it to the DistributionsStatus field.
+func (o *ServiceContentViewResponse) SetDistributionsStatus(v []ContentViewDistributionStatusResponse) {
+	o.DistributionsStatus = v
 }
 
 func (o ServiceContentViewResponse) MarshalJSON() ([]byte, error) {

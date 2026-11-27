@@ -34,6 +34,7 @@ type RpmPackagesAPIRpmContentSearchPackagesListRequest struct {
 	limit *int32
 	name *string
 	offset *int32
+	search *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -50,7 +51,7 @@ func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) XTaskDiagnostics(xTas
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) Limit(limit int32) RpmPackagesAPIRpmContentSearchPackagesListRequest {
 	r.limit = &limit
 	return r
@@ -65,6 +66,12 @@ func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) Name(name string) Rpm
 // Number of results to skip.
 func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) Offset(offset int32) RpmPackagesAPIRpmContentSearchPackagesListRequest {
 	r.offset = &offset
+	return r
+}
+
+// Case-insensitive prefix of the package name (e.g. &#39;du&#39; matches &#39;duck&#39; and &#39;DUMMY&#39;).
+func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) Search(search string) RpmPackagesAPIRpmContentSearchPackagesListRequest {
+	r.search = &search
 	return r
 }
 
@@ -87,7 +94,7 @@ func (r RpmPackagesAPIRpmContentSearchPackagesListRequest) Execute() (*Paginated
 /*
 RpmContentSearchPackagesList List content view search scopes
 
-Ad-hoc, cross-domain RPM package search: exact name filter, fixed NEVRA sort, paginated.Same query behavior as the ContentView-backed ``search/rpm/packages/list`` endpoint, but therepository versions to search come directly from ``repository_version`` query parametersinstead of a persisted ContentView's Distributions.
+Ad-hoc, cross-domain RPM package listing: one row per package build, sorted by NEVRA,paginated. ``name`` filters by exact name, ``search`` by case-insensitive name prefix.Same query behavior as the ContentView-backed ``search/rpm/packages/list`` endpoint, but therepository versions to search come directly from ``repository_version`` query parametersinstead of a persisted ContentView's Distributions.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -146,6 +153,9 @@ func (a *RpmPackagesAPIService) RpmContentSearchPackagesListExecute(r RpmPackage
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "repository_version", t, "form", "multi")
 		}
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields

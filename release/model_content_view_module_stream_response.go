@@ -37,7 +37,7 @@ type ContentViewModuleStreamResponse struct {
 	// Package lists of installable profiles
 	Profiles interface{} `json:"profiles"`
 	// Names of packages in this module
-	Packages *string `json:"packages,omitempty"`
+	Packages []string `json:"packages,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -270,17 +270,17 @@ func (o *ContentViewModuleStreamResponse) SetProfiles(v interface{}) {
 }
 
 // GetPackages returns the Packages field value if set, zero value otherwise.
-func (o *ContentViewModuleStreamResponse) GetPackages() string {
+func (o *ContentViewModuleStreamResponse) GetPackages() []string {
 	if o == nil || IsNil(o.Packages) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Packages
+	return o.Packages
 }
 
 // GetPackagesOk returns a tuple with the Packages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContentViewModuleStreamResponse) GetPackagesOk() (*string, bool) {
+func (o *ContentViewModuleStreamResponse) GetPackagesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Packages) {
 		return nil, false
 	}
@@ -296,9 +296,9 @@ func (o *ContentViewModuleStreamResponse) HasPackages() bool {
 	return false
 }
 
-// SetPackages gets a reference to the given string and assigns it to the Packages field.
-func (o *ContentViewModuleStreamResponse) SetPackages(v string) {
-	o.Packages = &v
+// SetPackages gets a reference to the given []string and assigns it to the Packages field.
+func (o *ContentViewModuleStreamResponse) SetPackages(v []string) {
+	o.Packages = v
 }
 
 func (o ContentViewModuleStreamResponse) MarshalJSON() ([]byte, error) {

@@ -53,7 +53,7 @@ func (r RpmErrataAPIRpmContentSearchErrataListRequest) XTaskDiagnostics(xTaskDia
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r RpmErrataAPIRpmContentSearchErrataListRequest) Limit(limit int32) RpmErrataAPIRpmContentSearchErrataListRequest {
 	r.limit = &limit
 	return r
@@ -65,25 +65,25 @@ func (r RpmErrataAPIRpmContentSearchErrataListRequest) Offset(offset int32) RpmE
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the advisory id, title or summary.
 func (r RpmErrataAPIRpmContentSearchErrataListRequest) Search(search string) RpmErrataAPIRpmContentSearchErrataListRequest {
 	r.search = &search
 	return r
 }
 
-// Comma-separated list of errata severities to include (known values: [&#39;critical&#39;, &#39;important&#39;, &#39;low&#39;, &#39;moderate&#39;, &#39;none&#39;]; anything else matches as an &#39;other&#39; catch-all bucket).
+// Comma-separated list of errata severities to include, matched exactly (case-sensitive; Pulp values are Critical, Important, Moderate, Low). The special value &#39;Unknown&#39; also matches every severity outside that list (including empty and &#39;None&#39;).
 func (r RpmErrataAPIRpmContentSearchErrataListRequest) Severity(severity string) RpmErrataAPIRpmContentSearchErrataListRequest {
 	r.severity = &severity
 	return r
 }
 
-// Field to sort by; prefix with &#39;-&#39; for descending order.
+// Field to sort by; prefix with &#39;-&#39; for descending order (default &#39;-issued_date&#39;). Ties are broken deterministically, so paging is stable.
 func (r RpmErrataAPIRpmContentSearchErrataListRequest) SortBy(sortBy string) RpmErrataAPIRpmContentSearchErrataListRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-// Comma-separated list of errata types to include (known values: [&#39;bugfix&#39;, &#39;enhancement&#39;, &#39;newpackage&#39;, &#39;security&#39;]; anything else matches as an &#39;other&#39; catch-all bucket).
+// Comma-separated list of errata types to include, matched exactly. The special value &#39;other&#39; also matches every type other than security, bugfix, enhancement (e.g. &#39;newpackage&#39;).
 func (r RpmErrataAPIRpmContentSearchErrataListRequest) Type_(type_ string) RpmErrataAPIRpmContentSearchErrataListRequest {
 	r.type_ = &type_
 	return r
@@ -108,7 +108,7 @@ func (r RpmErrataAPIRpmContentSearchErrataListRequest) Execute() (*PaginatedCont
 /*
 RpmContentSearchErrataList List content view search scopes
 
-Ad-hoc, cross-domain errata (advisory) search: filter/sort/paginate, with CVE referencesincluded.Same query behavior as the ContentView-backed ``search/rpm/errata`` endpoint, but therepository versions to search come directly from ``repository_version`` query parametersinstead of a persisted ContentView's Distributions.
+Ad-hoc, cross-domain errata (advisory) search: filter/sort/paginate, with CVE referencesincluded.Same query behavior as the ContentView-backed ``search/rpm/errata`` endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain

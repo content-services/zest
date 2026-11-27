@@ -157,9 +157,11 @@ api_repository_versions.go
 api_roles.go
 api_rpm_comps.go
 api_rpm_copy.go
+api_rpm_environments.go
 api_rpm_errata.go
 api_rpm_module_streams.go
 api_rpm_package_groups.go
+api_rpm_package_names.go
 api_rpm_packages.go
 api_rpm_prune.go
 api_signing_services.go
@@ -269,11 +271,14 @@ docs/ContentSettingsResponse.md
 docs/ContentSignaturesAPI.md
 docs/ContentSummaryResponse.md
 docs/ContentTagsAPI.md
+docs/ContentViewDistributionStatusResponse.md
 docs/ContentViewErrataResponse.md
 docs/ContentViewModuleStreamResponse.md
 docs/ContentViewPackageEnvironmentResponse.md
 docs/ContentViewPackageGroupResponse.md
+docs/ContentViewPackageNameResponse.md
 docs/ContentViewPackageResponse.md
+docs/ContentViewUpdateReferenceResponse.md
 docs/ContentViewsAPI.md
 docs/ContentViewsRpmEnvironmentsAPI.md
 docs/ContentViewsRpmErrataAPI.md
@@ -460,6 +465,7 @@ docs/PaginatedContentViewErrataResponseList.md
 docs/PaginatedContentViewModuleStreamResponseList.md
 docs/PaginatedContentViewPackageEnvironmentResponseList.md
 docs/PaginatedContentViewPackageGroupResponseList.md
+docs/PaginatedContentViewPackageNameResponseList.md
 docs/PaginatedContentViewPackageResponseList.md
 docs/PaginatedDistributionResponseList.md
 docs/PaginatedDomainResponseList.md
@@ -730,6 +736,7 @@ docs/RolesAPI.md
 docs/RpmCompsAPI.md
 docs/RpmCopyAPI.md
 docs/RpmDistributionTreeResponse.md
+docs/RpmEnvironmentsAPI.md
 docs/RpmErrataAPI.md
 docs/RpmModuleStreamsAPI.md
 docs/RpmModulemd.md
@@ -744,6 +751,7 @@ docs/RpmPackageEnvironmentResponse.md
 docs/RpmPackageGroupResponse.md
 docs/RpmPackageGroupsAPI.md
 docs/RpmPackageLangpacksResponse.md
+docs/RpmPackageNamesAPI.md
 docs/RpmPackageResponse.md
 docs/RpmPackagesAPI.md
 docs/RpmPruneAPI.md
@@ -782,6 +790,7 @@ docs/SigningServicesAPI.md
 docs/SkipTypesEnum.md
 docs/StatesEnum.md
 docs/StatusAPI.md
+docs/StatusEnum.md
 docs/StatusResponse.md
 docs/StorageClassEnum.md
 docs/StorageResponse.md
@@ -873,11 +882,14 @@ model_content_redirect_content_guard_response.go
 model_content_scan.go
 model_content_settings_response.go
 model_content_summary_response.go
+model_content_view_distribution_status_response.go
 model_content_view_errata_response.go
 model_content_view_module_stream_response.go
 model_content_view_package_environment_response.go
 model_content_view_package_group_response.go
+model_content_view_package_name_response.go
 model_content_view_package_response.go
+model_content_view_update_reference_response.go
 model_copy.go
 model_data_repair7272.go
 model_database_connection_response.go
@@ -1012,6 +1024,7 @@ model_paginated_content_view_errata_response_list.go
 model_paginated_content_view_module_stream_response_list.go
 model_paginated_content_view_package_environment_response_list.go
 model_paginated_content_view_package_group_response_list.go
+model_paginated_content_view_package_name_response_list.go
 model_paginated_content_view_package_response_list.go
 model_paginated_distribution_response_list.go
 model_paginated_domain_response_list.go
@@ -1274,6 +1287,7 @@ model_set_label_response.go
 model_signing_service_response.go
 model_skip_types_enum.go
 model_states_enum.go
+model_status_enum.go
 model_status_response.go
 model_storage_class_enum.go
 model_storage_response.go
@@ -1463,9 +1477,11 @@ test/api_repository_versions_test.go
 test/api_roles_test.go
 test/api_rpm_comps_test.go
 test/api_rpm_copy_test.go
+test/api_rpm_environments_test.go
 test/api_rpm_errata_test.go
 test/api_rpm_module_streams_test.go
 test/api_rpm_package_groups_test.go
+test/api_rpm_package_names_test.go
 test/api_rpm_packages_test.go
 test/api_rpm_prune_test.go
 test/api_signing_services_test.go

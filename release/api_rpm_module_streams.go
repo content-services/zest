@@ -31,6 +31,7 @@ type RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest struct {
 	pulpDomain string
 	repositoryVersion *[]string
 	xTaskDiagnostics *[]string
+	hasPackages *bool
 	limit *int32
 	offset *int32
 	rpmNames *string
@@ -52,13 +53,19 @@ func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) XTaskDiagno
 	return r
 }
 
-// Maximum number of results to return.
+// If true, only module streams that contain packages are returned; if false, only module streams without packages. If omitted, all module streams are returned.
+func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) HasPackages(hasPackages bool) RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest {
+	r.hasPackages = &hasPackages
+	return r
+}
+
+// Maximum number of results to return (default 5000, maximum 5000).
 func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) Limit(limit int32) RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) Offset(offset int32) RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest {
 	r.offset = &offset
 	return r
@@ -70,13 +77,13 @@ func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) RpmNames(rp
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the name.
 func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) Search(search string) RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest {
 	r.search = &search
 	return r
 }
 
-// Field to sort by; prefix with &#39;-&#39; for descending order.
+// Field to sort by; prefix with &#39;-&#39; for descending order (default &#39;name&#39;). Ties are broken deterministically, so paging is stable.
 func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) SortBy(sortBy string) RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest {
 	r.sortBy = &sortBy
 	return r
@@ -101,7 +108,7 @@ func (r RpmModuleStreamsAPIRpmContentSearchModuleStreamsListRequest) Execute() (
 /*
 RpmContentSearchModuleStreamsList List content view search scopes
 
-Ad-hoc, cross-domain module stream search: name/stream substring match, optional RPM namefilter, capped.Same query behavior as the ContentView-backed ``search/rpm/module-streams`` endpoint, but therepository versions to search come directly from ``repository_version`` query parametersinstead of a persisted ContentView's Distributions.
+Ad-hoc, cross-domain module stream search: one row per ``(name, stream)`` (the lowestversion), case-insensitive module-name substring, optional RPM-name and has-packages filters.Same query behavior as the ContentView-backed ``search/rpm/module-streams`` endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain
@@ -141,6 +148,9 @@ func (a *RpmModuleStreamsAPIService) RpmContentSearchModuleStreamsListExecute(r 
 		return localVarReturnValue, nil, reportError("repositoryVersion is required and must be specified")
 	}
 
+	if r.hasPackages != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "has_packages", r.hasPackages, "form", "")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}

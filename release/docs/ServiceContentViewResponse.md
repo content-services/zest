@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | An optional description of this content view. | [optional] 
 **PulpLabels** | Pointer to **map[string]string** |  | [optional] 
 **Distributions** | Pointer to **[]string** | Distributions this content view searches across. May reference distributions belonging to any domain the user has read access to, not just this content view&#39;s own domain. | [optional] 
-**DistributionsStatus** | Pointer to **string** | Per-distribution resolution status: whether each linked distribution&#39;s domain is currently accessible and whether it resolves to a repository version. | [optional] [readonly] 
+**DistributionsStatus** | Pointer to [**[]ContentViewDistributionStatusResponse**](ContentViewDistributionStatusResponse.md) | Per-distribution resolution status: whether each linked distribution&#39;s domain is currently accessible and whether it resolves to a repository version. | [optional] [readonly] 
 
 ## Methods
 
@@ -240,20 +240,20 @@ HasDistributions returns a boolean if a field has been set.
 
 ### GetDistributionsStatus
 
-`func (o *ServiceContentViewResponse) GetDistributionsStatus() string`
+`func (o *ServiceContentViewResponse) GetDistributionsStatus() []ContentViewDistributionStatusResponse`
 
 GetDistributionsStatus returns the DistributionsStatus field if non-nil, zero value otherwise.
 
 ### GetDistributionsStatusOk
 
-`func (o *ServiceContentViewResponse) GetDistributionsStatusOk() (*string, bool)`
+`func (o *ServiceContentViewResponse) GetDistributionsStatusOk() (*[]ContentViewDistributionStatusResponse, bool)`
 
 GetDistributionsStatusOk returns a tuple with the DistributionsStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDistributionsStatus
 
-`func (o *ServiceContentViewResponse) SetDistributionsStatus(v string)`
+`func (o *ServiceContentViewResponse) SetDistributionsStatus(v []ContentViewDistributionStatusResponse)`
 
 SetDistributionsStatus sets DistributionsStatus field to given value.
 

@@ -43,19 +43,19 @@ func (r ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListReq
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest) Limit(limit int32) ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest) Offset(offset int32) ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest {
 	r.offset = &offset
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the name.
 func (r ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest) Search(search string) ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListRequest {
 	r.search = &search
 	return r
@@ -80,7 +80,7 @@ func (r ContentViewsRpmPackageGroupsAPIContentViewsSearchRpmPackageGroupsListReq
 /*
 ContentViewsSearchRpmPackageGroupsList List content view search scopes
 
-Typeahead package-group search: substring match, with the ``packages`` list of same-keyedgroups found in multiple domains/repository versions unioned together.
+Package-group search: case-insensitive name substring, with the ``packages`` list ofsame-keyed groups found in multiple domains/repository versions unioned together.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceContentViewHref

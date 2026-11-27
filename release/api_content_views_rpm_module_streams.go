@@ -30,6 +30,7 @@ type ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListReques
 	ApiService *ContentViewsRpmModuleStreamsAPIService
 	serviceContentViewHref string
 	xTaskDiagnostics *[]string
+	hasPackages *bool
 	limit *int32
 	offset *int32
 	rpmNames *string
@@ -45,13 +46,19 @@ func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListReq
 	return r
 }
 
-// Maximum number of results to return.
+// If true, only module streams that contain packages are returned; if false, only module streams without packages. If omitted, all module streams are returned.
+func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest) HasPackages(hasPackages bool) ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest {
+	r.hasPackages = &hasPackages
+	return r
+}
+
+// Maximum number of results to return (default 5000, maximum 5000).
 func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest) Limit(limit int32) ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest) Offset(offset int32) ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest {
 	r.offset = &offset
 	return r
@@ -63,13 +70,13 @@ func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListReq
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the name.
 func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest) Search(search string) ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest {
 	r.search = &search
 	return r
 }
 
-// Field to sort by; prefix with &#39;-&#39; for descending order.
+// Field to sort by; prefix with &#39;-&#39; for descending order (default &#39;name&#39;). Ties are broken deterministically, so paging is stable.
 func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest) SortBy(sortBy string) ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListRequest {
 	r.sortBy = &sortBy
 	return r
@@ -94,7 +101,7 @@ func (r ContentViewsRpmModuleStreamsAPIContentViewsSearchRpmModuleStreamsListReq
 /*
 ContentViewsSearchRpmModuleStreamsList List content view search scopes
 
-Module stream search: name/stream substring match, optional RPM name filter, capped.
+Module stream search: one row per (name, stream), optional RPM-name/has-packages filters.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceContentViewHref
@@ -131,6 +138,9 @@ func (a *ContentViewsRpmModuleStreamsAPIService) ContentViewsSearchRpmModuleStre
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.hasPackages != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "has_packages", r.hasPackages, "form", "")
+	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
