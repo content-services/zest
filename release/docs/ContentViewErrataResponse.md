@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PulpHref** | Pointer to **string** |  | [optional] [readonly] 
 **Id** | **string** | Update id (e.g. RHEA-2013:1777) | 
-**UpdatedDate** | **string** | Date when the update was updated | 
+**UpdatedDate** | **NullableString** | Date when the update was updated | 
 **IssuedDate** | **string** | Date when the update was issued | 
 **Description** | **string** | Update description | 
 **Title** | **string** | Update name | 
@@ -18,13 +18,13 @@ Name | Type | Description | Notes
 **Release** | **string** | Update release | 
 **Rights** | **string** | Copyrights | 
 **RebootSuggested** | **bool** | Whether a reboot is suggested | 
-**Cves** | Pointer to **string** | CVE references attached to this errata | [optional] [readonly] 
+**Cves** | Pointer to [**[]ContentViewUpdateReferenceResponse**](ContentViewUpdateReferenceResponse.md) | CVE references attached to this errata | [optional] [readonly] 
 
 ## Methods
 
 ### NewContentViewErrataResponse
 
-`func NewContentViewErrataResponse(id string, updatedDate string, issuedDate string, description string, title string, summary string, version string, type_ string, severity string, solution string, release string, rights string, rebootSuggested bool, ) *ContentViewErrataResponse`
+`func NewContentViewErrataResponse(id string, updatedDate NullableString, issuedDate string, description string, title string, summary string, version string, type_ string, severity string, solution string, release string, rights string, rebootSuggested bool, ) *ContentViewErrataResponse`
 
 NewContentViewErrataResponse instantiates a new ContentViewErrataResponse object
 This constructor will assign default values to properties that have it defined,
@@ -104,6 +104,16 @@ and a boolean to check if the value has been set.
 SetUpdatedDate sets UpdatedDate field to given value.
 
 
+### SetUpdatedDateNil
+
+`func (o *ContentViewErrataResponse) SetUpdatedDateNil(b bool)`
+
+ SetUpdatedDateNil sets the value for UpdatedDate to be an explicit nil
+
+### UnsetUpdatedDate
+`func (o *ContentViewErrataResponse) UnsetUpdatedDate()`
+
+UnsetUpdatedDate ensures that no value is present for UpdatedDate, not even an explicit nil
 ### GetIssuedDate
 
 `func (o *ContentViewErrataResponse) GetIssuedDate() string`
@@ -326,20 +336,20 @@ SetRebootSuggested sets RebootSuggested field to given value.
 
 ### GetCves
 
-`func (o *ContentViewErrataResponse) GetCves() string`
+`func (o *ContentViewErrataResponse) GetCves() []ContentViewUpdateReferenceResponse`
 
 GetCves returns the Cves field if non-nil, zero value otherwise.
 
 ### GetCvesOk
 
-`func (o *ContentViewErrataResponse) GetCvesOk() (*string, bool)`
+`func (o *ContentViewErrataResponse) GetCvesOk() (*[]ContentViewUpdateReferenceResponse, bool)`
 
 GetCvesOk returns a tuple with the Cves field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCves
 
-`func (o *ContentViewErrataResponse) SetCves(v string)`
+`func (o *ContentViewErrataResponse) SetCves(v []ContentViewUpdateReferenceResponse)`
 
 SetCves sets Cves field to given value.
 

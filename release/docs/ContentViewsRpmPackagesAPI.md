@@ -31,9 +31,9 @@ import (
 func main() {
 	serviceContentViewHref := "serviceContentViewHref_example" // string | 
 	xTaskDiagnostics := []string{"Inner_example"} // []string | List of profilers to use on tasks. (optional)
-	limit := int32(56) // int32 | Maximum number of results to return. (optional)
-	offset := int32(56) // int32 | The initial index from which to return the results. (optional)
-	search := "search_example" // string | Case-insensitive substring/prefix search term. (optional)
+	limit := int32(56) // int32 | Maximum number of results to return (default 100, maximum 1000). (optional)
+	offset := int32(56) // int32 | Number of results to skip. (optional)
+	search := "search_example" // string | Case-insensitive prefix of the package name (e.g. 'du' matches 'duck' and 'DUMMY'). (optional)
 	fields := []string{"Inner_example"} // []string | A list of fields to include in the response. (optional)
 	excludeFields := []string{"Inner_example"} // []string | A list of fields to exclude from the response. (optional)
 
@@ -66,9 +66,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **xTaskDiagnostics** | **[]string** | List of profilers to use on tasks. | 
- **limit** | **int32** | Maximum number of results to return. | 
- **offset** | **int32** | The initial index from which to return the results. | 
- **search** | **string** | Case-insensitive substring/prefix search term. | 
+ **limit** | **int32** | Maximum number of results to return (default 100, maximum 1000). | 
+ **offset** | **int32** | Number of results to skip. | 
+ **search** | **string** | Case-insensitive prefix of the package name (e.g. &#39;du&#39; matches &#39;duck&#39; and &#39;DUMMY&#39;). | 
  **fields** | **[]string** | A list of fields to include in the response. | 
  **excludeFields** | **[]string** | A list of fields to exclude from the response. | 
 

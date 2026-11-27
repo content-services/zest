@@ -33,6 +33,7 @@ type ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest 
 	limit *int32
 	name *string
 	offset *int32
+	search *string
 	fields *[]string
 	excludeFields *[]string
 }
@@ -43,7 +44,7 @@ func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListReque
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest) Limit(limit int32) ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest {
 	r.limit = &limit
 	return r
@@ -58,6 +59,12 @@ func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListReque
 // Number of results to skip.
 func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest) Offset(offset int32) ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest {
 	r.offset = &offset
+	return r
+}
+
+// Case-insensitive prefix of the package name (e.g. &#39;du&#39; matches &#39;duck&#39; and &#39;DUMMY&#39;).
+func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest) Search(search string) ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListRequest {
+	r.search = &search
 	return r
 }
 
@@ -80,7 +87,7 @@ func (r ContentViewsRpmPackagesListAPIContentViewsSearchRpmPackagesListListReque
 /*
 ContentViewsSearchRpmPackagesListList List content view search scopes
 
-Full package listing: exact name filter, fixed NEVRA sort, paginated.
+Full package listing: exact name and name-prefix filters, fixed NEVRA sort, paginated.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceContentViewHref
@@ -125,6 +132,9 @@ func (a *ContentViewsRpmPackagesListAPIService) ContentViewsSearchRpmPackagesLis
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}
 	if r.fields != nil {
 		t := *r.fields

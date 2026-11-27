@@ -43,19 +43,19 @@ func (r ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListReque
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest) Limit(limit int32) ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest) Offset(offset int32) ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest {
 	r.offset = &offset
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the name.
 func (r ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest) Search(search string) ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListRequest {
 	r.search = &search
 	return r
@@ -80,7 +80,7 @@ func (r ContentViewsRpmEnvironmentsAPIContentViewsSearchRpmEnvironmentsListReque
 /*
 ContentViewsSearchRpmEnvironmentsList List content view search scopes
 
-Typeahead package-environment search: substring match, deduplicated by (name, id).
+Package-environment search: case-insensitive name substring, deduplicated by (name, id).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceContentViewHref

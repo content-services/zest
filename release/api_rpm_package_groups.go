@@ -50,19 +50,19 @@ func (r RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest) XTaskDiagno
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest) Limit(limit int32) RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest) Offset(offset int32) RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest {
 	r.offset = &offset
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive substring of the name.
 func (r RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest) Search(search string) RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest {
 	r.search = &search
 	return r
@@ -87,7 +87,7 @@ func (r RpmPackageGroupsAPIRpmContentSearchPackageGroupsListRequest) Execute() (
 /*
 RpmContentSearchPackageGroupsList List content view search scopes
 
-Ad-hoc, cross-domain RPM package-group search: substring match, with the ``packages`` list ofsame-keyed groups found in multiple repository versions unioned together.Same query behavior as the ContentView-backed ``search/rpm/package-groups`` endpoint, but therepository versions to search come directly from ``repository_version`` query parametersinstead of a persisted ContentView's Distributions.
+Ad-hoc, cross-domain RPM package-group search: case-insensitive name substring, with the``packages`` list of same-keyed groups found in multiple repository versions unioned together.Same query behavior as the ContentView-backed ``search/rpm/package-groups`` endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pulpDomain

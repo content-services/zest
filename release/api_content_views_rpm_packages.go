@@ -43,19 +43,19 @@ func (r ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest) XTas
 	return r
 }
 
-// Maximum number of results to return.
+// Maximum number of results to return (default 100, maximum 1000).
 func (r ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest) Limit(limit int32) ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest {
 	r.limit = &limit
 	return r
 }
 
-// The initial index from which to return the results.
+// Number of results to skip.
 func (r ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest) Offset(offset int32) ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest {
 	r.offset = &offset
 	return r
 }
 
-// Case-insensitive substring/prefix search term.
+// Case-insensitive prefix of the package name (e.g. &#39;du&#39; matches &#39;duck&#39; and &#39;DUMMY&#39;).
 func (r ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest) Search(search string) ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest {
 	r.search = &search
 	return r
@@ -80,7 +80,7 @@ func (r ContentViewsRpmPackagesAPIContentViewsSearchRpmPackagesListRequest) Exec
 /*
 ContentViewsSearchRpmPackagesList List content view search scopes
 
-Typeahead package search: prefix match, deduplicated by name.
+Typeahead package search: case-insensitive name prefix, one result per package name.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceContentViewHref
